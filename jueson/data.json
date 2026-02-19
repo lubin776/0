@@ -60,6 +60,30 @@
         "url": "http://ping0.cc/" 
         }
       ]
+    },    {
+      "name": "4776",
+      "websites": [
+        { 
+        "name": "书签qzz", 
+        "url": "https://0.cdz.qzz.io/" 
+        },
+        { 
+        "name": "书签de5", 
+        "url": "https://0.12yue.de5.net/" 
+        },
+        { 
+        "name": "书签eucc", 
+        "url": "https://0.wdzb.eu.cc/" 
+        },
+        { 
+        "name": "ip测试", 
+        "url": "https://0.12yue.de5.net/iptool" 
+        },
+        { 
+        "name": "tvbox配置编辑", 
+        "url": "https://0.12yue.de5.net/tvboxtool/" 
+        }
+      ]
     },
     {
       "name": "35895",
