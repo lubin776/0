@@ -1,0 +1,28 @@
+{
+  "urls": [
+    {
+      "url": "https://gitee.com/lu3589/box/raw/main/jmx4.json",
+      "name": "gitee线"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/1/jmx4.txt",
+      "name": "github线"
+    },
+    {
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/1/jmx4d1.txt",
+      "name": "代理1线"
+    },
+    {
+      "url": "https://gh.llkk.cc/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/1/jmx4d2.txt",
+      "name": "代理2线"
+    },
+    {
+      "url": "https://ghfast.top/raw.githubusercontent.com/lubin776/0/refs/heads/main/1/jmx4d3.txt",
+      "name": "代理3线"
+    },
+    {
+      "url": "https://gh-proxy.org/raw.githubusercontent.com/lubin776/0/refs/heads/main/1/jmx4d4.txt",
+      "name": "代理4线"
+    }
+      ]
+}
