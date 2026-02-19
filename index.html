@@ -1,106 +1,43 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Care for everyone</title>
+    <title>个人书签</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        header {
-            background: linear-gradient(135deg, #4a6fa5, #166088);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .subtitle {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 1.5rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #166088;
-            margin-bottom: 1rem;
-        }
-        p {
-            margin-bottom: 1rem;
-        }
-        ul {
-            padding-left: 1.5rem;
-            margin: 1rem 0;
-        }
-        li {
-            margin-bottom: 0.5rem;
-        }
-        .actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .action-card {
-            background: #e9f5ff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 5px solid #4a6fa5;
-        }
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-        a {
-            color: #166088;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .quote {
-            font-style: italic;
-            background: #f0f7ff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-            text-align: center;
-            font-size: 1.1rem;
-        }
+        body { font-family: -apple-system, sans-serif; line-height: 1.5; max-width: 500px; margin: 40px auto; padding: 0 20px; background: #fff; color: #222; }
+        h2 { font-size: 1rem; color: #666; margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+        ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        a { font-size: 0.95rem; color: #0070f3; text-decoration: none; display: block; padding: 5px 0; }
+        a:hover { text-decoration: underline; }
+        .loading { color: #999; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Care for everyone</h1>
-        <p class="subtitle">Every person deserves dignity, opportunity, and compassion. Together we can build a more inclusive and supportive society for all.</p>
-    </header>
+    <div id="app"><p class="loading">正在同步数据...</p></div>
 
+    <script>
+        async function loadBookmarks() {
+            const container = document.getElementById('app');
+            try {
+                // 读取同目录下的 data.json
+                const response = await fetch('./data.json');
+                if (!response.ok) throw new Error('数据加载失败');
+                const data = await response.json();
+
+                container.innerHTML = data.categories.map(cat => `
+                    <h2>${cat.name}</h2>
+                    <ul>
+                        ${cat.websites.map(site => `
+                            <li><a href="${site.url}" target="_blank" rel="noopener">${site.name}</a></li>
+                        `).join('')}
+                    </ul>
+                `).join('');
+            } catch (err) {
+                container.innerHTML = `<p style="color:red">错误: ${err.message}</p>`;
+            }
+        }
+        loadBookmarks();
+    </script>
 </body>
 </html>
