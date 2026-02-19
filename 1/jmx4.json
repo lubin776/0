@@ -1,14 +1,18 @@
+//      >>> 当前时间是：2026-02-20 00:46:40 <<<
+//     关注微信公众号【太太太硬了】有惊喜哦！！！
+
+//     当前接口：https://gitee.com/lu3589/box/raw/main/jmx4.json
 {
     "sites": [
         {
             "key": "drpy_js_豆瓣",
             "name": "豆瓣",
             "type": 3,
-            "api": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/1/drpy2.min.js",
+            "api": "https://gitee.com/lu3589/box/raw/main/qqqwww0312/lib/drpy2.min.js",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 0,
-            "ext": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/1/douban.js"
+            "ext": "https://gitee.com/lu3589/box/raw/main/qqqwww0312/lib/douban.js"
         },
         {
             "key": "feifan",
