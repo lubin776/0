@@ -1,0 +1,122 @@
+
+{
+  "categories": [
+
+    {
+      "name": "X站",
+      "websites": [
+        { 
+        "name": "thesislib", 
+        "url": "https://m.thesislib.com/dm67/cn" 
+        },
+        { 
+        "name": "missa2v", 
+        "url": "https://www.missav2.icu/dm194/cn" 
+        },
+        { 
+        "name": "55X", 
+        "url": "https://avsolu1.com/cn" 
+        },
+        { 
+        "name": "javd", 
+        "url": "https://javd.me/" 
+        }
+      ]
+    },
+    {
+      "name": "搜索",
+      "websites": [
+        { 
+        "name": "必应", 
+        "url": "https://cn.bing.com/" 
+        },
+        { 
+        "name": "yandex", 
+        "url": "https://yandex.com/" 
+        },
+        { 
+        "name": "baidu", 
+        "url": "https://baidu.com/" 
+        },
+        { 
+        "name": "Google", 
+        "url": "https://google.com" 
+        }
+      ]
+    },
+    {
+      "name": "工具",
+      "websites": [
+        { 
+        "name": "Tvbox编缉", 
+        "url": "https://wdz.de5.net/tvboxtool/" 
+        },
+        { 
+        "name": "Tvbox接口解密", 
+        "url": "https://www.xn--sss604efuw.com/jm/" 
+        }
+      ]
+    },
+    {
+      "name": "35895",
+      "websites": [
+        { 
+        "name": "", 
+        "url": "https://vd.wdz.de5.net" 
+        },
+        { 
+        "name": "", 
+        "url": "https://vd.cdzb.eu.cc" 
+        },
+        { 
+        "name": "", 
+        "url": "https://wdz.de5.net" 
+        },
+        { 
+        "name": "", 
+        "url": "https://cdzb.eu.cc" 
+        },
+        { 
+        "name": "ed8d节点eucc", 
+        "url": "https://ed8d.cdzb.eu.cc/" 
+        },
+        { 
+        "name": "ed8d节点de5", 
+        "url": "https://ed8d.wdz.de5.net" 
+        },
+        { 
+        "name": "bd8dde5", 
+        "url": "https://bd8d.wdz.de5.net" 
+        },
+        { 
+        "name": "bd8deucc", 
+        "url": "https://bd8d.cdzb.eu.cc/" 
+        },
+        { 
+        "name": "cd8d节点de5", 
+        "url": "https://cd8d.wdz.de5.net" 
+        },
+        { 
+        "name": "cd8d节点eucc", 
+        "url": "https://cd8d.cdzb.eu.cc/" 
+        },
+        { 
+        "name": "ss节点eucc", 
+        "url": "https://ss.cdzb.eu.cc" 
+        },
+        { 
+        "name": "ss节点de5", 
+        "url": "https://ss.wdz.de5.net" 
+        },
+        { 
+        "name": "cn节点de5", 
+        "url": "https://cn.wdz.de5.net" 
+        },
+        { 
+        "name": "cn节点eucc", 
+        "url": "https://cn.cdzb.eu.cc" 
+        }
+      ]
+    }
+  ]
+}
