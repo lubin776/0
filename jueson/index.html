@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人书签</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; line-height: 1.5; max-width: 500px; margin: 40px auto; padding: 0 20px; background: #fff; color: #222; }
+        h2 { font-size: 1rem; color: #666; margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+        ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        a { font-size: 0.95rem; color: #0070f3; text-decoration: none; display: block; padding: 5px 0; }
+        a:hover { text-decoration: underline; }
+        .loading { color: #999; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div id="app"><p class="loading">正在同步数据...</p></div>
+
+    <script>
+        async function loadBookmarks() {
+            const container = document.getElementById('app');
+            try {
+                // 读取同目录下的 data.json
+                const response = await fetch('./data.json');
+                if (!response.ok) throw new Error('数据加载失败');
+                const data = await response.json();
+
+                container.innerHTML = data.categories.map(cat => `
+                    <h2>${cat.name}</h2>
+                    <ul>
+                        ${cat.websites.map(site => `
+                            <li><a href="${site.url}" target="_blank" rel="noopener">${site.name}</a></li>
+                        `).join('')}
+                    </ul>
+                `).join('');
+            } catch (err) {
+                container.innerHTML = `<p style="color:red">错误: ${err.message}</p>`;
+            }
+        }
+        loadBookmarks();
+    </script>
+</body>
+</html>
