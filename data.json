@@ -1,0 +1,65 @@
+
+{
+  "categories": [
+
+    {
+      "name": "X站",
+      "websites": [
+        { 
+        "name": "thesislib", 
+        "url": "https://m.thesislib.com/dm67/cn" 
+        },
+        { 
+        "name": "missa2v", 
+        "url": "https://www.missav2.icu/dm194/cn" 
+        },
+        { 
+        "name": "55X", 
+        "url": "https://avsolu1.com/cn" 
+        },
+        { 
+        "name": "javd", 
+        "url": "https://javd.me/" 
+        }
+      ]
+    },
+    {
+      "name": "搜索",
+      "websites": [
+        { 
+        "name": "必应", 
+        "url": "https://cn.bing.com/" 
+        },
+        { 
+        "name": "yandex", 
+        "url": "https://yandex.com/" 
+        },
+        { 
+        "name": "baidu", 
+        "url": "https://baidu.com/" 
+        },
+        { 
+        "name": "Google", 
+        "url": "https://google.com" 
+        }
+      ]
+    },
+    {
+      "name": "工具",
+      "websites": [
+        { 
+        "name": "Tvbox编缉", 
+        "url": "http://z.qiqiv.cn/" 
+        },
+        { 
+        "name": "Tvbox接口解密", 
+        "url": "https://www.xn--sss604efuw.com/jm/" 
+        },
+        { 
+        "name": "ping0", 
+        "url": "http://ping0.cc/" 
+        }
+      ]
+    }
+  ]
+}
