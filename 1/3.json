@@ -1,25 +1,14 @@
 {
-  "spider": "https://gitee.com/lu3589/box/raw/main/qqqwww0312/fan.txt;md5;c774c41f98e151b33aa70e525b38164a",
   "sites": [
     {
       "key": "drpy_js_豆瓣",
       "name": "豆瓣",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/1/drpy2.min.js",
+      "api": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/1/drpy2.min.js",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 0,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/1/douban.js"
-    },
-    {
-      "key": "哔哩",
-      "name": "️哔哩",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/1/bili.json"
+      "ext": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/1/douban.js"
     },
     {
       "key": "feifan",
