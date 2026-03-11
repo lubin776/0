@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>延迟测试</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Courier New", monospace;
+            background: #000; color: #00ff00; min-height: 100vh;
+            overflow-x: hidden; position: relative;
+        }
+        .matrix-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: -1;
+        }
+        .matrix-code-rain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1; overflow: hidden;
+        }
+        .matrix-column {
+            position: absolute; top: -100%; left: 0;
+            color: #00ff00; font-family: "Courier New", monospace;
+            font-size: 14px; line-height: 1.2;
+            text-shadow: 0 0 5px #00ff00;
+            animation: matrix-drop linear infinite;
+        }
+        @keyframes matrix-drop {
+            0% { top: -100%; opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .title {
+            font-size: 3.5rem; font-weight: bold;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            margin-bottom: 10px; color: #00ff00;
+        }
+        .card {
+            background: rgba(0, 20, 0, 0.9);
+            border: 2px solid #00ff00;
+            padding: 30px; margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        select, input {
+            padding: 10px; background: rgba(0, 0, 0, 0.8); 
+            border: 1px solid #00ff00; color: #00ff00; 
+            font-family: 'Courier New', monospace;
+        }
+        button {
+            padding: 8px 16px; font-family: 'Courier New', monospace; 
+            cursor: pointer; transition: all 0.3s;
+        }
+        .subscription-url {
+            background: rgba(0, 0, 0, 0.9); border: 2px solid #00ff00; 
+            padding: 15px; word-break: break-all; color: #00ff00; 
+            margin-top: 20px; display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    <div id="matrixCodeRain" class="matrix-code-rain"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">延迟测试</h1>
+        </div>
+
+        <div class="card">
+            <h4 style="color: #00ff00; margin-bottom: 15px;">⚡ 延迟测试配置</h4>
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
+                <div>
+                    <label style="display: block; font-size: 0.9rem;">IP来源:</label>
+                    <select id="ipSourceSelect">
+                        <option value="manual">手动输入</option>
+                        <option value="cfRandom">CF随机IP</option>
+                        <option value="urlFetch">URL获取</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.9rem;">端口:</label>
+                    <input type="number" id="latencyTestPort" value="443">
+                </div>
+                <div id="randomCountDiv" style="display: none;">
+                    <label style="display: block; font-size: 0.9rem;">生成数量:</label>
+                    <input type="number" id="randomIPCount" value="20">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.9rem;">线程:</label>
+                    <input type="number" id="testThreads" value="5">
+                </div>
+            </div>
+
+            <div id="manualInputDiv">
+                <label style="display: block; font-size: 0.9rem;">测试IP/域名:</label>
+                <input type="text" id="latencyTestInput" style="width: 100%;" placeholder="输入IP或域名，多个用逗号分隔">
+            </div>
+
+            <div id="urlFetchDiv" style="display: none;">
+                <label style="display: block; font-size: 0.9rem;">获取URL:</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="fetchURLInput" style="flex: 1;" placeholder="输入优选IP的URL地址">
+                    <button id="fetchIPBtn" style="color: #00aaff; border: 1px solid #00aaff; background: rgba(0,100,255,0.1);">⬇ 获取IP</button>
+                </div>
+            </div>
+
+            <div id="cfRandomDiv" style="display: none; margin-top: 10px;">
+                <button id="generateCFIPBtn" style="width: 100%; color: #00ff00; border: 1px solid #00ff00; background: rgba(0,255,0,0.1);">🎲 生成随机IP</button>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+                <button id="startLatencyTest" style="color: #00ff00; border: 1px solid #00ff00; background: rgba(0,255,0,0.2);">▶ 开始测试</button>
+                <button id="stopLatencyTest" style="display: none; color: #ff4444; border: 1px solid #ff4444; background: rgba(255,0,0,0.2);">⏹ 停止测试</button>
+            </div>
+
+            <div id="latencyTestStatus" style="margin-top: 15px; color: #00aa00; display: none;"></div>
+            <div id="latencyTestResults" style="margin-top: 15px; display: none;">
+                <div id="latencyResultsList" style="background: rgba(0,0,0,0.5); border: 1px solid #004400; padding: 10px; max-height: 250px; overflow-y: auto;"></div>
+                <button id="downloadOverwriteBtn" style="width: 100%; margin-top: 10px; color: #0066ff; border: 1px solid #0066ff; background: rgba(0,100,255,0.2);">下载结果</button>
+            </div>
+            
+            <div id="clientSubscriptionUrl" class="subscription-url"></div>
+        </div>
+    </div>
+
+    <script>
+        const SUB_CONVERTER_URL = "https://url.v1.mk/sub";
+        const REMOTE_CONFIG_URL = "https://raw.githubusercontent.com/byJoey/test/refs/heads/main/tist.ini";
+
+        // --- 核心工具 ---
+        const utils = {
+            getCookie: (name) => {
+                const parts = ('; ' + document.cookie).split('; ' + name + '=');
+                return parts.length === 2 ? parts.pop().split(';').shift() : null;
+            },
+            getLang: () => {
+                const saved = localStorage.getItem('preferredLanguage') || utils.getCookie('preferredLanguage');
+                if (saved) return saved.startsWith('fa') ? 'fa' : 'zh';
+                return (navigator.language || '').includes('fa') ? 'fa' : 'zh';
+            }
+        };
+
+        const t = {
+            zh: { copied: '订阅链接已复制' },
+            fa: { copied: 'لینک اشتراک کپی شد' }
+        }[utils.getLang()];
+
+        // --- UI 交互逻辑 ---
+        document.getElementById('ipSourceSelect').addEventListener('change', function() {
+            const val = this.value;
+            document.getElementById('manualInputDiv').style.display = val === 'manual' ? 'block' : 'none';
+            document.getElementById('urlFetchDiv').style.display = val === 'urlFetch' ? 'block' : 'none';
+            document.getElementById('cfRandomDiv').style.display = val === 'cfRandom' ? 'block' : 'none';
+            document.getElementById('randomCountDiv').style.display = val === 'cfRandom' ? 'block' : 'none';
+        });
+
+        // --- 客户端链接生成逻辑 ---
+        function tryOpenApp(scheme, fallback) {
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = scheme;
+            document.body.appendChild(iframe);
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+                if (fallback) fallback();
+            }, 2500);
+        }
+
+        function generateClientLink(typeBase64, name) {
+            const type = atob(typeBase64);
+            const subBase = window.location.origin + "/sub";
+            let finalUrl = `${SUB_CONVERTER_URL}?target=${type}&url=${encodeURIComponent(subBase)}&config=${encodeURIComponent(REMOTE_CONFIG_URL)}&emoji=true&new_name=true`;
+            
+            const displayBox = document.getElementById("clientSubscriptionUrl");
+            displayBox.textContent = finalUrl;
+            displayBox.style.display = "block";
+
+            const copy = () => navigator.clipboard.writeText(finalUrl).then(() => alert(`${name} ${t.copied}`));
+            
+            const schemes = { 'Shadowrocket': 'shadowrocket://add/', 'V2RAYNG': 'v2rayng://install?url=', 'SING-BOX': 'sing-box://install-config?url=' };
+            schemes[name] ? tryOpenApp(schemes[name] + encodeURIComponent(finalUrl), copy) : copy();
+        }
+
+        // --- 矩阵背景 ---
+        function createMatrixRain() {
+            const container = document.getElementById('matrixCodeRain');
+            if (!container) return;
+            const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const cols = Math.floor(window.innerWidth / 20);
+            for (let i = 0; i < cols; i++) {
+                const div = document.createElement('div');
+                div.className = 'matrix-column';
+                div.style.left = (i * 20) + 'px';
+                div.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                div.style.animationDelay = (Math.random() * 5) + 's';
+                div.innerHTML = Array(20).fill(0).map(() => chars[Math.floor(Math.random()*chars.length)]).join('<br>');
+                container.appendChild(div);
+            }
+        }
+
+        // --- 初始化 ---
+        window.addEventListener('DOMContentLoaded', () => {
+            createMatrixRain();
+            // 延迟测试开始逻辑
+            document.getElementById('startLatencyTest').onclick = function() {
+                this.style.display = 'none';
+                document.getElementById('stopLatencyTest').style.display = 'inline-block';
+                document.getElementById('latencyTestStatus').style.display = 'block';
+                document.getElementById('latencyTestResults').style.display = 'block';
+                document.getElementById('latencyTestStatus').innerText = "测试准备中...";
+            };
+        });
+    </script>
+</body>
+</html>
