@@ -1,0 +1,11 @@
+{
+    "spider": "https://0.12yue.de5.net/tvbox/Local.jar",
+    "sites": [
+        {
+            "key": "文件",
+            "name": "文件",
+            "type": 3,
+            "api": "csp_LocalFile"
+        }
+    ]
+}
