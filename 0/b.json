@@ -73,7 +73,15 @@
         "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
       }
     },
-
+    {
+      "key": "ds05",
+      "name": "都司资源",
+      "type": 0,
+      "api": "http://y.ds05.cn/zyapi.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
     
     {
       "key": "feifan",
