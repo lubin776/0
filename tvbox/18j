@@ -316,15 +316,6 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
-    },
-    {
-      "key": "玉兔",
-      "name": "玉兔",
-      "type": 1,
-      "api": "https://apiyutu.com/api.php/provide/vod/?ac=list",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
     }
   ]
 }
