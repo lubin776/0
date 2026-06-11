@@ -1,8 +1,9 @@
 {
   "sites": [
+
     {
       "key": "jueson",
-      "name": "豆瓣",
+      "name": "主页┃豆瓣",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0,
@@ -11,7 +12,7 @@
     },
     {
       "key": "YGP",
-      "name": "新片",
+      "name": "叨观┃预告",
       "type": 3,
       "api": "csp_YGP",
       "searchable": 0,
@@ -20,12 +21,50 @@
     },
     {
       "key": "csp_LocalFile",
-      "name": "本地",
+      "name": "文件┃媒体",
       "type": 3,
       "api": "csp_LocalFile",
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 1
+    },
+    {
+      "key": "ds05",
+      "name": "都司资源",
+      "type": 0,
+      "api": "http://y.ds05.cn/zyapi.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "categories": [
+        "香港剧",
+        "韩国剧",
+        "欧美剧",
+        "记录片",
+        "台湾剧",
+        "日本剧",
+        "海外剧",
+        "泰国剧",
+        "动漫片",
+        "动作片",
+        "喜剧片",
+        "爱情片",
+        "科幻片",
+        "恐怖片",
+        "剧情片",
+        "战争片",
+        "国产剧",
+        "大陆综艺",
+        "港台综艺",
+        "日韩综艺",
+        "欧美综艺",
+        "国产动漫",
+        "日韩动漫",
+        "欧美动漫",
+        "港台动漫",
+        "海外动漫",
+        "短剧"
+      ]
     },
     {
       "key": "feifan",
@@ -2124,36 +2163,7 @@
       "api": "https://xsd.sdzyapi.com/api.php/provide/vod",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1,
-      "categories": [
-        "香港剧",
-        "韩国剧",
-        "欧美剧",
-        "记录片",
-        "台湾剧",
-        "日本剧",
-        "海外剧",
-        "泰国剧",
-        "动漫片",
-        "动作片",
-        "喜剧片",
-        "爱情片",
-        "科幻片",
-        "恐怖片",
-        "剧情片",
-        "战争片",
-        "国产剧",
-        "大陆综艺",
-        "港台综艺",
-        "日韩综艺",
-        "欧美综艺",
-        "国产动漫",
-        "日韩动漫",
-        "欧美动漫",
-        "港台动漫",
-        "海外动漫",
-        "短剧"
-      ]
+      "filterable": 1
     }
   ],
   "parses": [
@@ -2374,5 +2384,6 @@
     "static-mozai.4gtv.tv"
   ],
   "wallpaper": "http://饭太硬.ga/深色壁纸/api.php",
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/spider.jar"
+    "logo": "https://gitee.com/lu3589/776/raw/main/X4/lib/jueson.jpg",
+  "spider": "https://gitee.com/lu3589/776/raw/main/X4/lib/spider.jar"
 }
