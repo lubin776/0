@@ -1,0 +1,585 @@
+{
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/范太硬/spider0519.jar",
+  "sites": [
+    {
+      "key": "Bilipz",
+      "name": "哔哩 | 配置",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/bilipz.json"
+      }
+    },
+    {
+      "key": "哔️软件",
+      "name": "软件┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/软件教程.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "哔哩学堂",
+      "name": "学堂┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/学堂教育.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "哔哩少儿",
+      "name": "少儿┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/少儿合集.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "哔哩合集",
+      "name": "哔哩｜合集",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1,
+      "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLHJ.json",
+        "cookie": " "
+      }
+    },
+    {
+      "key": "哔哩哔哩演唱会",
+      "name": "哔哩｜音乐",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLYCH.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "哔哩哔哩听书",
+      "name": "哔哩｜听书",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLTS.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "哔哩哔哩相声",
+      "name": "哔哩｜相声",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLXS.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "哔哩哔哩小品",
+      "name": "哔哩｜小品",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLXP.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "哔哩哔哩戏曲",
+      "name": "哔哩｜戏曲",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLXQ.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "少儿教育",
+      "name": "少儿｜教育",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/SEJY.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "小学课堂",
+      "name": "小学｜课堂",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/XXKT.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "初中课堂",
+      "name": "初中｜课堂",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/CZKT.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "高中课堂",
+      "name": "高中｜课堂",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/GZKT.json",
+        "cookie": " "
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "口才",
+      "name": "口才┃儿童",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/儿童口才.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "拼音",
+      "name": "拼音┃儿童",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/儿童拼音.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "识字",
+      "name": "识字┃儿童",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/儿童识字.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "思维",
+      "name": "思维┃儿童",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/儿童思维.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "英语",
+      "name": "英语┃儿童",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/儿童英语.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "科学",
+      "name": "科学┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/小灯塔科学.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "国学",
+      "name": "国学┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/小灯塔国学.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "地理",
+      "name": "地理┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/小灯塔地理.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "编程",
+      "name": "编程┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/儿童编程.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "武术",
+      "name": "武术┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/儿童武术.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "csp_BBB",
+      "name": "套餐┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/哔哩套餐1.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "csp_111BB",
+      "name": "套餐2┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/哔哩套餐2.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "歌曲",
+      "name": "歌曲┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/歌曲MV.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "美食",
+      "name": "美食┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/美食.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "球类",
+      "name": "球类┃合集",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/球类合集.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "️球星",
+      "name": "球星┃合集",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/球星合集.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "️演唱",
+      "name": "演唱┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/演唱会.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "️戏曲",
+      "name": "戏曲┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/戏曲合集.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    },
+    {
+      "key": "影视影视",
+      "name": "影视┃哔哩",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "ext": {
+        "cookie": " ",
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/合集.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "cdn.ryplay",
+      "hosts": [
+        "cdn.ryplay"
+      ],
+      "regex": [
+        "5.480000",
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:5.480000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:5.320000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:3.360000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:4.000000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:0.560000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXTINF.*?\\s+.*?1o.*?\\.ts\\s+"
+      ]
+    }
+  ],
+  "hosts": [
+    "img1.wsyzy.org=danmu.888484.xyz",
+    "fiizvfck.top=danmu.888484.xyz"
+  ]
+}
