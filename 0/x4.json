@@ -1,8 +1,7 @@
 {
   "sites": [
-
     {
-      "key": "jueson",
+      "key": "Douban",
       "name": "主页┃豆瓣",
       "type": 3,
       "api": "csp_Douban",
@@ -21,7 +20,7 @@
     },
     {
       "key": "csp_LocalFile",
-      "name": "文件┃媒体",
+      "name": "本地┃媒体",
       "type": 3,
       "api": "csp_LocalFile",
       "searchable": 0,
@@ -2163,7 +2162,46 @@
       "api": "https://xsd.sdzyapi.com/api.php/provide/vod",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1
+      "filterable": 1,
+      "categories": [
+        "香港剧",
+        "韩国剧",
+        "欧美剧",
+        "记录片",
+        "台湾剧",
+        "日本剧",
+        "海外剧",
+        "泰国剧",
+        "动漫片",
+        "动作片",
+        "喜剧片",
+        "爱情片",
+        "科幻片",
+        "恐怖片",
+        "剧情片",
+        "战争片",
+        "国产剧",
+        "大陆综艺",
+        "港台综艺",
+        "日韩综艺",
+        "欧美综艺",
+        "国产动漫",
+        "日韩动漫",
+        "欧美动漫",
+        "港台动漫",
+        "海外动漫",
+        "短剧"
+      ]
+    },
+    {
+      "key": "本地包",
+      "name": "下载本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/single.json"
     }
   ],
   "parses": [
@@ -2385,5 +2423,5 @@
   ],
   "wallpaper": "http://饭太硬.ga/深色壁纸/api.php",
   "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/jueson.jpg",
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/7h.jar"
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/spider.jar"
 }
