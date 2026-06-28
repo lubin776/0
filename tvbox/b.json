@@ -2,19 +2,21 @@
   "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/范太硬/spider0519.jar",
   "sites": [
     {
-      "key": "Bilipz",
-      "name": "哔哩 | 配置",
+      "key": "哔哩合集",
+      "name": "哔哩｜合集",
       "type": 3,
       "api": "csp_BiliGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
       "style": {
         "type": "rect",
-        "ratio": 1.597
+        "ratio": 1.433
       },
-      "searchable": 0,
-      "quickSearch": 0,
-      "changeable": 0,
       "ext": {
-        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/bilipz.json"
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLHJ.json",
+        "cookie": " "
       }
     },
         {
@@ -50,6 +52,22 @@
             "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/播视童趣.json",
             "jar": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/csp_XYQHiker_兔小贝.jar"
         },
+    {
+      "key": "Bilipz",
+      "name": "哔哩 | 配置",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/bilipz.json"
+      }
+    },
     {
       "key": "哔️软件",
       "name": "软件┃哔哩",
@@ -99,24 +117,6 @@
       "style": {
         "type": "rect",
         "ratio": 1.597
-      }
-    },
-    {
-      "key": "哔哩合集",
-      "name": "哔哩｜合集",
-      "type": 3,
-      "api": "csp_BiliGuard",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "style": {
-        "type": "rect",
-        "ratio": 1.433
-      },
-      "ext": {
-        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/bili/lib/BLHJ.json",
-        "cookie": " "
       }
     },
     {
