@@ -2,6 +2,16 @@
     "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/b.jar",
     "sites": [
         {
+            "key": "哔哩哔哩",
+            "name": "🅱️哔哩合集",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/bili.json"
+        },
+        {
             "key": "csp_XYQHiker_兔小贝",
             "name": "🐰兔小贝",
             "type": 3,
@@ -244,16 +254,6 @@
             "quickSearch": 0,
             "filterable": 0,
             "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/央视经典.json"
-        },
-        {
-            "key": "哔哩哔哩",
-            "name": "🅱️哔哩合集",
-            "type": 3,
-            "api": "csp_Bili",
-            "searchable": 0,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/bili.json"
         }
     ],
     "parses": [
