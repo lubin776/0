@@ -6,7 +6,7 @@
             "name": "🅱️哔哩合集",
             "type": 3,
             "api": "csp_Bili",
-            "searchable": 0,
+            "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
             "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/bili.json"
@@ -79,7 +79,7 @@
             "name": "🌏小灯塔",
             "type": 3,
             "api": "csp_Bili",
-            "searchable": 0,
+            "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
             "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/小灯塔百科.json"
@@ -209,7 +209,7 @@
             "name": "🌏兴趣培养",
             "type": 3,
             "api": "csp_Bili",
-            "searchable": 0,
+            "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
             "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/兴趣培养.json"
