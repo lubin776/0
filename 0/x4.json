@@ -2425,6 +2425,17 @@
       "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/兴趣培养.json"
     },
     {
+      "key": "小学英语词汇",
+      "name": "🌏小学英语词汇",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/b.jar",
+            "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/enhui.json"
+    },
+    {
       "key": "小学",
       "name": "🌏小学教育",
       "type": 3,
