@@ -3,8 +3,8 @@
   "wallpaper": "https://饭的动态壁纸.xxooo.cf/",
   "sites": [
     {
-      "key": "点我切源",
-      "name": "去【太太太硬了】领取嘟嘟盘免费容量",
+      "key": "豆瓣",
+      "name": "豆瓣┃主页",
       "type": 3,
       "api": "csp_DouDouGuard",
       "indexs": 1,
@@ -14,7 +14,7 @@
     },
     {
       "key": "MDrive",
-      "name": "🗂我的云盘┃我配置",
+      "name": "云盘┃配置",
       "type": 3,
       "api": "csp_MyDriveGuard",
       "changeable": 0,
@@ -27,9 +27,16 @@
         "Cloud-drive": "tvfan/Cloud-drive.txt"
       }
     },
+       {
+            "key": "文件",
+            "name": "文件┃媒体",
+            "type": 3,
+            "api": "csp_LocalFile",
+      "jar": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/Local.jar"
+        },
     {
       "key": "玩偶",
-      "name": "👽玩偶哥哥┃4K弹幕",
+      "name": "玩偶┃4K",
       "type": 3,
       "api": "csp_WoGGGuard",
       "timeout": 30,
@@ -42,7 +49,7 @@
     },
     {
       "key": "YGP",
-      "name": "🚀叨观荐影┃预告片",
+      "name": "🚀叨观┃预告",
       "type": 3,
       "api": "csp_YGPGuard",
       "searchable": 0,
@@ -619,7 +626,7 @@
       ]
     }
   ],
-  "logo": "https://bdcache1-f1.v3mh.com/image/25-12-16/6941612717007.gif",
+  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/jueson.jpg",
   "hosts": [
     "img1.wsyzy.org=fan.cloudflare.182682.xyz",
     "fiizvfck.top=fan.cloudflare.182682.xyz",
