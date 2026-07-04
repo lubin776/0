@@ -4,8 +4,18 @@
     "spider": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/gx/lib/gx.jar",
     "sites": [
         {
+            "key": "秋天奇奇",
+            "name": "奇奇本地包",
+            "type": 3,
+            "api": "csp_Market",
+            "searchable": 0,
+            "changeable": 0,
+            "indexs": 0,
+            "ext": "http://bd.qiqiv.cn/666.json"
+        },
+        {
             "key": "秋天",
-            "name": "@秋天本地",
+            "name": "@秋天",
             "type": 3,
             "api": "csp_Market",
             "searchable": 0,
