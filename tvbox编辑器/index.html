@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVBox 接口配置编辑器</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📺</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">📦</span>
+                <h1>TVBox 接口编辑器</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-ghost" id="btnTheme" title="切换主题">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <a href="https://github.com" target="_blank" class="btn btn-ghost" title="GitHub">
+                    <span>⭐</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="toolbar-inner">
+            <div class="toolbar-left">
+                <button class="btn btn-primary" id="btnLoadMulti">加载多仓</button>
+                <button class="btn btn-success" id="btnMakeMulti">制作多仓</button>
+                <button class="btn btn-info" id="btnSearch">搜索接口</button>
+                <button class="btn btn-warning" id="btnHistory">历史记录</button>
+            </div>
+            <div class="toolbar-right">
+                <button class="btn btn-outline" id="btnCopy">📋 复制</button>
+                <button class="btn btn-outline" id="btnClear">🗑️ 清空</button>
+                <button class="btn btn-primary" id="btnSave">💾 保存配置</button>
+                <div class="dropdown" id="dropdownMore">
+                    <button class="btn btn-outline" id="btnMore">⚙️ 更多 ▾</button>
+                    <div class="dropdown-menu" id="moreMenu">
+                        <a href="#" id="btnToImage">配置转图片</a>
+                        <a href="#" id="btnImgToCode">图片转代码</a>
+                        <a href="#" id="btnUploadEncrypt">上传加密文件</a>
+                        <a href="#" id="btnDownloadJson">下载 JSON</a>
+                        <a href="#" id="btnDownloadJar">下载 JAR</a>
+                        <a href="#" id="btnLocalPack">本地包检测</a>
+                        <a href="#" id="btnSpeedTest">接口测速</a>
+                        <a href="#" id="btnUpload1">上传配置1</a>
+                        <a href="#" id="btnUpload2">上传配置2</a>
+                        <a href="#" id="btnUpload3">上传配置3</a>
+                        <a href="#" id="btnToCode">配置转码</a>
+                        <a href="#" id="btnBoxSource">壳子源码</a>
+                        <a href="#" id="btnAppStore">应用商店</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Editor -->
+    <main class="main-container">
+        <!-- Tabs -->
+        <div class="editor-tabs">
+            <button class="tab active" data-tab="editor">📝 可视编辑</button>
+            <button class="tab" data-tab="source">💻 源码视图</button>
+        </div>
+
+        <div class="editor-body">
+            <!-- Visual Editor Tab -->
+            <div class="tab-panel active" id="panelEditor">
+                <!-- Sites Section -->
+                <section class="config-section" id="sectionSites">
+                    <div class="section-header">
+                        <h2>📡 站点配置 (sites)</h2>
+                        <button class="btn btn-sm btn-primary" id="addSite">+ 添加站点</button>
+                    </div>
+                    <div class="section-body">
+                        <div class="empty-state" id="sitesEmpty">
+                            <p>暂无站点，点击上方按钮添加</p>
+                        </div>
+                        <div class="items-list" id="sitesList"></div>
+                    </div>
+                </section>
+
+                <!-- Parses Section -->
+                <section class="config-section" id="sectionParses">
+                    <div class="section-header">
+                        <h2>🔗 解析配置 (parses)</h2>
+                        <button class="btn btn-sm btn-primary" id="addParse">+ 添加解析</button>
+                    </div>
+                    <div class="section-body">
+                        <div class="empty-state" id="parsesEmpty">
+                            <p>暂无解析配置，点击上方按钮添加</p>
+                        </div>
+                        <div class="items-list" id="parsesList"></div>
+                    </div>
+                </section>
+
+                <!-- Lives Section -->
+                <section class="config-section" id="sectionLives">
+                    <div class="section-header">
+                        <h2>📺 直播配置 (lives)</h2>
+                        <button class="btn btn-sm btn-primary" id="addLive">+ 添加直播</button>
+                    </div>
+                    <div class="section-body">
+                        <div class="empty-state" id="livesEmpty">
+                            <p>暂无直播配置，点击上方按钮添加</p>
+                        </div>
+                        <div class="items-list" id="livesList"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Source Code Tab -->
+            <div class="tab-panel" id="panelSource">
+                <div class="source-toolbar">
+                    <button class="btn btn-sm btn-outline" id="btnFormat">格式化</button>
+                    <button class="btn btn-sm btn-outline" id="btnMinify">压缩</button>
+                    <button class="btn btn-sm btn-outline" id="btnValidate">校验</button>
+                </div>
+                <div class="editor-wrapper">
+                    <div class="line-numbers" id="lineNumbers"></div>
+                    <textarea id="sourceEditor" class="source-editor" spellcheck="false" placeholder='在此输入 JSON 配置...'></textarea>
+                </div>
+                <div class="status-bar">
+                    <span id="cursorPos">行 1, 列 1</span>
+                    <span id="charCount">字符: 0</span>
+                    <span id="jsonStatus">✅ 有效 JSON</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 TVBox 配置编辑器 | 仅供学习交流使用</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">提示</h3>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter"></div>
+        </div>
+    </div>
+
+    <!-- File Input (hidden) -->
+    <input type="file" id="fileInput" accept=".json,.txt,.jar" style="display:none">
+    <input type="file" id="imgInput" accept="image/*" style="display:none">
+
+    <script src="app.js"></script>
+</body>
+</html>
