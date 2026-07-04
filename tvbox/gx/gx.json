@@ -4,7 +4,17 @@
     "spider": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/gx/lib/gx.jar",
     "sites": [
         {
-            "key": "本地包",
+            "key": "秋天",
+            "name": "@秋天本地",
+            "type": 3,
+            "api": "csp_Market",
+            "searchable": 0,
+            "changeable": 0,
+            "indexs": 0,
+            "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/7h/lib/版本qt.json"
+        },
+        {
+            "key": "柒豪",
             "name": "柒豪本地包",
             "type": 3,
             "api": "csp_Market",
