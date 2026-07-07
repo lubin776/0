@@ -4,7 +4,7 @@
     "spider": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/gx/lib/gx.jar",
     "sites": [
         {
-            "key": "秋天奇奇",
+            "key": "奇奇",
             "name": "奇奇本地包",
             "type": 3,
             "api": "csp_Market",
@@ -12,6 +12,16 @@
             "changeable": 0,
             "indexs": 0,
             "ext": "http://bd.qiqiv.cn/666.json"
+        },
+        {
+            "key": "X4本地包",
+            "name": "X4菠菜园",
+            "type": 3,
+            "api": "csp_Market",
+            "searchable": 0,
+            "changeable": 0,
+            "indexs": 0,
+             "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/singlex4.json"
         },
         {
             "key": "秋天",
