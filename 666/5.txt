@@ -1,0 +1,386 @@
+{
+  "spider": "https://jihulab.com/ymz1231/jar/-/raw/main/ymz.jar",
+  "wallpaper": "https://api.elaina.cat/random/",
+  "lives": [
+    {
+      "name": "📺咪咕📺",r
+      "type": 1,
+      "url": "https://iptv.gstory.cn/Cinetry"
+    },
+    {
+      "name": "📺蜂巢📺",
+      "type": 1,
+      "url": "https://niurl.cc/7DdpuD"
+    },
+    {
+      "name": "📺B站直播📺",
+      "type": 1,
+      "url": "https://sub.ottiptv.cc/bililive.m3u"
+    },
+    {
+      "name": "📺聚合📺",
+      "type": 1,
+      "url": "https://gitee.com/mytv-android/iptv-api/raw/master/output/result.m3u"
+    },
+    {
+      "name": "📺潇雨萌萌📺",
+      "type": 1,
+      "url": "https://ds65.tv1288.xyz"
+    }
+  ],
+  "sites": [
+    {
+      "key": "豆瓣",
+      "name": "🥤2026年2月23日更新🥤",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 0,
+      "changeable": 1,
+      "ext": {
+        "sp": "Douban"
+      }
+    },
+    {
+      "key": "西瓜",
+      "name": "🥤奇奇（免登4K）",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "filterable": 1,
+      "ext": {
+        "sp": "QiQi"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "麻雀",
+      "name": "🥤麻雀（免登4K）",
+      "type": 3,
+      "quickSearch": 1,
+      "searchable": 1,
+      "api": "https://gitee.com/lzxw66/lzxw9/raw/master/py/Applzxw.py",
+      "ext": "http://118.89.203.120:8365/"
+    },
+    {
+      "key": "公众号",
+      "name": "🥤移动云盘（免登4K）",
+      "type": 3,
+      "jar": "https://gitee.com/tianwikeji/jar/raw/master/YD.jar",
+      "api": "csp_YDjisu",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "至臻",
+      "name": "🥤奇迹百度（免登4K）",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "jar": "https://gitee.com/M60m/60/raw/master/lib/%E5%A5%87%E8%BF%B9%E4%BA%91yunok.png",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 1,
+      "ext": {
+        "sp": "ZhiZhen",
+        "cookie": "http://14.103.129.80:999/暗黑4k奇迹/lib/yunAkick.jpg",
+        "uc_cookie": "http://gh.llkk.cc/https://raw.githubusercontent.com/IY-CPU/IY/main/jars/uc.png",
+        "baidu_cookie": "https://gitee.com/M60m/60/raw/master/lib/%E5%A5%87%E8%BF%B9%E4%BA%91_bd.txt"
+      },
+      "timeout": 25
+    },
+    {
+      "key": "木偶",
+      "name": "🥤奇迹3️⃣百度（免登4K）",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "jar": "https://gitee.com/M60m/60/raw/master/lib/%E5%A5%87%E8%BF%B9%E4%BA%91yunok.png",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 1,
+      "ext": {
+        "sp": "Muou",
+        "cookie": "http://14.103.129.80:999/暗黑4k奇迹/lib/yunAkick.jpg",
+        "uc_cookie": "http://gh.llkk.cc/https://raw.githubusercontent.com/IY-CPU/IY/main/jars/uc.png",
+        "baidu_cookie": "https://gitee.com/M60m/60/raw/master/lib/%E5%A5%87%E8%BF%B9%E4%BA%91_bd.txt"
+      },
+      "timeout": 25
+    },
+    {
+      "key": "mogg",
+      "name": "🥤晚安木偶（免登4K）",
+      "type": 4,
+      "api": "http://110.42.34.135:8080/video/mogg?token=1047",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "categories": [
+        "电影",
+        "剧集",
+        "动漫",
+        "纪录片"
+      ]
+    },
+    {
+      "key": "erxiao",
+      "name": "🥤晚安二小（免登4K）",
+      "type": 4,
+      "api": "http://110.42.34.135:8080/video/erxiao?token=1047",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0
+    },
+    {
+      "key": "皮皮.虾",
+      "name": "🥤虾林中屋（免登4K）",
+      "type": 3,
+      "api": "https://gitee.com/M60m/60/raw/master/lib/App林中xw.py",
+      "ext": "http://38.55.237.41:8762"
+    },
+    {
+      "key": "人人影视",
+      "name": "🥤人人（部分免登4K）",
+      "type": 3,
+      "api": "https://gitee.com/cpu-iy/lib/raw/master/lib/人人影视.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 1
+    },
+    {
+      "key": "瓜子",
+      "name": "🎬瓜子APP🎬",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 1,
+      "ext": {
+        "sp": "Guazi"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "py_jieyingshi",
+      "name": "🎬┃影界APP🎬",
+      "type": 3,
+      "api": "https://zthaa.top/th/lib/jieyingshi.py",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0
+    },
+    {
+      "key": "6V影视",
+      "name": "🎬6V影视🎬",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": {
+        "sp": "Xb6v"
+      },
+      "timeout": 20
+    },
+    {
+      "key": "热播",
+      "name": "🎬热播APP🎬",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 1,
+      "ext": {
+        "sp": "TianTian",
+        "site": 0
+      },
+      "timeout": 10
+    },
+    {
+      "key": "厂长",
+      "name": "🎬厂长直连🎬",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "filterable": 1,
+      "ext": {
+        "sp": "Czzy"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "采集聚合",
+      "name": "🎬影视聚合🎬",
+      "type": 4,
+      "api": "http://zhangqun1818.serv00.net/cj/cjjh.php",
+      "searchable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.33
+      },
+      "ext": "1",
+      "changeable": 1
+    },
+    {
+      "key": "新韩剧网",
+      "name": "🎬新韩剧网🎬",
+      "type": 3,
+      "api": "https://gitee.com/M60m/60/raw/master/lib/lzxw新韩剧网.py",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0,
+      "ext": []
+    },
+    {
+      "key": "NoSearch_csp_BBB",
+      "name": "🎬哔哩哔哩下拉刷新┃沙雕动漫🎬",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": "7lj763gg402i7942463j9j9jg1558j9jl8g19213il86316k465719lik1585907179l13hj8h5j9j",
+      "jar": "http://cdn.qiaoji8.com/fix260108.jar"
+    },
+    {
+      "key": "瓜子看球",
+      "name": "⚽瓜子看球⚽",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "style": {
+        "type": "list"
+      },
+      "ext": {
+        "sp": "GzSport"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "js聚合短剧",
+      "name": "🎬短剧聚合🎬",
+      "type": 3,
+      "api": "https://gitee.com/M60m/60/raw/master/lib/lzxw聚合短剧1.js",
+      "changeable": 1
+    },
+    {
+      "key": "盒马短剧",
+      "name": "🐴盒马短剧🐴",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "filterable": 1,
+      "ext": {
+        "sp": "HeMa"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "星芽短剧",
+      "name": "🌟星芽短剧🌟",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "filterable": 1,
+      "ext": {
+        "sp": "AppXY"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "初心音乐",
+      "name": "🎸音乐MV🎸",
+      "type": 3,
+      "jar": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260221/thjI/fish02210815.png;md5;4f5c829f4dfd3567a50977cabfc6d636",
+      "api": "csp_ChuXin",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
+      "key": "西瓜汁DJ",
+      "name": "🎶DJ音乐🎶",
+      "type": 4,
+      "api": "https://catbox.n13.club/t9/djuu.php"
+    },
+    {
+      "key": "酷狗音乐",
+      "name": "🎧酷狗音乐🎧",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "sp": "KuGou"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "世界听书",
+      "name": "👂世界听书👂",
+      "type": 3,
+      "api": "csp_AweSomeGuard",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "sp": "BookTing"
+      },
+      "timeout": 10
+    },
+    {
+      "key": "相声",
+      "name": "🎧经典相声🎧",
+      "type": 4,
+      "api": "https://catbox.n13.club/t9/bili.php?id=Blixs"
+    },
+    {
+      "key": "csp_XYQHiker_兔小贝1",
+      "name": "🐇兔小贝1️⃣🐇",
+      "type": 3,
+      "api": "csp_XYQHiker",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://jihulab.com/ymz1231/json/-/raw/main/兔小贝.json",
+      "jar": "https://jihulab.com/ymz1231/jar/-/raw/main/ymz.jar"
+    },
+    {
+      "key": "csp_XYQHiker_兔小贝2",
+      "name": "🐇兔小贝2️⃣🐇",
+      "type": 3,
+      "api": "csp_XYQHiker",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://jihulab.com/ymz1231/json/-/raw/main/兔小贝2.json",
+      "jar": "https://jihulab.com/ymz1231/jar/-/raw/main/ymz.jar"
+    },
+    {
+      "key": "瓣",
+      "name": "提示：仅试用测试禁传播贩卖，请24小时内删除",
+      "type": 3,
+      "api": "csp_AweSomGuar",
+      "searchable": 0,
+      "changeable": 1,
+      "ext": {
+        "sp": "Douban"
+      }
+    }
+  ]
+}
