@@ -1,5 +1,5 @@
 {
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/7h.jar",
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/7x.jar",
   "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
   "sites": [
     {
@@ -11,13 +11,12 @@
       "quickSearch": 0,
       "filterable": 1
     },
-    {
-      "key": "文件",
-      "name": "文件┃媒体",
-      "type": 3,
-      "api": "csp_LocalFile",
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/Local.jar"
-    },
+        {
+            "key": "本地",
+            "name": "我的｜本地",
+            "type": 3,
+            "api": "csp_LocalFile"
+        },
     {
       "key": "ds05",
       "name": "都司资源",
