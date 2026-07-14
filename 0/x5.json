@@ -1,7 +1,7 @@
 {
   "wallpaper": "http://饭太硬.ga/深色壁纸/api.php",
   "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/sx.jar",
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/spider.jar",
   "sites": [
     {
       "key": "jueson",
