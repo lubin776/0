@@ -1,7 +1,7 @@
 {
   "wallpaper": "http://饭太硬.ga/深色壁纸/api.php",
-  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/jueson.jpg",
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/spider.jar",
+  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/sx.jar",
   "sites": [
     {
       "key": "jueson",
@@ -561,7 +561,7 @@
       "url": "Demo"
     },
     {
-      "name": "夏夜4k",
+      "name": "xy4k",
       "type": 1,
       "url": "http://8.155.50.80/xiaye.php?url="
     },
