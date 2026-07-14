@@ -1,19 +1,13 @@
 {
+  "wallpaper": "http://饭太硬.ga/深色壁纸/api.php",
+  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/jueson.jpg",
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/spider.jar",
   "sites": [
     {
       "key": "jueson",
       "name": "豆瓣",
       "type": 3,
       "api": "csp_Douban",
-      "searchable": 0,
-      "quickSearch": 0,
-      "filterable": 1
-    },
-    {
-      "key": "YGP",
-      "name": "新片",
-      "type": 3,
-      "api": "csp_YGP",
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 1
@@ -26,35 +20,6 @@
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 1
-    },
-    {
-      "key": "ffBBB",
-      "name": "哔站",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/bili.json",
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/fan.txt;md5;d275081b5b9f999614a1930aa7599cb9"
-    },
-    {
-      "key": "哔哩合集",
-      "name": "哔哩",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "style": {
-        "type": "rect",
-        "ratio": 1.597
-      },
-      "ext": {
-        "cookie": "https://raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/bili_cookie.txt",
-        "json": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/哔哩合集.json"
-      },
-      "timeout": 10
     },
     {
       "key": "ds05",
@@ -577,7 +542,16 @@
       "searchable": 0,
       "changeable": 0,
       "indexs": 0,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/single.json"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/market.json"
+    },
+    {
+      "key": "push_agent",
+      "name": "🛴推送┃链接",
+      "type": 3,
+      "api": "csp_Push",
+      "searchable": 0,
+      "filterable": 0,
+      "changeable": 0
     }
   ],
   "parses": [
@@ -796,8 +770,5 @@
   ],
   "ads": [
     "static-mozai.4gtv.tv"
-  ],
-  "wallpaper": "http://饭太硬.ga/深色壁纸/api.php",
-  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/jueson.jpg",
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/spider.jar"
+  ]
 }
