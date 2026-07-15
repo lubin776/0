@@ -1,4 +1,5 @@
 {
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/vox.jar",
   "sites": [
     {
       "key": "csp_Douban",
@@ -1292,12 +1293,6 @@
       ]
     }
   ],
-  "ijk": [],
-  "spider": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/vox.jar",
-  "warningText": "禁止任何商业用途，仅限个人学习爬虫原理使用。",
-  "wallpaper": "http://饭太硬.top/深色壁纸/api.php",
-  "headers": [],
-  "hosts": [],
   "flags": [
     "youku",
     "qq",
