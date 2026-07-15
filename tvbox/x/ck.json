@@ -1,0 +1,36 @@
+[
+    {
+        "name": "推荐",
+        "list": [
+            {
+                "name": "点击下载",
+                "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/ck.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "ck"
+            },
+            {
+                "name": "点击下载",
+                "url": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/ck.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "ck"
+            }
+        ]
+    },
+    {
+        "name": "X4",
+        "list": [
+            {
+                "name": "点击下载",
+                "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/ck.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "ck代理线路"
+            },
+            {
+                "name": "点击下载",
+                "url": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/ck.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "ck直连线路"
+            }
+        ]
+    }
+]
