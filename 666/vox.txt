@@ -1,46 +1,15 @@
 {
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/jar/vox.jar",
-  "warningText": "禁止任何商业用途，仅限个人学习爬虫原理使用。",
-  "wallpaper": "http://饭太硬.top/深色壁纸/api.php",
-  "lives": [
-    {
-      "name": "📡虎牙",
-      "type": 0,
-      "url": "http://xxyyy.eu.org:35455/huyayqk.m3u",
-      "ua": ""
-    },
-    {
-      "name": "📡斗鱼",
-      "type": 0,
-      "url": "http://xxyyy.eu.org:35455/douyuyqk.m3u",
-      "ua": ""
-    },
-    {
-      "name": "📡YY",
-      "type": 0,
-      "url": "http://xxyyy.eu.org:35455/yylunbo.m3u",
-      "ua": ""
-    },
-    {
-      "name": "📡冰茶直播",
-      "type": 0,
-      "url": "https://bc.188766.xyz/?ip=&mima=bingcha1130",
-      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
-      "logo": "https://epg.iill.top/logo/{name}.png",
-      "timeout": 10
-    }
-  ],
   "sites": [
     {
       "key": "csp_Douban",
-      "name": "🥰VOX┃本地",
+      "name": "VOX┃豆瓣",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0,
       "changeable": 1,
       "timeout": 60,
       "indexs": 1,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/douban.json"
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/douban.json"
     },
     {
       "key": "csp_Config",
@@ -63,8 +32,44 @@
       "name": "🐼️电视┃直播",
       "type": 3,
       "searchable": 0,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/live2vod.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/feimaolive.json"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/live2vod.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/feimaolive.json"
+    },
+    {
+      "key": "csp_PanShareQuark",
+      "name": "🆘夸克┃网盘",
+      "type": 3,
+      "api": "csp_PanShareQuark",
+      "searchable": 1,
+      "changeable": 0,
+      "timeout": 60,
+      "ext": {
+        "class": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/quarkshare.txt"
+      }
+    },
+    {
+      "key": "csp_PanShareUC",
+      "name": "🆘UC┃网盘",
+      "type": 3,
+      "api": "csp_PanShareUC",
+      "searchable": 1,
+      "changeable": 0,
+      "timeout": 60,
+      "ext": {
+        "class": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/ucshare.txt"
+      }
+    },
+    {
+      "key": "csp_PanShare115",
+      "name": "🆘115┃网盘",
+      "type": 3,
+      "api": "csp_PanShare115",
+      "searchable": 1,
+      "changeable": 0,
+      "timeout": 60,
+      "ext": {
+        "class": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/115share.txt"
+      }
     },
     {
       "key": "csp_TgDouban",
@@ -75,7 +80,26 @@
       "changeable": 1,
       "timeout": 60,
       "ext": {
-        "filters": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/douban.json"
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/douban.json"
+      }
+    },
+    {
+      "key": "csp_PanSou",
+      "name": "🥺盘搜┃搜索",
+      "type": 3,
+      "api": "csp_PanSou",
+      "searchable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "ext": {
+        "include": [
+          "HDR",
+          "高码"
+        ],
+        "exclude": [
+          "预告",
+          "花絮"
+        ]
       }
     },
     {
@@ -87,32 +111,68 @@
       "changeable": 1,
       "timeout": 60,
       "ext": {
-        "filters": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/douban.json",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/douban.json",
         "channel": "tgsearchers3,yunpan139,ydypzyfx,sbsbsnsqq,Q_dongman,yoyokuakeduanju,TG654TG,yeqingjie_GJG666,PanjClub,guoman4K,alyp_1,kuake_yppan,yunpanuc,BaiduCloudDisk,Baidu_Netdisk,bdwpzhpd,baidu_yppan,zyfb123,xx123pan,zyzhpd123,yp123pan,cloudtianyi,txtyzy,peccxinpd,yunpan189,tianyirigeng,tyypzhpd,shareAliyun,zaihuayun,ali_yppan"
       }
     },
     {
-      "key": "全能短剧",
-      "name": "😒短剧┃AI¹",
-      "type": 3,
-      "api": "csp_DuanJuCen",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "ext": {
-        "classes": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/duanjucen.json"
-      }
+      "key": "夸克推送",
+      "name": "👊夸克┃推送",
+      "type": 4,
+      "timeout": 60,
+      "api": "https://so.yinpai.xyz/api.php?type=quark"
     },
     {
-      "key": "星之阁短剧AI",
-      "name": "😒短剧┃AI²",
+      "key": "百度推送",
+      "name": "✊百度┃推送",
+      "type": 4,
+      "timeout": 60,
+      "api": "https://so.yinpai.xyz/api.php?type=baidu"
+    },
+    {
+      "key": "UC推送",
+      "name": "☝️优熙┃推送",
+      "type": 4,
+      "timeout": 60,
+      "api": "https://so.yinpai.xyz/api.php?type=uc"
+    },
+    {
+      "key": "天翼推送",
+      "name": "✋天翼┃推送",
+      "type": 4,
+      "timeout": 60,
+      "api": "https://so.yinpai.xyz/api.php?type=tianyi"
+    },
+    {
+      "key": "123推送",
+      "name": "✌️123┃推送",
+      "type": 4,
+      "timeout": 60,
+      "api": "https://so.yinpai.xyz/api.php?type=123"
+    },
+    {
+      "key": "移动推送",
+      "name": "👍移动┃推送",
+      "type": 4,
+      "timeout": 60,
+      "api": "https://so.yinpai.xyz/api.php?type=mobile"
+    },
+    {
+      "key": "csp_Panta91",
+      "name": "🐹盘Ta┃YD",
       "type": 3,
-      "api": "csp_XingZhiGe",
+      "api": "csp_Panta91",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
+      "timeout": 60,
+      "style": {
+        "type": "list"
+      },
       "ext": {
-        "classes": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/duanjucen.json"
+        "sites": "https://www.91panta.cn",
+        "proxy": "noproxy",
+        "classes": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/panta.json"
       }
     },
     {
@@ -125,7 +185,7 @@
       "timeout": 60,
       "ext": {
         "cookie": "",
-        "filters": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/guanying.json",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/guanying.json",
         "sites": "https://www.gyg.la,https://www.gyg.si,https://www.gying.net,https://www.gying.org,https://www.gying.si,https://www.gying.in"
       }
     },
@@ -162,8 +222,26 @@
       "changeable": 1,
       "timeout": 60,
       "ext": {
-        "filters": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/xxzn.json",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/xxzn.json",
         "sites": "https://4kzn.com"
+      }
+    },
+    {
+      "key": "csp_Leijing",
+      "name": "🐳雷鲸┃网盘",
+      "type": 3,
+      "api": "csp_Leijing",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "style": {
+        "type": "list"
+      },
+      "ext": {
+        "sites": "https://www.leijing.xyz,https://www.leijing1.com,https://leijing.xyz,https://leijing1.com",
+        "proxy": "noproxy",
+        "classes": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/leijing.json"
       }
     },
     {
@@ -177,9 +255,107 @@
       "changeable": 1,
       "ext": {
         "sites": "https://wogg.xxooo.cf",
-        "filters": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/wogg.json",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/wogg.json",
         "proxy": "noproxy"
       }
+    },
+    {
+      "key": "欧歌网盘",
+      "name": "🤪欧歌┃网盘",
+      "type": 3,
+      "api": "csp_Wobg",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "ext": {
+        "sites": "https://woog.nxog.eu.org",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/wogg.json",
+        "proxy": "noproxy"
+      }
+    },
+    {
+      "key": "蜡笔网盘",
+      "name": "🤩蜡笔┃网盘",
+      "type": 3,
+      "api": "csp_Wobg",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "ext": {
+        "sites": "https://feimao666.fun",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/wogg.json",
+        "proxy": "noproxy"
+      }
+    },
+    {
+      "key": "闪电网盘",
+      "name": "🤑闪电┃网盘",
+      "type": 3,
+      "api": "csp_Wobg",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "ext": {
+        "sites": "https://sd.sduc.site",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/wogg.json",
+        "proxy": "noproxy"
+      }
+    },
+    {
+      "key": "二小网盘",
+      "name": "🤬二小┃网盘",
+      "type": 3,
+      "api": "csp_Wobg",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "ext": {
+        "sites": "http://2xiaopan.fun",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/wogg.json",
+        "proxy": "noproxy"
+      }
+    },
+    {
+      "key": "木偶网盘",
+      "name": "🙄木偶┃网盘",
+      "type": 3,
+      "api": "csp_Wobg",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "ext": {
+        "sites": "https://www.muou.site",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/wogg.json",
+        "proxy": "noproxy"
+      }
+    },
+    {
+      "key": "至臻网盘",
+      "name": "🤫至臻┃网盘",
+      "type": 3,
+      "api": "csp_Wobg",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "ext": {
+        "sites": "https://mihdr.top",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/wogg.json",
+        "proxy": "noproxy"
+      }
+    },
+    {
+      "key": "csp_YHDM",
+      "name": "😍樱花┃动漫",
+      "type": 3,
+      "api": "csp_YHDM",
+      "searchable": 1,
+      "changeable": 1
     },
     {
       "key": "csp_Jianpian",
@@ -189,7 +365,7 @@
       "searchable": 1,
       "changeable": 1,
       "ext": {
-        "filters": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/jianpian.json",
+        "filters": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/jianpian.json",
         "sites": "https://api.ztcgi.com"
       }
     },
@@ -217,6 +393,30 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 0
+    },
+    {
+      "key": "全能短剧",
+      "name": "😒短剧┃AI¹",
+      "type": 3,
+      "api": "csp_DuanJuCen",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": {
+        "classes": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/duanjucen.json"
+      }
+    },
+    {
+      "key": "星之阁短剧AI",
+      "name": "😒短剧┃AI²",
+      "type": 3,
+      "api": "csp_XingZhiGe",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": {
+        "classes": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/duanjucen.json"
+      }
     },
     {
       "key": "VOX聚合短剧",
@@ -461,111 +661,235 @@
       "type": 3,
       "api": "csp_XBPQ",
       "timeout": 60,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/xb/%E5%A4%B8%E5%85%8B%E7%9F%AD%E5%89%A7.json",
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/jar/xbpq.jar"
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/xb/%E5%A4%B8%E5%85%8B%E7%9F%AD%E5%89%A7.json",
+      "jar": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/xbpq.jar"
     },
     {
       "key": "磁力雪花",
       "name": "❄️磁力┃雪花",
       "type": 3,
       "api": "csp_XBPQ",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/xb/%E7%A3%81%E5%8A%9B%E9%9B%AA%E8%8A%B1.json",
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/jar/xbpq.jar"
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/xb/%E7%A3%81%E5%8A%9B%E9%9B%AA%E8%8A%B1.json",
+      "jar": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/xbpq.jar"
     },
     {
       "key": "旺旺影视",
       "name": "🐶旺旺┃影视",
       "type": 3,
       "api": "csp_XBPQ",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/xb/%E6%97%BA%E6%97%BA%E5%BD%B1%E8%A7%86.json",
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/jar/xbpq.jar"
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/xb/%E6%97%BA%E6%97%BA%E5%BD%B1%E8%A7%86.json",
+      "jar": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/xbpq.jar"
     },
     {
       "key": "VS影视",
       "name": "🍩VS┃影视",
       "type": 3,
       "api": "csp_XBPQ",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/xb/VS%E5%BD%B1%E8%A7%86.json",
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/jar/xbpq.jar"
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/xb/VS%E5%BD%B1%E8%A7%86.json",
+      "jar": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/xbpq.jar"
     },
     {
       "key": "韩剧看看",
       "name": "🇰🇷韩剧┃看看",
       "type": 3,
       "api": "csp_XBPQ",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/xb/%E9%9F%A9%E5%89%A7%E7%9C%8B%E7%9C%8B.json",
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/jar/xbpq.jar"
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/xb/%E9%9F%A9%E5%89%A7%E7%9C%8B%E7%9C%8B.json",
+      "jar": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/xbpq.jar"
+    },
+    {
+      "key": "啊哈DJ网",
+      "name": "🎵啊哈┃DJ",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/xb/%E5%95%8A%E5%93%88DJ%E7%BD%91.json",
+      "jar": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/xbpq.jar"
+    },
+    {
+      "key": "央视大全",
+      "name": "🎥央视┃大全",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A4%AE%E8%A7%86%E5%A4%A7%E5%85%A8.js"
+    },
+    {
+      "key": "央视综合",
+      "name": "🎥央视┃综合",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A4%AE%E8%A7%86%E7%BB%BC%E5%90%88.js"
+    },
+    {
+      "key": "央视少儿",
+      "name": "🎥央视┃少儿",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A4%AE%E8%A7%86%E5%B0%91%E5%84%BF.js"
+    },
+    {
+      "key": "央视经济",
+      "name": "🎥央视┃经济",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A4%AE%E8%A7%86%E7%BB%8F%E6%B5%8E.js"
+    },
+    {
+      "key": "央视合集",
+      "name": "🎥央视┃合集",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A4%AE%E8%A7%86%E5%90%88%E9%9B%86.js"
+    },
+    {
+      "key": "100听书",
+      "name": "📚100┃听书",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/xb/100%E5%90%AC%E4%B9%A6.json",
+      "jar": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/xbpq.jar"
+    },
+    {
+      "key": "随身评书",
+      "name": "📚随身┃评书",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E9%9A%8F%E8%BA%AB%E8%AF%84%E4%B9%A6.js"
+    },
+    {
+      "key": "爱上听书",
+      "name": "📚爱上┃听书",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E7%88%B1%E4%B8%8A%E5%90%AC%E4%B9%A6.js"
+    },
+    {
+      "key": "酷我听书",
+      "name": "📚酷我┃听书",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E9%85%B7%E6%88%91%E5%90%AC%E4%B9%A6.js"
+    },
+    {
+      "key": "第一故事",
+      "name": "🦁第一┃故事",
+      "type": 3,
+      "timeout": 60,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E7%AC%AC%E4%B8%80%E6%95%85%E4%BA%8B.js"
+    },
+    {
+      "key": "凤凰FM",
+      "name": "📻凤凰┃FM",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%87%A4%E5%87%B0FM.js"
+    },
+    {
+      "key": "蜻蜓FM",
+      "name": "📻蜻蜓┃FM",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E8%9C%BB%E8%9C%93FM.js"
+    },
+    {
+      "key": "戏曲大全",
+      "name": "🎭戏曲┃大全",
+      "type": 3,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E6%88%8F%E6%9B%B2%E5%A4%A7%E5%85%A8.js"
     },
     {
       "key": "爱看资源网",
       "name": "🚘爱看┃网盘",
       "type": 3,
       "timeout": 60,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E7%88%B1%E7%9C%8B%E8%B5%84%E6%BA%90%E7%BD%91.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E7%88%B1%E7%9C%8B%E8%B5%84%E6%BA%90%E7%BD%91.js"
     },
     {
       "key": "爱看机器人",
       "name": "🚒爱看┃机器",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E7%88%B1%E7%9C%8B%E6%9C%BA%E5%99%A8%E4%BA%BA.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E7%88%B1%E7%9C%8B%E6%9C%BA%E5%99%A8%E4%BA%BA.js"
     },
     {
       "key": "夸克影视",
       "name": "💕夸克┃影视",
       "type": 3,
       "timeout": 60,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E5%A4%B8%E5%85%8B%E5%BD%B1%E8%A7%86.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A4%B8%E5%85%8B%E5%BD%B1%E8%A7%86.js"
     },
     {
       "key": "cat_夸克影院",
       "name": "👶夸克┃影院",
       "type": 3,
       "timeout": 60,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E5%A4%B8%E5%85%8B%E5%BD%B1%E9%99%A2.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A4%B8%E5%85%8B%E5%BD%B1%E9%99%A2.js"
     },
     {
       "key": "cat_HDmoli",
       "name": "⛵HDmoli┃影院",
       "type": 3,
       "timeout": 60,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/HDmoli.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/HDmoli.js"
+    },
+    {
+      "key": "灯泡网盘",
+      "name": "💡灯泡｜网盘",
+      "type": 3,
+      "timeout": 60,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E7%81%AF%E6%B3%A1%E7%BD%91%E7%9B%98.js"
+    },
+    {
+      "key": "影子网盘",
+      "name": "⛵影子｜网盘",
+      "type": 3,
+      "timeout": 60,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%BD%B1%E5%AD%90%E7%BD%91%E7%9B%98.js"
+    },
+    {
+      "key": "米盘搜索",
+      "name": "🌾米盘┃搜索",
+      "type": 3,
+      "timeout": 60,
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E7%B1%B3%E7%9B%98%E6%90%9C%E7%B4%A2.js"
     },
     {
       "key": "电影港",
       "name": "⛴️港湾┃电影",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E7%94%B5%E5%BD%B1%E6%B8%AF.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E7%94%B5%E5%BD%B1%E6%B8%AF.js"
     },
     {
       "key": "努努影院",
       "name": "💋努努┃影院",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E5%8A%AA%E5%8A%AA%E5%BD%B1%E9%99%A2.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%8A%AA%E5%8A%AA%E5%BD%B1%E9%99%A2.js"
     },
     {
       "key": "人人电影",
       "name": "👰人人┃电影",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E4%BA%BA%E4%BA%BA%E7%94%B5%E5%BD%B1.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E4%BA%BA%E4%BA%BA%E7%94%B5%E5%BD%B1.js"
     },
     {
       "key": "泥泥视频",
       "name": "🍋泥泥┃视频",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E6%B3%A5%E6%B3%A5%E8%A7%86%E9%A2%91.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E6%B3%A5%E6%B3%A5%E8%A7%86%E9%A2%91.js"
     },
     {
       "key": "孜然影视",
       "name": "🐲孜然┃影视",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E5%AD%9C%E7%84%B6%E5%BD%B1%E8%A7%86.js",
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%AD%9C%E7%84%B6%E5%BD%B1%E8%A7%86.js",
       "style": {
         "type": "rect",
         "ratio": 1.33
@@ -576,30 +900,40 @@
       "key": "月光影视",
       "name": "🌛月光┃（羊）",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E6%9C%88%E5%85%89%E5%BD%B1%E8%A7%86.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E6%9C%88%E5%85%89%E5%BD%B1%E8%A7%86.js"
     },
     {
       "key": "厂长",
       "name": "🙋厂长┃（羊）",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E5%8E%82%E9%95%BF.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%8E%82%E9%95%BF.js"
     },
     {
       "key": "星辰影院",
       "name": "🪐星辰┃（羊）",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E6%98%9F%E8%BE%B0%E5%BD%B1%E9%99%A2.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E6%98%9F%E8%BE%B0%E5%BD%B1%E9%99%A2.js"
     },
     {
       "key": "耐看",
       "name": "👀耐看┃（羊）",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E8%80%90%E7%9C%8B.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E8%80%90%E7%9C%8B.js"
     },
     {
       "key": "py_LIBVIO",
       "name": "🤖LIBVIO┃PY",
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/py/LIBVIO.py",
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/py/LIBVIO.py",
+      "filterable": 1,
+      "timeout": 60,
+      "quickSearch": 1,
+      "searchable": 1,
+      "type": 3
+    },
+    {
+      "key": "py_盘友圈",
+      "name": "🤒盘友┃搜索",
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/py/%E7%9B%98%E5%8F%8B%E5%9C%88.py",
       "filterable": 1,
       "timeout": 60,
       "quickSearch": 1,
@@ -609,7 +943,7 @@
     {
       "key": "py_奇奇APP",
       "name": "🦂奇奇┃APP",
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/py/%E5%A5%87%E5%A5%87APP.py",
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/py/%E5%A5%87%E5%A5%87APP.py",
       "filterable": 1,
       "quickSearch": 1,
       "searchable": 1,
@@ -619,29 +953,29 @@
       "key": "腾腾",
       "name": "🐧腾腾┃JX",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E8%85%BE%E8%85%BE.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E8%85%BE%E8%85%BE.js"
     },
     {
       "key": "奇奇",
       "name": "🐴奇奇┃JX",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E5%A5%87%E5%A5%87.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E5%A5%87%E5%A5%87.js"
     },
     {
       "key": "果果",
       "name": "🍋果果┃JX",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E6%9E%9C%E6%9E%9C.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E6%9E%9C%E6%9E%9C.js"
     },
     {
       "key": "酷酷",
       "name": "😎酷酷┃JX",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E9%85%B7%E9%85%B7.js"
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E9%85%B7%E9%85%B7.js"
     },
     {
       "key": "csp_Bili",
@@ -650,7 +984,7 @@
       "api": "csp_Bili",
       "playerType": 2,
       "ext": {
-        "json": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/json/bili.json",
+        "json": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/bili.json",
         "cookie": ""
       },
       "style": {
@@ -659,15 +993,130 @@
       }
     },
     {
+      "key": "csp_Biliyy",
+      "name": "🅱️哔哩┃音乐",
+      "type": 3,
+      "api": "csp_Bili",
+      "playerType": 2,
+      "ext": {
+        "json": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/biliyy.json",
+        "cookie": ""
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      }
+    },
+    {
+      "key": "csp_mtv",
+      "name": "🅱️MV┃音乐",
+      "type": 3,
+      "api": "csp_Bili",
+      "playerType": 2,
+      "ext": {
+        "json": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/mtv.json",
+        "cookie": ""
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      }
+    },
+    {
+      "key": "csp_bilirt",
+      "name": "🅱️儿童┃最爱",
+      "type": 3,
+      "api": "csp_Bili",
+      "playerType": 2,
+      "ext": {
+        "json": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/bilirt.json",
+        "cookie": ""
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      }
+    },
+    {
+      "key": "csp_bilims",
+      "name": "🅱️最爱┃美食",
+      "type": 3,
+      "api": "csp_Bili",
+      "playerType": 2,
+      "ext": {
+        "json": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/bilims.json",
+        "cookie": ""
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      }
+    },
+    {
+      "key": "csp_Jzb",
+      "name": "⚽看球┃体育",
+      "type": 3,
+      "api": "csp_Jzb",
+      "searchable": 0,
+      "changeable": 0,
+      "ext": {
+        "sites": ""
+      }
+    },
+    {
+      "key": "csp_ShuaiJiao",
+      "name": "🤺摔跤┃体育",
+      "type": 3,
+      "api": "csp_ShuaiJiao",
+      "searchable": 0,
+      "changeable": 0,
+      "ext": {
+        "sites": ""
+      }
+    },
+    {
       "key": "采集之王",
       "name": "🦚采集┃之王",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/drpy2.min.js",
+      "api": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/drpy2.min.js",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
       "order_num": 1,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/expkids/d20o/refs%2Fheads%2Fmain/js/%E9%87%87%E9%9B%86%E4%B9%8B%E7%8E%8B.js?type=url&params=../json/%E9%87%87%E9%9B%86.json"
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/js/%E9%87%87%E9%9B%86%E4%B9%8B%E7%8E%8B.js?type=url&params=../json/%E9%87%87%E9%9B%86.json"
+    },
+    {
+      "key": "AList",
+      "name": "😇网盘┃Alist",
+      "type": 3,
+      "api": "csp_AList",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "playerType": 2,
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/alist.json"
+    },
+    {
+      "key": "WebDAV",
+      "name": "🙃Web┃DAV",
+      "type": 3,
+      "api": "csp_WebDAV",
+      "searchable": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "timeout": 60,
+      "playerType": 2,
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/webdav.json"
+    },
+    {
+      "key": "商店",
+      "name": "🤡商店┃更新",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/json/market.json"
     },
     {
       "key": "push_agent",
@@ -677,6 +1126,41 @@
       "searchable": 0,
       "changeable": 0,
       "timeout": 60
+    }
+  ],
+  "parses": [
+    {
+      "name": "测试解析",
+      "type": 1,
+      "url": "http://127.0.0.1:9978/proxy?do=voxjx&url="
+    }
+  ],
+  "lives": [
+    {
+      "name": "📡虎牙",
+      "type": 0,
+      "url": "http://xxyyy.eu.org:35455/huyayqk.m3u",
+      "ua": ""
+    },
+    {
+      "name": "📡斗鱼",
+      "type": 0,
+      "url": "http://xxyyy.eu.org:35455/douyuyqk.m3u",
+      "ua": ""
+    },
+    {
+      "name": "📡YY",
+      "type": 0,
+      "url": "http://xxyyy.eu.org:35455/yylunbo.m3u",
+      "ua": ""
+    },
+    {
+      "name": "📡冰茶直播",
+      "type": 0,
+      "url": "https://bc.188766.xyz/?ip=&mima=bingcha1130",
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://epg.iill.top/logo/{name}.png",
+      "timeout": 10
     }
   ],
   "doh": [
@@ -751,6 +1235,10 @@
       ]
     }
   ],
+  "ads": [
+    "static-mozai.4gtv.tv",
+    "s3t3d2y8.afcdn.net"
+  ],
   "proxy": [
     "raw.githubusercontent.com",
     "googlevideo.com",
@@ -804,15 +1292,12 @@
       ]
     }
   ],
+  "ijk": [],
+  "spider": "https://gh-proxy.com/github.com/liulin151501-dotcom/YMTV/raw/refs/heads/main/tvbox/%E6%9C%AC%E5%9C%B0%E3%80%90VOX%E7%BA%BF%E8%B7%AF%E3%80%91/jar/vox.jar",
+  "warningText": "禁止任何商业用途，仅限个人学习爬虫原理使用。",
+  "wallpaper": "http://饭太硬.top/深色壁纸/api.php",
   "headers": [],
   "hosts": [],
-  "parses": [
-    {
-      "name": "测试解析",
-      "type": 1,
-      "url": "http://127.0.0.1:9978/proxy?do=voxjx&url="
-    }
-  ],
   "flags": [
     "youku",
     "qq",
@@ -824,9 +1309,5 @@
     "pptv",
     "mgtv",
     "wasu"
-  ],
-  "ads": [
-    "static-mozai.4gtv.tv",
-    "s3t3d2y8.afcdn.net"
   ]
 }
