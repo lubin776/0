@@ -9,6 +9,7 @@
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0,
+      "indexs": 1,
       "quickSearch": 0,
       "filterable": 1
     },
