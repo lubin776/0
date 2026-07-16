@@ -836,7 +836,7 @@
     "name": "使用说明",
     "type": 1,
     "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/lib/使用说明.json"
-},
+    },
     {
       "key": "push_agent",
       "name": "🛴推送┃链接",
@@ -845,81 +845,6 @@
       "searchable": 0,
       "filterable": 0,
       "changeable": 0
-    },
-    {
-      "key": "盘搜",
-      "name": "🔍盘搜｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_PanSou",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0
-    },
-    {
-      "key": "古哥",
-      "name": "🔍古哥｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_GugeSo",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0
-    },
-    {
-      "key": "百酷",
-      "name": "🔍百酷｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_Baiku"
-    },
-    {
-      "key": "米搜",
-      "name": "🔍米搜｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_MiSou",
-      "ext": {
-        "site": [
-          "https://misoso.shop",
-          "http://www.misoso.shop"
-        ]
-      }
-    },
-    {
-      "key": "酷乐搜索",
-      "name": "🔍酷乐｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_KuLe"
-    },
-    {
-      "key": "鬼鬼搜索",
-      "name": "🔍鬼鬼｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_GuiGui"
-    },
-    {
-      "key": "混合",
-      "name": "🔍混合｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_HunHePan"
-    },
-    {
-      "key": "天翼",
-      "name": "🔍天翼｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_TianYiSou"
-    },
-    {
-      "key": "趣盘",
-      "name": "🔍趣盘｜搜索",
-      "type": 3,
-      "hide": 1,
-      "api": "csp_QuPanSo"
     }
   ],
   "parses": [
