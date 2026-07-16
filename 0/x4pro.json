@@ -832,6 +832,12 @@
       "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/market.json"
     },
     {
+    "key": "声明",
+    "name": "使用说明",
+    "type": 1,
+    "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/lib/使用说明.json"
+},
+    {
       "key": "push_agent",
       "name": "🛴推送┃链接",
       "type": 3,
