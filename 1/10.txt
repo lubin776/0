@@ -1,0 +1,16 @@
+{
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/xs.jar",
+  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
+  "sites": [
+    {
+      "key": "jueson",
+      "name": "主页┃豆瓣10",
+      "type": 3,
+      "api": "csp_Douban",
+      "searchable": 0,
+      "indexs": 1,
+      "quickSearch": 0,
+      "filterable": 1
+    }
+  ]
+}
