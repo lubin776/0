@@ -32,17 +32,6 @@
       "api": "csp_LocalFile"
     },
     {
-      "key": "哔哩哔哩",
-      "name": "🅱️哔哩┃合集",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "jar": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/b.jar",
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/saoer2022/lib/哔哩合集.json"
-    },
-    {
       "key": "JD",
       "name": "♨️JD┃4K测试",
       "type": 3,
