@@ -33,21 +33,21 @@
     },
     {
       "key": "JD",
-      "name": "♨️JD┃4K测试",
+      "name": "♨️JD｜4K测试",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/jd4k.js",
       "ext": "https://qp.69mini.com/api.php/app/"
     },
     {
       "key": "极影",
-      "name": "♨️极影┃4K测试",
+      "name": "♨️极影｜4K测试",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/jy.js",
       "ext": "http://cmsyun2.qijiyun.vip/api.php/app/"
     },
     {
       "key": "爱营",
-      "name": "♨️爱影┃4K线路",
+      "name": "♨️爱影｜4K线路",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/get.js",
       "ext": {
@@ -70,13 +70,13 @@
     },
     {
       "key": "fy",
-      "name": "♨️枫叶┃4K线路",
+      "name": "♨️枫叶｜4K线路",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/fy.py"
     },
     {
       "key": "动漫天堂",
-      "name": "♨️漫堂┃4K线路",
+      "name": "♨️漫堂｜4K线路",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/get.js",
       "ext": {
@@ -86,6 +86,18 @@
         "api": 2,
         "ua": "okhttp/3.10.0"
       }
+    },
+    {
+      "key": "山楂",
+      "name": "♨️山楂｜4K线路",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/shanzha.py"
+    },
+    {
+      "key": "火云",
+      "name": "♨️火云｜4k线路",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/hy.js"
     },
     {
       "key": "玩偶哥哥",
