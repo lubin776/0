@@ -14,7 +14,7 @@
     },
     {
       "key": "配置中心",
-      "name": "🌐配置┃中心",
+      "name": "⚙️配置┃中心",
       "type": 3,
       "api": "csp_Config",
       "searchable": 0,
@@ -33,21 +33,21 @@
     },
     {
       "key": "JD",
-      "name": "♨️JD｜4K测试",
+      "name": "♨️JD｜免扫",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/jd4k.js",
       "ext": "https://qp.69mini.com/api.php/app/"
     },
     {
       "key": "极影",
-      "name": "♨️极影｜4K测试",
+      "name": "♨️极影｜免扫",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/jy.js",
       "ext": "http://cmsyun2.qijiyun.vip/api.php/app/"
     },
     {
       "key": "爱营",
-      "name": "♨️爱影｜4K线路",
+      "name": "♨️爱影｜免扫",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/get.js",
       "ext": {
@@ -70,13 +70,13 @@
     },
     {
       "key": "fy",
-      "name": "♨️枫叶｜4K线路",
+      "name": "♨️枫叶｜免扫",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/fy.py"
     },
     {
       "key": "动漫天堂",
-      "name": "♨️漫堂｜4K线路",
+      "name": "♨️漫堂｜免扫",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/get.js",
       "ext": {
@@ -89,19 +89,19 @@
     },
     {
       "key": "山楂",
-      "name": "♨️山楂｜4K线路",
+      "name": "♨️山楂｜免扫",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/shanzha.py"
     },
     {
       "key": "火云",
-      "name": "♨️火云｜4k线路",
+      "name": "♨️火云｜免扫",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/hy.js"
     },
     {
       "key": "玩偶哥哥",
-      "name": "🌐玩偶┃4K自扫",
+      "name": "🌐玩偶┃4K",
       "type": 3,
       "api": "csp_Wogg",
       "searchable": 1,
@@ -118,7 +118,7 @@
     },
     {
       "key": "木偶",
-      "name": "🌐木偶┃4K自扫",
+      "name": "🌐木偶┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -136,7 +136,7 @@
     },
     {
       "key": "蜡笔",
-      "name": "🌐蜡笔┃4K自扫",
+      "name": "🌐蜡笔┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -154,7 +154,7 @@
     },
     {
       "key": "至臻",
-      "name": "🌐至臻┃4K自扫",
+      "name": "🌐至臻┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -171,7 +171,7 @@
     },
     {
       "key": "多多",
-      "name": "🌐多多┃4K自扫",
+      "name": "🌐多多┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -188,7 +188,7 @@
     },
     {
       "key": "欧哥",
-      "name": "🌐欧哥┃4K自扫",
+      "name": "🌐欧哥┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -206,7 +206,7 @@
     },
     {
       "key": "二小",
-      "name": "🌐二小┃4K自扫",
+      "name": "🌐二小┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -224,7 +224,7 @@
     },
     {
       "key": "快映",
-      "name": "🌐快映┃4K自扫",
+      "name": "🌐快映┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -239,7 +239,7 @@
     },
     {
       "key": "虎斑",
-      "name": "🌐虎斑┃4K自扫",
+      "name": "🌐虎斑┃4K",
       "type": 3,
       "api": "csp_PanWebShare",
       "searchable": 1,
@@ -254,7 +254,7 @@
     },
     {
       "key": "双星",
-      "name": "🌐双星┃4K自扫",
+      "name": "🌐双星┃4K",
       "type": 3,
       "api": "csp_ShuangXing",
       "style": {
@@ -263,7 +263,7 @@
     },
     {
       "key": "夸父",
-      "name": "🌐夸父┃4K自扫",
+      "name": "🌐夸父┃4K",
       "type": 3,
       "api": "csp_PanWebShareKF",
       "searchable": 1,
@@ -282,7 +282,7 @@
     },
     {
       "key": "123",
-      "name": "🌐123┃4K自扫",
+      "name": "🌐123┃4K",
       "type": 3,
       "api": "csp_PanWebShare123",
       "searchable": 1,
@@ -302,7 +302,7 @@
     },
     {
       "key": "即刻",
-      "name": "🌐即刻┃4K自扫",
+      "name": "🌐即刻┃4K",
       "type": 3,
       "api": "csp_Jike",
       "style": {
@@ -311,13 +311,13 @@
     },
     {
       "key": "人人",
-      "name": "🌐人人┃4K自扫",
+      "name": "🌐人人┃4K",
       "type": 3,
       "api": "csp_RenRen"
     },
     {
       "key": "指南",
-      "name": "🌐指南┃4K自扫",
+      "name": "🌐指南┃4K",
       "type": 3,
       "api": "csp_4KZhinan",
       "searchable": 1,
@@ -425,18 +425,21 @@
     },
     {
       "key": "本地包",
-      "name": "本地包",
+      "name": "📦本地包",
       "type": 3,
       "api": "csp_Market",
       "searchable": 0,
-      "changeable": 0,
-      "indexs": 0,
+      "quickSearch": 0,
+      "filterable": 1,
       "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/market.json"
     },
     {
     "key": "说明",
-    "name": "使用说明",
+    "name": "⚠️使用说明",
     "type": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
     "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/lib/使用说明.json"
     },
     {
