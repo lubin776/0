@@ -2,16 +2,14 @@
   "spider": "https://gh-proxy.com/github.com/lubin776/xyspd/raw/master/spider.jar",
   "logo": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/jueson.jpg",
   "sites": [
-    {
-      "key": "jueson",
-      "name": "🏠主页┃豆瓣",
-      "type": 3,
-      "api": "csp_Douban",
-      "searchable": 0,
-      "quickSearch": 0,
-      "indexs": 1,
-      "filterable": 1
-    },
+        {
+            "key": "豆瓣",
+            "name": "🏠主页┃豆瓣",
+            "type": 3,
+            "api": "csp_Douban",
+            "indexs": 1,
+            "searchable": 0
+        },
     {
       "key": "配置中心",
       "name": "⚙️配置┃中心",
