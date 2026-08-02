@@ -2,8 +2,8 @@
   "spider": "https://zl.wpscdn.cn/2026/08/01/space_img/6fe91409-8419-4c89-8745-f221ba12ed1d.jpg;md5;35002041650f308fab31cdda04a60637",
   "sites": [
     {
-      "key": "点我切源",
-      "name": "修复原创  厂长，新增无限线路(8月1更新)",
+      "key": "豆瓣",
+      "name": "🏠主页┃豆瓣",
       "type": 3,
       "api": "csp_DouDouGuard",
       "indexs": 1,
@@ -13,7 +13,7 @@
     },
     {
       "key": "MDrive",
-      "name": "🗂我的云盘┃我配置",
+      "name": "⚙️配置┃中心",
       "type": 3,
       "api": "csp_MyDriveGuard",
       "changeable": 0,
@@ -27,8 +27,24 @@
       }
     },
     {
+      "key": "Bilipz",
+      "name": "🅱️哔哩 | 配置",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "json": "https://gh-proxy.com/github.com/lubin776/tvbox/raw/main/范太硬/lib/bilipz.json"
+      }
+    },
+    {
       "key": "玩偶",
-      "name": "👽玩偶哥哥┃4K弹幕",
+      "name": "👽玩偶┃4K",
       "type": 3,
       "api": "csp_WoGGGuard",
       "timeout": 30,
@@ -41,7 +57,7 @@
     },
     {
       "key": "YGP",
-      "name": "🚀叨观荐影┃预告片",
+      "name": "🚀叨观┃预告",
       "type": 3,
       "api": "csp_YGPGuard",
       "searchable": 0,
@@ -50,7 +66,7 @@
     },
     {
       "key": "MTV1",
-      "name": "🎙️易听音乐┃带歌词",
+      "name": "🎙️易听┃带歌词",
       "type": 3,
       "api": "csp_MusicGuard",
       "style": {
@@ -973,15 +989,6 @@
       "ext": {
         "Cloud-drive": "tvfan/Cloud-drive.txt"
       }
-    },
-    {
-      "key": "cc",
-      "name": "请勿信视频中任何广告",
-      "type": 3,
-      "api": "csp_XPathGuard",
-      "searchable": 1,
-      "quickSearch": 0,
-      "changeable": 0
     }
   ],
   "lives": [
