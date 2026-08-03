@@ -1264,9 +1264,9 @@
       "name": "🅱️哔哩｜医药",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0,
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
       "changeable": 0,
       "style": {
         "type": "rect",
