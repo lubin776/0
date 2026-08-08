@@ -3,6 +3,15 @@
   "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/market.jar",
   "sites": [
     {
+      "key": "说明",
+      "name": "⚠️说明",
+      "type": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "api": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/lib/多地址说明.json"
+    },
+    {
       "key": "X4本地包",
       "name": "X4菠菜园本地包",
       "type": 3,
