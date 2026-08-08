@@ -1,0 +1,39 @@
+[
+    {
+        "name": "推荐",
+        "list": [
+            {
+                "name": "公众号：奇奇资源库",
+                "icon": "http://bd.qiqiv.cn/公众号.jpg"
+            },
+            {
+                "name": "流量卡免费申请",
+                "icon": "http://a.qiqiv.cn/img/ka.jpg"
+            }
+        ]
+    },
+    {
+        "name": "每月2号，16号更新",
+        "list": [
+            {
+                "name": "每月2号，16号更新",
+                "url": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/tvboxqq.zip",
+                "icon": "http://bd.qiqiv.cn/更新.jpg",
+                "version": "08.08"
+            }
+        ]
+    },
+    {
+        "name": "最新：20260808",
+        "list": [
+            {
+                "name": "公众号：奇奇资源库",
+                "icon": "http://bd.qiqiv.cn/论坛.jpg"
+            },
+            {
+                "name": "配置说明",
+                "icon": "http://bd.qiqiv.cn/说明.jpg"
+            }
+        ]
+    }
+]
