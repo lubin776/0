@@ -14,7 +14,7 @@
     },
         {
             "key": "奇奇2",
-            "name": "💞奇奇本地｜0808",
+            "name": "💞奇奇副本0808",
             "type": 3,
             "api": "csp_Market",
             "searchable": 0,
@@ -24,7 +24,7 @@
         },
     {
       "key": "奇奇",
-      "name": "💞奇奇本地｜0722",
+      "name": "💞奇奇本地",
       "type": 3,
       "api": "csp_Market",
       "searchable": 0,
