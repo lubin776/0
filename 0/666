@@ -61,6 +61,32 @@
       "indexs": 0,
       "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/天神小屋.png"
     },
+
+    {
+      "key": "Market",
+      "name": "🛒肥猫市场",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "filterable": 1,
+      "style": {
+        "type": "list"
+      },
+      "ext": {
+        "categories": [
+          {
+            "name": "壳子",
+            "url": "https://pan.quark.cn/s/7675d475c0fe"
+          },
+          {
+            "name": "本地包",
+            "url": "https://pan.quark.cn/s/ee4ea23f4eaf"
+          }
+        ]
+      }
+    },
     {
       "key": "3",
       "name": "应用市场1",
