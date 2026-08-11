@@ -1,0 +1,29 @@
+{
+  "page": 1,
+  "pagecount": 1,
+  "limit": 3,
+  "total": 3,
+  "list": [
+    {
+      "vod_id": "x4_recommend",          // ✅ 唯一
+      "vod_name": "X4 直连线路",
+      "vod_pic": "https://via.placeholder.com/300x450/222/fff?text=X4",
+      "vod_remarks": "推荐",
+      "vod_content": "推荐使用的本地直连线路..."
+    },
+    {
+      "vod_id": "local_tutorial",        // ✅ 唯一
+      "vod_name": "配置教程",
+      "vod_pic": "https://via.placeholder.com/300x450/1E90FF/fff?text=LOCAL",
+      "vod_remarks": "📦 本地包",
+      "vod_content": "本接口由【误道者】打包上传..."
+    },
+    {
+      "vod_id": "disclaimer",            // ✅ 唯一
+      "vod_name": "免责声明",
+      "vod_pic": "https://via.placeholder.com/300x450/8B0000/fff?text=NOTICE",
+      "vod_remarks": "重要",
+      "vod_content": "所有资源来自互联网..."
+    }
+  ]
+}
