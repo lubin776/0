@@ -4,7 +4,7 @@
   "sites": [
     {
       "key": "jueson",
-      "name": "主页┃豆瓣2",
+      "name": "主页┃豆瓣1",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0,
