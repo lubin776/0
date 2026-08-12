@@ -1,6 +1,6 @@
 {
   "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/market.jar",
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/xs.jar",
   "sites": [
     {
       "key": "说明",
@@ -13,17 +13,17 @@
     },
     {
       "key": "X4本地包",
-      "name": "X4菠菜园本地包",
+      "name": "📦菠菜园下载",
       "type": 3,
       "api": "csp_Market",
       "searchable": 0,
       "changeable": 0,
       "indexs": 0,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/singlex4.json"
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/lib/3.json"
     },
         {
             "key": "奇奇2",
-            "name": "💞奇奇副本0808",
+            "name": "💞奇奇副本",
             "type": 3,
             "api": "csp_Market",
             "searchable": 0,
@@ -80,58 +80,6 @@
       "changeable": 0,
       "indexs": 0,
       "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/SimonWang911/simonwangsub/refs/heads/main/appupdate/appupdate.json"
-    }
-  ],
-  "parses": [
-    {
-      "name": "超级并发",
-      "type": 3,
-      "url": "Demo"
-    },
-    {
-      "name": "上限万能",
-      "type": 1,
-      "url": "https://svip.cygc.xyz/api/?key=cygctest&url="
-    }
-  ],
-  "flags": [
-    "youku",
-    "qq",
-    "iqiyi",
-    "qiyi",
-    "letv",
-    "sohu",
-    "tudou",
-    "pptv",
-    "mgtv",
-    "wasu",
-    "bilibili",
-    "renrenmi"
-  ],
-  "rules": [
-    {
-      "host": "www.iesdouyin.com",
-      "rule": ["playwm/?video_id="]
-    },
-    {
-      "host": "www.ysgc.vip",
-      "rule": ["getm3u8?url=http"]
-    },
-    {
-      "host": "v.douyin.com",
-      "rule": ["playwm/?video_id="]
-    },
-    {
-      "host": "dyxs20.com",
-      "rule": [".m3u8"]
-    },
-    {
-      "host": "www.agemys.cc",
-      "rule": ["cdn-tos", "obj/tos-cn"]
-    },
-    {
-      "host": "www.sharenice.net",
-      "rule": ["http.*?/play.{0,3}\\?[^url]{2,8}=.*", "qianpailive.com", "vid="]
     }
   ]
 }
