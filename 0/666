@@ -13,13 +13,13 @@
     },
     {
       "key": "X4本地包",
-      "name": "X4菠菜园本地包",
+      "name": "误道者菠菜园",
       "type": 3,
       "api": "csp_Market",
       "searchable": 0,
       "changeable": 0,
       "indexs": 0,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/singlex4.json"
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/lib/3.json"
     },
         {
             "key": "奇奇2",
