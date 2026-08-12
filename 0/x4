@@ -1,6 +1,13 @@
 {
   "spider": "https://gitee.com/xiayede/tvbox/raw/master/spider.jar",
   "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
+  "lives": [
+    {
+      "name": "Guovin",
+      "type": 0,
+      "url": "https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.m3u"
+    }
+  ],
   "sites": [
     {
       "key": "jueson",
