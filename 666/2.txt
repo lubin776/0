@@ -1,35 +1,23 @@
 {
-  "spider": "https://gitee.com/xiayede/tvbox/raw/master/spider.jar",
-  "danmaku": "http://127.0.0.1:9978/proxy?do=danmaku&name={name}&episode={episode}",
+  "spider": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/xy.jar",
+  "logo": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/jueson.jpg",
   "sites": [
     {
-      "key": "豆瓣",
-      "name": "豆瓣┃首页",
+      "key": "jueson",
+      "name": "🏠主页┃豆瓣",
       "type": 3,
       "api": "csp_Douban",
-      "indexs": 1,
-      "searchable": 0
-    },
-    {
-      "key": "配置中心",
-      "name": "配置┃中心",
-      "type": 3,
-      "api": "csp_Config",
       "searchable": 0,
-      "changeable": 0,
-      "indexs": 0,
-      "style": {
-        "type": "rect",
-        "ratio": 1.597
-      }
+      "quickSearch": 0,
+      "indexs": 1,
+      "filterable": 1
     },
     {
-      "key": "本地",
-      "name": "本地┃视频",
+      "key": "本地媒体",
+      "name": "📁本地┃媒体",
       "type": 3,
       "api": "csp_LocalFile"
     },
-
     {
       "key": "ds05",
       "name": "🍀都司资源",
@@ -2197,8 +2185,27 @@
       ]
     },
     {
+      "key": "本地包",
+      "name": "📦本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/market.json"
+    },
+    {
+    "key": "说明",
+    "name": "⚠️使用说明",
+    "type": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+    "api": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/lib/使用说明.json"
+    },
+    {
       "key": "push_agent",
-      "name": "手机┃推送",
+      "name": "🔗链接┃解析",
       "type": 3,
       "api": "csp_Push",
       "searchable": 0,
@@ -2208,89 +2215,21 @@
   ],
   "parses": [
     {
-      "name": "聚合",
+      "name": "解析聚合",
       "type": 3,
-      "url": "Web"
+      "url": "Demo"
     },
     {
-      "name": "虾米",
-      "type": 0,
-      "url": "https://jx.xmflv.com/?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
+      "name": "xy4k",
+      "type": 1,
+      "url": "https://183933.xyz/xiaye.php?url="
+    }
+  ],
+  "lives": [
     {
-      "name": "云解",
+      "name": "Guovin",
       "type": 0,
-      "url": "https://yparse.ik9.cc/index.php?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "咸鱼",
-      "type": 0,
-      "url": "https://jx.xymp4.cc/?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "淘片",
-      "type": 0,
-      "url": "https://jx.yparse.com/index.php?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "冰豆",
-      "type": 0,
-      "url": "https://bd.jx.cn/?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "七七",
-      "type": 0,
-      "url": "https://jx.77flv.cc/?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "盘古",
-      "type": 0,
-      "url": "https://www.playm3u8.cn/jiexi.php?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "夜幕",
-      "type": 0,
-      "url": "https://yemu.xyz/?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
+      "url": "https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.m3u"
     }
   ],
   "rules": [
@@ -2322,32 +2261,6 @@
       ]
     },
     {
-      "name": "磁力广告",
-      "hosts": [
-        "magnet"
-      ],
-      "regex": [
-        "更多",
-        "请访问",
-        "example",
-        "社 區",
-        "x u u",
-        "直 播",
-        "更 新",
-        "社 区",
-        "有趣",
-        "有 趣",
-        "英皇体育",
-        "全中文AV在线",
-        "澳门皇冠赌场",
-        "哥哥快来",
-        "美女荷官",
-        "裸聊",
-        "新片首发",
-        "UUE29"
-      ]
-    },
-    {
       "name": "饭团点击",
       "hosts": [
         "dadagui",
@@ -2355,7 +2268,7 @@
         "dadagui"
       ],
       "script": [
-        "document.querySelector(\"#playleftiframe\").contentWindow.document.querySelector(\"#start\").click();"
+        "document.querySelector(\"#playleft iframe\").contentWindow.document.querySelector(\"#start\").click();"
       ]
     },
     {
@@ -2364,7 +2277,16 @@
         "www.maolvys.com"
       ],
       "script": [
-        "document.getElementsByClassName('swal-buttonswal-button--confirm')[0].click()"
+        "document.getElementsByClassName('swal-button swal-button--confirm')[0].click()"
+      ]
+    },
+    {
+      "name": "ofiii",
+      "hosts": [
+        "www.ofiii.com"
+      ],
+      "script": [
+        "const play=document.getElementsByClassName('play_icon')[0],event=new MouseEvent('click',{bubbles:!0,cancelable:!0,view:window,screenX:100,screenY:100,clientX:50,clientY:50,button:0,shiftKey:!1,ctrlKey:!1,altKey:!1,metaKey:!1,modifierState:0});play.dispatchEvent(event);"
       ]
     }
   ],
@@ -2411,6 +2333,14 @@
         "149.112.112.112"
       ]
     }
+  ],
+  "hosts": [
+    "cache.ott.*.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com",
+    "cache.ott.ystenlive.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com",
+    "cache.ott.bestlive.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com",
+    "cache.ott.wasulive.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com",
+    "cache.ott.fifalive.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com",
+    "cache.ott.hnbblive.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com"
   ],
   "flags": [
     "youku",
