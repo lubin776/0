@@ -18,7 +18,8 @@
       "searchable": 0,
       "quickSearch": 0,
       "indexs": 1,
-      "filterable": 1
+      "filterable": 1,
+      "jar": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/xy.jar"
     },
     {
       "key": "本地媒体",
