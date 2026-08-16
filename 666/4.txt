@@ -12,7 +12,7 @@
       "key":"豆瓣",
       "name":"🏠豆瓣┃首页",
       "type":3,
-      "api":"csp_DouDou",
+      "api":"csp_Douban",
       "indexs":1,
       "searchable":1,
       "quickSearch":1,
