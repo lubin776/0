@@ -3,16 +3,16 @@
         "name": "推荐",
         "list": [
             {
-                "name": "点击下载",
+                "name": "代理下载",
                 "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
                 "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
-                "version": "X4代理线路"
+                "version": "08.16"
             },
             {
-                "name": "点击下载",
+                "name": "直链下载",
                 "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
                 "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
-                "version": "X4直连线路"
+                "version": "08.16"
             },
       {
         "name": "白盒",
@@ -32,16 +32,16 @@
         "name": "X4本地包",
         "list": [
             {
-                "name": "点击下载",
+                "name": "代理下载",
                 "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
                 "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
-                "version": "X4代理线路"
+                "version": "08.16"
             },
             {
-                "name": "点击下载",
+                "name": "直链下载",
                 "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
                 "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
-                "version": "X4直连线路"
+                "version": "08.16"
             }
         ]
     },
