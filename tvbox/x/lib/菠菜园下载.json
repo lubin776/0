@@ -1,0 +1,94 @@
+[
+    {
+        "name": "推荐",
+        "list": [
+            {
+                "name": "点击下载",
+                "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "X4代理线路"
+            },
+            {
+                "name": "点击下载",
+                "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "X4直连线路"
+            },
+      {
+        "name": "白盒",
+        "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒x4_32.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "白盒x4_32"
+      },
+      {
+        "name": "白盒",
+        "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒x4_64.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "白盒x4_64"
+      }
+        ]
+    },
+    {
+        "name": "X4本地包",
+        "list": [
+            {
+                "name": "点击下载",
+                "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "X4代理线路"
+            },
+            {
+                "name": "点击下载",
+                "url": "https://mpimg.cn/down.php/f0190e5f74062660e81c71426868af7b.zip",
+                "icon": "https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/本地包.png",
+                "version": "X4直连线路"
+            }
+        ]
+    },
+  {
+    "name": "白盒X4共存版",
+    "list": [
+      {
+        "name": "白盒",
+        "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒x4_32.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "白盒x4_32"
+      },
+      {
+        "name": "白盒",
+        "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒x4_64.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "白盒x4_64"
+      }
+    ]
+  },
+  {
+    "name": "白盒原版",
+    "list": [
+      {
+        "name": "白盒",
+        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-python64.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "1744-python64"
+      },
+      {
+        "name": "白盒",
+        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-python32.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "1744-python32"
+      },
+      {
+        "name": "白盒",
+        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-java64.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "1744-java64"
+      },
+      {
+        "name": "白盒",
+        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-java32.apk",
+        "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
+        "version": "1744-java32"
+      }
+    ]
+  }
+]
