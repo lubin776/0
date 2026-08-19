@@ -20,6 +20,68 @@
       "type": 3
     },
     {
+      "key": "短剧搜索",
+      "name": "🏠短剧┃搜索",
+      "type": 3,
+      "indexs": 1,
+      "api": "https://mpimg.cn/down.php/63951aa90dc88cc810078453f6dafa6c.py"
+    },
+    {
+      "key": "七猫短剧",
+      "name": "🎬七猫｜短剧",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/qmdj.py"
+    },
+    {
+      "key": "七星短剧",
+      "name": "🎬七星丨短剧",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/qxdj.py"
+    },
+    {
+      "key": "百度短剧",
+      "name": "🎬百度丨短剧",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/bddj.js",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1
+    },
+    {
+      "key": "聚合短剧",
+      "name": "🎬聚合丨短剧",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/jhdj.js",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1
+    },
+    {
+      "key": "星芽短剧",
+      "name": "🎬星芽｜短剧",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/%E6%98%9F%E8%8A%BD%E7%9F%AD%E5%89%A7.py",
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "genre": "shortdrama"
+    },
+    {
+      "key": "全能短剧",
+      "name": "🎬全能短剧",
+      "type": 3,
+      "api": "https://mpimg.cn/down.php/63951aa90dc88cc810078453f6dafa6c.py"
+    },
+  {
+  "key": "红果短剧",
+  "name": "🎬点众┃短剧",
+  "api": "./点众短剧.py",
+  "type": 3,
+  "searchable": 1,
+  "quickSearch": 1
+  },
+    {
       "key":"ds05",
       "name":"🍀都司资源",
       "type":0,
