@@ -13,16 +13,20 @@
       "filterable": 1
     },
     {
-      "key": "短剧搜",
-      "name": "🏠短剧┃搜搜",
-      "api": "https://mpimg.cn/down.php/194ba132117c1dee3277608cdc0b26fd.js",
+      "key": "短剧┃搜索1",
+      "name": "🏠短剧┃搜1",
+      "type": 3,
       "indexs": 1,
-      "type": 3
+      "searchable": 0,
+      "quickSearch": 0,
+      "api": "https://mpimg.cn/down.php/7e246e896fa4cf52866921b818d7e8cb.py"
     },
     {
       "key": "短剧搜索",
-      "name": "🏠短剧┃搜索",
+      "name": "🏠短剧┃搜2",
       "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
       "indexs": 1,
       "api": "https://mpimg.cn/down.php/63951aa90dc88cc810078453f6dafa6c.py"
     },
@@ -30,18 +34,24 @@
       "key": "七猫短剧",
       "name": "🎬七猫｜短剧",
       "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/qmdj.py"
     },
     {
       "key": "七星短剧",
       "name": "🎬七星丨短剧",
       "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/qxdj.py"
     },
     {
       "key": "百度短剧",
       "name": "🎬百度丨短剧",
       "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/bddj.js",
       "searchable": 1,
       "quickSearch": 0,
@@ -53,6 +63,7 @@
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/jhdj.js",
       "searchable": 1,
+      "searchable": 0,
       "quickSearch": 0,
       "filterable": 1
     },
@@ -61,9 +72,9 @@
       "name": "🎬星芽｜短剧",
       "type": 3,
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/%E6%98%9F%E8%8A%BD%E7%9F%AD%E5%89%A7.py",
-      "searchable": 1,
       "changeable": 1,
-      "quickSearch": 1,
+      "searchable": 0,
+      "quickSearch": 0,
       "filterable": 1,
       "genre": "shortdrama"
     },
@@ -71,6 +82,8 @@
       "key": "全能短剧",
       "name": "🎬全能短剧",
       "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
       "api": "https://mpimg.cn/down.php/63951aa90dc88cc810078453f6dafa6c.py"
     },
     {
