@@ -67,27 +67,27 @@
     "list": [
       {
         "name": "白盒",
-        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-python64.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260819-1640/TVBox_q215613905_20260819-1640-java32.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "1744-python64"
+        "version": "1640-python64"
       },
       {
         "name": "白盒",
-        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-python32.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260819-1640/TVBox_q215613905_20260819-1640-python32.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "1744-python32"
+        "version": "1640-python32"
       },
       {
         "name": "白盒",
-        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-java64.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260819-1640/TVBox_q215613905_20260819-1640-java64.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "1744-java64"
+        "version": "1640-java64"
       },
       {
         "name": "白盒",
-        "url": "https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260805-1744/TVBox_q215613905_20260805-1744-java32.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260819-1640/TVBox_q215613905_20260819-1640-java32.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "1744-java32"
+        "version": "1640-java32"
       }
     ]
   }
