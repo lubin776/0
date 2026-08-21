@@ -42,6 +42,16 @@
       "ext": "http://bd.qiqiv.cn/666.json"
     },
     {
+      "key": "潇洒",
+      "name": "潇洒本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://oss-v1.wangmeipo.cn/236/single.json"
+    },
+    {
       "key": "柒豪",
       "name": "柒豪本地包",
       "type": 3,
