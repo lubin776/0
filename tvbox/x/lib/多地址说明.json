@@ -5,10 +5,10 @@
   "total": 1,
   "list": [
     {
-      "vod_id": "本地包教程",
-      "vod_name": "配置地址",
+      "vod_id": "关于1",
+      "vod_name": "关于",
       "vod_pic": "https://via.placeholder.com/300x450/222222/FFFFFF?text=LOCAL",
-      "vod_remarks": "📦本地包",
+      "vod_remarks": "说明",
       "vod_content": "本接口由【误道者】打包上传。\n配置地址:\nX4菠菜园file://tvbox/x4/x4.json\n奇奇本地包clan://localhost/tvboxqq/本地仓.txt\nfile://tvboxqq/fm.txt\n潇洒file://TVBoxOSC/tvbox/api.json\n天神file://f\n柒豪file://柒豪/柒豪4K.json\n更多配置请加 QQ 群：1067685939。\n免责声明:\n所有资源来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。"
     }
   ]
