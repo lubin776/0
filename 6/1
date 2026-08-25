@@ -1,0 +1,137 @@
+{
+  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/market.jar",
+  "sites": [
+    {
+      "key": "说明4",
+      "name": "⚠️说明5",
+      "type": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "api": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/lib/3.json"
+    },
+    {
+      "key": "X4本地包",
+      "name": "X4菠菜园本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/singlex4.json"
+    },
+        {
+            "key": "奇奇2",
+            "name": "💞奇奇副本0808",
+            "type": 3,
+            "api": "csp_Market",
+            "searchable": 0,
+            "changeable": 0,
+            "indexs": 0,
+            "ext": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/lib/666.json"
+        },
+    {
+      "key": "奇奇",
+      "name": "💞奇奇本地",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "http://bd.qiqiv.cn/666.json"
+    },
+    {
+      "key": "柒豪",
+      "name": "柒豪本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://raw.gitcode.com/qihao/qihaoyyds/raw/main/版本.json"
+    },
+    {
+      "key": "天神",
+      "name": "天神小屋",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/天神小屋.png"
+    },
+    {
+      "key": "3",
+      "name": "应用市场1",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/https://github.com/woshishiq1/hipy-drpy2/raw/refs/heads/main/wzxxcz/json/market.json"
+    },
+    {
+      "key": "4",
+      "name": "应用市场2",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/SimonWang911/simonwangsub/refs/heads/main/appupdate/appupdate.json"
+    }
+  ],
+  "parses": [
+    {
+      "name": "超级并发",
+      "type": 3,
+      "url": "Demo"
+    },
+    {
+      "name": "上限万能",
+      "type": 1,
+      "url": "https://svip.cygc.xyz/api/?key=cygctest&url="
+    }
+  ],
+  "flags": [
+    "youku",
+    "qq",
+    "iqiyi",
+    "qiyi",
+    "letv",
+    "sohu",
+    "tudou",
+    "pptv",
+    "mgtv",
+    "wasu",
+    "bilibili",
+    "renrenmi"
+  ],
+  "rules": [
+    {
+      "host": "www.iesdouyin.com",
+      "rule": ["playwm/?video_id="]
+    },
+    {
+      "host": "www.ysgc.vip",
+      "rule": ["getm3u8?url=http"]
+    },
+    {
+      "host": "v.douyin.com",
+      "rule": ["playwm/?video_id="]
+    },
+    {
+      "host": "dyxs20.com",
+      "rule": [".m3u8"]
+    },
+    {
+      "host": "www.agemys.cc",
+      "rule": ["cdn-tos", "obj/tos-cn"]
+    },
+    {
+      "host": "www.sharenice.net",
+      "rule": ["http.*?/play.{0,3}\\?[^url]{2,8}=.*", "qianpailive.com", "vid="]
+    }
+  ]
+}
