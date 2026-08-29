@@ -1,46 +1,25 @@
 {
   "page": 1,
   "pagecount": 1,
-  "limit": 3,
-  "total": 3,
+  "limit": 2,
+  "total": 2,
   "class": [
     {
       "type_id": "tuijian",
-      "type_name": "🏠 推荐"
+      "type_name": "推荐"
     },
     {
       "type_id": "jiaocheng",
-      "type_name": "📦 教程"
-    },
-    {
-      "type_id": "mianze",
-      "type_name": "⚠️ 免责"
+      "type_name": "关于"
     }
   ],
   "list": [
     {
-      "type_id": "tuijian",
-      "vod_id": "x4",
-      "vod_name": "X4 直连线路",
-      "vod_pic": "https://via.placeholder.com/300x450/222222/FFFFFF?text=X4",
-      "vod_remarks": "推荐",
-      "vod_content": "推荐使用的本地直连线路，速度快、稳定性高。"
-    },
-    {
-      "type_id": "jiaocheng",
       "vod_id": "本地包教程",
       "vod_name": "配置教程",
-      "vod_pic": "https://via.placeholder.com/300x450/1E90FF/FFFFFF?text=LOCAL",
-      "vod_remarks": "📦 本地包",
-      "vod_content": "本接口由【误道者】打包上传。\n\n配置教程:\n先点击在线更新本地包链接，再输入：\nclan://localhost/tvbox/x4/x4.json\n\n配置更多本地包请加 QQ 群：1067685939。"
-    },
-    {
-      "type_id": "mianze",
-      "vod_id": "mianze",
-      "vod_name": "免责声明",
-      "vod_pic": "https://via.placeholder.com/300x450/8B0000/FFFFFF?text=NOTICE",
-      "vod_remarks": "重要",
-      "vod_content": "所有资源来自互联网，版权归原作者所有。\n仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。\n如涉及侵权，请联系删除。"
+      "vod_pic": "https://mpimg.cn/view.php/0a436d31d94ce28c8260ebdb61c1325e",
+      "vod_remarks": "📦本地包",
+      "vod_content": "本接口由【误道者】打包上传。\n配置教程:\n先点击在线更新本地包链接，再输入：\nclan://localhost/tvbox/x4/x4.json。配置更多本地包请加 QQ 群：1067685939。\n免责声明:\n所有资源来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。"
     }
   ]
 }
