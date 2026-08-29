@@ -1,14 +1,17 @@
 {
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/xyspd/refs/heads/master/spider.jar",
-  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
+  "spider": "https://mpimg.cn/down.php/e95d671c2e56f17960ecba828060b85d.jar",
+  "logo": "https://mpimg.cn/down.php/7c35e9376677a03556efe5193bf23cec.jpg",
   "sites": [
-    {
-      "key": "豆瓣",
-      "name": "🏠豆瓣┃首页",
+  {
+      "key": "jueson",
+      "name": "🏠主页┃豆瓣",
       "type": 3,
-      "api": "csp_Douban",
+      "api": "csp_DouDou",
+      "searchable": 0,
+      "quickSearch": 0,
       "indexs": 1,
-      "searchable": 0
+      "filterable": 1,
+      "jar": "https://mpimg.cn/down.php/d479d37ee36fa366b646f77d17b76fb1.jar"
     },
     {
       "key": "配置中心",
