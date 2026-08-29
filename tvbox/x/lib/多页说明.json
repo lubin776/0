@@ -6,11 +6,11 @@
   "class": [
     {
       "type_id": "tuijian",
-      "type_name": "推荐"
+      "type_name": "关于"
     },
     {
       "type_id": "jiaocheng",
-      "type_name": "关于"
+      "type_name": "说明"
     }
   ],
   "list": [
