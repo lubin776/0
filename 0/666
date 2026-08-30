@@ -1,5 +1,5 @@
 {
-  "spider": "https://pan.szfx.top/down.php/9e4160700838fea45a4acb15a81159fd.jar",
+  "spider": "https://mpimg.cn/down.php/6924958454b48fa15d9f8b290a31f473.jar",
   "logo": "https://mpimg.cn/view.php/7c35e9376677a03556efe5193bf23cec.jpg",
   "sites": [
     {
@@ -49,7 +49,17 @@
       "searchable": 0,
       "changeable": 0,
       "indexs": 0,
-      "ext": "https://oss-v1.wangmeipo.cn/236/single.json"
+      "ext": "https://9877.kstore.space/single.json"
+    },
+            {
+      "key": "无优",
+      "name": "无优本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://plum.now61.cn/f/ZWguY/bdgx.txt"
     },
     {
       "key": "柒豪",
