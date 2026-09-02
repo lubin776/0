@@ -14,11 +14,22 @@
       "jar": "https://mpimg.cn/down.php/d479d37ee36fa366b646f77d17b76fb1.jar"
     },
     {
-      "key": "短剧搜",
-      "name": "🏠短剧搜搜",
-      "api": "https://mpimg.cn/down.php/194ba132117c1dee3277608cdc0b26fd.js",
+      "key": "短剧┃搜索1",
+      "name": "🏠短剧┃搜1",
+      "type": 3,
       "indexs": 1,
-      "type": 3
+      "searchable": 0,
+      "quickSearch": 0,
+      "api": "https://mpimg.cn/down.php/7e246e896fa4cf52866921b818d7e8cb.py"
+    },
+    {
+      "key": "短剧搜索",
+      "name": "🏠短剧┃搜2",
+      "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
+      "indexs": 1,
+      "api": "https://mpimg.cn/down.php/18b8bebbf7b64d39a1e3a90c83a86642.py"
     },
     {
       "key": "配置中心",
