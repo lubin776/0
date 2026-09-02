@@ -6,13 +6,13 @@
                 "name": "代理下载",
                 "url": "https://mpimg.cn/down.php/60f91645734a161df35372d3ef446287.zip",
                 "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-                "version": "08.28"
+                "version": "08.24"
             },
             {
                 "name": "直链下载",
                 "url": "https://mpimg.cn/down.php/60f91645734a161df35372d3ef446287.zip",
                 "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-                "version": "08.28"
+                "version": "08.24"
             },
       {
         "name": "白盒",
@@ -35,13 +35,13 @@
                 "name": "代理下载",
                 "url": "https://mpimg.cn/down.php/60f91645734a161df35372d3ef446287.zip",
                 "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-                "version": "08.28"
+                "version": "08.24"
             },
             {
                 "name": "直链下载",
                 "url": "https://mpimg.cn/down.php/60f91645734a161df35372d3ef446287.zip",
                 "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-                "version": "08.28"
+                "version": "08.24"
             }
         ]
     },
@@ -67,39 +67,39 @@
     "list": [
             {
         "name": "白盒",
-        "url": "https://gh-proxy.com/https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260715-2319/TVBox_q215613905_20260715-2319-python.apk",
+        "url": "https://gh-proxy.com/https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260902-1101/TVBox_q215613905_20260902-1101-python.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "2319+py"
+        "version": "1640+py"
       },
       {
         "name": "白盒",
-        "url": "https://gh-proxy.com/https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260715-2319/TVBox_q215613905_20260715-2319-java.apk",
+        "url": "https://gh-proxy.com/https://github.com/q215613905/TVBoxOSCRelease/releases/download/20260902-1101/TVBox_q215613905_20260902-1101-java.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "2319+java"
+        "version": "1640+java"
       },
       {
         "name": "白盒",
-        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260715-2319/TVBox_q215613905_20260715-2319-python64.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260902-1101/TVBox_q215613905_20260902-1101-python64.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "2319-py64"
+        "version": "1101-py64"
       },
       {
         "name": "白盒",
-        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260715-2319/TVBox_q215613905_20260715-2319-python32.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260902-1101/TVBox_q215613905_20260902-1101-python32.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "2319-py32"
+        "version": "1101-py32"
       },
       {
         "name": "白盒",
-        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260715-2319/TVBox_q215613905_20260715-2319-java64.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260902-1101/TVBox_q215613905_20260902-1101-java64.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "2319-java64"
+        "version": "1101-java64"
       },
       {
         "name": "白盒",
-        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260715-2319/TVBox_q215613905_20260715-2319-java32.apk",
+        "url": "https://gh-proxy.com/github.com/q215613905/TVBoxOSCRelease/releases/download/20260902-1101/TVBox_q215613905_20260902-1101-java32.apk",
         "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/白盒.png",
-        "version": "2319-java32"
+        "version": "1101-java32"
       }
     ]
   }
