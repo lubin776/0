@@ -1,28 +1,6 @@
 
 {
   "categories": [
-
-    {
-      "name": "X站",
-      "websites": [
-        { 
-        "name": "thesislib", 
-        "url": "https://m.thesislib.com/dm67/cn" 
-        },
-        { 
-        "name": "missa2v", 
-        "url": "https://www.missav2.icu/dm194/cn" 
-        },
-        { 
-        "name": "55X", 
-        "url": "https://avsolu1.com/cn" 
-        },
-        { 
-        "name": "javd", 
-        "url": "https://javd.me/" 
-        }
-      ]
-    },
     {
       "name": "搜索",
       "websites": [
@@ -48,7 +26,7 @@
       "name": "工具",
       "websites": [
         { 
-        "name": "Tvbox编缉", 
+        "name": "Tvbox接口编缉", 
         "url": "http://z.qiqiv.cn/" 
         },
         { 
@@ -56,8 +34,24 @@
         "url": "https://www.xn--sss604efuw.com/jm/" 
         },
         { 
+        "name": "Tvbox接口编辑", 
+        "url": "https://bjq.catvod.site/" 
+        },
+        { 
+        "name": "Tvbox接口解密3", 
+        "url": "https://ua.fongmi.eu.org/" 
+        },
+        { 
         "name": "ping0", 
         "url": "http://ping0.cc/" 
+        },
+        { 
+        "name": "ip测试", 
+        "url": "https://0.12yue.de5.net/iptool/1" 
+        },
+        { 
+        "name": "tvbox资源集合", 
+        "url": "https://0.12yue.de5.net/tvboxtool/" 
         }
       ]
     }
