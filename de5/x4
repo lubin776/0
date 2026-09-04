@@ -1,6 +1,6 @@
 {
-  "spider": "https://0.12yue.de5.net/tvbox/x/xs.jar",
-  "logo": "https://0.12yue.de5.net/tvbox/x/jueson.jpg",
+  "spider": "https://0.12yue.de5.net/5/lib/xs.jar",
+  "logo": "https://0.12yue.de5.net/5/lib/jueson.jpg",
   "lives": [
     {
       "name": "Guovin",
@@ -2549,7 +2549,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 0,
-    "api": "https://0.12yue.de5.net/tvbox/x/lib/使用说明.json"
+      "api": "https://0.12yue.de5.net/tvbox/x/lib/使用说明.json"
     },
     {
       "key": "push_agent",
@@ -3240,7 +3240,7 @@
         "#EXT-X-DISCONTINUITY[^#]*#EXTINF[^#]*08646.*?\\.ts",
         "#EXT-X-DISCONTINUITY[^#]*#EXTINF[^#]*1171.*?\\.ts"
       ],
-      "min_duration": 5.0
+      "min_duration": 5
     },
     "headers": {
       "block_request_domains": [
