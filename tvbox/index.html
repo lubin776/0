@@ -10,12 +10,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .container { max-width:720px; margin:0 auto; }
 h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 .subtitle { text-align:center; font-size:0.85rem; color:#999; margin-bottom:24px; }
-
-/* 搜索 */
 .search-box { width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; margin-bottom:16px; outline:none; background:#fff; }
 .search-box:focus { border-color:#4a9eff; }
-
-/* 卡片 */
 .card { background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
 .card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
 .card-name { font-size:0.95rem; font-weight:600; }
@@ -23,23 +19,14 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 .card-meta { font-size:0.78rem; color:#aaa; margin-bottom:10px; }
 .card-meta .dot-new { color:#22c55e; }
 .card-meta .dot-old { color:#f59e0b; }
-
-/* 链接行 */
 .link-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
 .link-tag { font-size:0.72rem; background:#f0f0f0; color:#666; padding:2px 6px; border-radius:3px; min-width:28px; text-align:center; flex-shrink:0; }
 .link-url { flex:1; font-size:0.82rem; color:#4a9eff; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .link-url:hover { text-decoration:underline; }
 .copy-btn { flex-shrink:0; padding:3px 10px; background:#4a9eff; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:0.75rem; }
 .copy-btn:active { background:#3a8eef; }
-
-/* 加载/空 */
 .loading, .empty { text-align:center; color:#bbb; padding:40px 0; font-size:0.9rem; }
-
-@media (max-width:480px) {
-  body { padding:10px; }
-  h1 { font-size:1.15rem; }
-  .card { padding:12px; }
-}
+@media (max-width:480px) { body { padding:10px; } h1 { font-size:1.15rem; } .card { padding:12px; } }
 </style>
 </head>
 <body>
@@ -51,24 +38,28 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 </div>
 
 <script>
-// ★ 三个域名（路径尾部必须带 /）
+// ★★★ 排序权重（数字越小越靠前，不写在这里的排最后随机）★★★
+const WEIGHTS = {
+  "饭太硬一线.json": 1,
+  "嗷呜线路.json": 2,
+  "摸鱼线路.json": 3,
+  // "肥猫.json": 4,   // 注释掉 = 无权重 = 排最后随机
+};
+
 const DOMAINS = [
   { tag: "主", base: "https://0.12yue.de5.net/tvbox/" },
   { tag: "备", base: "https://0.cdz.qzz.io/qzz/"  },
   { tag: "镜", base: "https://0.wdzb.eu.cc/"       },
 ];
 
-// 解码中文显示
 function decodeName(f) { try{return decodeURIComponent(f)}catch{return f} }
 
-// 判断最近2天内
 function isRecent(d) {
   if(!d || d.length!==8) return false;
   const t = new Date(parseInt(d.slice(0,4)), parseInt(d.slice(4,6))-1, parseInt(d.slice(6,8)));
   return (Date.now()-t.getTime())/(864e5) <= 2;
 }
 
-// 渲染单条
 function renderItem(file, date, size, note) {
   const name = decodeName(file).replace(/\.json$/i,'');
   const isNew = isRecent(date);
@@ -94,7 +85,6 @@ function renderItem(file, date, size, note) {
   return html;
 }
 
-// 复制
 function copy(url, btn) {
   navigator.clipboard.writeText(url).then(()=>{
     btn.textContent='已复制';
@@ -102,22 +92,21 @@ function copy(url, btn) {
   });
 }
 
-// 过滤
 function filterList() {
   const kw = document.getElementById('search').value.toLowerCase();
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(c=>{
+  document.querySelectorAll('.card').forEach(c=>{
     c.style.display = c.textContent.toLowerCase().includes(kw) ? '' : 'none';
   });
 }
 
-// 动态加载 list.txt
+// 加载 + 排序
 fetch('list.txt?t='+Date.now())
   .then(r=>r.text())
   .then(text=>{
     const lines = text.trim().split('\n').filter(Boolean);
     if(!lines.length){ document.getElementById('list').innerHTML='<div class="empty">暂无接口数据</div>'; return; }
-    // 按文件名去重，取最后一条（最新）
+
+    // 按文件名去重，取最后一条
     const map = {};
     lines.forEach(line=>{
       const parts = line.trim().split('|');
@@ -125,11 +114,24 @@ fetch('list.txt?t='+Date.now())
       const [file, date, size, note] = parts;
       map[file] = {date, size:size||'', note:note||''};
     });
-    let html = '';
-    Object.entries(map).forEach(([file, info])=>{
-      html += renderItem(file, info.date, info.size, info.note);
+
+    // 转数组 + 排序
+    let items = Object.entries(map).map(([file, info]) => ({
+      file, ...info,
+      weight: WEIGHTS[file] ?? null
+    }));
+
+    items.sort((a, b) => {
+      if (a.weight !== null && b.weight !== null) return a.weight - b.weight;
+      if (a.weight !== null) return -1;
+      if (b.weight !== null) return 1;
+      return Math.random() - 0.5;   // 无权重随机
     });
-    document.getElementById('list').innerHTML = html;
+
+    // 渲染
+    document.getElementById('list').innerHTML = items.map(i =>
+      renderItem(i.file, i.date, i.size, i.note)
+    ).join('');
   })
   .catch(()=>{
     document.getElementById('list').innerHTML = '<div class="loading">加载失败，请确认 list.txt 存在</div>';
