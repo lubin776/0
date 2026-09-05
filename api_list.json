@@ -1,0 +1,48 @@
+{
+  "API_LIST": [
+    ["饭太硬", "http://www.饭太硬.net/tv"],
+    ["肥猫", "https://jk.catvod.site/"],
+    ["王二小", "https://9280.kstore.vip/aiwex.json"],
+    ["集多", "http://rihou.cc:88/demo.php"],
+    ["嗷呜", "http://www.英格里希嗷呜.top/tv"],
+    ["潇洒", "https://9877.kstore.space/AnotherD/api.json"],
+    ["摸鱼", "https://6800.kstore.vip/fish.json"],
+    ["天神", "https://gh-proxy.com/raw.githubusercontent.com/IY-CPU/IY/main/天神IY.png"]
+  ],
+  "API_MIRRORS": {
+    "饭太硬": [
+      "http://www.饭太硬.net/tv",
+      "http://www.饭太硬.art/tv",
+      "http://fty.xxooo.cf/tv",
+      "http://fty.888484.xyz/tv",
+      "http://fty.333232.xyz/tv"
+    ],
+    "集多": [
+      "http://rihou.cc:88/demo.php",
+      "http://jiduo.3116598.xyz/"
+    ],
+    "嗷呜": [
+      "http://www.英格里希嗷呜.top/tv",
+      "https://9763.kstore.vip/aowu.json",
+      "http://itv666.cc/aowu/config.webp"
+    ],
+    "王二小": [
+      "https://9280.kstore.vip/aiwex.json",
+      "https://9280.kstore.space/aiwex.json"
+    ],
+    "肥猫": [
+      "http://肥猫.net/tv",
+      "https://jk.catvod.site/"
+    ],
+    "潇洒": [
+      "https://9877.kstore.space/one.json",
+      "https://9877.kstore.space/AnotherD/api.json",
+      "https://9877.kstore.space/ONE/one.json"
+    ],
+    "摸鱼": [
+      "http://摸鱼儿.cc",
+      "http://我不是.摸鱼儿.top",
+      "https://6800.kstore.vip/fish.json"
+    ]
+  }
+}
