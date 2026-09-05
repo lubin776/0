@@ -43,7 +43,7 @@ const WEIGHTS = {
   "饭太硬一线.json": 1,
   "嗷呜线路.json": 2,
   "摸鱼线路.json": 3,
-  // "肥猫.json": 4,   // 注释掉 = 无权重 = 排最后随机
+  // "肥猫.json": 4,
 };
 
 const DOMAINS = [
@@ -73,12 +73,13 @@ function renderItem(file, date, size, note) {
       &nbsp;${date||'-'}&nbsp;&nbsp;📦 ${size||'-'}
     </div>`;
   DOMAINS.forEach(d => {
-    const url = d.base + encodeURIComponent(file);
+    const url = d.base + encodeURIComponent(file);       // href 编码
+    const copyUrl = d.base + decodeName(file);            // 复制用中文
     const disp = d.base + decodeName(file);
     html += `<div class="link-row">
       <span class="link-tag">${d.tag}</span>
       <a class="link-url" href="${url}" target="_blank">${disp}</a>
-      <button class="copy-btn" onclick="copy('${url}',this)">复制</button>
+      <button class="copy-btn" onclick="copy('${copyUrl}',this)">复制</button>
     </div>`;
   });
   html += `</div>`;
@@ -99,14 +100,11 @@ function filterList() {
   });
 }
 
-// 加载 + 排序
 fetch('list.txt?t='+Date.now())
   .then(r=>r.text())
   .then(text=>{
     const lines = text.trim().split('\n').filter(Boolean);
     if(!lines.length){ document.getElementById('list').innerHTML='<div class="empty">暂无接口数据</div>'; return; }
-
-    // 按文件名去重，取最后一条
     const map = {};
     lines.forEach(line=>{
       const parts = line.trim().split('|');
@@ -114,21 +112,16 @@ fetch('list.txt?t='+Date.now())
       const [file, date, size, note] = parts;
       map[file] = {date, size:size||'', note:note||''};
     });
-
-    // 转数组 + 排序
     let items = Object.entries(map).map(([file, info]) => ({
       file, ...info,
       weight: WEIGHTS[file] ?? null
     }));
-
     items.sort((a, b) => {
       if (a.weight !== null && b.weight !== null) return a.weight - b.weight;
       if (a.weight !== null) return -1;
       if (b.weight !== null) return 1;
-      return Math.random() - 0.5;   // 无权重随机
+      return Math.random() - 0.5;
     });
-
-    // 渲染
     document.getElementById('list').innerHTML = items.map(i =>
       renderItem(i.file, i.date, i.size, i.note)
     ).join('');
