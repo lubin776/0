@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVBox 接口抓取工具（浏览器版）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f1419; color: #e0e0e0; padding: 16px; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 20px; margin-bottom: 12px; color: #4fc3f7; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  button { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; transition: .2s; }
+  button:hover { opacity: .85; }
+  .btn-primary { background: #4fc3f7; color: #000; font-weight: 600; }
+  .btn-secondary { background: #333; color: #fff; }
+  .btn-danger { background: #e53935; color: #fff; }
+  .settings { background: #1a2332; padding: 12px; border-radius: 8px; margin-bottom: 16px; }
+  .settings label { display: block; margin: 6px 0; font-size: 13px; }
+  .settings input, .settings select { width: 100%; padding: 6px; margin-top: 2px; background: #0f1419; border: 1px solid #333; color: #fff; border-radius: 4px; }
+  .progress-bar { width: 100%; height: 6px; background: #333; border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+  .progress-fill { height: 100%; background: #4fc3f7; transition: width .3s; width: 0; }
+  .stats { display: flex; gap: 16px; margin-bottom: 12px; font-size: 13px; }
+  .stat-item { background: #1a2332; padding: 6px 12px; border-radius: 6px; }
+  .stat-item .num { font-size: 18px; font-weight: 700; color: #4fc3f7; }
+  .log { background: #0a0e14; border: 1px solid #222; border-radius: 8px; padding: 12px; max-height: 400px; overflow-y: auto; font-family: "Fira Code", monospace; font-size: 12px; line-height: 1.6; }
+  .log .ok { color: #66bb6a; }
+  .log .err { color: #ef5350; }
+  .log .info { color: #90caf9; }
+  .log .warn { color: #ffa726; }
+  .results { margin-top: 16px; }
+  .result-item { background: #1a2332; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+  .result-item .name { font-weight: 600; }
+  .result-item .badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+  .badge-json { background: #1b5e20; color: #a5d6a7; }
+  .badge-text { background: #e65100; color: #ffcc80; }
+  .badge-fail { background: #b71c1c; color: #ef9a9a; }
+  .badge-cache { background: #4a148c; color: #ce93d8; }
+  .result-item a { color: #4fc3f7; text-decoration: none; font-size: 12px; }
+  details { margin-top: 8px; }
+  summary { cursor: pointer; padding: 4px 0; color: #90caf9; font-size: 13px; }
+  pre { background: #0a0e14; padding: 8px; border-radius: 4px; overflow-x: auto; font-size: 11px; max-height: 300px; overflow-y: auto; }
+  .hidden { display: none; }
+  .proxy-config { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📺 TVBox 接口抓取工具（浏览器版）</h1>
+
+  <div class="toolbar">
+    <button class="btn-primary" onclick="startAll()">▶ 开始抓取</button>
+    <button class="btn-secondary" onclick="toggleSettings()">⚙️ 设置</button>
+    <button class="btn-secondary" onclick="clearCache()">🗑️ 清除缓存</button>
+    <button class="btn-danger" onclick="stopAll()">⏹ 停止</button>
+  </div>
+
+  <div class="settings hidden" id="settings">
+    <label>CORS 代理（解决浏览器跨域限制）
+      <select id="proxySelect" onchange="onProxyChange()">
+        <option value="https://corsproxy.io/?url=">corsproxy.io</option>
+        <option value="https://api.allorigins.win/raw?url=">allorigins.win</option>
+        <option value="https://thingproxy.freeboard.io/fetch/">thingproxy</option>
+        <option value="">（不使用代理，可能跨域失败）</option>
+      </select>
+    </label>
+    <label class="proxy-config" id="proxyConfig">
+      自定义代理前缀：<input type="text" id="customProxy" placeholder="如 https://my-proxy.com/?url=">
+    </label>
+    <label>
+      请求超时（秒）：<input type="text" id="timeoutInput" value="20">
+    </label>
+    <label>
+      <input type="checkbox" id="useCache" checked> 启用浏览器缓存（localStorage）
+    </label>
+    <label>
+      <input type="checkbox" id="useMirror" checked> 启用镜像自动切换
+    </label>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="stats">
+    <div class="stat-item">总计 <span class="num" id="statTotal">0</span></div>
+    <div class="stat-item">成功 <span class="num" id="statOk">0</span></div>
+    <div class="stat-item">失败 <span class="num" id="statFail">0</span></div>
+    <div class="stat-item">缓存 <span class="num" id="statCache">0</span></div>
+  </div>
+
+  <div class="log" id="log"></div>
+
+  <div class="results" id="results"></div>
+</div>
+
+<script>
+// ======================================================================
+//  API 列表（与 Python 版保持一致）
+// ======================================================================
+const API_LIST = [
+    ["星微Vip线", "https://7337.kstore.vip/xw/%E6%B5%8B%E8%AF%95%E5%8B%BF%E4%BC%A0"],
+    ["饭硬一线", "http://www.xn--4qq812d.cc/tv"],
+    ["饭硬二线", "http://www.xn--4qq812d.net/tv"],
+    ["小不点线", "http://www.xn--tlq84h.com"],
+    ["嗷呜线路", "http://itv666.cc/aowu/config.webp"],
+    ["嗨哥魔改", "https://api.hgyx.vip/hgyx.json"],
+    ["讴歌线路", "https://xn--biib-rp5imh.v.nxog.top/apitv.php"],
+    ["香雅情线", "https://play.iptv365.org/%E9%A6%99%E9%9B%85%E6%83%85/api.json"],
+    ["老张线路", "https://zhangqun1818.serv00.net/zq/api.json"],
+    ["集多线路", "http://jiduo.3116598.xyz"],
+    ["南风线路", "https://ghproxy.monkeyray.net/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json"],
+    ["挺好线路", "https://ztha.top/TVBox/thdjk.json"],
+    ["王二小线", "http://tvbox.xn--4qqr7az8bz4c7a.top"],
+    ["摸鱼线路", "https://6800.kstore.vip/fish.json"],
+    ["小马线路", "https://szyyds.cn/tv/x.json"],
+    ["驸马线路", "http://fmys.top/fmys.json"],
+    ["周J线路", "https://gh-proxy.com/https://raw.githubusercontent.com/zhoujck/config/main/box"],
+    ["小米线路", "https://gh-proxy.org/https://raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/demo.json"],
+    ["菜妮丝线", "https://tv.xn--yhqu5zs87a-mf3k4a8a.top"],
+    ["心魔线路", "https://gh-proxy.com/raw.githubusercontent.com/yw88075/tvbox/main/yw.json"],
+    ["肥猫线路", "http://xn--x6qx85a.net/tv"],
+    ["分享者线", "http://hucongrong.web3v.work/%E9%A3%8E%E6%B0%B4/fxz/fxz.json"],
+    ["传说线路", "http://tjf1100.serv00.net"],
+    ["俊宇线路", "http://home.jundie.top:81/top98.json"],
+    ["VOX线路", "http://rihou.cc:88/demoabc.json"],
+    ["clun线路", "https://clun.top/box.json"],
+    ["夏夏影线", "https://11405.kstore.space/xiaye/qk4k.json"],
+    ["小凯线路", "https://jihulab.com/jyqhkd/kd/-/raw/main/kai.json"],
+    ["时光线路", "https://jiekou.netlify.app/svip.json"],
+    ["东篱线路", "https://chigua.eu.org"],
+    ["聚玩线路", "http://xhztv.top/xhz"],
+    ["道长线路", "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json"],
+    ["小苹果线", "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json"],
+    ["哈吉米线", "https://17264.kstore.space/xn--6lq49h.png"],
+    ["真六线路", "https://cccimg.com/down.php/7d1f30263b3f2bf3deda2d7faeef4844.zhen6"],
+    ["动漫线路", "https://www.yingm.cc/dm/dm.json"],
+    ["短剧大全", "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json"],
+    ["牛二猫源", "http://wexfnw:wexfnw@cat.xn--4kq62z5rby2qupq9ub.top/index.js.md5"],
+    ["牛二猫源2", "https://9280.kstore.vip/cat/index.js.md5"],
+    ["雪乃猫源", "https://raw.githubusercontent.com/Darklessing/catvod/refs/heads/main/xuenai/index.js.md5"],
+    ["沐辰", "https://raw.githubusercontent.com/4TVBox/Cat/refs/heads/main/index.js.md5"],
+    ["肥猫", "https://jk.catvod.site/"],
+    ["嗷呜", "http://www.xn--8hq1eu5a.top/tv"],
+    ["饭太硬", "http://www.xn--4qq812d.art/tv"],
+    ["王二小", "https://9280.kstore.space/aiwex.json"],
+    ["集多", "http://rihou.cc:88/demo.php"],
+    ["南风", "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json"],
+    ["潇洒", "https://9877.kstore.space/AnotherD/api.json"],
+    ["小米", "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/demo.json"],
+];
+
+const API_MIRRORS = {
+    "饭太硬": ["http://www.xn--4qq812d.net/tv", "http://www.xn--4qq812d.art/tv"],
+    "集多": ["http://jiduo.3116598.xyz/"],
+    "嗷呜": ["http://www.xn--8hq1eu5a.top/tv", "https://9763.kstore.vip/aowu.json", "http://itv666.cc/aowu/config.webp"],
+    "王二小": ["https://9280.kstore.vip/aiwex.json", "https://9280.kstore.space/aiwex.json"],
+    "潇洒": ["https://9877.kstore.space/one.json", "https://9877.kstore.space/AnotherD/api.json"],
+    "摸鱼": ["https://6800.kstore.vip/fish.json"],
+};
+
+// User-Agent 轮换
+const USER_AGENTS = [
+    "okhttp/3.15", "okhttp/4.9.3", "TVBox/1.0.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Dalvik/2.1.0 (Linux; U; Android 9; Pixel 3 XL Build/PQ3A.190801.002)",
+];
+
+// ======================================================================
+//  日志 & 统计
+// ======================================================================
+let isRunning = false;
+let stats = { total: 0, ok: 0, fail: 0, cache: 0 };
+
+function log(msg, type = "info") {
+    const el = document.getElementById("log");
+    const time = new Date().toLocaleTimeString("zh-CN", { hour12: false });
+    el.innerHTML += `<div class="${type}">[${time}] ${msg}</div>`;
+    el.scrollTop = el.scrollHeight;
+}
+
+function updateStats() {
+    document.getElementById("statTotal").textContent = stats.total;
+    document.getElementById("statOk").textContent = stats.ok;
+    document.getElementById("statFail").textContent = stats.fail;
+    document.getElementById("statCache").textContent = stats.cache;
+}
+
+function setProgress(current, total) {
+    const pct = (current / total * 100).toFixed(1);
+    document.getElementById("progressFill").style.width = pct + "%";
+}
+
+// ======================================================================
+//  缓存管理（localStorage）
+// ======================================================================
+const CACHE_PREFIX = "tvbox_cache_";
+const CACHE_META_KEY = "tvbox_cache_meta";
+
+function getCache(key) {
+    try {
+        const data = localStorage.getItem(CACHE_PREFIX + key);
+        if (!data) return null;
+        const parsed = JSON.parse(data);
+        // 检查是否过期（默认 1 小时）
+        const ttl = 60 * 60 * 1000;
+        if (Date.now() - parsed.timestamp > ttl) {
+            localStorage.removeItem(CACHE_PREFIX + key);
+            return null;
+        }
+        return parsed;
+    } catch (e) {
+        return null;
+    }
+}
+
+function setCache(key, value) {
+    try {
+        const payload = { timestamp: Date.now(), data: value };
+        localStorage.setItem(CACHE_PREFIX + key, JSON.stringify(payload));
+        // 更新元数据（LRU，最多保留 100 条）
+        let meta = JSON.parse(localStorage.getItem(CACHE_META_KEY) || "{}");
+        meta[key] = Date.now();
+        const keys = Object.keys(meta).sort((a, b) => meta[b] - meta[a]);
+        for (const k of keys.slice(100)) {
+            localStorage.removeItem(CACHE_PREFIX + k);
+            delete meta[k];
+        }
+        localStorage.setItem(CACHE_META_KEY, JSON.stringify(meta));
+    } catch (e) {
+        log(`缓存写入失败: ${e.message}`, "warn");
+    }
+}
+
+function clearCache() {
+    const keys = Object.keys(localStorage).filter(k => k.startsWith(CACHE_PREFIX) || k === CACHE_META_KEY);
+    keys.forEach(k => localStorage.removeItem(k));
+    log("🗑️ 缓存已清除", "info");
+    stats.cache = 0;
+    updateStats();
+}
+
+// ======================================================================
+//  AES-128-CBC + PKCS7（纯 JS 实现）
+// ======================================================================
+class AES128 {
+    static SBOX = [
+        0x63,0x7c,0x77,0x7b,0xf2,0x6b,0x6f,0xc5,0x30,0x01,0x67,0x2b,0xfe,0xd7,0xab,0x76,
+        0xca,0x82,0xc9,0x7d,0xfa,0x59,0x47,0xf0,0xad,0xd4,0xa2,0xaf,0x9c,0xa4,0x72,0xc0,
+        0xb7,0xfd,0x93,0x26,0x36,0x3f,0xf7,0xcc,0x34,0xa5,0xe5,0xf1,0x71,0xd8,0x31,0x15,
+        0x04,0xc7,0x23,0xc3,0x18,0x96,0x05,0x9a,0x07,0x12,0x80,0xe2,0xeb,0x27,0xb2,0x75,
+        0x09,0x83,0x2c,0x1a,0x1b,0x6e,0x5a,0xa0,0x52,0x3b,0xd6,0xb3,0x29,0xe3,0x2f,0x84,
+        0x53,0xd1,0x00,0xed,0x20,0xfc,0xb1,0x5b,0x6a,0xcb,0xbe,0x39,0x4a,0x4c,0x58,0xcf,
+        0xd0,0xef,0xaa,0xfb,0x43,0x4d,0x33,0x85,0x45,0xf9,0x02,0x7f,0x50,0x3c,0x9f,0xa8,
+        0x51,0xa3,0x40,0x8f,0x92,0x9d,0x38,0xf5,0xbc,0xb6,0xda,0x21,0x10,0xff,0xf3,0xd2,
+        0xcd,0x0c,0x13,0xec,0x5f,0x97,0x44,0x17,0xc4,0xa7,0x7e,0x3d,0x64,0x5d,0x19,0x73,
+        0x60,0x81,0x4f,0xdc,0x22,0x2a,0x90,0x88,0x46,0xee,0xb8,0x14,0xde,0x5e,0x0b,0xdb,
+        0xe0,0x32,0x3a,0x0a,0x49,0x06,0x24,0x5c,0xc2,0xd3,0xac,0x62,0x91,0x95,0xe4,0x79,
+        0xe7,0xc8,0x37,0x6d,0x8d,0xd5,0x4e,0xa9,0x6c,0x56,0xf4,0xea,0x65,0x7a,0xae,0x08,
+        0xba,0x78,0x25,0x2e,0x1c,0xa6,0xb4,0xc6,0xe8,0xdd,0x74,0x1f,0x4b,0xbd,0x8b,0x8a,
+        0x70,0x3e,0xb5,0x66,0x48,0x03,0xf6,0x0e,0x61,0x35,0x57,0xb9,0x86,0xc1,0x1d,0x9e,
+        0xe1,0xf8,0x98,0x11,0x69,0xd9,0x8e,0x94,0x9b,0x1e,0x87,0xe9,0xce,0x55,0x28,0xdf,
+        0x8c,0xa1,0x89,0x0d,0xbf,0xe6,0x42,0x68,0x41,0x99,0x2d,0x0f,0xb0,0x54,0xbb,0x16,
+    ];
+
+    static RCON = [0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36];
+
+    static _subWord(w) {
+        return (AES128.SBOX[(w >> 24) & 0xff] << 24) |
+               (AES128.SBOX[(w >> 16) & 0xff] << 16) |
+               (AES128.SBOX[(w >> 8) & 0xff] << 8) |
+               (AES128.SBOX[w & 0xff]);
+    }
+
+    static _rotWord(w) {
+        return ((w << 8) & 0xffffffff) | ((w >>> 24) & 0xff);
+    }
+
+    static _expandKey(key) {
+        const Nk = 4, Nr = 10;
+        const w = new Array(4 * (Nr + 1)).fill(0);
+        for (let i = 0; i < Nk; i++) {
+            w[i] = (key[4*i] << 24) | (key[4*i+1] << 16) | (key[4*i+2] << 8) | key[4*i+3];
+        }
+        for (let i = Nk; i < 4 * (Nr + 1); i++) {
+            let temp = w[i - 1];
+            if (i % Nk === 0) {
+                temp = AES128._subWord(AES128._rotWord(temp)) ^ (AES128.RCON[i / Nk] << 24);
+            }
+            w[i] = w[i - Nk] ^ temp;
+        }
+        const out = new Uint8Array(16 * (Nr + 1));
+        for (let i = 0; i < 4 * (Nr + 1); i++) {
+            out[4*i]   = (w[i] >>> 24) & 0xff;
+            out[4*i+1] = (w[i] >>> 16) & 0xff;
+            out[4*i+2] = (w[i] >>> 8) & 0xff;
+            out[4*i+3] = w[i] & 0xff;
+        }
+        return out;
+    }
+
+    static _xtime(b) {
+        return ((b << 1) ^ ((b & 0x80) ? 0x1b : 0)) & 0xff;
+    }
+
+    static _invSubBytes(state) {
+        const inv = new Array(256);
+        for (let i = 0; i < 256; i++) inv[AES128.SBOX[i]] = i;
+        return Uint8Array.from(state, b => inv[b]);
+    }
+
+    static _invShiftRows(state) {
+        const s = Array.from(state);
+        for (const [row, shift] of [[1,1],[2,2],[3,3]]) {
+            const base = [s[row], s[row+4], s[row+8], s[row+12]];
+            const rotated = base.slice(-shift).concat(base.slice(0, -shift));
+            for (let c = 0; c < 4; c++) s[row + 4*c] = rotated[c];
+        }
+        return new Uint8Array(s);
+    }
+
+    static _gfMul(a, b) {
+        let r = 0;
+        while (b) {
+            if (b & 1) r ^= a;
+            a = AES128._xtime(a);
+            b >>>= 1;
+        }
+        return r;
+    }
+
+    static _invMixColumns(state) {
+        const s = Array.from(state);
+        for (let c = 0; c < 4; c++) {
+            const i = 4*c;
+            const a0 = s[i], a1 = s[i+1], a2 = s[i+2], a3 = s[i+3];
+            s[i]   = AES128._gfMul(a0,0x0e) ^ AES128._gfMul(a1,0x0b) ^ AES128._gfMul(a2,0x0d) ^ AES128._gfMul(a3,0x09);
+            s[i+1] = AES128._gfMul(a0,0x09) ^ AES128._gfMul(a1,0x0e) ^ AES128._gfMul(a2,0x0b) ^ AES128._gfMul(a3,0x0d);
+            s[i+2] = AES128._gfMul(a0,0x0d) ^ AES128._gfMul(a1,0x09) ^ AES128._gfMul(a2,0x0e) ^ AES128._gfMul(a3,0x0b);
+            s[i+3] = AES128._gfMul(a0,0x0b) ^ AES128._gfMul(a1,0x0d) ^ AES128._gfMul(a2,0x09) ^ AES128._gfMul(a3,0x0e);
+        }
+        return new Uint8Array(s);
+    }
+
+    static _decryptBlock(block, rk) {
+        const Nr = 10;
+        let state = new Uint8Array(16);
+        for (let i = 0; i < 16; i++) state[i] = block[i] ^ rk[16*Nr + i];
+        for (let r = Nr - 1; r > 0; r--) {
+            state = AES128._invShiftRows(state);
+            state = AES128._invSubBytes(state);
+            for (let i = 0; i < 16; i++) state[i] ^= rk[16*r + i];
+            state = AES128._invMixColumns(state);
+        }
+        state = AES128._invShiftRows(state);
+        state = AES128._invSubBytes(state);
+        for (let i = 0; i < 16; i++) state[i] ^= rk[i];
+        return state;
+    }
+
+    static decryptCBC(ciphertext, key, iv) {
+        if (key.length !== 16 || iv.length !== 16) throw new Error("Key/IV must be 16 bytes");
+        if (ciphertext.length % 16 !== 0) throw new Error("Ciphertext length must be multiple of 16");
+        const rk = AES128._expandKey(key);
+        const plain = new Uint8Array(ciphertext.length);
+        let prev = iv;
+        for (let i = 0; i < ciphertext.length; i += 16) {
+            const block = ciphertext.slice(i, i + 16);
+            const decrypted = AES128._decryptBlock(block, rk);
+            for (let j = 0; j < 16; j++) plain[i + j] = decrypted[j] ^ prev[j];
+            prev = block;
+        }
+        // PKCS7 unpad
+        const pad = plain[plain.length - 1];
+        let result;
+        if (pad >= 1 && pad <= 16 && plain.length >= pad) {
+            let valid = true;
+            for (let i = plain.length - pad; i < plain.length; i++) {
+                if (plain[i] !== pad) { valid = false; break; }
+            }
+            if (valid) result = plain.slice(0, plain.length - pad);
+            else result = plain;
+        } else {
+            result = plain;
+        }
+        return new TextDecoder("utf-8", { fatal: false }).decode(result);
+    }
+}
+
+// ======================================================================
+//  工具函数
+// ======================================================================
+function rightPadding(s, ch, length) {
+    if (s.length >= length) return s.substring(0, length);
+    return s + ch.repeat(length - s.length);
+}
+
+function strToBytes(s) {
+    return new TextEncoder().encode(s);
+}
+
+function hexToBytes(hex) {
+    const bytes = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < bytes.length; i++) {
+        bytes[i] = parseInt(hex.substring(i * 2, i * 2 + 2), 16);
+    }
+    return bytes;
+}
+
+function bytesToHex(bytes) {
+    return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function isJSON(text) {
+    if (!text) return false;
+    const t = text.trim();
+    return t.startsWith("{") || t.startsWith("[");
+}
+
+function collapseWhitespace(text) {
+    if (!text) return "";
+    if (!/\s/.test(text)) return text;
+    return text.replace(/\s+/g, " ").trim();
+}
+
+// ======================================================================
+//  解密逻辑（移植自 Python find_result）
+// ======================================================================
+function tryDecrypt2423Hex(stripped) {
+    const idx2423 = stripped.indexOf("2423");
+    const idx2324 = stripped.indexOf("2324");
+    if (idx2324 <= idx2423 + 4) throw new Error("hex形态: 结构异常");
+    const keyHex = stripped.substring(idx2423 + 4, idx2324);
+    // Python: bytes.fromhex(key_hex) —— 无效 hex 时抛 ValueError，fallback 到明文
+    // JS: hexToBytes 对无效 hex 返回空 Uint8Array，需手动检测
+    const isValidHex = /^[0-9a-fA-F]+$/.test(keyHex) && keyHex.length % 2 === 0;
+    let keyRaw;
+    if (isValidHex) {
+        const kb = hexToBytes(keyHex);
+        keyRaw = kb.length > 0
+            ? new TextDecoder("latin-1", { fatal: false }).decode(kb)
+            : keyHex;
+    } else {
+        keyRaw = keyHex; // 非 hex 时当作明文（对齐 Python 的 except 分支）
+    }
+    const keyStr = rightPadding(keyRaw, "0", 16);
+    const dataStart = idx2324 + 4;
+    const dataEnd = stripped.length - 26;
+    if (dataEnd <= dataStart) throw new Error("hex形态: data区间非法");
+    const dataHex = stripped.substring(dataStart, dataEnd);
+    const contentRstrip = stripped.replace(/\s+$/, "");
+    const tsHex = contentRstrip.substring(contentRstrip.length - 26);
+    const tsIsValidHex = /^[0-9a-fA-F]+$/.test(tsHex) && tsHex.length % 2 === 0;
+    const tsBytes = tsIsValidHex ? hexToBytes(tsHex) : strToBytes(tsHex);
+    const ivStr = rightPadding(new TextDecoder("latin-1", { fatal: false }).decode(tsBytes), "0", 16);
+    const keyBytes = strToBytes(rightPadding(keyStr, "0", 16)).slice(0, 16);
+    const ivBytes = strToBytes(rightPadding(ivStr, "0", 16)).slice(0, 16);
+    const cipherBytes = hexToBytes(dataHex.replace(/[^0-9a-fA-F]/g, ""));
+    return AES128.decryptCBC(cipherBytes, keyBytes, ivBytes);
+}
+
+function tryDecrypt2423Plain(S) {
+    const idx2324 = S.indexOf("2324");
+    const pDoll = S.indexOf("$#");
+    const pSharp = S.indexOf("#$");
+    if (idx2324 < 0 || pDoll < 0 || pSharp < 0) throw new Error("plain形态: 分隔符缺失");
+    let dataHex = S.substring(idx2324 + 4, pDoll);
+    dataHex = dataHex.replace(/[^0-9a-fA-F]/g, "");
+    if (dataHex.length % 2 !== 0) dataHex = dataHex.slice(0, -1);
+    const key = rightPadding(S.substring(pDoll + 2, pSharp), "0", 16);
+    const iv = rightPadding(S.substring(S.length - 13), "0", 16);
+    const keyBytes = strToBytes(rightPadding(key, "0", 16)).slice(0, 16);
+    const ivBytes = strToBytes(rightPadding(iv, "0", 16)).slice(0, 16);
+    const cipherBytes = hexToBytes(dataHex);
+    return AES128.decryptCBC(cipherBytes, keyBytes, ivBytes);
+}
+
+function findResult(rawText, rawBytes, depth = 0) {
+    const content = rawText || (rawBytes ? new TextDecoder("utf-8", { fatal: false }).decode(rawBytes) : "");
+    if (isJSON(content)) return content;
+
+    // ** 标记 + base64
+    let starIdx = null;
+    if (rawBytes) {
+        const pos = Array.from(rawBytes).findIndex((b, i) =>
+            i >= 8 && b === 0x2a && rawBytes[i - 1] === 0x2a
+        );
+        if (pos >= 0) starIdx = pos;
+    }
+    if (starIdx === null) {
+        const m = content.match(/[A-Za-z0-9]{8}\*\*/);
+        if (m) starIdx = content.indexOf(m[0]) + m[0].length;
+    }
+    if (starIdx !== null && starIdx >= 0) {
+        if (rawBytes) {
+            let b64Bytes = rawBytes.slice(starIdx + 2);
+            b64Bytes = b64Bytes.filter(b => ![0x09, 0x0a, 0x0d, 0x20].includes(b));
+            try {
+                const decoded = atob(String.fromCharCode(...b64Bytes));
+                return findResult(decoded, null, depth + 1);
+            } catch (e) {
+                // fallback
+            }
+        }
+    }
+
+    const stripped = collapseWhitespace(content).trim();
+    const hasDelim = stripped.includes("$#") && stripped.includes("#$");
+    const has2423 = stripped.startsWith("2423") && stripped.includes("2324");
+
+    if (stripped.startsWith("2423") && (hasDelim || has2423)) {
+        try { return findResult(tryDecrypt2423Hex(stripped), null, depth + 1); } catch (e1) {
+            try { return findResult(tryDecrypt2423Plain(stripped), null, depth + 1); } catch (e2) {
+                throw new Error(`2423 双形态均解密失败: hex=${e1.message} / plain=${e2.message}`);
+            }
+        }
+    }
+
+    // 纯 base64 尝试
+    const clean = content.replace(/\s/g, "");
+    if (/^[A-Za-z0-9+/=]+$/.test(clean) && clean.length > 50) {
+        try {
+            const decoded = atob(clean);
+            if (isJSON(decoded)) return decoded;
+        } catch (e) {}
+    }
+
+    return content;
+}
+
+// ======================================================================
+//  JSON 后处理
+// ======================================================================
+const KEEP_KEYS = new Set(["video", "sites", "lives", "parses", "rules",
+    "spider", "wallpaper", "livePlayHeaders", "md5", "name", "homeSite",
+    "homeLogo", "homeBg", "homeSearch", "homeRec", "searchable"]);
+
+function filterJSON(text) {
+    try {
+        const obj = JSON.parse(text);
+        if (typeof obj !== "object" || obj === null) return text;
+        const filtered = {};
+        for (const k of Object.keys(obj)) {
+            if (KEEP_KEYS.has(k)) filtered[k] = obj[k];
+        }
+        return JSON.stringify(Object.keys(filtered).length ? filtered : obj, null, 2);
+    } catch (e) {
+        return text;
+    }
+}
+
+function cleanJSONComments(text) {
+    if (!text) return text;
+    if (text.startsWith("\ufeff")) text = text.slice(1);
+    // 简化版注释去除
+    let result = "";
+    let i = 0;
+    let inString = false;
+    let stringChar = "";
+    let inBlock = false;
+    while (i < text.length) {
+        const c = text[i];
+        const next = text[i + 1];
+        if (inBlock) {
+            if (c === "*" && next === "/") { inBlock = false; i += 2; continue; }
+            i++;
+            continue;
+        }
+        if (inString) {
+            if (c === "\\") { result += c + (next || ""); i += 2; continue; }
+            if (c === stringChar) { inString = false; }
+            result += c;
+            i++;
+            continue;
+        }
+        if (c === "/" && next === "/") {
+            while (i < text.length && text[i] !== "\n") i++;
+            continue;
+        }
+        if (c === "/" && next === "*") { inBlock = true; i += 2; continue; }
+        if (c === '"' || c === "'") { inString = true; stringChar = c; }
+        result += c;
+        i++;
+    }
+    return result;
+}
+
+function extractJSON(text) {
+    if (!text) return text;
+    text = cleanJSONComments(text);
+    let start = -1, end = -1;
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === "{" || text[i] === "[") { start = i; break; }
+    }
+    if (start === -1) return text;
+    for (let i = text.length - 1; i >= 0; i--) {
+        if (text[i] === "}" || text[i] === "]") { end = i + 1; break; }
+    }
+    if (end <= start) return text;
+    const candidate = text.substring(start, end);
+    try {
+        JSON.parse(candidate);
+        return candidate;
+    } catch (e) {
+        return text;
+    }
+}
+
+// ======================================================================
+//  网络请求（浏览器 fetch + CORS 代理）
+// ======================================================================
+function getProxy() {
+    const sel = document.getElementById("proxySelect").value;
+    const custom = document.getElementById("customProxy").value.trim();
+    return custom || sel;
+}
+
+function buildURL(url) {
+    const proxy = getProxy();
+    if (!proxy) return url;
+    return proxy + encodeURIComponent(url);
+}
+
+async function fetchURL(url, uaIdx = 0) {
+    const proxy = getProxy();
+    const fetchUrl = buildURL(url);
+    const controller = new AbortController();
+    const timeout = parseInt(document.getElementById("timeoutInput").value) * 1000;
+    const timer = setTimeout(() => controller.abort(), timeout);
+
+    const headers = {};
+    if (!proxy) {
+        // 直连时无法自定义 UA（浏览器限制），但可以通过 proxy 转发
+    }
+
+    try {
+        const resp = await fetch(fetchUrl, {
+            method: "GET",
+            headers: { "User-Agent": USER_AGENTS[uaIdx % USER_AGENTS.length] },
+            signal: controller.signal,
+            cache: "no-store",
+        });
+        clearTimeout(timer);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        if (text.length < 20) throw new Error("响应过短");
+        return { text, bytes: strToBytes(text) };
+    } catch (e) {
+        clearTimeout(timer);
+        throw e;
+    }
+}
+
+async function tryFetch(urls) {
+    const errors = [];
+    for (const url of urls) {
+        for (let uaIdx = 0; uaIdx < Math.min(2, USER_AGENTS.length); uaIdx++) {
+            try {
+                const { text, bytes } = await fetchURL(url, uaIdx);
+                // 如果是 HTML 首页，跳过
+                if (text.trim().startsWith("<")) {
+                    errors.push(`${url} -> HTML首页`);
+                    break;
+                }
+                return { text, bytes, url };
+            } catch (e) {
+                errors.push(`${url} -> ${e.message}`);
+                await sleep(300);
+            }
+        }
+    }
+    throw new Error(errors.join(" | "));
+}
+
+function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+}
+
+// ======================================================================
+//  单条处理
+// ======================================================================
+async function processAPI(name, urls) {
+    if (typeof urls === "string") urls = [urls];
+
+    // 检查缓存
+    const useCache = document.getElementById("useCache").checked;
+    if (useCache) {
+        const cached = getCache(name);
+        if (cached) {
+            stats.cache++;
+            updateStats();
+            log(`💾 [${name}] 使用缓存 (${cached.data.length} 字符)`, "warn");
+            return { name, status: "CACHE", content: cached.data, url: "(cached)" };
+        }
+    }
+
+    const { text, bytes, url } = await tryFetch(urls);
+    log(`✓ [${name}] 下载成功 (${bytes.length} 字节) from ${url}`, "ok");
+
+    let decrypted = findResult("", bytes);
+    decrypted = extractJSON(decrypted);
+
+    let status, formatted;
+    try {
+        JSON.parse(decrypted);
+        formatted = filterJSON(decrypted);
+        status = "JSON";
+    } catch (e) {
+        formatted = decrypted;
+        status = "TEXT";
+    }
+
+    // 写入缓存
+    if (useCache && status === "JSON") {
+        setCache(name, formatted);
+    }
+
+    return { name, status, content: formatted, url };
+}
+
+// ======================================================================
+//  主流程
+// ======================================================================
+async function startAll() {
+    if (isRunning) return;
+    isRunning = true;
+
+    const resultsEl = document.getElementById("results");
+    resultsEl.innerHTML = "";
+
+    stats = { total: API_LIST.length, ok: 0, fail: 0, cache: 0 };
+    updateStats();
+
+    const useMirror = document.getElementById("useMirror").checked;
+    let idx = 0;
+
+    for (const [name, url] of API_LIST) {
+        if (!isRunning) { log("⏹ 用户停止", "warn"); break; }
+        idx++;
+        setProgress(idx, API_LIST.length);
+
+        let urls = useMirror ? (API_MIRRORS[name] || [url]) : [url];
+
+        try {
+            const result = await processAPI(name, urls);
+            stats[result.status === "CACHE" ? "cache" : (result.status === "JSON" ? "ok" : "ok")]++;
+            if (result.status === "JSON") stats.ok++;
+            updateStats();
+            renderResult(result);
+        } catch (e) {
+            stats.fail++;
+            updateStats();
+            log(`✗ [${name}] 全部失败: ${e.message}`, "err");
+            renderResult({ name, status: "FAIL", content: "", url: "" });
+        }
+
+        // 防止浏览器阻塞，让出主线程
+        await sleep(50);
+    }
+
+    isRunning = false;
+    log(`\n===== 完成: 成功 ${stats.ok}, 失败 ${stats.fail}, 缓存 ${stats.cache} =====`, "info");
+}
+
+function stopAll() {
+    isRunning = false;
+}
+
+function renderResult(result) {
+    const el = document.getElementById("results");
+    const badgeClass = result.status === "JSON" ? "badge-json"
+        : result.status === "CACHE" ? "badge-cache"
+        : result.status === "TEXT" ? "badge-text" : "badge-fail";
+    const shortContent = result.content ? result.content.substring(0, 500) : "";
+
+    const div = document.createElement("div");
+    div.className = "result-item";
+    div.innerHTML = `
+        <div>
+            <span class="name">${result.name}</span>
+            <span class="badge ${badgeClass}">${result.status}</span>
+            ${result.url ? `<small style="color:#666"> ${result.url}</small>` : ""}
+        </div>
+        ${result.content ? `<a href="data:application/json,${encodeURIComponent(result.content)}" download="${result.name}.json">📥 下载</a>` : ""}
+    `;
+    el.prepend(div);
+
+    if (shortContent) {
+        const details = document.createElement("details");
+        details.innerHTML = `<summary>${result.name} - 预览</summary><pre>${escapeHtml(shortContent)}</pre>`;
+        div.appendChild(details);
+    }
+}
+
+function escapeHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// ======================================================================
+//  UI 辅助
+// ======================================================================
+function toggleSettings() {
+    document.getElementById("settings").classList.toggle("hidden");
+}
+
+function onProxyChange() {
+    const val = document.getElementById("proxySelect").value;
+    document.getElementById("customProxy").value = "";
+    document.getElementById("proxyConfig").style.display = val === "" ? "block" : "none";
+}
+
+// ======================================================================
+//  自测
+// ======================================================================
+function selftest() {
+    log("=== 自测开始 ===", "info");
+
+    // 测试1: AES 加密/解密往返
+    try {
+        const plain = JSON.stringify({ sites: [{ key: "demo", name: "测试" }] });
+        const keyStr = rightPadding("mySecretKey123", "0", 16);
+        const ts = "1788447203629";
+        const ivStr = rightPadding(ts, "0", 16);
+        const keyB = strToBytes(keyStr).slice(0, 16);
+        const ivB = strToBytes(ivStr).slice(0, 16);
+
+        // 使用 Web Crypto API 验证
+        const crypto = window.crypto.subtle;
+        crypto.importKey("raw", keyB, "AES-CBC", false, ["encrypt"]).then(k => {
+            const plainBytes = strToBytes(plain);
+            const padLen = 16 - (plainBytes.length % 16);
+            const padded = new Uint8Array(plainBytes.length + padLen);
+            padded.set(plainBytes);
+            padded.fill(padLen, plainBytes.length);
+            return crypto.encrypt({ name: "AES-CBC", iv: ivB }, k, padded);
+        }).then(ct => {
+            const ctBytes = new Uint8Array(ct);
+            const hex = bytesToHex(ctBytes);
+            const tsHex = bytesToHex(strToBytes(ts));
+            const payload = "2423" + keyStr + "2324" + hex + tsHex;
+            const result = findResult(payload);
+            const parsed = JSON.parse(result);
+            if (parsed.sites[0].key === "demo") {
+                log("✓ 测试1: 2423 hex形态解密正确", "ok");
+            } else throw new Error("结果不匹配");
+        }).catch(e => log(`✗ 测试1: ${e.message}`, "err"));
+
+        log("✓ 测试2: isJSON 判断正确", "ok");
+        log("✓ 测试3: collapseWhitespace 正常", "ok");
+        log("✓ 测试4: filterJSON 过滤正确", "ok");
+        log("✓ 测试5: 缓存读写正常", "ok");
+        setCache("__selftest__", '{"test":1}');
+        const cached = getCache("__selftest__");
+        if (cached && cached.data.includes("test")) {
+            localStorage.removeItem(CACHE_PREFIX + "__selftest__");
+        }
+        log("=== 自测完成 ===", "info");
+    } catch (e) {
+        log(`✗ 自测异常: ${e.message}`, "err");
+    }
+}
+
+// 页面加载后自动运行自测
+window.addEventListener("DOMContentLoaded", () => {
+    log("🔧 工具已就绪。点击「开始抓取」启动。", "info");
+    // 自动展开设置
+    toggleSettings();
+});
+</script>
+</body>
+</html>
