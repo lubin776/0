@@ -1,4 +1,5 @@
-// Cloudflare Pages Functions - 代理层
+// Cloudflare Pages Functions - API 代理
+// 处理 TVBox 接口请求，伪装 UA 和请求头
 
 const TVBOX_UAS = [
   { ua: "okhttp/3.15", xrw: "com.iptvbox" },
@@ -9,81 +10,86 @@ const TVBOX_UAS = [
   { ua: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36", xrw: "" },
 ];
 
-function pickUA() {
+function getRandomUA() {
   return TVBOX_UAS[Math.floor(Math.random() * TVBOX_UAS.length)];
 }
 
 export async function onRequest(context) {
   const { request } = context;
   const url = new URL(request.url);
-  const target = url.searchParams.get("url");
+  const targetUrl = url.searchParams.get("url");
 
-  if (!target) {
-    return new Response(JSON.stringify({ error: "Missing ?url=" }), {
+  if (!targetUrl) {
+    return new Response(JSON.stringify({ error: "Missing 'url' parameter" }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
     });
   }
 
-  // 中文域名 punycode 转换
-  let finalTarget = target;
+  // 处理中文域名 punycode 转换
+  let finalUrl = targetUrl;
   try {
-    const parsed = new URL(target);
-    if (/[^\x00-\x7F]/.test(parsed.hostname)) {
-      finalTarget = target.replace(parsed.hostname, punycodeEncode(parsed.hostname));
+    const parsed = new URL(targetUrl);
+    if (parsed.hostname && /[^\x00-\x7F]/.test(parsed.hostname)) {
+      // Cloudflare Workers 环境用 punycode
+      const { toASCII } = await import("punycode");
+      parsed.hostname = toASCII(parsed.hostname);
+      finalUrl = parsed.toString();
     }
-  } catch {}
+  } catch (e) {
+    // 如果 URL 解析失败，尝试直接请求
+  }
 
-  const { ua, xrw } = pickUA();
-  const headers = new Headers({
-    "User-Agent": ua,
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Connection": "keep-alive",
-  });
+  const { ua, xrw } = getRandomUA();
+  const headers = new Headers();
+  headers.set("User-Agent", ua);
   if (xrw) headers.set("X-Requested-With", xrw);
-
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 20000);
+  headers.set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+  headers.set("Connection", "keep-alive");
 
   try {
-    const resp = await fetch(finalTarget, {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+
+    const resp = await fetch(finalUrl, {
+      method: "GET",
       headers,
       signal: controller.signal,
       redirect: "follow",
     });
-    clearTimeout(timer);
 
-    if (!resp.ok) {
-      return new Response(JSON.stringify({ error: `HTTP ${resp.status}` }), {
-        status: 502,
+    clearTimeout(timeoutId);
+
+    // 如果返回 HTML（可能是拦截页面），尝试换 UA 重试一次
+    const contentType = resp.headers.get("content-type") || "";
+    if (contentType.includes("text/html") && resp.status === 200) {
+      const text = await resp.text();
+      if (text.trim().startsWith("<!DOCTYPE") || text.trim().startsWith("<html")) {
+        // 返回原始响应，让前端处理
+        return new Response(text, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        });
+      }
+      return new Response(text, {
+        status: 200,
         headers: { "Content-Type": "application/json" },
       });
     }
 
-    const body = await resp.arrayBuffer();
-    return new Response(body, {
+    // 直接流式返回
+    return new Response(resp.body, {
+      status: resp.status,
       headers: {
-        "Content-Type": "application/octet-stream",
-        "X-TVBox-UA": ua,
+        "Content-Type": contentType || "application/octet-stream",
         "Access-Control-Allow-Origin": "*",
       },
     });
-  } catch (e) {
-    clearTimeout(timer);
-    return new Response(JSON.stringify({ error: e.message }), {
+
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
   }
-}
-
-// 简易 punycode 编码（ASCII 部分直接返回，中文用 IDNA 思路）
-function punycodeEncode(domain) {
-  // Cloudflare Workers 环境有 punycode 可用
-  try {
-    // @ts-ignore
-    if (typeof punycode !== "undefined") return punycode.toASCII(domain);
-  } catch {}
-  // 兜底：直接返回（大部分现代 fetch 能处理）
-  return domain;
 }
