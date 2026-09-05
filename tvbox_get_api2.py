@@ -1,22 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-TVBox 接口一键抓取工具（增强版 · 含 list.txt 插入式更新日志）
-运行：python tvbox_get_api.py            # 正常抓取
-      python tvbox_get_api.py --selftest # 离线自测
-      python tvbox_get_api.py --debug    # 调试日志
-输出：output/名称.json（固定文件名，直接覆盖）
-      output/list.txt（插入式更新日志，自动追加）
-
-配置加载优先级：
-  1. api_list.json（如果存在）
-  2. api_list.py（默认，需自行创建）
-
-list.txt 格式（两列，"|" 分隔，同名文件追加新行，旧行保留作历史）：
-    饭太硬.json|20260905
-    嗷呜.json|20260903
-    饭太硬.json|20260908   <- 更新成功再追加一行（网页取最新那条 = 上一次成功时间）
-更新失败时不追加新行，网页继续显示该文件"上一次成功的时间"。
+TVBox 接口一键抓取工具
 """
 
 import re
@@ -28,9 +13,19 @@ import binascii
 import gzip
 import time
 import functools
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from threading import Thread
 from queue import Queue
+
+
+def beijing_now():
+    """返回当前北京时间（脚本统一使用，避免依赖运行机本地时区 UTC）"""
+    return datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=8)))
+
+
+def today_str():
+    """当前北京时间，格式 YYYYMMDD，用于 list.txt 日期列"""
+    return beijing_now().strftime("%Y%m%d")
 
 # ================== 配置加载（JSON / PY 双版本） ==================
 def _load_api_config():
@@ -607,7 +602,7 @@ def append_list_txt(name, date_str, size_k="-", note="", path=LIST_TXT):
 
 
 def update_list_txt(results, path=LIST_TXT):
-    today = datetime.now().strftime("%Y%m%d")
+    today = today_str()
     latest = load_list_txt(path)
 
     for info in results:
@@ -959,7 +954,7 @@ def process(name, urls) -> dict:
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    ts = beijing_now().strftime("%Y%m%d_%H%M%S")
     summary = []
 
     print("=" * 62)
