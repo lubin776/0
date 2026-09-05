@@ -40,10 +40,15 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 <script>
 // ★★★ 排序权重（数字越小越靠前，不写在这里的排最后随机）★★★
 const WEIGHTS = {
-  "饭太硬一线.json": 1,
-  "嗷呜线路.json": 2,
-  "摸鱼线路.json": 3,
-  // "肥猫.json": 4,
+  "菠菜园.json": 1,
+  "菠菜园pro.json": 2,
+  "少儿频道.json": 3,
+  "饭太硬.json": 4,
+  "肥猫.json": 5,
+  "摸鱼.json": 6,
+  "王二小.json": 7,
+  "集多.json": 8,
+  "潇洒.json": 9,
 };
 
 const DOMAINS = [
@@ -69,7 +74,7 @@ function renderItem(file, date, size, note) {
       ${note?`<span class="card-note">${note}</span>`:''}
     </div>
     <div class="card-meta">
-      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最新':'● 历史'}</span>
+      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最新连通':'● 历史'}</span>
       &nbsp;${date||'-'}&nbsp;&nbsp;📦 ${size||'-'}
     </div>`;
   DOMAINS.forEach(d => {
