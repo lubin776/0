@@ -74,7 +74,7 @@ function renderItem(file, date, size, note) {
       ${note?`<span class="card-note">${note}</span>`:''}
     </div>
     <div class="card-meta">
-      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最新连通':'● 历史'}</span>
+      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最近连通':'● 历史'}</span>
       &nbsp;${date||'-'}&nbsp;&nbsp;📦 ${size||'-'}
     </div>`;
   DOMAINS.forEach(d => {
