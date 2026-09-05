@@ -338,7 +338,7 @@ HEADERS_BASE = {
     "Connection": "keep-alive",
 }
 OUTPUT_DIR = "output"
-LIST_TXT = os.path.join(OUTPUT_DIR, "list.txt")   # ★ 插入式更新日志路径
+LIST_TXT = "list.txt"   
 MAX_DEPTH = 5
 REQUEST_TIMEOUT = 20
 TOTAL_TIMEOUT = 45
