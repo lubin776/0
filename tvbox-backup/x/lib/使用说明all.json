@@ -1,0 +1,15 @@
+{
+  "page": 1,
+  "pagecount": 1,
+  "limit": 1,
+  "total": 1,
+  "list": [
+    {
+      "vod_id": "关于",
+      "vod_name": "关于",
+      "vod_pic":       "vod_pic": "https://mpimg.cn/view.php/d9a7e42162c76ee8d52da34d5b91746d",
+      "vod_remarks": "说明",
+      "vod_content": "本接口由【误道者】打包上传。\n配置教程:\n先点击在线更新本地包链接，再输入配置地址。：\n配置说明:\n配置地址\nclan://localhost/tvbox/x4/tv.json\nclan://localhost/tvbox/x4/tvpro.json\nclan://localhost/tvbox/x4/tv少儿.json\nclan://localhost/tvbox/x4/x4.json\nclan://localhost/tvbox/x4/x4pro.json\nclan://localhost/tvbox/x4/x4all.json\n区别:\nx4基础版纯采集站接口\npro增加一些py和js接口\ntv版净化删除了教程使用说明本地包，适合家庭公共电视配置\nx4all保留一些接口的福+利片和伦+理片，适合个人设备配置。配置更多本地包请加 QQ 群：1067685939。\n免责声明:\n所有资源来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。"
+    }
+  ]
+}

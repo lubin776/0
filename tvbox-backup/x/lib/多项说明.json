@@ -1,0 +1,22 @@
+{
+  "page": 1,
+  "pagecount": 1,
+  "limit": 2,
+  "total": 2,
+  "list": [
+    {
+      "vod_id": "jiaocheng",
+      "vod_name": "配置教程",
+      "vod_pic": "https://via.placeholder.com/300x450/1E90FF/FFFFFF?text=LOCAL",
+      "vod_remarks": "📦 本地包",
+      "vod_content": "教程内容..."
+    },
+    {
+      "vod_id": "mianze",
+      "vod_name": "免责声明",
+      "vod_pic": "https://via.placeholder.com/300x450/8B0000/FFFFFF?text=NOTICE",
+      "vod_remarks": "重要",
+      "vod_content": "免责内容..."
+    }
+  ]
+}

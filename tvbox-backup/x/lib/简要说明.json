@@ -1,0 +1,25 @@
+{
+  "page": 1,
+  "pagecount": 1,
+  "limit": 2,
+  "total": 2,
+  "class": [
+    {
+      "type_id": "声明",
+      "type_name": "声明"
+    },
+    {
+      "type_id": "关于",
+      "type_name": "关于"
+    }
+  ],
+  "list": [
+    {
+      "vod_id": "详情页",
+      "vod_name": "查看详情",
+      "vod_pic": "https://mpimg.cn/view.php/d9a7e42162c76ee8d52da34d5b91746d",
+      "vod_remarks": "",
+      "vod_content": "本接口由【误道者】打包上传。\n更多配置及下载本地包请加 QQ 群：1067685939。\n免责声明:\n所有资源来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。"
+    }
+  ]
+}

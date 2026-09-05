@@ -1,0 +1,169 @@
+{
+  "logo": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/jueson.jpg",
+  "spider": "https://z.qiqiv.cn/666/spider.jar",
+  "sites": [
+    {
+      "key": "说明",
+      "name": "⚠️说明",
+      "type": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "api": "https://gh-proxy.com/github.com/lubin776/0/raw/main/tvbox/x/lib/多地址说明.json"
+    },
+    {
+      "key": "X4本地包",
+      "name": "X4菠菜园本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/X4/lib/singlex4.json"
+    },
+        {
+            "key": "奇奇2",
+            "name": "💞奇奇副本0808",
+            "type": 3,
+            "api": "csp_Market",
+            "searchable": 0,
+            "changeable": 0,
+            "indexs": 0,
+            "ext": "./json/666.json"
+        },
+    {
+      "key": "奇奇",
+      "name": "💞奇奇本地",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "http://bd.qiqiv.cn/666.json"
+    },
+    {
+      "key": "柒豪",
+      "name": "柒豪本地包",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://raw.gitcode.com/qihao/qihaoyyds/raw/main/版本.json"
+    },
+    {
+      "key": "天神",
+      "name": "天神小屋",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/天神小屋.png"
+    },
+    {
+      "key": "3",
+      "name": "应用市场1",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/https://github.com/woshishiq1/hipy-drpy2/raw/refs/heads/main/wzxxcz/json/market.json"
+    },
+    {
+      "key": "4",
+      "name": "应用市场2",
+      "type": 3,
+      "api": "csp_Market",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/SimonWang911/simonwangsub/refs/heads/main/appupdate/appupdate.json"
+    },
+        {
+            "key": "戏 曲",
+            "name": "🎈国粹戏曲",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "./json/Blixq.json"
+        },
+        {
+            "key": "相声小品",
+            "name": "🏮相声小品",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "./json/Blixs.json"
+        },
+        {
+            "key": "潮 汕",
+            "name": "🥨潮汕",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "./json/Bli潮汕.json"
+        },
+        {
+            "key": "演唱会",
+            "name": "🎸演唱会",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "./json/演唱会.json"
+        },
+        {
+            "key": "MTV",
+            "name": "🎧明星┃MV",
+            "type": 3,
+            "api": "csp_Bili",
+            "style": {
+                "type": "rect",
+                "ratio": 1.597
+            },
+            "searchable": 0,
+            "quickSearch": 0,
+            "changeable": 0,
+            "ext": "./json/MTV.json"
+        },
+        {
+            "key": "哔哩哔哩",
+            "name": "🅱️哔哩大全",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "./json/Bili.json"
+        },
+        {
+            "key": "csp_Bili短剧",
+            "name": "🅱️哔哩短剧",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 1,
+            "ext": "./json/Bili短剧.json"
+        },
+        {
+            "key": "影视解说",
+            "name": "🎬影视解说",
+            "type": 3,
+            "api": "csp_Bili",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "./json/影视解说.json"
+        }
+  ]
+}

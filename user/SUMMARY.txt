@@ -1,23 +1,35 @@
-TVBox 接口抓取报告  20260905_044336
+TVBox 接口抓取报告  20260905_141341
 ==============================================================
-
-[肥猫] okhttp/3.15
-  状态: JSON
-  文件: api/肥猫.json
-
-[少儿频道] okhttp/3.15
-  状态: JSON
-  文件: api/少儿频道.json
 
 [饭太硬] okhttp/3.15
   状态: JSON
-  文件: api/饭太硬.json
+  文件: output/饭太硬.json
+
+[肥猫] okhttp/3.15
+  状态: JSON
+  文件: output/肥猫.json
 
 [王二小] okhttp/3.15
   状态: JSON
-  文件: api/王二小.json
+  文件: output/王二小.json
 
-[天神IY] okhttp/3.15
+[集多] okhttp/3.15
   状态: JSON
-  文件: api/天神IY.json
+  文件: output/集多.json
+
+[嗷呜] okhttp/3.15
+  状态: JSON
+  文件: output/嗷呜.json
+
+[潇洒] okhttp/3.15
+  状态: JSON
+  文件: output/潇洒.json
+
+[摸鱼] okhttp/3.15
+  状态: JSON
+  文件: output/摸鱼.json
+
+[天神] 
+  状态: FAILED
+  文件: None
 
