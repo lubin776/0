@@ -1,0 +1,60 @@
+name: TVBox Daily Update
+
+on:
+  schedule:
+    - cron: '0 18 * * *'   # 每天 UTC 18:00 ≈ 北京时间 02:00
+  workflow_dispatch:        # 支持手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run tvbox_get_api2.py
+        run: |
+          python tvbox_get_api2.py
+
+      - name: Prepare output directories
+        run: |
+          mkdir -p tvbox
+          mkdir -p user
+
+      - name: Move JSON files to tvbox/
+        run: |
+          shopt -s nullglob
+          for f in output/*.json; do
+            mv "$f" tvbox/
+          done
+
+      - name: Move reports and list.txt to user/
+        run: |
+          [ -f output/list.txt ] && mv output/list.txt user/
+          [ -f output/SUMMARY.txt ] && mv output/SUMMARY.txt user/
+
+      - name: Backup list.txt to repo root
+        run: |
+          cp user/list.txt list.txt
+
+      - name: Backup tvbox folder to repo root
+        run: |
+          rm -rf tvbox-backup
+          cp -r tvbox tvbox-backup
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tvbox/ user/ list.txt tvbox-backup/
+          git commit -m "🗓️ Daily TVBox update $(date +'%Y-%m-%d')" || echo "No changes"
+          git push
