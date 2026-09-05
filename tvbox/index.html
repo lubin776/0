@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVBox 接口列表</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:#0f172a; color:#e2e8f0; padding:20px; }
+.container { max-width:800px; margin:0 auto; }
+h1 { text-align:center; font-size:1.4rem; margin-bottom:20px; color:#38bdf8; }
+
+.search-box { width:100%; padding:10px 14px; background:#1e293b; border:1px solid #334155; border-radius:8px; color:#e2e8f0; font-size:0.9rem; margin-bottom:16px; outline:none; }
+.search-box:focus { border-color:#38bdf8; }
+
+table { width:100%; border-collapse:collapse; }
+thead th { text-align:left; padding:10px 8px; border-bottom:2px solid #334155; color:#94a3b8; font-size:0.85rem; }
+tbody td { padding:10px 8px; border-bottom:1px solid #1e293b; font-size:0.88rem; }
+tbody tr:hover { background:#1e293b; }
+
+a.interface-link { color:#38bdf8; text-decoration:none; }
+a.interface-link:hover { text-decoration:underline; }
+
+.time-ok { color:#4ade80; }
+.time-old { color:#fbbf24; }
+
+.copy-btn { padding:4px 12px; background:#22c55e; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:0.8rem; }
+.copy-btn:hover { background:#16a34a; }
+.copy-btn.copied { background:#6366f1; }
+
+.toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#22c55e; color:#fff; padding:8px 20px; border-radius:8px; font-size:0.85rem; opacity:0; transition:opacity .3s; pointer-events:none; }
+.toast.show { opacity:1; }
+
+.status { font-size:0.75rem; padding:2px 8px; border-radius:4px; margin-left:8px; }
+.status-ok { background:#166534; color:#4ade80; }
+.status-old { background:#78350f; color:#fbbf24; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>TVBox 接口列表</h1>
+  <input class="search-box" id="search" type="text" placeholder="搜索文件名..." oninput="filterTable()">
+  <table>
+    <thead>
+      <tr>
+        <th>接口地址</th>
+        <th>更新时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+<div class="toast" id="toast">已复制</div>
+
+<script>
+const BASE_PATH = "https://0.12yue.de5.net/tvbox/";
+
+function decodeName(file) {
+  try { return decodeURIComponent(file); } catch { return file; }
+}
+function encodeName(file) {
+  try { return encodeURIComponent(file); } catch { return file; }
+}
+
+async function loadList() {
+  const resp = await fetch('list.txt?t=' + Date.now());
+  const text = await resp.text();
+  const lines = text.trim().split('\n');
+  const map = {};
+
+  for (const line of lines) {
+    const parts = line.trim().split('|');
+    if (parts.length < 2) continue;
+    const file = parts[0].trim();
+    const time = parts[1].trim();
+    if (!file || !time) continue;
+    map[file] = time; // 同名文件后面的覆盖前面的
+  }
+  return map;
+}
+
+function renderTable(dataMap, filter = '') {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+  const filterLower = filter.toLowerCase();
+
+  for (const [file, time] of Object.entries(dataMap)) {
+    const displayName = decodeName(file);
+    if (filter && !displayName.toLowerCase().includes(filterLower)) continue;
+
+    const fullUrl = BASE_PATH + encodeName(file);
+    const isRecent = isTodayOrYesterday(time);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <a class="interface-link" href="${fullUrl}" target="_blank">${fullUrl}</a>
+      </td>
+      <td>
+        <span class="${isRecent ? 'time-ok' : 'time-old'}">${time}</span>
+        ${isRecent ? '<span class="status status-ok">最新</span>' : '<span class="status status-old">历史</span>'}
+      </td>
+      <td><button class="copy-btn" onclick="copyUrl(this, '${fullUrl}')">复制</button></td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+
+function isTodayOrYesterday(timeStr) {
+  if (timeStr.length !== 8) return false;
+  const year = parseInt(timeStr.slice(0,4));
+  const month = parseInt(timeStr.slice(4,6)) - 1;
+  const day = parseInt(timeStr.slice(6,8));
+  const date = new Date(year, month, day);
+  const now = new Date();
+  const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+  return diffDays <= 1;
+}
+
+function filterTable() {
+  const kw = document.getElementById('search').value;
+  loadList().then(data => renderTable(data, kw));
+}
+
+function copyUrl(btn, url) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = '已复制';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 1500);
+    showToast();
+  });
+}
+
+function showToast() { const t=document.getElementById('toast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1500); }
+
+loadList().then(data => renderTable(data));
+</script>
+</body>
+</html>
