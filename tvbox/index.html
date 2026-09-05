@@ -5,136 +5,175 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TVBox 接口列表</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:#0f172a; color:#e2e8f0; padding:20px; }
-.container { max-width:800px; margin:0 auto; }
-h1 { text-align:center; font-size:1.4rem; margin-bottom:20px; color:#38bdf8; }
-
-.search-box { width:100%; padding:10px 14px; background:#1e293b; border:1px solid #334155; border-radius:8px; color:#e2e8f0; font-size:0.9rem; margin-bottom:16px; outline:none; }
-.search-box:focus { border-color:#38bdf8; }
-
-table { width:100%; border-collapse:collapse; }
-thead th { text-align:left; padding:10px 8px; border-bottom:2px solid #334155; color:#94a3b8; font-size:0.85rem; }
-tbody td { padding:10px 8px; border-bottom:1px solid #1e293b; font-size:0.88rem; }
-tbody tr:hover { background:#1e293b; }
-
-a.interface-link { color:#38bdf8; text-decoration:none; }
-a.interface-link:hover { text-decoration:underline; }
-
-.time-ok { color:#4ade80; }
-.time-old { color:#fbbf24; }
-
-.copy-btn { padding:4px 12px; background:#22c55e; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:0.8rem; }
-.copy-btn:hover { background:#16a34a; }
-.copy-btn.copied { background:#6366f1; }
-
-.toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#22c55e; color:#fff; padding:8px 20px; border-radius:8px; font-size:0.85rem; opacity:0; transition:opacity .3s; pointer-events:none; }
-.toast.show { opacity:1; }
-
-.status { font-size:0.75rem; padding:2px 8px; border-radius:4px; margin-left:8px; }
-.status-ok { background:#166534; color:#4ade80; }
-.status-old { background:#78350f; color:#fbbf24; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 20px; }
+.container { max-width: 1000px; margin: 0 auto; }
+h1 { font-size: 1.5rem; margin-bottom: 1rem; color: #38bdf8; }
+.card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; }
+.toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.toolbar input { flex: 1; min-width: 200px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px 14px; color: #e2e8f0; outline: none; }
+.toolbar input:focus { border-color: #38bdf8; }
+.toolbar .count { color: #94a3b8; font-size: 0.85rem; white-space: nowrap; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #334155; vertical-align: middle; }
+th { color: #94a3b8; font-weight: 600; font-size: 0.8rem; cursor: pointer; user-select: none; }
+th:hover { color: #38bdf8; }
+.url-cell { word-break: break-all; }
+.url-cell a { color: #38bdf8; text-decoration: none; }
+.url-cell a:hover { text-decoration: underline; }
+button.copy { padding: 6px 12px; border: none; border-radius: 6px; background: #22c55e; color: #fff; cursor: pointer; font-size: 0.8rem; white-space: nowrap; }
+button.copy:hover { background: #16a34a; }
+button.copy.copied { background: #38bdf8; color: #0f172a; }
+.size, .date { white-space: nowrap; color: #cbd5e1; }
+.note { color: #94a3b8; font-size: 0.85rem; }
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #22c55e; color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 999; }
+.toast.show { opacity: 1; }
+.empty { text-align: center; color: #94a3b8; padding: 30px; }
+.error { color: #f87171; }
+@media (max-width: 640px) {
+  th.hide-sm, td.hide-sm { display: none; }
+  body { padding: 10px; }
+}
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>TVBox 接口列表</h1>
-  <input class="search-box" id="search" type="text" placeholder="搜索文件名..." oninput="filterTable()">
-  <table>
-    <thead>
-      <tr>
-        <th>接口地址</th>
-        <th>更新时间</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody id="tbody"></tbody>
-  </table>
+  <h1>📺 TVBox 接口列表</h1>
+  <div class="card">
+    <div class="toolbar">
+      <input id="search" type="text" placeholder="搜索文件名 / 备注...">
+      <span class="count" id="count"></span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th onclick="setSort('url')">接口地址</th>
+          <th class="hide-sm" onclick="setSort('date')">更新时间</th>
+          <th class="hide-sm" onclick="setSort('size')">大小</th>
+          <th class="hide-sm">备注</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr><td class="empty" colspan="5">加载中...</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-<div class="toast" id="toast">已复制</div>
+<div class="toast" id="toast"></div>
 
 <script>
+// ★★★ 改成你自己的实际目录 ★★★
 const BASE_PATH = "https://0.12yue.de5.net/tvbox/";
+const LIST_URL = "list.txt";
 
-function decodeName(file) {
-  try { return decodeURIComponent(file); } catch { return file; }
+let DATA = [];
+let sortKey = "date";
+let sortAsc = false;
+
+function formatSize(bytes) {
+  bytes = Number(bytes) || 0;
+  if (bytes < 1024) return bytes + " B";
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + "K";
+  return (bytes / (1024 * 1024)).toFixed(2) + "M";
 }
-function encodeName(file) {
-  try { return encodeURIComponent(file); } catch { return file; }
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 2000);
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta);
+  }
+  showToast("已复制: " + text);
+}
+
+// ★ 关键：把 URL 编码的文件名解码成中文显示
+function decodeName(name) {
+  try { return decodeURIComponent(name); } catch { return name; }
+}
+
+// 把显示用的中文文件名，编码回合法 URL（用于 href / fetch）
+function encodeName(name) {
+  try { return encodeURIComponent(name); } catch { return name; }
 }
 
 async function loadList() {
-  const resp = await fetch('list.txt?t=' + Date.now());
-  const text = await resp.text();
-  const lines = text.trim().split('\n');
-  const map = {};
-
+  const res = await fetch(LIST_URL + "?t=" + Date.now());
+  if (!res.ok) throw new Error("无法加载 list.txt (HTTP " + res.status + ")");
+  const text = await res.text();
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  DATA = [];
   for (const line of lines) {
-    const parts = line.trim().split('|');
-    if (parts.length < 2) continue;
-    const file = parts[0].trim();
-    const time = parts[1].trim();
-    if (!file || !time) continue;
-    map[file] = time; // 同名文件后面的覆盖前面的
-  }
-  return map;
-}
-
-function renderTable(dataMap, filter = '') {
-  const tbody = document.getElementById('tbody');
-  tbody.innerHTML = '';
-  const filterLower = filter.toLowerCase();
-
-  for (const [file, time] of Object.entries(dataMap)) {
-    const displayName = decodeName(file);
-    if (filter && !displayName.toLowerCase().includes(filterLower)) continue;
-
-    const fullUrl = BASE_PATH + encodeName(file);
-    const isRecent = isTodayOrYesterday(time);
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>
-        <a class="interface-link" href="${fullUrl}" target="_blank">${fullUrl}</a>
-      </td>
-      <td>
-        <span class="${isRecent ? 'time-ok' : 'time-old'}">${time}</span>
-        ${isRecent ? '<span class="status status-ok">最新</span>' : '<span class="status status-old">历史</span>'}
-      </td>
-      <td><button class="copy-btn" onclick="copyUrl(this, '${fullUrl}')">复制</button></td>
-    `;
-    tbody.appendChild(tr);
+    // 格式: 文件名 | 时间 | 字节 | 备注(可选)
+    const parts = line.split("|").map(p => p.trim());
+    if (parts.length < 3) continue;
+    const [file, date, size, note] = parts;
+    DATA.push({ file, date, size: Number(size) || 0, note: note || "" });
   }
 }
 
-function isTodayOrYesterday(timeStr) {
-  if (timeStr.length !== 8) return false;
-  const year = parseInt(timeStr.slice(0,4));
-  const month = parseInt(timeStr.slice(4,6)) - 1;
-  const day = parseInt(timeStr.slice(6,8));
-  const date = new Date(year, month, day);
-  const now = new Date();
-  const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
-  return diffDays <= 1;
-}
+function render() {
+  const kw = document.getElementById("search").value.trim().toLowerCase();
+  let rows = DATA.filter(d =>
+    !kw || decodeName(d.file).toLowerCase().includes(kw) || (d.note || "").toLowerCase().includes(kw)
+  );
 
-function filterTable() {
-  const kw = document.getElementById('search').value;
-  loadList().then(data => renderTable(data, kw));
-}
-
-function copyUrl(btn, url) {
-  navigator.clipboard.writeText(url).then(() => {
-    btn.textContent = '已复制';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 1500);
-    showToast();
+  rows.sort((a, b) => {
+    let av = a[sortKey], bv = b[sortKey];
+    if (sortKey === "date") { av = String(av); bv = String(bv); }
+    if (av < bv) return sortAsc ? -1 : 1;
+    if (av > bv) return sortAsc ? 1 : -1;
+    return 0;
   });
+
+  const tbody = document.getElementById("tbody");
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td class="empty" colspan="5">没有匹配的接口</td></tr>`;
+  } else {
+    tbody.innerHTML = rows.map(d => {
+      const name = decodeName(d.file);           // ★ 强制显示中文
+      const url = BASE_PATH + encodeName(name);  // 请求/链接用编码地址
+      return `
+        <tr>
+          <td class="url-cell"><a href="${url}" target="_blank" rel="noopener">${url}</a></td>
+          <td class="date hide-sm">${d.date || "-"}</td>
+          <td class="size hide-sm">${formatSize(d.size)}</td>
+          <td class="note hide-sm">${d.note || ""}</td>
+          <td><button class="copy" onclick='copyText("${url}")'>复制接口</button></td>
+        </tr>
+      `;
+    }).join("");
+  }
+  document.getElementById("count").textContent = `共 ${rows.length} / ${DATA.length} 个`;
 }
 
-function showToast() { const t=document.getElementById('toast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1500); }
+function setSort(key) {
+  if (sortKey === key) sortAsc = !sortAsc;
+  else { sortKey = key; sortAsc = (key === "date"); }
+  render();
+}
 
-loadList().then(data => renderTable(data));
+(async function init() {
+  document.getElementById("search").addEventListener("input", render);
+  try {
+    await loadList();
+    render();
+  } catch (e) {
+    document.getElementById("tbody").innerHTML =
+      `<tr><td class="empty" colspan="5">⚠️ ${e.message}<br><small>请把 list.txt 放在本页面同目录，或修改 LIST_URL</small></td></tr>`;
+    console.error(e);
+  }
+})();
 </script>
 </body>
 </html>
