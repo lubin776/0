@@ -1,4 +1,4 @@
-// parser.js - 完整解密逻辑，对照 Python 试跑2.py
+// parser.js - 完整解密逻辑（对照 Python 试跑2.py）
 
 function collapseWhitespace(text) {
   if (!text) return "";
@@ -9,7 +9,7 @@ function collapseWhitespace(text) {
 function isJson(text) {
   if (!text) return false;
   const t = text.trim();
-  return t.startsWith("{") || t.startsWith("[");
+  return (t.startsWith("{") || t.startsWith("[")) && (t.includes("sites") || t.includes("lives") || t.includes("video") || t.includes("spider"));
 }
 
 function filterJson(text) {
@@ -54,7 +54,10 @@ function hex2bytes(hex) {
   return new Uint8Array(arr);
 }
 function str2bytes(s) { return new Uint8Array([...s].map(c => c.charCodeAt(0) & 0xFF)); }
-function bytes2str(bytes) { return new TextDecoder("utf-8").decode(bytes); }
+function bytes2str(bytes) {
+  try { return new TextDecoder("utf-8", { fatal: false }).decode(bytes); }
+  catch { return String.fromCharCode.apply(null, bytes); }
+}
 function padRight(s, ch, len) { return s.length >= len ? s.slice(0, len) : s + ch.repeat(len - s.length); }
 
 // ===== 2423 解密 =====
@@ -63,13 +66,13 @@ function tryDecrypt2423Hex(stripped) {
   const idx2324 = stripped.indexOf("2324");
   const keyHex = stripped.slice(idx2423 + 4, idx2324);
   let keyRaw;
-  try { keyRaw = hex2bin(keyHex); } catch { keyRaw = keyHex; }
+  try { keyRaw = hex2bin(keyHex); } catch (e) { keyRaw = keyHex; }
   const keyStr = padRight(keyRaw, "\0", 16);
   const dataStart = idx2324 + 4;
   const contentRstrip = stripped.replace(/\s+$/, "");
   const tsHex = contentRstrip.slice(-26);
   let tsBytes;
-  try { tsBytes = hex2bytes(tsHex); } catch { tsBytes = str2bytes(tsHex); }
+  try { tsBytes = hex2bytes(tsHex); } catch (e) { tsBytes = str2bytes(tsHex); }
   const ivStr = padRight(bytes2str(tsBytes), "\0", 16);
   const keyBytes = str2bytes(keyStr.slice(0, 16));
   const ivBytes = str2bytes(ivStr.slice(0, 16));
@@ -94,7 +97,8 @@ function tryDecrypt2423Plain(stripped) {
 
 // ===== 递归解密（核心）=====
 function findResult(rawText, rawBytes, depth) {
-  if ((depth || 0) > 5) return rawText || "";
+  depth = depth || 0;
+  if (depth > 5) return rawText || "";
 
   let content = rawText || "";
   if (!content && rawBytes) content = bytes2str(rawBytes);
@@ -103,16 +107,15 @@ function findResult(rawText, rawBytes, depth) {
   if (isJson(content)) return content;
 
   // 2. 图片壳 **
-  if (rawBytes) {
+  if (rawBytes && rawBytes.length > 10) {
     const marker = new TextEncoder().encode("**");
     let starIdx = -1;
     for (let i = 8; i < rawBytes.length - 1; i++) {
       if (rawBytes[i] === marker[0] && rawBytes[i+1] === marker[1]) { starIdx = i; break; }
     }
     if (starIdx >= 8) {
-      let b64Start = starIdx + 2;
       let b64Bytes = [];
-      for (let i = b64Start; i < rawBytes.length; i++) {
+      for (let i = starIdx + 2; i < rawBytes.length; i++) {
         const c = rawBytes[i];
         if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57) || c === 43 || c === 47 || c === 61) b64Bytes.push(c);
         else if (c === 9 || c === 10 || c === 13 || c === 32) continue;
@@ -121,8 +124,8 @@ function findResult(rawText, rawBytes, depth) {
       try {
         const b64 = bytes2str(new Uint8Array(b64Bytes));
         const dec = atob(b64);
-        return findResult(dec, null, (depth||0) + 1);
-      } catch {}
+        if (dec) return findResult(dec, null, depth + 1);
+      } catch (e) {}
     }
   }
 
@@ -132,27 +135,4 @@ function findResult(rawText, rawBytes, depth) {
   const has2423 = stripped.startsWith("2423") && stripped.includes("2324");
 
   if (stripped.startsWith("2423") && (hasDelim || has2423)) {
-    try {
-      const dec = tryDecrypt2423Hex(stripped);
-      return findResult(bytes2str(dec), dec, (depth||0) + 1);
-    } catch {}
-    try {
-      const dec = tryDecrypt2423Plain(stripped);
-      return findResult(bytes2str(dec), dec, (depth||0) + 1);
-    } catch {}
-  }
-
-  // 4. 纯 base64
-  const clean = stripped.replace(/\s/g, "");
-  if (/^[A-Za-z0-9+/=]+$/.test(clean) && clean.length > 50) {
-    try {
-      const dec = atob(clean);
-      if (isJson(dec)) return dec;
-      return findResult(dec, null, (depth||0) + 1);
-    } catch {}
-  }
-
-  return content;
-}
-
-window.TVBoxParser = { findResult, filterJson, absolutizeJson, isJson };
+    try { const dec
