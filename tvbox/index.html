@@ -2,178 +2,112 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVBox 接口列表</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#0f172a">
+<title>TVBox 接口表</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 20px; }
-.container { max-width: 1000px; margin: 0 auto; }
-h1 { font-size: 1.5rem; margin-bottom: 1rem; color: #38bdf8; }
-.card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; }
-.toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
-.toolbar input { flex: 1; min-width: 200px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px 14px; color: #e2e8f0; outline: none; }
-.toolbar input:focus { border-color: #38bdf8; }
-.toolbar .count { color: #94a3b8; font-size: 0.85rem; white-space: nowrap; }
-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #334155; vertical-align: middle; }
-th { color: #94a3b8; font-weight: 600; font-size: 0.8rem; cursor: pointer; user-select: none; }
-th:hover { color: #38bdf8; }
-.url-cell { word-break: break-all; }
-.url-cell a { color: #38bdf8; text-decoration: none; }
-.url-cell a:hover { text-decoration: underline; }
-button.copy { padding: 6px 12px; border: none; border-radius: 6px; background: #22c55e; color: #fff; cursor: pointer; font-size: 0.8rem; white-space: nowrap; }
-button.copy:hover { background: #16a34a; }
-button.copy.copied { background: #38bdf8; color: #0f172a; }
-.size, .date { white-space: nowrap; color: #cbd5e1; }
-.note { color: #94a3b8; font-size: 0.85rem; }
-.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #22c55e; color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 999; }
-.toast.show { opacity: 1; }
-.empty { text-align: center; color: #94a3b8; padding: 30px; }
-.error { color: #f87171; }
-@media (max-width: 640px) {
-  th.hide-sm, td.hide-sm { display: none; }
-  body { padding: 10px; }
+:root{--bg:#0f172a;--card:#1e293b;--line:#334155;--txt:#e2e8f0;--sub:#94a3b8;--blue:#38bdf8;--green:#4ade80;--amber:#fbbf24}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);padding:14px;line-height:1.5}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:1.25rem;text-align:center;margin:10px 0 16px;color:var(--blue)}
+.bar{position:sticky;top:0;z-index:10;background:var(--bg);padding:8px 0;margin-bottom:12px}
+input.search{width:100%;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--txt);font-size:1rem;outline:none}
+input.search:focus{border-color:var(--blue)}
+.stats{text-align:center;color:var(--sub);font-size:.82rem;margin-bottom:12px}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.item .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.item .name{font-size:.95rem;color:var(--blue);word-break:break-all;font-weight:600}
+.item .note{font-size:.72rem;background:#0f172a;color:var(--sub);padding:2px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.item .url{font-size:.78rem;color:var(--sub);word-break:break-all;margin:6px 0 10px}
+.item .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.8rem}
+.item .meta span{padding:2px 8px;border-radius:6px;background:#0f172a}
+.item .meta .ok{color:var(--green)}
+.item .meta .old{color:var(--amber)}
+.item .copy{margin-left:auto;padding:7px 14px;background:var(--green);color:#041;font-weight:600;border:none;border-radius:8px;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.item .copy.done{background:#6366f1;color:#fff}
+@media(min-width:720px){
+ .list{gap:0}.item{border-radius:0;border-left:none;border-right:none}.item:first-child{border-top:none;border-radius:10px 10px 0 0}.item:last-child{border-bottom:none;border-radius:0 0 10px 10px}
+ .item{display:grid;grid-template-columns:1fr 120px 72px 96px auto;align-items:center;gap:12px;padding:12px 14px}
+ .item .url{margin:0}.item .copy{margin-left:0}
 }
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green);color:#041;padding:9px 22px;border-radius:10px;font-size:.88rem;opacity:0;transition:.25s;pointer-events:none;font-weight:600}
+.toast.on{opacity:1}
+.empty{text-align:center;color:var(--sub);padding:40px 0}
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>📺 TVBox 接口列表</h1>
-  <div class="card">
-    <div class="toolbar">
-      <input id="search" type="text" placeholder="搜索文件名 / 备注...">
-      <span class="count" id="count"></span>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th onclick="setSort('url')">接口地址</th>
-          <th class="hide-sm" onclick="setSort('date')">更新时间</th>
-          <th class="hide-sm" onclick="setSort('size')">大小</th>
-          <th class="hide-sm">备注</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody id="tbody">
-        <tr><td class="empty" colspan="5">加载中...</td></tr>
-      </tbody>
-    </table>
-  </div>
+<div class="wrap">
+  <h1>📦 TVBox 接口列表</h1>
+  <div class="bar"><input class="search" id="q" type="text" placeholder="搜索文件名 / 备注…" oninput="render()"></div>
+  <div class="stats" id="stats"></div>
+  <div class="list" id="list"></div>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">已复制</div>
 
 <script>
-// ★★★ 改成你自己的实际目录 ★★★
+// ★ 改成你的实际路径（json 文件所在目录，末尾带 /）
 const BASE_PATH = "https://0.12yue.de5.net/tvbox/";
-const LIST_URL = "list.txt";
 
-let DATA = [];
-let sortKey = "date";
-let sortAsc = false;
+function fmtDate(s){ if(!s||s.length!==8)return s; return s.slice(0,4)+"-"+s.slice(4,6)+"-"+s.slice(6,8); }
+function isRecent(s){ if(!s||s.length!==8)return false; const d=new Date(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6,8)); const diff=Math.floor((Date.now()-d.getTime())/864e5); return diff<=1; }
+function esc(s){return(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
-function formatSize(bytes) {
-  bytes = Number(bytes) || 0;
-  if (bytes < 1024) return bytes + " B";
-  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + "K";
-  return (bytes / (1024 * 1024)).toFixed(2) + "M";
-}
-
-function showToast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.classList.remove("show"), 2000);
-}
-
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch {
-    const ta = document.createElement("textarea");
-    ta.value = text; document.body.appendChild(ta); ta.select();
-    document.execCommand("copy"); document.body.removeChild(ta);
+async function load(){
+  const res=await fetch('list.txt?t='+Date.now());
+  const text=await res.text();
+  const map={};
+  for(const raw of text.split('\n')){
+    const line=raw.trim(); if(!line)continue;
+    const p=line.split('|');          // 文件名|日期|体积|备注（兼容 2/3/4 列）
+    if(p.length<2)continue;
+    const file=p[0].trim(); if(!file)continue;
+    map[file]={date:p[1].trim(), size:(p[2]||'').trim(), note:(p.slice(3).join('|')||'').trim()};
   }
-  showToast("已复制: " + text);
+  return map;
 }
 
-// ★ 关键：把 URL 编码的文件名解码成中文显示
-function decodeName(name) {
-  try { return decodeURIComponent(name); } catch { return name; }
-}
-
-// 把显示用的中文文件名，编码回合法 URL（用于 href / fetch）
-function encodeName(name) {
-  try { return encodeURIComponent(name); } catch { return name; }
-}
-
-async function loadList() {
-  const res = await fetch(LIST_URL + "?t=" + Date.now());
-  if (!res.ok) throw new Error("无法加载 list.txt (HTTP " + res.status + ")");
-  const text = await res.text();
-  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-  DATA = [];
-  for (const line of lines) {
-    // 格式: 文件名 | 时间 | 字节 | 备注(可选)
-    const parts = line.split("|").map(p => p.trim());
-    if (parts.length < 3) continue;
-    const [file, date, size, note] = parts;
-    DATA.push({ file, date, size: Number(size) || 0, note: note || "" });
+function render(){
+  const q=(document.getElementById('q').value||'').trim().toLowerCase();
+  const list=document.getElementById('list'); list.innerHTML='';
+  let shown=0;
+  for(const [file,o] of Object.entries(window._data||{})){
+    const name=decodeURIComponent(file).replace(/\.json$/i,'');
+    if(q && !name.toLowerCase().includes(q) && !(o.note||'').toLowerCase().includes(q))continue;
+    shown++;
+    const url=BASE_PATH+encodeURIComponent(file);
+    const recent=isRecent(o.date);
+    const div=document.createElement('div'); div.className='item';
+    div.innerHTML=`
+      <div class="top">
+        <span class="name">${esc(name)}</span>
+        ${o.note?`<span class="note">${esc(o.note)}</span>`:''}
+      </div>
+      <div class="url">${esc(url)}</div>
+      <div class="meta">
+        <span class="${recent?'ok':'old'}">${esc(fmtDate(o.date)||'-')}</span>
+        <span>${esc(o.size||'-')}</span>
+        <span class="${recent?'ok':'old'}">${recent?'最新':'历史'}</span>
+        <button class="copy" onclick="copyUrl(this,'${esc(url)}')">复制</button>
+      </div>`;
+    list.appendChild(div);
   }
+  document.getElementById('stats').textContent=
+    `共 ${Object.keys(window._data||{}).length} 个接口 · 当前显示 ${shown} 个`;
+  if(shown===0) list.innerHTML='<div class="empty">没有匹配的接口</div>';
 }
 
-function render() {
-  const kw = document.getElementById("search").value.trim().toLowerCase();
-  let rows = DATA.filter(d =>
-    !kw || decodeName(d.file).toLowerCase().includes(kw) || (d.note || "").toLowerCase().includes(kw)
-  );
-
-  rows.sort((a, b) => {
-    let av = a[sortKey], bv = b[sortKey];
-    if (sortKey === "date") { av = String(av); bv = String(bv); }
-    if (av < bv) return sortAsc ? -1 : 1;
-    if (av > bv) return sortAsc ? 1 : -1;
-    return 0;
+function copyUrl(btn,url){
+  navigator.clipboard.writeText(url).then(()=>{
+    btn.textContent='已复制'; btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='复制';btn.classList.remove('done');},1500);
   });
-
-  const tbody = document.getElementById("tbody");
-  if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td class="empty" colspan="5">没有匹配的接口</td></tr>`;
-  } else {
-    tbody.innerHTML = rows.map(d => {
-      const name = decodeName(d.file);           // ★ 强制显示中文
-      const url = BASE_PATH + encodeName(name);  // 请求/链接用编码地址
-      return `
-        <tr>
-          <td class="url-cell"><a href="${url}" target="_blank" rel="noopener">${url}</a></td>
-          <td class="date hide-sm">${d.date || "-"}</td>
-          <td class="size hide-sm">${formatSize(d.size)}</td>
-          <td class="note hide-sm">${d.note || ""}</td>
-          <td><button class="copy" onclick='copyText("${url}")'>复制接口</button></td>
-        </tr>
-      `;
-    }).join("");
-  }
-  document.getElementById("count").textContent = `共 ${rows.length} / ${DATA.length} 个`;
 }
 
-function setSort(key) {
-  if (sortKey === key) sortAsc = !sortAsc;
-  else { sortKey = key; sortAsc = (key === "date"); }
-  render();
-}
-
-(async function init() {
-  document.getElementById("search").addEventListener("input", render);
-  try {
-    await loadList();
-    render();
-  } catch (e) {
-    document.getElementById("tbody").innerHTML =
-      `<tr><td class="empty" colspan="5">⚠️ ${e.message}<br><small>请把 list.txt 放在本页面同目录，或修改 LIST_URL</small></td></tr>`;
-    console.error(e);
-  }
-})();
+load().then(d=>{window._data=d; render();}).catch(e=>{
+  document.getElementById('list').innerHTML='<div class="empty">加载 list.txt 失败：'+esc(e.message)+'<br>请确认 list.txt 与本页面在同一目录</div>';
+});
 </script>
 </body>
 </html>
