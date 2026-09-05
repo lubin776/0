@@ -1,125 +1,134 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVBox 接口</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f5f5f5;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #1976d2;
-        }
-        .api-item {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .api-name {
-            font-weight: bold;
-            color: #1976d2;
-            font-size: 16px;
-        }
-        .api-meta {
-            color: #666;
-            font-size: 13px;
-            margin-top: 4px;
-        }
-        .api-date {
-            color: #4caf50;
-        }
-        .copy-btn {
-            background: #2196f3;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            white-space: nowrap;
-        }
-        .copy-btn:hover { background: #1976d2; }
-        .copy-btn:active { background: #0d47a1; }
-        .empty {
-            padding: 40px;
-            text-align: center;
-            color: #999;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #aaa;
-            font-size: 12px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海量接口搬运备份</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background:#f5f7fa; color:#333; padding:16px; }
+.container { max-width:720px; margin:0 auto; }
+h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
+.subtitle { text-align:center; font-size:0.85rem; color:#999; margin-bottom:24px; }
+.search-box { width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; margin-bottom:16px; outline:none; background:#fff; }
+.search-box:focus { border-color:#4a9eff; }
+.card { background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+.card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.card-name { font-size:0.95rem; font-weight:600; }
+.card-note { font-size:0.75rem; background:#e8f4ff; color:#4a9eff; padding:2px 8px; border-radius:4px; }
+.card-meta { font-size:0.78rem; color:#aaa; margin-bottom:10px; }
+.card-meta .dot-new { color:#22c55e; }
+.card-meta .dot-old { color:#f59e0b; }
+.link-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.link-tag { font-size:0.72rem; background:#f0f0f0; color:#666; padding:2px 6px; border-radius:3px; min-width:28px; text-align:center; flex-shrink:0; }
+.link-url { flex:1; font-size:0.82rem; color:#4a9eff; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.link-url:hover { text-decoration:underline; }
+.copy-btn { flex-shrink:0; padding:3px 10px; background:#4a9eff; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:0.75rem; }
+.copy-btn:active { background:#3a8eef; }
+.loading, .empty { text-align:center; color:#bbb; padding:40px 0; font-size:0.9rem; }
+@media (max-width:480px) { body { padding:10px; } h1 { font-size:1.15rem; } .card { padding:12px; } }
+</style>
 </head>
 <body>
-    <h1>TVBox 接口列表</h1>
-    <div id="content">加载中...</div>
-    <div class="footer">数据来源：GitHub Actions 每日自动更新</div>
+<div class="container">
+  <h1>海量接口搬运备份</h1>
+  <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
+  <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
+  <div id="list"><div class="loading">正在加载接口列表...</div></div>
+</div>
 
-    <script>
-    fetch('list.txt')
-        .then(r => {
-            if (!r.ok) throw new Error('暂无数据');
-            return r.text();
-        })
-        .then(text => {
-            const lines = text.trim().split('\n').filter(l => l.trim());
-            if (lines.length === 0) throw new Error('空');
+<script>
+// ★★★ 排序权重（数字越小越靠前，不写在这里的排最后随机）★★★
+const WEIGHTS = {
+  "饭太硬一线.json": 1,
+  "嗷呜线路.json": 2,
+  "摸鱼线路.json": 3,
+  // "肥猫.json": 4,
+};
 
-            let html = '';
-            lines.forEach(line => {
-                const parts = line.split('|');
-                const fileName = parts[0] || '';
-                const date = parts[1] || '';
-                const size = parts[2] || '';
-                const note = parts[3] || '';
-                const name = fileName.replace('.json', '');
+const DOMAINS = [
+  { tag: "一线", base: "https://0.12yue.de5.net/tvbox/" },
+  { tag: "二线", base: "https://0.cdz.qzz.io/qzz/tvbox/"  },
+  { tag: "三线", base: "https://0.wdzb.eu.cc/tvbox/"       },
+];
 
-                html += `
-                <div class="api-item">
-                    <div>
-                        <div class="api-name">${note || name}</div>
-                        <div class="api-meta">${size} | <span class="api-date">${date}</span></div>
-                    </div>
-                    <button class="copy-btn" onclick="copyJson('${fileName}')">复制 JSON</button>
-                </div>`;
-            });
+function decodeName(f) { try{return decodeURIComponent(f)}catch{return f} }
 
-            document.getElementById('content').innerHTML = html;
-        })
-        .catch(() => {
-            document.getElementById('content').innerHTML =
-                '<div class="empty">暂无可用接口数据<br>等待工作流首次运行后生成</div>';
-        });
+function isRecent(d) {
+  if(!d || d.length!==8) return false;
+  const t = new Date(parseInt(d.slice(0,4)), parseInt(d.slice(4,6))-1, parseInt(d.slice(6,8)));
+  return (Date.now()-t.getTime())/(864e5) <= 2;
+}
 
-    function copyJson(fileName) {
-        fetch('output/' + fileName)
-            .then(r => {
-                if (!r.ok) throw new Error('文件不存在');
-                return r.json();
-            })
-            .then(data => {
-                navigator.clipboard.writeText(JSON.stringify(data, null, 2));
-                alert('已复制 ' + fileName);
-            })
-            .catch(() => alert('读取失败：文件可能尚未生成'));
-    }
-    </script>
+function renderItem(file, date, size, note) {
+  const name = decodeName(file).replace(/\.json$/i,'');
+  const isNew = isRecent(date);
+  let html = `<div class="card">
+    <div class="card-top">
+      <div class="card-name">${name}</div>
+      ${note?`<span class="card-note">${note}</span>`:''}
+    </div>
+    <div class="card-meta">
+      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最新':'● 历史'}</span>
+      &nbsp;${date||'-'}&nbsp;&nbsp;📦 ${size||'-'}
+    </div>`;
+  DOMAINS.forEach(d => {
+    const url = d.base + encodeURIComponent(file);       // href 编码
+    const copyUrl = d.base + decodeName(file);            // 复制用中文
+    const disp = d.base + decodeName(file);
+    html += `<div class="link-row">
+      <span class="link-tag">${d.tag}</span>
+      <a class="link-url" href="${url}" target="_blank">${disp}</a>
+      <button class="copy-btn" onclick="copy('${copyUrl}',this)">复制</button>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function copy(url, btn) {
+  navigator.clipboard.writeText(url).then(()=>{
+    btn.textContent='已复制';
+    setTimeout(()=>btn.textContent='复制',1200);
+  });
+}
+
+function filterList() {
+  const kw = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display = c.textContent.toLowerCase().includes(kw) ? '' : 'none';
+  });
+}
+
+fetch('list.txt?t='+Date.now())
+  .then(r=>r.text())
+  .then(text=>{
+    const lines = text.trim().split('\n').filter(Boolean);
+    if(!lines.length){ document.getElementById('list').innerHTML='<div class="empty">暂无接口数据</div>'; return; }
+    const map = {};
+    lines.forEach(line=>{
+      const parts = line.trim().split('|');
+      if(parts.length<2) return;
+      const [file, date, size, note] = parts;
+      map[file] = {date, size:size||'', note:note||''};
+    });
+    let items = Object.entries(map).map(([file, info]) => ({
+      file, ...info,
+      weight: WEIGHTS[file] ?? null
+    }));
+    items.sort((a, b) => {
+      if (a.weight !== null && b.weight !== null) return a.weight - b.weight;
+      if (a.weight !== null) return -1;
+      if (b.weight !== null) return 1;
+      return Math.random() - 0.5;
+    });
+    document.getElementById('list').innerHTML = items.map(i =>
+      renderItem(i.file, i.date, i.size, i.note)
+    ).join('');
+  })
+  .catch(()=>{
+    document.getElementById('list').innerHTML = '<div class="loading">加载失败，请确认 list.txt 存在</div>';
+  });
+</script>
 </body>
 </html>
