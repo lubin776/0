@@ -333,7 +333,7 @@ HEADERS_BASE = {
     "Connection": "keep-alive",
 }
 OUTPUT_DIR = "output"
-LIST_TXT = "list.txt"   
+LIST_TXT = "list.txt"
 MAX_DEPTH = 5
 REQUEST_TIMEOUT = 20
 TOTAL_TIMEOUT = 45
@@ -535,7 +535,7 @@ def _looks_like_url(value):
 
 
 # ======================================================================
-# list.txt —— 插入式更新日志
+# list.txt —— 去重汇总（每个接口只保留最新一条）
 # ======================================================================
 def fmt_size(num_bytes):
     """字节 → 人类可读：<1024 显示 B，否则显示 K（保留 1 位小数）。无效返回 '-'"""
@@ -570,6 +570,7 @@ def _note_of(name):
 
 
 def load_list_txt(path=LIST_TXT):
+    """读取 list.txt，返回 {file_name: (date_str, size_str, note_str)} 字典（天然去重，后者覆盖前者）"""
     latest = {}
     if not os.path.exists(path):
         return latest
@@ -591,33 +592,39 @@ def load_list_txt(path=LIST_TXT):
     return latest
 
 
-def append_list_txt(name, date_str, size_k="-", note="", path=LIST_TXT):
+def save_list_txt(latest, path=LIST_TXT):
+    """将去重后的字典覆盖写入 list.txt（每个接口一行，按日期倒序）"""
     os.makedirs(os.path.dirname(path) if os.path.dirname(path) else ".", exist_ok=True)
-    file_name = _file_key(name) + ".json"
-    note = note or _note_of(name)
-    line = f"{file_name}|{date_str}|{size_k}|{note}\n"
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(line)
-    return line.strip()
+    with open(path, "w", encoding="utf-8") as f:
+        for file_name, rec in sorted(latest.items(), key=lambda kv: kv[1][0], reverse=True):
+            date_str, size_str, note_str = rec if len(rec) == 3 else (rec[0], rec[1], "")
+            f.write(f"{file_name}|{date_str}|{size_str}|{note_str}\n")
 
 
 def update_list_txt(results, path=LIST_TXT):
+    """
+    ★ 核心：把本次成功结果合并进 list.txt，每个接口只保留最新一条。
+    流程：读已有（历次去重后的全量）→ 本次成功覆盖同名 → 覆盖写回。
+    """
     today = today_str()
-    latest = load_list_txt(path)
+    latest = load_list_txt(path)                          # 读历次成功条目（去重后）
 
     for info in results:
         name = info.get("name")
         if not name:
             continue
-        if info.get("ok"):
+        if info.get("ok"):                                # 仅成功接口参与更新
+            file_name = _file_key(name) + ".json"
             date_str = info.get("date") or today
             size_k = fmt_size(info.get("bytes"))
             note = info.get("note") or _note_of(name)
-            append_list_txt(name, date_str, size_k, note, path)
-            latest[_file_key(name) + ".json"] = (date_str, size_k, note)
+            latest[file_name] = (date_str, size_k, note)  # ★ 同名覆盖，只留最新
 
+    save_list_txt(latest, path)                           # 覆盖写回（不再追加）
+
+    # 打印汇总
     print("\n" + "=" * 62)
-    print(f"  list.txt 更新记录  ({path})")
+    print(f"  list.txt 更新记录（去重，每接口一行）  ({path})")
     print("=" * 62)
     if not latest:
         print("  （暂无成功记录）")
@@ -973,6 +980,7 @@ def main():
             print(f"  ✗ 全部失败: {e}")
             summary.append({"name": name, "status": "FAILED", "file": None, "ok": False})
 
+    # ★ 更新 list.txt（去重，每接口只留最新一条）
     update_list_txt(summary, LIST_TXT)
 
     report = os.path.join(OUTPUT_DIR, "SUMMARY.txt")
@@ -1076,12 +1084,9 @@ def selftest():
     assert resolved["spider"] == base + "spider.jar"
     assert resolved["wallpaper"] == "https://wp.upx8.com/api.php"
     assert resolved["sites"][0]["api"] == "csp_Market"
-    # ext 对象内的相对路径
     assert resolved["sites"][0]["ext"]["json"] == base + "lib/哔哩合集.png"
     assert resolved["sites"][0]["ext"]["cookie"] == base + "lib/blc.png"
-    # ext.site 数组中的相对路径
     assert resolved["sites"][0]["ext"]["site"][1] == base + "local.txt"
-    # ext 为字符串
     assert resolved["sites"][1]["ext"] == "https://example.com/path/icons/icon.png"
     assert resolved["lives"][0]["url"] == base + "live.m3u"
     assert resolved["parses"][0]["url"] == base + "parse.js"
@@ -1091,27 +1096,31 @@ def selftest():
     assert json.loads(no_change)["spider"] == "./x.jar"
     print("[测试7] ✓ 无源 URL 时不修改")
 
+    # ★ 自测8：验证 list.txt 去重逻辑（本次成功覆盖同名，失败保留历史）
     import tempfile
     with tempfile.TemporaryDirectory() as tmp:
         lp = os.path.join(tmp, "list.txt")
+        # 模拟：根目录已有历次成功条目
         with open(lp, "w", encoding="utf-8") as f:
-            f.write("饭太硬.json|20260903\n")
-            f.write("嗷呜.json|20260901\n")
+            f.write("饭太硬.json|20260903|16.5K|饭太硬\n")
+            f.write("嗷呜.json|20260901|12.0K|嗷呜\n")
         fake_results = [
-            {"name": "饭太硬", "ok": True,  "bytes": 24576},
+            {"name": "饭太硬", "ok": True,  "bytes": 24576, "date": "20260905"},
             {"name": "嗷呜",   "ok": False, "bytes": 0},
-            {"name": "香雅情", "ok": True,  "bytes": 32768},
+            {"name": "香雅情", "ok": True,  "bytes": 32768, "date": "20260905"},
         ]
         update_list_txt(fake_results, lp)
         latest = load_list_txt(lp)
-        assert latest["饭太硬.json"] == ("20260905", "24.0K"), latest["饭太硬.json"]
-        assert latest["香雅情.json"] == ("20260905", "32.0K"), latest["香雅情.json"]
-        assert latest["嗷呜.json"] == ("20260901", "-"), latest["嗷呜.json"]
+        assert latest["饭太硬.json"] == ("20260905", "24.0K", "饭太硬"), latest["饭太硬.json"]
+        assert latest["香雅情.json"] == ("20260905", "32.0K", "香雅情"), latest["香雅情.json"]
+        assert latest["嗷呜.json"] == ("20260901", "12.0K", "嗷呜"), latest["嗷呜.json"]
+        # 确认文件里每个接口只有一行（去重）
         with open(lp, "r", encoding="utf-8") as f:
             content = f.read()
-        assert "|" in content and "\t" not in content
-        assert "24.0K" in content and "32.0K" in content
-        print("[测试8] ✓ list.txt 插入式追加 + 体积列 + 失败沿用上次时间（分隔符=|）")
+        assert content.count("饭太硬.json") == 1
+        assert content.count("嗷呜.json") == 1
+        assert content.count("香雅情.json") == 1
+        print("[测试8] ✓ list.txt 去重：本次成功覆盖同名，失败保留历史，每接口仅一行")
 
     print("\n" + "=" * 62)
     print("  全部自测通过 ✓")
