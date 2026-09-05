@@ -1,5 +1,5 @@
-// AES-128-CBC 纯 JS 实现（列优先，FIPS 197 标准）
-// 已通过 Python pycryptodome 标准向量验证
+// aes.js - AES-128-CBC 纯 JS 实现（列优先，FIPS 197）
+// 已用 Python pycryptodome 标准向量交叉验证
 
 (function (global) {
   const SBOX = [
@@ -48,35 +48,32 @@
 
   function decryptBlock(block, rk) {
     const Nr=10;
-    let state=new Uint8Array(16);
-    for(let i=0;i<16;i++) state[i]=block[i]^rk[16*Nr+i];
-    function invSubBytes(s){for(let i=0;i<256;i++){const idx=SBOX.indexOf(i);if(idx!==-1)s[i]=idx;}}
-    function invShiftRows(s){
-      const r=new Uint8Array(16);r.set(s);
-      for(let c=0;c<4;c++){r[1+4*c]=s[1+((c+1)%4)*4];r[2+4*c]=s[2+((c+2)%4)*4];r[3+4*c]=s[3+((c+3)%4)*4];}
-      s.set(r);
-    }
-    function invMixColumns(s){
-      for(let c=0;c<4;c++){
-        const i=4*c,a0=s[i],a1=s[i+1],a2=s[i+2],a3=s[i+3];
-        const mul=function(a,b){let r=0;for(let x=b;x;x>>=1){if(x&1)r^=a;a=xtime(a);}return r;};
+    const s=new Uint8Array(16);
+    for(let i=0;i<16;i++) s[i]=block[i]^rk[16*Nr+i];
+
+    // InvShiftRows
+    function invShiftRows(){const r=new Uint8Array(16);r.set(s);
+      for(let c=0;c<4;c++){r[1+4*c]=s[1+((c+1)%4)*4];r[2+4*c]=s[2+((c+2)%4)*4];r[3+4*c]=s[3+((c+3)%4)*4];}s.set(r);}
+    // InvSubBytes
+    function invSubBytes(){const inv=new Uint8Array(256);for(let i=0;i<256;i++)inv[SBOX[i]]=i;for(let i=0;i<16;i++)s[i]=inv[s[i]];}
+    // InvMixColumns
+    function invMixColumns(){const mul=function(a,b){let r=0;for(let x=b;x;x>>=1){if(x&1)r^=a;a=xtime(a);}return r;};
+      for(let c=0;c<4;c++){const i=4*c,a0=s[i],a1=s[i+1],a2=s[i+2],a3=s[i+3];
         s[i]=mul(a0,0x0e)^mul(a1,0x0b)^mul(a2,0x0d)^mul(a3,0x09);
         s[i+1]=mul(a0,0x09)^mul(a1,0x0e)^mul(a2,0x0b)^mul(a3,0x0d);
         s[i+2]=mul(a0,0x0d)^mul(a1,0x09)^mul(a2,0x0e)^mul(a3,0x0b);
-        s[i+3]=mul(a0,0x0b)^mul(a1,0x0d)^mul(a2,0x09)^mul(a3,0x0e);
-      }
-    }
-    for(let r=Nr-1;r>=1;r--){
-      invShiftRows(state); invSubBytes(state);
-      for(let i=0;i<16;i++) state[i]^=rk[16*r+i];
-      invMixColumns(state);
-    }
-    invShiftRows(state); invSubBytes(state);
-    for(let i=0;i<16;i++) state[i]^=rk[i];
-    return state;
+        s[i+3]=mul(a0,0x0b)^mul(a1,0x0d)^mul(a2,0x09)^mul(a3,0x0e);}}
+    // AddRoundKey
+    function addRk(round){for(let i=0;i<16;i++)s[i]^=rk[16*round+i];}
+
+    addRk(Nr);
+    for(let r=Nr-1;r>=1;r--){invShiftRows();invSubBytes();addRk(r);invMixColumns();}
+    invShiftRows();invSubBytes();addRk(0);
+    return s;
   }
 
   function decryptCBC(ciphertext, key, iv) {
+    if (ciphertext.length % 16 !== 0) throw new Error("密文长度不是16倍数");
     const rk=expandKey(key);
     let prev=iv.slice(0,16);
     const plain=new Uint8Array(ciphertext.length);
@@ -89,11 +86,7 @@
     }
     // PKCS7 unpad
     const pad=plain[pos-1];
-    if(pad>=1&&pad<=16){
-      let valid=true;
-      for(let i=pos-pad;i<pos;i++) if(plain[i]!==pad){valid=false;break;}
-      if(valid) pos-=pad;
-    }
+    if(pad>=1&&pad<=16){let valid=true;for(let i=pos-pad;i<pos;i++)if(plain[i]!==pad){valid=false;break;}if(valid)pos-=pad;}
     return new TextDecoder().decode(plain.slice(0,pos));
   }
 
