@@ -1,17 +1,5 @@
-TVBox 接口抓取报告  20260905_163207
+TVBox 接口抓取报告  20260906_005307
 ==============================================================
-
-[菠菜园pro] okhttp/3.15
-  状态: JSON
-  文件: output/菠菜园pro.json
-
-[菠菜园] okhttp/3.15
-  状态: JSON
-  文件: output/菠菜园.json
-
-[少儿频道] okhttp/3.15
-  状态: JSON
-  文件: output/少儿频道.json
 
 [饭太硬一线] okhttp/3.15
   状态: JSON
@@ -41,7 +29,7 @@ TVBox 接口抓取报告  20260905_163207
   状态: JSON
   文件: output/肥猫二线.json
 
-[王二小一线] okhttp/3.15
+[王二小一线] TVBox/1.0.0
   状态: JSON
   文件: output/王二小一线.json
 
