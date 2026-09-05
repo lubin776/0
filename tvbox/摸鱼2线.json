@@ -1,5 +1,5 @@
 {
-  "spider": "https://tc-new.z.wiki/autoupload/k2fxc/20260902/xJZz/fish09020618.jar;md5;282aee405654188f1bc1822bbf137410",
+  "spider": "https://qiniu.gongxueyun.com/upload/6180265/2026-09-01/training_record/950055803_4_1788301315144.jar;md5;282aee405654188f1bc1822bbf137410",
   "logo": "https://modelscope-resouces.oss-cn-zhangjiakou.aliyuncs.com/avatar%2Ff5309172-1af6-4c4f-a1c5-a4773a1cc718.gif",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "sites": [
@@ -124,7 +124,7 @@
       "quickSearch": 1,
       "filterable": 1,
       "changeable": 0,
-      "ext": "https://6800.kstore.vip/AT5gVJoBJLBjA8bGv16T3JrqN2LXBIOz+yh3i+Q62mrf39gRwFyDvBsZFicI+C39mJcLm9J7qY/293gromRPJAf+9zAbwWTtKnR5Ums7P1Q5ts6eqP1gLc/RID4P3Mia9LSNqOxWJ8U9XZRYJl6gdtnZo7oR8T8JMWvWFVZzu5pAGSlzcJxMzqaVrWaPTrC3x790BI+cfF1ogCKAwNaVQxU="
+      "ext": "http:///AT5gVJoBJLBjA8bGv16T3JrqN2LXBIOz+yh3i+Q62mrf39gRwFyDvBsZFicI+C39mJcLm9J7qY/293gromRPJAf+9zAbwWTtKnR5Ums7P1Q5ts6eqP1gLc/RID4P3Mia9LSNqOxWJ8U9XZRYJl6gdtnZo7oR8T8JMWvWFVZzu5pAGSlzcJxMzqaVrWaPTrC3x790BI+cfF1ogCKAwNaVQxU="
     },
     {
       "key": "花信",
@@ -136,7 +136,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/huaxin"
+        "site": "http:///huaxin"
       }
     },
     {
@@ -149,7 +149,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/yanchi"
+        "site": "http:///yanchi"
       }
     },
     {
@@ -162,7 +162,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/sujian"
+        "site": "http:///sujian"
       }
     },
     {
@@ -175,7 +175,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/danqing"
+        "site": "http:///danqing"
       }
     },
     {
@@ -185,7 +185,7 @@
       "api": "csp_AppQi",
       "searchable": 1,
       "changeable": 1,
-      "ext": "https://6800.kstore.vip/AdYEovlEKsDy77+R58YGahWCxrDZyBxExcQNC2NSeH0n1b5mu6tvh8b4Eh0RCpoPF6eivKdrR1Hsb8X4sSVBS8zF6jkwLW+wze9yh+hSY5iimm4gM9mAtmt0obTi+6Iox/Jp4GCsN4MQyFebMK162SKnILklpXc1UMiJv9gnPOe5aOPUxCftL+x7/UGhBdFYWIegpiHvKeavUtCUkhxtDyC8KqVVPPW0StI5GdmUA3WBbnnrNiKqNc5GBmrffd6pDN+Cf9IIjzNNvos/5KXJmBbe/baAzTLkoafeIoDhO451"
+      "ext": "http:///AdYEovlEKsDy77+R58YGahWCxrDZyBxExcQNC2NSeH0n1b5mu6tvh8b4Eh0RCpoPF6eivKdrR1Hsb8X4sSVBS8zF6jkwLW+wze9yh+hSY5iimm4gM9mAtmt0obTi+6Iox/Jp4GCsN4MQyFebMK162SKnILklpXc1UMiJv9gnPOe5aOPUxCftL+x7/UGhBdFYWIegpiHvKeavUtCUkhxtDyC8KqVVPPW0StI5GdmUA3WBbnnrNiKqNc5GBmrffd6pDN+Cf9IIjzNNvos/5KXJmBbe/baAzTLkoafeIoDhO451"
     },
     {
       "key": "枫眠",
@@ -194,7 +194,7 @@
       "api": "csp_AppGet",
       "searchable": 1,
       "changeable": 1,
-      "ext": "https://6800.kstore.vip/AWdPh5PnFxq1XZ1+qPrYSqER0/V56CsPtyhgchXfwuAECyRqGnmaLDChTlIn6qwjfE0Hr9d1et+8HEB6MOa6J+NFI/q9jj1dLRTXdE2kKzczaxo6/yaY9q8jEfksZElPK2hPF0UlOPg3Dy5xjGlHXKPA4p5WFet29QlPbubxC6L1"
+      "ext": "http:///AWdPh5PnFxq1XZ1+qPrYSqER0/V56CsPtyhgchXfwuAECyRqGnmaLDChTlIn6qwjfE0Hr9d1et+8HEB6MOa6J+NFI/q9jj1dLRTXdE2kKzczaxo6/yaY9q8jEfksZElPK2hPF0UlOPg3Dy5xjGlHXKPA4p5WFet29QlPbubxC6L1"
     },
     {
       "key": "长泽",
@@ -213,7 +213,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/yunxiu"
+        "site": "http:///yunxiu"
       }
     },
     {
@@ -298,7 +298,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/chaliao"
+        "site": "http:///chaliao"
       }
     },
     {
@@ -311,7 +311,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/qitong"
+        "site": "http:///qitong"
       }
     },
     {
@@ -324,7 +324,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/jinshu"
+        "site": "http:///jinshu"
       }
     },
     {
@@ -337,7 +337,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/qiping"
+        "site": "http:///qiping"
       }
     },
     {
@@ -350,7 +350,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/zhuyin"
+        "site": "http:///zhuyin"
       }
     },
     {
@@ -363,7 +363,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/yujie"
+        "site": "http:///yujie"
       }
     },
     {
@@ -376,7 +376,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/xiangzhu"
+        "site": "http:///xiangzhu"
       }
     },
     {
@@ -389,7 +389,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/songting"
+        "site": "http:///songting"
       }
     },
     {
@@ -402,7 +402,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/zhiyuan"
+        "site": "http:///zhiyuan"
       }
     },
     {
@@ -415,7 +415,7 @@
       "changeable": 0,
       "ext": {
         "php": "https://max.moyu666666.top/niulai.php",
-        "site": "https://6800.kstore.vip/moyan"
+        "site": "http:///moyan"
       }
     },
     {
@@ -425,7 +425,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/zn"
+        "playname": "http:///zn"
       }
     },
     {
@@ -435,7 +435,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/xg"
+        "playname": "http:///xg"
       }
     },
     {
@@ -445,7 +445,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/lz"
+        "playname": "http:///lz"
       }
     },
     {
@@ -455,7 +455,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/hj"
+        "playname": "http:///hj"
       }
     },
     {
@@ -465,7 +465,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/sy"
+        "playname": "http:///sy"
       }
     },
     {
@@ -475,7 +475,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/jh"
+        "playname": "http:///jh"
       }
     },
     {
@@ -485,7 +485,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/zh"
+        "playname": "http:///zh"
       }
     },
     {
@@ -495,7 +495,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/zs"
+        "playname": "http:///zs"
       }
     },
     {
@@ -505,7 +505,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/qy"
+        "playname": "http:///qy"
       }
     },
     {
@@ -515,7 +515,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/gl"
+        "playname": "http:///gl"
       }
     },
     {
@@ -525,7 +525,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/mj"
+        "playname": "http:///mj"
       }
     },
     {
@@ -535,7 +535,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/cm"
+        "playname": "http:///cm"
       }
     },
     {
@@ -545,7 +545,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/xc"
+        "playname": "http:///xc"
       }
     },
     {
@@ -555,7 +555,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/nz"
+        "playname": "http:///nz"
       }
     },
     {
@@ -565,7 +565,7 @@
       "type": 3,
       "ext": {
         "php": "https://max.moyu666666.top/appun.php",
-        "playname": "https://6800.kstore.vip/mc"
+        "playname": "http:///mc"
       }
     },
     {
@@ -935,7 +935,7 @@
       "filterable": 1,
       "ext": {
         "host": "https://short.fishcloud.top",
-        "quality": "https://6800.kstore.vip/1080p",
+        "quality": "http:///1080p",
         "danmu": false
       }
     },
@@ -995,7 +995,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://6800.kstore.vip/AUzH3yIWvgQkyhQw17uONTsfuN8PupZ/LJdr5C31Y/CWlzSNmarYI5kaJYN5c0p6+Oq0tXuTutQo9MHHytxulL5kmapDuAK5+2NTlpsUgBnr0tOamm69Fwb+jFDQ7VW46qf5EFY+Ea3PHzkpfeObKPM="
+      "ext": "http:///AUzH3yIWvgQkyhQw17uONTsfuN8PupZ/LJdr5C31Y/CWlzSNmarYI5kaJYN5c0p6+Oq0tXuTutQo9MHHytxulL5kmapDuAK5+2NTlpsUgBnr0tOamm69Fwb+jFDQ7VW46qf5EFY+Ea3PHzkpfeObKPM="
     },
     {
       "key": "Gugu",
@@ -1005,7 +1005,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://6800.kstore.vip/ARKK6LQnl4dB2QciLugEzZ8QD2WdbeK23tPAre1QOEbbL5BfB8cV39JNfSd2+Xhcqr/z+V5To0krLYHUX7NtRtwYBC44/9ayncZMomdbv4ZCBNOUsBEedUQx7SWf1J0pE0BsLG9QlR8tURwRwx/sqT0="
+      "ext": "http:///ARKK6LQnl4dB2QciLugEzZ8QD2WdbeK23tPAre1QOEbbL5BfB8cV39JNfSd2+Xhcqr/z+V5To0krLYHUX7NtRtwYBC44/9ayncZMomdbv4ZCBNOUsBEedUQx7SWf1J0pE0BsLG9QlR8tURwRwx/sqT0="
     },
     {
       "key": "Jianpian",
@@ -1084,11 +1084,11 @@
       "changeable": 1,
       "ext": {
         "categories": [
-          "https://6800.kstore.vip/周杰伦",
-          "https://6800.kstore.vip/林俊杰",
-          "https://6800.kstore.vip/陈奕迅",
-          "https://6800.kstore.vip/邓紫棋",
-          "https://6800.kstore.vip/薛之谦"
+          "http:///周杰伦",
+          "http:///林俊杰",
+          "http:///陈奕迅",
+          "http:///邓紫棋",
+          "http:///薛之谦"
         ]
       }
     },

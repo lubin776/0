@@ -1,215 +1,223 @@
-TVBox 接口抓取报告  20260906_010421
+TVBox 接口抓取报告  20260906_072423
 ==============================================================
 
-[饭太硬一线] okhttp/3.15
+[菠菜pro] okhttp/3.15
   状态: JSON
-  文件: output/饭太硬一线.json
+  文件: output/菠菜pro.json
 
-[饭太硬二线] okhttp/3.15
+[菠菜园] okhttp/3.15
   状态: JSON
-  文件: output/饭太硬二线.json
+  文件: output/菠菜园.json
 
-[饭太硬三线] okhttp/3.15
+[少儿频道] okhttp/3.15
   状态: JSON
-  文件: output/饭太硬三线.json
+  文件: output/少儿频道.json
 
-[饭太硬四线] okhttp/3.15
+[饭太硬] okhttp/3.15
   状态: JSON
-  文件: output/饭太硬四线.json
+  文件: output/饭太硬.json
 
-[饭太硬五线] okhttp/3.15
+[饭太硬2线] okhttp/3.15
   状态: JSON
-  文件: output/饭太硬五线.json
+  文件: output/饭太硬2线.json
 
-[肥猫一线] okhttp/3.15
+[饭太硬3线] okhttp/3.15
   状态: JSON
-  文件: output/肥猫一线.json
+  文件: output/饭太硬3线.json
 
-[肥猫二线] okhttp/3.15
+[饭太硬4线] okhttp/3.15
   状态: JSON
-  文件: output/肥猫二线.json
+  文件: output/饭太硬4线.json
 
-[王二小一线] okhttp/3.15
+[饭太硬5线] okhttp/3.15
   状态: JSON
-  文件: output/王二小一线.json
+  文件: output/饭太硬5线.json
 
-[王二小二线] okhttp/3.15
+[饭太硬6线] okhttp/3.15
   状态: JSON
-  文件: output/王二小二线.json
+  文件: output/饭太硬6线.json
 
-[集多一线] okhttp/3.15
+[嗷呜] okhttp/3.15
   状态: JSON
-  文件: output/集多一线.json
+  文件: output/嗷呜.json
 
-[集多二线] 
+[嗷呜2线] okhttp/3.15
+  状态: JSON
+  文件: output/嗷呜2线.json
+
+[嗷呜3线] okhttp/3.15
+  状态: JSON
+  文件: output/嗷呜3线.json
+
+[肥猫] okhttp/3.15
+  状态: JSON
+  文件: output/肥猫.json
+
+[肥猫2线] okhttp/3.15
+  状态: JSON
+  文件: output/肥猫2线.json
+
+[王二小] okhttp/3.15
+  状态: JSON
+  文件: output/王二小.json
+
+[王二小2线] okhttp/3.15
+  状态: JSON
+  文件: output/王二小2线.json
+
+[王二小3线] okhttp/3.15
+  状态: JSON
+  文件: output/王二小3线.json
+
+[集多] okhttp/3.15
+  状态: JSON
+  文件: output/集多.json
+
+[集多2线] 
   状态: FAILED
   文件: None
 
-[嗷呜一线] okhttp/3.15
+[集多3线] okhttp/3.15
   状态: JSON
-  文件: output/嗷呜一线.json
+  文件: output/集多3线.json
 
-[嗷呜二线] okhttp/3.15
+[摸鱼] okhttp/3.15
   状态: JSON
-  文件: output/嗷呜二线.json
+  文件: output/摸鱼.json
 
-[嗷呜三线] okhttp/3.15
+[摸鱼2线] okhttp/3.15
   状态: JSON
-  文件: output/嗷呜三线.json
+  文件: output/摸鱼2线.json
 
-[潇洒一线] okhttp/3.15
+[摸鱼3线] okhttp/3.15
   状态: JSON
-  文件: output/潇洒一线.json
+  文件: output/摸鱼3线.json
 
-[潇洒二线] 
+[摸鱼4线] okhttp/3.15
+  状态: JSON
+  文件: output/摸鱼4线.json
+
+[南风] okhttp/3.15
+  状态: JSON
+  文件: output/南风.json
+
+[南风2线] okhttp/3.15
+  状态: JSON
+  文件: output/南风2线.json
+
+[潇洒] 
   状态: FAILED
   文件: None
 
-[潇洒三线] 
+[潇洒2线] okhttp/3.15
+  状态: JSON
+  文件: output/潇洒2线.json
+
+[潇洒3线] 
   状态: FAILED
   文件: None
-
-[摸鱼一线] okhttp/3.15
-  状态: JSON
-  文件: output/摸鱼一线.json
-
-[摸鱼二线] okhttp/3.15
-  状态: JSON
-  文件: output/摸鱼二线.json
-
-[摸鱼三线] okhttp/3.15
-  状态: JSON
-  文件: output/摸鱼三线.json
-
-[星微Vip线] okhttp/3.15
-  状态: JSON
-  文件: output/星微Vip线.json
-
-[小不点线] okhttp/3.15
-  状态: JSON
-  文件: output/小不点线.json
 
 [嗨哥魔改] okhttp/3.15
   状态: TEXT
   文件: output/嗨哥魔改.json
 
-[讴歌线路] 
+[讴歌] 
   状态: FAILED
   文件: None
 
-[香雅情线] 
+[香雅情] 
   状态: FAILED
   文件: None
 
-[老张线路] okhttp/3.15
+[老张] okhttp/3.15
   状态: JSON
-  文件: output/老张线路.json
+  文件: output/老张.json
 
-[南风一线] okhttp/3.15
+[挺好] okhttp/3.15
   状态: JSON
-  文件: output/南风一线.json
+  文件: output/挺好.json
 
-[南风二线] okhttp/3.15
+[小马] okhttp/3.15
   状态: JSON
-  文件: output/南风二线.json
+  文件: output/小马.json
 
-[挺好线路] okhttp/3.15
+[驸马] okhttp/3.15
   状态: JSON
-  文件: output/挺好线路.json
+  文件: output/驸马.json
 
-[王二小三线] okhttp/3.15
+[周J] okhttp/3.15
   状态: JSON
-  文件: output/王二小三线.json
+  文件: output/周J.json
 
-[小马线路] okhttp/3.15
+[小米] okhttp/3.15
   状态: JSON
-  文件: output/小马线路.json
+  文件: output/小米.json
 
-[驸马线路] okhttp/3.15
+[菜妮丝] okhttp/3.15
   状态: JSON
-  文件: output/驸马线路.json
+  文件: output/菜妮丝.json
 
-[周J线路] okhttp/3.15
+[心魔] okhttp/3.15
   状态: JSON
-  文件: output/周J线路.json
+  文件: output/心魔.json
 
-[小米一线] okhttp/3.15
-  状态: JSON
-  文件: output/小米一线.json
-
-[小米二线] okhttp/3.15
-  状态: JSON
-  文件: output/小米二线.json
-
-[菜妮丝线] okhttp/3.15
-  状态: JSON
-  文件: output/菜妮丝线.json
-
-[心魔线路] okhttp/3.15
-  状态: JSON
-  文件: output/心魔线路.json
-
-[分享者线] okhttp/3.15
+[分享者] okhttp/3.15
   状态: TEXT
-  文件: output/分享者线.json
+  文件: output/分享者.json
 
-[传说线路] okhttp/3.15
+[传说] okhttp/3.15
   状态: TEXT
-  文件: output/传说线路.json
+  文件: output/传说.json
 
-[俊宇线路] okhttp/3.15
+[俊宇] okhttp/3.15
   状态: JSON
-  文件: output/俊宇线路.json
+  文件: output/俊宇.json
 
-[VOX线路] okhttp/3.15
+[clun] okhttp/3.15
   状态: JSON
-  文件: output/VOX线路.json
+  文件: output/clun.json
 
-[clun线路] okhttp/3.15
+[夏夏影] okhttp/3.15
   状态: JSON
-  文件: output/clun线路.json
+  文件: output/夏夏影.json
 
-[夏夏影线] okhttp/3.15
+[小凯] okhttp/3.15
   状态: JSON
-  文件: output/夏夏影线.json
+  文件: output/小凯.json
 
-[小凯线路] okhttp/3.15
-  状态: JSON
-  文件: output/小凯线路.json
-
-[时光线路] okhttp/3.15
+[时光] okhttp/3.15
   状态: TEXT
-  文件: output/时光线路.json
+  文件: output/时光.json
 
-[东篱线路] okhttp/3.15
+[东篱] okhttp/3.15
   状态: JSON
-  文件: output/东篱线路.json
+  文件: output/东篱.json
 
-[聚玩线路] okhttp/3.15
+[聚玩] okhttp/3.15
   状态: JSON
-  文件: output/聚玩线路.json
+  文件: output/聚玩.json
 
-[道长线路] okhttp/3.15
+[道长] okhttp/3.15
   状态: JSON
-  文件: output/道长线路.json
+  文件: output/道长.json
 
-[小苹果线] okhttp/3.15
+[小苹果] okhttp/3.15
   状态: JSON
-  文件: output/小苹果线.json
+  文件: output/小苹果.json
 
-[哈吉米线] okhttp/3.15
+[哈吉米] okhttp/3.15
   状态: JSON
-  文件: output/哈吉米线.json
+  文件: output/哈吉米.json
 
-[真六线路] okhttp/3.15
+[真六] okhttp/3.15
   状态: JSON
-  文件: output/真六线路.json
+  文件: output/真六.json
 
-[动漫线路] okhttp/3.15
+[动漫] okhttp/3.15
   状态: JSON
-  文件: output/动漫线路.json
+  文件: output/动漫.json
 
-[短剧大全] 
+[短剧] 
   状态: FAILED
   文件: None
 
@@ -217,11 +225,11 @@ TVBox 接口抓取报告  20260906_010421
   状态: TEXT
   文件: output/虎斑.json
 
-[天神一线] okhttp/3.15
+[天神] okhttp/3.15
   状态: JSON
-  文件: output/天神一线.json
+  文件: output/天神.json
 
-[天神二线] okhttp/3.15
+[星微Vip] okhttp/3.15
   状态: JSON
-  文件: output/天神二线.json
+  文件: output/星微Vip.json
 
