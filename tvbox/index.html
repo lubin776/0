@@ -2,112 +2,249 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<meta name="theme-color" content="#0f172a">
-<title>TVBox 接口表</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>简约导航</title>
 <style>
-:root{--bg:#0f172a;--card:#1e293b;--line:#334155;--txt:#e2e8f0;--sub:#94a3b8;--blue:#38bdf8;--green:#4ade80;--amber:#fbbf24}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);padding:14px;line-height:1.5}
-.wrap{max-width:900px;margin:0 auto}
-h1{font-size:1.25rem;text-align:center;margin:10px 0 16px;color:var(--blue)}
-.bar{position:sticky;top:0;z-index:10;background:var(--bg);padding:8px 0;margin-bottom:12px}
-input.search{width:100%;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--txt);font-size:1rem;outline:none}
-input.search:focus{border-color:var(--blue)}
-.stats{text-align:center;color:var(--sub);font-size:.82rem;margin-bottom:12px}
-.list{display:flex;flex-direction:column;gap:10px}
-.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
-.item .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.item .name{font-size:.95rem;color:var(--blue);word-break:break-all;font-weight:600}
-.item .note{font-size:.72rem;background:#0f172a;color:var(--sub);padding:2px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0}
-.item .url{font-size:.78rem;color:var(--sub);word-break:break-all;margin:6px 0 10px}
-.item .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.8rem}
-.item .meta span{padding:2px 8px;border-radius:6px;background:#0f172a}
-.item .meta .ok{color:var(--green)}
-.item .meta .old{color:var(--amber)}
-.item .copy{margin-left:auto;padding:7px 14px;background:var(--green);color:#041;font-weight:600;border:none;border-radius:8px;font-size:.85rem;cursor:pointer;white-space:nowrap}
-.item .copy.done{background:#6366f1;color:#fff}
-@media(min-width:720px){
- .list{gap:0}.item{border-radius:0;border-left:none;border-right:none}.item:first-child{border-top:none;border-radius:10px 10px 0 0}.item:last-child{border-bottom:none;border-radius:0 0 10px 10px}
- .item{display:grid;grid-template-columns:1fr 120px 72px 96px auto;align-items:center;gap:12px;padding:12px 14px}
- .item .url{margin:0}.item .copy{margin-left:0}
-}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green);color:#041;padding:9px 22px;border-radius:10px;font-size:.88rem;opacity:0;transition:.25s;pointer-events:none;font-weight:600}
-.toast.on{opacity:1}
-.empty{text-align:center;color:var(--sub);padding:40px 0}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f7f8fa;
+    color: #1a1a1a;
+    line-height: 1.6;
+    padding: 24px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* 顶部标题 */
+  header { text-align: center; margin-bottom: 32px; }
+  header h1 {
+    font-size: 1.5rem; font-weight: 600; letter-spacing: 2px; color: #222;
+  }
+  header .sub { font-size: 0.82rem; color: #999; margin-top: 6px; }
+
+  /* 搜索框 */
+  .search {
+    width: 100%; padding: 12px 16px; font-size: 0.95rem;
+    border: 1px solid #e4e4e7; border-radius: 12px; background: #fff;
+    outline: none; margin-bottom: 20px; transition: border .2s;
+  }
+  .search:focus { border-color: #4f8cff; }
+
+  /* 接口卡片（每行一个接口） */
+  .item {
+    background: #fff; border-radius: 14px; padding: 16px 18px;
+    margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .item:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+
+  .item-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .item-name { font-size: 1.02rem; font-weight: 600; color: #222; }
+
+  /* 备注标签 */
+  .note {
+    font-size: 0.72rem; color: #fff; background: #4f8cff;
+    padding: 2px 10px; border-radius: 20px; font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* 三个域名链接 */
+  .links { display: flex; flex-direction: column; gap: 8px; }
+  .link-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; background: #f4f6fb; border-radius: 10px;
+  }
+  .domain-tag {
+    font-size: 0.72rem; color: #4f8cff; background: #e8efff;
+    padding: 2px 8px; border-radius: 6px; font-weight: 600;
+    flex-shrink: 0; min-width: 42px; text-align: center;
+  }
+  .link-url {
+    flex: 1; color: #333; text-decoration: none; font-size: 0.88rem;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .link-url:hover { color: #4f8cff; text-decoration: underline; }
+  .copy-btn {
+    flex-shrink: 0; border: none; background: #4f8cff; color: #fff;
+    font-size: 0.75rem; padding: 5px 12px; border-radius: 8px; cursor: pointer;
+    transition: background .15s;
+  }
+  .copy-btn:hover { background: #3a73e0; }
+  .copy-btn.ok { background: #22c55e; }
+
+  /* 更新时间 + 体积 */
+  .meta { font-size: 0.75rem; color: #aaa; margin-top: 12px; display: flex; gap: 16px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #22c55e; color: #fff; padding: 9px 22px; border-radius: 10px;
+    font-size: 0.85rem; opacity: 0; pointer-events: none; transition: all .25s;
+    z-index: 99;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* 空状态 */
+  .empty { text-align: center; color: #bbb; padding: 40px 0; font-size: 0.9rem; }
+
+  footer { text-align: center; color: #ccc; font-size: 0.75rem; margin-top: 36px; }
+
+  @media (max-width: 480px) {
+    body { padding: 16px 12px; }
+    .link-row { padding: 8px 10px; }
+    .link-url { font-size: 0.8rem; }
+    .copy-btn { padding: 5px 9px; }
+    .domain-tag { min-width: 36px; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>📦 TVBox 接口列表</h1>
-  <div class="bar"><input class="search" id="q" type="text" placeholder="搜索文件名 / 备注…" oninput="render()"></div>
-  <div class="stats" id="stats"></div>
-  <div class="list" id="list"></div>
+<div class="container">
+  <header>
+    <h1>简约导航</h1>
+    <div class="sub">TVBox 接口合集 · 三个域名自动切换</div>
+  </header>
+
+  <input class="search" id="search" type="text" placeholder="搜索接口名称…" oninput="render()">
+
+  <div id="list"></div>
+
+  <footer>数据来自 list.txt · 更新时间见每条记录</footer>
 </div>
+
 <div class="toast" id="toast">已复制</div>
 
 <script>
-// ★ 改成你的实际路径（json 文件所在目录，末尾带 /）
-const BASE_PATH = "https://0.12yue.de5.net/tvbox/";
+/* ============================================================
+ * 配置区 —— 三个域名
+ * ========================================================== */
+const DOMAINS = [
+  { tag: "主", url: "https://0.12yue.de5.net/tvbox/" },
+  { tag: "备", url: "https://0.cdz.qzz.io/qzz/"  },
+  { tag: "镜", url: "https://0.wdzb.eu.cc/"       },
+];
 
-function fmtDate(s){ if(!s||s.length!==8)return s; return s.slice(0,4)+"-"+s.slice(4,6)+"-"+s.slice(6,8); }
-function isRecent(s){ if(!s||s.length!==8)return false; const d=new Date(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6,8)); const diff=Math.floor((Date.now()-d.getTime())/864e5); return diff<=1; }
-function esc(s){return(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+/* 接口清单（可改成 fetch('list.txt') 动态读取，格式：文件名|日期|体积|备注）
+ * 这里先内嵌示例，部署时如需动态加载，把下面的 DATA 换成 fetchList() 即可 */
+const DATA = [
+  { file: "饭太硬一线.json", date: "20260905", size: "24.0K", note: "饭太硬" },
+  { file: "嗷呜线路.json",   date: "20260905", size: "18.5K", note: "嗷呜"   },
+  { file: "摸鱼线路.json",   date: "20260904", size: "29.5K", note: "摸鱼"   },
+  { file: "香雅情.json",     date: "20260903", size: "32.0K", note: "香雅情" },
+  { file: "肥猫线路.json",   date: "20260902", size: "12.0K", note: "肥猫"   },
+];
 
-async function load(){
-  const res=await fetch('list.txt?t='+Date.now());
-  const text=await res.text();
-  const map={};
-  for(const raw of text.split('\n')){
-    const line=raw.trim(); if(!line)continue;
-    const p=line.split('|');          // 文件名|日期|体积|备注（兼容 2/3/4 列）
-    if(p.length<2)continue;
-    const file=p[0].trim(); if(!file)continue;
-    map[file]={date:p[1].trim(), size:(p[2]||'').trim(), note:(p.slice(3).join('|')||'').trim()};
-  }
-  return map;
+/* ============================================================
+ * 中文强制显示：decodeURIComponent 解码，绝不出现 %E9%A5%AD 这类编码
+ * ========================================================== */
+function decodeName(file) {
+  try { return decodeURIComponent(file); } catch (e) { return file; }
+}
+function encodeName(file) {
+  try { return encodeURIComponent(file); } catch (e) { return file; }
 }
 
-function render(){
-  const q=(document.getElementById('q').value||'').trim().toLowerCase();
-  const list=document.getElementById('list'); list.innerHTML='';
-  let shown=0;
-  for(const [file,o] of Object.entries(window._data||{})){
-    const name=decodeURIComponent(file).replace(/\.json$/i,'');
-    if(q && !name.toLowerCase().includes(q) && !(o.note||'').toLowerCase().includes(q))continue;
-    shown++;
-    const url=BASE_PATH+encodeURIComponent(file);
-    const recent=isRecent(o.date);
-    const div=document.createElement('div'); div.className='item';
-    div.innerHTML=`
-      <div class="top">
-        <span class="name">${esc(name)}</span>
-        ${o.note?`<span class="note">${esc(o.note)}</span>`:''}
+/* 生成一个接口在三域名下的完整链接（中文用编码保证可访问，但 display 强制中文） */
+function buildLinks(item) {
+  const name = decodeName(item.file);   // 中文文件名，如 "饭太硬一线.json"
+  return DOMAINS.map(d => ({
+    tag: d.tag,
+    // href 用编码后的文件名（保证浏览器能正确请求）
+    href: d.url + encodeName(item.file),
+    // 显示文本强制中文：域名 + 中文文件名
+    display: d.url.replace(/\/$/, "") + "/" + name,
+  }));
+}
+
+/* 是否为"最新"（2 天内） */
+function isRecent(dateStr) {
+  if (!dateStr || dateStr.length !== 8) return false;
+  const date = new Date(+dateStr.slice(0,4), +dateStr.slice(4,6)-1, +dateStr.slice(6,8));
+  const diff = Math.floor((Date.now() - date.getTime()) / 86400000);
+  return diff <= 2;
+}
+
+/* 渲染列表 */
+function render() {
+  const kw = (document.getElementById("search").value || "").trim().toLowerCase();
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  const filtered = DATA.filter(it =>
+    !kw || decodeName(it.file).toLowerCase().includes(kw) || (it.note || "").toLowerCase().includes(kw)
+  );
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty">没有匹配的接口</div>';
+    return;
+  }
+
+  filtered.forEach((item, idx) => {
+    const links = buildLinks(item);
+    const div = document.createElement("div");
+    div.className = "item";
+
+    let linksHtml = links.map(l => `
+      <div class="link-row">
+        <span class="domain-tag">${l.tag}</span>
+        <a class="link-url" href="${l.href}" target="_blank" rel="noreferrer">${l.display}</a>
+        <button class="copy-btn" onclick="copyText(this, '${l.href}')">复制</button>
+      </div>`).join("");
+
+    div.innerHTML = `
+      <div class="item-head">
+        <span class="item-name">${decodeName(item.file).replace(/\.json$/i, "")}</span>
+        ${item.note ? `<span class="note">${item.note}</span>` : ""}
       </div>
-      <div class="url">${esc(url)}</div>
+      <div class="links">${linksHtml}</div>
       <div class="meta">
-        <span class="${recent?'ok':'old'}">${esc(fmtDate(o.date)||'-')}</span>
-        <span>${esc(o.size||'-')}</span>
-        <span class="${recent?'ok':'old'}">${recent?'最新':'历史'}</span>
-        <button class="copy" onclick="copyUrl(this,'${esc(url)}')">复制</button>
+        <span style="color:${isRecent(item.date) ? '#22c55e' : '#f59e0b'}">
+          ${isRecent(item.date) ? "● 最新" : "○ 历史"} ${item.date || ""}
+        </span>
+        ${item.size ? `<span>📦 ${item.size}</span>` : ""}
       </div>`;
     list.appendChild(div);
-  }
-  document.getElementById('stats').textContent=
-    `共 ${Object.keys(window._data||{}).length} 个接口 · 当前显示 ${shown} 个`;
-  if(shown===0) list.innerHTML='<div class="empty">没有匹配的接口</div>';
-}
-
-function copyUrl(btn,url){
-  navigator.clipboard.writeText(url).then(()=>{
-    btn.textContent='已复制'; btn.classList.add('done');
-    setTimeout(()=>{btn.textContent='复制';btn.classList.remove('done');},1500);
   });
 }
 
-load().then(d=>{window._data=d; render();}).catch(e=>{
-  document.getElementById('list').innerHTML='<div class="empty">加载 list.txt 失败：'+esc(e.message)+'<br>请确认 list.txt 与本页面在同一目录</div>';
-});
+/* 复制 */
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = "已复制";
+    btn.classList.add("ok");
+    showToast();
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove("ok"); }, 1500);
+  });
+}
+function showToast() {
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 1500);
+}
+
+/* ============================================================
+ * （可选）动态读取 list.txt，取消下面注释即可启用
+ *  list.txt 格式：文件名|日期|体积|备注（与工具13.py 输出一致）
+ * ==========================================================
+async function fetchList() {
+  try {
+    const res = await fetch("list.txt?t=" + Date.now());
+    const text = await res.text();
+    const map = {};   // 同名取最新一行
+    text.trim().split("\n").forEach(line => {
+      const [file, date, size, note] = line.trim().split("|");
+      if (!file) return;
+      map[file] = { file, date: date || "", size: size || "", note: note || "" };
+    });
+    Object.assign(DATA, map);   // 合并覆盖内嵌示例
+    render();
+  } catch (e) { console.warn("list.txt 读取失败，使用内嵌数据", e); render(); }
+}
+*/
+render();   // 先用内嵌数据渲染；如需动态，改为：fetchList();
 </script>
 </body>
 </html>
