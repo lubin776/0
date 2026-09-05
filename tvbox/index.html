@@ -3,248 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>简约导航</title>
+<title>海量接口搬运备份</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #f7f8fa;
-    color: #1a1a1a;
-    line-height: 1.6;
-    padding: 24px 16px;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container { max-width: 720px; margin: 0 auto; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background:#f5f7fa; color:#333; padding:16px; }
+.container { max-width:720px; margin:0 auto; }
+h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
+.subtitle { text-align:center; font-size:0.85rem; color:#999; margin-bottom:24px; }
 
-  /* 顶部标题 */
-  header { text-align: center; margin-bottom: 32px; }
-  header h1 {
-    font-size: 1.5rem; font-weight: 600; letter-spacing: 2px; color: #222;
-  }
-  header .sub { font-size: 0.82rem; color: #999; margin-top: 6px; }
+/* 搜索 */
+.search-box { width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; margin-bottom:16px; outline:none; background:#fff; }
+.search-box:focus { border-color:#4a9eff; }
 
-  /* 搜索框 */
-  .search {
-    width: 100%; padding: 12px 16px; font-size: 0.95rem;
-    border: 1px solid #e4e4e7; border-radius: 12px; background: #fff;
-    outline: none; margin-bottom: 20px; transition: border .2s;
-  }
-  .search:focus { border-color: #4f8cff; }
+/* 卡片 */
+.card { background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+.card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.card-name { font-size:0.95rem; font-weight:600; }
+.card-note { font-size:0.75rem; background:#e8f4ff; color:#4a9eff; padding:2px 8px; border-radius:4px; }
+.card-meta { font-size:0.78rem; color:#aaa; margin-bottom:10px; }
+.card-meta .dot-new { color:#22c55e; }
+.card-meta .dot-old { color:#f59e0b; }
 
-  /* 接口卡片（每行一个接口） */
-  .item {
-    background: #fff; border-radius: 14px; padding: 16px 18px;
-    margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
-    transition: transform .15s, box-shadow .15s;
-  }
-  .item:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+/* 链接行 */
+.link-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.link-tag { font-size:0.72rem; background:#f0f0f0; color:#666; padding:2px 6px; border-radius:3px; min-width:28px; text-align:center; flex-shrink:0; }
+.link-url { flex:1; font-size:0.82rem; color:#4a9eff; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.link-url:hover { text-decoration:underline; }
+.copy-btn { flex-shrink:0; padding:3px 10px; background:#4a9eff; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:0.75rem; }
+.copy-btn:active { background:#3a8eef; }
 
-  .item-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .item-name { font-size: 1.02rem; font-weight: 600; color: #222; }
+/* 加载/空 */
+.loading, .empty { text-align:center; color:#bbb; padding:40px 0; font-size:0.9rem; }
 
-  /* 备注标签 */
-  .note {
-    font-size: 0.72rem; color: #fff; background: #4f8cff;
-    padding: 2px 10px; border-radius: 20px; font-weight: 500;
-    white-space: nowrap;
-  }
-
-  /* 三个域名链接 */
-  .links { display: flex; flex-direction: column; gap: 8px; }
-  .link-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px; background: #f4f6fb; border-radius: 10px;
-  }
-  .domain-tag {
-    font-size: 0.72rem; color: #4f8cff; background: #e8efff;
-    padding: 2px 8px; border-radius: 6px; font-weight: 600;
-    flex-shrink: 0; min-width: 42px; text-align: center;
-  }
-  .link-url {
-    flex: 1; color: #333; text-decoration: none; font-size: 0.88rem;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .link-url:hover { color: #4f8cff; text-decoration: underline; }
-  .copy-btn {
-    flex-shrink: 0; border: none; background: #4f8cff; color: #fff;
-    font-size: 0.75rem; padding: 5px 12px; border-radius: 8px; cursor: pointer;
-    transition: background .15s;
-  }
-  .copy-btn:hover { background: #3a73e0; }
-  .copy-btn.ok { background: #22c55e; }
-
-  /* 更新时间 + 体积 */
-  .meta { font-size: 0.75rem; color: #aaa; margin-top: 12px; display: flex; gap: 16px; }
-
-  /* Toast */
-  .toast {
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
-    background: #22c55e; color: #fff; padding: 9px 22px; border-radius: 10px;
-    font-size: 0.85rem; opacity: 0; pointer-events: none; transition: all .25s;
-    z-index: 99;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-  /* 空状态 */
-  .empty { text-align: center; color: #bbb; padding: 40px 0; font-size: 0.9rem; }
-
-  footer { text-align: center; color: #ccc; font-size: 0.75rem; margin-top: 36px; }
-
-  @media (max-width: 480px) {
-    body { padding: 16px 12px; }
-    .link-row { padding: 8px 10px; }
-    .link-url { font-size: 0.8rem; }
-    .copy-btn { padding: 5px 9px; }
-    .domain-tag { min-width: 36px; }
-  }
+@media (max-width:480px) {
+  body { padding:10px; }
+  h1 { font-size:1.15rem; }
+  .card { padding:12px; }
+}
 </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <h1>简约导航</h1>
-    <div class="sub">TVBox 接口合集 · 三个域名自动切换</div>
-  </header>
-
-  <input class="search" id="search" type="text" placeholder="搜索接口名称…" oninput="render()">
-
-  <div id="list"></div>
-
-  <footer>数据来自 list.txt · 更新时间见每条记录</footer>
+  <h1>海量接口搬运备份</h1>
+  <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
+  <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
+  <div id="list"><div class="loading">正在加载接口列表...</div></div>
 </div>
 
-<div class="toast" id="toast">已复制</div>
-
 <script>
-/* ============================================================
- * 配置区 —— 三个域名
- * ========================================================== */
+// ★ 三个域名（路径尾部必须带 /）
 const DOMAINS = [
-  { tag: "主", url: "https://0.12yue.de5.net/tvbox/" },
-  { tag: "备", url: "https://0.cdz.qzz.io/qzz/"  },
-  { tag: "镜", url: "https://0.wdzb.eu.cc/"       },
+  { tag: "主", base: "https://0.12yue.de5.net/tvbox/" },
+  { tag: "备", base: "https://0.cdz.qzz.io/qzz/"  },
+  { tag: "镜", base: "https://0.wdzb.eu.cc/"       },
 ];
 
-/* 接口清单（可改成 fetch('list.txt') 动态读取，格式：文件名|日期|体积|备注）
- * 这里先内嵌示例，部署时如需动态加载，把下面的 DATA 换成 fetchList() 即可 */
-const DATA = [
-  { file: "饭太硬一线.json", date: "20260905", size: "24.0K", note: "饭太硬" },
-  { file: "嗷呜线路.json",   date: "20260905", size: "18.5K", note: "嗷呜"   },
-  { file: "摸鱼线路.json",   date: "20260904", size: "29.5K", note: "摸鱼"   },
-  { file: "香雅情.json",     date: "20260903", size: "32.0K", note: "香雅情" },
-  { file: "肥猫线路.json",   date: "20260902", size: "12.0K", note: "肥猫"   },
-];
+// 解码中文显示
+function decodeName(f) { try{return decodeURIComponent(f)}catch{return f} }
 
-/* ============================================================
- * 中文强制显示：decodeURIComponent 解码，绝不出现 %E9%A5%AD 这类编码
- * ========================================================== */
-function decodeName(file) {
-  try { return decodeURIComponent(file); } catch (e) { return file; }
-}
-function encodeName(file) {
-  try { return encodeURIComponent(file); } catch (e) { return file; }
+// 判断最近2天内
+function isRecent(d) {
+  if(!d || d.length!==8) return false;
+  const t = new Date(parseInt(d.slice(0,4)), parseInt(d.slice(4,6))-1, parseInt(d.slice(6,8)));
+  return (Date.now()-t.getTime())/(864e5) <= 2;
 }
 
-/* 生成一个接口在三域名下的完整链接（中文用编码保证可访问，但 display 强制中文） */
-function buildLinks(item) {
-  const name = decodeName(item.file);   // 中文文件名，如 "饭太硬一线.json"
-  return DOMAINS.map(d => ({
-    tag: d.tag,
-    // href 用编码后的文件名（保证浏览器能正确请求）
-    href: d.url + encodeName(item.file),
-    // 显示文本强制中文：域名 + 中文文件名
-    display: d.url.replace(/\/$/, "") + "/" + name,
-  }));
+// 渲染单条
+function renderItem(file, date, size, note) {
+  const name = decodeName(file).replace(/\.json$/i,'');
+  const isNew = isRecent(date);
+  let html = `<div class="card">
+    <div class="card-top">
+      <div class="card-name">${name}</div>
+      ${note?`<span class="card-note">${note}</span>`:''}
+    </div>
+    <div class="card-meta">
+      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最新':'● 历史'}</span>
+      &nbsp;${date||'-'}&nbsp;&nbsp;📦 ${size||'-'}
+    </div>`;
+  DOMAINS.forEach(d => {
+    const url = d.base + encodeURIComponent(file);
+    const disp = d.base + decodeName(file);
+    html += `<div class="link-row">
+      <span class="link-tag">${d.tag}</span>
+      <a class="link-url" href="${url}" target="_blank">${disp}</a>
+      <button class="copy-btn" onclick="copy('${url}',this)">复制</button>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
 }
 
-/* 是否为"最新"（2 天内） */
-function isRecent(dateStr) {
-  if (!dateStr || dateStr.length !== 8) return false;
-  const date = new Date(+dateStr.slice(0,4), +dateStr.slice(4,6)-1, +dateStr.slice(6,8));
-  const diff = Math.floor((Date.now() - date.getTime()) / 86400000);
-  return diff <= 2;
-}
-
-/* 渲染列表 */
-function render() {
-  const kw = (document.getElementById("search").value || "").trim().toLowerCase();
-  const list = document.getElementById("list");
-  list.innerHTML = "";
-
-  const filtered = DATA.filter(it =>
-    !kw || decodeName(it.file).toLowerCase().includes(kw) || (it.note || "").toLowerCase().includes(kw)
-  );
-
-  if (filtered.length === 0) {
-    list.innerHTML = '<div class="empty">没有匹配的接口</div>';
-    return;
-  }
-
-  filtered.forEach((item, idx) => {
-    const links = buildLinks(item);
-    const div = document.createElement("div");
-    div.className = "item";
-
-    let linksHtml = links.map(l => `
-      <div class="link-row">
-        <span class="domain-tag">${l.tag}</span>
-        <a class="link-url" href="${l.href}" target="_blank" rel="noreferrer">${l.display}</a>
-        <button class="copy-btn" onclick="copyText(this, '${l.href}')">复制</button>
-      </div>`).join("");
-
-    div.innerHTML = `
-      <div class="item-head">
-        <span class="item-name">${decodeName(item.file).replace(/\.json$/i, "")}</span>
-        ${item.note ? `<span class="note">${item.note}</span>` : ""}
-      </div>
-      <div class="links">${linksHtml}</div>
-      <div class="meta">
-        <span style="color:${isRecent(item.date) ? '#22c55e' : '#f59e0b'}">
-          ${isRecent(item.date) ? "● 最新" : "○ 历史"} ${item.date || ""}
-        </span>
-        ${item.size ? `<span>📦 ${item.size}</span>` : ""}
-      </div>`;
-    list.appendChild(div);
+// 复制
+function copy(url, btn) {
+  navigator.clipboard.writeText(url).then(()=>{
+    btn.textContent='已复制';
+    setTimeout(()=>btn.textContent='复制',1200);
   });
 }
 
-/* 复制 */
-function copyText(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = "已复制";
-    btn.classList.add("ok");
-    showToast();
-    setTimeout(() => { btn.textContent = orig; btn.classList.remove("ok"); }, 1500);
+// 过滤
+function filterList() {
+  const kw = document.getElementById('search').value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(c=>{
+    c.style.display = c.textContent.toLowerCase().includes(kw) ? '' : 'none';
   });
 }
-function showToast() {
-  const t = document.getElementById("toast");
-  t.classList.add("show");
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.classList.remove("show"), 1500);
-}
 
-/* ============================================================
- * （可选）动态读取 list.txt，取消下面注释即可启用
- *  list.txt 格式：文件名|日期|体积|备注（与工具13.py 输出一致）
- * ==========================================================
-async function fetchList() {
-  try {
-    const res = await fetch("list.txt?t=" + Date.now());
-    const text = await res.text();
-    const map = {};   // 同名取最新一行
-    text.trim().split("\n").forEach(line => {
-      const [file, date, size, note] = line.trim().split("|");
-      if (!file) return;
-      map[file] = { file, date: date || "", size: size || "", note: note || "" };
+// 动态加载 list.txt
+fetch('list.txt?t='+Date.now())
+  .then(r=>r.text())
+  .then(text=>{
+    const lines = text.trim().split('\n').filter(Boolean);
+    if(!lines.length){ document.getElementById('list').innerHTML='<div class="empty">暂无接口数据</div>'; return; }
+    // 按文件名去重，取最后一条（最新）
+    const map = {};
+    lines.forEach(line=>{
+      const parts = line.trim().split('|');
+      if(parts.length<2) return;
+      const [file, date, size, note] = parts;
+      map[file] = {date, size:size||'', note:note||''};
     });
-    Object.assign(DATA, map);   // 合并覆盖内嵌示例
-    render();
-  } catch (e) { console.warn("list.txt 读取失败，使用内嵌数据", e); render(); }
-}
-*/
-render();   // 先用内嵌数据渲染；如需动态，改为：fetchList();
+    let html = '';
+    Object.entries(map).forEach(([file, info])=>{
+      html += renderItem(file, info.date, info.size, info.note);
+    });
+    document.getElementById('list').innerHTML = html;
+  })
+  .catch(()=>{
+    document.getElementById('list').innerHTML = '<div class="loading">加载失败，请确认 list.txt 存在</div>';
+  });
 </script>
 </body>
 </html>
