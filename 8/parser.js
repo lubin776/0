@@ -1,4 +1,4 @@
-// parser.js - TVBox 接口解码逻辑
+// parser.js - 完整解密逻辑，对照 Python 试跑2.py
 
 function collapseWhitespace(text) {
   if (!text) return "";
@@ -42,39 +42,7 @@ function absolutizeJson(text, baseUrl) {
   } catch { return text; }
 }
 
-function tryDecrypt2423Hex(stripped) {
-  const idx2423 = stripped.indexOf("2423");
-  const idx2324 = stripped.indexOf("2324");
-  const keyHex = stripped.slice(idx2423 + 4, idx2324);
-  const keyRaw = hex2bin(keyHex);
-  const keyStr = padRight(keyRaw, "\0", 16);
-  const dataStart = idx2324 + 4;
-  const dataEnd = stripped.length - 26;
-  const dataHex = stripped.slice(dataStart, dataEnd);
-  const tsHex = stripped.slice(-26);
-  const ivStr = padRight(hex2bin(tsHex), "\0", 16);
-  const keyBytes = str2bytes(keyStr.slice(0,16));
-  const ivBytes = str2bytes(ivStr.slice(0,16));
-  const cipherBytes = hex2bytes(dataHex);
-  const plain = window.AES128.decryptCBC(cipherBytes, keyBytes, ivBytes);
-  return bytes2str(plain);
-}
-
-function tryDecrypt2423Plain(stripped) {
-  const idx2324 = stripped.indexOf("2324");
-  const pDoll = stripped.indexOf("$#");
-  const pSharp = stripped.indexOf("#$");
-  let dataHex = stripped.slice(idx2324 + 4, pDoll).replace(/[^0-9a-fA-F]/gi, "");
-  if (dataHex.length % 2) dataHex = dataHex.slice(0, -1);
-  const key = padRight(stripped.slice(pDoll + 2, pSharp), "\0", 16);
-  const iv = padRight(stripped.slice(-13), "\0", 16);
-  const keyBytes = str2bytes(key.slice(0,16));
-  const ivBytes = str2bytes(iv.slice(0,16));
-  const cipherBytes = hex2bytes(dataHex);
-  const plain = window.AES128.decryptCBC(cipherBytes, keyBytes, ivBytes);
-  return bytes2str(plain);
-}
-
+// ===== 字节/字符串辅助 =====
 function hex2bin(hex) {
   let s = "";
   for (let i = 0; i < hex.length; i += 2) s += String.fromCharCode(parseInt(hex.slice(i, i+2), 16));
@@ -85,60 +53,103 @@ function hex2bytes(hex) {
   for (let i = 0; i < hex.length; i += 2) arr.push(parseInt(hex.slice(i, i+2), 16));
   return new Uint8Array(arr);
 }
-function str2bytes(s) { return new Uint8Array(s.split("").map(c => c.charCodeAt(0) & 0xFF)); }
+function str2bytes(s) { return new Uint8Array([...s].map(c => c.charCodeAt(0) & 0xFF)); }
 function bytes2str(bytes) { return new TextDecoder("utf-8").decode(bytes); }
 function padRight(s, ch, len) { return s.length >= len ? s.slice(0, len) : s + ch.repeat(len - s.length); }
 
-function findResult(rawText, rawBytes) {
+// ===== 2423 解密 =====
+function tryDecrypt2423Hex(stripped) {
+  const idx2423 = stripped.indexOf("2423");
+  const idx2324 = stripped.indexOf("2324");
+  const keyHex = stripped.slice(idx2423 + 4, idx2324);
+  let keyRaw;
+  try { keyRaw = hex2bin(keyHex); } catch { keyRaw = keyHex; }
+  const keyStr = padRight(keyRaw, "\0", 16);
+  const dataStart = idx2324 + 4;
+  const contentRstrip = stripped.replace(/\s+$/, "");
+  const tsHex = contentRstrip.slice(-26);
+  let tsBytes;
+  try { tsBytes = hex2bytes(tsHex); } catch { tsBytes = str2bytes(tsHex); }
+  const ivStr = padRight(bytes2str(tsBytes), "\0", 16);
+  const keyBytes = str2bytes(keyStr.slice(0, 16));
+  const ivBytes = str2bytes(ivStr.slice(0, 16));
+  const dataHex = stripped.slice(dataStart, stripped.length - 26);
+  const cipherBytes = hex2bytes(dataHex);
+  return window.AES128.decryptCBC(cipherBytes, keyBytes, ivBytes);
+}
+
+function tryDecrypt2423Plain(stripped) {
+  const idx2324 = stripped.indexOf("2324");
+  const pDoll = stripped.indexOf("$#");
+  const pSharp = stripped.indexOf("#$");
+  let dataHex = stripped.slice(idx2324 + 4, pDoll).replace(/[^0-9a-fA-F]/gi, "");
+  if (dataHex.length % 2) dataHex = dataHex.slice(0, -1);
+  const key = padRight(stripped.slice(pDoll + 2, pSharp), "\0", 16);
+  const iv = padRight(stripped.slice(-13), "\0", 16);
+  const keyBytes = str2bytes(key.slice(0, 16));
+  const ivBytes = str2bytes(iv.slice(0, 16));
+  const cipherBytes = hex2bytes(dataHex);
+  return window.AES128.decryptCBC(cipherBytes, keyBytes, ivBytes);
+}
+
+// ===== 递归解密（核心）=====
+function findResult(rawText, rawBytes, depth) {
+  if ((depth || 0) > 5) return rawText || "";
+
   let content = rawText || "";
   if (!content && rawBytes) content = bytes2str(rawBytes);
 
+  // 1. 已经是 JSON
   if (isJson(content)) return content;
 
-  // 图片壳 **
+  // 2. 图片壳 **
   if (rawBytes) {
     const marker = new TextEncoder().encode("**");
-    let pos = -1;
-    for (let i = 0; i < rawBytes.length - 1; i++) {
-      if (rawBytes[i] === marker[0] && rawBytes[i+1] === marker[1]) { pos = i; break; }
+    let starIdx = -1;
+    for (let i = 8; i < rawBytes.length - 1; i++) {
+      if (rawBytes[i] === marker[0] && rawBytes[i+1] === marker[1]) { starIdx = i; break; }
     }
-    if (pos >= 8) {
-      let b64 = "";
-      for (let i = pos + 2; i < rawBytes.length; i++) {
+    if (starIdx >= 8) {
+      let b64Start = starIdx + 2;
+      let b64Bytes = [];
+      for (let i = b64Start; i < rawBytes.length; i++) {
         const c = rawBytes[i];
-        if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57) || c === '+' || c === '/' || c === '=') b64 += String.fromCharCode(c);
+        if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57) || c === 43 || c === 47 || c === 61) b64Bytes.push(c);
         else if (c === 9 || c === 10 || c === 13 || c === 32) continue;
         else break;
       }
       try {
-        const bin = atob(b64);
-        const bytes = str2bytes(bin);
-        const dec = findResult("", bytes);
-        if (dec) return dec;
+        const b64 = bytes2str(new Uint8Array(b64Bytes));
+        const dec = atob(b64);
+        return findResult(dec, null, (depth||0) + 1);
       } catch {}
     }
   }
 
-  // 2423 壳
+  // 3. 2423 壳
   const stripped = collapseWhitespace(content).trim();
-  if (stripped.startsWith("2423") && stripped.includes("2324")) {
-    try { return tryDecrypt2423Hex(stripped); } catch {}
-    try { return tryDecrypt2423Plain(stripped); } catch {}
+  const hasDelim = stripped.includes("$#") && stripped.includes("#$");
+  const has2423 = stripped.startsWith("2423") && stripped.includes("2324");
+
+  if (stripped.startsWith("2423") && (hasDelim || has2423)) {
+    try {
+      const dec = tryDecrypt2423Hex(stripped);
+      return findResult(bytes2str(dec), dec, (depth||0) + 1);
+    } catch {}
+    try {
+      const dec = tryDecrypt2423Plain(stripped);
+      return findResult(bytes2str(dec), dec, (depth||0) + 1);
+    } catch {}
   }
 
-  // 纯 base64
+  // 4. 纯 base64
   const clean = stripped.replace(/\s/g, "");
   if (/^[A-Za-z0-9+/=]+$/.test(clean) && clean.length > 50) {
     try {
       const dec = atob(clean);
       if (isJson(dec)) return dec;
+      return findResult(dec, null, (depth||0) + 1);
     } catch {}
-  }
-
-  // gzip
-  if (rawBytes && rawBytes[0] === 0x1f && rawBytes[1] === 0x8b) {
-    // 浏览器 gzip 解压需异步，这里先返回原文
-    // 实际在 app.js 中用 DecompressionStream 处理
   }
 
   return content;
