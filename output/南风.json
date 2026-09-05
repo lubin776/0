@@ -1,0 +1,1537 @@
+{
+  "spider": "https://jihulab.com/yoursmile7/TVBox/-/raw/main/Yoursmile.jar;md5;c6aaf6a9498e1e1d07126779c687bdd8",
+  "wallpaper": "https://饭的动态壁纸.xxooo.cf/",
+  "sites": [
+    {
+      "key": "Tg豆瓣",
+      "name": "🔍Tg豆瓣┃本接口免费-🈲贩卖",
+      "type": 3,
+      "api": "csp_TgYunDouBanPan",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "http://127.0.0.1:9999",
+        "count": 4,
+        "channelUsername": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/Tgsearchers6,peccxinpd,yunpan139,yggpan,yunpanuc,shareAliyun,yunpan189,BaiduCloudDisk,Channel_Shares_115,gimy115,ydypzyfx,dianying4K,sbsbsnsqq,Q_dongman,ysmffx,XiangxiuNBB,yoyokuakeduanju,yeqingjie_GJG666,TG654TG,PanjClub,guoman4K,alyp_1,kuake_yppan,Baidu_Netdisk,bdwpzhpd,baidu_yppan,zyfb123,xx123pan,zyzhpd123,yp123pan,cloudtianyi,txtyzy,tianyirigeng,tyypzhpd,zaihuayun,ali_yppan",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/douban.json"
+      }
+    },
+    {
+      "key": "弹幕",
+      "name": "Ⓜ️嗷呜弹幕设置",
+      "type": 3,
+      "api": "csp_AAConfigAmns",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "key": "ConfigCenter",
+      "name": "🅿网盘配置中心",
+      "type": 3,
+      "api": "csp_ConfigCenter",
+      "searchable": 0,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "csp_LocalFile",
+      "name": "🏣本地文件",
+      "type": 3,
+      "api": "csp_LocalFile",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "type_flag": 0
+    },
+    {
+      "name": "🍉瓜子",
+      "key": "csp_Guazi",
+      "type": 3,
+      "api": "csp_GuaziAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/Guazi",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "key": "天天",
+      "name": "⛅天天",
+      "type": 3,
+      "api": "csp_TTian",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/7lj763gg0939791h1l3888jig44gi291li"
+    },
+    {
+      "key": "金牌",
+      "name": "🥇金牌",
+      "type": 3,
+      "api": "csp_Jpys",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/7lj763gg402i7942463j9j9jh8579590k3hjii5gi4i73l2k5l"
+    },
+    {
+      "key": "师兄",
+      "name": "🐵师兄",
+      "type": 3,
+      "api": "csp_AppV6",
+      "playerType": 2,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/7lj763gg0939790h44298182lk5j9k99k2g4ih53jl9i376l514k16hilj0443400h9k4jgh8312j1912818glikl7lh1jk9k4222k1kg696igkk32ig6lhj3kl50j08lkl6j0h6gi7k2j31jj0k7i1784l25g757hhkl42i7jg68illihj867l82g53532j62i92kljhj5llh498k24796l57j55ji0ji2g22i501jl541j9j4i68i5j602744l10413k457hl80l91j5l44139j23g64h27k08l5509h202gl84338hi17082hkj5746g298j640i002jk1265h745j289303h6i6j6j15jgkg15485h8g935hk83g9g7j661l4i557jl56h6l0h40i5j9hkiig7066523l2h24gj9k1083g6l2gihh2j5hhgkgij04j8900jhg4l6731hkhij7kk2i594536563674gki85li59jhk79067964197h5k7k2641h03l45074jkkklhik123407146l1i0jk90k1hgl151076ig7i4gi0858h62j37lh8l4hl519ghi7g04h2h900jlj7ll333i736549624gjk8k508g9499gj3jj7050jjhgh4i57326j83301i0kkl88040ih52gj8j0gk0h4g5g7lh561k2gk6k7k56h01598ji23g27k3i17878j92k2gj1l5ih8h0jj73k94g9hl5g7h229i10g099k09l958h3hk18l72h1j43gg7177g4h7ll8987644383606klgh9h4ll42h7293k694kl20j539g6jl17ig655461138jgj7306i1296k3i03586k6l32j5hlik4051187741218271j8j4g3i1h6719877l10k1ijl220i8hlil3j3g129ll3k2i5164lkg12k253kk1h8j5l0gki49jg25hlii704l5ih74439hlj9jih5ki53242ijgh6359i8i5j4h2j2i4581l244j4ij728490hk0k34542916i2lig57836gg7kji3l160234i24hik5g18h790488748j680k5i0l885lj66kjk78j2i57i5021g283ik9g38g62259h1lgi811ihki506k5934g7h737hg9360lll98l4j8i049903l1354lg00019g0934h005h8jjkl60j91k7j74i96h8h26hk59i653209lgj07g1g298k48jllgh00l4i742gi72l27038157gji9j32gh0k5672167k2588h31967l3867g50k503ik403781ki72j47hh4363l0708k4g961k4hl8g4j35ilk143h3424010i165lj612h50k68l61ghl9h80kh874k14ggk2ilg018hi5l1g34262196lkl45ih981jkl42271l4232k93hk8ih3g814i6h63h0g64l300i42il1g0454921j12h4844ii714ih71lg172326009812833h62kj8009kijk5hhg763031235l45h78614l7h9k579h6lj290i98851gll70024834hgj2lg5hk3l905i346gij11kl5j9i7h5j5k12hl061l488k061564g398i2150h9j343901865h7567g874i1gghl5ihg8il8hh0650h6308l2i5053997g8g12g16l3l7h5lhlji71i1i23h0ljl1h14688h7g13987h548h33k34hi6h2i63h424jhl1kik26kl3h60662846j6j0749l8kh95018kl1971j5j5gjk9hg70542391j77hjj65l127627h6h8h0hi003i2hih6h0k9k878lj858k30iljgik0l9248jk25l4h701l6gllhkhi54g24g926jgj884266514056805k2h15hh442i3170ilik20h88i561k0682k04459i154i03ikglg6220i4jii1g32067il925g450k0i1241l3il2jjl6k186gjj53h611il59k650i4kjhi87i798hg6h01g306ig104145ig9h68i092ghhh59jig99j12383792452h44206glk62g67gj204hk874l5li8646g65i9085244i092g70ig9h8657kg0413466ii87k9i32hglh24hi2li7174735i520ik608ilg71292838j5k1h39271ghg5288g930lg6h75626l71h8h5g011k9l9lgk691i04166h7996g452kij4l4l72881k6kl5701jl707hi415j8h3k67576966g2k94k03k0lj31995h2j26hi69jhjji162625l50j7790093hli0jjkh1ll804i3lhh40lk4k240kh48k0k16l544hg033k594gh0l93682l86h35i1i36klhgjg90lkl54746i2k63481h37hilj3ikig52h0j80k5gj6h879lk6g8ll6k616966h59h42l24h824ljj77g6l03kg260i80h2g2k123251j22jg36k5j14781i6197929il9j03k16h4l1i78693g45k64j0jl0k58hj8493h76gj2202470ig12lh2llj2l5k5541k4h506i3hij81lg9i037jgk22i2l3j12j6l394h51ii2ll0022j292h8036767i835k47071jl9illl2gli06524g66984902j6j1h5g788019hl4712032977h41l0k36073ig880g2jgklh26k736180591639h4k2gjk9gl2071h685923kl5363l5lj0ll91901g12kk29hll4280h9h51870j721516j6g66i379g203932726h42g927h19733k237492l8j0jh148gl95048l5524j4j0l2445130153i802169102i14g586h8g64j2lk28492169li3292877837108k7i9557h3jk31il2lklg494lgl4j91jig614216ki68i2j140l1jg03lk16lljg039h21kj313h8jk79h99j2g89j327i7h9052h9hj71721jg927340956k6jl4i7k0430"
+    },
+    {
+      "key": "橘汁",
+      "name": "🅰橘汁",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/橘汁",
+        "publicKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
+        "dataKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/OW1WBLFZCLJ0WTNJCDMYEGXWYVP3PT0=",
+        "dataIv": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/com.mxj.wylcjbxyx",
+        "host": "",
+        "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
+        "version": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/3.0.2.3",
+        "decrypt": "1"
+      }
+    },
+    {
+      "key": "华谊",
+      "name": "🅰华谊",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/华谊",
+        "publicKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
+        "dataKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
+        "dataIv": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/com.muyue.tool",
+        "host": "",
+        "site": "https://vip.123pan.cn/1851089669/oss/az5.txt",
+        "version": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/1.0.0.4",
+        "decrypt": "1"
+      }
+    },
+    {
+      "key": "苹果",
+      "name": "🅰小苹果",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/小苹果",
+        "publicKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
+        "dataIv": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/com.juechufsh.android.xpg1",
+        "host": "",
+        "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
+        "version": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/1.0.0.3",
+        "decrypt": "0"
+      }
+    },
+    {
+      "key": "半日",
+      "name": "🅰半日",
+      "type": 3,
+      "api": "csp_App99",
+      "ext": {
+        "host": "http://103.217.190.91:19987/app/bn",
+        "appkey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/24d625a8a29b4700a1a294c6f3b29e2c",
+        "versionName": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/3.5.8",
+        "name": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/半日闲",
+        "package": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/com.yf.lelian",
+        "buildNumber": "2001",
+        "buildSignature": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
+      }
+    },
+    {
+      "key": "天堂",
+      "name": "🅰电影天堂",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/电影天堂",
+        "publicKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
+        "dataIv": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/com.dytiantang.one",
+        "host": "",
+        "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
+        "version": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/3.0.0.7",
+        "decrypt": "0"
+      }
+    },
+    {
+      "key": "剧圈",
+      "name": "🅰剧圈圈",
+      "type": 3,
+      "api": "csp_App99",
+      "ext": {
+        "host": "http://124.221.3.182:19987/app/bn",
+        "appkey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/d1f0c269eab74d93821fffc9befdbbba",
+        "versionName": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/1.2.0",
+        "name": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/剧圈圈",
+        "package": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/com.qingtangxiaozhuan.xyz",
+        "buildNumber": "2002",
+        "buildSignature": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
+      }
+    },
+    {
+      "key": "双星",
+      "name": "🅰双子星动漫",
+      "type": 3,
+      "api": "csp_App99",
+      "ext": {
+        "host": "http://111.180.139.119:19987/app/bn",
+        "LoginPath": "https://gh-proxy.com/app/log",
+        "appkey": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/f66f65db127e48449f073c2c6eb0f993",
+        "versionName": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/6.4.9",
+        "name": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/双子星动漫",
+        "package": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/com.haiwang.liangxia.my.ym",
+        "buildNumber": "2001",
+        "buildSignature": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
+      }
+    },
+    {
+      "key": "首发",
+      "name": "🚀首发",
+      "type": 3,
+      "api": "csp_Qiji",
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/7lj763gg402i7942483l849kk10ljji4g6li98059ijj72225j5255l2k95g5i1h1g985ggj905j86ig3604gi80lgl30jk3hk637h53ghk49hgl689125k7738h7947igg3k5h3gk6j12718k402802hlkh6k527581gk4936hkj49i8i9g2hh53l320l3i3197"
+    },
+    {
+      "key": "王子",
+      "name": "🍟王子",
+      "type": 3,
+      "api": "csp_Xdai",
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/7lj763gg402i7942503g9g9jk909jji3g0li9j088291253h4k141gggkk41435h43924kg6ik48i0856j01k882glkh4kllg538704jl5k4j1gl27j321g03lll"
+    },
+    {
+      "key": "动漫巴士",
+      "name": "🚌动漫巴士",
+      "type": 3,
+      "api": "csp_XYQHiker",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/动漫巴士.json"
+    },
+    {
+      "key": "csp_Jianpian",
+      "name": "✂️荐片",
+      "type": 3,
+      "api": "csp_Jianpian",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/jianpian.json"
+    },
+    {
+      "key": "农民",
+      "name": "👩‍🌾农民",
+      "type": 3,
+      "api": "csp_XYQHiker",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/农民影视.json"
+    },
+    {
+      "key": "永乐",
+      "name": "🍰永乐",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "请求头": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/User-Agent$MOBILE_UA",
+        "编码": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/UTF-8",
+        "分类": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/电影$1#电视剧$2#综艺$3#动漫$4",
+        "类型": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/动作片$6#喜剧片$7#爱情片$8#科幻片$9#奇幻片$10#恐怖片$11#剧情片$12#战争片$20#动画片$26#悬疑片$22#冒险片$23#犯罪片$24#惊悚片$45#歌舞片$46#灾难片$47#网络片$48||国产剧$13#港台剧$14#日剧$15#韩剧$33#欧美剧$16#泰剧$34#新马剧$35#其他剧$25||内地综艺$27#港台综艺$28#日本综艺$29#韩国综艺$36#欧美综艺$30#新马泰综艺$37#其他综艺$38||国产动漫$31#日本动漫$32#韩国动漫$39#港台动漫$40#新马泰动漫$41#欧美动漫$42#其他动漫$43",
+        "分类url": "https://www.ylys.tv/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html"
+      }
+    },
+    {
+      "key": "面包",
+      "name": "🎁面包",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "请求头": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/User-Agent$MOBILE_UA",
+        "编码": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/UTF-8",
+        "分类url": "https://v.aiwule.com/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html",
+        "分类": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/电影$20#电视剧$21#动漫$23#综艺$22#短剧$47",
+        "简介": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/简介：&&"
+      }
+    },
+    {
+      "key": "VS影视",
+      "name": "🍩VS影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "请求头": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/User-Agent$MOBILE_UA",
+        "编码": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/UTF-8",
+        "图片代理": "0",
+        "主页url": "https://t.xy-zg.com",
+        "首页": "120",
+        "起始页": "1",
+        "分类url": "https://t.xy-zg.com/type/{cateId}-{catePg}.html;;mrc",
+        "分类": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/电影&剧集&综艺&动漫&短剧",
+        "分类值": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/1&2&3&4&25",
+        "二次截取": "",
+        "数组": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/videopic lazy\"&&</a>",
+        "标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/title=\"&&\"",
+        "图片": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/data-original=\"&&\"",
+        "副标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/note textbg\">&&<",
+        "链接": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/href=\"&&\"",
+        "影片年代": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/年份：&&</li>",
+        "影片地区": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/地区：&&</li>",
+        "影片类型": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/类型：&&</li>",
+        "状态": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/时间：&&</li>",
+        "导演": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/导演：&&</li>",
+        "主演": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/主演：&&</li>",
+        "简介": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/【请不要相信视频中的广告，以免上当受骗！】+<div class=\"plot\">&&</div>",
+        "线路二次截取": "",
+        "线路数组": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/\\#playlist\"&&</a>",
+        "线路标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/title=\"&&\"",
+        "播放二次截取": "",
+        "播放数组": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<ul class=\"playlistlink&&</ul>",
+        "播放列表": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<a&&/a>",
+        "播放标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/title=\"&&\"",
+        "播放链接": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/href=\"&&\"",
+        "解析": "",
+        "直接播放": "0",
+        "播放请求头": "",
+        "嗅探词": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/.mp4#.m3u8",
+        "过滤词": "",
+        "跳转播放链接": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/var now=\"&&\"",
+        "跳转解析": "",
+        "搜索请求头": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/User-Agent$MOBILE_UA",
+        "搜索url": "https://t.xy-zg.com/search.php?page={pg}&searchword={wd}&searchtype=",
+        "搜索模式": "1",
+        "搜索后缀": "",
+        "搜索二次截取": "",
+        "搜索数组": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/videopic\"&&</h3>",
+        "搜索标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<a*>&&</a",
+        "搜索图片": "background: url(&&)",
+        "搜索副标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/note textbg\">&&<",
+        "搜索链接": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/href=\"&&\"",
+        "筛选": "1",
+        "类型": "",
+        "剧情": "",
+        "剧情值": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/*",
+        "地区": "",
+        "地区值": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/*",
+        "年份": "",
+        "年份值": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/*",
+        "语言": "",
+        "语言值": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/*",
+        "字母": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/A&B&C&D&E&F&G&H&I&J&K&L&M&N&O&P&Q&R&S&T&U&V&W&X&Y&Z&0-9",
+        "字母值": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/*",
+        "排序": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/时间&人气&评分",
+        "排序值": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/time&hits&score"
+      }
+    },
+    {
+      "key": "追剧吧",
+      "name": "🏃‍♀️追剧吧",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "简介": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/【请不要相信视频中的广告，以免上当受骗！】+&&</div>",
+        "分类url": "https://zjuba.vip/index.php/vod/show/id/{cateId}/page/{catePg}.html",
+        "分类": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/追剧全部$0#电影$1#电视剧$2#综艺$3#动漫$4#更新$new"
+      }
+    },
+    {
+      "key": "csp_Dygang",
+      "name": "🧲电影港",
+      "type": 3,
+      "api": "csp_Dygang",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "csp_New6v",
+      "name": "🧲新6V",
+      "type": 3,
+      "api": "csp_New6v",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "csp_MeijuMi",
+      "name": "🧲美剧迷",
+      "type": 3,
+      "api": "csp_MeijuMi",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://www.meijumi.net/"
+    },
+    {
+      "key": "csp_SP360",
+      "name": "💘360",
+      "type": 3,
+      "api": "csp_SP360",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+    {
+      "name": "📦蒙太奇",
+      "key": "AppV7Mtq",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/AppV7Mtq",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🍊柚子",
+      "key": "AppV7Xyz",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/AppV7Xyz",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🏃‍♂️‍➡️追剧",
+      "key": "AppV7Zjdr",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/AppV7Zjdr",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🍌小黄人",
+      "key": "AppV7Xhr",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/AppV7Xhr",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "📦咸鱼",
+      "key": "AppV7Xy",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/AppV7Xy",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "📦零零七",
+      "key": "AppV7Llq",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/AppV7Llq",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🐶特狗",
+      "key": "AppV6Tg",
+      "type": 3,
+      "api": "csp_AppV6Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/AppV6Tg",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🏭厂长",
+      "key": "Czzy",
+      "type": 3,
+      "api": "csp_CzzyAmns",
+      "searchable": 1,
+      "filterable": 1,
+      "quickSearch": 1,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/Czzy",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🐱囧途动漫",
+      "key": "DMcyc",
+      "type": 3,
+      "api": "csp_DMcycAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🐱牛来动漫",
+      "key": "DMox",
+      "type": 3,
+      "api": "csp_DMoxAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🐱番薯动漫",
+      "key": "DMfans",
+      "type": 3,
+      "api": "csp_DMfansAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🐱青云动漫",
+      "key": "DMqingk",
+      "type": 3,
+      "api": "csp_DMqingkAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🐱魔都动漫",
+      "key": "DMmodu",
+      "type": 3,
+      "api": "csp_DMmoduAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "⭐韩剧",
+      "key": "Hxq",
+      "type": 3,
+      "api": "csp_HxqAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🔥短剧推荐",
+      "key": "Hgdh",
+      "type": 3,
+      "api": "csp_HgdhAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/Hgdh",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬漫剧",
+      "key": "MjHggg",
+      "type": 3,
+      "api": "csp_HgggAmns",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/MjHggg",
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬短剧",
+      "key": "DjHggg",
+      "type": 3,
+      "api": "csp_HgggAmns",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/DjHggg",
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬豪堪短剧",
+      "key": "HHkk",
+      "type": 3,
+      "api": "csp_HHkkAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬盒马短剧",
+      "key": "Hema",
+      "type": 3,
+      "api": "csp_HemaAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬拜拜短剧",
+      "key": "Bddj",
+      "type": 3,
+      "api": "csp_BddjAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬围观短剧",
+      "key": "Wgdj",
+      "type": 3,
+      "api": "csp_WgdjAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬喵喵短剧",
+      "key": "Qmdj",
+      "type": 3,
+      "api": "csp_QmdjAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎬星星短剧",
+      "key": "Xydj",
+      "type": 3,
+      "api": "csp_XydjAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🏆瓜子体育",
+      "key": "GuaziLive",
+      "type": 3,
+      "api": "csp_GuaziLiveAmns",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/GuaziLive",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🏆飞球体育",
+      "key": "FeiqLive",
+      "type": 3,
+      "api": "csp_FeiqLiveAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🏆88体育",
+      "key": "BbkqLive",
+      "type": 3,
+      "api": "csp_BbkqLiveAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/BbkqLive",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🏆咖啡体育",
+      "key": "KafLive",
+      "type": 3,
+      "api": "csp_KafLiveAmns",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "📖富强听书",
+      "key": "TSty",
+      "type": 3,
+      "api": "csp_TStyAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "📖文明听书",
+      "key": "TStzg",
+      "type": 3,
+      "api": "csp_TStzgAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "📖嗷嗚听书",
+      "key": "TSaowu",
+      "type": 3,
+      "api": "csp_TSaowuAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎸酷听音乐",
+      "key": "Kuwo",
+      "type": 3,
+      "api": "csp_KuwoAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "music",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "name": "🎸蜻蜓电台",
+      "key": "QTfm",
+      "type": 3,
+      "api": "csp_QTfmAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "music",
+      "jar": "https://nos.netease.com/ysf/f7a737368ecfe7c8413a773614e60807.png"
+    },
+    {
+      "key": "SeedHub",
+      "name": "🅿SeedHub",
+      "type": 3,
+      "api": "csp_SeedHub",
+      "searchable": 1,
+      "filterable": 0,
+      "switchable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "片库",
+      "name": "🅿七味",
+      "type": 3,
+      "api": "csp_Qiwei",
+      "searchable": 1,
+      "filterable": 0,
+      "switchable": 0,
+      "ext": {
+        "siteUrl": "https://www.qwmkv.com",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "pansou|fish",
+      "name": "📀pansou|fish",
+      "type": 3,
+      "api": "csp_PanSouFish",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://s.panhunt.com",
+        "filter": {
+          "exclude": [
+            "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/预告",
+            "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/花絮"
+          ]
+        },
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "玩偶",
+      "name": "👽玩偶",
+      "type": 3,
+      "api": "csp_Wogg",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "https://www.wogg.net",
+          "https://wogg.xxooo.cf",
+          "http://woggpan.xxooo.cf"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "二小",
+      "name": "😈二小",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "https://www.2xiaopan.top",
+          "https://wexwp.cc",
+          "http://www.wexwp.cc"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "至臻",
+      "name": "💯至臻",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "https://sp.zzzy.shop",
+          "https://www.zhizhen8.click",
+          "https://www.zhizhen1.top",
+          "https://www.mihdr.top"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "虎斑",
+      "name": "🐯虎斑",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "http://38.76.197.172:16969/"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "傻样",
+      "name": "😹傻样",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "http://38.76.197.172:12521/"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "蜡笔",
+      "name": "🖍︎蜡笔",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "http://tvpanpan.site",
+          "http://feimo.fun",
+          "https://www.mmpanpan.site"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "木偶",
+      "name": "🧸木偶",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "https://123.666291.xyz",
+          "https://666.666291.xyz",
+          "https://www.muou.site",
+          "https://www.muou.asia"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "讴歌",
+      "name": "0️⃣讴歌",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "https://woog.nxog.eu.org",
+          "https://woog.nxog.fun",
+          "https://woog.430520.xyz",
+          "https://woog.nxog.de5.net",
+          "https://woog.装歌.de5.net"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "多多",
+      "name": "🌟多多",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "https://tv.yydsys.top",
+          "https://tv.yydsys.cc",
+          "https://tv.214521.xyz"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "闪电",
+      "name": "⚡闪电",
+      "type": 3,
+      "api": "csp_kongbai",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "siteUrl": [
+          "https://shandian.blog",
+          "https://sd.sduc.site",
+          "https://sduc.cloud/"
+        ],
+        "filter": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/wogg.json"
+      }
+    },
+    {
+      "key": "剧透社",
+      "name": "⭐️剧透社",
+      "type": 3,
+      "api": "csp_Star2",
+      "searchable": 1,
+      "filterable": 0,
+      "switchable": 0,
+      "ext": {
+        "siteUrl": "https://1.star2.cn",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "FourKZN",
+      "name": "️4️⃣4k指南",
+      "type": 3,
+      "api": "csp_FourKZN",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://4kzn.cc",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "光鸭社区",
+      "name": "🦆光鸭社区",
+      "type": 3,
+      "api": "csp_光鸭社区",
+      "searchable": 1,
+      "changeable": 0,
+      "ext": {
+        "siteUrl": "https://gy.lubao2.de5.net",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "网盘集合",
+      "name": "🅿网盘集合",
+      "type": 3,
+      "api": "csp_网盘集合",
+      "searchable": 1,
+      "filterable": 0,
+      "switchable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "share": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/网盘集合.json"
+      }
+    },
+    {
+      "key": "Youtube",
+      "name": "⚡Youtube",
+      "type": 3,
+      "api": "csp_Youtube",
+      "searchable": 1,
+      "changeable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/youtube.json"
+      }
+    },
+    {
+      "key": "TgYunPan|本地",
+      "name": "🅿TgYunPan|本地",
+      "type": 3,
+      "api": "csp_TgYunPanLocal",
+      "searchable": 1,
+      "filterable": 0,
+      "switchable": 0,
+      "ext": {
+        "count": 4,
+        "channelUsername": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/Tgsearchers6,peccxinpd,yunpan139,yggpan,yunpanuc,shareAliyun,yunpan189,BaiduCloudDisk,Channel_Shares_115,gimy115,ydypzyfx,dianying4K,sbsbsnsqq,Q_dongman,ysmffx,XiangxiuNBB,yoyokuakeduanju,yeqingjie_GJG666,TG654TG,PanjClub,guoman4K,alyp_1,kuake_yppan,Baidu_Netdisk,bdwpzhpd,baidu_yppan,zyfb123,xx123pan,zyzhpd123,yp123pan,cloudtianyi,txtyzy,tianyirigeng,tyypzhpd,zaihuayun,ali_yppan",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "push_agent",
+      "name": "🎾推送",
+      "type": 3,
+      "api": "csp_Push",
+      "searchable": 0,
+      "quickSearch": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      }
+    },
+    {
+      "key": "虎牙",
+      "name": "🐯虎牙",
+      "type": 3,
+      "api": "csp_Huya",
+      "searchable": 1,
+      "quickSearch": 1,
+      "switchable": 0,
+      "ext": {
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      }
+    },
+    {
+      "key": "斗鱼",
+      "name": "🐟斗鱼",
+      "type": 3,
+      "api": "csp_Douyu",
+      "searchable": 1,
+      "quickSearch": 1,
+      "switchable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      }
+    },
+    {
+      "key": "csp_Kugou",
+      "name": "🐶酷狗",
+      "type": 3,
+      "api": "csp_Kugou",
+      "playerType": 2,
+      "ext": {
+        "classes": [
+          {
+            "type_name": "酷狗",
+            "type_id": "kugou"
+          }
+        ]
+      }
+    },
+    {
+      "key": "酷我听书",
+      "name": "📚酷我听书",
+      "type": 3,
+      "api": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/js/lib/drpy2.min.js",
+      "ext": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/js/酷我听书.js"
+    },
+    {
+      "key": "啊哈DJ",
+      "name": "🎵啊哈DJ",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "编码": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/UTF-8",
+        "请求头": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/User-Agent$MOBILE_UA",
+        "主页url": "https://m.ahadj.com",
+        "首页": "200",
+        "起始页": "1",
+        "分类url": "https://gh-proxy.com/music/id-{cateId}-{catePg}.html;;mrcRAD",
+        "分类": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/劲爆舞蹈视频$112#车载发烧视频$125#音乐派对视频$90#中文抒情视频$20#国外夜店视频$21#高清车展视频$58#粤语舞曲视频$114#英文抒情视频$46#日韩歌曲视频$50#串烧舞曲视频$62#钢管舞曲视频$64#国外舞曲视频$65#模特DJ视频$161#DJ打碟视频$163#中文夜店视频$180#华语超清MV$31#国外超清MV$44#车载音乐$85#中文DJ单曲$22#粤语DJ舞曲$29#草原DJ舞曲$35#经典粤语歌曲$54#中文DJ串烧$63#优美纯音乐$120#欧美单曲$13#国外串烧$6#蓝调爵士$117#club 舞曲$110#说唱歌曲$53#印度舞曲$47#Vocal House$43#Pure House$42#Club Dance$40#FunkyHouse$39#Mash Up$38#ElectroHouse$37#DutchHouse$36#英文歌曲$30#Club House$41#纯DJ音乐$121#Crooklyn$140#Dubstep$141#Tits Exclu$143#Chartbusters$144#Bounce EDM$146#Beezo BeeHive$147#Tech House$148#Headliner$149#Nothing$150#Rock$151#Techno$152#Transition$153#原味越鼓$184#Ibiza 舞曲$135#BigRoom$134#MyMP3Pool$133#Trap 舞曲$132#BarBangerz$131#Club Killers$130#House Dance$129#HouseFuture$128#Deep House$127#Deep 舞曲$126#Exclusive$124#Hip Hop$119#雷鬼音乐$118#无损中文舞曲$16#无损英文舞曲$17#无损中文歌曲$18#无损英文歌曲$19#无损串烧舞曲$33#车载3D音乐$116#外文3D舞曲$92#中文3D舞曲$93#8倍音质草原歌$137#8倍音质国外曲$138#8倍音质歌曲$164#中文抖音歌曲$168#英文抖音音乐$169#并四$67#自由步$82#广场舞曲$81#三步踩$80#拉丁$79#桑巴$78#摇并$77#吉特巴$76#探戈$75#恰恰$74#伦巴$73#慢三$72#中三$71#快三$70#慢四$69#快四$68#中四$66#华尔兹$139#中文的士高$166#国外的士高$167#DJ伴奏$165#",
+        "分类二次截取": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<div class=\"sort\">&&<div class=\"s_com",
+        "分类数组": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<a&&/a>",
+        "分类标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/>&&<",
+        "分类ID": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/href=\"/music/id-&&-1.html",
+        "二次截取": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/yinyue_list&&page_box",
+        "数组": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<li&&</li",
+        "图片": "https://www.ahadj.com/res/home/images/music_37.png",
+        "链接": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/href=\"&&\"",
+        "简介": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/-+Description\" content=\"&&\"",
+        "跳转播放链接": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<video controls=\"true*src=\"&&\"",
+        "标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/<h*>&&</h",
+        "副标题": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/icon-huo\">&&</span"
+      }
+    },
+    {
+      "key": "哔哩",
+      "name": "🅱️哔哩哔哩",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/Bili.json",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "cookie": ""
+      }
+    },
+    {
+      "key": "相声小品",
+      "name": "🅱️相声小品",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/Blixs.json",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "cookie": ""
+      }
+    },
+    {
+      "key": "戏曲",
+      "name": "🅱️戏曲",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/Blixq.json",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "cookie": ""
+      }
+    },
+    {
+      "key": "少儿",
+      "name": "🅱️少儿",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/少儿教育.json",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "cookie": ""
+      }
+    },
+    {
+      "key": "小学",
+      "name": "🅱️小学",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/小学课堂.json",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "cookie": ""
+      }
+    },
+    {
+      "key": "初中",
+      "name": "🅱️初中",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/初中课堂.json",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "cookie": ""
+      }
+    },
+    {
+      "key": "高中",
+      "name": "🅱️高中",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "json": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/高中课堂.json",
+        "commonConfig": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/peizhi.json",
+        "cookie": ""
+      }
+    }
+  ],
+  "parses": [
+    {
+      "name": "Web聚合",
+      "type": 3,
+      "url": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/Web"
+    },
+    {
+      "name": "Json聚合",
+      "type": 3,
+      "url": "https://gh-proxy.com/https:/raw.githubusercontent.com/yoursmile66/TVBox/main/Demo"
+    },
+    {
+      "name": "云",
+      "type": 0,
+      "url": "https://yparse.ik9.cc/index.php?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "mgtv",
+          "芒果",
+          "letv",
+          "乐视",
+          "pptv",
+          "PPTV",
+          "sohu",
+          "bilibili",
+          "哔哩哔哩",
+          "哔哩"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.1.0"
+        }
+      }
+    },
+    {
+      "name": "虾米",
+      "type": 0,
+      "url": "https://jx.hls.one/?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "mgtv",
+          "芒果",
+          "letv",
+          "乐视",
+          "pptv",
+          "PPTV",
+          "sohu",
+          "bilibili",
+          "哔哩哔哩",
+          "哔哩"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.1.0"
+        }
+      }
+    },
+    {
+      "name": "m3u8TV",
+      "type": 0,
+      "url": "https://jx.m3u8.tv/jiexi/?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "mgtv",
+          "芒果",
+          "letv",
+          "乐视",
+          "pptv",
+          "PPTV",
+          "sohu",
+          "bilibili",
+          "哔哩哔哩",
+          "哔哩"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.1.0"
+        }
+      }
+    },
+    {
+      "name": "77",
+      "type": 0,
+      "url": "https://jx.77flv.cc/?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "mgtv",
+          "芒果",
+          "letv",
+          "乐视",
+          "pptv",
+          "PPTV",
+          "sohu",
+          "bilibili",
+          "哔哩哔哩",
+          "哔哩"
+        ]
+      }
+    },
+    {
+      "name": "咸鱼",
+      "type": 0,
+      "url": "https://jx.xymp4.cc/?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "mgtv",
+          "芒果",
+          "letv",
+          "乐视",
+          "pptv",
+          "PPTV",
+          "sohu",
+          "bilibili",
+          "哔哩哔哩",
+          "哔哩"
+        ]
+      }
+    }
+  ],
+  "lives": [
+    {
+      "name": "Yoursmile",
+      "type": 0,
+      "url": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/live.txt",
+      "ua": "okhttp/3.15",
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://epg.112114.xyz/logo/{name}.png"
+    }
+  ],
+  "logo": "https://github.tbap.top/https://raw.githubusercontent.com/yoursmile66/TVBox/main/json/NanFeng.gif",
+  "rules": [
+    {
+      "name": "火山嗅探",
+      "hosts": [
+        "huoshan.com"
+      ],
+      "regex": [
+        "item_id="
+      ]
+    },
+    {
+      "name": "抖音嗅探",
+      "hosts": [
+        "douyin.com"
+      ],
+      "regex": [
+        "is_play_url="
+      ]
+    },
+    {
+      "name": "农民嗅探",
+      "hosts": [
+        "toutiaovod.com"
+      ],
+      "regex": [
+        "video/tos/cn"
+      ]
+    },
+    {
+      "name": "七新嗅探",
+      "hosts": [
+        "api.52wyb.com"
+      ],
+      "regex": [
+        "m3u8?pt=m3u8"
+      ]
+    },
+    {
+      "name": "夜市",
+      "hosts": [
+        "yeslivetv.com"
+      ],
+      "script": [
+        "document.getElementsByClassName('vjs-big-play-button')[0].click()"
+      ]
+    },
+    {
+      "name": "磁力广告",
+      "hosts": [
+        "magnet"
+      ],
+      "regex": [
+        "更多",
+        "请访问",
+        "example",
+        "社 区",
+        "x u u",
+        "直 播",
+        "更 新",
+        "社 区",
+        "有趣",
+        "有 趣",
+        "英皇体育",
+        "全中文AV在线",
+        "澳门皇冠赌场",
+        "哥哥快来",
+        "美女荷官",
+        "裸聊",
+        "新片首发",
+        "UUE29"
+      ]
+    },
+    {
+      "name": "饭团点击",
+      "hosts": [
+        "dadagui",
+        "freeok",
+        "dadagui"
+      ],
+      "script": [
+        "document.querySelector(\"#playleftiframe\").contentWindow.document.querySelector(\"#start\").click();"
+      ]
+    },
+    {
+      "name": "毛驴点击",
+      "hosts": [
+        "www.maolvys.com"
+      ],
+      "script": [
+        "document.getElementsByClassName('swal-buttonswal-button--confirm')[0].click()"
+      ]
+    },
+    {
+      "name": "cdn.ryplay",
+      "hosts": [
+        "cdn.ryplay"
+      ],
+      "regex": [
+        "5.480000",
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:5.480000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:5.320000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:3.360000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:4.000000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:0.560000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXTINF.*?\\s+.*?1o.*?\\.ts\\s+"
+      ]
+    }
+  ]
+}
