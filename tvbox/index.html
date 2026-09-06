@@ -71,23 +71,22 @@
 
     <script>
         (function() {
-            // ==================== 1. 在这里修改三个备份线路的域名 ====================
+            // ==================== 1. 备份线路的域名（用于 list.txt 加载的数据） ====================
             const DOMAINS = [
                 { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
                 { tag: "备份二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
 
-            // ==================== 2. 在这里添加/修改你的内置数据 ====================
-            // 格式：文件名|日期|大小|备注（备注可以是完整链接，也可以是文字说明）
+            // ==================== 2. 内置的备用接口数据 ====================
+            // 格式：文件名|日期|大小|备注（如果是3个链接用逗号隔开，会分别作为一、二、三线）
             const BUILT_IN_DATA = `
-菠菜pro.json|20260906|95.2K|https://0.12yue.de5.net/5/x4pro.json
-菠菜园.json|20260906|50.1K|https://0.12yue.de5.net/5/x4.json
-少儿频道.json|20260906|19.2K|https://0.12yue.de5.net/5/tv少儿.json
+x4备用接口.json|20260906|95.2K|https://0.12yue.de5.net/de5/x4.json,https://0.cdz.qzz.io/qzz/qzz/x4.json,https://0.wdzb.eu.cc/eucc/x4.json
             `.trim();
-            // =======================================================================
+            // =====================================================================================
 
             const WEIGHTS = {
+                "x4备用接口.json": 0, // 让它排在最前面
                 "菠菜园.json": 1, "菠菜园pro.json": 2, "少儿频道.json": 3,
                 "饭太硬.json": 4, "肥猫.json": 5, "摸鱼.json": 6,
                 "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
@@ -109,10 +108,13 @@
                 const isNew = isRecent(date);
                 const newClass = isNew ? 'badge-new' : 'badge-old';
 
+                // 解析备注：如果包含逗号，说明是三个线路的完整链接
+                const noteLinks = note.includes(',') ? note.split(',') : [];
+
                 const headerHtml = `
                     <div class="entry-header">
                         <div class="entry-name" title="${displayName}">${displayName}</div>
-                        ${note ? `<div class="entry-note"><span class="note-tag">${note}</span></div>` : ''}
+                        ${note ? `<div class="entry-note"><span class="note-tag">${noteLinks.length ? '多线路备用接口' : note}</span></div>` : ''}
                     </div>`;
 
                 const metaHtml = `
@@ -124,11 +126,15 @@
 
                 let urlLinesHtml = '';
                 DOMAINS.forEach((domain, index) => {
-                    // 如果备注是完整链接，且当前是“备份一线”，则使用备注的链接
                     let fullUrl = domain.base + decodedFile;
-                    if (index === 0 && note && note.startsWith('http')) {
-                        fullUrl = note;
+                    
+                    // 核心逻辑：如果 noteLinks 有值，优先用 noteLinks 里的链接
+                    if (noteLinks.length === 3) {
+                        fullUrl = noteLinks[index] ? noteLinks[index].trim() : fullUrl;
+                    } else if (index === 0 && note && note.startsWith('http')) {
+                        fullUrl = note; // 单个链接替换一线
                     }
+
                     urlLinesHtml += `
                         <div class="url-line">
                             <span class="url-tag">${domain.tag}</span>
@@ -165,6 +171,7 @@
                 items.forEach(item => { entriesHtml += renderEntry(item.file, item.date, item.size, item.note); });
                 container.innerHTML = `<div class="big-card">${entriesHtml}</div>`;
 
+                // 绑定复制事件
                 container.querySelectorAll('.copy-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
@@ -187,11 +194,11 @@
                 });
             }
 
-            // ==================== 3. 数据加载逻辑 ====================
+            // ==================== 3. 数据加载与合并逻辑 ====================
             function fetchData() {
                 const dataMap = {};
 
-                // 先解析内置数据
+                // 1. 先解析并显示内置的备用接口
                 if (BUILT_IN_DATA) {
                     BUILT_IN_DATA.split('\n').forEach(line => {
                         const parts = line.split('|').map(s => s.trim());
@@ -200,11 +207,9 @@
                         }
                     });
                 }
+                renderList(dataMap); // 先渲染内置数据
 
-                // 立刻渲染内置数据（不用等 list.txt）
-                renderList(dataMap);
-
-                // 再尝试加载 list.txt 并合并（如果 list.txt 有同名文件会覆盖内置的）
+                // 2. 再加载 list.txt 并合并（list.txt 的数据会排在内置数据后面）
                 fetch('list.txt?t=' + Date.now())
                     .then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
                     .then(text => {
