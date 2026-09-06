@@ -59,17 +59,6 @@
       "changeable": 1
     },
     {
-      "name": "师兄┃零一",
-      "key": "AppV6Dxs",
-      "type": 3,
-      "api": "csp_AppV6Amns",
-      "jar": "https://nos.netease.com/ysf/4e96ca1a41efeb4b3fa96a507f12b74b.png;md5;625131d4caa2f21c12a5dae01da59fd1",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http:///fbe15714a2413f05151fea6864509533510f3a0bb290dd40e3a2c65650bcf144db38b7a8945b776cf8933cb38e93a7d5d36988f5cbd33db73a1432681073eb45b4ce8224060c20ef229653f6b45f4e3a327a40e74bc51f710207b43b74b9bc3f9a2f70608e9c4783ddefc066662fb396be2d3c44dd2df48630d381176fd82e54565eccc47d944de1ff2bad4be0be043beaebd8fdcc0b6df5b1c2c3ec1f7d02b0e3f57e9af680cff3627e68d389379a8d3efdadb70e25135a3c473ddf249277ad12c9fa11002df91d7303627b06ac6bddd67ea082a758c6805628c06dcb22cafb109efad1389006e9c9518c7f85b2ab546315a1005adbf726ffe50d1f679fcf3b40e05f14698f8f5b6d1d829d6871d912056f1eee83cc1df1d9a126422781356e81cf24598a0216206fa59d2645a5812cc73e603190521454e77cc06c3640ea0799b83d60a3a0eaf5e28a7797ab77181d2b91aff50d9e1af419f10b839dc9fc61fb392ce138aaa6126f9eb3be09e94a87b96ac883c72c26d4b81d52de2696f40593b059ddd2279c354dc23d72a1f98150ec0be0dc0a5f6fdb93583b092c768b7fb8dd1bd43b59622810382fd21385606490610364fcd13e908f57a012f26e4cd4d1cee74c000bdc19edf27cb469f085c99cc9b8d9ae0f8b21473240c4a048a7dc8c6e5663258cc9184b1925ad8cb4e377f1cb78f06ee983263f47db396bb64d7118a2bb732d566408125f8ea1cb4158e6b70ac0bcff54ad45274772aaf96ca6183abfa8f0b3606404543823afc801edb734912f6777c30170a8fd0ddc9f69a3dc63885e23014f424e7a9fb8c29572d9d3004ea65a9dcf623f9c5c40abc52dc1c26e22ee9339b1ecdb0a3fe6e015cbeab7b7e091d8e7174fbbebdf82f2e1460ca94a61d3124272394619f9d84ac2b3be2fe70dfb9fa12fa8e153125327cb504b970380bf4bac66bcbf3fc3dd64855698ef82a4b0d88ef29e6bc89fe87a3354c941161e8c04a360402e906d30f095587c46ce26b9b7e1d15f7108cb01ff86c9b5a6c7bdfa9258d92602f04c6a77200754c0d4e8b1b5221e465ee36198100b53eb85eb59558016af86125162a95f24e329f87e371906d7f3fbed0f4994acd9a5b3fc2b206a5fcbc4316152f6fb6ac53b8dcffb65e2fde676f32cc9e24a2a954ade411b5ee92e809a86f8a8ac741aba21ce17a7dfb194a2ad36f5f44240669543e9051dc21c7a887d80f4a5cdfbab54903e7caaa2b7daa9ed00903093e33a95682a8fad5b5361a71a9f14f6917c964870994a6b9bca00732473bd6eed0c9e7d7a068d84cf395ae20639c545a1916786b27e85d5eb3189233da8e3361279a7d76ee6605fade068462ad8387a5be98a90d866807a98506d3efac36846329350701d3d0996f1c35009ac46493a76eccb702fd1762cd10bc50e22f3ea34c8902e2d92f07f9d519768e564c23fda9172b9b359bb8d3b508554bb4bf488f283c30f89a7320a542ba985b2df0ec20401a4ddf120f2cc427604c84d7b9340c323169cfd0a5e17d47991eb1bcc0d031297370df81f4ea242bdd5f4c76caac6f5651ba28683d2623ea5b988d3a5c938f2126bd9b49ee4579227ba7458a61bf7b2f88a0f6879242a1584593ca13d9915ec150110997cf3526d3dbdd70d9b1ef0f9c20ec0b7e394f9ae34d5b3b549805553434e9ad0baff73e8eb2dc58bcc38d2b377bb999dc5f940fed55a97951dfc5cda514c37dcdc88aff46de8617a66cfe1372c55e5bfc7d70634a51f39c665beb4bd95b7de9473da306ad9d3de48a301f01187864ff4682cb6852eb865aabb8bdb7de43daeedba1ebb755aba14d954d4a290fc6ac4e0af70577fe9850b631259eb63dfda69026955a6332fbbf84a63cba9d9253581771a61f2aa108c06e1e449637781d8c830b0e3ac20f10de7088175be90761afd66da37adead8a7241fcb4e2a571885bde71811daa240012cb6effe2fc7380027b3e85cf32c0dd40569775983451603ee7687273eeaad5825d58adec12b9489d5a22e8ba08978984f0274dc53537ecd285e2c12dafec32cd3419dde63a1639794bf70c102b6b53fa1fdff744d757c0d6c05a30a9b561821a8846ce9ef0f26"
-    },
-    {
       "key": "天天",
       "name": "热播┃零二",
       "type": 3,
@@ -95,14 +84,6 @@
       "searchable": 1,
       "quickSearch": 0,
       "api": "csp_Gz360"
-    },
-    {
-      "key": "3QQQ",
-      "name": "大鹅┃零五",
-      "type": 3,
-      "timeout": 15,
-      "api": "csp_App3Q",
-      "ext": "https://asd123sx23xdacsx.top"
     },
     {
       "key": "csp_PianKu8",
@@ -133,14 +114,13 @@
       "type": 3,
       "api": "csp_App99",
       "ext": {
-        "host": "http://175.178.65.250:19987/app/bn",
-        "LoginPath": "http:///app/log",
-        "appkey": "http:///f66f65db127e48449f073c2c6eb0f993",
-        "versionName": "http:///6.4.5",
-        "name": "http:///双子星动漫",
-        "package": "http:///com.yingfu.mobile.android.pgsp",
-        "buildNumber": "2003",
-        "buildSignature": "http:///054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
+        "host": "http://103.217.190.91:19987/app/bn",
+        "appkey": "http:///24d625a8a29b4700a1a294c6f3b29e2c",
+        "versionName": "http:///3.5.8",
+        "name": "http:///半日闲",
+        "package": "http:///com.yf.lelian",
+        "buildNumber": "2001",
+        "buildSignature": "http:///A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
     },
     {
@@ -227,22 +207,6 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
-    },
-    {
-      "key": "橙子",
-      "name": "橙子┃二十",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "http://113.31.180.218:19987/app/bn",
-        "LoginPath": "http:///app/log",
-        "appkey": "http:///6e8f3764a0644f3686ab5cdd57bcdf48",
-        "versionName": "http:///4.3.1",
-        "name": "http:///小橙子",
-        "package": "http:///com.xchengzix.app",
-        "buildNumber": "2001",
-        "buildSignature": "http:///99DA983CF878CEC016616175464A91A94775E20A489F07F76FCDEA1A0F2B6B45"
-      }
     },
     {
       "key": "剧圈99",

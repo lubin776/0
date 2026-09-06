@@ -1,5 +1,5 @@
 {
-  "spider": "https://img2.tofaka.com/autoupload/f/444eo/20260905/VWk0/aidaox-20260905-170225.jar;md5;d184d5a829d447d84bb7df409952da4e",
+  "spider": "https://img2.tofaka.com/autoupload/f/444eo/20260906/dOty/aidaox-20260906-223800.jar;md5;3a6376826bdbaaaf787058aaf311d60b",
   "wallpaper": "proxy://do=wallpaper",
   "logo": "https://jk.catvod.site/jk/assets/feimao_logo.gif?v=20260901c",
   "sites": [
@@ -117,6 +117,15 @@
       "filterable": 1,
       "changeable": 1,
       "ext": "https:///NGX/Tk9QUVJTVFVWV1hZWltcXYAuO9R6PJUzJ8LurteLAFbbvV0iNZ+03UsAkPGZUCdL34Yb5w9K0whedCIHbxUwT2ieu1Hjuum36msN+Q0kJgIv+yy535d/AUDssZmIxn/mnEdvIKgffbvEQF3AWQfmfhoKlFGD9hPtTDWPkbi7GWxCg135hE+ikycI+4dxEwlMubztw8DTDPJLsX/tAz/6pncYvbu/q8yoAXNVwWeYtVDMSKkigmIjJYNy98zY8q8JCPgBVZQxdPncLx7SXuDI+Z3C8o3A35cbYQNHxHtfylvqaxRd7EaW28mN/+0DpJ3eXv2MnkSXtrFsjCWTW1bTYr/6GI+JwhYmvv8ZeMq+jWLYl4wXnyuDVaDrO/+a7btmytta/pDA6KZOrJwpBQzn3MJq2vDIum+eorv2zXe4lzTIr8atPpsKj52BZ9HbAXbFsZ+U/youl7KGPMtc32DHa9cxZxuOHLLtxMdIo2GNecVy5yrGuT23h0K8Dr1t09+T"
+    },
+    {
+      "key": "瓜子影视",
+      "name": "🐉瓜子[秒播]",
+      "type": 3,
+      "api": "csp_Gz360",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
     },
     {
       "key": "玩偶",
