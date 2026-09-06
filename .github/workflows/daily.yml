@@ -1,0 +1,69 @@
+name: TVBox 一日三更
+
+on:
+  # 每天北京时间 00:05 触发一次（UTC 16:05），由下方矩阵拆成 3 个并发 slot，
+  # 每个 slot 再随机 sleep 0~8 小时，从而实现「一天内随机 3 次」运行。
+  schedule:
+    - cron: "5 16 * * *"
+  # 手动触发按钮（便于调试）
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: "本次手动运行的次数 (1~3)"
+        required: false
+        default: "1"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    # 一天运行 3 次
+    strategy:
+      matrix:
+        slot: [1, 2, 3]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # requests / idna 均为可选依赖，安装失败不影响主流程
+          pip install requests idna || true
+
+      - name: Random delay (分散到全天)
+        run: |
+          # 将 24 小时均分 3 段，每段 8 小时；每个 slot 在对应时段内随机偏移
+          SLOT=${{ matrix.slot }}
+          BASE=$(( (SLOT - 1) * 8 * 3600 ))        # slot1:0h  slot2:8h  slot3:16h
+          MAX=$(( 8 * 3600 - 60 ))                  # 留出余量，避免跨日
+          OFFSET=$(python -c "import random; print(random.randint(0, $MAX))")
+          TOTAL=$(( BASE + OFFSET ))
+          echo "slot=$SLOT base=${BASE}s offset=${OFFSET}s total=${TOTAL}s"
+          echo "预计执行(北京时间): $(date -u -d "+${TOTAL} seconds" +%H:%M)"
+          sleep "$TOTAL"
+
+      - name: Run fetch script
+        run: |
+          python tvbox_get_api.py
+
+      - name: Commit & push results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # 仅提交本次生成的产物（按需调整）
+          git add tvbox/ list.txt SUMMARY.txt 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "无变更，跳过提交"
+          else
+            git commit -m "chore: 每日自动抓取更新 slot${{ matrix.slot }} ($(date -u +%Y-%m-%dT%H:%M:%SZ))"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
