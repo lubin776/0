@@ -534,7 +534,7 @@
                     })
                     .catch(err => {
                         console.warn('加载失败:', err);
-                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div></div>`;
+                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ list加载失败!</div></div>`;
                         bindCopyEvents();
                     });
             }
