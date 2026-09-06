@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>海量接口搬运备份2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>海量接口搬运备份</title>
   <style>
     * {
       margin: 0;
@@ -14,7 +14,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       background: #f5f7fa;
       color: #1e293b;
-      padding: 20px 16px;
+      padding: 16px 12px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -26,19 +26,19 @@
     }
     h1 {
       text-align: center;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      margin: 8px 0 4px;
-      letter-spacing: 0.5px;
+      margin: 4px 0 2px;
+      letter-spacing: 0.3px;
       color: #0b1e33;
     }
     .subtitle {
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #8b9eb0;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       border-bottom: 1px solid #e9edf2;
-      padding-bottom: 14px;
+      padding-bottom: 12px;
     }
     .search-box {
       width: 100%;
@@ -49,14 +49,14 @@
       background: #ffffff;
       outline: none;
       transition: all 0.2s;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
     .search-box:focus {
       border-color: #4a9eff;
       box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
     }
-    /* ----- 新卡片布局：名称 + URL 并排，外不溢出，内不覆盖 ----- */
+    /* ----- 卡片列表 ----- */
     .card-list {
       display: flex;
       flex-direction: column;
@@ -65,62 +65,63 @@
     .card-item {
       background: #ffffff;
       border-radius: 16px;
-      padding: 16px 18px;
+      padding: 14px 14px 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      transition: box-shadow 0.15s;
       border: 1px solid #f0f3f8;
+      transition: box-shadow 0.15s;
     }
     .card-item:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
     }
-    /* 核心：名称和 URL 容器 ———— 并排且不互相覆盖 */
+    /* 核心并排行：名称 | URL区域 */
     .card-row {
       display: flex;
-      flex-wrap: nowrap;          /* 不换行，强制并排 */
-      align-items: flex-start;    /* 顶部对齐，名称短时URL从顶开始 */
-      gap: 12px;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      gap: 10px;
       width: 100%;
-      min-width: 0;              /* 防止溢出 */
+      min-width: 0;
     }
-    /* 左侧名称区域 ———— 固定宽度，只显示一行 */
+    /* 左侧名称：固定宽度，单行省略 */
     .card-name-block {
-      flex: 0 0 120px;           /* 固定宽度，可根据需要调整，不压缩 */
-      min-width: 100px;
-      max-width: 150px;
-      padding-top: 2px;
+      flex: 0 0 100px;
+      min-width: 80px;
+      max-width: 130px;
+      padding-top: 4px;
+      flex-shrink: 0;
     }
     .card-name {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: #0b1e33;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       display: block;
-      line-height: 1.5;
-      word-break: keep-all;
+      line-height: 1.4;
     }
-    /* 右侧URL区块 ———— 占据剩余空间，允许折行，不溢出 */
+    /* 右侧URL区块：占据剩余空间，内部折行且不溢出 */
     .card-urls {
-      flex: 1 1 0;              /* 占据剩余宽度 */
-      min-width: 0;             /* 允许收缩 */
+      flex: 1 1 0;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      padding-top: 1px;
+      padding-top: 2px;
     }
     .url-line {
       display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;          /* 内部若还有多余内容可折行，但不影响外层并排 */
-      gap: 6px 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px 6px;
       background: #f8fafc;
-      padding: 6px 10px;
-      border-radius: 40px;
+      padding: 5px 10px 5px 8px;
+      border-radius: 30px;
       border: 1px solid #eef2f7;
+      width: 100%;
     }
     .url-tag {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 500;
       color: #4a6a8a;
       background: #e6edf6;
@@ -129,24 +130,24 @@
       line-height: 22px;
       white-space: nowrap;
       flex-shrink: 0;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
+    /* URL 文本：允许折行，自动换行，绝不溢出 */
     .url-text {
-      font-size: 0.83rem;
+      font-size: 0.8rem;
       color: #2563eb;
       word-break: break-all;
       overflow-wrap: break-word;
-      white-space: normal;       /* 允许换行 */
+      white-space: normal;
       line-height: 1.5;
       flex: 1 1 auto;
-      min-width: 0;
+      min-width: 60px;
       text-decoration: none;
       border-bottom: 1px dotted transparent;
-      transition: border-color 0.15s;
+      transition: border-color 0.12s;
     }
     .url-text:hover {
       border-bottom-color: #2563eb;
-      text-decoration: none;
     }
     .copy-btn {
       flex-shrink: 0;
@@ -154,16 +155,16 @@
       color: white;
       border: none;
       border-radius: 30px;
-      padding: 2px 14px;
-      font-size: 0.7rem;
+      padding: 0 12px;
+      font-size: 0.65rem;
       font-weight: 500;
       cursor: pointer;
-      height: 26px;
+      height: 24px;
+      line-height: 24px;
       transition: background 0.15s, transform 0.05s;
-      line-height: 26px;
       white-space: nowrap;
-      letter-spacing: 0.3px;
-      margin-left: auto;         /* 靠右对齐 */
+      letter-spacing: 0.2px;
+      margin-left: auto;
     }
     .copy-btn:active {
       background: #2a7ed9;
@@ -172,14 +173,14 @@
     .copy-btn.copied {
       background: #3b9b6c;
     }
-    /* 元数据（日期/大小/标签）单独一行，不干扰并排 */
+    /* 元数据行 */
     .card-meta {
       margin-top: 12px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 8px 16px;
-      font-size: 0.75rem;
+      gap: 6px 14px;
+      font-size: 0.7rem;
       color: #6a7f98;
       border-top: 1px solid #f0f4fa;
       padding-top: 10px;
@@ -187,7 +188,7 @@
     .meta-badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
     }
     .badge-new {
       color: #1b9e5a;
@@ -200,7 +201,7 @@
       color: #2a6bb0;
       padding: 0 10px;
       border-radius: 30px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       line-height: 20px;
       white-space: nowrap;
     }
@@ -208,46 +209,93 @@
       text-align: center;
       color: #9aadc2;
       padding: 48px 0;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       background: #ffffff;
       border-radius: 24px;
       border: 1px dashed #dce3ed;
     }
-    /* 搜索隐藏 */
     .card-item.hidden {
       display: none;
     }
-    /* 小屏适配：名称保持固定宽度，若屏幕太窄则适当缩小名称宽度 */
-    @media (max-width: 550px) {
+
+    /* ----- 手机优先深度优化 (针对小屏) ----- */
+    @media (max-width: 600px) {
+      body { padding: 12px 8px; }
+      .card-item { padding: 12px 10px 10px; }
       .card-name-block {
-        flex: 0 0 90px;
-        min-width: 70px;
-        max-width: 110px;
+        flex: 0 0 80px;
+        min-width: 64px;
+        max-width: 100px;
       }
-      .card-item {
-        padding: 14px 14px;
-      }
-      .url-line {
-        padding: 5px 8px;
-      }
-      .copy-btn {
-        font-size: 0.65rem;
-        padding: 0 10px;
-        height: 24px;
-        line-height: 24px;
-      }
-      .url-text {
-        font-size: 0.78rem;
-      }
-    }
-    @media (max-width: 420px) {
-      .card-name-block {
-        flex: 0 0 70px;
-        min-width: 60px;
-        max-width: 85px;
+      .card-name {
+        font-size: 0.88rem;
       }
       .card-row {
         gap: 6px;
+      }
+      .url-line {
+        padding: 4px 6px 4px 6px;
+        gap: 3px 4px;
+        border-radius: 24px;
+      }
+      .url-tag {
+        font-size: 0.6rem;
+        padding: 0 8px;
+        line-height: 20px;
+      }
+      .url-text {
+        font-size: 0.74rem;
+        min-width: 40px;
+        word-break: break-all;
+      }
+      .copy-btn {
+        font-size: 0.6rem;
+        padding: 0 10px;
+        height: 22px;
+        line-height: 22px;
+      }
+      .card-meta {
+        font-size: 0.65rem;
+        gap: 4px 10px;
+        padding-top: 8px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+      .note-tag {
+        font-size: 0.6rem;
+        line-height: 18px;
+        padding: 0 8px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .card-name-block {
+        flex: 0 0 68px;
+        min-width: 56px;
+        max-width: 80px;
+      }
+      .card-name {
+        font-size: 0.82rem;
+      }
+      .url-text {
+        font-size: 0.7rem;
+      }
+      .copy-btn {
+        font-size: 0.55rem;
+        padding: 0 8px;
+        height: 20px;
+        line-height: 20px;
+      }
+      .url-tag {
+        font-size: 0.55rem;
+        padding: 0 6px;
+        line-height: 18px;
+      }
+      .card-item {
+        padding: 10px 8px 8px;
+      }
+      .card-row {
+        gap: 4px;
       }
     }
   </style>
@@ -299,21 +347,19 @@
       return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
     }
 
-    // ----- 渲染单个卡片 (新布局) -----
+    // ----- 渲染单个卡片 (手机优化，URL自动折行不溢出) -----
     function renderCard(file, date, size, note) {
       const displayName = decodeName(file).replace(/\.json$/i, '');
       const isNew = isRecent(date);
       const metaDate = date || '----';
       const metaSize = size || '-';
 
-      // 构建URL行 (每个域名一条)
       let urlLinesHtml = '';
       DOMAINS.forEach(domain => {
-        // 编码用于href，复制时用原始中文名
-        const encodedFile = encodeURIComponent(file);
         const rawFile = decodeName(file);
-        const fullUrl = domain.base + rawFile;          // 展示 & 复制用
-        const hrefUrl = domain.base + encodedFile;      // 跳转用
+        const fullUrl = domain.base + rawFile;
+        const encodedFile = encodeURIComponent(file);
+        const hrefUrl = domain.base + encodedFile;
 
         urlLinesHtml += `
           <div class="url-line">
@@ -324,24 +370,20 @@
         `;
       });
 
-      // 元数据 + 备注
-      let noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
+      const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
       const newClass = isNew ? 'badge-new' : 'badge-old';
       const newLabel = isNew ? '● 最近连通' : '● 历史';
 
       return `
         <div class="card-item" data-name="${displayName.toLowerCase()}">
           <div class="card-row">
-            <!-- 左侧名称：只显示一行 -->
             <div class="card-name-block">
               <span class="card-name" title="${displayName}">${displayName}</span>
             </div>
-            <!-- 右侧URL区域：多条线路并排，自动折行 -->
             <div class="card-urls">
               ${urlLinesHtml}
             </div>
           </div>
-          <!-- 元数据行：日期/大小/备注/新老标记 -->
           <div class="card-meta">
             <span class="meta-badge"><span class="${newClass}">${newLabel}</span></span>
             <span class="meta-badge">📅 ${metaDate}</span>
@@ -352,7 +394,7 @@
       `;
     }
 
-    // ----- 加载数据 & 渲染 -----
+    // ----- 加载 & 渲染 -----
     const container = document.getElementById('listContainer');
 
     function renderList(dataMap) {
@@ -362,7 +404,6 @@
         return;
       }
 
-      // 构建排序数组
       let items = entries.map(([file, info]) => ({
         file,
         date: info.date || '',
@@ -371,7 +412,6 @@
         weight: WEIGHTS[file] !== undefined ? WEIGHTS[file] : null,
       }));
 
-      // 排序：有权重按权重，无权重随机
       items.sort((a, b) => {
         if (a.weight !== null && b.weight !== null) return a.weight - b.weight;
         if (a.weight !== null) return -1;
@@ -379,7 +419,6 @@
         return Math.random() - 0.5;
       });
 
-      // 生成卡片HTML
       let html = '<div class="card-list">';
       items.forEach(item => {
         html += renderCard(item.file, item.date, item.size, item.note);
@@ -387,7 +426,7 @@
       html += '</div>';
       container.innerHTML = html;
 
-      // 绑定复制事件（委托，避免重复绑定）
+      // 复制事件委托
       container.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -402,7 +441,7 @@
               this.classList.remove('copied');
             }, 1500);
           }).catch(() => {
-            // 降级方案
+            // fallback
             const input = document.createElement('input');
             input.value = url;
             document.body.appendChild(input);
@@ -433,9 +472,8 @@
 
           const dataMap = {};
           lines.forEach(line => {
-            // 格式: 文件名|日期|大小|备注(可选)
             const parts = line.split('|').map(s => s.trim());
-            if (parts.length < 3) return; // 至少3列
+            if (parts.length < 3) return;
             const file = parts[0];
             const date = parts[1] || '';
             const size = parts[2] || '';
@@ -463,12 +501,10 @@
       const cards = container.querySelectorAll('.card-item');
       cards.forEach(card => {
         const name = card.getAttribute('data-name') || '';
-        const show = name.includes(keyword);
-        card.classList.toggle('hidden', !show);
+        card.classList.toggle('hidden', !name.includes(keyword));
       });
     };
 
-    // 初始化加载
     fetchData();
   })();
 </script>
