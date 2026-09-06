@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海量接口搬运备</title>
+<title>海量接口搬运</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background:#f5f7fa; color:#333; padding:16px; }
@@ -19,9 +19,9 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 .card-meta { font-size:0.78rem; color:#aaa; margin-bottom:10px; }
 .card-meta .dot-new { color:#22c55e; }
 .card-meta .dot-old { color:#f59e0b; }
-.link-row { display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; min-width:0; }
-.link-tag { font-size:0.72rem; background:#f0f0f0; color:#666; padding:2px 6px; border-radius:3px; min-width:56px; text-align:center; flex-shrink:0; }
-.link-url { flex:1; min-width:0; font-size:0.82rem; color:#4a9eff; text-decoration:none; white-space:normal; overflow-wrap:anywhere; word-break:break-all; line-height:1.4; }
+.link-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; min-width:0; }
+.link-tag { flex-shrink:0; min-width:56px; font-size:0.72rem; background:#f0f0f0; color:#666; padding:2px 6px; border-radius:3px; text-align:center; }
+.link-url { flex:1; min-width:0; font-size:0.82rem; color:#4a9eff; text-decoration:none; white-space:normal; word-break:break-all; overflow-wrap:anywhere; overflow:hidden; line-height:1.4; }
 .link-url:hover { text-decoration:underline; }
 .copy-btn { flex-shrink:0; padding:3px 10px; background:#4a9eff; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:0.75rem; }
 .copy-btn:active { background:#3a8eef; }
@@ -78,8 +78,8 @@ function renderItem(file, date, size, note) {
       &nbsp;${date||'-'}&nbsp;&nbsp;📦 ${size||'-'}
     </div>`;
   DOMAINS.forEach(d => {
-    const url = d.base + encodeURIComponent(file);       // href 编码
-    const copyUrl = d.base + decodeName(file);            // 复制用中文
+    const url = d.base + encodeURIComponent(file);
+    const copyUrl = d.base + decodeName(file);
     const disp = d.base + decodeName(file);
     html += `<div class="link-row">
       <span class="link-tag">${d.tag}</span>
