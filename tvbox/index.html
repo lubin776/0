@@ -71,10 +71,10 @@
       transition: box-shadow 0.15s;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       width: 100%;
       max-width: 100%;
-      overflow: hidden; /* 防止任何子元素溢出 */
+      overflow: hidden;
     }
     .card-item:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
@@ -102,10 +102,10 @@
       width: 100%;
     }
 
-    /* ----- 第二行：元数据 (状态/日期/大小) 居左排列 ----- */
+    /* ----- 第二行：元数据 (状态/日期/体积) 强制一行显示 ----- */
     .card-meta-row {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;          /* 强制不换行 */
       align-items: center;
       gap: 6px 16px;
       font-size: 0.72rem;
@@ -116,12 +116,14 @@
       width: 100%;
       max-width: 100%;
       overflow: hidden;
+      white-space: nowrap;        /* 整体不换行 */
     }
     .meta-badge {
       display: inline-flex;
       align-items: center;
       gap: 4px;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     .badge-new {
       color: #1b9e5a;
@@ -137,9 +139,10 @@
       font-size: 0.65rem;
       line-height: 20px;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    /* ----- 第三行：URL 区域 (强制容器小于卡片，彻底防溢出) ----- */
+    /* ----- 第三行：URL 区域 (独立一行，自动换行) ----- */
     .card-urls {
       display: flex;
       flex-direction: column;
@@ -230,30 +233,45 @@
       display: none;
     }
 
-    /* ----- 手机端：强制URL容器小于卡片容器 ----- */
+    /* ----- 手机端优化：元数据强制一行，URL独立一行 ----- */
     @media (max-width: 600px) {
       body { padding: 12px 6px; }
       .card-item { 
         padding: 12px 10px 10px; 
-        gap: 6px;
+        gap: 5px;
         max-width: 100%;
         overflow: hidden;
       }
       .card-name {
         font-size: 0.92rem;
       }
+      /* 元数据强制一行，用 nowrap 和 overflow 控制 */
       .card-meta-row {
         font-size: 0.65rem;
         gap: 4px 10px;
         padding: 3px 0;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow-x: auto;        /* 如果实在放不下，允许横向滚动查看，但不换行 */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;   /* 隐藏滚动条 */
       }
-      /* URL容器强制小于卡片 */
+      .card-meta-row::-webkit-scrollbar {
+        display: none;
+      }
+      .meta-badge {
+        flex-shrink: 0;
+      }
+      .note-tag {
+        font-size: 0.6rem;
+        line-height: 18px;
+        padding: 0 8px;
+        flex-shrink: 0;
+      }
+      /* URL 容器独立一行，自动换行 */
       .card-urls {
-        width: 98%; /* 故意小于父容器 */
-        max-width: 98%;
-        margin: 0 auto;
-        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
       }
       .url-line {
         padding: 4px 6px 4px 6px;
@@ -274,7 +292,7 @@
         font-size: 0.74rem;
         min-width: 20px;
         flex: 1 1 0;
-        max-width: calc(100% - 80px); /* 为标签和按钮留出空间 */
+        max-width: calc(100% - 80px);
         word-break: break-all;
         overflow-wrap: break-word;
         display: inline;
@@ -286,16 +304,11 @@
         line-height: 22px;
         flex-shrink: 0;
       }
-      .note-tag {
-        font-size: 0.6rem;
-        line-height: 18px;
-        padding: 0 8px;
-      }
     }
     @media (max-width: 420px) {
       .card-item { 
         padding: 10px 6px 8px; 
-        gap: 5px;
+        gap: 4px;
       }
       .card-name {
         font-size: 0.86rem;
@@ -304,10 +317,6 @@
         font-size: 0.6rem;
         gap: 2px 8px;
         padding: 2px 0;
-      }
-      .card-urls {
-        width: 97%;
-        max-width: 97%;
       }
       .url-line {
         padding: 3px 4px 3px 4px;
@@ -386,7 +395,7 @@
       return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
     }
 
-    // ----- 渲染单个卡片 (三行: 名称 | 元数据 | URL) -----
+    // ----- 渲染单个卡片 (三行: 名称 | 元数据一行 | URL一行) -----
     function renderCard(file, date, size, note) {
       const displayName = decodeName(file).replace(/\.json$/i, '');
       const isNew = isRecent(date);
@@ -400,7 +409,7 @@
         </div>
       `;
 
-      // 第二行：元数据 (状态/日期/大小)
+      // 第二行：元数据 (强制一行)
       const newClass = isNew ? 'badge-new' : 'badge-old';
       const newLabel = isNew ? '● 最近连通' : '● 历史';
       const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
@@ -413,7 +422,7 @@
         </div>
       `;
 
-      // 第三行：URL 列表
+      // 第三行：URL 列表 (独立一行)
       let urlLinesHtml = '';
       DOMAINS.forEach(domain => {
         const rawFile = decodeName(file);
