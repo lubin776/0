@@ -24,12 +24,11 @@
             margin: 0 auto;
         }
 
-        /* ===== 修改：从 space-between 改为 center + gap ===== */
         .header-flex {
             display: flex;
-            justify-content: center;          /* 整体居中 */
+            justify-content: center;
             align-items: center;
-            gap: 32px;                        /* 两个模块之间的间距 */
+            gap: 32px;
             margin-bottom: 20px;
             padding-bottom: 14px;
             border-bottom: 1px solid #e9edf2;
@@ -74,9 +73,10 @@
             flex-shrink: 0;
         }
 
+        /* 二维码放大：78 → 92 */
         .header-qrcode {
-            width: 78px;
-            height: 78px;
+            width: 92px;
+            height: 92px;
             border-radius: 10px;
             border: 1px solid #eef2f7;
             object-fit: cover;
@@ -84,12 +84,7 @@
             margin: 0 auto;
         }
 
-        .qrcode-desc {
-            font-size: 0.65rem;
-            color: #8b9eb0;
-            margin-top: 4px;
-            line-height: 1.2;
-        }
+        /* 二维码说明小字已删除 */
 
         /* ===== 以下全部原版样式，一字未改 ===== */
         .search-box {
@@ -276,8 +271,7 @@
             .header-logo { width: 42px; height: 42px; }
             .header-text h1 { font-size: 1.05rem; }
             .header-text .subtitle { font-size: 0.72rem; }
-            .header-qrcode { width: 64px; height: 64px; }
-            .qrcode-desc { font-size: 0.6rem; }
+            .header-qrcode { width: 78px; height: 78px; }
             .big-card { padding: 12px 12px 10px; }
             .entry { padding: 12px 0; }
             .entry-header { gap: 6px; margin-bottom: 6px; }
@@ -295,8 +289,7 @@
             .header-logo { width: 36px; height: 36px; }
             .header-text h1 { font-size: 0.95rem; }
             .header-text .subtitle { font-size: 0.65rem; }
-            .header-qrcode { width: 54px; height: 54px; }
-            .qrcode-desc { font-size: 0.55rem; }
+            .header-qrcode { width: 64px; height: 64px; }
             .big-card { padding: 10px 8px 8px; }
             .entry { padding: 10px 0; }
             .entry-header { gap: 4px; margin-bottom: 4px; }
@@ -312,18 +305,17 @@
 </head>
 <body>
     <div class="container">
-        <!-- 顶部：左 Logo+文字，右二维码，整体居中 -->
         <div class="header-flex">
             <div class="header-left">
                 <img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">
                 <div class="header-text">
                     <h1>海量接口搬运备份</h1>
-                    <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
+                    <p class="subtitle">备用数据在手，访问无忧</p>
                 </div>
             </div>
             <div class="header-right">
                 <img class="header-qrcode" src="https://0.12yue.de5.net/tvbox/x/lib/加群.jpeg" alt="加群二维码">
-                <p class="qrcode-desc">扫码加群</p>
+                <!-- 二维码说明小字已删除 -->
             </div>
         </div>
 
