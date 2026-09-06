@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量接口搬运备份</title>
+    <title>海量接口搬运备份量小</title>
     <style>
         * {
             margin: 0;
@@ -177,12 +177,6 @@
             line-height: 1.5;
             flex: 1 1 0;
             min-width: 40px;
-            text-decoration: none;
-            border-bottom: 1px dotted transparent;
-            transition: border-color 0.12s;
-        }
-        .url-text:hover {
-            border-bottom-color: #2563eb;
         }
 
         .copy-btn {
@@ -319,12 +313,11 @@
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
                     const fullUrl = domain.base + decodedFile;
-                    const hrefUrl = domain.base + encodeURIComponent(decodedFile);
 
                     urlLinesHtml += `
                         <div class="url-line">
                             <span class="url-tag">${domain.tag}</span>
-                            <a class="url-text" href="${hrefUrl}" target="_blank" rel="noopener">${fullUrl}</a>
+                            <span class="url-text">${fullUrl}</span>
                             <button class="copy-btn" data-url="${fullUrl}">复制</button>
                         </div>
                     `;
