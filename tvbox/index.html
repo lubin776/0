@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量接口</title>
+    <title>海量接口搬运备份</title>
     <style>
-        /* 全局重置 */
         * {
             margin: 0;
             padding: 0;
@@ -31,7 +30,6 @@
             margin: 4px 0 2px;
             color: #0b1e33;
         }
-
         .subtitle {
             text-align: center;
             font-size: 0.8rem;
@@ -52,7 +50,6 @@
             transition: 0.2s;
             margin-bottom: 20px;
         }
-
         .search-box:focus {
             border-color: #4a9eff;
             box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
@@ -67,7 +64,7 @@
             border: 1px solid #f0f3f8;
         }
 
-        /* 每个条目 - 使用传统块级布局，强制垂直堆叠 */
+        /* ---------- 每个条目 ---------- */
         .entry {
             padding: 16px 0;
             border-bottom: 1px solid #f0f4fa;
@@ -78,6 +75,7 @@
 
         /* 名称块 */
         .entry-name {
+            display: block;
             font-size: 1.05rem;
             font-weight: 600;
             color: #0b1e33;
@@ -87,30 +85,30 @@
             margin-bottom: 8px;
         }
 
-        /* 元数据块（状态、日期、体积）—— 强制一行 */
+        /* 元数据块（状态、日期、体积）—— 强制一行，但作为一个整体块 */
         .entry-meta {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            gap: 12px 20px;
-            font-size: 0.78rem;
-            color: #5a6f88;
+            display: block;           /* 确保块级 */
             padding: 6px 0;
             border-top: 1px solid #f0f4fa;
             border-bottom: 1px solid #f0f4fa;
+            margin-bottom: 10px;      /* 与URL块分隔 */
+            white-space: nowrap;      /* 内部不换行，但容器本身是块 */
             overflow-x: auto;
-            white-space: nowrap;
             scrollbar-width: none;
-            margin-bottom: 10px;   /* 与URL块拉开距离 */
         }
         .entry-meta::-webkit-scrollbar {
             display: none;
         }
+
         .meta-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            flex-shrink: 0;
+            display: inline-block;    /* 水平排列 */
+            font-size: 0.78rem;
+            color: #5a6f88;
+            padding: 0 6px;
+            margin-right: 12px;
+        }
+        .meta-item:last-child {
+            margin-right: 0;
         }
 
         .badge-new {
@@ -119,7 +117,6 @@
         .badge-old {
             color: #b88b3a;
         }
-
         .note-tag {
             background: #e8f4ff;
             color: #2a6bb0;
@@ -127,25 +124,29 @@
             border-radius: 30px;
             font-size: 0.7rem;
             line-height: 22px;
-            flex-shrink: 0;
+            display: inline-block;
         }
 
-        /* URL块 —— 每个URL独立一行 */
+        /* URL 块 —— 每个URL独立一行 */
         .entry-urls {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            display: block;          /* 块级容器 */
         }
 
         .url-line {
+            display: block;          /* 每个URL占一行 */
+            padding: 5px 12px 5px 10px;
+            margin-bottom: 6px;
+            background: #f8fafc;
+            border-radius: 40px;
+            border: 1px solid #eef2f7;
+            /* 内部使用 flex 来水平排列标签、链接、按钮 */
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             gap: 6px 10px;
-            background: #f8fafc;
-            padding: 5px 12px 5px 10px;
-            border-radius: 40px;
-            border: 1px solid #eef2f7;
+        }
+        .url-line:last-child {
+            margin-bottom: 0;
         }
 
         .url-tag {
@@ -165,7 +166,7 @@
             color: #2563eb;
             word-break: break-all;
             overflow-wrap: break-word;
-            white-space: normal;
+            white-space: normal;     /* 允许换行 */
             line-height: 1.5;
             flex: 1 1 0;
             min-width: 40px;
@@ -173,7 +174,6 @@
             border-bottom: 1px dotted transparent;
             transition: border-color 0.12s;
         }
-
         .url-text:hover {
             border-bottom-color: #2563eb;
         }
@@ -194,19 +194,15 @@
             white-space: nowrap;
             margin-left: auto;
         }
-
         .copy-btn:active {
             background: #2a7ed9;
             transform: scale(0.96);
         }
-
         .copy-btn.copied {
             background: #3b9b6c;
         }
 
-        /* 辅助 */
-        .loading,
-        .empty {
+        .loading, .empty {
             text-align: center;
             color: #9aadc2;
             padding: 48px 0;
@@ -220,91 +216,30 @@
             display: none;
         }
 
-        /* 手机端适配 */
+        /* 手机端微调 */
         @media (max-width: 600px) {
-            body {
-                padding: 12px 6px;
-            }
-            .big-card {
-                padding: 12px 12px 10px;
-            }
-            .entry {
-                padding: 12px 0;
-            }
-            .entry-name {
-                font-size: 0.95rem;
-            }
-            .entry-meta {
-                font-size: 0.7rem;
-                gap: 8px 14px;
-                padding: 4px 0;
-                margin-bottom: 8px;
-            }
-            .url-line {
-                padding: 4px 8px;
-                gap: 4px 6px;
-            }
-            .url-tag {
-                font-size: 0.65rem;
-                padding: 0 10px;
-                line-height: 22px;
-            }
-            .url-text {
-                font-size: 0.75rem;
-                min-width: 30px;
-            }
-            .copy-btn {
-                font-size: 0.65rem;
-                padding: 0 10px;
-                height: 24px;
-                line-height: 24px;
-            }
-            .note-tag {
-                font-size: 0.65rem;
-                line-height: 20px;
-                padding: 0 8px;
-            }
+            body { padding: 12px 6px; }
+            .big-card { padding: 12px 12px 10px; }
+            .entry { padding: 12px 0; }
+            .entry-name { font-size: 0.95rem; }
+            .entry-meta { font-size: 0.7rem; padding: 4px 0; margin-bottom: 8px; }
+            .url-line { padding: 4px 8px; gap: 4px 6px; }
+            .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
+            .url-text { font-size: 0.75rem; min-width: 30px; }
+            .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
+            .note-tag { font-size: 0.65rem; line-height: 20px; padding: 0 8px; }
         }
 
         @media (max-width: 420px) {
-            .big-card {
-                padding: 10px 8px 8px;
-            }
-            .entry {
-                padding: 10px 0;
-            }
-            .entry-name {
-                font-size: 0.88rem;
-            }
-            .entry-meta {
-                font-size: 0.6rem;
-                gap: 4px 10px;
-                margin-bottom: 6px;
-            }
-            .url-line {
-                padding: 3px 6px;
-                gap: 3px 4px;
-            }
-            .url-tag {
-                font-size: 0.55rem;
-                padding: 0 8px;
-                line-height: 20px;
-            }
-            .url-text {
-                font-size: 0.7rem;
-                min-width: 20px;
-            }
-            .copy-btn {
-                font-size: 0.55rem;
-                padding: 0 8px;
-                height: 20px;
-                line-height: 20px;
-            }
-            .note-tag {
-                font-size: 0.55rem;
-                line-height: 18px;
-                padding: 0 6px;
-            }
+            .big-card { padding: 10px 8px 8px; }
+            .entry { padding: 10px 0; }
+            .entry-name { font-size: 0.88rem; }
+            .entry-meta { font-size: 0.6rem; gap: 4px 10px; margin-bottom: 6px; }
+            .url-line { padding: 3px 6px; gap: 3px 4px; }
+            .url-tag { font-size: 0.55rem; padding: 0 8px; line-height: 20px; }
+            .url-text { font-size: 0.7rem; min-width: 20px; }
+            .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
+            .note-tag { font-size: 0.55rem; line-height: 18px; padding: 0 6px; }
         }
     </style>
 </head>
@@ -333,7 +268,6 @@
                 "潇洒.json": 9,
             };
 
-            // 三个备用线路
             const DOMAINS = [
                 { tag: "一线", base: "https://0.12yue.de5.net/tvbox/" },
                 { tag: "二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
@@ -353,7 +287,6 @@
                 return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
             }
 
-            // 渲染单个条目
             function renderEntry(file, date, size, note) {
                 const displayName = decodeName(file).replace(/\.json$/i, '');
                 const isNew = isRecent(date);
@@ -376,7 +309,7 @@
                     </div>
                 `;
 
-                // URL 列表（每个URL独立一行）
+                // URL 列表
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
                     const rawFile = decodeName(file);
@@ -428,7 +361,6 @@
                     return Math.random() - 0.5;
                 });
 
-                // 构建大卡片
                 let entriesHtml = '';
                 items.forEach(item => {
                     entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
