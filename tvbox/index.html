@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海量接口搬运备</title>
+<title>海量接口搬运备份</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -25,68 +25,75 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 }
 .search-box:focus { border-color:#4a9eff; }
 
-/* ✅ 卡片：彻底锁死 */
+/* 卡片 */
 .card {
   background:#fff;
   border-radius:10px;
   padding:14px 16px;
   margin-bottom:12px;
   box-shadow:0 1px 4px rgba(0,0,0,0.06);
-  overflow:hidden; /* 兜底 */
+  overflow:hidden;
 }
 
-/* ✅ 名称行：永远独占、居中 */
-.card-name-row {
-  text-align:center;
-  margin-bottom:8px;
+/* 名称行 */
+.card-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
-.card-name {
-  font-size:0.95rem;
-  font-weight:600;
-  display:inline-block;
-}
+.card-name { font-size:0.95rem; font-weight:600; }
 .card-note {
-  font-size:0.75rem;
-  background:#e8f4ff;
-  color:#4a9eff;
-  padding:2px 8px;
-  border-radius:4px;
-  margin-left:6px;
-  vertical-align:middle;
+  font-size:0.75rem; background:#e8f4ff; color:#4a9eff;
+  padding:2px 8px; border-radius:4px;
 }
 
-/* ✅ 元信息 */
-.card-meta {
-  text-align:center;
-  font-size:0.78rem;
-  color:#aaa;
-  margin-bottom:12px;
-}
+/* 元信息 */
+.card-meta { font-size:0.78rem; color:#aaa; margin-bottom:10px; }
 .card-meta .dot-new { color:#22c55e; }
 .card-meta .dot-old { color:#f59e0b; }
 
-/* ✅ 链接块：纵向堆叠，绝不横排 */
-.link-block {
-  margin-bottom:10px;
-}
-
-/* 标签 + 按钮 行 */
-.link-top {
+/* 链接行 */
+.link-row {
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  margin-bottom:4px;
+  gap:8px;
+  margin-bottom:6px;
 }
 
+/* 标签 */
 .link-tag {
+  flex-shrink:0;
   font-size:0.72rem;
   background:#f0f0f0;
   color:#666;
-  padding:2px 8px;
+  padding:2px 6px;
   border-radius:3px;
+  min-width:56px;
+  text-align:center;
 }
 
+/* ★★★ 固定长度截断容器 ★★★ */
+.url-clip {
+  flex:1;
+  min-width:0;
+  max-width:240px;           /* 桌面端固定显示长度 */
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:clip;        /* 超长直接切掉，不显示省略号 */
+}
+
+/* URL 本身 */
+.link-url {
+  font-size:0.82rem;
+  color:#4a9eff;
+  text-decoration:none;
+}
+.link-url:hover { text-decoration:underline; }
+
+/* 复制按钮 */
 .copy-btn {
+  flex-shrink:0;
   padding:3px 10px;
   background:#4a9eff;
   color:#fff;
@@ -97,29 +104,17 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 }
 .copy-btn:active { background:#3a8eef; }
 
-/* ✅ URL：独占一行，强制折行，永不溢出 */
-.link-url {
-  display:block;
-  width:100%;
-  font-size:0.82rem;
-  color:#4a9eff;
-  text-decoration:none;
-  line-height:1.5;
-  word-break:break-all;
-  overflow-wrap:anywhere;
-  overflow:hidden;
-}
-.link-url:hover { text-decoration:underline; }
+.loading, .empty { text-align:center; color:#bbb; padding:40px 0; font-size:0.9rem; }
 
-.loading, .empty {
-  text-align:center; color:#bbb; padding:40px 0; font-size:0.9rem;
-}
-
+/* 手机端：缩短显示长度，防止挤压按钮 */
 @media (max-width:480px) {
   body { padding:10px; }
   h1 { font-size:1.15rem; }
   .card { padding:12px; border-radius:8px; }
-  .link-url { font-size:0.78rem; }
+  .url-clip { max-width:160px; }   /* 手机上更短 */
+  .link-tag { min-width:48px; font-size:0.68rem; }
+  .link-url { font-size:0.75rem; }
+  .copy-btn { padding:3px 8px; font-size:0.7rem; }
 }
 </style>
 </head>
@@ -161,10 +156,9 @@ function isRecent(d) {
 function renderItem(file, date, size, note) {
   const name = decodeName(file).replace(/\.json$/i,'');
   const isNew = isRecent(date);
-
   let html = `<div class="card">
-    <div class="card-name-row">
-      <span class="card-name">${name}</span>
+    <div class="card-top">
+      <div class="card-name">${name}</div>
       ${note?`<span class="card-note">${note}</span>`:''}
     </div>
     <div class="card-meta">
@@ -175,12 +169,12 @@ function renderItem(file, date, size, note) {
   DOMAINS.forEach(d => {
     const url = d.base + encodeURIComponent(file);
     const copyUrl = d.base + decodeName(file);
-    html += `<div class="link-block">
-      <div class="link-top">
-        <span class="link-tag">${d.tag}</span>
-        <button class="copy-btn" onclick="copy('${copyUrl}',this)">复制</button>
+    html += `<div class="link-row">
+      <span class="link-tag">${d.tag}</span>
+      <div class="url-clip">
+        <a class="link-url" href="${url}" target="_blank">${copyUrl}</a>
       </div>
-      <a class="link-url" href="${url}" target="_blank">${copyUrl}</a>
+      <button class="copy-btn" onclick="copy('${copyUrl}',this)">复制</button>
     </div>`;
   });
 
