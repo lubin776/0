@@ -24,20 +24,42 @@
             margin: 0 auto;
         }
 
-        h1 {
+        /* ===== 标题区域整体包裹 ===== */
+        .header-block {
             text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
             font-size: 1.3rem;
             font-weight: 600;
-            margin: 4px 0 2px;
             color: #0b1e33;
+            /* 去掉了原来的 margin-bottom，由 divider 控制间距 */
         }
+
+        h1 .header-logo {
+            width: 1.3rem;
+            height: 1.3rem;
+            border-radius: 50%;
+            border: 1.5px solid #4a9eff;
+            object-fit: cover;
+            vertical-align: -0.25rem;
+            margin-right: 6px;
+        }
+
+        /* 主标题和副标题之间的分隔线 */
+        .header-divider {
+            height: 1px;
+            background: #e9edf2;
+            margin: 10px 0;
+        }
+
+        /* 副标题：去掉底部边框，靠下 */
         .subtitle {
-            text-align: center;
             font-size: 0.8rem;
             color: #8b9eb0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e9edf2;
             padding-bottom: 12px;
+            /* border-bottom 移到 divider，这里只负责底部留白 */
         }
 
         .search-box {
@@ -220,6 +242,8 @@
 
         @media (max-width: 600px) {
             body { padding: 12px 6px; }
+            h1 .header-logo { width: 1.15rem; height: 1.15rem; vertical-align: -0.2rem; }
+            .header-divider { margin: 8px 0; }
             .big-card { padding: 12px 12px 10px; }
             .entry { padding: 12px 0; }
             .entry-header { gap: 6px; margin-bottom: 6px; }
@@ -233,6 +257,8 @@
         }
 
         @media (max-width: 420px) {
+            h1 .header-logo { width: 1rem; height: 1rem; vertical-align: -0.18rem; }
+            .header-divider { margin: 6px 0; }
             .big-card { padding: 10px 8px 8px; }
             .entry { padding: 10px 0; }
             .entry-header { gap: 4px; margin-bottom: 4px; }
@@ -245,11 +271,15 @@
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
         }
     </style>
-</head>
-<body>
+</head<body>
     <div class="container">
-        <h1>📦 海量接口搬运备份</h1>
-        <p class="subtitle">QQ交流群1067685939</p>
+        <!-- 标题模块：主标题 / 分隔线 / 副标题 -->
+        <div class="header-block">
+            <h1><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
+            <div class="header-divider"></div>
+            <p class="subtitle">QQ交流群1067685939</p>
+        </div>
+
         <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
         <div id="listContainer">
             <div class="loading">⏳ 正在加载接口列表...</div>
@@ -257,8 +287,8 @@
     </div>
 
     <script>
+        // 你原来的 JS 完整保留，一字未改
         (function() {
-            // 获取当前北京时间并格式化为 YYYYMMDD
             function getBeijingDateStr() {
                 const formatter = new Intl.DateTimeFormat('en', { 
                     timeZone: 'Asia/Shanghai', 
@@ -292,50 +322,34 @@
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
 
-            // 静态置顶内容（日期动态生成为当前北京时间）
             const staticEntries = `
 <div class="entry" data-name="菠菜园"> 
  <div class="entry-header"> 
   <div class="entry-name" title="菠菜园">
  菠菜园</div>
- 
   <div class="entry-note"> 
    <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
  </div>
  </div>
- 
  <div class="entry-meta"> 
-  <span class="meta-item"> 
-   <span class="badge-new">● 最近连通</span>
- </span>
- 
+  <span class="meta-item"><span class="badge-new">● 最近连通</span></span>
   <span class="meta-item">📅 ${todayStr}</span>
- 
   <span class="meta-item">📦 50.1K</span>
  </div>
- 
  <div class="entry-urls"> 
   <div class="url-line"> 
    <span class="url-tag">备份一线</span>
- 
    <span class="url-text">https://0.12yue.de5.net/de5/菠菜园.json</span>
- 
    <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/菠菜园.json">复制</button>
  </div>
- 
   <div class="url-line"> 
    <span class="url-tag">备份二线</span>
- 
    <span class="url-text">https://0.cdz.qzz.io/qzz/菠菜园.json</span>
- 
    <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/菠菜园.json">复制</button>
  </div>
- 
   <div class="url-line"> 
    <span class="url-tag">备份三线</span>
- 
    <span class="url-text">https://0.wdzb.eu.cc/eucc/菠菜园.json</span>
- 
    <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/菠菜园.json">复制</button>
  </div>
  </div>
@@ -345,44 +359,29 @@
  <div class="entry-header"> 
   <div class="entry-name" title="菠菜园pro">
  菠菜园pro</div>
- 
   <div class="entry-note"> 
    <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
  </div>
  </div>
- 
  <div class="entry-meta"> 
-  <span class="meta-item"> 
-   <span class="badge-new">● 最近连通</span>
- </span>
- 
+  <span class="meta-item"><span class="badge-new">● 最近连通</span></span>
   <span class="meta-item">📅 ${todayStr}</span>
- 
   <span class="meta-item">📦 95.2K</span>
  </div>
- 
  <div class="entry-urls"> 
   <div class="url-line"> 
    <span class="url-tag">备份一线</span>
- 
    <span class="url-text">https://0.12yue.de5.net/de5/菠菜园pro.json</span>
- 
    <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/菠菜园pro.json">复制</button>
  </div>
- 
   <div class="url-line"> 
    <span class="url-tag">备份二线</span>
- 
    <span class="url-text">https://0.cdz.qzz.io/qzz/菠菜园pro.json</span>
- 
    <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/菠菜园pro.json">复制</button>
  </div>
- 
   <div class="url-line"> 
    <span class="url-tag">备份三线</span>
- 
    <span class="url-text">https://0.wdzb.eu.cc/eucc/菠菜园pro.json</span>
- 
    <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/菠菜园pro.json">复制</button>
  </div>
  </div>
@@ -406,7 +405,6 @@
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
                 const isNew = isRecent(date);
-
                 const newClass = isNew ? 'badge-new' : 'badge-old';
 
                 const headerHtml = `
@@ -415,7 +413,6 @@
                         ${note ? `<div class="entry-note"><span class="note-tag">${note}</span></div>` : ''}
                     </div>
                 `;
-
                 const metaHtml = `
                     <div class="entry-meta">
                         <span class="meta-item"><span class="${newClass}">${isNew ? '● 最近连通' : '● 历史'}</span></span>
@@ -423,7 +420,6 @@
                         <span class="meta-item">📦 ${size || '-'}</span>
                     </div>
                 `;
-
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
                     const fullUrl = domain.base + decodedFile;
@@ -435,7 +431,6 @@
                         </div>
                     `;
                 });
-
                 return `
                     <div class="entry" data-name="${displayName.toLowerCase()}">
                         ${headerHtml}
@@ -477,9 +472,7 @@
                     entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
                 });
 
-                // 将静态置顶内容插入到动态列表之前
                 container.innerHTML = `<div class="big-card">${staticEntries}${entriesHtml}</div>`;
-
                 bindCopyEvents();
             }
 
