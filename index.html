@@ -5,45 +5,218 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>海量接口搬运备份</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-            background: #f5f7fa; color: #1e293b; padding: 16px 12px;
+            background: #f5f7fa;
+            color: #1e293b;
+            padding: 16px 12px;
         }
-        .container { max-width: 820px; margin: 0 auto; }
-        h1 { text-align: center; font-size: 1.3rem; font-weight: 600; margin: 4px 0 2px; color: #0b1e33; }
-        .subtitle { text-align: center; font-size: 0.8rem; color: #8b9eb0; margin-bottom: 20px; border-bottom: 1px solid #e9edf2; padding-bottom: 12px; }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 4px 0 2px;
+            color: #0b1e33;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8b9eb0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9edf2;
+            padding-bottom: 12px;
+        }
+
         .search-box {
-            width: 100%; padding: 12px 16px; border: 1px solid #dce1e9; border-radius: 40px;
-            font-size: 0.95rem; background: #fff; outline: none; transition: 0.2s; margin-bottom: 20px;
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dce1e9;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            background: #fff;
+            outline: none;
+            transition: 0.2s;
+            margin-bottom: 20px;
         }
-        .search-box:focus { border-color: #4a9eff; box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15); }
-        .big-card { background: #ffffff; border-radius: 16px; padding: 16px 18px 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #f0f3f8; }
-        .entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
-        .entry:last-child { border-bottom: none; }
-        .entry-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
-        .entry-name { font-size: 1.05rem; font-weight: 600; color: #0b1e33; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; min-width: 0; }
-        .entry-note { flex: 1; min-width: 0; display: flex; justify-content: flex-end; }
-        .note-tag { background: #e8f4ff; color: #2a6bb0; padding: 2px 12px; border-radius: 30px; font-size: 0.7rem; line-height: 1.5; display: inline-block; max-width: 100%; white-space: normal; word-break: break-all; vertical-align: middle; }
-        .entry-meta { display: block; padding: 6px 0; border-top: 1px solid #f0f4fa; border-bottom: 1px solid #f0f4fa; margin-bottom: 10px; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
-        .entry-meta::-webkit-scrollbar { display: none; }
-        .meta-item { display: inline-block; font-size: 0.78rem; color: #5a6f88; padding: 0 6px; margin-right: 12px; }
-        .meta-item:last-child { margin-right: 0; }
+        .search-box:focus {
+            border-color: #4a9eff;
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
+        }
+
+        .big-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px 18px 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0f3f8;
+        }
+
+        .entry {
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f4fa;
+        }
+        .entry:last-child {
+            border-bottom: none;
+        }
+
+        .entry-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .entry-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0b1e33;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 1;
+            min-width: 0;
+        }
+
+        .entry-note {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .note-tag {
+            background: #e8f4ff;
+            color: #2a6bb0;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            line-height: 1.5;
+            display: inline-block;
+            max-width: 100%;
+            white-space: normal;
+            word-break: break-all;
+            vertical-align: middle;
+        }
+
+        .entry-meta {
+            display: block;
+            padding: 6px 0;
+            border-top: 1px solid #f0f4fa;
+            border-bottom: 1px solid #f0f4fa;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .entry-meta::-webkit-scrollbar {
+            display: none;
+        }
+
+        .meta-item {
+            display: inline-block;
+            font-size: 0.78rem;
+            color: #5a6f88;
+            padding: 0 6px;
+            margin-right: 12px;
+        }
+        .meta-item:last-child {
+            margin-right: 0;
+        }
+
         .badge-new { color: #1b9e5a; }
         .badge-old { color: #b88b3a; }
-        .entry-urls { display: block; }
-        .url-line { padding: 5px 12px 5px 10px; margin-bottom: 6px; background: #f8fafc; border-radius: 40px; border: 1px solid #eef2f7; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
-        .url-line:last-child { margin-bottom: 0; }
-        .url-tag { font-size: 0.7rem; font-weight: 500; color: #4a6a8a; background: #e6edf6; padding: 0 12px; border-radius: 30px; line-height: 24px; white-space: nowrap; flex-shrink: 0; }
-        .url-text { font-size: 0.82rem; color: #2563eb; word-break: break-all; overflow-wrap: break-word; white-space: normal; line-height: 1.5; flex: 1 1 0; min-width: 40px; }
-        .copy-btn {
-            flex-shrink: 0; background: #4a9eff; color: white; border: none; border-radius: 30px;
-            padding: 0 14px; font-size: 0.7rem; font-weight: 500; cursor: pointer; height: 26px; line-height: 26px; transition: background 0.15s, transform 0.05s; white-space: nowrap; margin-left: auto;
+
+        .entry-urls {
+            display: block;
         }
-        .copy-btn:active { background: #2a7ed9; transform: scale(0.96); }
-        .copy-btn.copied { background: #3b9b6c; }
-        .loading, .empty { text-align: center; color: #9aadc2; padding: 48px 0; font-size: 0.9rem; background: #fff; border-radius: 24px; border: 1px dashed #dce3ed; }
-        .entry.hidden { display: none; }
+
+        .url-line {
+            padding: 5px 12px 5px 10px;
+            margin-bottom: 6px;
+            background: #f8fafc;
+            border-radius: 40px;
+            border: 1px solid #eef2f7;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 10px;
+        }
+        .url-line:last-child {
+            margin-bottom: 0;
+        }
+
+        .url-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #4a6a8a;
+            background: #e6edf6;
+            padding: 0 12px;
+            border-radius: 30px;
+            line-height: 24px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .url-text {
+            font-size: 0.82rem;
+            color: #2563eb;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.5;
+            flex: 1 1 0;
+            min-width: 40px;
+        }
+
+        .copy-btn {
+            flex-shrink: 0;
+            background: #4a9eff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 0 14px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            height: 26px;
+            line-height: 26px;
+            transition: background 0.15s, transform 0.05s;
+            white-space: nowrap;
+            margin-left: auto;
+        }
+        .copy-btn:active {
+            background: #2a7ed9;
+            transform: scale(0.96);
+        }
+        .copy-btn.copied {
+            background: #3b9b6c;
+        }
+
+        .loading, .empty {
+            text-align: center;
+            color: #9aadc2;
+            padding: 48px 0;
+            font-size: 0.9rem;
+            background: #fff;
+            border-radius: 24px;
+            border: 1px dashed #dce3ed;
+        }
+
+        .entry.hidden {
+            display: none;
+        }
+
         @media (max-width: 600px) {
             body { padding: 12px 6px; }
             .big-card { padding: 12px 12px 10px; }
@@ -56,6 +229,19 @@
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
             .note-tag { font-size: 0.65rem; padding: 1px 10px; }
+        }
+
+        @media (max-width: 420px) {
+            .big-card { padding: 10px 8px 8px; }
+            .entry { padding: 10px 0; }
+            .entry-header { gap: 4px; margin-bottom: 4px; }
+            .entry-name { font-size: 0.88rem; }
+            .entry-meta { font-size: 0.6rem; gap: 4px 10px; margin-bottom: 6px; }
+            .url-line { padding: 3px 6px; gap: 3px 4px; }
+            .url-tag { font-size: 0.55rem; padding: 0 8px; line-height: 20px; }
+            .url-text { font-size: 0.7rem; min-width: 20px; }
+            .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
+            .note-tag { font-size: 0.55rem; padding: 1px 6px; }
         }
     </style>
 </head>
@@ -71,58 +257,28 @@
 
     <script>
         (function() {
-            // ==================== 0. 北京时间（UTC+8）当前日期，格式 YYYYMMDD ====================
-            function getBeijingDate() {
-                const now = new Date();
-                const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-                const beijing = new Date(utc + 8 * 3600000);
-                const y = beijing.getFullYear();
-                const m = String(beijing.getMonth() + 1).padStart(2, '0');
-                const d = String(beijing.getDate()).padStart(2, '0');
-                return `${y}${m}${d}`;
-            }
-            const TODAY = getBeijingDate(); // 例如 20260906
+            const WEIGHTS = {
+                "菠菜园.json": 1,
+                "菠菜园pro.json": 2,
+                "少儿频道.json": 3,
+                "饭太硬.json": 4,
+                "肥猫.json": 5,
+                "摸鱼.json": 6,
+                "王二小.json": 7,
+                "集多.json": 8,
+                "潇洒.json": 9,
+            };
 
-            // ==================== 1. 三个备份线路（用于 list.txt 拼接） ====================
             const DOMAINS = [
                 { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
                 { tag: "备份二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
 
-            // ==================== 2. 内置数据（直接写死的项） ====================
-            // 每个对象：file=文件名, size=大小, note=主链接(显示在备注), backups=[一线,二线,三线]
-            const BUILT_IN = [
-                {
-                    file: "菠菜园.json",
-                    size: "50.1K",
-                    note: "https://0.12yue.de5.net/5/x4.json",
-                    backups: [
-                        "https://0.12yue.de5.net/de5/x4.json",
-                        "https://0.cdz.qzz.io/qzz/qzz/x4.json",
-                        "https://0.wdzb.eu.cc/eucc/x4.json",
-                    ],
-                },
-                {
-                    file: "菠菜pro.json",
-                    size: "95.2K",
-                    note: "https://0.12yue.de5.net/5/x4pro.json",
-                    backups: [
-                        "https://0.12yue.de5.net/de5/x4pro.json",
-                        "https://0.cdz.qzz.io/qzz/qzz/x4pro.json",
-                        "https://0.wdzb.eu.cc/eucc/x4pro.json",
-                    ],
-                },
-            ];
+            function decodeName(str) {
+                try { return decodeURIComponent(str); } catch (_) { return str; }
+            }
 
-            const WEIGHTS = {
-                "菠菜园.json": 1, "菠菜pro.json": 2,
-                "菠菜园pro.json": 3, "少儿频道.json": 4,
-                "饭太硬.json": 5, "肥猫.json": 6, "摸鱼.json": 7,
-                "王二小.json": 8, "集多.json": 9, "潇洒.json": 10,
-            };
-
-            function decodeName(str) { try { return decodeURIComponent(str); } catch (_) { return str; } }
             function isRecent(dateStr) {
                 if (!dateStr || dateStr.length !== 8) return false;
                 const y = parseInt(dateStr.slice(0, 4), 10);
@@ -132,48 +288,54 @@
                 return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
             }
 
-            // ==================== 3. 渲染单条接口 ====================
-            // item: { file, date, size, note, backups? }
-            function renderEntry(item) {
-                const { file, date, size, note, backups } = item;
+            function renderEntry(file, date, size, note) {
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
                 const isNew = isRecent(date);
+
                 const newClass = isNew ? 'badge-new' : 'badge-old';
 
                 const headerHtml = `
                     <div class="entry-header">
                         <div class="entry-name" title="${displayName}">${displayName}</div>
                         ${note ? `<div class="entry-note"><span class="note-tag">${note}</span></div>` : ''}
-                    </div>`;
+                    </div>
+                `;
 
                 const metaHtml = `
                     <div class="entry-meta">
                         <span class="meta-item"><span class="${newClass}">${isNew ? '● 最近连通' : '● 历史'}</span></span>
                         <span class="meta-item">📅 ${date || '----'}</span>
                         <span class="meta-item">📦 ${size || '-'}</span>
-                    </div>`;
+                    </div>
+                `;
 
-                // 生成三个线路的 URL 行
                 let urlLinesHtml = '';
-                DOMAINS.forEach((domain, index) => {
-                    // 优先用 backups 里写死的完整链接，否则用域名+文件名拼接
-                    let fullUrl = (backups && backups[index]) ? backups[index] : (domain.base + decodedFile);
+                DOMAINS.forEach(domain => {
+                    const fullUrl = domain.base + decodedFile;
 
                     urlLinesHtml += `
                         <div class="url-line">
                             <span class="url-tag">${domain.tag}</span>
                             <span class="url-text">${fullUrl}</span>
                             <button class="copy-btn" data-url="${fullUrl}">复制</button>
-                        </div>`;
+                        </div>
+                    `;
                 });
 
-                return `<div class="entry" data-name="${displayName.toLowerCase()}">${headerHtml}${metaHtml}<div class="entry-urls">${urlLinesHtml}</div></div>`;
+                return `
+                    <div class="entry" data-name="${displayName.toLowerCase()}">
+                        ${headerHtml}
+                        ${metaHtml}
+                        <div class="entry-urls">
+                            ${urlLinesHtml}
+                        </div>
+                    </div>
+                `;
             }
 
             const container = document.getElementById('listContainer');
 
-            // ==================== 4. 渲染整个列表 ====================
             function renderList(dataMap) {
                 const entries = Object.entries(dataMap);
                 if (!entries.length) {
@@ -186,7 +348,6 @@
                     date: info.date || '',
                     size: info.size || '',
                     note: info.note || '',
-                    backups: info.backups || null,
                     weight: WEIGHTS[file] !== undefined ? WEIGHTS[file] : null,
                 }));
 
@@ -198,81 +359,82 @@
                 });
 
                 let entriesHtml = '';
-                items.forEach(item => { entriesHtml += renderEntry(item); });
+                items.forEach(item => {
+                    entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
+                });
+
                 container.innerHTML = `<div class="big-card">${entriesHtml}</div>`;
 
-                bindCopy();
-            }
-
-            // ==================== 5. 绑定复制按钮事件 ====================
-            function bindCopy() {
                 container.querySelectorAll('.copy-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
                         const url = this.getAttribute('data-url');
                         if (!url) return;
-                        const done = () => {
+                        navigator.clipboard.writeText(url).then(() => {
                             const orig = this.textContent;
                             this.textContent = '✅ 已复制';
                             this.classList.add('copied');
-                            setTimeout(() => { this.textContent = orig; this.classList.remove('copied'); }, 1500);
-                        };
-                        if (navigator.clipboard && navigator.clipboard.writeText) {
-                            navigator.clipboard.writeText(url).then(done).catch(fallback);
-                        } else {
-                            fallback();
-                        }
-                        function fallback() {
+                            setTimeout(() => {
+                                this.textContent = orig;
+                                this.classList.remove('copied');
+                            }, 1500);
+                        }).catch(() => {
                             const input = document.createElement('input');
-                            input.value = url; document.body.appendChild(input); input.select();
-                            try { document.execCommand('copy'); done(); } catch (_) {}
+                            input.value = url;
+                            document.body.appendChild(input);
+                            input.select();
+                            document.execCommand('copy');
                             document.body.removeChild(input);
-                        }
+                            const orig = this.textContent;
+                            this.textContent = '📋 已复制';
+                            setTimeout(() => { this.textContent = orig; }, 1200);
+                        });
                     });
                 });
             }
 
-            // ==================== 6. 数据加载与合并 ====================
             function fetchData() {
-                const dataMap = {};
-
-                // (1) 先放入内置数据，日期用当前北京时间
-                BUILT_IN.forEach(item => {
-                    dataMap[item.file] = {
-                        date: TODAY,
-                        size: item.size,
-                        note: item.note,
-                        backups: item.backups,
-                    };
-                });
-                renderList(dataMap); // 立即渲染内置项
-
-                // (2) 再加载 list.txt，合并到后面（同名文件会被覆盖）
                 fetch('list.txt?t=' + Date.now())
-                    .then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+                    .then(res => {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.text();
+                    })
                     .then(text => {
                         const lines = text.trim().split('\n').filter(line => line.trim() !== '');
+                        if (!lines.length) {
+                            container.innerHTML = `<div class="empty">📭 list.txt 为空</div>`;
+                            return;
+                        }
+
+                        const dataMap = {};
                         lines.forEach(line => {
                             const parts = line.split('|').map(s => s.trim());
-                            if (parts.length >= 3 && parts[0]) {
-                                // list.txt 里的项：如果没写日期，也用当前北京时间
-                                dataMap[parts[0]] = {
-                                    date: parts[1] || TODAY,
-                                    size: parts[2] || '',
-                                    note: parts[3] || '',
-                                };
+                            if (parts.length < 3) return;
+                            const file = parts[0];
+                            const date = parts[1] || '';
+                            const size = parts[2] || '';
+                            const note = parts[3] || '';
+                            if (file) {
+                                dataMap[file] = { date, size, note };
                             }
                         });
-                        renderList(dataMap); // 合并后重新渲染
+
+                        if (!Object.keys(dataMap).length) {
+                            container.innerHTML = `<div class="empty">⚠️ 未解析到有效数据</div>`;
+                            return;
+                        }
+                        renderList(dataMap);
                     })
                     .catch(err => {
-                        console.warn('list.txt 加载失败，已显示内置数据:', err);
+                        console.warn('加载失败:', err);
+                        container.innerHTML = `<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div>`;
                     });
             }
 
             window.filterList = function() {
                 const keyword = document.getElementById('search').value.toLowerCase().trim();
-                container.querySelectorAll('.entry').forEach(entry => {
+                const entries = container.querySelectorAll('.entry');
+                entries.forEach(entry => {
                     const name = entry.getAttribute('data-name') || '';
                     entry.classList.toggle('hidden', !name.includes(keyword));
                 });
