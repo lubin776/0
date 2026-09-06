@@ -72,6 +72,8 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      width: 100%;
+      overflow: hidden; /* 防止任何子元素溢出 */
     }
     .card-item:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
@@ -82,6 +84,8 @@
       display: flex;
       align-items: center;
       padding-bottom: 2px;
+      width: 100%;
+      min-width: 0;
     }
     .card-name {
       font-size: 0.98rem;
@@ -93,6 +97,7 @@
       display: block;
       line-height: 1.5;
       max-width: 100%;
+      width: 100%;
     }
 
     /* ----- 第二行：元数据 (状态/日期/大小) 居左排列 ----- */
@@ -106,11 +111,14 @@
       padding: 4px 0 4px;
       border-top: 1px solid #f0f4fa;
       border-bottom: 1px solid #f0f4fa;
+      width: 100%;
+      min-width: 0;
     }
     .meta-badge {
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      white-space: nowrap;
     }
     .badge-new {
       color: #1b9e5a;
@@ -128,12 +136,13 @@
       white-space: nowrap;
     }
 
-    /* ----- 第三行：URL 区域 (自动折行, 不溢出) ----- */
+    /* ----- 第三行：URL 区域 (彻底解决溢出) ----- */
     .card-urls {
       display: flex;
       flex-direction: column;
       gap: 6px;
       width: 100%;
+      min-width: 0; /* 允许flex收缩 */
     }
     .url-line {
       display: flex;
@@ -145,6 +154,8 @@
       border-radius: 30px;
       border: 1px solid #eef2f7;
       width: 100%;
+      min-width: 0;
+      overflow: hidden; /* 防止内部溢出 */
     }
     .url-tag {
       font-size: 0.65rem;
@@ -165,11 +176,13 @@
       overflow-wrap: break-word;
       white-space: normal;
       line-height: 1.5;
-      flex: 1 1 auto;
-      min-width: 60px;
+      flex: 1 1 0; /* 占用剩余空间 */
+      min-width: 40px; /* 最小宽度保证可点击区域 */
+      max-width: 100%;
       text-decoration: none;
       border-bottom: 1px dotted transparent;
       transition: border-color 0.12s;
+      display: inline-block; /* 确保换行正确 */
     }
     .url-text:hover {
       border-bottom-color: #2563eb;
@@ -189,7 +202,7 @@
       transition: background 0.15s, transform 0.05s;
       white-space: nowrap;
       letter-spacing: 0.2px;
-      margin-left: auto;
+      margin-left: auto; /* 靠右对齐 */
     }
     .copy-btn:active {
       background: #2a7ed9;
@@ -213,37 +226,48 @@
       display: none;
     }
 
-    /* ----- 手机优化 (保持三行结构) ----- */
+    /* ----- 手机深度优化 (彻底防止溢出) ----- */
     @media (max-width: 600px) {
       body { padding: 12px 8px; }
-      .card-item { padding: 12px 12px 10px; gap: 6px; }
+      .card-item { 
+        padding: 12px 10px 10px; 
+        gap: 6px;
+        overflow: hidden;
+      }
       .card-name {
         font-size: 0.92rem;
       }
       .card-meta-row {
         font-size: 0.65rem;
-        gap: 4px 12px;
+        gap: 4px 10px;
         padding: 3px 0;
+        flex-wrap: wrap;
       }
       .url-line {
         padding: 4px 6px 4px 6px;
         gap: 3px 4px;
         border-radius: 24px;
+        flex-wrap: wrap;
       }
       .url-tag {
         font-size: 0.6rem;
         padding: 0 8px;
         line-height: 20px;
+        flex-shrink: 0;
       }
       .url-text {
         font-size: 0.74rem;
-        min-width: 40px;
+        min-width: 30px;
+        flex: 1 1 0;
+        word-break: break-all;
+        overflow-wrap: break-word;
       }
       .copy-btn {
         font-size: 0.6rem;
         padding: 0 10px;
         height: 22px;
         line-height: 22px;
+        flex-shrink: 0;
       }
       .note-tag {
         font-size: 0.6rem;
@@ -252,7 +276,10 @@
       }
     }
     @media (max-width: 420px) {
-      .card-item { padding: 10px 8px 8px; gap: 5px; }
+      .card-item { 
+        padding: 10px 6px 8px; 
+        gap: 5px;
+      }
       .card-name {
         font-size: 0.86rem;
       }
@@ -261,19 +288,26 @@
         gap: 2px 8px;
         padding: 2px 0;
       }
+      .url-line {
+        padding: 3px 4px 3px 4px;
+        gap: 2px 3px;
+        border-radius: 20px;
+      }
+      .url-tag {
+        font-size: 0.55rem;
+        padding: 0 6px;
+        line-height: 18px;
+      }
       .url-text {
         font-size: 0.7rem;
+        min-width: 20px;
+        flex: 1 1 0;
       }
       .copy-btn {
         font-size: 0.55rem;
         padding: 0 8px;
         height: 20px;
         line-height: 20px;
-      }
-      .url-tag {
-        font-size: 0.55rem;
-        padding: 0 6px;
-        line-height: 18px;
       }
       .note-tag {
         font-size: 0.55rem;
