@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>海量接口搬运备份6</title>
+  <title>海量接口搬运备份</title>
   <style>
     * {
       margin: 0;
@@ -73,6 +73,7 @@
       flex-direction: column;
       gap: 8px;
       width: 100%;
+      max-width: 100%;
       overflow: hidden; /* 防止任何子元素溢出 */
     }
     .card-item:hover {
@@ -85,7 +86,8 @@
       align-items: center;
       padding-bottom: 2px;
       width: 100%;
-      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
     }
     .card-name {
       font-size: 0.98rem;
@@ -112,7 +114,8 @@
       border-top: 1px solid #f0f4fa;
       border-bottom: 1px solid #f0f4fa;
       width: 100%;
-      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
     }
     .meta-badge {
       display: inline-flex;
@@ -136,13 +139,14 @@
       white-space: nowrap;
     }
 
-    /* ----- 第三行：URL 区域 (彻底解决溢出) ----- */
+    /* ----- 第三行：URL 区域 (强制容器小于卡片，彻底防溢出) ----- */
     .card-urls {
       display: flex;
       flex-direction: column;
       gap: 6px;
       width: 100%;
-      min-width: 0; /* 允许flex收缩 */
+      max-width: 100%;
+      overflow: hidden;
     }
     .url-line {
       display: flex;
@@ -154,8 +158,8 @@
       border-radius: 30px;
       border: 1px solid #eef2f7;
       width: 100%;
-      min-width: 0;
-      overflow: hidden; /* 防止内部溢出 */
+      max-width: 100%;
+      overflow: hidden;
     }
     .url-tag {
       font-size: 0.65rem;
@@ -176,13 +180,13 @@
       overflow-wrap: break-word;
       white-space: normal;
       line-height: 1.5;
-      flex: 1 1 0; /* 占用剩余空间 */
-      min-width: 40px; /* 最小宽度保证可点击区域 */
+      flex: 1 1 0;
+      min-width: 30px;
       max-width: 100%;
       text-decoration: none;
       border-bottom: 1px dotted transparent;
       transition: border-color 0.12s;
-      display: inline-block; /* 确保换行正确 */
+      display: inline-block;
     }
     .url-text:hover {
       border-bottom-color: #2563eb;
@@ -202,7 +206,7 @@
       transition: background 0.15s, transform 0.05s;
       white-space: nowrap;
       letter-spacing: 0.2px;
-      margin-left: auto; /* 靠右对齐 */
+      margin-left: auto;
     }
     .copy-btn:active {
       background: #2a7ed9;
@@ -226,12 +230,13 @@
       display: none;
     }
 
-    /* ----- 手机深度优化 (彻底防止溢出) ----- */
+    /* ----- 手机端：强制URL容器小于卡片容器 ----- */
     @media (max-width: 600px) {
-      body { padding: 12px 8px; }
+      body { padding: 12px 6px; }
       .card-item { 
         padding: 12px 10px 10px; 
         gap: 6px;
+        max-width: 100%;
         overflow: hidden;
       }
       .card-name {
@@ -243,10 +248,20 @@
         padding: 3px 0;
         flex-wrap: wrap;
       }
+      /* URL容器强制小于卡片 */
+      .card-urls {
+        width: 98%; /* 故意小于父容器 */
+        max-width: 98%;
+        margin: 0 auto;
+        overflow: hidden;
+      }
       .url-line {
         padding: 4px 6px 4px 6px;
         gap: 3px 4px;
         border-radius: 24px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
         flex-wrap: wrap;
       }
       .url-tag {
@@ -257,10 +272,12 @@
       }
       .url-text {
         font-size: 0.74rem;
-        min-width: 30px;
+        min-width: 20px;
         flex: 1 1 0;
+        max-width: calc(100% - 80px); /* 为标签和按钮留出空间 */
         word-break: break-all;
         overflow-wrap: break-word;
+        display: inline;
       }
       .copy-btn {
         font-size: 0.6rem;
@@ -288,6 +305,10 @@
         gap: 2px 8px;
         padding: 2px 0;
       }
+      .card-urls {
+        width: 97%;
+        max-width: 97%;
+      }
       .url-line {
         padding: 3px 4px 3px 4px;
         gap: 2px 3px;
@@ -300,8 +321,9 @@
       }
       .url-text {
         font-size: 0.7rem;
-        min-width: 20px;
+        min-width: 15px;
         flex: 1 1 0;
+        max-width: calc(100% - 70px);
       }
       .copy-btn {
         font-size: 0.55rem;
