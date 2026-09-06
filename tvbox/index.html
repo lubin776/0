@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>海量接口搬运备份上</title>
+  <title>海量接口搬运备份</title>
   <style>
     * {
       margin: 0;
@@ -102,7 +102,7 @@
       width: 100%;
     }
 
-    /* ----- 第二行：元数据 (状态 + 日期 + 体积) 强制一行显示 ----- */
+    /* ----- 第二行：状态 + 日期 + 体积 (强制一行) ----- */
     .card-meta-row {
       display: flex;
       flex-wrap: nowrap;
@@ -142,7 +142,7 @@
       flex-shrink: 0;
     }
 
-    /* ----- 第三行：URL 区域 (每个URL独立一行，自动换行) ----- */
+    /* ----- 第三行及之后：每个URL独立一行 (自动换行，防溢出) ----- */
     .card-urls {
       display: flex;
       flex-direction: column;
@@ -233,7 +233,7 @@
       display: none;
     }
 
-    /* ----- 手机端优化 ----- */
+    /* ----- 手机端优化：确保不溢出，元数据一行，URL自动换行 ----- */
     @media (max-width: 600px) {
       body { padding: 12px 6px; }
       .card-item { 
@@ -245,7 +245,7 @@
       .card-name {
         font-size: 0.92rem;
       }
-      /* 元数据强制一行，窄屏可横向滚动 */
+      /* 元数据强制一行，窄屏允许横向滚动查看，但不换行 */
       .card-meta-row {
         font-size: 0.65rem;
         gap: 4px 10px;
@@ -268,11 +268,7 @@
         padding: 0 8px;
         flex-shrink: 0;
       }
-      /* URL 容器 */
-      .card-urls {
-        width: 100%;
-        max-width: 100%;
-      }
+      /* URL 独立行，自动换行 */
       .url-line {
         padding: 4px 6px 4px 6px;
         gap: 3px 4px;
@@ -395,7 +391,7 @@
       return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
     }
 
-    // ----- 渲染单个卡片 (四行: 名称 | 状态+日期+体积 | URL | 复制按钮在URL行内) -----
+    // ----- 渲染单个卡片 (四行: 名称 | 状态+日期+体积 | URL1 | URL2 ...) -----
     function renderCard(file, date, size, note) {
       const displayName = decodeName(file).replace(/\.json$/i, '');
       const isNew = isRecent(date);
@@ -422,7 +418,7 @@
         </div>
       `;
 
-      // 第三行：URL 列表 (每个URL独立一行)
+      // 第三行及以后：每个URL独立一行
       let urlLinesHtml = '';
       DOMAINS.forEach(domain => {
         const rawFile = decodeName(file);
