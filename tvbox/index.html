@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量接口搬运备份</title>
+    <title>海量接口搬运备份量</title>
     
     <style>
-        /* 原有样式不变，省略... 我直接给你完整代码 */
         * {
             margin: 0;
             padding: 0;
@@ -25,59 +24,77 @@
             margin: 0 auto;
         }
 
-        /* ===== 新增：Logo 样式 ===== */
-        .logo-wrap {
-            text-align: center;
-            margin-bottom: 10px;
+        /* ===== 新增：顶部 Flex 布局 ===== */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e9edf2;
         }
-        .logo-img {
-            width: 64px;
-            height: 64px;
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .header-logo {
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             border: 2.5px solid #4a9eff;
             object-fit: cover;
-            box-shadow: 0 2px 10px rgba(74, 158, 255, 0.25);
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(74, 158, 255, 0.2);
         }
 
-        /* ===== 新增：加群二维码区域 ===== */
-        .qrcode-wrap {
-            text-align: center;
-            margin-bottom: 18px;
-            padding: 14px 12px 16px;
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            border: 1px solid #f0f3f8;
-        }
-        .qrcode-tip {
-            font-size: 0.82rem;
-            color: #5a6f88;
-            margin-bottom: 10px;
-        }
-        .qrcode-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 12px;
-            border: 1px solid #eef2f7;
-            object-fit: cover;
+        .header-text {
+            min-width: 0;
         }
 
         h1 {
-            text-align: center;
             font-size: 1.3rem;
             font-weight: 600;
-            margin: 4px 0 2px;
             color: #0b1e33;
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #8b9eb0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e9edf2;
-            padding-bottom: 12px;
+            margin: 0 0 2px 0;
+            line-height: 1.3;
         }
 
+        .subtitle {
+            font-size: 0.8rem;
+            color: #8b9eb0;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .header-right {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .header-qrcode {
+            width: 84px;
+            height: 84px;
+            border-radius: 10px;
+            border: 1px solid #eef2f7;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .qrcode-desc {
+            font-size: 0.65rem;
+            color: #8b9eb0;
+            margin-top: 4px;
+            line-height: 1.2;
+        }
+
+        /* ===== 以下原有样式不变 ===== */
         .search-box {
             width: 100%;
             padding: 12px 16px;
@@ -258,8 +275,11 @@
 
         @media (max-width: 600px) {
             body { padding: 12px 6px; }
-            .logo-img { width: 52px; height: 52px; }
-            .qrcode-img { width: 140px; height: 140px; }
+            .header-logo { width: 44px; height: 44px; }
+            h1 { font-size: 1.1rem; }
+            .subtitle { font-size: 0.75rem; }
+            .header-qrcode { width: 72px; height: 72px; }
+            .qrcode-desc { font-size: 0.6rem; }
             .big-card { padding: 12px 12px 10px; }
             .entry { padding: 12px 0; }
             .entry-header { gap: 6px; margin-bottom: 6px; }
@@ -273,8 +293,11 @@
         }
 
         @media (max-width: 420px) {
-            .logo-img { width: 44px; height: 44px; }
-            .qrcode-img { width: 120px; height: 120px; }
+            .header-logo { width: 38px; height: 38px; }
+            h1 { font-size: 1rem; }
+            .subtitle { font-size: 0.7rem; }
+            .header-qrcode { width: 60px; height: 60px; }
+            .qrcode-desc { font-size: 0.55rem; }
             .big-card { padding: 10px 8px 8px; }
             .entry { padding: 10px 0; }
             .entry-header { gap: 4px; margin-bottom: 4px; }
@@ -290,18 +313,19 @@
 </head>
 <body>
     <div class="container">
-        <!-- Logo 头像 -->
-        <div class="logo-wrap">
-            <img class="logo-img" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">
-        </div>
-
-        <h1>📦 海量接口搬运备份</h1>
-        <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
-
-        <!-- 加群二维码 -->
-        <div class="qrcode-wrap">
-            <p class="qrcode-tip">📱 扫码加入交流群，获取最新接口动态</p>
-            <img class="qrcode-img" src="https://0.12yue.de5.net/tvbox/x/lib/加群.jpeg" alt="加群二维码">
+        <!-- 顶部：左边 Logo+标题，右边二维码 -->
+        <div class="header-section">
+            <div class="header-left">
+                <img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">
+                <div class="header-text">
+                    <h1>海量接口搬运备份</h1>
+                    <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <img class="header-qrcode" src="https://0.12yue.de5.net/tvbox/x/lib/加群.jpeg" alt="加群二维码">
+                <p class="qrcode-desc">扫码加群</p>
+            </div>
         </div>
 
         <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
@@ -311,110 +335,9 @@
     </div>
 
     <script>
-        // 下面的 JS 代码和你原来的一模一样，不需要改
+        // 你原来的 JS 代码原封不动贴在这里就行，不用改任何一行
         (function() {
-            function getBeijingDateStr() {
-                const formatter = new Intl.DateTimeFormat('en', { 
-                    timeZone: 'Asia/Shanghai', 
-                    year: 'numeric', 
-                    month: '2-digit', 
-                    day: '2-digit' 
-                });
-                const parts = formatter.formatToParts(new Date());
-                const y = parts.find(p => p.type === 'year').value;
-                const m = parts.find(p => p.type === 'month').value;
-                const d = parts.find(p => p.type === 'day').value;
-                return `${y}${m}${d}`;
-            }
-            const todayStr = getBeijingDateStr();
-
-            const WEIGHTS = {
-                "菠菜园.json": 1,
-                "菠菜园pro.json": 2,
-                "少儿频道.json": 3,
-                "饭太硬.json": 4,
-                "肥猫.json": 5,
-                "摸鱼.json": 6,
-                "王二小.json": 7,
-                "集多.json": 8,
-                "潇洒.json": 9,
-            };
-
-            const DOMAINS = [
-                { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
-                { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
-                { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
-            ];
-
-            const staticEntries = `
-<div class="entry" data-name="菠菜园"> 
- <div class="entry-header"> 
-  <div class="entry-name" title="菠菜园">
- 菠菜园</div>
-  <div class="entry-note"> 
-   <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
- </div>
- </div>
- <div class="entry-meta"> 
-  <span class="meta-item"><span class="badge-new">● 最近连通</span></span>
-  <span class="meta-item">📅 ${todayStr}</span>
-  <span class="meta-item">📦 50.1K</span>
- </div>
- <div class="entry-urls"> 
-  <div class="url-line"> 
-   <span class="url-tag">备份一线</span>
-   <span class="url-text">https://0.12yue.de5.net/de5/菠菜园.json</span>
-   <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/菠菜园.json">复制</button>
- </div>
-  <div class="url-line"> 
-   <span class="url-tag">备份二线</span>
-   <span class="url-text">https://0.cdz.qzz.io/qzz/菠菜园.json</span>
-   <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/菠菜园.json">复制</button>
- </div>
-  <div class="url-line"> 
-   <span class="url-tag">备份三线</span>
-   <span class="url-text">https://0.wdzb.eu.cc/eucc/菠菜园.json</span>
-   <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/菠菜园.json">复制</button>
- </div>
- </div>
- </div>
-
-<div class="entry" data-name="菠菜园pro"> 
- <div class="entry-header"> 
-  <div class="entry-name" title="菠菜园pro">
- 菠菜园pro</div>
-  <div class="entry-note"> 
-   <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
- </div>
- </div>
- <div class="entry-meta"> 
-  <span class="meta-item"><span class="badge-new">● 最近连通</span></span>
-  <span class="meta-item">📅 ${todayStr}</span>
-  <span class="meta-item">📦 95.2K</span>
- </div>
- <div class="entry-urls"> 
-  <div class="url-line"> 
-   <span class="url-tag">备份一线</span>
-   <span class="url-text">https://0.12yue.de5.net/de5/菠菜园pro.json</span>
-   <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/菠菜园pro.json">复制</button>
- </div>
-  <div class="url-line"> 
-   <span class="url-tag">备份二线</span>
-   <span class="url-text">https://0.cdz.qzz.io/qzz/菠菜园pro.json</span>
-   <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/菠菜园pro.json">复制</button>
- </div>
-  <div class="url-line"> 
-   <span class="url-tag">备份三线</span>
-   <span class="url-text">https://0.wdzb.eu.cc/eucc/菠菜园pro.json</span>
-   <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/菠菜园pro.json">复制</button>
- </div>
- </div>
- </div>
-            `;
-
-            // 以下 renderEntry、fetchData 等函数和之前完全一样
-            // 为了简洁我就不重复了，你直接用你原来的 JS 部分即可
-            // ...（你原来的 JS 代码原封不动贴在这里）
+            // ... 你原来的全部 JS ...
         })();
     </script>
 </body>
