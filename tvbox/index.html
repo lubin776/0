@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量接口</title>
+    <title>海量接口搬运备份</title>
     <style>
         * {
             margin: 0;
@@ -55,7 +55,6 @@
             box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
         }
 
-        /* 大卡片 */
         .big-card {
             background: #ffffff;
             border-radius: 16px;
@@ -64,7 +63,6 @@
             border: 1px solid #f0f3f8;
         }
 
-        /* ---------- 每个条目 ---------- */
         .entry {
             padding: 16px 0;
             border-bottom: 1px solid #f0f4fa;
@@ -73,7 +71,6 @@
             border-bottom: none;
         }
 
-        /* 标题行（名称 + URL） */
         .entry-header {
             display: flex;
             align-items: flex-start;
@@ -81,7 +78,6 @@
             margin-bottom: 8px;
         }
 
-        /* 名称块：保持一行 */
         .entry-name {
             font-size: 1.05rem;
             font-weight: 600;
@@ -93,7 +89,6 @@
             min-width: 0;
         }
 
-        /* 备注（URL）块：自适应换行 */
         .entry-note {
             flex: 1;
             min-width: 0;
@@ -112,7 +107,6 @@
             vertical-align: middle;
         }
 
-        /* 元数据块（状态、日期、体积） */
         .entry-meta {
             display: block;
             padding: 6px 0;
@@ -141,7 +135,6 @@
         .badge-new { color: #1b9e5a; }
         .badge-old { color: #b88b3a; }
 
-        /* URL 块（三个线路） */
         .entry-urls {
             display: block;
         }
@@ -228,7 +221,6 @@
             display: none;
         }
 
-        /* 手机端微调 */
         @media (max-width: 600px) {
             body { padding: 12px 6px; }
             .big-card { padding: 12px 12px 10px; }
@@ -304,13 +296,9 @@
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
                 const isNew = isRecent(date);
-                const metaDate = date || '----';
-                const metaSize = size || '-';
 
                 const newClass = isNew ? 'badge-new' : 'badge-old';
-                const newLabel = isNew ? '● 最近连通' : '● 历史';
 
-                // 标题行（名称 + 备注URL 并排）
                 const headerHtml = `
                     <div class="entry-header">
                         <div class="entry-name" title="${displayName}">${displayName}</div>
@@ -318,12 +306,11 @@
                     </div>
                 `;
 
-                // 元数据行（状态、日期、体积）
                 const metaHtml = `
                     <div class="entry-meta">
-                        <span class="meta-item"><span class="${newClass}">${newLabel}</span></span>
-                        <span class="meta-item">📅 ${metaDate}</span>
-                        <span class="meta-item">📦 ${metaSize}</span>
+                        <span class="meta-item"><span class="${newClass}">${isNew ? '● 最近连通' : '● 历史'}</span></span>
+                        <span class="meta-item">📅 ${date || '----'}</span>
+                        <span class="meta-item">📦 ${size || '-'}</span>
                     </div>
                 `;
 
