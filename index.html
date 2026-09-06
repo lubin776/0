@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>海量接口搬运备份</title>
+    
     <style>
         * {
             margin: 0;
@@ -257,6 +258,22 @@
 
     <script>
         (function() {
+            // 获取当前北京时间并格式化为 YYYYMMDD
+            function getBeijingDateStr() {
+                const formatter = new Intl.DateTimeFormat('en', { 
+                    timeZone: 'Asia/Shanghai', 
+                    year: 'numeric', 
+                    month: '2-digit', 
+                    day: '2-digit' 
+                });
+                const parts = formatter.formatToParts(new Date());
+                const y = parts.find(p => p.type === 'year').value;
+                const m = parts.find(p => p.type === 'month').value;
+                const d = parts.find(p => p.type === 'day').value;
+                return `${y}${m}${d}`;
+            }
+            const todayStr = getBeijingDateStr();
+
             const WEIGHTS = {
                 "菠菜园.json": 1,
                 "菠菜园pro.json": 2,
@@ -271,9 +288,106 @@
 
             const DOMAINS = [
                 { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
-                { tag: "备份二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
+                { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
+
+            // 静态置顶内容（日期动态生成为当前北京时间）
+            const staticEntries = `
+<div class="entry" data-name="菠菜园"> 
+ <div class="entry-header"> 
+  <div class="entry-name" title="菠菜园">
+ 菠菜园</div>
+ 
+  <div class="entry-note"> 
+   <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
+ </div>
+ </div>
+ 
+ <div class="entry-meta"> 
+  <span class="meta-item"> 
+   <span class="badge-new">● 最近连通</span>
+ </span>
+ 
+  <span class="meta-item">📅 ${todayStr}</span>
+ 
+  <span class="meta-item">📦 50.1K</span>
+ </div>
+ 
+ <div class="entry-urls"> 
+  <div class="url-line"> 
+   <span class="url-tag">备份一线</span>
+ 
+   <span class="url-text">https://0.12yue.de5.net/de5/菠菜园.json</span>
+ 
+   <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/菠菜园.json">复制</button>
+ </div>
+ 
+  <div class="url-line"> 
+   <span class="url-tag">备份二线</span>
+ 
+   <span class="url-text">https://0.cdz.qzz.io/qzz/菠菜园.json</span>
+ 
+   <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/菠菜园.json">复制</button>
+ </div>
+ 
+  <div class="url-line"> 
+   <span class="url-tag">备份三线</span>
+ 
+   <span class="url-text">https://0.wdzb.eu.cc/eucc/菠菜园.json</span>
+ 
+   <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/菠菜园.json">复制</button>
+ </div>
+ </div>
+ </div>
+
+<div class="entry" data-name="菠菜园pro"> 
+ <div class="entry-header"> 
+  <div class="entry-name" title="菠菜园pro">
+ 菠菜园pro</div>
+ 
+  <div class="entry-note"> 
+   <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
+ </div>
+ </div>
+ 
+ <div class="entry-meta"> 
+  <span class="meta-item"> 
+   <span class="badge-new">● 最近连通</span>
+ </span>
+ 
+  <span class="meta-item">📅 ${todayStr}</span>
+ 
+  <span class="meta-item">📦 95.2K</span>
+ </div>
+ 
+ <div class="entry-urls"> 
+  <div class="url-line"> 
+   <span class="url-tag">备份一线</span>
+ 
+   <span class="url-text">https://0.12yue.de5.net/de5/菠菜园pro.json</span>
+ 
+   <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/菠菜园pro.json">复制</button>
+ </div>
+ 
+  <div class="url-line"> 
+   <span class="url-tag">备份二线</span>
+ 
+   <span class="url-text">https://0.cdz.qzz.io/qzz/菠菜园pro.json</span>
+ 
+   <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/菠菜园pro.json">复制</button>
+ </div>
+ 
+  <div class="url-line"> 
+   <span class="url-tag">备份三线</span>
+ 
+   <span class="url-text">https://0.wdzb.eu.cc/eucc/菠菜园pro.json</span>
+ 
+   <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/菠菜园pro.json">复制</button>
+ </div>
+ </div>
+ </div>
+            `;
 
             function decodeName(str) {
                 try { return decodeURIComponent(str); } catch (_) { return str; }
@@ -313,7 +427,6 @@
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
                     const fullUrl = domain.base + decodedFile;
-
                     urlLinesHtml += `
                         <div class="url-line">
                             <span class="url-tag">${domain.tag}</span>
@@ -339,7 +452,8 @@
             function renderList(dataMap) {
                 const entries = Object.entries(dataMap);
                 if (!entries.length) {
-                    container.innerHTML = `<div class="empty">📭 暂无接口数据</div>`;
+                    container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">📭 暂无接口数据</div></div>`;
+                    bindCopyEvents();
                     return;
                 }
 
@@ -363,8 +477,13 @@
                     entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
                 });
 
-                container.innerHTML = `<div class="big-card">${entriesHtml}</div>`;
+                // 将静态置顶内容插入到动态列表之前
+                container.innerHTML = `<div class="big-card">${staticEntries}${entriesHtml}</div>`;
 
+                bindCopyEvents();
+            }
+
+            function bindCopyEvents() {
                 container.querySelectorAll('.copy-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
@@ -402,7 +521,8 @@
                     .then(text => {
                         const lines = text.trim().split('\n').filter(line => line.trim() !== '');
                         if (!lines.length) {
-                            container.innerHTML = `<div class="empty">📭 list.txt 为空</div>`;
+                            container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">📭 list.txt 为空</div></div>`;
+                            bindCopyEvents();
                             return;
                         }
 
@@ -420,14 +540,16 @@
                         });
 
                         if (!Object.keys(dataMap).length) {
-                            container.innerHTML = `<div class="empty">⚠️ 未解析到有效数据</div>`;
+                            container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">⚠️ 未解析到有效数据</div></div>`;
+                            bindCopyEvents();
                             return;
                         }
                         renderList(dataMap);
                     })
                     .catch(err => {
                         console.warn('加载失败:', err);
-                        container.innerHTML = `<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div>`;
+                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div></div>`;
+                        bindCopyEvents();
                     });
             }
 
