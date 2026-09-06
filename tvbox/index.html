@@ -50,6 +50,10 @@
             box-shadow: 0 2px 8px rgba(74, 158, 255, 0.2);
         }
 
+        .header-text {
+            text-align: center;   /* ← 新增：两行文字居中对齐 */
+        }
+
         .header-text h1 {
             font-size: 1.25rem;
             font-weight: 600;
@@ -65,7 +69,6 @@
             margin: 0;
             padding: 0;
             border: none;
-            text-align: left;
         }
 
         .header-right {
@@ -73,7 +76,6 @@
             flex-shrink: 0;
         }
 
-        /* 二维码放大：78 → 92 */
         .header-qrcode {
             width: 92px;
             height: 92px;
@@ -83,8 +85,6 @@
             display: block;
             margin: 0 auto;
         }
-
-        /* 二维码说明小字已删除 */
 
         /* ===== 以下全部原版样式，一字未改 ===== */
         .search-box {
@@ -310,12 +310,11 @@
                 <img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">
                 <div class="header-text">
                     <h1>海量接口搬运备份</h1>
-                    <p class="subtitle"> 备用数据源，防屏不迷路</p>
+                    <p class="subtitle">备用数据在手访问无忧</p>
                 </div>
             </div>
             <div class="header-right">
                 <img class="header-qrcode" src="https://0.12yue.de5.net/tvbox/x/lib/加群.jpeg" alt="加群二维码">
-                <!-- 二维码说明小字已删除 -->
             </div>
         </div>
 
