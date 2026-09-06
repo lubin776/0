@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>海量接口搬运备份</title>
-    
     <style>
         * {
             margin: 0;
@@ -26,7 +25,7 @@
 
         .header-block {
             text-align: center;
-            margin-bottom: 12px; /* ← 从 20px 收窄 */
+            margin-bottom: 12px;
         }
 
         h1 {
@@ -54,8 +53,8 @@
         .subtitle {
             font-size: 0.8rem;
             color: #8b9eb0;
-            padding-bottom: 0;   /* ← 从 12px 去掉 */
-            line-height: 1.5;   /* ← 两行间距 */
+            padding-bottom: 0;
+            line-height: 1.5;
         }
 
         .search-box {
@@ -282,7 +281,6 @@
     </div>
 
     <script>
-        // 你原来的 JS 完整保留，一字未改
         (function() {
             function getBeijingDateStr() {
                 const formatter = new Intl.DateTimeFormat('en', { 
@@ -295,7 +293,7 @@
                 const y = parts.find(p => p.type === 'year').value;
                 const m = parts.find(p => p.type === 'month').value;
                 const d = parts.find(p => p.type === 'day').value;
-                return `${y}${m}${d}`;
+                return y + m + d;
             }
             const todayStr = getBeijingDateStr();
 
