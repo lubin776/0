@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海量接口搬运</title>
+<title>海量接口运备份</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background:#f5f7fa; color:#333; padding:16px; }
@@ -21,12 +21,12 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 .card-meta .dot-old { color:#f59e0b; }
 .link-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; min-width:0; }
 .link-tag { flex-shrink:0; min-width:56px; font-size:0.72rem; background:#f0f0f0; color:#666; padding:2px 6px; border-radius:3px; text-align:center; }
-.link-url { flex:1; min-width:0; font-size:0.82rem; color:#4a9eff; text-decoration:none; white-space:normal; word-break:break-all; overflow-wrap:anywhere; overflow:hidden; line-height:1.4; }
+.link-url { flex:1; min-width:0; max-width:100%; font-size:0.82rem; color:#4a9eff; text-decoration:none; white-space:normal; word-break:break-all; overflow-wrap:anywhere; overflow:hidden; line-height:1.4; }
 .link-url:hover { text-decoration:underline; }
 .copy-btn { flex-shrink:0; padding:3px 10px; background:#4a9eff; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:0.75rem; }
 .copy-btn:active { background:#3a8eef; }
 .loading, .empty { text-align:center; color:#bbb; padding:40px 0; font-size:0.9rem; }
-@media (max-width:480px) { body { padding:10px; } h1 { font-size:1.15rem; } .card { padding:12px; } }
+@media (max-width:480px) { body { padding:10px; } h1 { font-size:1.15rem; } .card { padding:12px; } .link-url { font-size:0.78rem; } }
 </style>
 </head>
 <body>
