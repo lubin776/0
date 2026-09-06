@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量接口搬运备份</title>
+    <title>海量搬运备份</title>
     <style>
         /* 全局重置 */
         * {
@@ -58,15 +58,8 @@
             box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
         }
 
-        /* 卡片列表 */
-        .card-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* 单个卡片 – 完全从零设计，只保留视觉风格 */
-        .card-item {
+        /* 大卡片 */
+        .big-card {
             background: #ffffff;
             border-radius: 16px;
             padding: 16px 18px 14px;
@@ -75,39 +68,48 @@
             transition: box-shadow 0.15s;
         }
 
-        .card-item:hover {
+        .big-card:hover {
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
         }
 
-        /* ---------- 第一行：接口名称 ---------- */
-        .card-name {
+        /* 每个接口条目 */
+        .entry {
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f4fa;
+        }
+
+        .entry:last-child {
+            border-bottom: none;
+        }
+
+        /* ---------- 条目内：第一行 名称 ---------- */
+        .entry-name {
             font-size: 1.05rem;
             font-weight: 600;
             color: #0b1e33;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            padding-bottom: 6px;
-            border-bottom: 1px solid #f0f4fa;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        /* ---------- 第二行：状态、日期、体积（强制一行） ---------- */
-        .card-meta {
+        /* ---------- 条目内：第二行 状态 + 日期 + 体积（强制一行） ---------- */
+        .entry-meta {
             display: flex;
             flex-wrap: nowrap;
             align-items: center;
             gap: 12px 20px;
             font-size: 0.78rem;
             color: #5a6f88;
-            padding: 6px 0 8px 0;
+            padding: 4px 0 6px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            border-top: 1px solid #f0f4fa;
             border-bottom: 1px solid #f0f4fa;
             margin-bottom: 8px;
-            overflow-x: auto;          /* 极窄屏可滚动，但绝不换行 */
-            white-space: nowrap;
-            scrollbar-width: none;     /* 隐藏滚动条 */
         }
-        .card-meta::-webkit-scrollbar {
+        .entry-meta::-webkit-scrollbar {
             display: none;
         }
 
@@ -135,11 +137,11 @@
             flex-shrink: 0;
         }
 
-        /* ---------- 第三行及以后：每个URL独占一行 ---------- */
-        .card-urls {
+        /* ---------- 条目内：第三行 URL 列表（每个URL独立一行） ---------- */
+        .entry-urls {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         .url-line {
@@ -148,7 +150,7 @@
             align-items: center;
             gap: 6px 10px;
             background: #f8fafc;
-            padding: 6px 12px 6px 10px;
+            padding: 5px 12px 5px 10px;
             border-radius: 40px;
             border: 1px solid #eef2f7;
         }
@@ -221,7 +223,7 @@
             border: 1px dashed #dce3ed;
         }
 
-        .card-item.hidden {
+        .entry.hidden {
             display: none;
         }
 
@@ -230,19 +232,22 @@
             body {
                 padding: 12px 6px;
             }
-            .card-item {
+            .big-card {
                 padding: 12px 12px 10px;
             }
-            .card-name {
+            .entry {
+                padding: 12px 0;
+            }
+            .entry-name {
                 font-size: 0.95rem;
             }
-            .card-meta {
+            .entry-meta {
                 font-size: 0.7rem;
                 gap: 8px 14px;
-                padding: 4px 0 6px;
+                padding: 3px 0 5px;
             }
             .url-line {
-                padding: 5px 8px;
+                padding: 4px 8px;
                 gap: 4px 6px;
             }
             .url-tag {
@@ -268,18 +273,21 @@
         }
 
         @media (max-width: 420px) {
-            .card-item {
+            .big-card {
                 padding: 10px 8px 8px;
             }
-            .card-name {
+            .entry {
+                padding: 10px 0;
+            }
+            .entry-name {
                 font-size: 0.88rem;
             }
-            .card-meta {
+            .entry-meta {
                 font-size: 0.6rem;
                 gap: 4px 10px;
             }
             .url-line {
-                padding: 4px 6px;
+                padding: 3px 6px;
                 gap: 3px 4px;
             }
             .url-tag {
@@ -351,21 +359,22 @@
                 return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
             }
 
-            function renderCard(file, date, size, note) {
+            // 渲染单个条目（非独立卡片）
+            function renderEntry(file, date, size, note) {
                 const displayName = decodeName(file).replace(/\.json$/i, '');
                 const isNew = isRecent(date);
                 const metaDate = date || '----';
                 const metaSize = size || '-';
 
-                // 第一行：名称
-                const nameHtml = `<div class="card-name" title="${displayName}">${displayName}</div>`;
+                // 名称
+                const nameHtml = `<div class="entry-name" title="${displayName}">${displayName}</div>`;
 
-                // 第二行：状态 + 日期 + 体积
+                // 元数据行
                 const newClass = isNew ? 'badge-new' : 'badge-old';
                 const newLabel = isNew ? '● 最近连通' : '● 历史';
                 const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
                 const metaHtml = `
-                    <div class="card-meta">
+                    <div class="entry-meta">
                         <span class="meta-item"><span class="${newClass}">${newLabel}</span></span>
                         <span class="meta-item">📅 ${metaDate}</span>
                         <span class="meta-item">📦 ${metaSize}</span>
@@ -373,7 +382,7 @@
                     </div>
                 `;
 
-                // 第三行及以后：每个URL独立一行
+                // URL列表
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
                     const rawFile = decodeName(file);
@@ -391,10 +400,10 @@
                 });
 
                 return `
-                    <div class="card-item" data-name="${displayName.toLowerCase()}">
+                    <div class="entry" data-name="${displayName.toLowerCase()}">
                         ${nameHtml}
                         ${metaHtml}
-                        <div class="card-urls">
+                        <div class="entry-urls">
                             ${urlLinesHtml}
                         </div>
                     </div>
@@ -425,12 +434,14 @@
                     return Math.random() - 0.5;
                 });
 
-                let html = '<div class="card-list">';
+                // 构建大卡片，内部包含所有条目
+                let entriesHtml = '';
                 items.forEach(item => {
-                    html += renderCard(item.file, item.date, item.size, item.note);
+                    entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
                 });
-                html += '</div>';
-                container.innerHTML = html;
+
+                const bigCardHtml = `<div class="big-card">${entriesHtml}</div>`;
+                container.innerHTML = bigCardHtml;
 
                 // 复制按钮事件
                 container.querySelectorAll('.copy-btn').forEach(btn => {
@@ -502,10 +513,10 @@
 
             window.filterList = function() {
                 const keyword = document.getElementById('search').value.toLowerCase().trim();
-                const cards = container.querySelectorAll('.card-item');
-                cards.forEach(card => {
-                    const name = card.getAttribute('data-name') || '';
-                    card.classList.toggle('hidden', !name.includes(keyword));
+                const entries = container.querySelectorAll('.entry');
+                entries.forEach(entry => {
+                    const name = entry.getAttribute('data-name') || '';
+                    entry.classList.toggle('hidden', !name.includes(keyword));
                 });
             };
 
