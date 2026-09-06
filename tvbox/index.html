@@ -85,7 +85,7 @@
             margin-bottom: 8px;
         }
 
-        /* 元数据块 */
+        /* 元数据块（状态、日期、体积） */
         .entry-meta {
             display: block;
             padding: 6px 0;
@@ -113,6 +113,7 @@
 
         .badge-new { color: #1b9e5a; }
         .badge-old { color: #b88b3a; }
+        
         .note-tag {
             background: #e8f4ff;
             color: #2a6bb0;
@@ -121,6 +122,17 @@
             font-size: 0.7rem;
             line-height: 22px;
             display: inline-block;
+        }
+
+        /* 新增：备注单独成行，解除 nowrap 限制 */
+        .entry-note {
+            padding: 4px 0 10px;
+            word-break: break-all;
+        }
+        .entry-note .note-tag {
+            white-space: normal;       /* 允许 URL 在标签内换行 */
+            line-height: 1.6;
+            padding: 2px 12px;
         }
 
         /* URL 块 */
@@ -222,6 +234,7 @@
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
             .note-tag { font-size: 0.65rem; line-height: 20px; padding: 0 8px; }
+            .entry-note .note-tag { padding: 2px 8px; line-height: 1.5; }
         }
 
         @media (max-width: 420px) {
@@ -234,6 +247,7 @@
             .url-text { font-size: 0.7rem; min-width: 20px; }
             .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
             .note-tag { font-size: 0.55rem; line-height: 18px; padding: 0 6px; }
+            .entry-note .note-tag { padding: 2px 6px; }
         }
     </style>
 </head>
@@ -289,17 +303,19 @@
 
                 const nameHtml = `<div class="entry-name" title="${displayName}">${displayName}</div>`;
 
+                // 1. 元数据行（已移除 note，确保状态、日期、体积在一行内）
                 const newClass = isNew ? 'badge-new' : 'badge-old';
                 const newLabel = isNew ? '● 最近连通' : '● 历史';
-                const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
                 const metaHtml = `
                     <div class="entry-meta">
                         <span class="meta-item"><span class="${newClass}">${newLabel}</span></span>
                         <span class="meta-item">📅 ${metaDate}</span>
                         <span class="meta-item">📦 ${metaSize}</span>
-                        ${noteHtml}
                     </div>
                 `;
+
+                // 2. 备注单独成行（不再受 meta 的 nowrap 限制）
+                const noteHtml = note ? `<div class="entry-note"><span class="note-tag">${note}</span></div>` : '';
 
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
@@ -315,10 +331,12 @@
                     `;
                 });
 
+                // 3. 渲染顺序：名称 -> 元数据 -> 备注URL -> 线路URL
                 return `
                     <div class="entry" data-name="${displayName.toLowerCase()}">
                         ${nameHtml}
                         ${metaHtml}
+                        ${noteHtml}
                         <div class="entry-urls">
                             ${urlLinesHtml}
                         </div>
