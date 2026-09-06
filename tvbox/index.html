@@ -24,75 +24,44 @@
             margin: 0 auto;
         }
 
-        /* 父容器 relative，二维码绝对定位参照 */
-        .header-flex {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-bottom: 20px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid #e9edf2;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            /* margin-right 已删除，不再占位，真正居中 */
-        }
-
-        .header-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2.5px solid #4a9eff;
-            object-fit: cover;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(74, 158, 255, 0.2);
-        }
-
-        .header-text {
+        /* ===== 标题区域整体包裹 ===== */
+        .header-block {
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .header-text h1 {
-            font-size: 1.25rem;
+        h1 {
+            font-size: 1.3rem;
             font-weight: 600;
             color: #0b1e33;
-            margin-bottom: 2px;
-            line-height: 1.3;
+            /* 去掉了原来的 margin-bottom，由 divider 控制间距 */
         }
 
-        .header-text .subtitle {
-            font-size: 0.78rem;
-            color: #8b9eb0;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-            border: none;
-        }
-
-        /* 二维码绝对定位靠右，垂直居中 */
-        .header-right {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            flex-shrink: 0;
-        }
-
-        .header-qrcode {
-            width: 92px;
-            height: 92px;
-            border-radius: 10px;
-            border: 1px solid #eef2f7;
+        h1 .header-logo {
+            width: 1.3rem;
+            height: 1.3rem;
+            border-radius: 50%;
+            border: 1.5px solid #4a9eff;
             object-fit: cover;
-            display: block;
-            margin: 0 auto;
+            vertical-align: -0.25rem;
+            margin-right: 6px;
         }
 
-        /* ===== 以下全部原版样式，一字未改 ===== */
+        /* 主标题和副标题之间的分隔线 */
+        .header-divider {
+            height: 1px;
+            background: #e9edf2;
+            margin: 10px 0;
+        }
+
+        /* 副标题：去掉底部边框，靠下 */
+        .subtitle {
+            font-size: 0.8rem;
+            color: #8b9eb0;
+            padding-bottom: 12px;
+            /* border-bottom 移到 divider，这里只负责底部留白 */
+        }
+
         .search-box {
             width: 100%;
             padding: 12px 16px;
@@ -273,10 +242,8 @@
 
         @media (max-width: 600px) {
             body { padding: 12px 6px; }
-            .header-logo { width: 42px; height: 42px; }
-            .header-text h1 { font-size: 1.05rem; }
-            .header-text .subtitle { font-size: 0.72rem; }
-            .header-qrcode { width: 78px; height: 78px; }
+            h1 .header-logo { width: 1.15rem; height: 1.15rem; vertical-align: -0.2rem; }
+            .header-divider { margin: 8px 0; }
             .big-card { padding: 12px 12px 10px; }
             .entry { padding: 12px 0; }
             .entry-header { gap: 6px; margin-bottom: 6px; }
@@ -290,10 +257,8 @@
         }
 
         @media (max-width: 420px) {
-            .header-logo { width: 36px; height: 36px; }
-            .header-text h1 { font-size: 0.95rem; }
-            .header-text .subtitle { font-size: 0.65rem; }
-            .header-qrcode { width: 64px; height: 64px; }
+            h1 .header-logo { width: 1rem; height: 1rem; vertical-align: -0.18rem; }
+            .header-divider { margin: 6px 0; }
             .big-card { padding: 10px 8px 8px; }
             .entry { padding: 10px 0; }
             .entry-header { gap: 4px; margin-bottom: 4px; }
@@ -306,20 +271,13 @@
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
         }
     </style>
-</head>
-<body>
+</head<body>
     <div class="container">
-        <div class="header-flex">
-            <div class="header-left">
-                <img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">
-                <div class="header-text">
-                    <h1>海量接口搬运备份</h1>
-                    <p class="subtitle">备用数据源，防屏不迷路</p>
-                </div>
-            </div>
-            <div class="header-right">
-                <img class="header-qrcode" src="https://0.12yue.de5.net/tvbox/x/lib/加群.jpeg" alt="加群二维码">
-            </div>
+        <!-- 标题模块：主标题 / 分隔线 / 副标题 -->
+        <div class="header-block">
+            <h1><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
+            <div class="header-divider"></div>
+            <p class="subtitle">QQ交流群1067685939</p>
         </div>
 
         <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
