@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>海量接口搬运备份</title>
-    
     <style>
         * {
             margin: 0;
@@ -24,17 +23,15 @@
             margin: 0 auto;
         }
 
-        /* ===== 标题区域整体包裹 ===== */
         .header-block {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         h1 {
             font-size: 1.3rem;
             font-weight: 600;
             color: #0b1e33;
-            /* 去掉了原来的 margin-bottom，由 divider 控制间距 */
         }
 
         h1 .header-logo {
@@ -47,19 +44,17 @@
             margin-right: 6px;
         }
 
-        /* 主标题和副标题之间的分隔线 */
         .header-divider {
             height: 1px;
             background: #e9edf2;
             margin: 10px 0;
         }
 
-        /* 副标题：去掉底部边框，靠下 */
         .subtitle {
             font-size: 0.8rem;
             color: #8b9eb0;
-            padding-bottom: 12px;
-            /* border-bottom 移到 divider，这里只负责底部留白 */
+            padding-bottom: 0;
+            line-height: 1.5;
         }
 
         .search-box {
@@ -271,15 +266,14 @@
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
         }
     </style>
-</head<body>
+</head>
+<body>
     <div class="container">
-        <!-- 标题模块：主标题 / 分隔线 / 副标题 -->
         <div class="header-block">
             <h1><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
             <div class="header-divider"></div>
-            <p class="subtitle">QQ交流群1067685939</p>
+            <p class="subtitle">备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
         </div>
-
         <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
         <div id="listContainer">
             <div class="loading">⏳ 正在加载接口列表...</div>
@@ -287,7 +281,6 @@
     </div>
 
     <script>
-        // 你原来的 JS 完整保留，一字未改
         (function() {
             function getBeijingDateStr() {
                 const formatter = new Intl.DateTimeFormat('en', { 
@@ -300,7 +293,7 @@
                 const y = parts.find(p => p.type === 'year').value;
                 const m = parts.find(p => p.type === 'month').value;
                 const d = parts.find(p => p.type === 'day').value;
-                return `${y}${m}${d}`;
+                return y + m + d;
             }
             const todayStr = getBeijingDateStr();
 
@@ -541,7 +534,7 @@
                     })
                     .catch(err => {
                         console.warn('加载失败:', err);
-                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div></div>`;
+                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ list加载失败!</div></div>`;
                         bindCopyEvents();
                     });
             }
