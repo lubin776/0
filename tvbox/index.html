@@ -24,11 +24,12 @@
             margin: 0 auto;
         }
 
+        /* ===== 核心改动：relative 定位，方便二维码绝对定位 ===== */
         .header-flex {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 32px;
+            position: relative;          /* 新增：二维码绝对定位的参照 */
             margin-bottom: 20px;
             padding-bottom: 14px;
             border-bottom: 1px solid #e9edf2;
@@ -38,6 +39,9 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            /* 关键：右边留出 二维码宽度(92) + 原间距(32) = 124px 的占位 */
+            /* 这样左侧模块居中时的位置跟之前两个模块一起居中时完全一样 */
+            margin-right: 124px;
         }
 
         .header-logo {
@@ -51,7 +55,7 @@
         }
 
         .header-text {
-            text-align: center;   /* ← 新增：两行文字居中对齐 */
+            text-align: center;
         }
 
         .header-text h1 {
@@ -71,8 +75,12 @@
             border: none;
         }
 
+        /* ===== 核心改动：绝对定位靠右，垂直居中 ===== */
         .header-right {
-            text-align: center;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
             flex-shrink: 0;
         }
 
@@ -265,9 +273,10 @@
             display: none;
         }
 
+        /* 移动端适配：同步调整占位间距 */
         @media (max-width: 600px) {
             body { padding: 12px 6px; }
-            .header-flex { gap: 20px; }
+            .header-left { margin-right: 98px; } /* 78 + 20 */
             .header-logo { width: 42px; height: 42px; }
             .header-text h1 { font-size: 1.05rem; }
             .header-text .subtitle { font-size: 0.72rem; }
@@ -285,7 +294,7 @@
         }
 
         @media (max-width: 420px) {
-            .header-flex { gap: 12px; }
+            .header-left { margin-right: 76px; } /* 64 + 12 */
             .header-logo { width: 36px; height: 36px; }
             .header-text h1 { font-size: 0.95rem; }
             .header-text .subtitle { font-size: 0.65rem; }
@@ -310,7 +319,7 @@
                 <img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">
                 <div class="header-text">
                     <h1>海量接口搬运备份</h1>
-                    <p class="subtitle">备用数据源，防屏不迷路</p>
+                    <p class="subtitle">备用数据在手，访问无忧</p>
                 </div>
             </div>
             <div class="header-right">
