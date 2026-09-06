@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量接口搬运备份0</title>
+    <title>海量接口搬运备份</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             background: #f5f7fa;
             color: #1e293b;
             padding: 16px 12px;
         }
+
         .container {
             max-width: 820px;
             margin: 0 auto;
         }
+
         h1 {
             text-align: center;
             font-size: 1.3rem;
@@ -35,6 +38,7 @@
             border-bottom: 1px solid #e9edf2;
             padding-bottom: 12px;
         }
+
         .search-box {
             width: 100%;
             padding: 12px 16px;
@@ -43,6 +47,7 @@
             font-size: 0.95rem;
             background: #fff;
             outline: none;
+            transition: 0.2s;
             margin-bottom: 20px;
         }
         .search-box:focus {
@@ -50,7 +55,7 @@
             box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
         }
 
-        /* ---------- 大卡片 ---------- */
+        /* 大卡片 */
         .big-card {
             background: #ffffff;
             border-radius: 16px;
@@ -59,7 +64,7 @@
             border: 1px solid #f0f3f8;
         }
 
-        /* ---------- 每个条目（块级容器） ---------- */
+        /* ---------- 每个条目 ---------- */
         .entry {
             padding: 16px 0;
             border-bottom: 1px solid #f0f4fa;
@@ -68,7 +73,7 @@
             border-bottom: none;
         }
 
-        /* 名称 —— 块级 */
+        /* 名称块 */
         .entry-name {
             display: block;
             font-size: 1.05rem;
@@ -78,44 +83,36 @@
             overflow: hidden;
             text-overflow: ellipsis;
             margin-bottom: 8px;
-            /* 临时背景色，方便观察 */
-            background: #f0f7ff;
-            padding: 4px 8px;
-            border-radius: 4px;
         }
 
-        /* 元数据行 —— 块级，内部元素水平排列但不换行 */
+        /* 元数据块 */
         .entry-meta {
             display: block;
-            padding: 6px 8px;
-            border-top: 2px solid #4a9eff;   /* 强调边框 */
-            border-bottom: 2px solid #4a9eff;
-            margin-bottom: 12px;             /* 与URL行间隔 */
-            white-space: nowrap;             /* 内部不换行 */
+            padding: 6px 0;
+            border-top: 1px solid #f0f4fa;
+            border-bottom: 1px solid #f0f4fa;
+            margin-bottom: 10px;
+            white-space: nowrap;
             overflow-x: auto;
             scrollbar-width: none;
-            background: #f0faf0;             /* 淡绿色背景，区分 */
-            border-radius: 4px;
         }
         .entry-meta::-webkit-scrollbar {
             display: none;
         }
+
         .meta-item {
             display: inline-block;
             font-size: 0.78rem;
             color: #5a6f88;
-            margin-right: 16px;
-            padding: 2px 4px;
+            padding: 0 6px;
+            margin-right: 12px;
         }
         .meta-item:last-child {
             margin-right: 0;
         }
-        .badge-new {
-            color: #1b9e5a;
-        }
-        .badge-old {
-            color: #b88b3a;
-        }
+
+        .badge-new { color: #1b9e5a; }
+        .badge-old { color: #b88b3a; }
         .note-tag {
             background: #e8f4ff;
             color: #2a6bb0;
@@ -126,22 +123,17 @@
             display: inline-block;
         }
 
-        /* URL 列表 —— 块级，每个URL占一行 */
+        /* URL 块 */
         .entry-urls {
             display: block;
-            margin-top: 4px;
-            background: #faf0f0;             /* 淡红色背景，区分 */
-            padding: 6px 8px;
-            border-radius: 4px;
         }
+
         .url-line {
-            display: block;                  /* 每个URL占一行 */
             padding: 5px 12px 5px 10px;
             margin-bottom: 6px;
-            background: #ffffff;
-            border-radius: 30px;
-            border: 1px solid #d0d7de;
-            /* 内部使用 flex 水平排列标签、链接、按钮 */
+            background: #f8fafc;
+            border-radius: 40px;
+            border: 1px solid #eef2f7;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -150,6 +142,7 @@
         .url-line:last-child {
             margin-bottom: 0;
         }
+
         .url-tag {
             font-size: 0.7rem;
             font-weight: 500;
@@ -161,6 +154,7 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
+
         .url-text {
             font-size: 0.82rem;
             color: #2563eb;
@@ -177,6 +171,7 @@
         .url-text:hover {
             border-bottom-color: #2563eb;
         }
+
         .copy-btn {
             flex-shrink: 0;
             background: #4a9eff;
@@ -189,11 +184,13 @@
             cursor: pointer;
             height: 26px;
             line-height: 26px;
+            transition: background 0.15s, transform 0.05s;
             white-space: nowrap;
             margin-left: auto;
         }
         .copy-btn:active {
             background: #2a7ed9;
+            transform: scale(0.96);
         }
         .copy-btn.copied {
             background: #3b9b6c;
@@ -208,28 +205,30 @@
             border-radius: 24px;
             border: 1px dashed #dce3ed;
         }
+
         .entry.hidden {
             display: none;
         }
 
-        /* 手机适配 */
+        /* 手机端微调 */
         @media (max-width: 600px) {
             body { padding: 12px 6px; }
-            .big-card { padding: 12px; }
+            .big-card { padding: 12px 12px 10px; }
             .entry { padding: 12px 0; }
             .entry-name { font-size: 0.95rem; }
-            .entry-meta { font-size: 0.7rem; padding: 4px 6px; margin-bottom: 10px; }
+            .entry-meta { font-size: 0.7rem; padding: 4px 0; margin-bottom: 8px; }
             .url-line { padding: 4px 8px; gap: 4px 6px; }
             .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
             .note-tag { font-size: 0.65rem; line-height: 20px; padding: 0 8px; }
         }
+
         @media (max-width: 420px) {
-            .big-card { padding: 10px 8px; }
+            .big-card { padding: 10px 8px 8px; }
             .entry { padding: 10px 0; }
             .entry-name { font-size: 0.88rem; }
-            .entry-meta { font-size: 0.6rem; padding: 3px 4px; margin-bottom: 8px; }
+            .entry-meta { font-size: 0.6rem; gap: 4px 10px; margin-bottom: 6px; }
             .url-line { padding: 3px 6px; gap: 3px 4px; }
             .url-tag { font-size: 0.55rem; padding: 0 8px; line-height: 20px; }
             .url-text { font-size: 0.7rem; min-width: 20px; }
@@ -239,206 +238,202 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>📦 海量接口搬运备份</h1>
-    <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
-    <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
-    <div id="listContainer">
-        <div class="loading">⏳ 正在加载接口列表...</div>
+    <div class="container">
+        <h1>📦 海量接口搬运备份</h1>
+        <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
+        <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
+        <div id="listContainer">
+            <div class="loading">⏳ 正在加载接口列表...</div>
+        </div>
     </div>
-</div>
 
-<script>
-    (function() {
-        // 排序权重
-        const WEIGHTS = {
-            "菠菜园.json": 1,
-            "菠菜园pro.json": 2,
-            "少儿频道.json": 3,
-            "饭太硬.json": 4,
-            "肥猫.json": 5,
-            "摸鱼.json": 6,
-            "王二小.json": 7,
-            "集多.json": 8,
-            "潇洒.json": 9,
-        };
+    <script>
+        (function() {
+            const WEIGHTS = {
+                "菠菜园.json": 1,
+                "菠菜园pro.json": 2,
+                "少儿频道.json": 3,
+                "饭太硬.json": 4,
+                "肥猫.json": 5,
+                "摸鱼.json": 6,
+                "王二小.json": 7,
+                "集多.json": 8,
+                "潇洒.json": 9,
+            };
 
-        // 三条备用线路
-        const DOMAINS = [
-            { tag: "一线", base: "https://0.12yue.de5.net/tvbox/" },
-            { tag: "二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
-            { tag: "三线", base: "https://0.wdzb.eu.cc/tvbox/" },
-        ];
+            const DOMAINS = [
+                { tag: "一线", base: "https://0.12yue.de5.net/tvbox/" },
+                { tag: "二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
+                { tag: "三线", base: "https://0.wdzb.eu.cc/tvbox/" },
+            ];
 
-        function decodeName(str) {
-            try { return decodeURIComponent(str); } catch (_) { return str; }
-        }
-
-        function isRecent(dateStr) {
-            if (!dateStr || dateStr.length !== 8) return false;
-            const y = parseInt(dateStr.slice(0, 4), 10);
-            const m = parseInt(dateStr.slice(4, 6), 10) - 1;
-            const d = parseInt(dateStr.slice(6, 8), 10);
-            const dt = new Date(y, m, d);
-            return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
-        }
-
-        function renderEntry(file, date, size, note) {
-            const displayName = decodeName(file).replace(/\.json$/i, '');
-            const isNew = isRecent(date);
-            const metaDate = date || '----';
-            const metaSize = size || '-';
-
-            const nameHtml = `<div class="entry-name">${displayName}</div>`;
-
-            const newClass = isNew ? 'badge-new' : 'badge-old';
-            const newLabel = isNew ? '● 最近连通' : '● 历史';
-            const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
-            const metaHtml = `
-                <div class="entry-meta">
-                    <span class="meta-item"><span class="${newClass}">${newLabel}</span></span>
-                    <span class="meta-item">📅 ${metaDate}</span>
-                    <span class="meta-item">📦 ${metaSize}</span>
-                    ${noteHtml}
-                </div>
-            `;
-
-            let urlLinesHtml = '';
-            DOMAINS.forEach(domain => {
-                const rawFile = decodeName(file);
-                const fullUrl = domain.base + rawFile;
-                const encodedFile = encodeURIComponent(file);
-                const hrefUrl = domain.base + encodedFile;
-
-                urlLinesHtml += `
-                    <div class="url-line">
-                        <span class="url-tag">${domain.tag}</span>
-                        <a class="url-text" href="${hrefUrl}" target="_blank" rel="noopener">${fullUrl}</a>
-                        <button class="copy-btn" data-url="${fullUrl}">复制</button>
-                    </div>
-                `;
-            });
-
-            return `
-                <div class="entry" data-name="${displayName.toLowerCase()}">
-                    ${nameHtml}
-                    ${metaHtml}
-                    <div class="entry-urls">
-                        ${urlLinesHtml}
-                    </div>
-                </div>
-            `;
-        }
-
-        const container = document.getElementById('listContainer');
-
-        function renderList(dataMap) {
-            const entries = Object.entries(dataMap);
-            if (!entries.length) {
-                container.innerHTML = `<div class="empty">📭 暂无接口数据</div>`;
-                return;
+            function decodeName(str) {
+                try { return decodeURIComponent(str); } catch (_) { return str; }
             }
 
-            let items = entries.map(([file, info]) => ({
-                file,
-                date: info.date || '',
-                size: info.size || '',
-                note: info.note || '',
-                weight: WEIGHTS[file] !== undefined ? WEIGHTS[file] : null,
-            }));
+            function isRecent(dateStr) {
+                if (!dateStr || dateStr.length !== 8) return false;
+                const y = parseInt(dateStr.slice(0, 4), 10);
+                const m = parseInt(dateStr.slice(4, 6), 10) - 1;
+                const d = parseInt(dateStr.slice(6, 8), 10);
+                const dt = new Date(y, m, d);
+                return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
+            }
 
-            items.sort((a, b) => {
-                if (a.weight !== null && b.weight !== null) return a.weight - b.weight;
-                if (a.weight !== null) return -1;
-                if (b.weight !== null) return 1;
-                return Math.random() - 0.5;
-            });
+            function renderEntry(file, date, size, note) {
+                const decodedFile = decodeName(file);
+                const displayName = decodedFile.replace(/\.json$/i, '');
+                const isNew = isRecent(date);
+                const metaDate = date || '----';
+                const metaSize = size || '-';
 
-            let entriesHtml = '';
-            items.forEach(item => {
-                entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
-            });
+                const nameHtml = `<div class="entry-name" title="${displayName}">${displayName}</div>`;
 
-            container.innerHTML = `<div class="big-card">${entriesHtml}</div>`;
+                const newClass = isNew ? 'badge-new' : 'badge-old';
+                const newLabel = isNew ? '● 最近连通' : '● 历史';
+                const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
+                const metaHtml = `
+                    <div class="entry-meta">
+                        <span class="meta-item"><span class="${newClass}">${newLabel}</span></span>
+                        <span class="meta-item">📅 ${metaDate}</span>
+                        <span class="meta-item">📦 ${metaSize}</span>
+                        ${noteHtml}
+                    </div>
+                `;
 
-            // 复制按钮
-            container.querySelectorAll('.copy-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const url = this.getAttribute('data-url');
-                    if (!url) return;
-                    navigator.clipboard.writeText(url).then(() => {
-                        const orig = this.textContent;
-                        this.textContent = '✅ 已复制';
-                        this.classList.add('copied');
-                        setTimeout(() => {
-                            this.textContent = orig;
-                            this.classList.remove('copied');
-                        }, 1500);
-                    }).catch(() => {
-                        const input = document.createElement('input');
-                        input.value = url;
-                        document.body.appendChild(input);
-                        input.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(input);
-                        const orig = this.textContent;
-                        this.textContent = '📋 已复制';
-                        setTimeout(() => { this.textContent = orig; }, 1200);
+                let urlLinesHtml = '';
+                DOMAINS.forEach(domain => {
+                    const fullUrl = domain.base + decodedFile;
+                    const hrefUrl = domain.base + encodeURIComponent(decodedFile);
+
+                    urlLinesHtml += `
+                        <div class="url-line">
+                            <span class="url-tag">${domain.tag}</span>
+                            <a class="url-text" href="${hrefUrl}" target="_blank" rel="noopener">${fullUrl}</a>
+                            <button class="copy-btn" data-url="${fullUrl}">复制</button>
+                        </div>
+                    `;
+                });
+
+                return `
+                    <div class="entry" data-name="${displayName.toLowerCase()}">
+                        ${nameHtml}
+                        ${metaHtml}
+                        <div class="entry-urls">
+                            ${urlLinesHtml}
+                        </div>
+                    </div>
+                `;
+            }
+
+            const container = document.getElementById('listContainer');
+
+            function renderList(dataMap) {
+                const entries = Object.entries(dataMap);
+                if (!entries.length) {
+                    container.innerHTML = `<div class="empty">📭 暂无接口数据</div>`;
+                    return;
+                }
+
+                let items = entries.map(([file, info]) => ({
+                    file,
+                    date: info.date || '',
+                    size: info.size || '',
+                    note: info.note || '',
+                    weight: WEIGHTS[file] !== undefined ? WEIGHTS[file] : null,
+                }));
+
+                items.sort((a, b) => {
+                    if (a.weight !== null && b.weight !== null) return a.weight - b.weight;
+                    if (a.weight !== null) return -1;
+                    if (b.weight !== null) return 1;
+                    return Math.random() - 0.5;
+                });
+
+                let entriesHtml = '';
+                items.forEach(item => {
+                    entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
+                });
+
+                container.innerHTML = `<div class="big-card">${entriesHtml}</div>`;
+
+                container.querySelectorAll('.copy-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const url = this.getAttribute('data-url');
+                        if (!url) return;
+                        navigator.clipboard.writeText(url).then(() => {
+                            const orig = this.textContent;
+                            this.textContent = '✅ 已复制';
+                            this.classList.add('copied');
+                            setTimeout(() => {
+                                this.textContent = orig;
+                                this.classList.remove('copied');
+                            }, 1500);
+                        }).catch(() => {
+                            const input = document.createElement('input');
+                            input.value = url;
+                            document.body.appendChild(input);
+                            input.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(input);
+                            const orig = this.textContent;
+                            this.textContent = '📋 已复制';
+                            setTimeout(() => { this.textContent = orig; }, 1200);
+                        });
                     });
                 });
-            });
-        }
+            }
 
-        function fetchData() {
-            fetch('list.txt?t=' + Date.now())
-                .then(res => {
-                    if (!res.ok) throw new Error('HTTP ' + res.status);
-                    return res.text();
-                })
-                .then(text => {
-                    const lines = text.trim().split('\n').filter(line => line.trim() !== '');
-                    if (!lines.length) {
-                        container.innerHTML = `<div class="empty">📭 list.txt 为空</div>`;
-                        return;
-                    }
-
-                    const dataMap = {};
-                    lines.forEach(line => {
-                        const parts = line.split('|').map(s => s.trim());
-                        if (parts.length < 3) return;
-                        const file = parts[0];
-                        const date = parts[1] || '';
-                        const size = parts[2] || '';
-                        const note = parts[3] || '';
-                        if (file) {
-                            dataMap[file] = { date, size, note };
+            function fetchData() {
+                fetch('list.txt?t=' + Date.now())
+                    .then(res => {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.text();
+                    })
+                    .then(text => {
+                        const lines = text.trim().split('\n').filter(line => line.trim() !== '');
+                        if (!lines.length) {
+                            container.innerHTML = `<div class="empty">📭 list.txt 为空</div>`;
+                            return;
                         }
+
+                        const dataMap = {};
+                        lines.forEach(line => {
+                            const parts = line.split('|').map(s => s.trim());
+                            if (parts.length < 3) return;
+                            const file = parts[0];
+                            const date = parts[1] || '';
+                            const size = parts[2] || '';
+                            const note = parts[3] || '';
+                            if (file) {
+                                dataMap[file] = { date, size, note };
+                            }
+                        });
+
+                        if (!Object.keys(dataMap).length) {
+                            container.innerHTML = `<div class="empty">⚠️ 未解析到有效数据</div>`;
+                            return;
+                        }
+                        renderList(dataMap);
+                    })
+                    .catch(err => {
+                        console.warn('加载失败:', err);
+                        container.innerHTML = `<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div>`;
                     });
+            }
 
-                    if (!Object.keys(dataMap).length) {
-                        container.innerHTML = `<div class="empty">⚠️ 未解析到有效数据</div>`;
-                        return;
-                    }
-                    renderList(dataMap);
-                })
-                .catch(err => {
-                    console.warn('加载失败:', err);
-                    container.innerHTML = `<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div>`;
+            window.filterList = function() {
+                const keyword = document.getElementById('search').value.toLowerCase().trim();
+                const entries = container.querySelectorAll('.entry');
+                entries.forEach(entry => {
+                    const name = entry.getAttribute('data-name') || '';
+                    entry.classList.toggle('hidden', !name.includes(keyword));
                 });
-        }
+            };
 
-        window.filterList = function() {
-            const keyword = document.getElementById('search').value.toLowerCase().trim();
-            const entries = container.querySelectorAll('.entry');
-            entries.forEach(entry => {
-                const name = entry.getAttribute('data-name') || '';
-                entry.classList.toggle('hidden', !name.includes(keyword));
-            });
-        };
-
-        fetchData();
-    })();
-</script>
+            fetchData();
+        })();
+    </script>
 </body>
 </html>
