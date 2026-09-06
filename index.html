@@ -24,17 +24,15 @@
             margin: 0 auto;
         }
 
-        /* ===== 标题区域整体包裹 ===== */
         .header-block {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 12px; /* ← 从 20px 收窄 */
         }
 
         h1 {
             font-size: 1.3rem;
             font-weight: 600;
             color: #0b1e33;
-            /* 去掉了原来的 margin-bottom，由 divider 控制间距 */
         }
 
         h1 .header-logo {
@@ -47,19 +45,17 @@
             margin-right: 6px;
         }
 
-        /* 主标题和副标题之间的分隔线 */
         .header-divider {
             height: 1px;
             background: #e9edf2;
             margin: 10px 0;
         }
 
-        /* 副标题：去掉底部边框，靠下 */
         .subtitle {
             font-size: 0.8rem;
             color: #8b9eb0;
-            padding-bottom: 12px;
-            /* border-bottom 移到 divider，这里只负责底部留白 */
+            padding-bottom: 0;   /* ← 从 12px 去掉 */
+            line-height: 1.5;   /* ← 两行间距 */
         }
 
         .search-box {
@@ -271,9 +267,9 @@
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
         }
     </style>
-</head<body>
+</head>
+<body>
     <div class="container">
-        <!-- 标题模块：主标题 / 分隔线 / 副标题 -->
         <div class="header-block">
             <h1><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
             <div class="header-divider"></div>
