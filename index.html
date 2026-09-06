@@ -92,6 +92,8 @@
         .entry-note {
             flex: 1;
             min-width: 0;
+            display: flex;
+            justify-content: flex-end;
         }
         .note-tag {
             background: #e8f4ff;
@@ -175,12 +177,6 @@
             line-height: 1.5;
             flex: 1 1 0;
             min-width: 40px;
-            text-decoration: none;
-            border-bottom: 1px dotted transparent;
-            transition: border-color 0.12s;
-        }
-        .url-text:hover {
-            border-bottom-color: #2563eb;
         }
 
         .copy-btn {
@@ -274,9 +270,9 @@
             };
 
             const DOMAINS = [
-                { tag: "一线", base: "https://0.12yue.de5.net/tvbox/" },
-                { tag: "二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
-                { tag: "三线", base: "https://0.wdzb.eu.cc/tvbox/" },
+                { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
+                { tag: "备份二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
+                { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
 
             function decodeName(str) {
@@ -317,12 +313,11 @@
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
                     const fullUrl = domain.base + decodedFile;
-                    const hrefUrl = domain.base + encodeURIComponent(decodedFile);
 
                     urlLinesHtml += `
                         <div class="url-line">
                             <span class="url-tag">${domain.tag}</span>
-                            <a class="url-text" href="${hrefUrl}" target="_blank" rel="noopener">${fullUrl}</a>
+                            <span class="url-text">${fullUrl}</span>
                             <button class="copy-btn" data-url="${fullUrl}">复制</button>
                         </div>
                     `;
