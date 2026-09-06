@@ -9,14 +9,20 @@
     ["饭太硬4线", "http://fty.xxooo.cf/tv"],
     ["饭太硬5线", "http://fty.888484.xyz/tv"],
     ["饭太硬6线", "http://fty.333232.xyz/tv"],
+    ["饭太硬7线", "https://raw.atomgit.com/xxxooo/fan/blobs/cef5f441c422cffe4852e0fc8b102f9be6d2bb2b/in.bmp"],
     ["嗷呜", "http://www.英格里希嗷呜.top/tv"],
     ["嗷呜2线", "https://9763.kstore.vip/aowu.json"],
     ["嗷呜3线", "http://itv666.cc/aowu/config.webp"],
+    ["嗷呜4线", "http://mytv6688.xyz/aowu/config.webp"],
     ["肥猫", "http://肥猫.net/tv"],
     ["肥猫2线", "https://jk.catvod.site/"],
     ["王二小", "https://9280.kstore.vip/aiwex.json"],
     ["王二小2线", "https://9280.kstore.space/aiwex.json"],
     ["王二小3线", "http://tvbox.王二小放牛娃.top"],
+    ["王二小4线", "http://tv.999888987.xyz/"],
+    ["王二小5线", "http://tv.999888123.xyz/"],
+    ["王二小6线", "https://9280.kstore.vip/newwex.json"],
+    ["王二小7线", "https://9280.kstore.vip/wex.json"],
     ["集多", "http://rihou.cc:88/demo.php"],
     ["集多2线", "http://jiduo.3116598.xyz"],
     ["集多3线", "http://rihou.cc:88/demoabc.json"],
@@ -29,8 +35,10 @@
     ["潇洒", "https://9877.kstore.space/AnotherD/api.json"],
     ["潇洒2线", "https://9877.kstore.space/one.json"],
     ["潇洒3线", "https://9877.kstore.space/ONE/one.json"],
+    ["潇洒4线", "https://la.kstore.dev/download/2863/01.txt"],
     ["嗨哥魔改", "https://api.hgyx.vip/hgyx.json"],
     ["讴歌", "https://xn--biib-rp5imh.v.nxog.top/apitv.php"],
+    ["讴歌2线", "http://tv.nxog.top/m"],
     ["香雅情", "https://play.iptv365.org/香雅情/api.json"],
     ["老张", "https://zhangqun1818.serv00.net/zq/api.json"],
     ["挺好", "https://ztha.top/TVBox/thdjk.json"],
@@ -41,13 +49,18 @@
     ["菜妮丝", "https://tv.xn--yhqu5zs87a.top"],
     ["心魔", "https://gh-proxy.com/raw.githubusercontent.com/yw88075/tvbox/main/yw.json"],
     ["分享者", "http://hucongrong.web3v.work/风水/fxz/fxz.json"],
+    ["分享者2线", "https://raw.githubusercontent.com/maoystv/6/main/001.json"],
     ["传说", "http://tjf1100.serv00.net"],
+    ["传说2线", "http://tot.totalh.net/api.txt"],
     ["俊宇", "http://home.jundie.top:81/top98.json"],
     ["clun", "https://clun.top/box.json"],
     ["夏夏影", "https://11405.kstore.space/xiaye/qk4k.json"],
     ["小凯", "https://jihulab.com/jyqhkd/kd/-/raw/main/kai.json"],
     ["时光", "https://jiekou.netlify.app/svip.json"],
+    ["时光2线", "https://gh-proxy.com/raw.githubusercontent.com/xmbjm/svip/refs/heads/main/svip.json"],
     ["东篱", "https://chigua.eu.org"],
+    ["东篱2线", "https://16151.kstore.space"],
+    ["东篱3线", "https://cnb.cool/aooooowuuuuu/FreeSpider/-/git/raw/main/config"],
     ["聚玩", "http://xhztv.top/xhz"],
     ["道长", "https://gitlab.com/duomv/dzhipy/-/raw/main/index.json"],
     ["小苹果", "https://bitbucket.org/xduo/duoapi/raw/master/xpg.json"],
@@ -57,6 +70,126 @@
     ["短剧", "https://cnb.cool/fish2018/duanju/-/git/raw/main/tvbox.json"],
     ["虎斑", "http://hb.小虎斑.site:25252/仅供测试"],
     ["天神", "https://gh-proxy.com/raw.githubusercontent.com/IY-CPU/IY/main/天神IY.png"],
-    ["星微Vip", "https://7337.kstore.vip/xw/测试勿传"]
-  ]
+    ["星微Vip", "https://7337.kstore.vip/xw/测试勿传"],
+    ["七星", "http://7337.kstore.space/qxys/禁止传播.json"],
+    ["刺桐", "https://www.cttv.vip/ys/json/ctys.json"],
+    ["多多github", "https://gh-proxy.com/raw.githubusercontent.com/leevi0709/one/main/jsm.json"],
+    ["天天开心", "https://play.iptv365.org/天天开心/api.json"],
+    ["娃哈哈", "http://ll14s7fe.zjz-service.cn:20384/api/subscription/2055497520582234112/tvbox?token=baiyetv_box"],
+    ["宝盒", "http://宝盒接口.top"],
+    ["宝盒2线", "https://gh-proxy.com/https://raw.githubusercontent.com/guot55/yg/main/pg/bh.json"],
+    ["少儿", "https://jihulab.com/ymz1231/xymz/-/raw/main/ymshaoer"],
+    ["影视资源", "http://bp.tvbox.cam"],
+    ["海豚", "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/FG/refs/heads/main/海豚影视无18加"],
+    ["愿望18", "https://ghfast.top/https://raw.githubusercontent.com/yuanwangokk-1/TV-BOX/main/纯福利/纯福利.json"],
+    ["沐辰", "https://php.doube.eu.org/spider/php/config.php"],
+    ["沐辰2线", "https://raw.githubusercontent.com/4TVBox/TVBox/refs/heads/main/config.json"],
+    ["玄珠", "https://jihulab.com/xuanzhuapp/xzys/-/raw/main/xzvip.json"],
+    ["玉玉", "http://150.158.112.123/jar/ce3.json"],
+    ["真心", "https://cnb.cool/fish2018/zx/-/git/raw/master/FongMi.json"],
+    ["秋水", "http://live.shqsy.com/qstv.json"],
+    ["裤老", "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg2"],
+    ["软件小哥", "http://47.96.82.41:5188/svip/svip.json"],
+    ["雷蒙", "https://gh-proxy.com/https://raw.githubusercontent.com/n3rddd/N3RD/master/JN/lemj.json"],
+    ["高天流云", "https://gh-proxy.com/https://raw.githubusercontent.com/gaotianliuyun/gao/master/js.json"],
+    ["黄金", "https://gitlab.com/lzc1021lzc/hjfggzs.hjys/-/raw/main/hjys.free.json"],
+    ["澜露", "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lanlu.json"],
+    ["澜露2线", "https://gitee.com/hulanlu/04/raw/master/lanlu.json"],
+    ["ray", "https://raw.githubusercontent.com/dxawi/0/main/0.json"],
+    ["残月影视", "https://jsd.cdn.zzko.cn/gh/1771245847/TvBox/tvbox.json"],
+    ["残月影视2线", "https://bitbucket.org/1771245847/tvbox/raw/main/tvbox.json"],
+    ["木鱼", "https://catbox.n13.club/jk/jsm.json"],
+    ["月光宝盒", "https://raw.githubusercontent.com/guot55/yg/refs/heads/main/ygbox.json"]
+  ],
+  "API_MIRRORS": {
+    "饭太硬": [
+      "http://www.饭太硬.net/tv",
+      "http://www.饭太硬.cc/tv",
+      "http://www.饭太硬.art/tv",
+      "http://fty.xxooo.cf/tv",
+      "http://fty.888484.xyz/tv",
+      "http://fty.333232.xyz/tv",
+      "https://raw.atomgit.com/xxxooo/fan/blobs/cef5f441c422cffe4852e0fc8b102f9be6d2bb2b/in.bmp"
+    ],
+    "嗷呜": [
+      "http://www.英格里希嗷呜.top/tv",
+      "https://9763.kstore.vip/aowu.json",
+      "http://itv666.cc/aowu/config.webp",
+      "http://mytv6688.xyz/aowu/config.webp"
+    ],
+    "肥猫": [
+      "http://肥猫.net/tv",
+      "https://jk.catvod.site/"
+    ],
+    "王二小": [
+      "https://9280.kstore.vip/aiwex.json",
+      "https://9280.kstore.space/aiwex.json",
+      "http://tvbox.王二小放牛娃.top",
+      "http://tv.999888987.xyz/",
+      "http://tv.999888123.xyz/",
+      "https://9280.kstore.vip/newwex.json",
+      "https://9280.kstore.vip/wex.json"
+    ],
+    "集多": [
+      "http://rihou.cc:88/demo.php",
+      "http://jiduo.3116598.xyz",
+      "http://rihou.cc:88/demoabc.json"
+    ],
+    "摸鱼": [
+      "https://6800.kstore.vip/fish.json",
+      "http://摸鱼儿.cc",
+      "http://我不是.摸鱼儿.top",
+      "http://www.小不点.com"
+    ],
+    "南风": [
+      "https://ghproxy.monkeyray.net/raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json",
+      "https://gh-proxy.com/raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json"
+    ],
+    "潇洒": [
+      "https://9877.kstore.space/AnotherD/api.json",
+      "https://9877.kstore.space/one.json",
+      "https://9877.kstore.space/ONE/one.json",
+      "https://la.kstore.dev/download/2863/01.txt"
+    ],
+    "讴歌": [
+      "https://xn--biib-rp5imh.v.nxog.top/apitv.php",
+      "http://tv.nxog.top/m"
+    ],
+    "传说": [
+      "http://tjf1100.serv00.net",
+      "http://tot.totalh.net/api.txt"
+    ],
+    "分享者": [
+      "http://hucongrong.web3v.work/风水/fxz/fxz.json",
+      "https://raw.githubusercontent.com/maoystv/6/main/001.json"
+    ],
+    "时光": [
+      "https://jiekou.netlify.app/svip.json",
+      "https://gh-proxy.com/raw.githubusercontent.com/xmbjm/svip/refs/heads/main/svip.json"
+    ],
+    "东篱": [
+      "https://chigua.eu.org",
+      "https://16151.kstore.space",
+      "https://cnb.cool/aooooowuuuuu/FreeSpider/-/git/raw/main/config"
+    ],
+    "沐辰": [
+      "https://php.doube.eu.org/spider/php/config.php",
+      "https://raw.githubusercontent.com/4TVBox/TVBox/refs/heads/main/config.json"
+    ],
+    "残月影视": [
+      "https://jsd.cdn.zzko.cn/gh/1771245847/TvBox/tvbox.json",
+      "https://bitbucket.org/1771245847/tvbox/raw/main/tvbox.json"
+    ],
+    "宝盒": [
+      "http://宝盒接口.top",
+      "https://gh-proxy.com/https://raw.githubusercontent.com/guot55/yg/main/pg/bh.json"
+    ],
+    "澜露": [
+      "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lanlu.json",
+      "https://gitee.com/hulanlu/04/raw/master/lanlu.json"
+    ],
+    "香雅情": [
+      "https://play.iptv365.org/香雅情/api.json"
+    ]
+  }
 }
