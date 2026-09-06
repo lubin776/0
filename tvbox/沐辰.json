@@ -1,0 +1,375 @@
+{
+  "logo": "https://php.doube.eu.org/logo.gif",
+  "sites": [
+    {
+      "key": "枫叶影院.py2",
+      "name": "枫叶影院(T3)",
+      "type": 3,
+      "api": "https://raw.giteeusercontent.com/dobebly/img/raw/master/img/mc.png?sb.py",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "api": "https://raw.giteeusercontent.com/dobebly/img/raw/master/img/枫叶影院.png"
+      }
+    },
+    {
+      "key": "php_BuBu",
+      "name": "布布影视(T4)",
+      "type": 4,
+      "api": "https://php.doube.eu.org/php/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "module_name": "https://php.doube.eu.org/spider/php/BuBu"
+      }
+    },
+    {
+      "key": "php_无水印资源",
+      "name": "无水印资源(T4)",
+      "type": 4,
+      "api": "https://php.doube.eu.org/php/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "module_name": "https://php.doube.eu.org/spider/php/CmsSuggest",
+        "url": "https://api.wsyzy.net/api.php/provide/vod"
+      }
+    },
+    {
+      "key": "php_Ole",
+      "name": "欧乐影院(T4)",
+      "type": 4,
+      "api": "https://php.doube.eu.org/php/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "module_name": "https://php.doube.eu.org/spider/php/Ole"
+      }
+    },
+    {
+      "key": "php_DouYu",
+      "name": "斗鱼直播(T4)",
+      "type": 4,
+      "api": "https://php.doube.eu.org/php/",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "module_name": "https://php.doube.eu.org/spider/php/DouYu"
+      }
+    },
+    {
+      "key": "php_HuYa",
+      "name": "虎牙直播(T4)",
+      "type": 4,
+      "api": "https://php.doube.eu.org/php/",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "module_name": "https://php.doube.eu.org/spider/php/HuYa"
+      }
+    },
+    {
+      "key": "php_量子资源",
+      "name": "量子资源(CMS)",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/from/lzm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_非凡资源",
+      "name": "非凡资源(CMS)",
+      "type": 1,
+      "api": "https://cj.ffzyapi.com/api.php/provide/vod/from/ffm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_光速资源",
+      "name": "光速资源(CMS)",
+      "type": 1,
+      "api": "https://api.guangsuapi.com/api.php/provide/vod/from/gsm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_红牛资源",
+      "name": "红牛资源(CMS)",
+      "type": 1,
+      "api": "https://www.hongniuzy2.com/api.php/provide/vod/from/hnm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_暴风资源",
+      "name": "暴风资源(CMS)",
+      "type": 1,
+      "api": "https://bfzyapi.com/api.php/provide/vod/from/bfzym3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_新浪资源",
+      "name": "新浪资源(CMS)",
+      "type": 1,
+      "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/from/xlm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_闪电资源",
+      "name": "闪电资源(CMS)",
+      "type": 1,
+      "api": "https://www.sdzyapi.com/api.php/provide/vod/from/sdm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_索尼资源",
+      "name": "索尼资源(CMS)",
+      "type": 1,
+      "api": "https://suonizy.com/api.php/provide/vod/from/snm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_最大资源",
+      "name": "最大资源(CMS)",
+      "type": 1,
+      "api": "https://www.zuidazy.co/api.php/provide/vod/from/zuidam3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_茅台资源",
+      "name": "茅台资源(CMS)",
+      "type": 1,
+      "api": "https://mtzy.tv/api.php/provide/vod/from/mtm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_360资源",
+      "name": "360资源(CMS)",
+      "type": 1,
+      "api": "https://www.360zy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_如意资源",
+      "name": "如意资源(CMS)",
+      "type": 1,
+      "api": "https://ryzy.tv/api.php/provide/vod/from/rym3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_魔都资源",
+      "name": "魔都资源(CMS)",
+      "type": 1,
+      "api": "https://moduzy.com/api.php/provide/vod/from/modum3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_豪华资源",
+      "name": "豪华资源(CMS)",
+      "type": 1,
+      "api": "https://huohuzy.com/api.php/provide/vod/from/hhm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_电影天堂",
+      "name": "电影天堂(CMS)",
+      "type": 1,
+      "api": "http://caiji.dyttzyapi.com/api.php/provide/vod/from/dyttm3u8/",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_极速资源",
+      "name": "极速资源(CMS)",
+      "type": 1,
+      "api": "https://jszyapi.com/api.php/provide/vod/from/jsm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_虎牙资源",
+      "name": "虎牙资源(CMS)",
+      "type": 1,
+      "api": "https://huyazy.net/api.php/provide/vod/from/hym3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_豆瓣资源",
+      "name": "豆瓣资源(CMS)",
+      "type": 1,
+      "api": "https://dbzy.tv/api.php/provide/vod/from/dbm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_影剧资源",
+      "name": "影剧资源(CMS)",
+      "type": 1,
+      "api": "https://yjzy.me/api.php/provide/vod/from/mtm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_天涯影视",
+      "name": "天涯影视(CMS)",
+      "type": 1,
+      "api": "https://tyyszy.com/api.php/provide/vod/from/tym3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_猫眼资源",
+      "name": "猫眼资源(CMS)",
+      "type": 1,
+      "api": "https://www.maoyanzy.com/api.php/provide/vod/from/mym3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_OK资源",
+      "name": "OK资源(CMS)",
+      "type": 1,
+      "api": "https://okzyw.cc/api.php/provide/vod/from/okm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_鸭鸭资源",
+      "name": "鸭鸭资源(CMS)",
+      "type": 1,
+      "api": "https://yayazy2.com/api.php/provide/vod/from/yym3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_爱奇艺资源",
+      "name": "爱奇艺资源(CMS)",
+      "type": 1,
+      "api": "https://www.iqiyizy.com/api.php/provide/vod/from/iqym3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_天空资源",
+      "name": "天空资源(CMS)",
+      "type": 1,
+      "api": "https://api.tiankongapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_淘片资源",
+      "name": "淘片资源(CMS)",
+      "type": 1,
+      "api": "https://taopianapi.com/home/cjapi/vod/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_百度资源",
+      "name": "百度资源(CMS)",
+      "type": 1,
+      "api": "https://api.apibdzy.com/api.php/provide/vod/from/dbm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_iKun资源",
+      "name": "iKun资源(CMS)",
+      "type": 1,
+      "api": "https://ikunzyapi.com/api.php/provide/vod/from/ikm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_金鹰资源",
+      "name": "金鹰资源(CMS)",
+      "type": 1,
+      "api": "https://jinyingzy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_樱花资源",
+      "name": "樱花资源(CMS)",
+      "type": 1,
+      "api": "https://m3u8.apiyhzy.com/api.php/provide/vod/from/yhm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_量子短剧",
+      "name": "量子短剧(CMS)",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/from/lzm3u8/?t=46",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_非凡短剧",
+      "name": "非凡短剧(CMS)",
+      "type": 1,
+      "api": "https://cj.ffzyapi.com/api.php/provide/vod/from/ffm3u8/?t=36",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    },
+    {
+      "key": "php_量子动漫",
+      "name": "量子动漫(CMS)",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/?t=4from/lzm3u8/",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "logo": "http://q2.qlogo.cn/headimg_dl?dst_uin=1771245847&spec=100",
+  "sites": [
+    {
+      "key": "豆瓣",
+      "name": "豆瓣",
+      "type": 3,
+      "api": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/drpy2.min.js",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/douban.js"
+    },
+    {
+      "key": "腾讯视频",
+      "name": "腾讯视频",
+      "type": 3,
+      "api": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/drpy2.min.js",
+      "ext": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/qq.js"
+    },
+    {
+      "key": "爱奇艺",
+      "name": "爱奇艺",
+      "type": 3,
+      "api": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/drpy2.min.js",
+      "ext": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/iqiyi.js"
+    },
+    {
+      "key": "优酷",
+      "name": "优酷",
+      "type": 3,
+      "api": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/drpy2.min.js",
+      "ext": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/youku.js"
+    },
+    {
+      "key": "芒果Tv",
+      "name": "芒果Tv",
+      "type": 3,
+      "api": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/drpy2.min.js",
+      "ext": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/mgtv.js"
+    },
+    {
+      "key": "360影视",
+      "name": "360影视",
+      "type": 3,
+      "api": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/drpy2.min.js",
+      "ext": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/360.js"
+    },
+    {
+      "key": "搜狗影视",
+      "name": "搜狗影视",
+      "type": 3,
+      "api": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/drpy2.min.js",
+      "ext": "https://gh.xmly.dev/https://raw.githubusercontent.com/1771245847/TvBox/master/js/sogou.js"
+    },
+    {
+      "key": "飘零影视",
+      "name": "飘零影视",
+      "type": 1,
+      "api": "https://p2100.net/api.php/provide/vod/?ac=list",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "豆瓣影视",
+      "name": "豆瓣影视",
+      "type": 1,
+      "api": "https://caiji.dbzy5.com/api.php/provide/vod/from/dbm3u8/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "U酷影视",
+      "name": "U酷影视",
+      "type": 1,
+      "api": "https://api.ukuapi88.com/api.php/provide/vod/from/ukm3u8/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "优质影视",
+      "name": "优质影视",
+      "type": 1,
+      "api": "https://api.yyzy-tv.vip/inc/apijson.php/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "360资源",
+      "name": "360资源",
+      "type": 1,
+      "api": "https://360zy.com/api.php/provide/vod/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "光速影视",
+      "name": "光速影视",
+      "type": 1,
+      "api": "https://api.guangsuapi.com/api.php/provide/vod/from/gsm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "无尽影视",
+      "name": "无尽影视",
+      "type": 1,
+      "api": "https://api.wujinapi.me/api.php/provide/vod/from/wjm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "索尼影视",
+      "name": "索尼影视",
+      "type": 1,
+      "api": "https://suoniapi.com/api.php/provide/vod/from/snm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "闪电影视",
+      "name": "闪电影视",
+      "type": 1,
+      "api": "https://xsd.sdzyapi.com/api.php/provide/vod/from/sdm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "豪华影视",
+      "name": "豪华影视",
+      "type": 1,
+      "api": "https://hhzyapi.com/api.php/provide/vod/from/hhm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "天涯影视",
+      "name": "天涯影视",
+      "type": 1,
+      "api": "https://tyyszyapi.com/api.php/provide/vod/from/tym3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "如意影视",
+      "name": "如意影视",
+      "type": 1,
+      "api": "https://cj.rycjapi.com/api.php/provide/vod/from/rym3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "茅台影视",
+      "name": "茅台影视",
+      "type": 1,
+      "api": "https://caiji.maotaizy.cc/api.php/provide/vod/from/mtm3u8/at/json",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "量子影视",
+      "name": "量子影视",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/from/lzm3u8/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "非凡影视",
+      "name": "非凡影视",
+      "type": 1,
+      "api": "https://api.ffzyapi.com/api.php/provide/vod/from/ffm3u8/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "金鹰影视",
+      "name": "金鹰影视",
+      "type": 1,
+      "api": "https://jyzyapi.com/provide/vod/from/jinyingm3u8/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "暴风影视",
+      "name": "暴风影视",
+      "type": 1,
+      "api": "http://by.bfzyapi.com/api.php/provide/vod/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "猫眼影视",
+      "name": "猫眼影视",
+      "type": 1,
+      "api": "https://api.maoyanapi.top/api.php/provide/vod/from/mym3u8/at/json",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "天堂影视",
+      "name": "天堂影视",
+      "type": 1,
+      "api": "http://caiji.dyttzyapi.com/api.php/provide/vod/from/dyttm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "建安影视",
+      "name": "建安影视",
+      "type": 1,
+      "api": "http://154.219.117.232:9981/jacloudapi.php/provide/vod/?ac=list",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "MT影剧",
+      "name": "MT影剧",
+      "type": 1,
+      "api": "https://yjzy.me/api.php/provide/vod/from/mtm3u8/at/josn/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "西瓜影视",
+      "name": "西瓜影视",
+      "type": 1,
+      "api": "https://caiji.xgzyapi.com/api.php/provide/vod/from/xiguam3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "快车影视",
+      "name": "快车影视",
+      "type": 1,
+      "api": "https://caiji.kuaichezy.org/api.php/provide/vod/from/kcm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "OK影视",
+      "name": "OK影视",
+      "type": 1,
+      "api": "https://api.okzyw.net/api.php/provide/vod/from/okm3u8/at/json/",
+      "playUrl": "",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "牛牛影视",
+      "name": "牛牛影视",
+      "type": 1,
+      "api": "https://api.niuniuzy.me/api.php/provide/vod/from/nnm3u8/at/json",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    }
+  ],
+  "lives": [
+    {
+      "name": "TvLive",
+      "type": 0,
+      "url": "https://live.zbds.top/tv/iptv4.txt",
+      "playerType": 2,
+      "timeout": 10
+    }
+  ],
+  "parses": [
+    {
+      "name": "解析线路1",
+      "type": 0,
+      "url": "https://jx.2s0.cn/player/?url="
+    },
+    {
+      "name": "解析线路2",
+      "type": 0,
+      "url": "https://jx.77flv.cc/?url="
+    },
+    {
+      "name": "解析线路3",
+      "type": 0,
+      "url": "https://jx.hls.one/?url="
+    }
+  ],
+  "wallpaper": "https://canyue.freetzi.com/tvbox/img"
+}

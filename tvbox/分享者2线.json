@@ -1,0 +1,1000 @@
+{
+"adblock":{"gjc":[".lz",".ff",".mstop",".bfz"],"jxurl":"http://jx.84jia.com/fflzm3u8ts.php?url="},
+"sites": [	{
+      "key": "YGFXZ",
+      "name": "💖分享本地",
+      "type": 3,
+      "api": "csp_Local",
+	"jar":"http://rihou.cc:88/jar/vox.jar",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0
+    },
+      {
+            "key": "豆瓣",
+            "name": "🅱️分享豆瓣",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+            "searchable": 0,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/JS/分享douban.js"
+        },
+        {"key":"csp_Config","name":"💝分享配置","type":3,"api":"csp_Config","jar":"http://rihou.cc:88/jar/vox.jar","searchable":0,"changeable":0},
+	  {"key": "央视片库","name": "🇨🇳分享央视","type": 3,"api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/分享央视.py","searchable": 1,"quickSearch": 1,"changeable": 1,"filterable": 1,"timeout": 60}, 
+     {"key": "央视综艺","name": "🇨🇳分享综艺","type": 3,"api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/央视综艺.py","searchable": 1,"quickSearch": 1,"changeable": 1,"filterable": 1,"timeout": 60}, 
+     {
+      "key": "一曲肝肠断",
+      "name": "🇨🇳分享戏曲",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/JS/分享xq.js"
+    },
+     {
+            "key" : "js_好趣",
+            "name" : "🇨🇳分享直播",
+            "type" : 3,
+            "api" : "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+            "ext" : "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/JS/好趣.js"
+        },
+   {"key":"py_直播平台","name":"💖分享平台","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/PY/直播平台.py","searchable":1,"quickSearch":0,"filterable":0,"changeable":0},
+	 {
+            "key": "kktd",
+            "name": "💝分享糖豆",
+            "type": 1,
+            "api": "https://kk.666888.club/vod/cibn_api.php/provide/vod/",
+            "searchable": 1,
+            "changeable": 1,
+            "quickSearch": 0,
+            "filterable": 0
+        },
+	{
+      "key": "t4直播转点播",
+      "name": "💝分享教育",
+      "type": 4,
+      "api": "http://120.53.102.254/dsp16",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
+            "key": "csp_XYQHikerNm",
+            "name": "💖分享在线",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/PY/八戒影视.py",
+            "searchable": 1,
+            "changeable": 0,
+            "quickSearch": 0,   "filterable": 0}, 
+{
+      "key": "迷你",
+      "name": "💝分享迷你",
+      "type": 1,
+      "api": "http://qp.69mini.com/api.php/provide/vod/",
+      "playUrl": "json:http://103.236.72.166:188/api/?key=veniDOaEzSzIThZsyb&url="
+    },
+	 {
+      "key": "y",
+      "name": "💝分享映川",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/get.js",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": {
+        "host": "https://ys.xiaos12.cn",
+        "key": "chfgjfrhhf628vw1",
+        "Iv": "chfgjfrhhf628vw1"
+      }
+    },
+    {
+      "key": "星河",
+      "name": "💝分享星河",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/get.js",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": {
+        "host": "https://daen-1256234123.cos.ap-shanghai.myqcloud.com/MuQi/mqxhqj.txt",
+        "key": "kj37zs29q22jk96t",
+        "init": "V122",
+        "api":2,
+        "ua": "okhttp/3.10.0"
+      }
+    },
+{"api":"https://banyeomni.780420.xyz:17777/api/tvbox/source/2070335664787820544?token=banye666","filterable":0,"key":"2070335664787820544","name":"💝分享热播","searchable":1,"type":4},
+{
+      "key": "4K电影网",
+      "name": "💝分享电影",
+      "type": 3,
+      "api": "https://15487.kstore.space/4K%E7%94%B5%E5%BD%B1%E7%BD%91.py",
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "playerType": 2
+    },
+	 {
+      "key": "枫叶",
+      "name": "💖分享枫叶",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/fy.py",
+      "searchable": 1,
+      "changeable": 0,
+      "quickSearch": 0,
+      "filterable": 0
+    },
+	{
+      "key": "首发",
+      "name": "💝分享首发",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/get.js",
+      "ext": {
+        "host": "https://yun-1316442804.cos.ap-guangzhou.myqcloud.com/602.txt",
+        "key": "FTgP4Gq8zPiqbt7M",
+        "init": "V122",
+        "api": 2,
+        "ua": "okhttp/3.10.0"
+      }
+    },
+	 {
+            "key": "爱影",
+            "name": "💝分享爱影",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/get.js",
+            "ext": {
+                "host": "http://222.211.75.252:26168",
+                "key": "nzEqOgYk3QzHuEP8",
+                "init": "V122",
+                "api": 2,
+                "ua": "okhttp/3.10.0"
+            }
+        },
+  	 {
+            "key": "布布",
+            "name": "💝分享布布",
+            "type": 3,
+            "api": "https://pan.szfx.top/down.php/ca1d0aee761c0cf8d47d1fddcddb9a30.py",
+            "style": {
+                "type": "rect",
+                "ratio": 1.33
+            },
+            "changeable": 1
+        },
+        {
+            "key": "JD",
+            "name": "💝分享起点",
+            "type": 3,
+            "api": "https://mpimg.cn/down.php/99ed736540ae820ae00d67669d22dc90.js",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "changeable": 1,
+            "ext": "https://qp.69mini.com/api.php/app/"
+        },
+        {
+      "key": "csp_歪比",
+      "name": "💖分享巴卜",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/歪比.py",
+      "searchable": 1,
+      "changeable": 0,
+      "quickSearch": 0,
+      "filterable": 0
+    },
+{
+      "key": "葫芦",
+      "name": "💝分享葫芦",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/get.js",
+      "ext": {
+        "host": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/maccos_config.txt",
+        "key": "8R33VQSxzmCaHpEX",
+        "init": "V122",
+        "api": 2,
+        "ua": "okhttp/3.10.0"
+      }
+    },
+	 {"key":"官采","name":"💝分享官源","type":1,"api":"https://cj.jusj.top/api.php/provide/vod/?ac=list","searchable":1,"changeable":1},
+          {
+            "key": "爱剧",
+            "name": "💝分享爱剧",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/tt/refs/heads/0/ppx.py",
+            "ext": "http://43.248.117.123:4680"
+        },
+	 {
+      "key": "秒看",
+      "name": "💝分享秒看",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/get.js",
+      "playerType": 2,
+      "ext": {
+        "host": "https://mk1080.top/",
+        "key": "c60d88b2eep53za8",
+        "Iv": "c60d88b2eep53za8",
+        "token": "0e4bdd6893d319dcd405b6b06890debfd94fc4676702613921b05682f488dd8c"
+        }
+    },
+	 {
+      "key": "py_酷我",
+      "name": "💖分享酷我",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/酷我音乐.py",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0
+    },
+        {
+            "key": "高清",
+            "name": "💝分享高清",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/get.js",
+            "searchable": 1,
+            "changeable": 1,
+            "ext": {
+                "host": "https://yun-1316442804.cos.ap-guangzhou.myqcloud.com/602.txt",
+                "key": "FTgP4Gq8zPiqbt7M",
+                 "init": "V122",
+                 "api": 2,
+                 "ua": "okhttp/3.10.0"
+            }
+        },
+{
+            "key": "魔方",
+            "name": "💝分享魔方",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/get.js",
+            "searchable": 1,
+            "changeable": 1,
+            "ext": {
+                "host": "https://www.douy32mf.top",
+                "key": "1234567887654321",
+                 "Iv": "1234567887654321"
+            }
+        },
+	{
+       "key": "雄鹰",
+      "name": "💝分享雄鹰",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/get.js",
+      "ext": {
+        "host": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/xly.txt",
+        "key": "ca94b06ca359d80e",
+        "init": "V120",
+        "api": 2,
+        "ua": "okhttp/3.10.0"
+      },
+      "categories": [
+        "动漫",
+        "电视剧",
+        "电影",
+        "综艺",
+        "短剧",
+        "少儿",
+        "纪录片"
+      ]
+    },
+     {
+      "key": "火云",
+      "name": "💝分享火云",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/hy.js"
+    },
+ {
+      "key": "csp_七猫",
+      "name": "💖分享七猫",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/七猫.py",
+      "searchable": 1,
+      "changeable": 0,
+      "quickSearch": 0,
+      "filterable": 0
+    },
+      {
+      "key": "csp_麻花",
+      "name": "💖分享麻花",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/麻花.py",
+      "searchable": 1,
+      "changeable": 0,
+      "quickSearch": 0,
+      "filterable": 0
+    },
+        {
+			"key": "py_guazi",
+			"name": "💖分享瓜子",
+			"type": 3,
+			"api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/PY/瓜子.py",
+			"searchable": 1,
+			"quickSearch": 0,
+			"changeable": 0,
+			"filterable": 0,
+			"timeout": 60},
+        {
+            "key": "奇迹",
+            "name": "💝分享奇迹",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/tt/refs/heads/0/AppGet.js",
+            "searchable": 1,
+            "changeable": 1,
+            "ext": {
+                "host": "https://qiqi-1311265976.cos.ap-nanjing.myqcloud.com/qijiapp0.txt",
+                "key": "whosyoudaddy5477",
+                "init": "V122",
+                "api": "2",
+                "ua": "okhttp/3.10.0"
+            }
+        },
+	{
+            "key": "皮皮虾",
+            "name": "💝分享皮皮",
+            "type": 3,
+            "api": "https://pan.szfx.top/down.php/540e0c721a30390c4f5d2d77b8286905.py",
+            "ext": "http://43.248.117.123:4680"
+        },
+        {"key":"fxz小猫咪","name":"💖分享猫咪","type":1,"api":"http://zy.xiaomaomi.cc/api.php/provide/vod/","playUrl": "json:https://player.gimy.bot/u/parse.php?url="
+},
+      {
+            "key": "Acfun",
+            "name": "💖分享Acfun",
+            "type": 3,
+            "api": "https://fastlink.cokey.xyz/f/XB4Oik/Acfun.py"
+        },
+        {
+            "key": "咕噜画",
+            "name": "💝分享咕噜",
+            "type": 3,
+            "changeable": 0,
+            "api": "https://fastlink.cokey.xyz/f/oPJvI9/Appfox.min.js",
+            "ext": {
+                "host": "http://www.yingsw.top",
+                "timeout": 8,
+                "key": "guluyinghua_123",
+                "sign": "679543610991810f19698c187e5e106e"
+            }
+        },
+	{
+            "key": "猫头鹰",
+            "name": "💝分享蓝鹰",
+            "type": 3,
+            "api": "https://raw.giteeusercontent.com/monosodium-glutamate/wjwj/raw/master/lib/get.js",
+            "searchable": 1,
+            "ext": {
+                "host": "https://xinlanyinghb.oss-cn-wuhan-lr.aliyuncs.com/xly.txt",
+                "key": "ca94b06ca359d80e",
+                "init": "V122",
+                "api": 2,
+                "ua": "okhttp/3.10.0"
+            }
+        },
+	{
+      "key": "py_jieyingshi",
+      "name": "💖分享界影",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/py_jieyingshi.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+    {
+            "key": "py_金牌影视",
+            "name": "💖分享金牌",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/金牌.py",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "playerType": 2,
+            "ext": {
+                "site": "https://www.hkybqufgh.com,https://www.sizhengxt.com,https://m.fjvtw.com/,https://m.hhduc.com,https://www.hellorlgzf7sn.com,https://0996zp.com,https://9zhoukj.com/,https://www.sizhengxt.com,https://www.tjrongze.com,https://www.jiabaide.cn,https://cqzuoer.com"
+            }
+        },
+          {
+            "key": "csp_xhapp",
+            "name": "💖分享新河",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/PY/分享新河.py",
+            "searchable": 1,
+            "changeable": 0,
+            "quickSearch": 0,   "filterable": 0},  
+          {
+      "key": "分享农民",
+      "name": "💝分享农民",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar":
+"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/jar/xbpq (3).jar",
+      "ext":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/XBPQ/分享农民.json"
+    },
+          {
+			"key": "csp_猎手",
+			"name": "💖分享猎手",
+			"type": 3,
+			"searchable": 1,
+			"changeable": 1,
+			"quickSearch": 1,
+			"api": "https://gh-proxy.com/https://raw.githubusercontent.com/alantang1977/X/main/py/LSYS.py",
+			"playerType": 2,
+			"filterable": 1
+		},
+          {
+            "key": "cat_夸克影院",
+            "name": "💝分享夸克",
+            "type": 3,
+            "timeout": 60,
+            "api": "http://rihou.cc:88/js/夸克影院.js"
+        },
+            {
+      "key": "双星",
+      "name": "💝分享双星",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+      "ext": "https://11405.kstore.space/xiaye/js/双星.js",
+      "style": {
+        "type": "list"
+      }
+    },
+        {
+      "key": "泥巴视频",
+      "name": "💝分享泥巴",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/分享泥巴.js"
+    },
+    {
+            "key": "cat_星辰影院",
+            "name": "💝分享星辰",
+            "type": 3,
+            "timeout": 60,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/JS/分享星辰.js"
+        },
+{"key": "毒舌影视","name": "💝分享毒舌","type": 3,"api": "https://gh-proxy.com/https://raw.githubusercontent.com/alantang1977/X/main/laozhang/毒舌影视.js","style": {"type": "rect","ratio": 1.33},"changeable": 1},
+        {
+            "key": "皮皮",
+            "name": "💝分享皮皮",
+            "type": 3,
+            "api": "https://wget.la/https://raw.githubusercontent.com/tushen6/Tattoo/refs/heads/main/OK/py/Applzxw.py",
+            "ext": "http://38.55.237.41:8762"
+        },
+          {"key":"独播库_async","name":"💝分享独播","type":3,"api":"https://gh-proxy.org/https:/raw.githubusercontent.com/alantang1977/X/main/laozhang/独播库.js","style":{"type":"rect","ratio":1.33},
+"changeable":1},
+	{
+      "key": "奇异果",
+      "name": "💖分享异果",
+      "type": 0,
+      "api": "https://iqiyizyapi.com/api.php/provide/vod/at/xml/",
+      "searchable": 1,
+      "changeable": 1,
+      "playurl": "json:https://www.iqiyizyjx.com/?url="
+    },
+{
+            "key": "久久",
+            "name": "💝分享久久",
+            "type": 3,
+            "api": "csp_AppYsV2",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "http://99cms.jj99.icu:8199/api.php/app/"
+        },
+        {
+            "key": "飞飞",
+            "name": "💝分享起跑",
+            "type": 3,
+            "api": "csp_AppYsV2",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "https://qpcj.69mini.com/api.php/app/"
+        },
+      {
+			"key": "py_动漫巴士",
+			"name": "💝分享巴士",
+			"type": 4,
+			"api": "https://py.doube.eu.org/v2/spider?site=6b5899d243816bacb8712de7ab6ceb89"
+		},
+          {
+      "key": "天堂",
+      "name": "💝分享天堂",
+            "type": 4,
+            "api": "https://php.doube.eu.org/spider/php/电影天堂.php",
+            "searchable": 1,
+            "quickSearch": 0,
+            "changeable": 0
+        },
+    {
+            "key": "月光影院",
+            "name": "💝分享月光",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/JS/分享月光.js"
+        },
+         {"key": "js_en_gf","name": "💝分享官方","type": 3,"api": "https://gh-proxy.com/https://raw.githubusercontent.com/alantang1977/X/main/py/en_gf.js","style": {"type": "rect","ratio": 1.33},"changeable": 1},  
+          {"key":"聚合短剧_async","name":"💝分享短剧","type":3,"api":"https://gh-proxy.org/https:/raw.githubusercontent.com/cluntop/cluntop.github.io/main/js/聚合短剧.js","style":{"type":"rect","ratio":1.33},
+"changeable":1},
+        {"key":"南瓜","name":"💝分享南瓜","type":3,"api":"csp_NanGua","playerType":2,"jar":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/jar/fxz250711.jar;md5;9ab53f593c034c2b80cdc9f4c785a6f3","ext":"7lj763gg0939795i017ii486k512jkihhilg9g0h96j865740113"},
+   {"key":"柠檬","name":"💝分享柠檬","type":3,"api":"csp_Nmvod","playerType":2,"jar": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/jar/fxz250711.jar;md5;9ab53f593c034c2b80cdc9f4c785a6f3","ext":"7lj763gg402i7942503g839jg74h8h88highi40799jh6i6k454419l0l5184k0g549h0kg2i01i838i2h42g891lgg1"},
+    {"key":"热播","name":"💝分享剧评","type":3,"api":"csp_Jpys","playerType":2,"jar":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/jar/fxz250711.jar;md5;9ab53f593c034c2b80cdc9f4c785a6f3","ext":"7lj763gg402i7942463j9j9jh8579590k3hjii5gi4i73l2k5l"},
+      {"key":"天天","name":"💝分享天天","type":3,"api":"csp_TTian","playerType":2,"jar": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/jar/fxz250711.jar;md5;9ab53f593c034c2b80cdc9f4c785a6f3","ext":"7lj763gg0939791h1l3888jig44gi291li"},
+{
+            "key": "无水印采集",
+            "name": "💝分享纯净",
+            "type": 1,
+            "api": "https://api.wsyzy.net/api.php/provide/vod/?ac=list",
+            "categories": [
+                "国产剧",
+                "欧美剧",
+                "香港剧",
+                "韩剧",
+                "台湾剧",
+                "台湾剧",
+                "日剧",
+                "海外剧",
+                "泰剧",
+                "动作片",
+                "喜剧片",
+                "科幻片",
+                "恐怖片",
+                "爱情片",
+                "剧情片",
+                "惊悚片",
+                "战争片",
+                "动漫电影",
+                "国产动漫",
+                "日韩动漫",
+                "欧美动漫",
+                "年代穿越",
+                "反转爽剧",
+                "古装仙侠",
+                "现代都市",
+                "女频恋爱",
+                "漫剧",
+                "擦边短剧",
+                "有声动漫",
+                "大陆综艺",
+                "日韩综艺",
+                "港台综艺",
+                "欧美综艺",
+                "港台×X",
+                "韩国××",
+                "日本×X",
+                "西方X×"
+            ]
+},
+        {"key": "永乐","name": "💝分享永乐","type": 3,"api": "https://gh-proxy.com/https://raw.githubusercontent.com/alantang1977/X/main/py/永乐视频.py","searchable": 1,"quickSearch": 1,"filterable": 1,"order_num": 0,"ext": ""},
+ {"key": "hohaiemby","name": "💝分享EMBY","type": 3,"api": "https://gh-proxy.org/https:/raw.githubusercontent.com/alantang1977/X/main/js/Emby.js","style": {"type": "rect","ratio": 1.33},"changeable": 1},
+{"key": "Emby小雅","name": "💝分享动漫","type": 3,"api": "https://gh-proxy.org/https:/raw.githubusercontent.com/alantang1977/X/main/js/Emby小雅.js","style": {"type": "rect","ratio": 1.33},"changeable": 1},
+{"key": "js集合","name": "💝分享js集","type": 4,"api": "http://zhangqun1818.serv00.net/js.php","searchable": 1,"style": {"type": "rect","ratio": 1.33},"changeable": 1},
+{"key": "采集集合","name": "💝分享合集","type": 4,"api": "http://zhangqun1818.serv00.net/cj/cjjh.php","searchable": 1,"style": {"type": "rect","ratio": 1.33},"ext":"1","changeable": 1},
+  {
+      "key": "金蝉",
+      "name": "💝分享金蝉",
+      "type": 1,
+      "api": "http://zy.jinchancaiji.com/api.php/provide/vod",
+      "playUrl": "json:http://114.66.40.16:7700/api.php?url="
+    },     
+           {
+			"key": "py_jutouse",
+			"name": "💝分享剧透",
+			"type": 3,
+			"api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/PY/剧透社.py",
+			"searchable": 1,
+			"quickSearch": 0,
+			"changeable": 0,
+			"filterable": 0,
+			"timeout": 60
+		},
+		{
+			"key": "py_dianyingyunji",
+			"name": "💝分享云集",
+			"type": 3,
+			"api": "https://d.kstore.dev/download/4127/py/电影云集.py",
+			"searchable": 1,
+			"quickSearch": 0,
+			"changeable": 0,
+			"filterable": 0,
+			"timeout": 60
+		},
+         {
+			"key": "飞牛影视",
+			"name": "💝分享飞牛",
+			"type": 3,
+			"api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+			"searchable": 1,
+			"quickSearch": 1,
+			"filterable": 1,
+			"order_num": 0,
+			"ext": "https://d.kstore.dev/download/4127/js/飞牛影视.js"
+		},
+		{
+			"key": "冠建影视",
+			"name": "💝分享冠建",
+			"type": 3,
+			"api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+			"searchable": 1,
+			"quickSearch": 1,
+			"filterable": 1,
+			"order_num": 0,
+			"ext": "https://d.kstore.dev/download/4127/js/冠建.js"
+		},
+    {
+			"key": "歪片星球[资]",
+			"name": "💝分享歪片",
+			"type": 3,
+			"api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+			"searchable": 1,
+			"quickSearch": 1,
+			"filterable": 1,
+			"order_num": 0,
+			"ext": "https://d.kstore.dev/download/4127/js/歪片.js"
+		},
+            {
+  "key": "js_en_gf",
+  "name": "💖分享采集",
+  "type": 3,
+  "api": "https://d.kstore.dev/download/4127/js/官采.js",
+  "searchable": 1,
+  "quickSearch": 0,
+  "filterable": 0,
+  "changeable": 0
+},
+		  {
+      "key": "西瓜",
+      "name": "💝分享西瓜",
+      "type": 3,
+      "searchable": 1,
+      "quickSearch": 1,
+      "playerType": 2,
+      "filterable": 1,
+      "api": "csp_XBPQ",
+      "jar":
+"https://ghfast.top/https://raw.githubusercontent.com/wnddwc/daiweichun/main/XBPQ.jar",
+      "ext": {
+        "分类": "电影$20#连续剧$37#动漫$43#综艺$45",
+        "分类url": "https://sszzyy.com/index.php/vod/type/id/{cateId}/page/{catePg}.html",
+        "线路标题": "data-toggle=\"tab\">&&</a>"
+      }
+    },
+    {
+      "key": "猫眼资源采集",
+      "name": "💝分享猫眼",
+      "type": 1,
+      "api": "https://api.maoyanapi.top/api.php/provide/vod/at/json",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+     {"key": "juxiafan","name": "💝分享剧匣","type": 3,"api": "csp_AppYsV2","ext": "http://jxfmax.juxiafan.com/icciu_api.php/v1.vod"},
+		 { "key": "五大采集平台采", "name": "❤️‍分享官采", "type": 3, "api": "csp_AppYsV2", "searchable": 1, "quickSearch": 1, "filterable": 1, "playerType":2, "ext": "http://39.105.18.5:5565/api.php/app/" },
+         { "key": "全片源", "name": "💖分享全网", "type": 3, "api": "csp_AppYsV2", "searchable": 1, "quickSearch": 1, "filterable": 1, "playerType": 2, "ext": "http://chaoqianys.top:91/api.php/app/" } , 
+             {"key":"腾讯视频","name":"💝分享腾讯","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js","ext":"https://kong88.dpdns.org/lib/腾讯视频.js"},
+        {"key":"芒果视频","name":"💝分享芒果","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js","ext":"https://kong88.dpdns.org/lib/芒果视频.js"},
+        {"key":"哔哩视频JS","name":"💝分享哔哩","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://kong88.dpdns.org/lib/哔哩视频.js"},
+        {"key":"爱奇艺","name":"💝分享奇艺","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js","ext":"https://kong88.dpdns.org/lib/爱奇艺.js"},
+        {"key":"优酷视频","name":"💝分享优酷","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js","ext":"https://kong88.dpdns.org/lib/优酷视频.js"},
+         {"key":"360影视","name":"💝分享360","type":3,"api":"csp_SP360","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
+    {
+      "key": "闪影视界",
+      "name": "💝分享闪影",
+      "type": 3,
+      "api": "csp_AppYs",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "http://38.47.213.61:41271/mogai_api.php/v1.vod"
+    },
+         {
+            "key": "土豆浏览器",
+            "name": "💝分享土豆",
+            "type": 3,
+            "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/refs/heads/main/PY/土豆浏览器.py",
+            "style": {
+                "type": "rect",
+                "ratio": 1.33
+            },
+            "changeable": 1
+        },
+{
+      "key": "荐片采集",
+      "name": "💝分享荐片",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/alantang1977/X/main/laozhang/荐片.js",
+      "style": {
+        "type": "rect",
+        "ratio": 1.33
+      },
+      "changeable": 1
+    },
+        {"key":"py_sync","name":"💖分享茫然","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/cluntop/cluntop.github.io/refs/heads/main/py/Mang.py","searchable":1,"filterable":1,"changeable":1},
+     {"key":"py_bili","name":"💖分享哔哩","type":3,"api":"https://gh-proxy.com/https://raw.githubusercontent.com/cluntop/cluntop.github.io/refs/heads/main/py/哔哩视频.py","searchable":1,"filterable":1,"changeable":1},
+ {
+      "key": "fxzYD",
+      "name": "💖分享移动",
+      "type": 3,
+      "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/jar/分享者YD.jar",
+      "api": "csp_YDjisu",
+      "searchable": 1,
+      "changeable": 1
+   },
+		{
+			"key": "csp_努努",
+			"name": "💖分享努努",
+			"type": 3,
+			"searchable": 1,
+			"changeable": 1,
+			"quickSearch": 1,
+			"api": "https://d.kstore.dev/download/4127/PY/分享努努.py",
+			"playerType": 2,
+			"filterable": 1
+		},
+{
+      "key": "py_wawa",
+      "name": "💖分享哇哇",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/wawa.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "py_gowaiju",
+      "name": "💖分享外剧",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/国外剧APP.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "千梦影视",
+      "name": "💖分享千梦",
+      "type": 3,
+      "api": "csp_AppYsV2",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://www.qmjzys.com/api.php/app/"
+    },
+{
+   "key": "豆瓣资源",
+   "name": "💖分享豆瓣",
+   "type": 1,
+   "quickSearch": 1,
+   "api": "https://caiji.dbzy.tv/api.php/provide/vod/"
+  }, 
+{
+      "key": "py_ MiFunP动漫",
+      "name": "💖分享MiFunP",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/PY/MiFunP动漫.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+{
+            "key": "量子-资源",
+            "name": "💖分享量子",
+            "type": 1,
+            "api": "https://cj.lziapi.com/api.php/provide/vod/",
+            "searchable": 1,
+            "changeable": 1,
+            "categories": [
+                "动作片",
+                "喜剧片",
+                "科幻片",
+                "恐怖片",
+                "爱情片",
+                "剧情片",
+                "战争片",
+                "记录片",
+                "国产剧",
+                "欧美剧",
+                "香港剧",
+                "韩国剧",
+                "台湾剧",
+                "日本剧",
+                "海外剧",
+                "泰国剧",
+                "国产动漫",
+                "日韩动漫",
+                "欧美动漫",
+                "港台动漫",
+                "海外动漫",
+                "大陆综艺",
+                "港台综艺",
+                "日韩综艺",
+                "欧美综艺"
+            ]
+        },
+     {
+    "key": "狐狸君磁力",
+    "name": "💖分享狐狸",
+    "type": 3,
+    "changeable": 1,
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "api": "csp_XBPQ",
+     "jar":"",
+    "ext": {
+       "搜索模式": "1",
+    "搜索url": "https://www.foxjun.com/s/?q={wd}",
+    "搜索数组": "class=\"media\">&&/div>",
+    "搜索图片": "src=\"&&\"",
+    "搜索标题": "《&&》",
+    "搜索副标题": "》&&\"",
+    "搜索链接": "href=\"&&\"",
+    "标题": "《&&》",
+    "副标题": "》&&\"",
+    "影片年代": "上映日期：&&</p>",
+    "影片类型": "类型：&&</p>",
+    "主演": "主演：&&</p>",
+    "简介": "简介：&&</p>",
+    "播放数组": "<tbody>&&</tbody>",
+    "播放列表": "<a&&/a>[包含:magnet]",
+    "播放标题": ">&&<",
+    "播放链接": "href=\"&&\"",
+    "分类url": "https://www.foxjun.com/channel/{cateId}.html?apage1={catepg}",
+    "分类": "国产剧$guochanju#电影$dianying#动画$donghua#美欧剧$meiouju#日韩剧$rihanju"
+    }
+},
+     {
+	"key": "hipy_js_fxzhz",
+	"name": "💖分享瓜子-",
+	"type": 3,
+         "api": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/api/refs/heads/main/JS/drpy2.min.js",
+	"ext": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/JS/分享GZ.js"
+},
+	{"key":"csp_XBPQ_fxzcjy","name":"💖分享柴姬","type":3,"api":"csp_XBPQ","searchable":1,"quickSearch":1,"filterable":1,
+    "jar":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/jar/XBPQ(2).jar",
+    "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/XBPQ/分享caiji.json"},
+     {
+    "key": "奇优",
+    "name":"💖分享奇优",
+    "type": 3,
+        "api": "csp_XBPQ",
+        "searchable": 1,
+        "quickSearch": 1,
+        "filterable": 1,
+        "jar":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/jar/XBPQ(2).jar",
+        "ext":{
+    "请求头": "手机",
+    "主页url":"http://www.qiyoudy2.com/",
+    "简介":"&&</div>",
+    "数组":"<div class=\"stui-vodlist__box\">&&</a>",
+    "图片":"data-original=\"&&\"",
+    "标题":"title=\"&&\"",
+    "副标题":"text-right\">&&</span>",
+    "链接":"href=\"&&\"",
+    "搜索url":"http://www.qiyoudy2.com/search.php;post;searchword={wd}",
+    "搜索数组":"v-thumb stui-vodlist__thumb&&</a>",
+    "搜索图片":"data-original=\"&&\"",
+    "搜索标题":"title=\"&&\"",
+    "搜索副标题":"text-right\">&&</span>",
+    "搜索链接":"href=\"&&\"",
+    "线路数组":"data-toggle=\"tab\"&&</li>",
+    "线路标题":">&&</a>",
+    "播放数组":"stui-content__playlist clearfix&&</ul>",
+    "播放列表":"<li>&&</li>",
+    "播放标题":">&&</a>",
+    "分类url":"http://www.qiyoudy2.com/list/{cateId}_{catePg}.html;;ak",
+     "分类":"电影$1#电视剧$2#动漫$3#综艺$4"}},
+	{"key":"魅影影视","name":"💖分享魅影","type":3,"api":"csp_XBPQ",
+ "jar": "",
+"searchable":1,"quickSearch":1,"filterable":1,"ext":{"\u526f\u6807\u9898":"\u516c\u5b50\u4e13\u5c5e","搜索url":"https://www.heitujc.com/search/-------------.html?wd={wd}","搜索数组":"<a class=\"video-pic&&</a","搜索图片":"data-original=\"&&\"","搜索标题":"title=\"&&\"","搜索链接":"href=\"&&\"","分类url":"https://www.heitujc.com/screen/{cateId}-{area}-{by}-{class}-{lang}----{catePg}---{year}.html","分类":"电影&电视剧&综艺&动漫","分类值":"1&2&3&4"}},  
+{"key":"csp_樱之空","name":"💖分享樱空","type":3,"api":"csp_XBPQ",
+   "jar": "",
+"ext":{"主页url":"https://www.skr2.cc/","数组":"class=\"vodlist_item&&</div></li>","简介":"style=\"display:none;\"><span>&&</span>","线路数组":"<a&&</a>","线路标题":"分享者在线+>&nbsp;线路</a>","播放数组":"class=\"content_playlist&&</ul>","播放列表":"<li>&&</li>","播放标题":">&&</a>","分类url":"https://www.skr2.cc/vodshow/{cateId}---{class}-----{catePg}---{year}/","分类":"电影$84#大陆剧$81#港台剧$82#桜剧$32#桜漫$1#日漫$46#国漫$47#美漫$85#综艺$91"}},
+	 {"key":"csp_fxzwj",
+  "name":"💖分享问界",
+            "type": 3,
+            "api": "csp_XBPQ",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/jar/XBPQ(2).jar",
+            "ext":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/分享WJ.json"},
+	{
+    "key": "唐人",
+    "name": "💖分享唐人",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": {
+    "分类url": "https://www.trjvod.com/index.php/vod/show/area/{area}/by/{by}/class/{class}/id/{cateId}/page/{catePg}/year/{year}.html",
+    "分类": "电影$1#连续剧$2#动漫$4#综艺$3#体育$59#短剧$53"}
+},
+	{"key":"csp_Jpys","name":"💖分享金牌",
+            "type": 3,
+            "api": "csp_XBPQ",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": {
+                "影片地区": "分享者制作",
+                "搜索url": "https://www.diemi.cc/search/?wd={wd}",
+                "搜索链接": "href=\"&&\"",
+                "分类url": "https://www.iidie.com/type-{cateId}-{catePg}/",
+                "分类": "国产$guochan#韩剧$hanju#港剧$gangju#美剧$meiju#日剧$riju#台剧$taibei#泰剧$taiju#短剧$duanju#动作片$dongzuo#喜剧片$xiju#爱情片$aiqing#科幻片$kehuan#恐怖片$kongbu#战争片$zhanzheng#剧情片$juqing#动漫$dongman#综艺$zongyi"
+            }
+        },
+{"key":"卧龙资源","name":"💖分享卧龙","type":1,"api":"https://collect.wolongzyw.com/api.php/provide/vod/","searchable":1,"quickSearch":1, "categories": [
+				"电影片",
+				"连续剧",
+				"动作片",
+				"喜剧片",
+				"科幻片",
+				"恐怖片",
+				"爱情片",
+				"剧情片",
+				"战争片",
+				"纪录片",
+				"国产剧",
+				"欧美剧",
+				"犯罪片",
+				"香港剧",
+				"韩国剧",
+				"台湾剧",
+				"日本剧",
+				"海外剧",
+				"悬疑片",
+				"动画片",
+				"国产动漫",
+				"日本动漫",
+				"欧美动漫",
+				"港台动漫",
+				"海外动漫",
+				"大陆综艺",
+				"港台综艺",
+				"韩国综艺",
+				"欧美综艺"
+			]},
+	{
+			"key": "csp_Ikanbot",
+			"name": "💖分享机器",
+			"type": 3,
+			"api": "csp_Ikanbot",
+			"changeable": 1,
+			"playerType": 2,
+			"jar":"https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/TV/refs/heads/master/jar/Xiang.txt",
+			"ext":"https://v.aikanbot.com"
+		},
+{"key": "非@凡",
+	"name": "💖分享非凡",
+	"type": 0,
+	"api": "http://cj.ffzyapi.com/api.php/provide/vod/at/xml/",
+	"playurl": "json:http://jx.84jia.com/m3u8ts.php?url=",
+	"searchable": 1,
+	"changeable": 1,
+	"categories": ["国产动漫","日韩动漫","国产剧","韩国剧","日本剧","电影片","连续剧","综艺片","动漫片","动作片","喜剧片","爱情片","科幻片","恐怖片","剧情片","战争片","香港剧","欧美剧","记录片","台湾剧","海外剧","泰国剧","大陆综艺","港台综艺","日韩综艺","欧美综艺","欧美动漫","港台动漫","海外动漫"]},
+{
+		"key": "drpy_365",
+		"name": "💖分享年年",
+		"type": 3,
+		"api": "https://gh-proxy.com/https://raw.githubusercontent.com/mygoww/xoxo/main/libs/drpy2.min.js",
+		"ext": "https://gh-proxy.com/https://raw.githubusercontent.com/mygoww/xoxo/main/js/365.js"
+	},
+{
+		"key": "cjzy_360资源",
+		"name": "💖分享卫士",
+		"type": 1,
+		"api": "https://360zy.com/api.php/provide/vod",
+		"playUrl": "",
+		"categories": ["国产剧", "国产动漫", "香港剧", "台湾剧", "欧美剧", "日韩动漫", "NBA", "短片", "西部片", "综艺片", "动漫片", "动作片", "喜剧片", "爱情片", "科幻片", "恐怖片", "惊悚片", "悬疑片", "犯罪片", "剧情片", "战争片", "家庭篇", "记录片", "历史片", "动漫片", "大陆综艺", "港台综艺"]
+	},
+	{
+		"key": "XBPQ_xz",
+		"name": "💖分享小镇",
+		"type": 3,
+		"api": "csp_XBPQ",
+		"ext": "https://gh-proxy.com/https://raw.githubusercontent.com/maoystv/6/main/XBPQ/分享XZ.json"
+	},
+          {
+            "key": "csp_LiteApple",
+            "name": "💖分享|BTT",
+            "type": 3,
+            "playerType": "2",
+            "api": "csp_XBPQ",
+            "ext":{"数组":"class=\"hl-item-thumb hl-lazy\"&&</div></li>","简介":"class=\"hl-text-muted\">简介：</em>&&</li>","线路数组":"alt=\"&&</a>","线路标题":"分享者在线+</i>&nbsp;&&</a>","分类数组":"<a&&</a>","分类标题":"subs\"href=\"/vodlist

@@ -1,0 +1,886 @@
+{
+  "logo": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/logo.jpg",
+  "wallpaper": "https://picsum.photos/1080/",
+  "lives": [
+    {
+      "name": "澜露TV",
+      "type": 0,
+      "url": "http://zoto.3d.tc/i/i/hulanlu.txt"
+    }
+  ],
+  "sites": [
+    {
+      "key": "瓜子影院",
+      "name": "瓜子影院",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "分类url": "https://www.gzxiongna.com/0bCvlyE/{cateId}-{catePg}.html"
+      }
+    },
+    {
+      "key": "真不卡",
+      "name": "真不卡",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "数组": "p:.lazyload",
+        "链接": "p:->href",
+        "图片": "p:->data-original",
+        "标题": "p:->title",
+        "副标题": "p:.->pic-text",
+        "搜索模式": "1",
+        "搜索url": "https://www.zhenbuka34.com/search-{wd}----------{pg}---/",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$dianying#电视剧$dianshiju#综艺$zongyi#动漫$dongman#纪录片$jilupian#福利$lunlipian#",
+        "分类url": "https://www.zhenbuka34.com/vodtype/{cateId}-{catePg}/"
+      }
+    },
+    {
+      "key": "可可影视",
+      "name": "可可影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/1118.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1#{{曲奇-c}}",
+        "特殊": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
+        "曲-c": "https://www.kkys04.com/渲染目标:/name=\"t\".*?value=\"(.*?)\"/请求头(特殊)[工具:渲染#url]",
+        "曲奇-c": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/{{曲-c}}[工具:返回{{奇-c}}]",
+        "奇-c": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/{{响应头}}[工具:Cookie$⊕set-cookie=\\[截取\\]]",
+        "域名-c": "https://www.kkys04.com",
+        "主页url": "https://www.kkys04.com",
+        "数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<div class=\"module-item\">&&</a>",
+        "标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<div class=\"v-item-title\">&&</div>",
+        "副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<span>&&</span>[不含:可可]",
+        "图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/{{二-c}}+data-original=\"&&\"[不含:http]",
+        "链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "影片年代": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/class=\"detail-tags-item\">&&</a>",
+        "影片地区": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/class=\"detail-tags-item\">&&</a>[含序号:2]",
+        "影片类型": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/class=\"detail-tags-item\">&&</a>[含序号:3]",
+        "导演": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/导演*</div>&&</div>",
+        "主演": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/演员*</div>&&</div>",
+        "简介": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/detail-desc\">&&</div>",
+        "线路数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<span class=\"source-item-label&&/span>[不含:4K(]",
+        "线路标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/>&&<",
+        "播放数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<div class=\"episode-list&&</div>",
+        "播放列表": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/&&分割(<a)",
+        "播放标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/>&&<",
+        "播放链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "跳转播放链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/const playSource = {*src*\"&&\"||TMDPPPP = '&&'[工具:解aes-Isu7fOAvI6!&IKpAbVdhf&^F]",
+        "过滤词": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/baidu.com",
+        "搜索url": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/{{域名-c}}/search?t={{曲-c}}&k={wd}",
+        "搜索二次截取": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<div class=\"search-result-list&&<div class=\"pagenation-box",
+        "搜索数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<a&&</a>",
+        "搜索标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/title=\"&&\"",
+        "搜索副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<div class=\"tags\">&&</div>",
+        "搜索图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/{{二-c}}+data-original=\"&&\"[不含:http]",
+        "搜索链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "分类url": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/{{域名-c}}/show/{cateId}-----{by}-{catePg}.html;;ad0m0s0xn",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$4#动漫$3#短剧$6",
+        "排序": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/综合$1#最新$2#最热$3#评分$4",
+        "二-c": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<script src=\"&&\"[包含:rdul][工具:源码#'截取'∬\"截取\"]"
+      }
+    },
+    {
+      "key": "爱壹帆",
+      "name": "爱壹帆",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "分类url": "https://www.newxing.cc/iyf/{cateId}-{catePg}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4#短剧$37#体育赛事$46"
+      }
+    },
+    {
+      "key": "js_车载MV",
+      "name": "车载MV",
+      "type": 3,
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/js/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/js/车载MV.js"
+    },
+    {
+      "key": "奇优影院1",
+      "name": "奇优影院1",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "分类url": "http://www.dyxz6.com/list/{cateId}_{catePg}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#动漫$3#综艺$4#伦理$6"
+      }
+    },
+    {
+      "key": "奇优影院2",
+      "name": "奇优影院2",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "api": "csp_XBPQ",
+      "ext": {
+        "分类url": "http://www.qiyoudy2.com/list/{cateId}_{catePg}.html;;"
+      }
+    },
+    {
+      "key": "兔兔影视",
+      "name": "兔兔影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "分类url": "http://m.hairuiyy.com/show/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4#短剧$36#",
+        "数组": "p:.lazyload",
+        "链接": "p:->href",
+        "标题": "p:->title",
+        "图片": "p:->data-original",
+        "副标题": "p:.text-right->text",
+        "线路数组": "p:.nav-tabs a",
+        "线路标题": "p:->text",
+        "播放数组": "p:.stui-content__playlist",
+        "播放列表": "p:a",
+        "播放标题": "p:->text",
+        "播放链接": "p:->href",
+        "跳转播放数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/player_aaaa=&&</script",
+        "跳转播放链接": "j:url",
+        "搜索模式": "1",
+        "简介": "p:.detail->text",
+        "搜索url": "http://m.hairuiyy.com/search/{wd}----------{pg}---.html"
+      }
+    },
+    {
+      "key": "聚合",
+      "name": "聚合",
+      "type": 3,
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/py/聚合.py",
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "playerType": 2
+    },
+    {
+      "key": "橘猫影视",
+      "name": "橘猫影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "主页url": "http://pw7.net/",
+        "分类url": "http://pw7.net/index.php/vod/show/id/{cateId}/area/{area}/by/{by}/class/{class}/lang/{lang}/letter/{letter}/page/{catePg}/year/{year}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电视剧$2#电影$1#综艺$3#动漫$4#短剧$5#",
+        "数组": "p:.lazyload",
+        "链接": "p:->href",
+        "标题": "p:->title",
+        "图片": "p:->data-original",
+        "副标题": "p:span->text",
+        "线路数组": "p:.active",
+        "线路标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/立即播放",
+        "播放数组": "p:.tab-pane",
+        "播放列表": "p:a",
+        "播放标题": "p:->text",
+        "播放链接": "p:->href",
+        "搜索url": "http://pw7.net/index.php/vod/search/page/{pg}/wd/{wd}.html",
+        "搜索数组": "",
+        "搜索标题": "",
+        "搜索副标题": "",
+        "搜索图片": "",
+        "搜索链接": ""
+      }
+    },
+    {
+      "key": "大师兄影视1",
+      "name": "大师兄影视1",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "分类url": "https://www.belitv.com/"
+      }
+    },
+    {
+      "key": "大师兄影视2",
+      "name": "大师兄影视2",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "分类url": "https://www.ruiding3bu.com/ruvodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$dianying#电视剧$dianshiju#动漫$dongman#综艺$zongyi#豆瓣电影Top250$42",
+        "简介": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/🍁澜露🍁水印广告勿信，谨防诈骗🍁"
+      }
+    },
+    {
+      "key": "🍅🍅番茄影视",
+      "name": "🍅🍅番茄影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "数组": "p:.stui-vodlist__thumb",
+        "链接": "p:->href",
+        "图片": "p:->data-original",
+        "标题": "p:->title",
+        "搜索模式": "",
+        "搜索url": "",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4#",
+        "分类url": "https://www.dzwhs.com/zwhstp/{cateId}-{catePg}.html"
+      }
+    },
+    {
+      "key": "初见影视",
+      "name": "初见影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/Netflix$60#电影$1#剧集$15#动漫$30#综艺$24#纪录片$63#短剧$47",
+        "分类url": "https://cjysw.cc/index.php/vod/show/id/{cateId}/page/{catePg}.html"
+      }
+    },
+    {
+      "key": "🦐傻瓜",
+      "name": "🦐傻瓜",
+      "type": 3,
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/py/瓜娃子.py",
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "playerType": 2
+    },
+    {
+      "key": "影视大全",
+      "name": "影视大全",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/list-exp\"&&</a>",
+        "标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/title=\"&&\"",
+        "图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/data-src=\"&&\"",
+        "链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "主页url": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/www.iysdq.com",
+        "分类url": "https://www.iysdq.com/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html;;d",
+        "搜索url": "https://www.iysdq.com/vodsearch/{wd}----------{pg}---.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4#短剧$5"
+      }
+    },
+    {
+      "key": "京猫",
+      "name": "京猫",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "分类url": "https://www.jingmao.org/Movie/show/{cateId}--{by}------{catePg}---/",
+        "搜索url": "https://www.jingmao.org/Movie/search/{wd}----------{pg}---/",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$rMMMMr#综艺$OMMMMr#动漫$EMMMMr#短剧$mMMMMr#电视剧$HMMMMr#纪录片$3MMMMr#其他$aMMMMr"
+      }
+    },
+    {
+      "key": "豆瓣",
+      "name": "澜露影视接口免费，禁止售卖！",
+      "type": 3,
+      "api": "csp_Douban",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/kjtw.jar",
+      "searchable": 0,
+      "changeable": 1
+    },
+    {
+      "key": "五一影视",
+      "name": "五一影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lazyload\"&&</a>",
+        "标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/title=\"&&\"",
+        "图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/data-original=\"&&\"",
+        "链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "主页url": "https://www.51kjy.com",
+        "搜索url": "https://www.51kjy.com/vodsearch/{wd}----------{pg}---.html",
+        "分类url": "https://www.51kjy.com/vodshow/{cateId}-{area}--{class}-{lang}-------{year}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4#动画片$35#短剧$36#动作片$6#喜剧片$7#爱情片$8#科幻片$9#恐怖片$10#剧情片$11#战争片$12#纪录片$24#国产剧$13#港剧$14#台剧$15#日剧$16#泰剧$20#韩剧$21"
+      }
+    },
+    {
+      "key": "金牌影院",
+      "name": "金牌影院",
+      "type": 3,
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/js/金牌影院.js",
+      "style": {
+        "type": "rect",
+        "ratio": 1.33
+      },
+      "changeable": 1
+    },
+    {
+      "key": "界影视",
+      "name": "界影视",
+      "type": 3,
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/js/界影视.js",
+      "style": {
+        "type": "rect",
+        "ratio": 1.33
+      },
+      "changeable": 1
+    },
+    {
+      "key": "好影快看",
+      "name": "好影快看",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "api": "csp_XBPQ",
+      "ext": {
+        "分类url": "https://www.hitv.app/show/{cateId}-{area}-{by}-{class}-{lang}-------{year}.html;;!",
+        "简介": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/🍁澜露🍁水印广告勿信，谨防诈骗🍁"
+      }
+    },
+    {
+      "key": "88影视网",
+      "name": "88影视网",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "api": "csp_XBPQ",
+      "ext": {
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4",
+        "分类url": "https://m.88hd.org/vod-type-id-{cateId}-pg-{catePg}.html;;!",
+        "简介": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/🍁澜露🍁水印广告勿信，谨防诈骗🍁"
+      }
+    },
+    {
+      "key": "澜露QQ群: 316032063",
+      "name": "🐧防失联Q群:316032063",
+      "type": 1,
+      "api": "http://cj.lziapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "playurl": "json:https://lziplayer.com/?url=",
+      "categories": [
+        "国产剧",
+        "国产动漫",
+        "泰国剧",
+        "台湾剧",
+        "香港剧",
+        "欧美剧",
+        "韩国剧",
+        "日本剧",
+        "动漫",
+        "体育",
+        "剧情片",
+        "动作片",
+        "爱情片",
+        "喜剧片"
+      ]
+    },
+    {
+      "key": "DG音乐仓",
+      "name": "DG音乐台",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/fty.jar",
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/ych.json"
+    },
+    {
+      "key": "csp_Kugou",
+      "name": "☀酷狗🔹音乐",
+      "type": 3,
+      "api": "csp_Kugou",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/Yoursmile.jar",
+      "playerType": 2,
+      "ext": {
+        "classes": [
+          {
+            "type_name": "酷狗",
+            "type_id": "kugou"
+          }
+        ]
+      }
+    },
+    {
+      "key": "免费影院",
+      "name": "免费影院",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "api": "csp_XBPQ",
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/stui-vodlist__box\">&&</div>",
+        "图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/data-original=\"&&\"",
+        "标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/title=\"&&\"",
+        "副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/text-right\">&&<",
+        "链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "线路标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<h3>&&</h3>",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
+        "分类url": "https://www.esuppy.com/gqsw/{cateId}--{by}--{lang}----{catePg}---{year}.html"
+      }
+    },
+    {
+      "key": "T4-qingting",
+      "name": "音乐-蜻蜓(T4)",
+      "type": 4,
+      "api": "https://catbox.n13.club/t9/qingting.php"
+    },
+    {
+      "key": "T4-caiji",
+      "name": "影视-采集(T4)",
+      "type": 4,
+      "api": "https://catbox.n13.club/t9/caiji.php"
+    },
+    {
+      "key": "T4-jianpian",
+      "name": "影视-荐片(T4)",
+      "type": 4,
+      "api": "https://catbox.n13.club/t9/jianpian.php"
+    },
+    {
+      "key": "云云",
+      "name": "☁️┃云云┃APP",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_AppGet",
+      "ext": "https://dyyztvappapigoodgx.68.gy:12689/ciwk28vu38io8/apiurl.txt|dyyztvapiappyyds"
+    },
+    {
+      "key": "兄弟影视",
+      "name": "兄弟影视",
+      "type": 3,
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/py/兄弟影视.min.py"
+    },
+    {
+      "key": "开心🍉影视",
+      "name": "开心🔥影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "线路数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<h4&&h4>",
+        "线路标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/>&&<",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4",
+        "分类url": "https://www.kaixinyes.com/show/{cateId}--------{catePg}---.html",
+        "简介": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/🍁水印广告勿信，谨防诈骗🍁"
+      }
+    },
+    {
+      "key": "58app",
+      "name": "58app",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "style": {
+        "ratio": 1.7
+      },
+      "ext": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/json/58app.json"
+    },
+    {
+      "key": "星球影视",
+      "name": "星球影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "搜索url": "https://www.xcyycn.com/s.html?wd={wd}&submit=",
+        "分类url": "https://www.xcyycn.com/vs/{cateId}-{aera}-{by}-{class}-----{catePg}---{year}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#剧集$2#综艺$3#动漫$4#短剧$5#"
+      }
+    },
+    {
+      "key": "奇优动漫",
+      "name": "奇优动漫",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/yt.jar",
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/奇优动漫.py",
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "playerType": 2
+    },
+    {
+      "key": "人人影视",
+      "name": "人人影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#动漫$4#综艺$3",
+        "分类url": "https://rrys.lv/k/{cateId}--------{catePg}---/",
+        "线路标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/🍁澜露🍁祝您观影愉快🍁",
+        "简介": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/🍁澜露🍁水印广告勿信，谨防诈骗🍁"
+      }
+    },
+    {
+      "key": "顶级影院",
+      "name": "顶级影院",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "api": "csp_XBPQ",
+      "ext": {
+        "作者": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/硬如铁",
+        "站名": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/顶级影院",
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "主页url": "",
+        "首页": "120",
+        "起始页": "1",
+        "分类url": "https://www.dj191.com/vodtype/{cateId}-{catePg}.html",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/电影$1#电视剧$2#综艺$3#动漫$4#短剧$29#午夜饭$20",
+        "二次截取": "",
+        "数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/vod-item\">&&</p>",
+        "链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/data-original=\"&&\"",
+        "标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<h3*>*>&&</a>",
+        "副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/text-row-1\">&&</span>+vod-item-score\">&&</span>",
+        "简介": "",
+        "影片年代": "",
+        "影片地区": "",
+        "影片类型": "",
+        "状态": "",
+        "导演": "",
+        "主演": "",
+        "线路二次截取": "",
+        "线路数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/#ewave-playlist&&</li",
+        "线路标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<a*>&&</a",
+        "播放数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/ewave-playlist-content&&</ul",
+        "倒序": "0",
+        "播放列表": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<a&&/a>",
+        "播放标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/>&&<",
+        "播放链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "跳转播放链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/var player_*\"url\":\"&&\"",
+        "嗅探词": "",
+        "搜索请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "搜索模式": "1",
+        "搜索url": "https://www.dj191.com/vodsearch/{wd}----------{pg}---.html",
+        "搜索数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/vod-item\">&&</p>",
+        "搜索图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/data-original=\"&&\"",
+        "搜索标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<h3*>*>&&</a>",
+        "搜索副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/text-row-1\">&&</span>+vod-item-score\">&&</span>",
+        "搜索链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\""
+      }
+    },
+    {
+      "key": "枝枝影视",
+      "name": "枝枝影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/<div class=\"tag text-overflow\">&&</div>",
+        "分类url": "http://zzoc.cc/"
+      }
+    },
+    {
+      "key": "潮流",
+      "name": "🏜┃潮流┃APP",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_AppRJ",
+      "ext": "http://v.rbotv.cn"
+    },
+    {
+      "key": "一碗",
+      "name": "🥣┃一碗┃APP",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_AppGet",
+      "ext": "http://www.zjcvod.com|ab4e9a421675f14b"
+    },
+    {
+      "key": "蔬菜",
+      "name": "🫛┃蔬菜┃APP",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_AppGet",
+      "ext": "http://huohu.yihn.cc|huohushipingetap|140"
+    },
+    {
+      "key": "csp_Tvyb",
+      "name": "☁️️┃云播┃影视",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_Tvyb"
+    },
+    {
+      "key": "猫抓",
+      "name": "🐱┃猫抓┃APP",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_AppGet",
+      "ext": "https://dy.8ttv.cn|1111111111111111"
+    },
+    {
+      "key": "零度",
+      "name": "🥶┃零度┃影视",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/lingdu.py"
+    },
+    {
+      "key": "csp_Gz360",
+      "name": "🍉┃瓜子┃影视",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_Gz360",
+      "playerType": 2
+    },
+    {
+      "key": "csp_SaoHuo",
+      "name": "🔥┃火火┃影视",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_SaoHuo",
+      "playerType": 2,
+      "ext": "https://shdy5.us"
+    },
+    {
+      "key": "荐片",
+      "name": "🎬┃荐片┃影视",
+      "api": "csp_Jianpian",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "playerType": "2",
+      "ext": "https://ev2089.zxbwv.com"
+    },
+    {
+      "key": "csp_LiteApple",
+      "name": "🍎┃苹果┃影视",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_LiteApple",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "csp_Qiyou",
+      "name": "🥝┃奇优┃影视",
+      "type": 3,
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/965c0-d47366c3-4293-4676-a72b-76969f775dc9.jar",
+      "api": "csp_Qiyou"
+    },
+    {
+      "key": "还行秒播",
+      "name": "还行秒播",
+      "type": 3,
+      "api": "csp_AppYs",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/xyqxbpq.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "ext": "http://m51.gotto.top/api.php/v1.vod"
+    },
+    {
+      "key": "本地",
+      "name": "🔥🚀本地｜视频🚀🔥",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "type": 3,
+      "api": "csp_LocalFile"
+    },
+    {
+      "key": "数字",
+      "name": "数字｜APP",
+      "type": 3,
+      "quickSearch": 1,
+      "api": "csp_AppGet",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "ext": {
+        "url": "http://app1-0-0.87333.cc",
+        "dataKey": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/VwsHxkCViDXEExWa",
+        "dataIv": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/VwsHxkCViDXEExWa"
+      }
+    },
+    {
+      "key": "茉莉",
+      "name": "茉莉｜APP",
+      "type": 3,
+      "searchable": 1,
+      "api": "csp_AppGet",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "ext": {
+        "site": "https://gitee.com/wmmoliill/wimg/raw/master/img/bk/9.txt",
+        "dataKey": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/88689667dce61725",
+        "dataIv": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/88689667dce61725"
+      }
+    },
+    {
+      "key": "火锅",
+      "name": "火锅｜APP",
+      "type": 3,
+      "quickSearch": 1,
+      "api": "csp_AppGet",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "ext": {
+        "url": "https://ios.hgyx.vip",
+        "dataKey": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/062dec75d039980e",
+        "dataIv": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/062dec75d039980e",
+        "ua": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/Dart/3.5 (dart:io)"
+      }
+    },
+    {
+      "key": "木瓜",
+      "name": "木瓜｜APP",
+      "type": 3,
+      "api": "csp_AppFox",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "ext": {
+        "host": "http://www.yezitv.top"
+      }
+    },
+    {
+      "key": "三六零",
+      "name": "三六零｜视频",
+      "type": 3,
+      "api": "csp_SP360",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar"
+    },
+    {
+      "key": "剧梦",
+      "name": "剧梦｜APP",
+      "type": 3,
+      "searchable": 1,
+      "changeable": 1,
+      "api": "csp_AppGet",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "ext": {
+        "url": "https://www.jumengwu.com",
+        "dataKey": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/1f0a873caf2550a5",
+        "dataIv": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/1f0a873caf2550a5"
+      }
+    },
+    {
+      "key": "优势",
+      "name": "优势丨APP",
+      "type": 3,
+      "quickSearch": 1,
+      "api": "csp_AppGet",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "ext": {
+        "url": "http://zxy-ys.810211.dpdns.org",
+        "dataKey": "1234567890123456",
+        "dataIv": "1234567890123456"
+      }
+    },
+    {
+      "key": "灵虎",
+      "name": "灵虎｜APP",
+      "type": 3,
+      "quickSearch": 1,
+      "api": "csp_AppGet",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/jar.jar",
+      "ext": {
+        "site": "https://bind.315999.xyz/89.txt",
+        "dataKey": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/#getapp@TMD@2025",
+        "dataIv": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/#getapp@TMD@2025",
+        "version": "120"
+      }
+    },
+    {
+      "key": "TuneFree",
+      "name": "自由音乐",
+      "type": 3,
+      "api": "csp_TuneFree",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/spider1.4.jar",
+      "searchable": 1
+    },
+    {
+      "key": "88看球",
+      "name": "⚽看球🔹直播",
+      "type": 3,
+      "api": "csp_Kanqiu",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/kjtw.jar",
+      "gridview": 3,
+      "style": {
+        "type": "list"
+      }
+    },
+    {
+      "key": "皮狗DJ站",
+      "name": "皮狗DJ站",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/jar/XBPQ.jar",
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "直接播放": "1",
+        "分类数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/layui-unselect&&</img>",
+        "标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/title=\"&&\"",
+        "图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/img src=\"&&\"",
+        "副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/text-right\">&&<",
+        "链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/href=\"&&\"",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/超清MV$12#车载MV$123#跳舞MV$112#国内夜店$158#派对MV$90#发烧MV$125#国外夜店$21#抒情MV$20#泳装MV$56#车模MV$58#粤语MV$114#外语MV$46#日韩MV$50#串烧MV$62#钢管舞MV$64#国外MV$65#户外MV$159#模特MV$160#",
+        "分类url": "https://wap.pgdjz.com/video/lists/{cateId}/{catePg}.html"
+      }
+    },
+    {
+      "key": "急救教学",
+      "name": "☀家庭🔹急救",
+      "type": 3,
+      "api": "csp_FirstAid",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/kjtw.jar",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 3.8
+      },
+      "gridview": "0-0-4.1"
+    },
+    {
+      "key": "😍企鹅体育",
+      "name": "😍企鹅体育",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/xyqxbpq.jar",
+      "ext": {
+        "请求头": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/User-Agent$MOBILE_UA",
+        "编码": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/UTF-8",
+        "数组": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/video_content\"&&</a>",
+        "标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/video_text\">&&</p>",
+        "图片": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/src=\"&&\"",
+        "副标题": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/video_time\">&&</p>",
+        "链接": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/data-src=\"&&\"",
+        "分类url": "https://m.live.qq.com/video/data?page={catePg}&id={cateId}&nomore=false;;z",
+        "分类": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/赛事集锦$1001#小视频$999#NBA$1#CBA$2#排球$103#足球$32#综合$50#专题$special"
+      }
+    }
+  ]
+}

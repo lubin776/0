@@ -1,0 +1,952 @@
+{
+  "wallpaper": "https://www.cttv.vip/tp-api/api.php",
+  "lives": [
+    {
+      "name": "live",
+      "type": 0,
+      "url": "https://www.cttv.vip/ys/json/ctzb.txt",
+      "epg": "http://san.qquu.bid:5678/index.php/?ch={name}&date={date}",
+      "logo": "https://www.cttv.vip/ys/images/{name}.png"
+    }
+  ],
+  "sites": [
+    {
+      "key": "豆豆",
+      "name": "公众号:刺桐娱乐┃QQ群:808589793",
+      "type": 3,
+      "api": "csp_DouDou",
+      "jar": "http://diy.cttv.vip/ys/jar/duo.jar;md5;5C5116C70E15343433C8480C3B448408",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "刺桐资源",
+      "name": "刺桐高清┃自营",
+      "type": 1,
+      "api": "http://pg.cttv.vip/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "优质资源",
+      "name": "优质资源┃刺桐",
+      "type": 1,
+      "api": "https://api.yyzy-tv.vip/inc/api_mac10_all.php",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "360资源",
+      "name": "360资源┃刺桐",
+      "type": 1,
+      "api": "https://360zy.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "猫眼资源",
+      "name": "猫眼资源┃刺桐",
+      "type": 1,
+      "api": "https://api.maoyanapi.top/api.php/provide/vod/",
+      "url": "https://jx.maoyanjx.top/player/?url=",
+      "fenlei": "电影|连续剧|综艺|动漫|短剧",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "牛牛资源",
+      "name": "牛牛资源┃刺桐",
+      "type": 1,
+      "api": "https://api.niuniuzy.me/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "丫丫资源",
+      "name": "丫丫资源┃刺桐",
+      "type": 1,
+      "api": "https://cj.yayazy.net/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "茅台资源",
+      "name": "茅台资源┃刺桐",
+      "type": 1,
+      "api": "https://caiji.maotaizy.cc/api.php/provide/vod/from/mtm3u8/at/josn/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "豪华资源",
+      "name": "豪华资源┃刺桐",
+      "type": 1,
+      "api": "https://hhzyapi.com/api.php/provide/vod",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "极速资源",
+      "name": "极速资源┃刺桐",
+      "type": 1,
+      "api": "https://jszyapi.com/api.php/provide/vod",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "豆瓣资源",
+      "name": "豆瓣资源┃刺桐",
+      "type": 1,
+      "api": "https://caiji.dbzy5.com/api.php/provide/vod/at/josn/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "索尼资源",
+      "name": "索尼资源┃刺桐",
+      "type": 1,
+      "api": "https://suoniapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "OK资源",
+      "name": "OK资源┃刺桐",
+      "type": 1,
+      "api": "https://api.okzyw.net/api.php/provide/vod/?ac=list",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "非凡资源",
+      "name": "非凡资源┃刺桐",
+      "type": 1,
+      "api": "http://cj.ffzyapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "量子资源",
+      "name": "量子资源┃刺桐",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "暴风影视",
+      "name": "暴风影视┃刺桐",
+      "type": 1,
+      "api": "https://bfzyapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "鸭鸭资源",
+      "name": "鸭鸭资源┃刺桐",
+      "type": 1,
+      "api": "https://cj.yayazy.net/api.php/provide/vod/?ac=list",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 0,
+      "quickSearch": 0
+    },
+    {
+      "key": "如意资源",
+      "name": "如意资源┃刺桐",
+      "type": 1,
+      "api": "https://cj.rycjapi.com/api.php/provide/vod/?ac=list",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "天堂资源",
+      "name": "天堂资源┃刺桐",
+      "type": 1,
+      "api": "https://caiji.dyttzyapi.com/api.php/provide/vod/?ac=list",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "快车资源",
+      "name": "快车资源┃刺桐",
+      "type": 1,
+      "api": "https://caiji.kczyapi.com/api.php/provide/vod/from/kcm3u8/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "闪电资源",
+      "name": "闪电资源┃刺桐",
+      "type": 1,
+      "api": "http://sdzyapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "樱花资源",
+      "name": "樱花资源┃刺桐",
+      "type": 1,
+      "api": "https://m3u8.apiyhzy.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "卧龙资源",
+      "name": "卧龙资源┃刺桐",
+      "type": 1,
+      "api": "https://collect.wolongzyw.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "U酷资源",
+      "name": "U酷资源┃刺桐",
+      "type": 1,
+      "api": "https://api.ukuapi88.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "光速资源",
+      "name": "光速资源┃刺桐",
+      "type": 1,
+      "api": "https://api.guangsuapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "旺旺短剧",
+      "name": "旺旺短剧┃刺桐",
+      "type": 1,
+      "api": "https://api.wwzy.tv/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "T4-xingzhige",
+      "name": "短剧专辑┃刺桐",
+      "type": 4,
+      "jar": "https://coss.yupoo.com/upchat/2025-09-25/1758799916045.jpg;md5;e0739e1404018d77ae4e039bf44094d7",
+      "api": "https://catbox.n13.club/t9/xingzhige.php"
+    },
+    {
+      "key": "天涯资源",
+      "name": "天涯资源┃刺桐",
+      "type": 1,
+      "api": "https://tyyszyapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "樱花资源",
+      "name": "樱花资源┃刺桐",
+      "type": 1,
+      "api": "https://m3u8.apiyhzy.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "飘花影院",
+      "name": "飘花影院┃刺桐",
+      "type": 1,
+      "api": "http://www.ahjiuman.com/api.php/provide/vod/at/json",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "天翼资源",
+      "name": "天翼资源┃刺桐",
+      "type": 1,
+      "api": "https://www.911ysw.top/tianyi.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "虎牙资源",
+      "name": "虎牙资源┃刺桐",
+      "type": 1,
+      "api": "https://www.huyaapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "百度资源",
+      "name": "百度资源┃刺桐",
+      "type": 1,
+      "api": "https://api.apibdzy.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "飘零影院",
+      "name": "飘零影院┃刺桐",
+      "type": 1,
+      "api": "https://p2100.net/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "无尽资源",
+      "name": "无尽资源┃刺桐",
+      "type": 1,
+      "api": "https://api.wujinapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "速博资源",
+      "name": "速博资源┃刺桐",
+      "type": 1,
+      "api": "https://subocaiji.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "魔都资源",
+      "name": "魔都动漫┃刺桐",
+      "type": 1,
+      "api": "https://caiji.moduapi.cc/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "最大资源",
+      "name": "最大资源┃刺桐",
+      "type": 1,
+      "api": "https://api.zuidapi.com/api.php/provide/vod/from/zuidam3u8/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "奇虎资源",
+      "name": "奇虎资源┃刺桐",
+      "type": 1,
+      "api": "https://caiji.qhzyapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "爱奇艺资源",
+      "name": "爱奇艺资源┃刺桐",
+      "type": 1,
+      "api": "https://iqiyizyapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "影剧资源",
+      "name": "影剧资源┃刺桐",
+      "type": 1,
+      "api": "https://caiji.maotaizy.cc/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "火狐资源",
+      "name": "火狐资源┃刺桐",
+      "type": 1,
+      "api": "https://hhzyapi.com/api.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "新浪资源",
+      "name": "新浪资源┃刺桐",
+      "type": 1,
+      "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/",
+      "url": "https://jkk.zyzqcb.cc/jkk.php?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "789资源",
+      "name": "789资源┃刺桐",
+      "type": 1,
+      "api": "http://www.caiji.cyou/api.php/provide/vod/",
+      "url": "https://jx.789jiexi.icu:4433/?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "金蝉资源",
+      "name": "金蝉资源┃刺桐",
+      "type": 1,
+      "api": "https://zy.jinchancaiji.com/api.php/provide/vod/",
+      "url": "https://jx.789jiexi.icu:4433/?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "建安资源",
+      "name": "建安资源┃刺桐",
+      "type": 1,
+      "api": "http://154.219.117.232:9981/jacloudapi.php/provide/vod/",
+      "url": "https://jx.789jiexi.icu:4433/?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "听风资源",
+      "name": "听风资源┃刺桐",
+      "type": 1,
+      "api": "http://154.219.117.232:9981/jacloudapi.php/provide/vod/",
+      "url": "https://jx.789jiexi.icu:4433/?url=",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "csp_Music",
+      "name": "MUSIC音乐┃刺桐",
+      "type": 3,
+      "api": "csp_Music",
+      "quickSearch": 0,
+      "searchable": 0,
+      "jar": "https://img2.gelonghui.com/library/26c48-e3487e20-44ba-4e37-8953-f4fbba99daed.png;md5;26c4814b6abd097a203e598030051ff2",
+      "ext": ""
+    },
+    {
+      "key": "Aid",
+      "name": "急救知识┃刺桐",
+      "type": 3,
+      "api": "csp_FirstAid",
+      "jar": "https://img2.gelonghui.com/library/26c48-e3487e20-44ba-4e37-8953-f4fbba99daed.png;md5;26c4814b6abd097a203e598030051ff2",
+      "searchable": 0,
+      "quickSearch": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 3.8
+      }
+    },
+    {
+      "key": "戏曲",
+      "name": "戏曲大全┃刺桐",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "http://www.cttv.vip/ys/jar/bhxq.jar",
+      "ext": "http://www.cttv.vip/ys/jar/Blixq.json"
+    },
+    {
+      "key": "相声小品",
+      "name": "有声专辑┃刺桐",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "http://www.cttv.vip/ys/jar/bhxq.jar",
+      "ext": "http://www.cttv.vip/ys/jar/Blixs.json"
+    }
+  ],
+  "parses": [
+    {
+      "name": "聚合1",
+      "type": 3,
+      "url": "https://www.cttv.vip/ys/json/Demo"
+    },
+    {
+      "name": "聚合0",
+      "type": 3,
+      "url": "https://www.cttv.vip/ys/json/Web"
+    },
+    {
+      "name": "BL",
+      "type": 1,
+      "url": "https://coffee.1ljx.com:32000/api/?key=36d3e7f8-f971-44a7-9063-5db4f218491d&url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
+        }
+      }
+    },
+    {
+      "name": "BLWH",
+      "type": "1",
+      "url": "https://coffee.1ljx.com:32000/api/?key=36d3e7f8-f971-44a7-9063-5db4f218491d&url=",
+      "ext": {
+        "header": {
+          "User-Agent": "okhttp/4.9.1"
+        }
+      }
+    },
+    {
+      "name": "BL┃心疼",
+      "type": "1",
+      "url": "https://h5.freejson.xyz/player/?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "sohu",
+          "搜狐",
+          "letv",
+          "乐视",
+          "mgtv",
+          "芒果",
+          "tnmb",
+          "seven",
+          "bilibili",
+          "1905"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.9.1"
+        }
+      }
+    },
+    {
+      "name": "BL┃臻享",
+      "type": "1",
+      "url": "https://zy.qiaoji8.com/gouzi.php?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "sohu",
+          "搜狐",
+          "letv",
+          "乐视",
+          "mgtv",
+          "芒果",
+          "tnmb",
+          "seven",
+          "bilibili",
+          "1905"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.9.1"
+        }
+      }
+    },
+    {
+      "name": "BL┃优选",
+      "type": 1,
+      "url": "http://1.94.221.189:88/algorithm.php?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "sohu",
+          "搜狐",
+          "letv",
+          "乐视",
+          "mgtv",
+          "芒果",
+          "tnmb",
+          "seven",
+          "bilibili",
+          "1905"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.9.1"
+        }
+      }
+    },
+    {
+      "name": "BL┃至臻",
+      "type": 1,
+      "url": "http://yunhai.qijiyun.vip/home/api?type=ys&uid=177259&key=dijnouxKNOQSTUWXY5&url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "sohu",
+          "搜狐",
+          "letv",
+          "乐视",
+          "mgtv",
+          "芒果",
+          "tnmb",
+          "seven",
+          "bilibili",
+          "1905"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.9.1"
+        }
+      }
+    },
+    {
+      "name": "BL┃无双",
+      "type": 1,
+      "url": "http://1.94.221.189:88/algorithm.php?url=",
+      "ext": {
+        "flag": [
+          "hgvip"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.9.1"
+        }
+      }
+    },
+    {
+      "name": "BL┃咸鱼",
+      "type": 0,
+      "url": "https://jx.xymp4.cc/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.3124.68"
+        }
+      }
+    },
+    {
+      "name": "BL┃虾米",
+      "type": 0,
+      "url": "https://jx.xmflv.com/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
+        }
+      }
+    },
+    {
+      "name": "BL┃淘片",
+      "type": 0,
+      "url": "https://jx.yparse.com/index.php?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "BL┃冰豆",
+      "type": 0,
+      "url": "https://bd.jx.cn/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "BL┃七七",
+      "type": 0,
+      "url": "https://jx.77flv.cc/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "BL┃盘古",
+      "type": 0,
+      "url": "https://www.playm3u8.cn/jiexi.php?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "BL┃夜幕",
+      "type": 0,
+      "url": "https://yemu.xyz/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "暴风",
+      "hosts": [
+        "bfzy",
+        "bfbfvip",
+        "bfengbf"
+      ],
+      "regex": [
+        "#EXTINF.*?\\s+.*?adjump.*?\\.ts"
+      ]
+    },
+    {
+      "name": "量子",
+      "hosts": [
+        "vip.lz",
+        "hd.lz",
+        ".cdnlz"
+      ],
+      "regex": [
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:7\\.166667,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:4\\.066667,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "17.19"
+      ]
+    },
+    {
+      "name": "非凡",
+      "hosts": [
+        "vip.ffzy",
+        "hd.ffzy",
+        "super.ffzy"
+      ],
+      "regex": [
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.400000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.666667,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXTINF.*?\\s+.*?1171(057).*?\\.ts",
+        "#EXTINF.*?\\s+.*?6d7b(077).*?\\.ts",
+        "#EXTINF.*?\\s+.*?6718a(403).*?\\.ts",
+        "17.99",
+        "14.45"
+      ]
+    },
+    {
+      "name": "索尼",
+      "hosts": [
+        "suonizy"
+      ],
+      "regex": [
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:1\\.000000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXTINF.*?\\s+.*?p1ayer.*?\\.ts",
+        "#EXTINF.*?\\s+.*?\\/video\\/original.*?\\.ts"
+      ]
+    },
+    {
+      "name": "快看",
+      "hosts": [
+        "kuaikan"
+      ],
+      "regex": [
+        "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:5,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:2\\.4,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:1\\.467,[\\s\\S]*?#EXT-X-DISCONTINUITY"
+      ]
+    },
+    {
+      "name": "一起看广告",
+      "hosts": [
+        "yqk88"
+      ],
+      "regex": [
+        "18.4",
+        "15.1666",
+        "16.5333",
+        "#EXT-X-DISCONTINUITY\\r*\\n*[\\s\\S]*?#EXT-X-CUE-IN"
+      ]
+    },
+    {
+      "name": "火山嗅探",
+      "hosts": [
+        "huoshan.com"
+      ],
+      "regex": [
+        "item_id="
+      ]
+    },
+    {
+      "name": "proxy",
+      "hosts": [
+        "raw.githubusercontent.com",
+        "googlevideo.com",
+        "cdn.v82u1l.com",
+        "cdn.iz8qkg.com",
+        "cdn.kin6c1.com",
+        "c.biggggg.com",
+        "c.olddddd.com",
+        "haiwaikan.com",
+        "www.histar.tv",
+        "access.mypikpak.com",
+        "api-drive.mypikpak.com",
+        "user.mypikpak.com",
+        "youtube.com",
+        "uhibo.com",
+        "thze.cc",
+        ".*boku.*",
+        ".*nivod.*",
+        "*.t4tv.hz.cz",
+        ".*ulivetv.*"
+      ]
+    },
+    {
+      "host": "www.iesdouyin.com",
+      "rule": [
+        "playwm/?video_id="
+      ]
+    },
+    {
+      "host": "www.ysgc.vip",
+      "rule": [
+        "getm3u8?url=http"
+      ]
+    },
+    {
+      "host": "v.douyin.com",
+      "rule": [
+        "playwm/?video_id="
+      ]
+    },
+    {
+      "host": "dyxs20.com",
+      "rule": [
+        ".m3u8"
+      ]
+    },
+    {
+      "host": "www.agemys.cc",
+      "rule": [
+        "cdn-tos",
+        "obj/tos-cn"
+      ]
+    },
+    {
+      "host": "*",
+      "rule": [
+        "default.365yg.com"
+      ]
+    },
+    {
+      "host": "www.sharenice.net",
+      "rule": [
+        "qianpailive.com",
+        "vid="
+      ]
+    },
+    {
+      "host": "*",
+      "rule": [
+        "douyin.com/aweme",
+        "video_id="
+      ]
+    },
+    {
+      "host": "*",
+      "rule": [
+        "huoshan.com",
+        "/item/video/"
+      ]
+    },
+    {
+      "host": "*",
+      "rule": [
+        "http((?!http).){12,}?\\.(m3u8|mp4|flv|avi|mkv|rm|wmv|mpg|m4a)\\?.*"
+      ]
+    },
+    {
+      "host": "*",
+      "rule": [
+        "http((?!http).){12,}\\.(m3u8|mp4|flv|avi|mkv|rm|wmv|mpg|m4a)"
+      ]
+    },
+    {
+      "name": "智能AI已过滤广告🥨欢迎继续收看节目",
+      "hosts": [
+        "http"
+      ],
+      "disable": [
+        "aliyuncs.com",
+        "olemovienews.com",
+        "ninjia.online",
+        "vdtuzv.com",
+        "json.icu",
+        "/asp/hls/",
+        "huya.com",
+        "zsyzcy.cn",
+        "/nby/",
+        "yjys.me",
+        "122.228.8.29:4433/Cache",
+        "huohua",
+        "cdn.json.icu"
+      ],
+      "rules": [
+        {
+          "regexp": "AI"
+        }
+      ],
+      "toLog": 0
+    },
+    {
+      "name": "智能AI已过滤广告🥨欢迎继续收看节目",
+      "hosts": [
+        "http"
+      ],
+      "disable": [
+        "aliyuncs.com",
+        "TVOD"
+      ],
+      "rules": [
+        {
+          "regexp": "AI2"
+        }
+      ],
+      "toLog": 0
+    },
+    {
+      "name": "抖音嗅探",
+      "hosts": [
+        "douyin.com"
+      ],
+      "regex": [
+        "is_play_url="
+      ]
+    },
+    {
+      "name": "农民嗅探",
+      "hosts": [
+        "toutiaovod.com"
+      ],
+      "regex": [
+        "video/tos/cn"
+      ]
+    }
+  ]
+}
