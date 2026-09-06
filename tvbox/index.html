@@ -102,7 +102,7 @@
       width: 100%;
     }
 
-    /* ----- 第二行：元数据 (状态/日期/体积) 强制一行显示 ----- */
+    /* ----- 第二行：元数据 (状态 + 日期 + 体积) 强制一行显示 ----- */
     .card-meta-row {
       display: flex;
       flex-wrap: nowrap;
@@ -142,7 +142,7 @@
       flex-shrink: 0;
     }
 
-    /* ----- 第三行：URL 区域 (强制显示两行) ----- */
+    /* ----- 第三行：URL 区域 (每个URL独立一行，自动换行) ----- */
     .card-urls {
       display: flex;
       flex-direction: column;
@@ -163,19 +163,6 @@
       width: 100%;
       max-width: 100%;
       overflow: hidden;
-      /* 强制每个URL行占两行的高度 */
-      min-height: 52px;
-      height: auto;
-    }
-    /* 让URL文本强制换行显示为两行 */
-    .url-text-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      flex: 1 1 0;
-      min-width: 30px;
-      max-width: 100%;
-      gap: 2px;
     }
     .url-tag {
       font-size: 0.65rem;
@@ -202,13 +189,7 @@
       text-decoration: none;
       border-bottom: 1px dotted transparent;
       transition: border-color 0.12s;
-      display: inline;
-      /* 强制显示为两行：限制行数 */
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: inline-block;
     }
     .url-text:hover {
       border-bottom-color: #2563eb;
@@ -264,6 +245,7 @@
       .card-name {
         font-size: 0.92rem;
       }
+      /* 元数据强制一行，窄屏可横向滚动 */
       .card-meta-row {
         font-size: 0.65rem;
         gap: 4px 10px;
@@ -286,11 +268,19 @@
         padding: 0 8px;
         flex-shrink: 0;
       }
+      /* URL 容器 */
+      .card-urls {
+        width: 100%;
+        max-width: 100%;
+      }
       .url-line {
         padding: 4px 6px 4px 6px;
         gap: 3px 4px;
         border-radius: 24px;
-        min-height: 48px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        flex-wrap: wrap;
       }
       .url-tag {
         font-size: 0.6rem;
@@ -303,7 +293,9 @@
         min-width: 20px;
         flex: 1 1 0;
         max-width: calc(100% - 80px);
-        -webkit-line-clamp: 2;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        display: inline;
       }
       .copy-btn {
         font-size: 0.6rem;
@@ -330,7 +322,6 @@
         padding: 3px 4px 3px 4px;
         gap: 2px 3px;
         border-radius: 20px;
-        min-height: 44px;
       }
       .url-tag {
         font-size: 0.55rem;
@@ -342,7 +333,6 @@
         min-width: 15px;
         flex: 1 1 0;
         max-width: calc(100% - 70px);
-        -webkit-line-clamp: 2;
       }
       .copy-btn {
         font-size: 0.55rem;
@@ -405,7 +395,7 @@
       return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
     }
 
-    // ----- 渲染单个卡片 -----
+    // ----- 渲染单个卡片 (四行: 名称 | 状态+日期+体积 | URL | 复制按钮在URL行内) -----
     function renderCard(file, date, size, note) {
       const displayName = decodeName(file).replace(/\.json$/i, '');
       const isNew = isRecent(date);
@@ -419,7 +409,7 @@
         </div>
       `;
 
-      // 第二行：元数据 (强制一行)
+      // 第二行：状态 + 日期 + 体积 (强制一行)
       const newClass = isNew ? 'badge-new' : 'badge-old';
       const newLabel = isNew ? '● 最近连通' : '● 历史';
       const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
@@ -432,7 +422,7 @@
         </div>
       `;
 
-      // 第三行：URL 列表 (强制每个URL显示两行)
+      // 第三行：URL 列表 (每个URL独立一行)
       let urlLinesHtml = '';
       DOMAINS.forEach(domain => {
         const rawFile = decodeName(file);
@@ -443,9 +433,7 @@
         urlLinesHtml += `
           <div class="url-line">
             <span class="url-tag">${domain.tag}</span>
-            <span class="url-text-wrapper">
-              <a class="url-text" href="${hrefUrl}" target="_blank" rel="noopener">${fullUrl}</a>
-            </span>
+            <a class="url-text" href="${hrefUrl}" target="_blank" rel="noopener">${fullUrl}</a>
             <button class="copy-btn" data-url="${fullUrl}">复制</button>
           </div>
         `;
