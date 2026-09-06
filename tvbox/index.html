@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量搬运备份</title>
+    <title>海量接口搬运备份</title>
     <style>
         /* 全局重置 */
         * {
@@ -65,24 +65,21 @@
             padding: 16px 18px 14px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             border: 1px solid #f0f3f8;
-            transition: box-shadow 0.15s;
         }
 
-        .big-card:hover {
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-        }
-
-        /* 每个接口条目 */
+        /* 每个条目 - 强制垂直排列，保证两行结构 */
         .entry {
             padding: 14px 0;
             border-bottom: 1px solid #f0f4fa;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
-
         .entry:last-child {
             border-bottom: none;
         }
 
-        /* ---------- 条目内：第一行 名称 ---------- */
+        /* 第一行：名称（单独占一行，但不在“两行”要求内，实际是标题行） */
         .entry-name {
             font-size: 1.05rem;
             font-weight: 600;
@@ -90,10 +87,10 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 6px;
+            margin-bottom: 2px;
         }
 
-        /* ---------- 条目内：第二行 状态 + 日期 + 体积（强制一行） ---------- */
+        /* 第二行：状态 + 日期 + 体积（强制在一行，绝不换行） */
         .entry-meta {
             display: flex;
             flex-wrap: nowrap;
@@ -101,18 +98,16 @@
             gap: 12px 20px;
             font-size: 0.78rem;
             color: #5a6f88;
-            padding: 4px 0 6px 0;
+            padding: 4px 0;
+            border-top: 1px solid #f0f4fa;
+            border-bottom: 1px solid #f0f4fa;
             overflow-x: auto;
             white-space: nowrap;
             scrollbar-width: none;
-            border-top: 1px solid #f0f4fa;
-            border-bottom: 1px solid #f0f4fa;
-            margin-bottom: 8px;
         }
         .entry-meta::-webkit-scrollbar {
             display: none;
         }
-
         .meta-item {
             display: inline-flex;
             align-items: center;
@@ -137,7 +132,7 @@
             flex-shrink: 0;
         }
 
-        /* ---------- 条目内：第三行 URL 列表（每个URL独立一行） ---------- */
+        /* 第三行及以后：每个URL独立一行（属于第二行大类，但这里每个URL占一行） */
         .entry-urls {
             display: flex;
             flex-direction: column;
@@ -227,7 +222,7 @@
             display: none;
         }
 
-        /* ---------- 手机端微调 ---------- */
+        /* 手机端适配 */
         @media (max-width: 600px) {
             body {
                 padding: 12px 6px;
@@ -244,7 +239,7 @@
             .entry-meta {
                 font-size: 0.7rem;
                 gap: 8px 14px;
-                padding: 3px 0 5px;
+                padding: 3px 0;
             }
             .url-line {
                 padding: 4px 8px;
@@ -318,7 +313,6 @@
         <h1>📦 海量接口搬运备份</h1>
         <p class="subtitle">点击链接复制，粘贴到 TVBox 即可使用</p>
         <input class="search-box" id="search" type="text" placeholder="搜索接口名称..." oninput="filterList()">
-
         <div id="listContainer">
             <div class="loading">⏳ 正在加载接口列表...</div>
         </div>
@@ -359,17 +353,17 @@
                 return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
             }
 
-            // 渲染单个条目（非独立卡片）
+            // 渲染单个条目
             function renderEntry(file, date, size, note) {
                 const displayName = decodeName(file).replace(/\.json$/i, '');
                 const isNew = isRecent(date);
                 const metaDate = date || '----';
                 const metaSize = size || '-';
 
-                // 名称
+                // 名称行
                 const nameHtml = `<div class="entry-name" title="${displayName}">${displayName}</div>`;
 
-                // 元数据行
+                // 元数据行（状态、日期、体积 强制一行）
                 const newClass = isNew ? 'badge-new' : 'badge-old';
                 const newLabel = isNew ? '● 最近连通' : '● 历史';
                 const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
@@ -382,7 +376,7 @@
                     </div>
                 `;
 
-                // URL列表
+                // URL 列表（每个URL独立一行）
                 let urlLinesHtml = '';
                 DOMAINS.forEach(domain => {
                     const rawFile = decodeName(file);
@@ -434,14 +428,13 @@
                     return Math.random() - 0.5;
                 });
 
-                // 构建大卡片，内部包含所有条目
+                // 构建大卡片
                 let entriesHtml = '';
                 items.forEach(item => {
                     entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
                 });
 
-                const bigCardHtml = `<div class="big-card">${entriesHtml}</div>`;
-                container.innerHTML = bigCardHtml;
+                container.innerHTML = `<div class="big-card">${entriesHtml}</div>`;
 
                 // 复制按钮事件
                 container.querySelectorAll('.copy-btn').forEach(btn => {
@@ -458,7 +451,6 @@
                                 this.classList.remove('copied');
                             }, 1500);
                         }).catch(() => {
-                            // fallback
                             const input = document.createElement('input');
                             input.value = url;
                             document.body.appendChild(input);
