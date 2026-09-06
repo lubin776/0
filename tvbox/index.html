@@ -12,19 +12,49 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 .subtitle { text-align:center; font-size:0.85rem; color:#999; margin-bottom:24px; }
 .search-box { width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; margin-bottom:16px; outline:none; background:#fff; }
 .search-box:focus { border-color:#4a9eff; }
-.card { background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
-.card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.card-name { font-size:0.95rem; font-weight:600; }
+
+/* ===== 卡片布局修改：名称居中横排 + URL换行 ===== */
+.card {
+  background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:12px;
+  box-shadow:0 1px 4px rgba(0,0,0,0.06);
+}
+/* 名称跨行居中横排 */
+.card-name {
+  font-size:1.0rem; font-weight:600; color:#1a1a1a;
+  text-align:center;            /* 居中 */
+  width:100%;                   /* 独占一行横排 */
+  display:block;                /* 块级，保证跨所有链接行 */
+  margin-bottom:6px;
+  word-break:break-all;         /* 超长名也能换行 */
+}
 .card-note { font-size:0.75rem; background:#e8f4ff; color:#4a9eff; padding:2px 8px; border-radius:4px; }
-.card-meta { font-size:0.78rem; color:#aaa; margin-bottom:10px; }
+.card-meta { font-size:0.78rem; color:#aaa; margin-bottom:10px; text-align:center; }
 .card-meta .dot-new { color:#22c55e; }
 .card-meta .dot-old { color:#f59e0b; }
-.link-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-.link-tag { font-size:0.72rem; background:#f0f0f0; color:#666; padding:2px 6px; border-radius:3px; min-width:28px; text-align:center; flex-shrink:0; }
-.link-url { flex:1; font-size:0.82rem; color:#4a9eff; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+.link-row { display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
+.link-tag {
+  font-size:0.72rem; background:#f0f0f0; color:#666;
+  padding:2px 6px; border-radius:3px; min-width:56px; text-align:center;
+  flex-shrink:0; align-self:center;
+}
+.link-url {
+  flex:1; font-size:0.82rem; color:#4a9eff; text-decoration:none;
+  /* ★ URL 自动换行，不溢出卡片，任意字符处可断行 */
+  overflow-wrap:anywhere;       /* 长URL换到下一行 */
+  word-break:break-all;         /* 不必在标点处，任意处可断 */
+  white-space:normal;           /* 允许换行（原来是 nowrap） */
+  line-height:1.4;
+}
 .link-url:hover { text-decoration:underline; }
-.copy-btn { flex-shrink:0; padding:3px 10px; background:#4a9eff; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:0.75rem; }
+.copy-btn { flex-shrink:0; padding:3px 10px; background:#4a9eff; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:0.75rem; align-self:center; }
 .copy-btn:active { background:#3a8eef; }
+
+/* 单卡片顶部：名称 + 备注 的布局容器 */
+.card-header {
+  display:flex; justify-content:center; align-items:center; gap:8px;
+  margin-bottom:6px;
+}
 .loading, .empty { text-align:center; color:#bbb; padding:40px 0; font-size:0.9rem; }
 @media (max-width:480px) { body { padding:10px; } h1 { font-size:1.15rem; } .card { padding:12px; } }
 </style>
@@ -40,16 +70,21 @@ h1 { text-align:center; font-size:1.3rem; margin:24px 0 4px; color:#1a1a1a; }
 <script>
 // ★★★ 排序权重（数字越小越靠前，不写在这里的排最后随机）★★★
 const WEIGHTS = {
-  "饭太硬一线.json": 1,
-  "嗷呜线路.json": 2,
-  "摸鱼线路.json": 3,
-  // "肥猫.json": 4,
+  "菠菜园.json": 1,
+  "菠菜园pro.json": 2,
+  "少儿频道.json": 3,
+  "饭太硬.json": 4,
+  "肥猫.json": 5,
+  "摸鱼.json": 6,
+  "王二小.json": 7,
+  "集多.json": 8,
+  "潇洒.json": 9,
 };
 
 const DOMAINS = [
-  { tag: "一线", base: "https://0.12yue.de5.net/tvbox/" },
-  { tag: "二线", base: "https://0.cdz.qzz.io/qzz/tvbox/"  },
-  { tag: "三线", base: "https://0.wdzb.eu.cc/tvbox/"       },
+  { tag: "搬运一线", base: "https://0.12yue.de5.net/tvbox/" },
+  { tag: "搬运二线", base: "https://0.cdz.qzz.io/qzz/tvbox/"  },
+  { tag: "搬运三线", base: "https://0.wdzb.eu.cc/tvbox/"       },
 ];
 
 function decodeName(f) { try{return decodeURIComponent(f)}catch{return f} }
@@ -63,13 +98,14 @@ function isRecent(d) {
 function renderItem(file, date, size, note) {
   const name = decodeName(file).replace(/\.json$/i,'');
   const isNew = isRecent(date);
+  // ★ 名称作为独立整块，居中横排在顶部；备注放在名称同一行右侧
   let html = `<div class="card">
-    <div class="card-top">
-      <div class="card-name">${name}</div>
+    <div class="card-header">
+      <span class="card-name">${name}</span>
       ${note?`<span class="card-note">${note}</span>`:''}
     </div>
     <div class="card-meta">
-      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最新':'● 历史'}</span>
+      <span class="${isNew?'dot-new':'dot-old'}">${isNew?'● 最近连通':'● 历史'}</span>
       &nbsp;${date||'-'}&nbsp;&nbsp;📦 ${size||'-'}
     </div>`;
   DOMAINS.forEach(d => {
