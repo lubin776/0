@@ -77,19 +77,33 @@
                 { tag: "备份二线", base: "https://0.cdz.qzz.io/qzz/tvbox/" },
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
+// ==================== 2. 内置的备用接口数据 ====================
+// 获取当前北京时间，格式 YYYYMMDD（比如 20260906）
+function getBeijingDate() {
+    const d = new Date();
+    // 使用 toLocaleDateString 指定上海时区，得到 2026/09/06 格式
+    const str = d.toLocaleDateString('zh-CN', { timeZone: 'Asia/Shanghai' });
+    return str.replace(/\//g, ''); // 去掉斜杠
+}
 
-            // ==================== 2. 内置的备用接口数据 ====================
-            // 格式：文件名|日期|大小|备注（如果是3个链接用逗号隔开，会分别作为一、二、三线）
-            const BUILT_IN_DATA = `
-x4备用接口.json|20260906|95.2K|https://0.12yue.de5.net/de5/x4.json,https://0.cdz.qzz.io/qzz/qzz/x4.json,https://0.wdzb.eu.cc/eucc/x4.json
-            `.trim();
-            // =====================================================================================
+// 直接用 ${getBeijingDate()} 把当天日期塞进去
+const BUILT_IN_DATA = `
+x4备用接口.json|${getBeijingDate()}|95.2K|https://0.12yue.de5.net/de5/x4.json,https://0.cdz.qzz.io/qzz/qzz/x4.json,https://0.wdzb.eu.cc/eucc/x4.json
+菠菜园pro.json|${getBeijingDate()}|95.2K|https://0.12yue.de5.net/de5/x4pro.json,https://0.cdz.qzz.io/qzz/qzz/x4pro.json,https://0.wdzb.eu.cc/eucc/x4pro.json
+`.trim();
+// =================================================================
 
             const WEIGHTS = {
-                "x4备用接口.json": 0, // 让它排在最前面
-                "菠菜园.json": 1, "菠菜园pro.json": 2, "少儿频道.json": 3,
-                "饭太硬.json": 4, "肥猫.json": 5, "摸鱼.json": 6,
-                "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
+                "菠菜园.json": 0, // 让它排在最前面
+                "菠菜园pro.json": 1, 
+                "菠菜园pro.json": 2, 
+                "少儿频道.json": 3,
+                "饭太硬.json": 4, 
+                "肥猫.json": 5, 
+                "摸鱼.json": 6,
+                "王二小.json": 7, 
+                "集多.json": 8, 
+                "潇洒.json": 9,
             };
 
             function decodeName(str) { try { return decodeURIComponent(str); } catch (_) { return str; } }
