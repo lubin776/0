@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>海量接口搬运备份</title>
+    <title>海量接口</title>
     <style>
         /* 全局重置 */
         * {
@@ -67,19 +67,16 @@
             border: 1px solid #f0f3f8;
         }
 
-        /* 每个条目 - 强制垂直排列，保证两行结构 */
+        /* 每个条目 - 使用传统块级布局，强制垂直堆叠 */
         .entry {
-            padding: 14px 0;
+            padding: 16px 0;
             border-bottom: 1px solid #f0f4fa;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
         }
         .entry:last-child {
             border-bottom: none;
         }
 
-        /* 第一行：名称（单独占一行，但不在“两行”要求内，实际是标题行） */
+        /* 名称块 */
         .entry-name {
             font-size: 1.05rem;
             font-weight: 600;
@@ -87,10 +84,10 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 2px;
+            margin-bottom: 8px;
         }
 
-        /* 第二行：状态 + 日期 + 体积（强制在一行，绝不换行） */
+        /* 元数据块（状态、日期、体积）—— 强制一行 */
         .entry-meta {
             display: flex;
             flex-wrap: nowrap;
@@ -98,12 +95,13 @@
             gap: 12px 20px;
             font-size: 0.78rem;
             color: #5a6f88;
-            padding: 4px 0;
+            padding: 6px 0;
             border-top: 1px solid #f0f4fa;
             border-bottom: 1px solid #f0f4fa;
             overflow-x: auto;
             white-space: nowrap;
             scrollbar-width: none;
+            margin-bottom: 10px;   /* 与URL块拉开距离 */
         }
         .entry-meta::-webkit-scrollbar {
             display: none;
@@ -132,7 +130,7 @@
             flex-shrink: 0;
         }
 
-        /* 第三行及以后：每个URL独立一行（属于第二行大类，但这里每个URL占一行） */
+        /* URL块 —— 每个URL独立一行 */
         .entry-urls {
             display: flex;
             flex-direction: column;
@@ -239,7 +237,8 @@
             .entry-meta {
                 font-size: 0.7rem;
                 gap: 8px 14px;
-                padding: 3px 0;
+                padding: 4px 0;
+                margin-bottom: 8px;
             }
             .url-line {
                 padding: 4px 8px;
@@ -280,6 +279,7 @@
             .entry-meta {
                 font-size: 0.6rem;
                 gap: 4px 10px;
+                margin-bottom: 6px;
             }
             .url-line {
                 padding: 3px 6px;
@@ -360,10 +360,10 @@
                 const metaDate = date || '----';
                 const metaSize = size || '-';
 
-                // 名称行
+                // 名称
                 const nameHtml = `<div class="entry-name" title="${displayName}">${displayName}</div>`;
 
-                // 元数据行（状态、日期、体积 强制一行）
+                // 元数据行（状态、日期、体积）
                 const newClass = isNew ? 'badge-new' : 'badge-old';
                 const newLabel = isNew ? '● 最近连通' : '● 历史';
                 const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
