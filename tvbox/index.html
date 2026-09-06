@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>海量接口搬运备份</title>
+  <title>海量接口搬运备课份</title>
   <style>
     * {
       margin: 0;
@@ -65,49 +65,56 @@
     .card-item {
       background: #ffffff;
       border-radius: 16px;
-      padding: 14px 14px 12px;
+      padding: 14px 16px 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       border: 1px solid #f0f3f8;
       transition: box-shadow 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     .card-item:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
     }
-    /* 核心并排行：名称 | URL区域 */
-    .card-row {
+
+    /* ----- 第一行：元数据 (状态/日期/大小) 强制居左，水平排列 ----- */
+    .card-meta-row {
       display: flex;
-      flex-wrap: nowrap;
-      align-items: flex-start;
-      gap: 10px;
-      width: 100%;
-      min-width: 0;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      font-size: 0.72rem;
+      color: #5a6f88;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #f0f4fa;
     }
-    /* 左侧名称：固定宽度，单行省略 */
-    .card-name-block {
-      flex: 0 0 100px;
-      min-width: 80px;
-      max-width: 130px;
-      padding-top: 4px;
-      flex-shrink: 0;
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
-    .card-name {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #0b1e33;
+    .badge-new {
+      color: #1b9e5a;
+    }
+    .badge-old {
+      color: #b88b3a;
+    }
+    .note-tag {
+      background: #e8f4ff;
+      color: #2a6bb0;
+      padding: 0 12px;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      line-height: 20px;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: block;
-      line-height: 1.4;
     }
-    /* 右侧URL区块：占据剩余空间，内部折行且不溢出 */
+
+    /* ----- 第二行：URL 区域 (强制换行, 自动折行, 不溢出) ----- */
     .card-urls {
-      flex: 1 1 0;
-      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      padding-top: 2px;
+      width: 100%;
     }
     .url-line {
       display: flex;
@@ -132,7 +139,6 @@
       flex-shrink: 0;
       letter-spacing: 0.2px;
     }
-    /* URL 文本：允许折行，自动换行，绝不溢出 */
     .url-text {
       font-size: 0.8rem;
       color: #2563eb;
@@ -173,38 +179,28 @@
     .copy-btn.copied {
       background: #3b9b6c;
     }
-    /* 元数据行 */
-    .card-meta {
-      margin-top: 12px;
+
+    /* ----- 第三行：接口名称 (原来第一项, 现在放底部) 单行省略 ----- */
+    .card-name-row {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      gap: 6px 14px;
-      font-size: 0.7rem;
-      color: #6a7f98;
+      padding-top: 4px;
       border-top: 1px solid #f0f4fa;
-      padding-top: 10px;
+      margin-top: 2px;
     }
-    .meta-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-    }
-    .badge-new {
-      color: #1b9e5a;
-    }
-    .badge-old {
-      color: #b88b3a;
-    }
-    .note-tag {
-      background: #e8f4ff;
-      color: #2a6bb0;
-      padding: 0 10px;
-      border-radius: 30px;
-      font-size: 0.65rem;
-      line-height: 20px;
+    .card-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b1e33;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      line-height: 1.5;
+      max-width: 100%;
     }
+
+    /* 其他辅助 */
     .loading, .empty {
       text-align: center;
       color: #9aadc2;
@@ -218,20 +214,13 @@
       display: none;
     }
 
-    /* ----- 手机优先深度优化 (针对小屏) ----- */
+    /* ----- 手机优化 (保持三行结构) ----- */
     @media (max-width: 600px) {
       body { padding: 12px 8px; }
-      .card-item { padding: 12px 10px 10px; }
-      .card-name-block {
-        flex: 0 0 80px;
-        min-width: 64px;
-        max-width: 100px;
-      }
-      .card-name {
-        font-size: 0.88rem;
-      }
-      .card-row {
-        gap: 6px;
+      .card-item { padding: 12px 12px 10px; gap: 8px; }
+      .card-meta-row {
+        font-size: 0.65rem;
+        gap: 4px 12px;
       }
       .url-line {
         padding: 4px 6px 4px 6px;
@@ -246,7 +235,6 @@
       .url-text {
         font-size: 0.74rem;
         min-width: 40px;
-        word-break: break-all;
       }
       .copy-btn {
         font-size: 0.6rem;
@@ -254,12 +242,8 @@
         height: 22px;
         line-height: 22px;
       }
-      .card-meta {
-        font-size: 0.65rem;
-        gap: 4px 10px;
-        padding-top: 8px;
-        margin-top: 10px;
-        flex-wrap: wrap;
+      .card-name {
+        font-size: 0.88rem;
       }
       .note-tag {
         font-size: 0.6rem;
@@ -267,15 +251,11 @@
         padding: 0 8px;
       }
     }
-
     @media (max-width: 420px) {
-      .card-name-block {
-        flex: 0 0 68px;
-        min-width: 56px;
-        max-width: 80px;
-      }
-      .card-name {
-        font-size: 0.82rem;
+      .card-item { padding: 10px 8px 8px; gap: 6px; }
+      .card-meta-row {
+        font-size: 0.6rem;
+        gap: 2px 8px;
       }
       .url-text {
         font-size: 0.7rem;
@@ -291,11 +271,8 @@
         padding: 0 6px;
         line-height: 18px;
       }
-      .card-item {
-        padding: 10px 8px 8px;
-      }
-      .card-row {
-        gap: 4px;
+      .card-name {
+        font-size: 0.82rem;
       }
     }
   </style>
@@ -347,13 +324,19 @@
       return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
     }
 
-    // ----- 渲染单个卡片 (手机优化，URL自动折行不溢出) -----
+    // ----- 渲染单个卡片 (新三行布局: 元数据 | URL | 名称) -----
     function renderCard(file, date, size, note) {
       const displayName = decodeName(file).replace(/\.json$/i, '');
       const isNew = isRecent(date);
       const metaDate = date || '----';
       const metaSize = size || '-';
 
+      // 第一行：元数据 (状态/日期/大小)
+      const newClass = isNew ? 'badge-new' : 'badge-old';
+      const newLabel = isNew ? '● 最近连通' : '● 历史';
+      const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
+
+      // 第二行：URL 列表
       let urlLinesHtml = '';
       DOMAINS.forEach(domain => {
         const rawFile = decodeName(file);
@@ -370,25 +353,23 @@
         `;
       });
 
-      const noteHtml = note ? `<span class="note-tag">${note}</span>` : '';
-      const newClass = isNew ? 'badge-new' : 'badge-old';
-      const newLabel = isNew ? '● 最近连通' : '● 历史';
-
+      // 第三行：接口名称 (原第一项)
       return `
         <div class="card-item" data-name="${displayName.toLowerCase()}">
-          <div class="card-row">
-            <div class="card-name-block">
-              <span class="card-name" title="${displayName}">${displayName}</span>
-            </div>
-            <div class="card-urls">
-              ${urlLinesHtml}
-            </div>
-          </div>
-          <div class="card-meta">
+          <!-- 第一行：元数据 -->
+          <div class="card-meta-row">
             <span class="meta-badge"><span class="${newClass}">${newLabel}</span></span>
             <span class="meta-badge">📅 ${metaDate}</span>
             <span class="meta-badge">📦 ${metaSize}</span>
             ${noteHtml}
+          </div>
+          <!-- 第二行：URL 区域 (强制换行，自动折行) -->
+          <div class="card-urls">
+            ${urlLinesHtml}
+          </div>
+          <!-- 第三行：接口名称 (放在最下面) -->
+          <div class="card-name-row">
+            <span class="card-name" title="${displayName}">${displayName}</span>
           </div>
         </div>
       `;
