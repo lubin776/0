@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             background: #f5f7fa;
             color: #1e293b;
-            padding: 16px 12px;
+            padding: 16px 12px 8px;
         }
 
         .container {
@@ -235,8 +235,16 @@
             display: none;
         }
 
+        .page-footer {
+            text-align: center;
+            padding: 20px 0 8px;
+            font-size: 0.72rem;
+            color: #9aadc2;
+            line-height: 1.8;
+        }
+
         @media (max-width: 600px) {
-            body { padding: 12px 6px; }
+            body { padding: 12px 6px 4px; }
             h1 .header-logo { width: 1.15rem; height: 1.15rem; vertical-align: -0.2rem; }
             .header-divider { margin: 8px 0; }
             .big-card { padding: 12px 12px 10px; }
@@ -249,6 +257,7 @@
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
             .note-tag { font-size: 0.65rem; padding: 1px 10px; }
+            .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
         }
 
         @media (max-width: 420px) {
@@ -264,6 +273,7 @@
             .url-text { font-size: 0.7rem; min-width: 20px; }
             .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
+            .page-footer { font-size: 0.62rem; }
         }
     </style>
 </head>
@@ -278,6 +288,10 @@
         <div id="listContainer">
             <div class="loading">⏳ 正在加载接口列表...</div>
         </div>
+
+        <footer class="page-footer">
+            <p>本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。</p>
+        </footer>
     </div>
 
     <script>
@@ -296,10 +310,11 @@
                 return y + m + d;
             }
             const todayStr = getBeijingDateStr();
+            const todayFormatted = `${todayStr.slice(0,4)}年${todayStr.slice(4,6)}月${todayStr.slice(6,8)}日`;
 
             const WEIGHTS = {
                 "菠菜园.json": 1,
-                "菠菜园pro.json": 2,
+                "少儿频道.json": 2,
                 "少儿频道.json": 3,
                 "饭太硬.json": 4,
                 "肥猫.json": 5,
@@ -321,12 +336,11 @@
   <div class="entry-name" title="菠菜园">
  菠菜园</div>
   <div class="entry-note"> 
-   <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
+   <span class="note-tag">站长推荐</span>
  </div>
  </div>
  <div class="entry-meta"> 
-  <span class="meta-item"><span class="badge-new">● 最近连通</span></span>
-  <span class="meta-item">📅 ${todayStr}</span>
+  <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
   <span class="meta-item">📦 50.1K</span>
  </div>
  <div class="entry-urls"> 
@@ -348,34 +362,33 @@
  </div>
  </div>
 
-<div class="entry" data-name="菠菜园pro"> 
+<div class="entry" data-name="少儿频道"> 
  <div class="entry-header"> 
-  <div class="entry-name" title="菠菜园pro">
- 菠菜园pro</div>
+  <div class="entry-name" title="少儿频道">
+ 少儿频道</div>
   <div class="entry-note"> 
-   <span class="note-tag">https://0.12yue.de5.net/5/x4.json</span>
+   <span class="note-tag">站长推荐</span>
  </div>
  </div>
  <div class="entry-meta"> 
-  <span class="meta-item"><span class="badge-new">● 最近连通</span></span>
-  <span class="meta-item">📅 ${todayStr}</span>
-  <span class="meta-item">📦 95.2K</span>
+  <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
+  <span class="meta-item">📦 19.2K</span>
  </div>
  <div class="entry-urls"> 
   <div class="url-line"> 
    <span class="url-tag">备份一线</span>
-   <span class="url-text">https://0.12yue.de5.net/de5/菠菜园pro.json</span>
-   <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/菠菜园pro.json">复制</button>
+   <span class="url-text">https://0.12yue.de5.net/de5/少儿频道.json</span>
+   <button class="copy-btn" data-url="https://0.12yue.de5.net/de5/少儿频道.json">复制</button>
  </div>
   <div class="url-line"> 
    <span class="url-tag">备份二线</span>
-   <span class="url-text">https://0.cdz.qzz.io/qzz/菠菜园pro.json</span>
-   <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/菠菜园pro.json">复制</button>
+   <span class="url-text">https://0.cdz.qzz.io/qzz/少儿频道.json</span>
+   <button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/少儿频道.json">复制</button>
  </div>
   <div class="url-line"> 
    <span class="url-tag">备份三线</span>
-   <span class="url-text">https://0.wdzb.eu.cc/eucc/菠菜园pro.json</span>
-   <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/菠菜园pro.json">复制</button>
+   <span class="url-text">https://0.wdzb.eu.cc/eucc/少儿频道.json</span>
+   <button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/少儿频道.json">复制</button>
  </div>
  </div>
  </div>
@@ -394,6 +407,11 @@
                 return (Date.now() - dt.getTime()) / (1000 * 60 * 60 * 24) <= 2;
             }
 
+            function formatDateToChinese(d) {
+                if (!d || d.length !== 8) return '----';
+                return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
+            }
+
             function renderEntry(file, date, size, note) {
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
@@ -408,8 +426,7 @@
                 `;
                 const metaHtml = `
                     <div class="entry-meta">
-                        <span class="meta-item"><span class="${newClass}">${isNew ? '● 最近连通' : '● 历史'}</span></span>
-                        <span class="meta-item">📅 ${date || '----'}</span>
+                        <span class="meta-item"><span class="${newClass}">备份时间 ${formatDateToChinese(date)}</span></span>
                         <span class="meta-item">📦 ${size || '-'}</span>
                     </div>
                 `;
@@ -534,7 +551,7 @@
                     })
                     .catch(err => {
                         console.warn('加载失败:', err);
-                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ list加载失败!</div></div>`;
+                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div></div>`;
                         bindCopyEvents();
                     });
             }
