@@ -1,6 +1,6 @@
 {
-  "spider": "https://0.12yue.de5.net/5/lib/xs.jar",
-  "logo": "https://0.12yue.de5.net/5/lib/jueson.jpg",
+  "spider": "https://0.cdz.qzz.io/5/lib/xs.jar",
+  "logo": "https://0.cdz.qzz.io/5/lib/jueson.jpg",
   "lives": [
     {
       "name": "Guovin",
@@ -2540,7 +2540,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 1,
-      "ext": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/lib/菠菜园下载.json"
+      "ext": "https://0.cdz.qzz.io/tvbox/x/lib/菠菜园下载.json"
     },
     {
       "key": "说明",
@@ -2549,7 +2549,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 0,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/0/refs/heads/main/tvbox/x/lib/使用说明.json"
+      "api": "https://0.cdz.qzz.io/tvbox/x/lib/使用说明.json"
     },
     {
       "key": "push_agent",
@@ -2565,7 +2565,7 @@
     {
       "name": "Web聚合",
       "type": 3,
-      "url": "https://0.12yue.de5.net/5/Web"
+      "url": "Web"
     },
     {
       "name": "-咸鱼-",
