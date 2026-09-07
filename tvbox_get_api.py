@@ -1,4 +1,4 @@
- #!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 TVBox 接口一键抓取工具
@@ -680,13 +680,13 @@ def update_list_txt(results, path=LIST_TXT):
     """
     ★★★ 新旧 list 合并（脚本运行时的核心逻辑）★★★
 
-    ★ 只收集【成功爬取 JSON】的条目；爬取失败（TEXT / TIMEOUT / FAILED）的
+    ★ 只收集【成功爬取 JSON 或 TEXT】的条目；爬取失败（TIMEOUT / FAILED）的
        一律不写入 list.txt，也不影响旧条目。
 
     流程：
     1. 先读取【旧的 list.txt】→ old 字典（key = file_name 条目名）
        （旧 list 里的条目都曾是成功过的，天然符合"只收成功"原则）
-    2. 遍历本次 results，【仅 ok=True（=status JSON）】的条目参与合并：
+    2. 遍历本次 results，【仅 ok=True（=status JSON 或 TEXT）】的条目参与合并：
        - 新条目成功(ok) + 旧有同名 → 新替代旧（日期=今天、尺寸、成功URL）
        - 新条目成功(ok) + 旧无同名 → 新增一条
        - 新条目失败(!ok)           → 直接跳过，不写 list，不动旧条目
@@ -1041,7 +1041,7 @@ def process(name, urls) -> dict:
     print(f"  {'~'*50}")
     return {
         "name": name, "status": status, "file": path, "ua": ua,
-        "ok": status == "JSON", "note": _note_of(name),
+        "ok": status in ("JSON", "TEXT"), "note": _note_of(name),  # ★ 修改：TEXT 也视为成功
         "bytes": len(formatted), "time_ms": elapsed_ms, "success_url": success_url,
     }
 
