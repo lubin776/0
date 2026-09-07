@@ -303,8 +303,11 @@
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
 
-            // 静态条目（菠菜园、少儿频道）
-            const staticEntries = `
+            // ===== 内置静态接口开关 =====
+            // 改为 true 即可重新显示菠菜园和少儿频道
+            const ENABLE_STATIC = false;
+
+            const staticEntries = ENABLE_STATIC ? `
 <div class="entry" data-name="菠菜园"> 
  <div class="entry-header"> 
   <div class="entry-name" title="菠菜园">菠菜园</div>
@@ -358,7 +361,7 @@
  </div>
  </div>
  </div>
-            `;
+            ` : '';
 
             function decodeName(str) {
                 try { return decodeURIComponent(str); } catch (_) { return str; }
@@ -378,7 +381,7 @@
                 return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
             }
 
-            // 动态条目渲染（不再有 isLastItem 参数）
+            // 动态条目渲染
             function renderEntry(file, date, size, note, origUrl) {
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
@@ -395,18 +398,18 @@
                     </div>
                 `;
 
-                // 原线路行
+                // 原始线路行
                 let urlLinesHtml = '';
                 if (origUrl) {
                     urlLinesHtml += `
                         <div class="url-line">
-                            <span class="url-tag">原线路</span>
+                            <span class="url-tag">原始线路</span>
                             <span class="url-text">${origUrl}</span>
                             <button class="copy-btn" data-url="${origUrl}">复制</button>
                         </div>
                     `;
                 }
-                // 三条备份线路（所有条目统一）
+                // 三条备份线路
                 DOMAINS.forEach(domain => {
                     const fullUrl = domain.base + decodedFile;
                     urlLinesHtml += `
