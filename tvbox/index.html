@@ -127,7 +127,6 @@
             vertical-align: middle;
         }
 
-        /* 新增：动态条目右上角的小复制按钮 */
         .copy-btn-top {
             margin-left: auto;
             padding: 0 10px;
@@ -308,7 +307,6 @@
 
     <script>
         (function() {
-            // 支持 daysOffset 参数：0 = 今天，1 = 昨天
             function getBeijingDateStr(daysOffset = 0) {
                 const date = new Date();
                 if (daysOffset > 0) {
@@ -326,10 +324,8 @@
                 const d = parts.find(p => p.type === 'day').value;
                 return y + m + d;
             }
-            // 今天的日期
             const todayStr = getBeijingDateStr(0);
             const todayFormatted = `${todayStr.slice(0,4)}年${todayStr.slice(4,6)}月${todayStr.slice(6,8)}日`;
-            // 昨天的日期
             const yesterdayStr = getBeijingDateStr(1);
             const yesterdayFormatted = `${yesterdayStr.slice(0,4)}年${yesterdayStr.slice(4,6)}月${yesterdayStr.slice(6,8)}日`;
 
@@ -351,14 +347,13 @@
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
 
-            // 与内置静态条目一致的备份路径（仅最后一项动态条目使用）
             const BACKUP_DOMAINS = [
                 { tag: "备份一线", base: "https://0.12yue.de5.net/de5/" },
                 { tag: "备份二线", base: "https://0.cdz.qzz.io/qzz/" },
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/eucc/" },
             ];
 
-            // 静态条目：菠菜园（今天）和少儿频道（昨天），没有复制按钮
+            // 静态条目（无原线路行，保持原样）
             const staticEntries = `
 <div class="entry" data-name="菠菜园"> 
  <div class="entry-header"> 
@@ -441,13 +436,12 @@
                 return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
             }
 
-            // 动态条目渲染：右上角增加复制按钮
-            function renderEntry(file, date, size, note, isLastItem = false) {
+            // 动态条目：新增 origUrl 参数，在三条备份线路上方插入"原线路"行
+            function renderEntry(file, date, size, note, origUrl, isLastItem = false) {
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
                 const isNew = isRecent(date);
                 const newClass = isNew ? 'badge-new' : 'badge-old';
-                // 右上角按钮复制的链接（默认第一个域名）
                 const mainUrl = DOMAINS[0].base + decodedFile;
 
                 const headerHtml = `
@@ -463,7 +457,19 @@
                         <span class="meta-item"> ${size || '-'}</span>
                     </div>
                 `;
+
+                // ===== 新增：原线路行（与备份线路同色，放在最上方）=====
                 let urlLinesHtml = '';
+                if (origUrl) {
+                    urlLinesHtml += `
+                        <div class="url-line">
+                            <span class="url-tag">原线路</span>
+                            <span class="url-text">${origUrl}</span>
+                            <button class="copy-btn" data-url="${origUrl}">复制</button>
+                        </div>
+                    `;
+                }
+                // ===== 三条备份线路 =====
                 DOMAINS.forEach(domain => {
                     const fullUrl = domain.base + decodedFile;
                     urlLinesHtml += `
@@ -474,8 +480,7 @@
                         </div>
                     `;
                 });
-
-                // 最后一项额外追加 /de5/ /qzz/ /eucc/ 备份路径
+                // 最后一项额外追加备份路径
                 if (isLastItem) {
                     BACKUP_DOMAINS.forEach(domain => {
                         const fullUrl = domain.base + decodedFile;
@@ -515,6 +520,7 @@
                     date: info.date || '',
                     size: info.size || '',
                     note: info.note || '',
+                    origUrl: info.origUrl || '',   // 原线路 URL
                     weight: WEIGHTS[file] !== undefined ? WEIGHTS[file] : null,
                 }));
 
@@ -528,7 +534,7 @@
                 let entriesHtml = '';
                 items.forEach((item, index) => {
                     const isLast = index === items.length - 1;
-                    entriesHtml += renderEntry(item.file, item.date, item.size, item.note, isLast);
+                    entriesHtml += renderEntry(item.file, item.date, item.size, item.note, item.origUrl, isLast);
                 });
 
                 container.innerHTML = `<div class="big-card">${staticEntries}${entriesHtml}</div>`;
@@ -580,14 +586,16 @@
 
                         const dataMap = {};
                         lines.forEach(line => {
+                            // 格式：文件名 | 日期 | 大小 | 原线路URL
                             const parts = line.split('|').map(s => s.trim());
                             if (parts.length < 3) return;
                             const file = parts[0];
                             const date = parts[1] || '';
                             const size = parts[2] || '';
-                            const note = parts[3] || '';
+                            const origUrl = parts[3] || '';   // 第4列为原线路
+                            const note = parts[4] || '';      // 第5列（如有）为备注
                             if (file) {
-                                dataMap[file] = { date, size, note };
+                                dataMap[file] = { date, size, origUrl, note };
                             }
                         });
 
