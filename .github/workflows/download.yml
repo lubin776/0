@@ -1,0 +1,66 @@
+name: 手动下载 (Manual Download)
+
+'on':
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '下载链接 (留空则用 download.py 里的 DOWNLOAD_URL)'
+        required: false
+        default: ''
+      save_path:
+        description: '保存路径 (留空则用 download.py 里的 SAVE_PATH)'
+        required: false
+        default: ''
+      extract:
+        description: '是否解压 (true/false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run download.py
+        env:
+          DL_URL: ${{ github.event.inputs.url }}
+          DL_SAVE: ${{ github.event.inputs.save_path }}
+          DL_EXTRACT: ${{ github.event.inputs.extract }}
+        run: |
+          echo "===== 手动触发参数 ====="
+          echo "URL:       ${DL_URL:-'(使用脚本内置默认值)'}"
+          echo "SAVE:      ${DL_SAVE:-'(使用脚本内置默认值)'}"
+          echo "EXTRACT:   ${DL_EXTRACT:-'false'}"
+          echo "========================"
+          python download.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # 只 add data/ 目录，避免误提交杂文件
+          git add data/ || true
+
+          # 有变化才提交，避免空 commit
+          if git diff --cached --quiet; then
+            echo "📭 没有变化，跳过提交"
+          else
+            git commit -m "chore: manual download $(date +'%Y-%m-%d %H:%M:%S')"
+            git push
+            echo "✅ 推送完成"
+          fi
