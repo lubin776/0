@@ -296,21 +296,30 @@
 
     <script>
         (function() {
-            function getBeijingDateStr() {
+            // 支持 daysOffset 参数：0 = 今天，1 = 昨天
+            function getBeijingDateStr(daysOffset = 0) {
+                const date = new Date();
+                if (daysOffset > 0) {
+                    date.setDate(date.getDate() - daysOffset);
+                }
                 const formatter = new Intl.DateTimeFormat('en', { 
                     timeZone: 'Asia/Shanghai', 
                     year: 'numeric', 
                     month: '2-digit', 
                     day: '2-digit' 
                 });
-                const parts = formatter.formatToParts(new Date());
+                const parts = formatter.formatToParts(date);
                 const y = parts.find(p => p.type === 'year').value;
                 const m = parts.find(p => p.type === 'month').value;
                 const d = parts.find(p => p.type === 'day').value;
                 return y + m + d;
             }
-            const todayStr = getBeijingDateStr();
+            // 今天的日期
+            const todayStr = getBeijingDateStr(0);
             const todayFormatted = `${todayStr.slice(0,4)}年${todayStr.slice(4,6)}月${todayStr.slice(6,8)}日`;
+            // 昨天的日期
+            const yesterdayStr = getBeijingDateStr(1);
+            const yesterdayFormatted = `${yesterdayStr.slice(0,4)}年${yesterdayStr.slice(4,6)}月${yesterdayStr.slice(6,8)}日`;
 
             const WEIGHTS = {
                 "菠菜园.json": 1,
@@ -340,7 +349,7 @@
  </div>
  </div>
  <div class="entry-meta"> 
-  <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
+  <span class="meta-item"><span class="badge-new">备份时间 ${yesterdayFormatted}</span></span>
   <span class="meta-item"> 50.1K</span>
  </div>
  <div class="entry-urls"> 
