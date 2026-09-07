@@ -1,16 +1,16 @@
-name: 手动下载 (Manual Download)
+name: "触发下载"
 
 'on':
   workflow_dispatch:
     inputs:
       url:
-        description: '下载链接 (留空则用 download.py 里的 DOWNLOAD_URL)'
+        description: '下载链接 (留空则用脚本里的 DOWNLOAD_URL)'
         required: false
-        default: ''
+        default: 'https://mpimg.cn/down.php/31d75f152d5ac34ee395947b877c21d2.zip'
       save_path:
-        description: '保存路径 (留空则用 download.py 里的 SAVE_PATH)'
+        description: '保存路径 (相对于仓库根目录)'
         required: false
-        default: ''
+        default: 'download/奇奇.zip'
       extract:
         description: '是否解压 (true/false)'
         required: false
@@ -22,7 +22,6 @@ permissions:
 jobs:
   download:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,33 +35,15 @@ jobs:
         run: pip install requests
 
       - name: Run downloader
-        run: python python/download.py
-
         env:
           DL_URL: ${{ github.event.inputs.url }}
           DL_SAVE: ${{ github.event.inputs.save_path }}
           DL_EXTRACT: ${{ github.event.inputs.extract }}
-        run: |
-          echo "===== 手动触发参数 ====="
-          echo "URL:       ${DL_URL:-'(使用脚本内置默认值)'}"
-          echo "SAVE:      ${DL_SAVE:-'(使用脚本内置默认值)'}"
-          echo "EXTRACT:   ${DL_EXTRACT:-'false'}"
-          echo "========================"
-          python download.py
+        run: python python/download.py
 
-      - name: Commit and push if changed
+      - name: Commit and push
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-          # 只 add data/ 目录，避免误提交杂文件
-          git add data/ || true
-
-          # 有变化才提交，避免空 commit
-          if git diff --cached --quiet; then
-            echo "📭 没有变化，跳过提交"
-          else
-            git commit -m "chore: manual download $(date +'%Y-%m-%d %H:%M:%S')"
-            git push
-            echo "✅ 推送完成"
-          fi
+          git add data/
+          git diff --cached --quiet || (git commit -m "chore: 手动下载更新 $(date +'%Y-%m-%d %H:%M')" && git push)
