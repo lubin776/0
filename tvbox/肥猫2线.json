@@ -1,5 +1,5 @@
 {
-  "spider": "https://img2.tofaka.com/autoupload/f/444eo/20260906/dOty/aidaox-20260906-223800.jar;md5;3a6376826bdbaaaf787058aaf311d60b",
+  "spider": "https://img2.tofaka.com/autoupload/f/444eo/20260907/AKhH/aidaox-20260907-091321.jar;md5;af8fbf2cd65254bc8701d9f3ec87ba2d",
   "wallpaper": "proxy://do=wallpaper",
   "logo": "https://jk.catvod.site/jk/assets/feimao_logo.gif?v=20260901c",
   "sites": [
@@ -737,24 +737,6 @@
       "filterable": 1,
       "changeable": 1,
       "ext": "https:///{\"host\":\"https:/www.cd-zj.com\",\"publish\":\"https:/www.vip1949.com/\"}"
-    },
-    {
-      "key": "怀桑",
-      "name": "🎄怀桑[2K]",
-      "type": 3,
-      "api": "csp_AppQi",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "site": "https://jk.catvod.site/jk/t4/mqxhqj.txt",
-        "dataKey": "https:///kj37zs29q22jk96t",
-        "dataIv": "https:///kj37zs29q22jk96t",
-        "init": "https:///initV122",
-        "playname": "https:///怀桑",
-        "ua": "https:///okhttp/3.10.0"
-      }
     },
     {
       "key": "剧圈99",
