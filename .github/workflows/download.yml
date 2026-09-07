@@ -35,7 +35,9 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run download.py
+      - name: Run downloader
+        run: python python/download.py
+
         env:
           DL_URL: ${{ github.event.inputs.url }}
           DL_SAVE: ${{ github.event.inputs.save_path }}
