@@ -127,6 +127,16 @@
             vertical-align: middle;
         }
 
+        /* 新增：动态条目右上角的小复制按钮 */
+        .copy-btn-top {
+            margin-left: auto;
+            padding: 0 10px;
+            height: 22px;
+            line-height: 22px;
+            font-size: 0.62rem;
+            flex-shrink: 0;
+        }
+
         .entry-meta {
             display: block;
             padding: 6px 0;
@@ -256,6 +266,7 @@
             .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
+            .copy-btn-top { height: 20px; line-height: 20px; font-size: 0.58rem; padding: 0 8px; }
             .note-tag { font-size: 0.65rem; padding: 1px 10px; }
             .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
         }
@@ -272,6 +283,7 @@
             .url-tag { font-size: 0.55rem; padding: 0 8px; line-height: 20px; }
             .url-text { font-size: 0.7rem; min-width: 20px; }
             .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
+            .copy-btn-top { height: 18px; line-height: 18px; font-size: 0.5rem; padding: 0 6px; }
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
             .page-footer { font-size: 0.62rem; }
         }
@@ -339,6 +351,14 @@
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" },
             ];
 
+            // 与内置静态条目一致的备份路径（仅最后一项动态条目使用）
+            const BACKUP_DOMAINS = [
+                { tag: "备份一线", base: "https://0.12yue.de5.net/de5/" },
+                { tag: "备份二线", base: "https://0.cdz.qzz.io/qzz/" },
+                { tag: "备份三线", base: "https://0.wdzb.eu.cc/eucc/" },
+            ];
+
+            // 静态条目：菠菜园（今天）和少儿频道（昨天），没有复制按钮
             const staticEntries = `
 <div class="entry" data-name="菠菜园"> 
  <div class="entry-header"> 
@@ -349,7 +369,7 @@
  </div>
  </div>
  <div class="entry-meta"> 
-  <span class="meta-item"><span class="badge-new">备份时间 ${yesterdayFormatted}</span></span>
+  <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
   <span class="meta-item"> 50.1K</span>
  </div>
  <div class="entry-urls"> 
@@ -380,7 +400,7 @@
  </div>
  </div>
  <div class="entry-meta"> 
-  <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
+  <span class="meta-item"><span class="badge-new">备份时间 ${yesterdayFormatted}</span></span>
   <span class="meta-item"> 19.2K</span>
  </div>
  <div class="entry-urls"> 
@@ -421,16 +441,20 @@
                 return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
             }
 
-            function renderEntry(file, date, size, note) {
+            // 动态条目渲染：右上角增加复制按钮
+            function renderEntry(file, date, size, note, isLastItem = false) {
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
                 const isNew = isRecent(date);
                 const newClass = isNew ? 'badge-new' : 'badge-old';
+                // 右上角按钮复制的链接（默认第一个域名）
+                const mainUrl = DOMAINS[0].base + decodedFile;
 
                 const headerHtml = `
                     <div class="entry-header">
                         <div class="entry-name" title="${displayName}">${displayName}</div>
                         ${note ? `<div class="entry-note"><span class="note-tag">${note}</span></div>` : ''}
+                        <button class="copy-btn copy-btn-top" data-url="${mainUrl}">复制</button>
                     </div>
                 `;
                 const metaHtml = `
@@ -450,6 +474,21 @@
                         </div>
                     `;
                 });
+
+                // 最后一项额外追加 /de5/ /qzz/ /eucc/ 备份路径
+                if (isLastItem) {
+                    BACKUP_DOMAINS.forEach(domain => {
+                        const fullUrl = domain.base + decodedFile;
+                        urlLinesHtml += `
+                            <div class="url-line">
+                                <span class="url-tag">${domain.tag}</span>
+                                <span class="url-text">${fullUrl}</span>
+                                <button class="copy-btn" data-url="${fullUrl}">复制</button>
+                            </div>
+                        `;
+                    });
+                }
+
                 return `
                     <div class="entry" data-name="${displayName.toLowerCase()}">
                         ${headerHtml}
@@ -487,8 +526,9 @@
                 });
 
                 let entriesHtml = '';
-                items.forEach(item => {
-                    entriesHtml += renderEntry(item.file, item.date, item.size, item.note);
+                items.forEach((item, index) => {
+                    const isLast = index === items.length - 1;
+                    entriesHtml += renderEntry(item.file, item.date, item.size, item.note, isLast);
                 });
 
                 container.innerHTML = `<div class="big-card">${staticEntries}${entriesHtml}</div>`;
