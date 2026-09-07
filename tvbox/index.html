@@ -91,7 +91,7 @@
 
         .entry-header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 10px;
             margin-bottom: 8px;
         }
@@ -108,8 +108,7 @@
         }
 
         .entry-note {
-            flex: 1;
-            min-width: 0;
+            flex-shrink: 0;
             display: flex;
             justify-content: flex-end;
         }
@@ -127,38 +126,20 @@
             vertical-align: middle;
         }
 
-        .copy-btn-top {
+        /* 新增：标题同一排右侧的备份时间和大小 */
+        .entry-meta-inline {
             margin-left: auto;
-            padding: 0 10px;
-            height: 22px;
-            line-height: 22px;
-            font-size: 0.62rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #5a6f88;
+            white-space: nowrap;
             flex-shrink: 0;
         }
-
-        .entry-meta {
-            display: block;
-            padding: 6px 0;
-            border-top: 1px solid #f0f4fa;
-            border-bottom: 1px solid #f0f4fa;
-            margin-bottom: 10px;
-            white-space: nowrap;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .entry-meta::-webkit-scrollbar {
-            display: none;
-        }
-
-        .meta-item {
+        .entry-meta-inline .meta-item {
             display: inline-block;
-            font-size: 0.78rem;
-            color: #5a6f88;
-            padding: 0 6px;
-            margin-right: 12px;
-        }
-        .meta-item:last-child {
-            margin-right: 0;
+            padding: 0 4px;
         }
 
         .badge-new { color: #1b9e5a; }
@@ -260,12 +241,11 @@
             .entry { padding: 12px 0; }
             .entry-header { gap: 6px; margin-bottom: 6px; }
             .entry-name { font-size: 0.95rem; }
-            .entry-meta { font-size: 0.7rem; padding: 4px 0; margin-bottom: 8px; }
+            .entry-meta-inline { font-size: 0.68rem; gap: 6px; }
             .url-line { padding: 4px 8px; gap: 4px 6px; }
             .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
-            .copy-btn-top { height: 20px; line-height: 20px; font-size: 0.58rem; padding: 0 8px; }
             .note-tag { font-size: 0.65rem; padding: 1px 10px; }
             .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
         }
@@ -277,12 +257,11 @@
             .entry { padding: 10px 0; }
             .entry-header { gap: 4px; margin-bottom: 4px; }
             .entry-name { font-size: 0.88rem; }
-            .entry-meta { font-size: 0.6rem; gap: 4px 10px; margin-bottom: 6px; }
+            .entry-meta-inline { font-size: 0.6rem; gap: 4px; }
             .url-line { padding: 3px 6px; gap: 3px 4px; }
             .url-tag { font-size: 0.55rem; padding: 0 8px; line-height: 20px; }
             .url-text { font-size: 0.7rem; min-width: 20px; }
             .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
-            .copy-btn-top { height: 18px; line-height: 18px; font-size: 0.5rem; padding: 0 6px; }
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
             .page-footer { font-size: 0.62rem; }
         }
@@ -332,7 +311,6 @@
             const WEIGHTS = {
                 "菠菜园.json": 1,
                 "少儿频道.json": 2,
-                "少儿频道.json": 3,
                 "饭太硬.json": 4,
                 "肥猫.json": 5,
                 "摸鱼.json": 6,
@@ -353,19 +331,16 @@
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/eucc/" },
             ];
 
-            // 静态条目（无原线路行，保持原样）
+            // 静态条目（保持不变）
             const staticEntries = `
 <div class="entry" data-name="菠菜园"> 
  <div class="entry-header"> 
-  <div class="entry-name" title="菠菜园">
- 菠菜园</div>
-  <div class="entry-note"> 
-   <span class="note-tag">站长推荐</span>
+  <div class="entry-name" title="菠菜园">菠菜园</div>
+  <div class="entry-note"><span class="note-tag">站长推荐</span></div>
  </div>
- </div>
- <div class="entry-meta"> 
+ <div class="entry-meta-inline" style="margin-left:0; margin-bottom:8px;">
   <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
-  <span class="meta-item"> 50.1K</span>
+  <span class="meta-item">50.1K</span>
  </div>
  <div class="entry-urls"> 
   <div class="url-line"> 
@@ -388,15 +363,12 @@
 
 <div class="entry" data-name="少儿频道"> 
  <div class="entry-header"> 
-  <div class="entry-name" title="少儿频道">
- 少儿频道</div>
-  <div class="entry-note"> 
-   <span class="note-tag">站长推荐</span>
+  <div class="entry-name" title="少儿频道">少儿频道</div>
+  <div class="entry-note"><span class="note-tag">站长推荐</span></div>
  </div>
- </div>
- <div class="entry-meta"> 
+ <div class="entry-meta-inline" style="margin-left:0; margin-bottom:8px;">
   <span class="meta-item"><span class="badge-new">备份时间 ${yesterdayFormatted}</span></span>
-  <span class="meta-item"> 19.2K</span>
+  <span class="meta-item">19.2K</span>
  </div>
  <div class="entry-urls"> 
   <div class="url-line"> 
@@ -436,29 +408,26 @@
                 return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
             }
 
-            // 动态条目：新增 origUrl 参数，在三条备份线路上方插入"原线路"行
+            // 动态条目渲染
             function renderEntry(file, date, size, note, origUrl, isLastItem = false) {
                 const decodedFile = decodeName(file);
                 const displayName = decodedFile.replace(/\.json$/i, '');
                 const isNew = isRecent(date);
                 const newClass = isNew ? 'badge-new' : 'badge-old';
-                const mainUrl = DOMAINS[0].base + decodedFile;
 
+                // 标题行：名称 + 备注 + 备份时间/大小（靠右，替代原来的复制按钮）
                 const headerHtml = `
                     <div class="entry-header">
                         <div class="entry-name" title="${displayName}">${displayName}</div>
                         ${note ? `<div class="entry-note"><span class="note-tag">${note}</span></div>` : ''}
-                        <button class="copy-btn copy-btn-top" data-url="${mainUrl}">复制</button>
-                    </div>
-                `;
-                const metaHtml = `
-                    <div class="entry-meta">
-                        <span class="meta-item"><span class="${newClass}">备份时间 ${formatDateToChinese(date)}</span></span>
-                        <span class="meta-item"> ${size || '-'}</span>
+                        <div class="entry-meta-inline">
+                            <span class="meta-item"><span class="${newClass}">备份时间 ${formatDateToChinese(date)}</span></span>
+                            <span class="meta-item">${size || '-'}</span>
+                        </div>
                     </div>
                 `;
 
-                // ===== 新增：原线路行（与备份线路同色，放在最上方）=====
+                // 原线路行（与备份线路同色）
                 let urlLinesHtml = '';
                 if (origUrl) {
                     urlLinesHtml += `
@@ -469,7 +438,7 @@
                         </div>
                     `;
                 }
-                // ===== 三条备份线路 =====
+                // 三条备份线路
                 DOMAINS.forEach(domain => {
                     const fullUrl = domain.base + decodedFile;
                     urlLinesHtml += `
@@ -497,7 +466,6 @@
                 return `
                     <div class="entry" data-name="${displayName.toLowerCase()}">
                         ${headerHtml}
-                        ${metaHtml}
                         <div class="entry-urls">
                             ${urlLinesHtml}
                         </div>
@@ -520,7 +488,7 @@
                     date: info.date || '',
                     size: info.size || '',
                     note: info.note || '',
-                    origUrl: info.origUrl || '',   // 原线路 URL
+                    origUrl: info.origUrl || '',
                     weight: WEIGHTS[file] !== undefined ? WEIGHTS[file] : null,
                 }));
 
@@ -586,14 +554,13 @@
 
                         const dataMap = {};
                         lines.forEach(line => {
-                            // 格式：文件名 | 日期 | 大小 | 原线路URL
                             const parts = line.split('|').map(s => s.trim());
                             if (parts.length < 3) return;
                             const file = parts[0];
                             const date = parts[1] || '';
                             const size = parts[2] || '';
-                            const origUrl = parts[3] || '';   // 第4列为原线路
-                            const note = parts[4] || '';      // 第5列（如有）为备注
+                            const origUrl = parts[3] || '';
+                            const note = parts[4] || '';
                             if (file) {
                                 dataMap[file] = { date, size, origUrl, note };
                             }
