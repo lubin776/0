@@ -107,31 +107,12 @@
             min-width: 0;
         }
 
-        .entry-note {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .note-tag {
-            background: #e8f4ff;
-            color: #2a6bb0;
-            padding: 2px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            line-height: 1.5;
-            display: inline-block;
-            max-width: 100%;
-            white-space: normal;
-            word-break: break-all;
-            vertical-align: middle;
-        }
-
-        /* 新增：标题同一排右侧的备份时间和大小 */
+        /* 标题右侧：备份时间 + 大小 */
         .entry-meta-inline {
             margin-left: auto;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 0.75rem;
             color: #5a6f88;
             white-space: nowrap;
@@ -139,7 +120,7 @@
         }
         .entry-meta-inline .meta-item {
             display: inline-block;
-            padding: 0 4px;
+            padding: 0 2px;
         }
 
         .badge-new { color: #1b9e5a; }
@@ -246,7 +227,6 @@
             .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
-            .note-tag { font-size: 0.65rem; padding: 1px 10px; }
             .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
         }
 
@@ -262,7 +242,6 @@
             .url-tag { font-size: 0.55rem; padding: 0 8px; line-height: 20px; }
             .url-text { font-size: 0.7rem; min-width: 20px; }
             .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
-            .note-tag { font-size: 0.55rem; padding: 1px 6px; }
             .page-footer { font-size: 0.62rem; }
         }
     </style>
@@ -331,16 +310,15 @@
                 { tag: "备份三线", base: "https://0.wdzb.eu.cc/eucc/" },
             ];
 
-            // 静态条目（保持不变）
+            // 静态条目（菠菜园、少儿频道）：同样处理，无站长推荐，时间+大小在标题右侧
             const staticEntries = `
 <div class="entry" data-name="菠菜园"> 
  <div class="entry-header"> 
   <div class="entry-name" title="菠菜园">菠菜园</div>
-  <div class="entry-note"><span class="note-tag">站长推荐</span></div>
- </div>
- <div class="entry-meta-inline" style="margin-left:0; margin-bottom:8px;">
-  <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
-  <span class="meta-item">50.1K</span>
+  <div class="entry-meta-inline">
+   <span class="meta-item"><span class="badge-new">备份时间 ${todayFormatted}</span></span>
+   <span class="meta-item">50.1K</span>
+  </div>
  </div>
  <div class="entry-urls"> 
   <div class="url-line"> 
@@ -364,11 +342,10 @@
 <div class="entry" data-name="少儿频道"> 
  <div class="entry-header"> 
   <div class="entry-name" title="少儿频道">少儿频道</div>
-  <div class="entry-note"><span class="note-tag">站长推荐</span></div>
- </div>
- <div class="entry-meta-inline" style="margin-left:0; margin-bottom:8px;">
-  <span class="meta-item"><span class="badge-new">备份时间 ${yesterdayFormatted}</span></span>
-  <span class="meta-item">19.2K</span>
+  <div class="entry-meta-inline">
+   <span class="meta-item"><span class="badge-new">备份时间 ${yesterdayFormatted}</span></span>
+   <span class="meta-item">19.2K</span>
+  </div>
  </div>
  <div class="entry-urls"> 
   <div class="url-line"> 
@@ -415,11 +392,10 @@
                 const isNew = isRecent(date);
                 const newClass = isNew ? 'badge-new' : 'badge-old';
 
-                // 标题行：名称 + 备注 + 备份时间/大小（靠右，替代原来的复制按钮）
+                // 标题行：名称 + 备份时间/大小（靠右）
                 const headerHtml = `
                     <div class="entry-header">
                         <div class="entry-name" title="${displayName}">${displayName}</div>
-                        ${note ? `<div class="entry-note"><span class="note-tag">${note}</span></div>` : ''}
                         <div class="entry-meta-inline">
                             <span class="meta-item"><span class="${newClass}">备份时间 ${formatDateToChinese(date)}</span></span>
                             <span class="meta-item">${size || '-'}</span>
@@ -427,7 +403,7 @@
                     </div>
                 `;
 
-                // 原线路行（与备份线路同色）
+                // 原线路行
                 let urlLinesHtml = '';
                 if (origUrl) {
                     urlLinesHtml += `
