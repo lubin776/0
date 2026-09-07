@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             background: #f5f7fa;
             color: #1e293b;
-            padding: 16px 12px;
+            padding: 16px 12px 8px;
         }
 
         .container {
@@ -235,8 +235,16 @@
             display: none;
         }
 
+        .page-footer {
+            text-align: center;
+            padding: 20px 0 8px;
+            font-size: 0.72rem;
+            color: #9aadc2;
+            line-height: 1.8;
+        }
+
         @media (max-width: 600px) {
-            body { padding: 12px 6px; }
+            body { padding: 12px 6px 4px; }
             h1 .header-logo { width: 1.15rem; height: 1.15rem; vertical-align: -0.2rem; }
             .header-divider { margin: 8px 0; }
             .big-card { padding: 12px 12px 10px; }
@@ -249,6 +257,7 @@
             .url-text { font-size: 0.75rem; min-width: 30px; }
             .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
             .note-tag { font-size: 0.65rem; padding: 1px 10px; }
+            .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
         }
 
         @media (max-width: 420px) {
@@ -264,6 +273,7 @@
             .url-text { font-size: 0.7rem; min-width: 20px; }
             .copy-btn { font-size: 0.55rem; padding: 0 8px; height: 20px; line-height: 20px; }
             .note-tag { font-size: 0.55rem; padding: 1px 6px; }
+            .page-footer { font-size: 0.62rem; }
         }
     </style>
 </head>
@@ -278,6 +288,10 @@
         <div id="listContainer">
             <div class="loading">⏳ 正在加载接口列表...</div>
         </div>
+
+        <footer class="page-footer">
+            <p>本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。联系请加 QQ 群：1067685939。</p>
+        </footer>
     </div>
 
     <script>
@@ -534,7 +548,7 @@
                     })
                     .catch(err => {
                         console.warn('加载失败:', err);
-                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ list加载失败!</div></div>`;
+                        container.innerHTML = `<div class="big-card">${staticEntries}<div class="empty">❌ 加载失败，请确认 list.txt 存在且格式正确</div></div>`;
                         bindCopyEvents();
                     });
             }
