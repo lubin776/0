@@ -9,8 +9,8 @@ on:
   workflow_dispatch:  # 支持在 GitHub 页面手动触发，方便测试
 
 env:
-  SCRIPT_DIR: "scripts"          # 【修改入口 1】脚本所在目录（相对于仓库根目录）
-  SCRIPT_NAME: "main.py"         # 【修改入口 2】需要启动的脚本文件名
+  SCRIPT_DIR: "python"          # 【修改入口 1】脚本所在目录（相对于仓库根目录）
+  SCRIPT_NAME: "download.py"         # 【修改入口 2】需要启动的脚本文件名
 
 jobs:
   run:
