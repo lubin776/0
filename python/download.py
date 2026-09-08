@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 TVBox 伪装下载器（带网速/进度/百分比）
-Android/QPython 终端单行刷新显示
+配置集中在「用户配置区」：链接、保存目录、文件名、是否解压
+工作流只负责启动本脚本 + 提交结果，不再传参
 """
 
 import requests
@@ -10,11 +11,22 @@ import os
 import sys
 import time
 
-# ================== 用户配置区 ==================
-DOWNLOAD_URL = "https://mpimg.cn/down.php/31d75f152d5ac34ee395947b877c21d2.zip"
-SAVE_PATH    = "data/奇奇.zip"
-EXTRACT      = False
-# ===============================================
+# ================== 用户配置区（改这里就行） ==================
+DOWNLOAD_URL = "https://mpimg.cn/down.php/fe15c27aeb01b77b9f6708a1dac89fd0"
+
+# 保存目录（相对于仓库根目录）
+SAVE_DIR = "zip"
+
+# 文件名（可写死，也可用下方按日期自动命名）
+FILENAME = "tvboxqq.zip"          # 例如：tvboxqq.zip
+# FILENAME = time.strftime("tvbox_%Y%m%d_%H%M%S.zip")  # 按时间命名（需要时开启）
+
+# 下载完成后是否自动解压（True / False）
+EXTRACT = False
+# ============================================================
+
+# 最终完整保存路径
+SAVE_PATH = os.path.join(SAVE_DIR, FILENAME)
 
 TVBOX_UAS = [
     ("okhttp/3.15", "com.iptvbox"),
@@ -78,12 +90,10 @@ def download(url, save_path):
                         downloaded += len(chunk)
                         now = time.time()
 
-                        # 每 0.3 秒刷新一次显示
                         if now - last_time >= 0.3:
                             elapsed = now - start_time
                             speed = (downloaded - last_downloaded) / (now - last_time)
 
-                            # 百分比和进度条
                             if total:
                                 pct = downloaded / total * 100
                                 bar_len = 25
@@ -94,15 +104,13 @@ def download(url, save_path):
                                 speed_avg = downloaded / elapsed if elapsed > 0 else 0
                                 line = f"\r  ↓ {fmt_size(downloaded)} | {fmt_size(speed)}/s | 耗时{int(elapsed)}s"
 
-                            # 截断到终端宽度
                             line = line[:75]
                             print(line, end='', flush=True)
 
                             last_time = now
                             last_downloaded = downloaded
 
-            # 最终状态
-            print('\r' + ' ' * 75 + '\r', end='')  # 清行
+            print('\r' + ' ' * 75 + '\r', end='')
             final_size = os.path.getsize(save_path)
             total_time = time.time() - start_time
             avg_speed = final_size / total_time if total_time > 0 else 0
@@ -113,15 +121,19 @@ def download(url, save_path):
             print(f"     耗时: {total_time:.1f}s")
             print(f"     路径: {os.path.abspath(save_path)}")
 
-            # ZIP 校验
-            with open(save_path, 'rb') as f:
-                magic = f.read(2)
-            if magic == b'PK':
-                print(f"     类型: ZIP ✓")
-                return True
-            else:
-                print(f"     ⚠️ 非 ZIP 文件")
-                return False
+            if EXTRACT:
+                import zipfile
+                try:
+                    with zipfile.ZipFile(save_path, 'r') as z:
+                        z.extractall(SAVE_DIR)
+                    print(f"     📦 已解压到: {SAVE_DIR}")
+                except zipfile.BadZipFile:
+                    print(f"     ⚠️ 解压失败：文件不是有效 ZIP")
+                    return False
+                except Exception as e:
+                    print(f"     ⚠️ 解压失败: {e}")
+                    return False
+            return True
 
         except requests.exceptions.Timeout:
             print(f"  ❌ 超时")
@@ -132,18 +144,16 @@ def download(url, save_path):
 
 
 if __name__ == "__main__":
-    url = sys.argv[1] if len(sys.argv) > 1 else DOWNLOAD_URL
-    save = sys.argv[2] if len(sys.argv) > 2 else SAVE_PATH
-    extract_flag = len(sys.argv) > 3 and sys.argv[3].lower() in ('1', 'true', 'yes')
-
     print("\n" + "=" * 60)
     print("  TVBox 伪装下载器（带网速监控）")
     print("=" * 60)
-    print(f"  链接: {url}")
-    print(f"  保存: {save}")
+    print(f"  链接: {DOWNLOAD_URL}")
+    print(f"  保存: {SAVE_PATH}")
+    print(f"  解压: {'是' if EXTRACT else '否'}")
     print("=" * 60)
 
-    if download(url, save):
+    if download(DOWNLOAD_URL, SAVE_PATH):
         print("\n🎉 下载成功！")
     else:
         print("\n💀 全部失败")
+        sys.exit(1)
