@@ -1,0 +1,33 @@
+name: 启动Py脚本
+
+# 说明：本工作流仅用于测试启动一个 Python 脚本。
+# 使用时只需修改下方「env」中的两个变量即可：
+#   SCRIPT_DIR  - 脚本所在的目录路径（相对于仓库根目录，留空或填 "." 表示仓库根目录）
+#   SCRIPT_NAME - 需要启动的脚本文件名（如 main.py）
+
+on:
+  workflow_dispatch:  # 支持在 GitHub 页面手动触发，方便测试
+
+env:
+  SCRIPT_DIR: "scripts"          # 【修改入口 1】脚本所在目录（相对于仓库根目录）
+  SCRIPT_NAME: "main.py"         # 【修改入口 2】需要启动的脚本文件名
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Python script
+        run: |
+          if [ -n "${{ env.SCRIPT_DIR }}" ]; then
+            cd "${{ github.workspace }}/${{ env.SCRIPT_DIR }}"
+          fi
+          python "${{ env.SCRIPT_NAME }}"
