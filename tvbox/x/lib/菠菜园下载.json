@@ -1,24 +1,17 @@
 [
 
 
-
-
-
-
-
-
-
     {
         "name": "推荐",
         "list": [
             {
-                "name": "代理下载",
+                "name": "下载①",
                 "url": "https://mpimg.cn/down.php/5163056ea492aa4245ac26f7b0e1d310",
                 "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
                 "version": "09.08"
             },
             {
-                "name": "直链下载",
+                "name": "下载②",
                 "url": "https://mpimg.cn/down.php/5163056ea492aa4245ac26f7b0e1d310",
                 "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
                 "version": "09.08"
