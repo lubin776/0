@@ -6,11 +6,11 @@ name: "触发下载"
       url:
         description: '下载链接 (留空则用脚本里的 DOWNLOAD_URL)'
         required: false
-        default: 'https://mpimg.cn/down.php/31d75f152d5ac34ee395947b877c21d2.zip'
+        default: 'https://mpimg.cn/down.php/fe15c27aeb01b77b9f6708a1dac89fd0'
       save_path:
         description: '保存路径 (相对于仓库根目录)'
         required: false
-        default: 'download/奇奇.zip'
+        default: 'zip/tvboxqq.zip'
       extract:
         description: '是否解压 (true/false)'
         required: false
