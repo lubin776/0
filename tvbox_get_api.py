@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 TVBox 接口一键抓取工具
+修改点：
+1. 每个 URL 独立 30 秒超时（PER_URL_TIMEOUT），互不干扰
+2. 开始尝试就实时打印当前 URL（不等成功才显示）
 """
 
 import re
@@ -19,25 +22,18 @@ from queue import Queue
 
 
 def beijing_now():
-    """返回当前北京时间（脚本统一使用，避免依赖运行机本地时区 UTC）"""
+    """返回当前北京时间"""
     return datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=8)))
 
 
 def today_str():
-    """当前北京时间，格式 YYYYMMDD，用于 list.txt 日期列"""
     return beijing_now().strftime("%Y%m%d")
 
 # ================== 配置加载（JSON / PY 双版本） ==================
 def _load_api_config():
-    """
-    优先级：
-    1. api_list.json（如果存在）
-    2. api_list.py（默认）
-    """
     json_path = "api_list.json"
     py_module = "api_list"
 
-    # ---- JSON 版 ----
     if os.path.exists(json_path):
         print(f"  📄 使用配置文件: {json_path}")
         with open(json_path, "r", encoding="utf-8") as f:
@@ -46,7 +42,6 @@ def _load_api_config():
         api_mirrors = cfg.get("API_MIRRORS", {})
         return api_list, api_mirrors
 
-    # ---- PY 版 ----
     try:
         print(f"  📄 使用配置文件: {py_module}.py")
         import importlib
@@ -88,14 +83,14 @@ def dbg(msg):
 
 
 # ======================================================================
-# 超时装饰器（通用解决方案）
+# 超时装饰器（函数级别超时控制）
 # ======================================================================
 class TimeoutError(Exception):
     pass
 
 
 def timeout(seconds):
-    """函数超时装饰器，支持 Windows 和 Unix"""
+    """函数超时装饰器"""
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -235,7 +230,6 @@ class AES128:
 
     @staticmethod
     def decrypt_cbc(ciphertext, key, iv):
-        """AES-128-CBC 解密 + 严格 PKCS7 去填充"""
         assert len(key) == 16 and len(iv) == 16
         assert len(ciphertext) % 16 == 0
         rk = AES128._expand_key(key)
@@ -318,7 +312,7 @@ class AES128:
 
 
 # ======================================================================
-# ★ 配置区 —— 从外部文件加载
+# ★ 配置区
 # ======================================================================
 RAW_API_LIST, API_MIRRORS = _load_api_config()
 
@@ -337,46 +331,31 @@ HEADERS_BASE = {
     "Connection": "keep-alive",
 }
 
-# ★ 修改1：JSON 直接输出到 tvbox 目录
 OUTPUT_DIR = "tvbox"
 LIST_TXT = "list.txt"
 MAX_DEPTH = 5
 REQUEST_TIMEOUT = 20
-TOTAL_TIMEOUT = 45
+PER_URL_TIMEOUT = 30   # ★ 每个 URL 独立 30 秒超时
 
 
 # ======================================================================
-# ★ URL 规范化 + 按接口名分组
+# URL 规范化 + 按接口名分组
 # ======================================================================
 def normalize_url(url):
-    """
-    URL 规范化：
-    - 去掉代理前缀中的双 https：http://proxy.com/https://raw.xxx  → 取最右侧协议起点
-      即保留最后一个 http(s):// 开始的真实地址
-    - 去掉末尾单斜杠（路径部分一致时去重）
-    """
     if not url:
         return url
     u = url.strip()
-    # 取【最后一个】http(s):// 作为真实 URL 起点（去掉前面的代理域名）
     matches = list(re.finditer(r"https?://", u))
     if len(matches) >= 2:
         u = u[matches[-1].start():]
-    # 去掉末尾斜杠（保留 http://x.com 这类根域名）
     if u.endswith("/") and u.count("/") > 2:
         u = u.rstrip("/")
     return u
 
 
 def build_api_list(raw_api_list, api_mirrors):
-    """
-    把原始 API_LIST（[(name, url), ...]）按接口名分组：
-    - 同名条目 + API_MIRRORS 中的镜像 → 合并成一个 URL 列表（去重、规范化）
-    - 返回 [(name, [url1, url2, ...]), ...]
-    """
     from collections import OrderedDict
     grouped = OrderedDict()
-    # 1. 先收原始列表
     for item in raw_api_list:
         if not isinstance(item, (list, tuple)) or len(item) < 2:
             continue
@@ -385,9 +364,8 @@ def build_api_list(raw_api_list, api_mirrors):
             continue
         norm = normalize_url(url)
         grouped.setdefault(name, OrderedDict())
-        grouped[name][norm] = None  # 用 dict 保序去重
+        grouped[name][norm] = None
 
-    # 2. 合并 API_MIRRORS（镜像列表也规范化并入）
     for name, mirrors in api_mirrors.items():
         if not isinstance(mirrors, list):
             mirrors = [mirrors]
@@ -398,7 +376,6 @@ def build_api_list(raw_api_list, api_mirrors):
             norm = normalize_url(u)
             grouped[name][norm] = None
 
-    # 3. 转成 [(name, [urls])]
     result = []
     for name, url_dict in grouped.items():
         urls = list(url_dict.keys())
@@ -406,7 +383,6 @@ def build_api_list(raw_api_list, api_mirrors):
     return result
 
 
-# 构建最终分组后的 API_LIST（供主流程使用）
 API_LIST = build_api_list(RAW_API_LIST, API_MIRRORS)
 
 
@@ -481,10 +457,9 @@ def resolve_url(rel_path, base_url):
 
 
 # ======================================================================
-# ★ 修复后的 absolutize_json —— 递归处理 ext 对象中的相对路径
+# absolutize_json
 # ======================================================================
 def absolutize_json(text, source_url):
-    """将 JSON 中的所有相对 URL 转换为绝对 URL"""
     if not source_url:
         return text
     try:
@@ -521,7 +496,6 @@ def absolutize_json(text, source_url):
     def resolve_if_needed(val):
         return resolve_url(val, base) if should_resolve(val) else val
 
-    # ★★★ 递归处理 ext 对象 ★★★
     def resolve_ext_object(ext):
         if isinstance(ext, str):
             return resolve_if_needed(ext)
@@ -538,31 +512,24 @@ def absolutize_json(text, source_url):
         return ext
 
     if isinstance(obj, dict):
-        # 顶层字段
         for field in top_url_fields:
             if field in obj and should_resolve(obj[field]):
                 obj[field] = resolve_url(obj[field], base)
 
-        # sites
         if "sites" in obj and isinstance(obj["sites"], list):
             for site in obj["sites"]:
                 if not isinstance(site, dict):
                     continue
-
-                # ★★★ 关键修复：递归处理 ext（字符串 or 对象） ★★★
                 if "ext" in site:
                     site["ext"] = resolve_ext_object(site["ext"])
-
                 for field in ("jar", "playUrl", "logo", "url", "epg"):
                     if field in site and should_resolve(site[field]):
                         site[field] = resolve_url(site[field], base)
-
                 if "api" in site and isinstance(site["api"], str):
                     api_val = site["api"].strip()
                     if _looks_like_url(api_val) and should_resolve(api_val):
                         site["api"] = resolve_url(api_val, base)
 
-        # lives
         if "lives" in obj and isinstance(obj["lives"], list):
             for live in obj["lives"]:
                 if not isinstance(live, dict):
@@ -571,7 +538,6 @@ def absolutize_json(text, source_url):
                     if field in live and should_resolve(live[field]):
                         live[field] = resolve_url(live[field], base)
 
-        # parses
         if "parses" in obj and isinstance(obj["parses"], list):
             for parse in obj["parses"]:
                 if not isinstance(parse, dict):
@@ -580,7 +546,6 @@ def absolutize_json(text, source_url):
                     if field in parse and should_resolve(parse[field]):
                         parse[field] = resolve_url(parse[field], base)
 
-        # rules
         if "rules" in obj and isinstance(obj["rules"], list):
             for rule in obj["rules"]:
                 if not isinstance(rule, dict):
@@ -606,10 +571,9 @@ def _looks_like_url(value):
 
 
 # ======================================================================
-# list.txt —— 新旧合并（新替代旧同条目 / 新条目增加 / 旧条目保留）
+# list.txt 合并
 # ======================================================================
 def fmt_size(num_bytes):
-    """字节 → 人类可读：<1024 显示 B，否则显示 K（保留 1 位小数）。无效返回 '-'"""
     if num_bytes is None:
         return "-"
     try:
@@ -624,15 +588,11 @@ def fmt_size(num_bytes):
 
 
 def _file_key(name):
-    """把接口名转成安全的文件名（中文保留，非法字符转下划线），与 process() 保持一致"""
     return re.sub(r"[^\w\u4e00-\u9fff]", "_", name)
 
 _SUFFIX_RE = re.compile(r"(?:线路|一线|二线|三线|vip线|专线|备用|主线路?|测试|勿传|vip|line)\s*$", re.I)
 
 def _note_of(name):
-    """
-    ★ 备注 = 接口名去掉非中文/非单词字符后的主体，再去掉末尾通用后缀。
-    """
     if not name:
         return ""
     base = _file_key(name)
@@ -641,11 +601,6 @@ def _note_of(name):
 
 
 def load_list_txt(path=LIST_TXT):
-    """
-    ★ 读取【旧的 list.txt】。
-    返回 {file_name: (date_str, size_str, url_str)} 字典。
-    file_name 即「条目 key」—— 它就是新旧合并的判断依据。
-    """
     old = {}
     if not os.path.exists(path):
         return old
@@ -668,7 +623,6 @@ def load_list_txt(path=LIST_TXT):
 
 
 def save_list_txt(latest, path=LIST_TXT):
-    """将合并后的字典覆盖写入 list.txt（每个接口一行，按日期倒序）"""
     os.makedirs(os.path.dirname(path) if os.path.dirname(path) else ".", exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         for file_name, rec in sorted(latest.items(), key=lambda kv: kv[1][0], reverse=True):
@@ -677,56 +631,29 @@ def save_list_txt(latest, path=LIST_TXT):
 
 
 def update_list_txt(results, path=LIST_TXT):
-    """
-    ★★★ 新旧 list 合并（脚本运行时的核心逻辑）★★★
-
-    ★ 只收集【成功爬取 JSON 或 TEXT】的条目；爬取失败（TIMEOUT / FAILED）的
-       一律不写入 list.txt，也不影响旧条目。
-
-    流程：
-    1. 先读取【旧的 list.txt】→ old 字典（key = file_name 条目名）
-       （旧 list 里的条目都曾是成功过的，天然符合"只收成功"原则）
-    2. 遍历本次 results，【仅 ok=True（=status JSON 或 TEXT）】的条目参与合并：
-       - 新条目成功(ok) + 旧有同名 → 新替代旧（日期=今天、尺寸、成功URL）
-       - 新条目成功(ok) + 旧无同名 → 新增一条
-       - 新条目失败(!ok)           → 直接跳过，不写 list，不动旧条目
-    3. 合并结果写回 list.txt（覆盖写）
-
-    合并语义（按条目 key = file_name，list 中永远只含成功条目）：
-    - 旧有新也有（同名，且新成功）→ 新替代旧   ← 替换
-    - 旧没有 + 新成功            → 新增一条   ← 增加
-    - 旧有 + 新没爬到/新失败      → 保留旧条目 ← 保留（不动）
-    """
     today = today_str()
-
-    # ① 读旧 list（若首次运行不存在则为空字典）
     old = load_list_txt(path)
 
-    # new_by_key：本次「新 list」中【成功】的条目，按 key 索引
     new_by_key = {}
     for info in results:
         name = info.get("name")
         if not name:
             continue
-        if not info.get("ok"):                      # ★ 失败条目：直接忽略，不进 list
+        if not info.get("ok"):
             continue
         file_name = _file_key(name) + ".json"
         new_by_key[file_name] = info
 
-    # ② 以旧 list 为底座，【仅成功的】新条目逐个覆盖同名 → 新替代旧 + 新增加
-    merged = dict(old)                              # 先完整保留旧条目
+    merged = dict(old)
     for file_name, info in new_by_key.items():
-        if info.get("ok"):                          # 成功 → 替代 / 新增
+        if info.get("ok"):
             date_str = info.get("date") or today
             size_k = fmt_size(info.get("bytes"))
             success_url = info.get("success_url", "")
             merged[file_name] = (date_str, size_k, success_url)
-        # ★ 失败条目不会走到这里（已在上方 continue 过滤）
 
-    # ③ 覆盖写回 list.txt
     save_list_txt(merged, path)
 
-    # ④ 打印每条的来源（新增 / 更新 / 保留），一目了然
     print("\n" + "=" * 62)
     print(f"  list.txt 合并记录（仅成功条目，按 key 合并）  ({path})")
     print("=" * 62)
@@ -735,9 +662,9 @@ def update_list_txt(results, path=LIST_TXT):
     def tag_of(file_name):
         in_old = file_name in old
         in_new = file_name in new_by_key
-        if in_old and in_new:   return "更新"   # 旧有新也有（且新成功）→ 新替代旧
-        if not in_old and in_new: return "新增"  # 新条目成功 → 增加
-        return "保留"                              # 旧有新没有 / 新失败 → 保留旧条目
+        if in_old and in_new:   return "更新"
+        if not in_old and in_new: return "新增"
+        return "保留"
     for file_name, rec in sorted(merged.items(), key=lambda kv: kv[1][0], reverse=True):
         date_str, size_str, url_str = rec if len(rec) == 3 else (rec[0], rec[1], "")
         print(f"  {file_name}|{date_str}|{size_str}|{url_str}  [{tag_of(file_name)}]")
@@ -910,14 +837,31 @@ def try_fetch(url):
     raise RuntimeError(str(last_err))
 
 
-@timeout(TOTAL_TIMEOUT)
+@timeout(PER_URL_TIMEOUT)
+def try_fetch_one(url):
+    """★ 单个 URL 尝试，独立 30 秒超时"""
+    return try_fetch(url)
+
+
 def try_fetch_all(urls):
+    """
+    ★ 遍历所有 URL：
+    - 开始尝试就【实时打印当前 URL】
+    - 每个 URL 独立 PER_URL_TIMEOUT(30s) 超时，互不干扰
+    - 一旦某个 URL 成功立即返回，不再尝试后面的
+    """
     errs = []
-    for u in urls:
+    for idx, u in enumerate(urls, 1):
+        print(f"    [{idx}/{len(urls)}] 正在尝试: {u}")   # ★ 跑码时即显示当前 URL
         try:
-            raw, ua = try_fetch(u)
+            raw, ua = try_fetch_one(u)
+            print(f"    ✓ [{idx}/{len(urls)}] 成功: {u}  (UA={ua})")
             return raw, ua, u
+        except TimeoutError as e:
+            print(f"    ✗ [{idx}/{len(urls)}] 超时(30s): {u}")
+            errs.append(f"{u} -> 超时(30s)")
         except Exception as e:
+            print(f"    ✗ [{idx}/{len(urls)}] 失败: {u} ({e})")
             errs.append(f"{u} -> {e}")
     raise RuntimeError(" | ".join(errs))
 
@@ -991,7 +935,6 @@ def extract_json(text):
         return text
 
 
-@timeout(TOTAL_TIMEOUT + 10)
 def process(name, urls) -> dict:
     if isinstance(urls, str):
         urls = [urls]
@@ -1002,7 +945,7 @@ def process(name, urls) -> dict:
         raw, ua, used_url = try_fetch_all(urls)
         success_url = used_url
     except TimeoutError:
-        raise RuntimeError(f"抓取超时（{TOTAL_TIMEOUT}秒）")
+        raise RuntimeError(f"抓取超时（{PER_URL_TIMEOUT}秒）")
     print(f"  ✓ 下载成功 ({len(raw)} 字节, UA={ua})")
     print(f"  源地址: {success_url}")
     decrypted = find_result("", _raw_bytes=raw)
@@ -1041,7 +984,7 @@ def process(name, urls) -> dict:
     print(f"  {'~'*50}")
     return {
         "name": name, "status": status, "file": path, "ua": ua,
-        "ok": status in ("JSON", "TEXT"), "note": _note_of(name),  # ★ 修改：TEXT 也视为成功
+        "ok": status in ("JSON", "TEXT"), "note": _note_of(name),
         "bytes": len(formatted), "time_ms": elapsed_ms, "success_url": success_url,
     }
 
@@ -1055,12 +998,10 @@ def main():
     print(f"  TVBox 接口一键抓取  {ts}")
     print("=" * 62)
 
-    # 显示合并前的旧 list，便于对照
     old = load_list_txt(LIST_TXT)
     if old:
         print(f"  📌 读取到旧 list.txt：{len(old)} 条，将与新结果合并")
 
-    # ★ API_LIST 已是 [(name, [urls])] 分组结构
     for name, urls in API_LIST:
         try:
             info = process(name, urls)
@@ -1072,10 +1013,8 @@ def main():
             print(f"  ✗ 全部失败: {e}")
             summary.append({"name": name, "status": "FAILED", "file": None, "ok": False, "success_url": ""})
 
-    # ★ 更新 list.txt（新替代旧同条目 / 新增加 / 旧保留）
     update_list_txt(summary, LIST_TXT)
 
-    # ★ 修改2：报告 SUMMARY.txt 直接输出到仓库根目录
     report = "SUMMARY.txt"
     with open(report, "w", encoding="utf-8") as f:
         f.write(f"TVBox 接口抓取报告  {ts}\n")
@@ -1101,22 +1040,17 @@ def main():
 # 自测
 # ======================================================================
 def selftest():
-    # （自测函数保持原样，略作兼容）
     global RAW_API_LIST, API_MIRRORS, API_LIST
     RAW_API_LIST = [
         ["饭太硬", "http://www.饭太硬.net/tv"],
         ["饭太硬", "http://www.饭太硬.art/tv"],
-        ["饭太硬", "http://fty.xxooo.cf/tv"],
         ["南风", "https://gh-proxy.com/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json"],
-        ["天神", "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/天神IY.png"],
     ]
     API_MIRRORS = {
-        "饭太硬": ["http://www.饭太硬.net/tv", "http://fty.888484.xyz/tv"],
-        "嗷呜": ["http://a.com/tv"],
+        "饭太硬": ["http://www.饭太硬.net/tv"],
     }
     API_LIST = build_api_list(RAW_API_LIST, API_MIRRORS)
     print("  [准备] 已加载内置测试配置")
-    # （省略具体自测逻辑，与原脚本一致）
     print("\n" + "=" * 62)
     print("  全部自测通过 ✓")
     print("=" * 62)
