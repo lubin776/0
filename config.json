@@ -33,19 +33,22 @@
       "name": "奇奇副本",
       "url": "https://0.12yue.de5.net/tvbox/x/lib/666.json",
       "description": "整理者：误道者"
-    },   {
-      "name": "奇奇",
-      "url": "https://ry.12yue.de5.net/?target=http://bd.qiqiv.cn/666.json",
-      "description": "奇奇"
-    },   {
-      "name": "无优",
-      "url": "https://ry.12yue.de5.net/?target=https://plum.now61.cn/f/ZWguY/bdgx.txt",
-      "description": "云星"
-    },   {
+    }, 
+    {
       "name": "奇奇",
       "url": "https://ry.12yue.de5.net/?target=http://bd.qiqiv.cn/666.json",
       "description": "奇奇"
     },
+    {
+      "name": "无优",
+      "url": "https://ry.12yue.de5.net/?target=https://plum.now61.cn/f/ZWguY/bdgx.txt",
+      "description": "云星"
+    },
+    {
+      "name": "奇奇",
+      "url": "https://ry.12yue.de5.net/?target=http://bd.qiqiv.cn/666.json",
+      "description": "奇奇"
+    }
   ],
   "about": {
     "domains": [
