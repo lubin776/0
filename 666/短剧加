@@ -39,12 +39,20 @@
       "api": "https://mpimg.cn/down.php/fb7cbeb74dcdfec57e6a43e5a1c5028e.py"
     },
     {
-      "key": "七星短剧",
-      "name": "🎬七星丨短剧",
+      "key": "七猫短剧",
+      "name": "🎬七猫｜短剧",
       "type": 3,
       "searchable": 0,
       "quickSearch": 0,
-      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/qxdj.py"
+      "api": "https://mpimg.cn/down.php/fb7cbeb74dcdfec57e6a43e5a1c5028e.py"
+    },
+    {
+      "key": "黄瓜短剧",
+      "name": "🎬黄瓜丨短剧",
+      "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
+      "api": "https://mpimg.cn/down.php/50c576631ebe4f148e0a8c3926ea30f4.py"
     },
     {
       "key": "百度短剧",
