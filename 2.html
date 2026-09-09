@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>海量接口搬运备份</title>
 <style>
-    /* ==================== 公共基础样式 ==================== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -15,7 +14,6 @@
     }
     .container { max-width: 820px; margin: 0 auto; }
 
-    /* 切换按钮 */
     #modeToggleBtn {
         position: fixed; top: 10px; left: 10px; z-index: 999;
         padding: 5px 12px; border-radius: 20px; border: 1.5px solid #4a9eff;
@@ -24,7 +22,6 @@
     }
     #modeToggleBtn:active { transform: scale(0.95); }
 
-    /* ===== 模块一：标题 ===== */
     .header-block { text-align: center; margin-bottom: 14px; }
     h1 { font-size: 1.3rem; font-weight: 600; color: #0b1e33; }
     h1 .header-logo {
@@ -35,20 +32,15 @@
     .header-divider { height: 1px; background: #e9edf2; margin: 6px 0; }
     .subtitle { font-size: 0.78rem; color: #8b9eb0; line-height: 1.45; }
 
-    /* ===== 模块二：主卡片 ===== */
     .main-card {
         background: #ffffff; border-radius: 16px;
-        padding: 14px 16px 12px;
+        padding: 14px 16px 16px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         border: 1px solid #f0f3f8;
         transition: padding 0.3s;
     }
 
-    /* 导航 */
-    .nav-tabs {
-        display: flex; gap: 10px; margin-bottom: 12px;
-        justify-content: center; flex-wrap: wrap;
-    }
+    .nav-tabs { display: flex; gap: 10px; margin-bottom: 12px; justify-content: center; flex-wrap: wrap; }
     .nav-tab {
         padding: 7px 24px; border: 1.5px solid #4a9eff;
         border-radius: 40px; background: #fff; color: #4a9eff;
@@ -58,7 +50,6 @@
     .nav-tab.active { background: #4a9eff; color: #fff; }
     .nav-tab:active { transform: scale(0.96); }
 
-    /* 搜索 */
     .search-box {
         width: 100%; padding: 10px 16px;
         border: 1px solid #dce1e9; border-radius: 40px;
@@ -67,16 +58,17 @@
     }
     .search-box:focus { border-color: #4a9eff; box-shadow: 0 0 0 3px rgba(74,158,255,0.15); }
 
-    /* 面板 */
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* ===== 接口列表 ===== */
+    /* ===== 接口列表（与搜索框同容器，去掉外层圆角） ===== */
     .api-list {
-        background: #f8fafc; border-radius: 12px;
-        padding: 4px 12px; border: 1px solid #eef2f7;
+        padding: 0;
+        border: none;
+        background: transparent;
     }
-    .entry { padding: 12px 0; border-bottom: 1px solid #e8eef5; }
+    .entry { padding: 14px 2px; border-bottom: 1px solid #eef2f7; }
+    .entry:first-of-type { padding-top: 4px; }
     .entry:last-child { border-bottom: none; }
     .entry-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
     .entry-name {
@@ -92,8 +84,8 @@
     .badge-new { color: #1b9e5a; } .badge-old { color: #b88b3a; }
     .entry-urls { display: block; }
     .url-line {
-        padding: 4px 12px 4px 10px; margin-bottom: 5px;
-        background: #fff; border-radius: 40px; border: 1px solid #e0e6ed;
+        padding: 6px 12px 6px 10px; margin-bottom: 5px;
+        background: #f8fafc; border-radius: 10px; border: 1px solid #eef2f7;
         display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
     }
     .url-line:last-child { margin-bottom: 0; }
@@ -121,10 +113,7 @@
     .error-msg { text-align: center; color: #d9534f; padding: 16px; font-size: 0.82rem; background: #fff3f3; border-radius: 10px; margin: 8px 0; word-break: break-all; }
 
     /* ===== 下载模块 ===== */
-    .source-section {
-        background: #f8fafc; border-radius: 12px;
-        padding: 12px 14px; margin-bottom: 12px; border: 1px solid #eef2f7;
-    }
+    .source-section { background: #f8fafc; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; border: 1px solid #eef2f7; }
     .source-section:last-child { margin-bottom: 0; }
     .source-title { font-size: 0.95rem; font-weight: 600; color: #0b1e33; margin-bottom: 2px; }
     .source-desc { font-size: 0.7rem; color: #8b9eb0; margin-bottom: 10px; }
@@ -146,10 +135,7 @@
     .card-version { font-size: 0.6rem; color: #8b9eb0; margin-top: 2px; }
 
     /* ===== 关于 ===== */
-    .about-inner {
-        background: #f8fafc; border-radius: 12px;
-        padding: 14px 16px; margin-bottom: 12px; border: 1px solid #eef2f7;
-    }
+    .about-inner { background: #f8fafc; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #eef2f7; }
     .about-inner:last-child { margin-bottom: 0; }
     .about-inner h3 { font-size: 0.92rem; font-weight: 600; color: #0b1e33; margin-bottom: 8px; }
     .about-inner p, .about-inner li { font-size: 0.76rem; color: #5a6f88; line-height: 1.6; }
@@ -157,7 +143,6 @@
     .domain-line { display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: #fff; border-radius: 40px; border: 1px solid #e0e6ed; margin-top: 6px; }
     .domain-line span { flex: 1; font-size: 0.75rem; color: #2563eb; word-break: break-all; }
 
-    /* ===== 页脚 ===== */
     .page-footer { text-align: center; padding: 14px 0 6px; font-size: 0.7rem; color: #9aadc2; line-height: 1.7; }
 
     /* ==================== 简洁版覆盖样式 ==================== */
@@ -168,49 +153,42 @@
     body.simple-mode #about-panel { display: none !important; }
     body.simple-mode #api-panel { display: block !important; }
     body.simple-mode .entry { padding: 16px 0; }
-    body.simple-mode .entry:last-child { border-bottom: none; }
     body.simple-mode .entry-header { margin-bottom: 8px; }
     body.simple-mode .url-line { background: #f8fafc; border-color: #eef2f7; }
     body.simple-mode .api-list { background: transparent; border: none; padding: 0; }
 
-    /* 响应式 */
     @media (max-width: 600px) {
         body { padding: 10px 6px 4px; }
         h1 .header-logo { width: 1.6rem; height: 1.6rem; vertical-align: -0.4rem; }
-        .main-card { padding: 12px 10px 10px; }
+        .main-card { padding: 12px 12px 12px; }
         .nav-tab { padding: 6px 20px; font-size: 0.78rem; }
-        .api-list { padding: 4px 8px; }
-        .entry { padding: 10px 0; }
+        .entry { padding: 12px 0; }
         .entry-header { gap: 6px; margin-bottom: 5px; }
         .entry-name { font-size: 0.95rem; }
-        .url-line { padding: 3px 8px; gap: 4px 6px; }
+        .url-line { padding: 5px 8px; gap: 4px 6px; }
         .url-tag { font-size: 0.62rem; padding: 0 10px; line-height: 20px; }
         .url-text { font-size: 0.73rem; }
         .copy-btn { font-size: 0.62rem; padding: 0 10px; height: 22px; line-height: 22px; }
         .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
         .download-card { padding: 14px 10px 20px; min-height: 160px; }
         .card-icon { border-radius: 8px; margin-bottom: 12px; }
-        body.simple-mode .main-card { padding: 12px 12px 10px; }
-        body.simple-mode .entry { padding: 12px 0; }
     }
 </style>
 </head>
 <body class="simple-mode">
-<button id="modeToggleBtn">🚀 切换到全能版</button>
+<button id="modeToggleBtn">切换全能版</button>
 <div class="container">
-    <!-- 模块一：标题 -->
     <div class="header-block">
         <h1 id="siteTitle"><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
         <div class="header-divider"></div>
         <p class="subtitle" id="siteSubtitle">备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
     </div>
 
-    <!-- 模块二：主卡片 -->
     <div class="main-card">
         <div class="nav-tabs" id="navTabs"></div>
         <input class="search-box" id="search" type="text" placeholder="🔍 搜索接口..." oninput="globalSearch()">
 
-        <!-- 接口面板 -->
+        <!-- 接口面板：搜索框与列表同在 .main-card 内，列表无独立外层容器 -->
         <div class="tab-panel active" id="api-panel">
             <div class="api-list" id="listContainer">
                 <div class="entry" data-name="更新专用接口">
@@ -232,12 +210,10 @@
             </div>
         </div>
 
-        <!-- 下载面板 -->
         <div class="tab-panel" id="download-panel">
             <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
         </div>
 
-        <!-- 关于面板 -->
         <div class="tab-panel" id="about-panel">
             <div class="about-inner" id="aboutDomains">
                 <h3>🌐 备份线路域名</h3><p style="margin-bottom:6px;">三个域名互为备份，任一个可用：</p><div class="loading">加载中...</div>
@@ -254,11 +230,8 @@
 </div>
 
 <script>
-    // ==================== 模式切换与缓存 ====================
     const MODE_KEY = 'site_mode';
     const btn = document.getElementById('modeToggleBtn');
-
-    // 初始化模式（默认简洁版）
     let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
     document.body.className = currentMode + '-mode';
     updateBtnText();
@@ -268,27 +241,20 @@
         localStorage.setItem(MODE_KEY, currentMode);
         document.body.className = currentMode + '-mode';
         updateBtnText();
-        // 切换到全能版时，如果还没渲染过下载和关于，则渲染
         if (currentMode === 'full') {
             if (!document.getElementById('downloads-content').dataset.rendered) renderDownloads();
             if (!document.getElementById('aboutDomains').dataset.rendered) renderAbout();
         }
     });
+    function updateBtnText() { btn.textContent = currentMode === 'simple' ? '切换全能版' : '切换简洁版'; }
 
-    function updateBtnText() {
-        btn.textContent = currentMode === 'simple' ? '🚀 切换到全能版' : '✨ 切换到简洁版';
-    }
-
-    // ==================== 全局配置 ====================
     let CONFIG = null;
     async function loadConfig() {
         try {
             const res = await fetch('config.json', { cache: 'no-store' });
             if (!res.ok) throw new Error('HTTP ' + res.status);
             CONFIG = await res.json();
-        } catch (e) {
-            CONFIG = { tabs: [], api: {}, downloadSources: [], about: {} };
-        }
+        } catch (e) { CONFIG = { tabs: [], api: {}, downloadSources: [], about: {} }; }
         applyConfig();
     }
 
@@ -319,19 +285,15 @@
         const cfg = CONFIG && CONFIG.site ? CONFIG : DEFAULT_CONFIG;
         const site = cfg.site || DEFAULT_CONFIG.site;
         const about = (CONFIG && CONFIG.about) ? CONFIG.about : DEFAULT_CONFIG.about;
-
         const titleEl = document.getElementById('siteTitle');
         if (titleEl) titleEl.innerHTML = `<img class="header-logo" src="${site.logo}"><span>${site.title}</span>`;
         const subEl = document.getElementById('siteSubtitle');
         if (subEl) subEl.innerHTML = `${site.subtitle}<br>QQ交流群：${site.qqGroup}`;
-
         const footer = document.getElementById('footerText');
         if (footer) footer.innerHTML = `<p>${about.declaration} QQ 群：${about.qqGroup}</p>`;
-
         if (currentMode === 'full') renderTabs();
     }
 
-    // ==================== 导航（仅全能版） ====================
     function renderTabs() {
         const tabs = (CONFIG && CONFIG.tabs && CONFIG.tabs.length) ? CONFIG.tabs : DEFAULT_CONFIG.tabs;
         const nav = document.getElementById('navTabs');
@@ -348,7 +310,6 @@
         });
     }
 
-    // ==================== 搜索 ====================
     function globalSearch() {
         const kw = document.getElementById('search').value.toLowerCase().trim();
         document.querySelectorAll('#api-panel .entry').forEach(entry => {
@@ -363,7 +324,6 @@
         }
     }
 
-    // ==================== 复制 ====================
     function bindCopyEvents(container) {
         container.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
@@ -386,12 +346,10 @@
         });
     }
 
-    // ==================== 接口列表 ====================
     function renderApi() {
         const apiCfg = (CONFIG && CONFIG.api) ? CONFIG.api : DEFAULT_CONFIG.api;
         const WEIGHTS = apiCfg.weights || {};
         const DOMAINS = apiCfg.domains || [];
-
         function decodeName(str) { try { return decodeURIComponent(str); } catch(_) { return str; } }
         function isRecent(dateStr) {
             if (!dateStr || dateStr.length !== 8) return false;
@@ -415,7 +373,6 @@
 
         const container = document.getElementById('listContainer');
         bindCopyEvents(container);
-
         fetch('list.txt?t=' + Date.now(), { cache: 'no-store' })
             .then(res => res.ok ? res.text() : Promise.reject('HTTP ' + res.status))
             .then(text => {
@@ -446,7 +403,6 @@
             });
     }
 
-    // ==================== 下载面板 ====================
     async function renderDownloads() {
         const container = document.getElementById('downloads-content');
         if (!container || container.dataset.rendered) return;
@@ -462,7 +418,9 @@
             try {
                 const res = await fetch(source.url + '?t=' + Date.now());
                 if (!res.ok) throw new Error('HTTP ' + res.status);
-                let data = JSON.parse(JSON.stringify(await res.json()).replace(/[\u201c\u201d]/g,'"').replace(/[\u2018\u2019]/g,"'").replace(/：/g,':').replace(/，/g,','));
+                const raw = await res.text();
+                const cleaned = raw.replace(/[\u201c\u201d]/g,'"').replace(/[\u2018\u2019]/g,"'").replace(/：/g,':').replace(/，/g,',');
+                const data = JSON.parse(cleaned);
                 let section = `<div class="source-section">${source.name?`<div class="source-title">${source.name}</div>`:''}${source.description?`<div class="source-desc">${source.description}</div>`:''}`;
                 data.forEach(group => {
                     section += `<div class="group-block"><div class="group-title">${group.name||''}</div><div class="cards-grid">`;
@@ -478,7 +436,6 @@
         bindCopyEvents(container);
     }
 
-    // ==================== 关于面板 ====================
     function renderAbout() {
         const declEl = document.getElementById('aboutDecl');
         const domEl = document.getElementById('aboutDomains');
@@ -491,10 +448,7 @@
         if (declEl) declEl.innerHTML = `<h3>📢 声明与联系</h3><ul><li>${about.declaration||''}</li></ul><p style="margin-top:10px;">QQ 交流群：<strong style="color:#4a9eff;">${about.qqGroup||''}</strong></p>`;
     }
 
-    // ==================== 启动 ====================
-    loadConfig().then(() => {
-        renderApi(); // 两个版本都需要接口
-    });
+    loadConfig().then(() => { renderApi(); });
 </script>
 </body>
 </html>
