@@ -64,6 +64,14 @@
       "api": "https://mpimg.cn/down.php/50c576631ebe4f148e0a8c3926ea30f4.py"
     },
     {
+      "key": "黄瓜漫剧",
+      "name": "🎬黄瓜丨漫剧",
+      "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
+      "api": "https://mpimg.cn/down.php/3be22fcd852c88654e47a939b211054a.py"
+    },
+    {
       "key": "百度短剧",
       "name": "🎬百度丨短剧",
       "type": 3,
