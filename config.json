@@ -23,20 +23,19 @@
     }
   },
   "downloadSources": [
-    
-    {
+      {
       "name": "菠菜园",
       "url": "菠菜园下载.json",
       "description": "整理者：误道者"
     }, 
     {
       "name": "奇奇副本",
-      "url": "https://0.12yue.de5.net/tvbox/x/lib/666.json",
+      "url": "ry/奇奇副本.json",
       "description": "整理者：误道者"
     }, 
     {
       "name": "奇奇",
-      "url": "https://ry.12yue.de5.net/?target=http://bd.qiqiv.cn/666.json",
+      "url": "ry/奇奇下载.json",
       "description": "奇奇"
     },
     {
@@ -48,6 +47,21 @@
       "name": "潇洒",
       "url": "ry/潇洒下载.json",
       "description": "潇洒"
+    },
+    {
+      "name": "柒豪下载",
+      "url": "ry/柒豪下载.json",
+      "description": ""
+    },
+    {
+      "name": "应用下载",
+      "url": "ry/应用市场二.json",
+      "description": ""
+    },
+    {
+      "name": "应用市场",
+      "url": "ry/应用市场一.json",
+      "description": ""
     }
   ],
   "about": {
