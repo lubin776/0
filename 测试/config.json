@@ -7,9 +7,13 @@
   },
   "downloadSources": [
     {
-      "name": "TVBox 资源",
+      "name": "神马",
       "url": "菠菜园下载.json",
       "description": "整理者：误道者"
+    },    {
+      "name": "副本",
+      "url": "tvbox.json",
+      "description": "整理者：误道牛"
     }
   ]
 }
