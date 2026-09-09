@@ -31,14 +31,94 @@
       "api": "https://mpimg.cn/down.php/18b8bebbf7b64d39a1e3a90c83a86642.py"
     },
     {
-      "key": "短剧┃搜索3",
+      "key": "短剧搜索3",
       "name": "🏠短剧┃搜3",
       "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
       "indexs": 1,
-      "searchable": 0,
-      "quickSearch": 0,
       "api": "https://mpimg.cn/down.php/50c576631ebe4f148e0a8c3926ea30f4.py"
     },
+  {
+    "key": "520短剧",
+    "name": "520短剧",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://mpimg.cn/down.php/923c6d6c1fcee48e4be8dd8423009fd8.py"
+  },
+  {
+    "key": "52影院",
+    "name": "52影院",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://mpimg.cn/down.php/25d3d089148e038e5ea879527ae8d292.py"
+  },
+  {
+    "key": "云途影视",
+    "name": "云途影视",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://mpimg.cn/down.php/563c53076c61cebe546b5246e475938a.py"
+  },
+  {
+    "key": "影探4K",
+    "name": "影探4K",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://pan.szfx.top/down.php/8cfc0e2827d8832bde7ca99420471027.py"
+  },
+  {
+    "key": "汽水音乐",
+    "name": "汽水音乐",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://pan.szfx.top/down.php/32aa60595f222517d63c55acc230df72.py"
+  },
+  {
+    "key": "红果",
+    "name": "红果",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://pan.szfx.top/down.php/0ee3f9f64546d17ed9a5dd3cb710a10a.py"
+  },
+  {
+    "key": "红果短剧最终版",
+    "name": "红果短剧最终版",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://pan.szfx.top/down.php/879bd10cded0718dc68500b2c8027437.py"
+  },
+  {
+    "key": "红果短剧能看全集",
+    "name": "红果短剧能看全集",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://pan.szfx.top/down.php/d6e785244164d43406018dd1779f64ed.py"
+  },
+  {
+    "key": "蚕驰短剧网",
+    "name": "蚕驰短剧网",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://pan.szfx.top/down.php/e889186d4416396aa3062182734ba784.py"
+  },
+  {
+    "key": "酷狗直播",
+    "name": "酷狗直播",
+    "type": 3,
+    "searchable": 0,
+    "quickSearch": 0,
+    "api": "https://pan.szfx.top/down.php/5df7c1b65aebbdbf3e20ae9d4ca73c88.py"
+  },
     {
       "key": "七猫短剧",
       "name": "🎬七猫｜短剧",
@@ -48,28 +128,12 @@
       "api": "https://mpimg.cn/down.php/fb7cbeb74dcdfec57e6a43e5a1c5028e.py"
     },
     {
-      "key": "七猫短剧",
-      "name": "🎬七猫｜短剧",
+      "key": "七星短剧",
+      "name": "🎬七星丨短剧",
       "type": 3,
       "searchable": 0,
       "quickSearch": 0,
-      "api": "https://mpimg.cn/down.php/fb7cbeb74dcdfec57e6a43e5a1c5028e.py"
-    },
-    {
-      "key": "黄瓜短剧",
-      "name": "🎬黄瓜丨短剧",
-      "type": 3,
-      "searchable": 0,
-      "quickSearch": 0,
-      "api": "https://mpimg.cn/down.php/50c576631ebe4f148e0a8c3926ea30f4.py"
-    },
-    {
-      "key": "黄瓜漫剧",
-      "name": "🎬黄瓜丨漫剧",
-      "type": 3,
-      "searchable": 0,
-      "quickSearch": 0,
-      "api": "https://mpimg.cn/down.php/3be22fcd852c88654e47a939b211054a.py"
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/qxdj.py"
     },
     {
       "key": "百度短剧",
