@@ -3,298 +3,567 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运</title>
+<title>海量接口搬运备份</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f5f7fa;color:#1e293b;padding:14px 12px 8px}
-.container{max-width:820px;margin:0 auto}
-.header-block{text-align:center;margin-bottom:14px}
-h1{font-size:1.3rem;font-weight:600;color:#0b1e33}
-h1 .header-logo{width:1.8rem;height:1.8rem;border-radius:50%;border:1.5px solid #4a9eff;object-fit:cover;vertical-align:-0.45rem;margin-right:6px}
-.header-divider{height:1px;background:#e9edf2;margin:6px 0}
-.subtitle{font-size:.78rem;color:#8b9eb0;line-height:1.45}
-.main-card{background:#fff;border-radius:16px;padding:14px 16px 12px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f3f8}
-.nav-tabs{display:flex;gap:10px;margin-bottom:12px;justify-content:center;flex-wrap:wrap}
-.nav-tab{padding:7px 24px;border:1.5px solid #4a9eff;border-radius:40px;background:#fff;color:#4a9eff;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
-.nav-tab.active{background:#4a9eff;color:#fff}
-.nav-tab:active{transform:scale(.96)}
-.search-box{width:100%;padding:10px 16px;border:1px solid #dce1e9;border-radius:40px;font-size:.92rem;background:#fff;outline:none;transition:.2s;margin-bottom:12px}
-.search-box:focus{border-color:#4a9eff;box-shadow:0 0 0 3px rgba(74,158,255,.15)}
-.tab-panel{display:none}
-.tab-panel.active{display:block}
-.api-list{background:#f8fafc;border-radius:12px;padding:4px 12px;border:1px solid #eef2f7}
-.entry{padding:12px 0;border-bottom:1px solid #e8eef5}
-.entry:last-child{border-bottom:none}
-.entry-header{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.entry-name{font-size:1.02rem;font-weight:600;color:#0b1e33;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
-.entry-meta-inline{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:.72rem;color:#5a6f88;white-space:nowrap;flex-shrink:0}
-.badge-new{color:#1b9e5a}.badge-old{color:#b88b3a}
-.url-line{padding:4px 12px;margin-bottom:5px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
-.url-line:last-child{margin-bottom:0}
-.url-tag{font-size:.68rem;font-weight:500;color:#4a6a8a;background:#e6edf6;padding:0 12px;border-radius:30px;line-height:22px;white-space:nowrap;flex-shrink:0}
-.url-text{font-size:.8rem;color:#2563eb;word-break:break-all;line-height:1.45;flex:1 1 0;min-width:40px}
-.copy-btn{flex-shrink:0;background:#4a9eff;color:#fff;border:none;border-radius:30px;padding:0 14px;font-size:.68rem;font-weight:500;cursor:pointer;height:24px;line-height:24px;white-space:nowrap;margin-left:auto}
-.copy-btn:active{background:#2a7ed9}
-.copy-btn.copied{background:#3b9b6c}
-.entry.hidden,.dl-card.hidden{display:none}
-.loading,.empty{text-align:center;color:#9aadc2;padding:36px 0;font-size:.88rem}
-.source-module{background:#f8fafc;border-radius:12px;padding:12px 14px;margin-bottom:12px;border:1px solid #eef2f7}
-.source-module:last-child{margin-bottom:0}
-.source-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.source-name{font-size:.92rem;font-weight:600;color:#0b1e33}
-.source-desc{font-size:.68rem;color:#8b9eb0}
-.group-block{margin-bottom:10px}
-.group-block:last-child{margin-bottom:0}
-.group-title{font-size:.82rem;font-weight:600;color:#4a6a8a;margin-bottom:8px;padding-left:2px}
-.dl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
-.dl-card{background:#fff;border-radius:10px;padding:12px 10px;text-align:center;border:1px solid #e8eef5;transition:transform .15s}
-.dl-card:active{transform:scale(.97)}
-.dl-card img{width:40px;height:40px;border-radius:10px;margin-bottom:6px;object-fit:cover;background:#eef2f7}
-.dl-card .c-name{font-size:.75rem;font-weight:500;color:#1e293b;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dl-card .c-ver{font-size:.6rem;color:#8b9eb0;margin-bottom:8px}
-.dl-card a{display:inline-block;background:#4a9eff;color:#fff;font-size:.65rem;padding:4px 14px;border-radius:20px;text-decoration:none;font-weight:500}
-.dl-card a:active{background:#2a7ed9}
-.about-inner{background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7}
-.about-inner:last-child{margin-bottom:0}
-.about-inner h3{font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:8px}
-.about-inner p,.about-inner li{font-size:.76rem;color:#5a6f88;line-height:1.6}
-.about-inner ul{padding-left:16px;margin-top:4px}
-.domain-line{display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;margin-top:6px}
-.domain-line span{flex:1;font-size:.75rem;color:#2563eb;word-break:break-all}
-.page-footer{text-align:center;padding:14px 0 6px;font-size:.7rem;color:#9aadc2;line-height:1.7}
-@media(max-width:600px){
-body{padding:10px 6px 4px}
-h1 .header-logo{width:1.6rem;height:1.6rem;vertical-align:-0.4rem}
-.main-card{padding:12px 10px 10px}
-.nav-tab{padding:6px 20px;font-size:.78rem}
-.api-list{padding:4px 8px}
-.entry{padding:10px 0}
-.entry-header{gap:6px;margin-bottom:5px}
-.entry-name{font-size:.95rem}
-.url-line{padding:3px 8px;gap:4px 6px}
-.url-tag{font-size:.62rem;padding:0 10px;line-height:20px}
-.url-text{font-size:.73rem}
-.copy-btn{font-size:.62rem;padding:0 10px;height:22px;line-height:22px}
-.dl-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #f5f7fa; color: #1e293b;
+        padding: 14px 12px 8px;
+    }
+    .container { max-width: 820px; margin: 0 auto; }
+
+    /* ===== 模块一：标题 ===== */
+    .header-block { text-align: center; margin-bottom: 14px; }
+    h1 { font-size: 1.3rem; font-weight: 600; color: #0b1e33; }
+    h1 .header-logo {
+        width: 1.8rem; height: 1.8rem; border-radius: 50%;
+        border: 1.5px solid #4a9eff; object-fit: cover;
+        vertical-align: -0.45rem; margin-right: 6px;
+    }
+    .header-divider { height: 1px; background: #e9edf2; margin: 6px 0; }
+    .subtitle { font-size: 0.78rem; color: #8b9eb0; line-height: 1.45; }
+
+    /* ===== 模块二：主卡片 ===== */
+    .main-card {
+        background: #ffffff; border-radius: 16px;
+        padding: 14px 16px 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        border: 1px solid #f0f3f8;
+    }
+
+    /* 导航 */
+    .nav-tabs {
+        display: flex; gap: 10px; margin-bottom: 12px;
+        justify-content: center; flex-wrap: wrap;
+    }
+    .nav-tab {
+        padding: 7px 24px; border: 1.5px solid #4a9eff;
+        border-radius: 40px; background: #fff; color: #4a9eff;
+        font-size: 0.82rem; font-weight: 500; cursor: pointer;
+        transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-tab.active { background: #4a9eff; color: #fff; }
+    .nav-tab:active { transform: scale(0.96); }
+
+    /* 搜索 */
+    .search-box {
+        width: 100%; padding: 10px 16px;
+        border: 1px solid #dce1e9; border-radius: 40px;
+        font-size: 0.92rem; background: #fff; outline: none;
+        transition: 0.2s; margin-bottom: 12px;
+    }
+    .search-box:focus { border-color: #4a9eff; box-shadow: 0 0 0 3px rgba(74,158,255,0.15); }
+
+    /* 面板 */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ===== 接口列表 ===== */
+    .api-list {
+        background: #f8fafc; border-radius: 12px;
+        padding: 4px 12px; border: 1px solid #eef2f7;
+    }
+    .entry { padding: 12px 0; border-bottom: 1px solid #e8eef5; }
+    .entry:last-child { border-bottom: none; }
+    .entry-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .entry-name {
+        font-size: 1.02rem; font-weight: 600; color: #0b1e33;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        flex-shrink: 1; min-width: 0;
+    }
+    .entry-meta-inline {
+        margin-left: auto; display: flex; align-items: center;
+        gap: 10px; font-size: 0.72rem; color: #5a6f88;
+        white-space: nowrap; flex-shrink: 0;
+    }
+    .badge-new { color: #1b9e5a; } .badge-old { color: #b88b3a; }
+    .entry-urls { display: block; }
+    .url-line {
+        padding: 4px 12px 4px 10px; margin-bottom: 5px;
+        background: #fff; border-radius: 40px; border: 1px solid #e0e6ed;
+        display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+    }
+    .url-line:last-child { margin-bottom: 0; }
+    .url-tag {
+        font-size: 0.68rem; font-weight: 500; color: #4a6a8a;
+        background: #e6edf6; padding: 0 12px; border-radius: 30px;
+        line-height: 22px; white-space: nowrap; flex-shrink: 0;
+    }
+    .url-text {
+        font-size: 0.8rem; color: #2563eb;
+        word-break: break-all; overflow-wrap: break-word;
+        white-space: normal; line-height: 1.45; flex: 1 1 0; min-width: 40px;
+    }
+    .copy-btn {
+        flex-shrink: 0; background: #4a9eff; color: white; border: none;
+        border-radius: 30px; padding: 0 14px; font-size: 0.68rem;
+        font-weight: 500; cursor: pointer; height: 24px; line-height: 24px;
+        transition: background 0.15s, transform 0.05s; white-space: nowrap; margin-left: auto;
+    }
+    .copy-btn:active { background: #2a7ed9; transform: scale(0.96); }
+    .copy-btn.copied { background: #3b9b6c; }
+    .entry.hidden, .download-card.hidden { display: none; }
+
+    .loading, .empty { text-align: center; color: #9aadc2; padding: 36px 0; font-size: 0.88rem; }
+    .error-msg { text-align: center; color: #d9534f; padding: 16px; font-size: 0.82rem; background: #fff3f3; border-radius: 10px; margin: 8px 0; word-break: break-all; }
+
+    /* ===== 下载模块 ===== */
+    .source-section {
+        background: #f8fafc; border-radius: 12px;
+        padding: 12px 14px; margin-bottom: 12px;
+        border: 1px solid #eef2f7;
+    }
+    .source-section:last-child { margin-bottom: 0; }
+    .source-title { font-size: 0.95rem; font-weight: 600; color: #0b1e33; margin-bottom: 2px; }
+    .source-desc { font-size: 0.7rem; color: #8b9eb0; margin-bottom: 10px; }
+
+    .group-block { margin-bottom: 12px; }
+    .group-block:last-child { margin-bottom: 0; }
+    .group-title {
+        font-size: 0.82rem; font-weight: 600; color: #4a6a8a;
+        margin-bottom: 8px; padding-left: 2px;
+    }
+
+    .cards-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;
+    }
+    .download-card {
+        background: #fff; border-radius: 10px; padding: 12px 10px;
+        text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        border: 1px solid #e8eef5; transition: transform 0.15s;
+        display: flex; flex-direction: column; align-items: center;
+    }
+    .download-card:active { transform: scale(0.97); }
+    .card-icon {
+        width: 44px; height: 44px; border-radius: 10px;
+        margin-bottom: 6px; object-fit: cover;
+        background: #f0f3f8;
+    }
+    .card-info { flex: 1; width: 100%; margin-bottom: 8px; }
+    .card-name {
+        font-size: 0.76rem; font-weight: 500; color: #1e293b;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .card-version { font-size: 0.6rem; color: #8b9eb0; margin-top: 2px; }
+    .card-btn {
+        display: inline-block; background: #4a9eff; color: #fff;
+        font-size: 0.66rem; padding: 5px 18px; border-radius: 20px;
+        text-decoration: none; font-weight: 500;
+    }
+    .card-btn:active { background: #2a7ed9; }
+
+    /* ===== 关于 ===== */
+    .about-inner {
+        background: #f8fafc; border-radius: 12px;
+        padding: 14px 16px; margin-bottom: 12px;
+        border: 1px solid #eef2f7;
+    }
+    .about-inner:last-child { margin-bottom: 0; }
+    .about-inner h3 { font-size: 0.92rem; font-weight: 600; color: #0b1e33; margin-bottom: 8px; }
+    .about-inner p, .about-inner li { font-size: 0.76rem; color: #5a6f88; line-height: 1.6; }
+    .about-inner ul { padding-left: 16px; margin-top: 4px; }
+    .domain-line {
+        display: flex; align-items: center; gap: 8px;
+        padding: 6px 14px; background: #fff; border-radius: 40px;
+        border: 1px solid #e0e6ed; margin-top: 6px;
+    }
+    .domain-line span { flex: 1; font-size: 0.75rem; color: #2563eb; word-break: break-all; }
+
+    /* ===== 页脚 ===== */
+    .page-footer { text-align: center; padding: 14px 0 6px; font-size: 0.7rem; color: #9aadc2; line-height: 1.7; }
+
+    @media (max-width: 600px) {
+        body { padding: 10px 6px 4px; }
+        h1 .header-logo { width: 1.6rem; height: 1.6rem; vertical-align: -0.4rem; }
+        .main-card { padding: 12px 10px 10px; }
+        .nav-tab { padding: 6px 20px; font-size: 0.78rem; }
+        .api-list { padding: 4px 8px; }
+        .entry { padding: 10px 0; }
+        .entry-header { gap: 6px; margin-bottom: 5px; }
+        .entry-name { font-size: 0.95rem; }
+        .url-line { padding: 3px 8px; gap: 4px 6px; }
+        .url-tag { font-size: 0.62rem; padding: 0 10px; line-height: 20px; }
+        .url-text { font-size: 0.73rem; }
+        .copy-btn { font-size: 0.62rem; padding: 0 10px; height: 22px; line-height: 22px; }
+        .cards-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+    }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="header-block">
-<h1><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
-<div class="header-divider"></div>
-<p class="subtitle">备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
-</div>
-<div class="main-card">
-<div class="nav-tabs">
-<button class="nav-tab active" data-tab="api-panel">接口</button>
-<button class="nav-tab" data-tab="download-panel">下载</button>
-<button class="nav-tab" data-tab="about-panel">关于</button>
-</div>
-<input class="search-box" id="search" type="text" placeholder="🔍 本站搜索（接口 / 下载文件）..." oninput="globalSearch()">
-<div class="tab-panel active" id="api-panel"><div class="api-list" id="listContainer"><div class="loading">⏳ 正在加载接口列表...</div></div></div>
-<div class="tab-panel" id="download-panel"><div id="downloadContainer"><div class="loading">⏳ 正在加载下载资源...</div></div></div>
-<div class="tab-panel" id="about-panel">
-<div class="about-inner">
-<h3>🌐 备份线路域名</h3>
-<p style="margin-bottom:6px">三个域名互为备份，任一个可用：</p>
-<div class="domain-line"><span>https://0.12yue.de5.net</span><button class="copy-btn" data-url="https://0.12yue.de5.net">复制</button></div>
-<div class="domain-line"><span>https://0.cdz.qzz.io</span><button class="copy-btn" data-url="https://0.cdz.qzz.io">复制</button></div>
-<div class="domain-line"><span>https://0.wdzb.eu.cc</span><button class="copy-btn" data-url="https://0.wdzb.eu.cc">复制</button></div>
-</div>
-<div class="about-inner">
-<h3>📢 声明与联系</h3>
-<ul>
-<li>本站接口资源由【误道者】整理</li>
-<li>所有资源均来自互联网，版权归原作者所有</li>
-<li>仅供测试学习使用，请勿用于违法及商业用途</li>
-<li>请勿付费购买任何接口资源</li>
-<li>如涉及侵权，请联系删除</li>
-</ul>
-<p style="margin-top:10px">QQ 交流群：<strong style="color:#4a9eff">1067685939</strong></p>
-</div>
-</div>
-</div>
-<footer class="page-footer"><p>本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。</p></footer>
+    <!-- 模块一：标题（由 config.json 动态填充） -->
+    <div class="header-block">
+        <h1 id="siteTitle"><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
+        <div class="header-divider"></div>
+        <p class="subtitle" id="siteSubtitle">备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
+    </div>
+
+    <!-- 模块二：主卡片 -->
+    <div class="main-card">
+        <div class="nav-tabs" id="navTabs"></div>
+        <input class="search-box" id="search" type="text" placeholder="🔍 本站搜索（接口 / 下载文件）..." oninput="globalSearch()">
+
+        <!-- 接口面板 -->
+        <div class="tab-panel" id="api-panel">
+            <div class="api-list" id="listContainer">
+                <div class="loading">⏳ 正在加载接口列表...</div>
+            </div>
+        </div>
+
+        <!-- 下载面板 -->
+        <div class="tab-panel" id="download-panel">
+            <div id="downloads-content">
+                <div class="loading">⏳ 正在加载下载资源...</div>
+            </div>
+        </div>
+
+        <!-- 关于面板 -->
+        <div class="tab-panel" id="about-panel">
+            <div class="about-inner" id="aboutDomains">
+                <h3>🌐 备份线路域名</h3>
+                <p style="margin-bottom:6px;">三个域名互为备份，任一个可用：</p>
+                <div class="loading">加载中...</div>
+            </div>
+            <div class="about-inner" id="aboutDecl">
+                <h3>📢 声明与联系</h3>
+                <div class="loading">加载中...</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer" id="footerText">
+        <p>本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。</p>
+    </footer>
 </div>
 
 <script>
-// ===== 下载源配置（想加减模块改这里，不改HTML）=====
-const DOWNLOAD_SOURCES = [
-{ name:"TVBox 资源", url:"tvbox.json", description:"整理者：误道者" }
-];
+    // ==================== 全局配置（从 config.json 读取） ====================
+    let CONFIG = null;
 
-const searchBox = document.getElementById('search');
+    async function loadConfig() {
+        try {
+            const res = await fetch('config.json', { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            CONFIG = await res.json();
+        } catch (e) {
+            console.warn('config.json 加载失败，使用默认值', e);
+            CONFIG = { tabs: [], api: {}, downloadSources: [], about: {} };
+        }
+        applyConfig();
+    }
 
-// 导航切换
-document.querySelectorAll('.nav-tab').forEach(tab=>{
-tab.addEventListener('click',function(){
-const target = this.getAttribute('data-tab');
-document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-this.classList.add('active');
-document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-document.getElementById(target).classList.add('active');
-window.scrollTo({top:0,behavior:'smooth'});
-searchBox.style.display = (target==='about-panel') ? 'none' : '';
-});
-});
+    // 兜底默认值
+    const DEFAULT_CONFIG = {
+        site: {
+            title: "海量接口搬运备份",
+            logo: "https://0.12yue.de5.net/tvbox/x/jueson.jpg",
+            subtitle: "备用数据源，防屏不迷路",
+            qqGroup: "1067685939"
+        },
+        tabs: [
+            { id: "api",      label: "接口", type: "api" },
+            { id: "download", label: "下载", type: "download" },
+            { id: "about",    label: "关于", type: "about", hideSearch: true }
+        ],
+        api: {
+            domains: [
+                { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
+                { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
+                { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" }
+            ],
+            weights: {
+                "菠菜园.json": 1, "少儿频道.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
+                "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
+                "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
+            }
+        },
+        downloadSources: [
+            { name: "TVBox 资源", url: "tvbox.json", description: "整理者：误道者" }
+        ],
+        about: {
+            domains: ["https://0.12yue.de5.net", "https://0.cdz.qzz.io", "https://0.wdzb.eu.cc"],
+            declaration: "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
+            qqGroup: "1067685939"
+        }
+    };
 
-// 全局搜索
-function globalSearch(){
-const kw = searchBox.value.toLowerCase().trim();
-document.querySelectorAll('#api-panel .entry').forEach(e=>{
-const n = e.getAttribute('data-name')||'';
-e.classList.toggle('hidden', !n.includes(kw));
-});
-document.querySelectorAll('.dl-card').forEach(c=>{
-const n = c.getAttribute('data-name')||'';
-c.classList.toggle('hidden', !n.includes(kw));
-});
-}
+    function applyConfig() {
+        const cfg = CONFIG && CONFIG.site ? CONFIG : DEFAULT_CONFIG;
+        const site = cfg.site || DEFAULT_CONFIG.site;
+        const about = (CONFIG && CONFIG.about) ? CONFIG.about : DEFAULT_CONFIG.about;
 
-// 复制
-function bindCopy(container){
-container.querySelectorAll('.copy-btn').forEach(btn=>{
-btn.addEventListener('click',function(e){
-e.stopPropagation();
-const url = this.getAttribute('data-url');
-if(!url) return;
-const done=(orig)=>{this.textContent='📋 已复制';setTimeout(()=>{this.textContent=orig},1200);};
-if(navigator.clipboard){
-navigator.clipboard.writeText(url).then(()=>{
-const orig=this.textContent;this.textContent='✅ 已复制';setTimeout(()=>{this.textContent=orig},1500);
-}).catch(()=>{const inp=document.createElement('input');inp.value=url;document.body.appendChild(inp);inp.select();document.execCommand('copy');document.body.removeChild(inp);done(this.textContent);});
-}else{
-const inp=document.createElement('input');inp.value=url;document.body.appendChild(inp);inp.select();document.execCommand('copy');document.body.removeChild(inp);done(this.textContent);
-}
-});
-});
-}
+        // 标题
+        const titleEl = document.getElementById('siteTitle');
+        if (titleEl) {
+            titleEl.innerHTML = `<img class="header-logo" src="${site.logo || DEFAULT_CONFIG.site.logo}" alt="Logo">${site.title || DEFAULT_CONFIG.site.title}`;
+        }
+        const subEl = document.getElementById('siteSubtitle');
+        if (subEl) {
+            subEl.innerHTML = `${site.subtitle || ''}<br>QQ交流群：${site.qqGroup || ''}`;
+        }
 
-// ===== 接口页 =====
-(function(){
-const WEIGHTS={"菠菜园.json":1,"少儿频道.json":2,"饭太硬.json":4,"肥猫.json":5,"摸鱼.json":6,"王二小.json":7,"集多.json":8,"潇洒.json":9,"小米.json":10,"嗷呜.json":11,"南风.json":12,"小虎斑.json":13};
-const DOMAINS=[{tag:"备份一线",base:"https://0.12yue.de5.net/tvbox/"},{tag:"备份二线",base:"https://0.cdz.qzz.io/tvbox/"},{tag:"备份三线",base:"https://0.wdzb.eu.cc/tvbox/"}];
-const staticEntries=`<div class="entry" data-name="更新专用接口"><div class="entry-header"><div class="entry-name" title="更新专用接口">更新专用接口</div><div class="entry-meta-inline"><span class="meta-item"><span class="badge-new">备份时间 2026年09月09日</span></span><span class="meta-item">4.2K</span></div></div><div class="entry-urls"><div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">https://0.12yue.de5.net/0/666</span><button class="copy-btn" data-url="https://0.12yue.de5.net/0/666">复制</button></div><div class="url-line"><span class="url-tag">备份一线</span><span class="url-text">https://0.12yue.de5.net/de5/更新专用接口.json</span><button class="copy-btn" data-url="https://0.12yue.de5.net/de5/更新专用接口.json">复制</button></div><div class="url-line"><span class="url-tag">备份二线</span><span class="url-text">https://0.cdz.qzz.io/qzz/更新专用接口.json</span><button class="copy-btn" data-url="https://0.cdz.qzz.io/qzz/更新专用接口.json">复制</button></div><div class="url-line"><span class="url-tag">备份三线</span><span class="url-text">https://0.wdzb.eu.cc/eucc/更新专用接口.json</span><button class="copy-btn" data-url="https://0.wdzb.eu.cc/eucc/更新专用接口.json">复制</button></div></div></div>`;
-function decodeName(s){try{return decodeURIComponent(s)}catch(_){return s}}
-function isRecent(d){if(!d||d.length!==8)return false;const y=+d.slice(0,4),m=+d.slice(4,6)-1,dd=+d.slice(6,8);return(Date.now()-new Date(y,m,dd).getTime())/864e5<=2}
-function fmtDate(d){if(!d||d.length!==8)return '----';return d.slice(0,4)+'年'+d.slice(4,6)+'月'+d.slice(6,8)+'日'}
-function renderEntry(file,date,size,note,origUrl){
-const df=decodeName(file), dn=df.replace(/\.json$/i,''), isNew=isRecent(date), nc=isNew?'badge-new':'badge-old';
-let h=`<div class="entry-header"><div class="entry-name" title="${dn}">${dn}</div><div class="entry-meta-inline"><span class="meta-item"><span class="${nc}">备份时间 ${fmtDate(date)}</span></span><span class="meta-item">${size||'-'}</span></div></div>`;
-let u='';
-if(origUrl)u+=`<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${origUrl}</span><button class="copy-btn" data-url="${origUrl}">复制</button></div>`;
-DOMAINS.forEach(dm=>{const fu=dm.base+df;u+=`<div class="url-line"><span class="url-tag">${dm.tag}</span><span class="url-text">${fu}</span><button class="copy-btn" data-url="${fu}">复制</button></div>`;});
-return `<div class="entry" data-name="${dn.toLowerCase()}">${h}<div class="entry-urls">${u}</div></div>`;
-}
-const container=document.getElementById('listContainer');
-fetch('list.txt?_='+Date.now()).then(r=>r.ok?r.text():Promise.reject()).then(text=>{
-const map={};
-text.trim().split('\n').filter(l=>l.trim()).forEach(l=>{
-const p=l.split('|').map(s=>s.trim());
-if(p[0])map[p[0]]={date:p[1]||'',size:p[2]||'',origUrl:p[3]||'',note:p[4]||''};
-});
-const entries=Object.entries(map);
-if(!entries.length){container.innerHTML=staticEntries+'<div class="empty">📭 暂无接口数据</div>';bindCopy(container);return;}
-let items=entries.map(([f,i])=>({file:f,date:i.date,size:i.size,note:i.note,origUrl:i.origUrl,weight:WEIGHTS[f]!==undefined?WEIGHTS[f]:null}));
-items.sort((a,b)=>{if(a.weight!==null&&b.weight!==null)return a.weight-b.weight;if(a.weight!==null)return -1;if(b.weight!==null)return 1;return Math.random()-.5});
-let html=staticEntries;
-items.forEach(i=>{html+=renderEntry(i.file,i.date,i.size,i.note,i.origUrl)});
-container.innerHTML=html;
-bindCopy(container);
-}).catch(()=>{container.innerHTML=staticEntries+'<div class="empty">❌ 加载失败</div>';bindCopy(container);});
-})();
+        // 页脚
+        const footer = document.getElementById('footerText');
+        if (footer && about.declaration) {
+            footer.innerHTML = `<p>${about.declaration} QQ 群：${about.qqGroup || ''}</p>`;
+        }
 
-// ===== 下载页：适配 [ {name, list:[{name,url,icon,version}]} ] =====
-(function(){
-const dlContainer=document.getElementById('downloadContainer');
+        // 导航按钮（按 config 动态生成）
+        renderTabs();
+        renderAbout();
+    }
 
-// 字段自适应（兼容 icon/img、url/link、version/ver）
-function pick(obj, keys){
-for(const k of keys){ if(obj && obj[k]!= null && obj[k] !== '') return obj[k]; }
-return '';
-}
+    // ==================== 导航 ====================
+    function renderTabs() {
+        const tabs = (CONFIG && CONFIG.tabs) ? CONFIG.tabs : DEFAULT_CONFIG.tabs;
+        const nav = document.getElementById('navTabs');
+        nav.innerHTML = tabs.map(t =>
+            `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}" data-type="${t.type}" data-hide="${t.hideSearch ? '1' : '0'}">${t.label}</button>`
+        ).join('');
 
-function cardHtml(item){
-const name = item.name || '未命名';
-const url  = pick(item, ['url','link','href','apk','download']) || '#';
-const icon = pick(item, ['icon','img','image','pic','thumb']);
-const ver  = pick(item, ['version','ver','desc','note']) || '';
-// 搜索匹配 name + version
-const dn = (name + ' ' + ver).toLowerCase();
-return `<div class="dl-card" data-name="${dn.replace(/"/g,'')}">`
-+ `<img src="${icon}" alt="${name}" referrerpolicy="no-referrer" onerror="this.src='https://via.placeholder.com/48/eee/999?text=?'">`
-+ `<div class="c-name">${name}</div>`
-+ `<div class="c-ver">${ver}</div>`
-+ `<a href="${url}" target="_blank" rel="noopener">下载</a>`
-+ `</div>`;
-}
+        const searchBox = document.getElementById('search');
+        // 初始化面板
+        showPanel(tabs[0].id, tabs[0].hideSearch);
 
-function renderSourceData(source, data){
-// data 可以是 [ {name, list} ] 或 { list: [] } 或 { apps:[] }
-let groups = [];
-if(Array.isArray(data)){ groups = data; }
-else if(data && Array.isArray(data.list)){ groups = [data]; }
-else if(data && Array.isArray(data.apps)){ groups = [{name:'', list: data.apps}]; }
+        nav.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.getAttribute('data-tab');
+                const hide = this.getAttribute('data-hide') === '1';
+                nav.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                showPanel(target, hide);
+            });
+        });
+    }
 
-if(!groups.length){
-return `<div class="source-module"><div class="empty">📭 ${source.name||''} 无数据</div></div>`;
-}
+    function showPanel(tabId, hideSearch) {
+        // 隐藏所有面板再显示目标
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById(tabId + '-panel') || document.getElementById(tabId);
+        if (panel) panel.classList.add('active');
+        const searchBox = document.getElementById('search');
+        if (searchBox) searchBox.style.display = (hideSearch ? 'none' : '');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-let html = `<div class="source-module">`;
-if(source.name){
-html += `<div class="source-header"><span class="source-name">${source.name}</span>${source.description?'<span class="source-desc">· '+source.description+'</span>':''}</div>`;
-}
-groups.forEach(g=>{
-const list = Array.isArray(g.list) ? g.list : [];
-html += `<div class="group-block">`;
-if(g.name) html += `<div class="group-title">${g.name}</div>`;
-html += `<div class="dl-grid">`;
-if(list.length){
-list.forEach(it=>{ html += cardHtml(it); });
-}else{
-html += `<div class="empty">此分组暂无项目</div>`;
-}
-html += `</div></div>`;
-});
-html += `</div>`;
-return html;
-}
+    // ==================== 全局搜索 ====================
+    function globalSearch() {
+        const kw = document.getElementById('search').value.toLowerCase().trim();
+        document.querySelectorAll('#api-panel .entry').forEach(entry => {
+            const name = entry.getAttribute('data-name') || '';
+            entry.classList.toggle('hidden', !name.includes(kw));
+        });
+        document.querySelectorAll('.download-card').forEach(card => {
+            const name = card.getAttribute('data-name') || '';
+            card.classList.toggle('hidden', !name.includes(kw));
+        });
+    }
 
-function loadOne(source){
-// 强制禁用缓存，避免旧JS/旧JSON
-const url = source.url + (source.url.includes('?')?'&':'?') + '_=' + Date.now();
-return fetch(url, {cache:'no-store', headers:{'Accept':'application/json'}})
-.then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
-.then(text=>{
-// 宽松解析：兼容中文引号（保险）
-let t = text.trim();
-try{ return JSON.parse(t); }
-catch(e1){
-try{ t = t.replace(/[\u201c\u201d]/g,'"').replace(/[\u2018\u2019]/g,"'").replace(/：/g,':').replace(/，/g,','); return JSON.parse(t); }
-catch(e2){ throw new Error('JSON解析失败: '+e2.message+' | 前80字: '+text.slice(0,80)); }
-}
-})
-.then(data=> renderSourceData(source, data))
-.catch(err=>{
-return `<div class="source-module"><div class="source-header"><span class="source-name">${source.name||'?'}</span></div><div class="empty" style="color:#e57;">❌ 加载失败<br><small>${source.url}<br>${err.message}</small></div></div>`;
-});
-}
+    // ==================== 复制 ====================
+    function bindCopyEvents(container) {
+        container.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const url = this.getAttribute('data-url');
+                if (!url) return;
+                const done = () => {
+                    const orig = this.textContent;
+                    this.textContent = '✅ 已复制';
+                    this.classList.add('copied');
+                    setTimeout(() => { this.textContent = orig; this.classList.remove('copied'); }, 1500);
+                };
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(done).catch(fallback);
+                } else { fallback(); }
+                function fallback() {
+                    const input = document.createElement('input');
+                    input.value = url; document.body.appendChild(input);
+                    input.select(); document.execCommand('copy');
+                    document.body.removeChild(input); done();
+                }
+            });
+        });
+    }
 
-if(!DOWNLOAD_SOURCES.length){
-dlContainer.innerHTML = '<div class="empty">未配置下载源</div>';
-return;
-}
-Promise.all(DOWNLOAD_SOURCES.map(loadOne)).then(results=>{
-dlContainer.innerHTML = results.join('');
-bindCopy(dlContainer);
-}).catch(err=>{
-dlContainer.innerHTML = '<div class="empty">❌ 渲染异常: '+err.message+'</div>';
-});
-})();
+    // ==================== 接口页面 ====================
+    function renderApi() {
+        const apiCfg = (CONFIG && CONFIG.api) ? CONFIG.api : DEFAULT_CONFIG.api;
+        const WEIGHTS = apiCfg.weights || {};
+        const DOMAINS = apiCfg.domains || [];
 
-bindCopy(document.getElementById('about-panel'));
+        const staticEntries = `
+<div class="entry" data-name="更新专用接口">
+    <div class="entry-header">
+        <div class="entry-name" title="更新专用接口">更新专用接口</div>
+        <div class="entry-meta-inline">
+            <span class="meta-item"><span class="badge-new">备份时间 2026年09月09日</span></span>
+            <span class="meta-item">4.2K</span>
+        </div>
+    </div>
+    <div class="entry-urls">
+        <div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">https://0.12yue.de5.net/0/666</span><button class="copy-btn" data-url="https://0.12yue.de5.net/0/666">复制</button></div>
+        ${DOMAINS.map(d => `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${d.base}更新专用接口.json</span><button class="copy-btn" data-url="${d.base}更新专用接口.json">复制</button></div>`).join('')}
+    </div>
+</div>`;
+
+        function decodeName(str) { try { return decodeURIComponent(str); } catch(_) { return str; } }
+        function isRecent(dateStr) {
+            if (!dateStr || dateStr.length !== 8) return false;
+            const y = parseInt(dateStr.slice(0,4),10), m = parseInt(dateStr.slice(4,6),10)-1, d = parseInt(dateStr.slice(6,8),10);
+            return (Date.now() - new Date(y,m,d).getTime()) / 86400000 <= 2;
+        }
+        function formatDateToChinese(d) {
+            if (!d || d.length !== 8) return '----';
+            return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
+        }
+        function renderEntry(file, date, size, note, origUrl) {
+            const decodedFile = decodeName(file);
+            const displayName = decodedFile.replace(/\.json$/i, '');
+            const isNew = isRecent(date);
+            const newClass = isNew ? 'badge-new' : 'badge-old';
+            const headerHtml = `<div class="entry-header"><div class="entry-name" title="${displayName}">${displayName}</div><div class="entry-meta-inline"><span class="meta-item"><span class="${newClass}">备份时间 ${formatDateToChinese(date)}</span></span><span class="meta-item">${size||'-'}</span></div></div>`;
+            let lines = '';
+            if (origUrl) lines += `<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${origUrl}</span><button class="copy-btn" data-url="${origUrl}">复制</button></div>`;
+            DOMAINS.forEach(domain => {
+                const fullUrl = domain.base + decodedFile;
+                lines += `<div class="url-line"><span class="url-tag">${domain.tag}</span><span class="url-text">${fullUrl}</span><button class="copy-btn" data-url="${fullUrl}">复制</button></div>`;
+            });
+            return `<div class="entry" data-name="${displayName.toLowerCase()}">${headerHtml}<div class="entry-urls">${lines}</div></div>`;
+        }
+
+        const container = document.getElementById('listContainer');
+        fetch('list.txt?t=' + Date.now(), { cache: 'no-store' })
+            .then(res => res.ok ? res.text() : Promise.reject('HTTP ' + res.status))
+            .then(text => {
+                const dataMap = {};
+                text.trim().split('\n').filter(l => l.trim()).forEach(line => {
+                    const parts = line.split('|').map(s => s.trim());
+                    if (parts[0]) dataMap[parts[0]] = { date: parts[1]||'', size: parts[2]||'', origUrl: parts[3]||'', note: parts[4]||'' };
+                });
+                const entries = Object.entries(dataMap);
+                if (!entries.length) {
+                    container.innerHTML = staticEntries + '<div class="empty">📭 暂无接口数据</div>';
+                    bindCopyEvents(container); return;
+                }
+                let items = entries.map(([file, info]) => ({
+                    file, date: info.date||'', size: info.size||'', note: info.note||'', origUrl: info.origUrl||'',
+                    weight: WEIGHTS[file] !== undefined ? WEIGHTS[file] : null,
+                }));
+                items.sort((a, b) => {
+                    if (a.weight !== null && b.weight !== null) return a.weight - b.weight;
+                    if (a.weight !== null) return -1; if (b.weight !== null) return 1;
+                    return Math.random() - 0.5;
+                });
+                let html = staticEntries;
+                items.forEach(item => { html += renderEntry(item.file, item.date, item.size, item.note, item.origUrl); });
+                container.innerHTML = html;
+                bindCopyEvents(container);
+            })
+            .catch(err => {
+                container.innerHTML = staticEntries + `<div class="error-msg">❌ 接口加载失败：${err}</div>`;
+                bindCopyEvents(container);
+            });
+    }
+
+    // ==================== 下载面板（核心：读 config.json 的 downloadSources） ====================
+    async function renderDownloads() {
+        const container = document.getElementById('downloads-content');
+        if (!container) return;
+        container.innerHTML = '<div class="loading">⏳ 正在加载下载资源...</div>';
+
+        const sources = (CONFIG && CONFIG.downloadSources && CONFIG.downloadSources.length)
+            ? CONFIG.downloadSources
+            : DEFAULT_CONFIG.downloadSources;
+
+        // 占位图标（base64）
+        const placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSI4IiBmaWxsPSIjRTVFOUVGIi8+PHBhdGggZD0iTTI0IDI4TDE2IDIwSDMyTDI0IDI4WiIgZmlsbD0iI0JGQzREQyIvPjwvc3ZnPg==";
+
+        function cleanJSON(text) {
+            return text
+                .replace(/[\u201c\u201d]/g, '"')
+                .replace(/[\u2018\u2019]/g, "'")
+                .replace(/：/g, ':')
+                .replace(/，/g, ',');
+        }
+
+        function cardHtml(item) {
+            return `<div class="download-card" data-name="${(item.name||'').toLowerCase()} ${(item.version||'').toLowerCase()}">
+                <img class="card-icon" src="${item.icon || placeholder}" alt="${item.name||''}" referrerpolicy="no-referrer" onerror="this.src='${placeholder}'">
+                <div class="card-info">
+                    <div class="card-name">${item.name || '未命名'}</div>
+                    ${item.version ? `<div class="card-version">${item.version}</div>` : ''}
+                </div>
+                <a class="card-btn" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">下载</a>
+            </div>`;
+        }
+
+        try {
+            let allHtml = '';
+            for (const source of sources) {
+                try {
+                    const res = await fetch(source.url + '?t=' + Date.now(), { cache: 'no-store' });
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    let text = await res.text();
+                    let data;
+                    try { data = JSON.parse(cleanJSON(text)); }
+                    catch (e) { throw new Error('JSON解析失败：' + e.message + '（请检查引号是否为英文）'); }
+
+                    if (!Array.isArray(data)) throw new Error('根必须是数组');
+
+                    let section = `<div class="source-section">`;
+                    if (source.name) section += `<div class="source-title">${source.name}</div>`;
+                    if (source.description) section += `<div class="source-desc">${source.description}</div>`;
+
+                    data.forEach(group => {
+                        section += `<div class="group-block">
+                            <div class="group-title">${group.name || '未命名'}</div>
+                            <div class="cards-grid">`;
+                        (group.list || []).forEach(item => { section += cardHtml(item); });
+                        section += `</div></div>`;
+                    });
+                    section += `</div>`;
+                    allHtml += section;
+                } catch (err) {
+                    allHtml += `<div class="source-section">
+                        <div class="source-title">${source.name || '下载源'}</div>
+                        <div class="error-msg">❌ ${source.url} 加载失败：${err.message}</div>
+                    </div>`;
+                }
+            }
+            container.innerHTML = allHtml || '<div class="empty">📭 未配置下载源</div>';
+        } catch (e) {
+            container.innerHTML = `<div class="error-msg">❌ 渲染失败：${e.message}</div>`;
+        }
+    }
+
+    // ==================== 关于面板 ====================
+    function renderAbout() {
+        const about = (CONFIG && CONFIG.about) ? CONFIG.about : DEFAULT_CONFIG.about;
+        const domainsEl = document.getElementById('aboutDomains');
+        if (domainsEl) {
+            let html = `<h3>🌐 备份线路域名</h3><p style="margin-bottom:6px;">三个域名互为备份，任一个可用：</p>`;
+            (about.domains || []).forEach(d => {
+                html += `<div class="domain-line"><span>${d}</span><button class="copy-btn" data-url="${d}">复制</button></div>`;
+            });
+            domainsEl.innerHTML = html;
+            bindCopyEvents(domainsEl);
+        }
+        const declEl = document.getElementById('aboutDecl');
+        if (declEl) {
+            declEl.innerHTML = `<h3>📢 声明与联系</h3>
+                <ul>
+                    <li>${about.declaration || ''}</li>
+                </ul>
+                <p style="margin-top:10px;">QQ 交流群：<strong style="color:#4a9eff;">${about.qqGroup || ''}</strong></p>`;
+        }
+    }
+
+    // ==================== 启动 ====================
+    loadConfig().then(() => {
+        renderApi();
+        renderDownloads();
+    });
 </script>
 </body>
 </html>
