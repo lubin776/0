@@ -31,6 +31,15 @@
       "api": "https://mpimg.cn/down.php/18b8bebbf7b64d39a1e3a90c83a86642.py"
     },
     {
+      "key": "短剧┃搜索3",
+      "name": "🏠短剧┃搜3",
+      "type": 3,
+      "indexs": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "api": "https://mpimg.cn/down.php/50c576631ebe4f148e0a8c3926ea30f4.py"
+    },
+    {
       "key": "七猫短剧",
       "name": "🎬七猫｜短剧",
       "type": 3,
@@ -53,6 +62,14 @@
       "searchable": 0,
       "quickSearch": 0,
       "api": "https://mpimg.cn/down.php/50c576631ebe4f148e0a8c3926ea30f4.py"
+    },
+    {
+      "key": "黄瓜漫剧",
+      "name": "🎬黄瓜丨漫剧",
+      "type": 3,
+      "searchable": 0,
+      "quickSearch": 0,
+      "api": "https://mpimg.cn/down.php/3be22fcd852c88654e47a939b211054a.py"
     },
     {
       "key": "百度短剧",
