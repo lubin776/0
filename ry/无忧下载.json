@@ -38,8 +38,8 @@
         "icon": "https://plum.now61.cn/f/VyHk/%E6%BD%87%E6%B4%92.jpg",
         "version": "08.31.1"
       },
-     //{"name": "潇洒单线路","url": "https://wget.la/https://raw.githubusercontent.com/PizazzGY/NewTVBox/main/单线路.zip","icon": "https://plum.now61.cn/f/VyHk/%E6%BD%87%E6%B4%92.jpg","version": "同步更新"},
-     //{"name": "潇洒多线路","url": "https://wget.la/https://raw.githubusercontent.com/PizazzGY/NewTVBox/main/多线路.zip","icon": "https://plum.now61.cn/f/VyHk/%E6%BD%87%E6%B4%92.jpg","version": "同步更新"},
+     {"name": "潇洒单线路","url": "https://wget.la/https://raw.githubusercontent.com/PizazzGY/NewTVBox/main/单线路.zip","icon": "https://plum.now61.cn/f/VyHk/%E6%BD%87%E6%B4%92.jpg","version": "同步更新"},
+     {"name": "潇洒多线路","url": "https://wget.la/https://raw.githubusercontent.com/PizazzGY/NewTVBox/main/多线路.zip","icon": "https://plum.now61.cn/f/VyHk/%E6%BD%87%E6%B4%92.jpg","version": "同步更新"},
       {
          "name": "pg本地",
          "url": "https://plum.now61.cn/f/ylIN/Pg.zip",
