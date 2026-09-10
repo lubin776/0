@@ -1,0 +1,227 @@
+/* ============================================================
+   全局基础
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f7fa; color: #1e293b;
+    padding: 16px 12px 8px;
+    transition: padding 0.3s;
+}
+
+.container {
+    max-width: 820px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+}
+
+/* ============================================================
+   切换按钮模块
+   ============================================================ */
+#modeToggleBtn {
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    z-index: 999;
+    width: 52px;
+    padding: 4px 2px;
+    border-radius: 12px;
+    border: 1px solid #4a9eff;
+    background: #fff;
+    color: #4a9eff;
+    font-size: 0.6rem;
+    line-height: 1.25;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: all 0.2s;
+}
+#modeToggleBtn:active { transform: scale(0.95); }
+
+/* ============================================================
+   头部模块：标题行（logo + 大字标题）+ 小字两行（副标题 + QQ群）
+   ============================================================ */
+.header-block { text-align: center; margin-bottom: 12px; padding-top: 12px; }
+
+h1 { font-size: 1.3rem; font-weight: 600; color: #0b1e33; }
+h1 .header-logo {
+    width: 1.8rem; height: 1.8rem; border-radius: 50%;
+    border: 1.5px solid #4a9eff; object-fit: cover;
+    vertical-align: -0.45rem; margin-right: 6px;
+}
+
+.header-divider { height: 1px; background: #e9edf2; margin: 10px 0; }
+
+/* 小字两行：第一行 subtitle（副标题），第二行 QQ群（由 JS 拼接） */
+.subtitle { font-size: 0.8rem; color: #8b9eb0; line-height: 1.5; }
+
+/* ============================================================
+   主卡片 + 导航栏组合模块（全能版显示）
+   ============================================================ */
+.main-card {
+    background: #ffffff; border-radius: 16px;
+    padding: 16px 18px 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid #f0f3f8;
+    transition: padding 0.3s;
+}
+
+.nav-tabs { display: flex; gap: 10px; margin-bottom: 12px; justify-content: center; flex-wrap: wrap; }
+.nav-tab {
+    padding: 7px 24px; border: 1.5px solid #4a9eff;
+    border-radius: 40px; background: #fff; color: #4a9eff;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    transition: all 0.2s; white-space: nowrap;
+}
+.nav-tab.active { background: #4a9eff; color: #fff; }
+.nav-tab:active { transform: scale(0.96); }
+
+/* ============================================================
+   搜索框（简洁版在卡片外，全能版在卡片内，由 JS positionSearchBox 移动）
+   ============================================================ */
+.search-box {
+    width: 100%; padding: 12px 16px;
+    border: 1px solid #dce1e9; border-radius: 40px;
+    font-size: 0.95rem; background: #fff; outline: none;
+    transition: 0.2s;
+}
+.search-box:focus { border-color: #4a9eff; box-shadow: 0 0 0 3px rgba(74,158,255,0.15); }
+
+/* 简洁版：搜索框在卡片外部，与卡片间隔 20px */
+body.simple-mode .search-box { margin-bottom: 20px; }
+/* 全能版：搜索框在卡片内部 */
+body:not(.simple-mode) .search-box { margin-bottom: 12px; }
+
+/* ============================================================
+   分页面板（全能版：每页一个模块）
+   ============================================================ */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ============================================================
+   接口列表模块（分页1）
+   ============================================================ */
+.api-list { padding: 0; border: none; background: transparent; }
+.entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
+.entry:first-of-type { padding-top: 4px; }
+.entry:last-child { border-bottom: none; }
+.entry-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.entry-name {
+    font-size: 1.05rem; font-weight: 600; color: #0b1e33;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    flex-shrink: 1; min-width: 0;
+}
+.entry-meta-inline {
+    margin-left: auto; display: flex; align-items: center;
+    gap: 10px; font-size: 0.75rem; color: #5a6f88;
+    white-space: nowrap; flex-shrink: 0;
+}
+.badge-new { color: #1b9e5a; }
+.badge-old { color: #b88b3a; }
+
+.entry-urls { display: block; }
+.url-line {
+    padding: 5px 12px 5px 10px; margin-bottom: 6px;
+    background: #f8fafc; border-radius: 40px; border: 1px solid #eef2f7;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+}
+.url-line:last-child { margin-bottom: 0; }
+.url-tag {
+    font-size: 0.7rem; font-weight: 500; color: #4a6a8a;
+    background: #e6edf6; padding: 0 12px; border-radius: 30px;
+    line-height: 24px; white-space: nowrap; flex-shrink: 0;
+}
+.url-text {
+    font-size: 0.82rem; color: #2563eb;
+    word-break: break-all; overflow-wrap: break-word;
+    white-space: normal; line-height: 1.5; flex: 1 1 0; min-width: 40px;
+}
+.copy-btn {
+    flex-shrink: 0; background: #4a9eff; color: white; border: none;
+    border-radius: 30px; padding: 0 14px; font-size: 0.7rem;
+    font-weight: 500; cursor: pointer; height: 26px; line-height: 26px;
+    transition: background 0.15s, transform 0.05s; white-space: nowrap; margin-left: auto;
+}
+.copy-btn:active { background: #2a7ed9; transform: scale(0.96); }
+.copy-btn.copied { background: #3b9b6c; }
+.entry.hidden, .download-card.hidden { display: none; }
+
+/* ============================================================
+   下载资源模块（分页2）
+   ============================================================ */
+.source-section { background: #f8fafc; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; border: 1px solid #eef2f7; }
+.source-section:last-child { margin-bottom: 0; }
+.source-title { font-size: 0.95rem; font-weight: 600; color: #0b1e33; margin-bottom: 2px; }
+.source-desc { font-size: 0.7rem; color: #8b9eb0; margin-bottom: 10px; }
+.group-block { margin-bottom: 12px; }
+.group-block:last-child { margin-bottom: 0; }
+.group-title { font-size: 0.82rem; font-weight: 600; color: #4a6a8a; margin-bottom: 8px; padding-left: 2px; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.download-card {
+    background: #fff; border-radius: 10px; padding: 16px 12px 24px;
+    text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    border: 1px solid #e8eef5; transition: transform 0.15s;
+    display: flex; flex-direction: column; align-items: center;
+    text-decoration: none; color: inherit; min-height: 180px;
+}
+.download-card:active { transform: scale(0.97); }
+.card-icon { width: 90%; height: auto; aspect-ratio: 1 / 1; border-radius: 10px; margin-bottom: 14px; object-fit: cover; background: #f0f3f8; }
+.card-info { flex: 1; width: 100%; margin-top: auto; }
+.card-name { font-size: 0.76rem; font-weight: 500; color: #1e293b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-version { font-size: 0.6rem; color: #8b9eb0; margin-top: 2px; }
+
+/* ============================================================
+   关于页面模块（分页3）
+   ============================================================ */
+.about-inner { background: #f8fafc; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #eef2f7; }
+.about-inner:last-child { margin-bottom: 0; }
+.about-inner h3 { font-size: 0.92rem; font-weight: 600; color: #0b1e33; margin-bottom: 8px; }
+.about-inner p, .about-inner li { font-size: 0.76rem; color: #5a6f88; line-height: 1.6; }
+.about-inner ul { padding-left: 16px; margin-top: 4px; }
+.domain-line { display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: #fff; border-radius: 40px; border: 1px solid #e0e6ed; margin-top: 6px; }
+.domain-line span { flex: 1; font-size: 0.75rem; color: #2563eb; word-break: break-all; }
+
+/* ============================================================
+   通用状态
+   ============================================================ */
+.loading, .empty { text-align: center; color: #9aadc2; padding: 48px 0; font-size: 0.9rem; }
+.error-msg { text-align: center; color: #d9534f; padding: 16px; font-size: 0.82rem; background: #fff3f3; border-radius: 10px; margin: 8px 0; word-break: break-all; }
+
+/* ============================================================
+   Footer 模块（独立，config 驱动）
+   ============================================================ */
+.page-footer { text-align: center; padding: 20px 0 8px; font-size: 0.72rem; color: #9aadc2; line-height: 1.8; }
+
+/* ============================================================
+   简洁版页面：只显示接口分页，隐藏导航与其它分页
+   ============================================================ */
+body.simple-mode .nav-tabs { display: none !important; }
+body.simple-mode #download-panel,
+body.simple-mode #about-panel { display: none !important; }
+body.simple-mode #api-panel { display: block !important; }
+
+/* ============================================================
+   移动端响应式（对齐旧版边距）
+   ============================================================ */
+@media (max-width: 600px) {
+    body { padding: 12px 6px 4px; }
+    #modeToggleBtn { top: 10px; left: 6px; width: 46px; font-size: 0.55rem; padding: 3px 1px; border-radius: 10px; }
+    .header-block { padding-top: 8px; margin-bottom: 8px; }
+    .main-card { padding: 12px 12px 10px; }
+    h1 .header-logo { width: 1.6rem; height: 1.6rem; vertical-align: -0.4rem; }
+    .header-divider { margin: 8px 0; }
+    .nav-tab { padding: 6px 20px; font-size: 0.78rem; }
+    .entry { padding: 12px 0; }
+    .entry-header { gap: 6px; margin-bottom: 6px; }
+    .entry-name { font-size: 0.95rem; }
+    .url-line { padding: 4px 8px; gap: 4px 6px; }
+    .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
+    .url-text { font-size: 0.75rem; }
+    .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
+    .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+    .download-card { padding: 14px 10px 20px; min-height: 160px; }
+    .card-icon { border-radius: 8px; margin-bottom: 12px; }
+    .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
+}
