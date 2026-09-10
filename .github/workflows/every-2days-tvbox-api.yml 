@@ -2,7 +2,7 @@ name: 两日一更备分接口
 
 on:
   schedule:
-    - cron: '5 17 * * *'   # ← 改到和第一个错开 5 分钟，避免同时触发
+    - cron: '5 16 * * *'   # UTC 16:05 = 北京次日 00:05
   workflow_dispatch:
     inputs:
       debug:
@@ -12,13 +12,12 @@ on:
         type: choice
         options: ["false", "true"]
 
-# ⭐ 独立 group，不与其他工作流互相取消
 concurrency:
   group: every-2days-tvbox-api
   cancel-in-progress: false
 
 jobs:
-  fetch:   # ← job 名改成语义化
+  fetch:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -43,10 +42,8 @@ jobs:
         run: |
           DAY=$(date -u +%d)
           if [ $((10#$DAY % 2)) -eq 0 ]; then
-            echo "今天是偶日(UTC)，跳过本次运行"
             echo "should_run=false" >> $GITHUB_OUTPUT
           else
-            echo "今天是奇日(UTC)，正常执行"
             echo "should_run=true" >> $GITHUB_OUTPUT
           fi
 
