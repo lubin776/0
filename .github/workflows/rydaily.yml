@@ -2,10 +2,8 @@ name: 每日解析在线本地包
 
 on:
   schedule:
-    # 每天 UTC 17:00 运行（北京时间次日 01:00）
-    - cron: '0 17 * * *'
-  # 保留手动触发：在 Actions 页面点一下就能立即跑一次，不受 cron 限制
-  workflow_dispatch:
+    - cron: '0 17 * * *'   # UTC 17:00 = 北京次日 01:00
+  workflow_dispatch:        # 手动触发
 
 concurrency:
   group: daily-ry-parser
