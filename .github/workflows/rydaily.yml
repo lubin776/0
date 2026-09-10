@@ -1,4 +1,4 @@
-name: 每日解析在线更新本地包
+name: 每日解析在线本地包
 
 on:
   schedule:
@@ -28,11 +28,12 @@ jobs:
         run: pip3 install requests
 
       - name: 运行解析器
-        working-directory: python   # 脚本放在仓库的 python/ 文件夹下
-        run: python3 "ry下载器.py"
+        # 脚本放在 python/ 下，但从仓库根目录运行，
+        # 这样脚本里的 OUTPUT_DIR="./ry" 会解析为仓库根目录的 ry/
+        run: python3 "python/ry下载器.py"
 
       - name: 提交结果
-        # 脚本会把结果写到 ./ry 目录，自动 commit 回仓库
+        # 脚本把结果写到仓库根的 ./ry 目录，自动 commit 回仓库
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
