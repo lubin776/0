@@ -5,25 +5,6 @@
     "headerTitle": "海量接口搬运备份",
     "subtitle": "备用数据源，防屏不迷路<br>QQ交流群：1067685939",
     "footer": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。",
-    "domains": [
-      {
-        "url": "https://0.12yue.de5.net",
-        "text": "https://0.12yue.de5.net"
-      },
-      {
-        "url": "https://0.cdz.qzz.io",
-        "text": "https://0.cdz.qzz.io"
-      },
-      {
-        "url": "https://0.wdzb.eu.cc",
-        "text": "https://0.wdzb.eu.cc"
-      }
-    ],
-    "declaration": {
-      "title": "📢 声明与联系",
-      "content": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
-      "qqGroup": "QQ 交流群：<strong style=\"color:#4a9eff;\">1067685939</strong>"
-    },
     "tabs": [
       { "id": "api", "label": "接口" },
       { "id": "download", "label": "下载" },
@@ -47,7 +28,17 @@
     },
     "about": {
       "domainsTitle": "🌐 备份线路域名",
-      "domainsDesc": "三个域名互为备份，任一个可用："
+      "domainsDesc": "三个域名互为备份，任一个可用：",
+      "domains": [
+        { "url": "https://0.12yue.de5.net", "text": "https://0.12yue.de5.net" },
+        { "url": "https://0.cdz.qzz.io", "text": "https://0.cdz.qzz.io" },
+        { "url": "https://0.wdzb.eu.cc", "text": "https://0.wdzb.eu.cc" }
+      ],
+      "declaration": {
+        "title": "📢 声明与联系",
+        "content": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
+        "qqGroup": "QQ 交流群：<strong style=\"color:#4a9eff;\">1067685939</strong>"
+      }
     },
     "api": {
       "backupTime": "备份时间",
@@ -74,40 +65,12 @@
     "小虎斑.json": 13
   },
   "downloadSources": [
-    {
-      "name": "菠菜园",
-      "url": "ry/菠菜园下载.json",
-      "description": "整理者：误道者"
-    },
-    {
-      "name": "奇奇副本",
-      "url": "ry/奇奇副本.json",
-      "description": "整理者：误道者"
-    },
-    {
-      "name": "无优",
-      "url": "ry/无忧下载.json",
-      "description": "云星"
-    },
-    {
-      "name": "潇洒",
-      "url": "ry/潇洒下载.json",
-      "description": "潇洒"
-    },
-    {
-      "name": "柒豪下载",
-      "url": "ry/柒豪下载.json",
-      "description": ""
-    },
-    {
-      "name": "应用下载",
-      "url": "ry/应用市场二.json",
-      "description": ""
-    },
-    {
-      "name": "应用市场",
-      "url": "ry/应用市场一.json",
-      "description": ""
-    }
+    { "name": "菠菜园", "url": "ry/菠菜园下载.json", "description": "整理者：误道者" },
+    { "name": "奇奇副本", "url": "ry/奇奇副本.json", "description": "整理者：误道者" },
+    { "name": "无优", "url": "ry/无忧下载.json", "description": "云星" },
+    { "name": "潇洒", "url": "ry/潇洒下载.json", "description": "潇洒" },
+    { "name": "柒豪下载", "url": "ry/柒豪下载.json", "description": "" },
+    { "name": "应用下载", "url": "ry/应用市场二.json", "description": "" },
+    { "name": "应用市场", "url": "ry/应用市场一.json", "description": "" }
   ]
 }
