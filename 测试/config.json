@@ -5,6 +5,7 @@
     "subtitle": "备用数据源，防屏不迷路",
     "qqGroup": "1067685939"
   },
+  "footer": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
   "tabs": [
     { "id": "api",      "label": "接口", "type": "api" },
     { "id": "download", "label": "下载", "type": "download" },
@@ -32,12 +33,17 @@
     { "name": "应用市场", "url": "ry/应用市场一.json",  "description": "" }
   ],
   "about": {
+    "title": "📢 声明与联系",
+    "domainTitle": "🌐 备份线路域名",
+    "domainTip": "三个域名互为备份，任一个可用：",
     "domains": [
       "https://0.12yue.de5.net",
       "https://0.cdz.qzz.io",
       "https://0.wdzb.eu.cc"
     ],
+    "declarationLabel": "声明",
     "declaration": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
+    "qqGroupLabel": "QQ 交流群",
     "qqGroup": "1067685939"
   }
 }
