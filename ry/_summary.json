@@ -1,0 +1,56 @@
+{
+  "time": "2026-09-10 03:21:19",
+  "output_dir": "/home/runner/work/0/0/ry",
+  "total": 8,
+  "success": 8,
+  "items": [
+    {
+      "name": "潇洒下载",
+      "url": "https://9877.kstore.space/single.json",
+      "file": "./ry/潇洒下载.json",
+      "ok": true
+    },
+    {
+      "name": "奇奇下载",
+      "url": "http://bd.qiqiv.cn/666.json",
+      "file": "./ry/奇奇下载.json",
+      "ok": true
+    },
+    {
+      "name": "菠菜园下载",
+      "url": "https://0.12yue.de5.net/tvbox/x/lib/菠菜园下载.json",
+      "file": "./ry/菠菜园下载.json",
+      "ok": true
+    },
+    {
+      "name": "奇奇副本",
+      "url": "https://0.12yue.de5.net/tvbox/x/lib/666.json",
+      "file": "./ry/奇奇副本.json",
+      "ok": true
+    },
+    {
+      "name": "柒豪下载",
+      "url": "https://raw.gitcode.com/qihao/qihaoyyds/raw/main/版本.json",
+      "file": "./ry/柒豪下载.json",
+      "ok": true
+    },
+    {
+      "name": "天神下载",
+      "url": "https://cdn.jsdelivr.net/gh/IY-CPU/IY@main/天神小屋.png",
+      "file": "./ry/天神下载.json",
+      "ok": true
+    },
+    {
+      "name": "应用市场二",
+      "url": "https://cdn.jsdelivr.net/gh/woshishiq1/hipy-drpy2@main/wzxxcz/json/market.json",
+      "file": "./ry/应用市场二.json",
+      "ok": true
+    },
+    {
+      "name": "应用市场一",
+      "url": "https://cdn.jsdelivr.net/gh/SimonWang911/simonwangsub@main/appupdate/appupdate.json",
+      "file": "./ry/应用市场一.json",
+      "ok": true
+    }
+  ]
+}
