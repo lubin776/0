@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>加载中...</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="simple-mode">
+
+<div class="container">
+    <!-- ===== 切换按钮模块 ===== -->
+    <button id="modeToggleBtn">切换<br>全能版</button>
+
+    <!-- ===== 头部模块：标题行（logo + 大字） + 小字两行 ===== -->
+    <div class="header-block">
+        <h1 id="siteTitle"></h1>
+        <div class="header-divider"></div>
+        <p class="subtitle" id="siteSubtitle"></p>
+    </div>
+
+    <!-- 搜索框（简洁版在卡片外，全能版在卡片内，由 JS 移动） -->
+    <input class="search-box" id="search" type="text" placeholder="🔍 搜索..." oninput="globalSearch()">
+
+    <!-- ===== 主卡片：全能版才有导航 + 多分页 ===== -->
+    <div class="main-card">
+        <!-- 导航栏组合模块（全能版显示，简洁版隐藏） -->
+        <div class="nav-tabs" id="navTabs"></div>
+
+        <!-- 分页1：接口列表模块 -->
+        <div class="tab-panel active" id="api-panel">
+            <div class="api-list" id="listContainer">
+                <div class="loading" id="apiLoading">⏳ 正在加载接口列表...</div>
+            </div>
+        </div>
+
+        <!-- 分页2：下载资源模块 -->
+        <div class="tab-panel" id="download-panel">
+            <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
+        </div>
+
+        <!-- 分页3：关于页面模块 -->
+        <div class="tab-panel" id="about-panel">
+            <div class="about-inner" id="aboutDomains"></div>
+            <div class="about-inner" id="aboutDecl"></div>
+        </div>
+    </div>
+
+    <!-- ===== Footer 模块（独立，config 驱动） ===== -->
+    <footer class="page-footer" id="footerText"></footer>
+</div>
+
+<!-- ===== JS 分模块加载（顺序敏感：先工具/渲染，再入口 app.js） ===== -->
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/download.js"></script>
+<script src="js/about.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
