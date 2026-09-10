@@ -50,8 +50,15 @@
     .search-box {
         width: 100%; padding: 12px 16px;
         border: 1px solid #dce1e9; border-radius: 40px;
-        font-size: 0.95rem; background: #fff; outline: none; margin-bottom: 12px;
+        font-size: 0.95rem; background: #fff; outline: none;
+        transition: 0.2s;
     }
+    .search-box:focus { border-color: #4a9eff; box-shadow: 0 0 0 3px rgba(74,158,255,0.15); }
+
+    /* 简洁版：搜索框在卡片外部，与卡片间隔 20px */
+    body.simple-mode .search-box { margin-bottom: 20px; }
+    /* 全能版：搜索框在卡片内部 */
+    body:not(.simple-mode) .search-box { margin-bottom: 12px; }
 
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
@@ -64,9 +71,9 @@
     .badge-new { color: #1b9e5a; }
     .badge-old { color: #b88b3a; }
     .url-line {
-        padding: 5px 12px; margin-bottom: 6px;
+        padding: 5px 12px 5px 10px; margin-bottom: 6px;
         background: #f8fafc; border-radius: 40px; border: 1px solid #eef2f7;
-        display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap;
     }
     .url-tag {
         font-size: 0.7rem; background: #e6edf6; padding: 0 12px;
@@ -103,9 +110,24 @@
     body.simple-mode #api-panel { display: block !important; }
 
     @media (max-width: 600px) {
-        .url-line { padding: 4px 8px; }
-        .url-text { font-size: 0.72rem; }
-        .copy-btn { padding: 0 10px; font-size: 0.65rem; }
+        body { padding: 12px 6px 4px; }
+        #modeToggleBtn { top: 10px; left: 6px; width: 46px; font-size: 0.55rem; padding: 3px 1px; border-radius: 10px; }
+        .header-block { padding-top: 8px; margin-bottom: 8px; }
+        .main-card { padding: 12px 12px 10px; }
+        h1 .header-logo { width: 1.6rem; height: 1.6rem; vertical-align: -0.4rem; }
+        .header-divider { margin: 8px 0; }
+        .nav-tab { padding: 6px 20px; font-size: 0.78rem; }
+        .entry { padding: 12px 0; }
+        .entry-header { gap: 6px; margin-bottom: 6px; }
+        .entry-name { font-size: 0.95rem; }
+        .url-line { padding: 4px 8px; gap: 4px 6px; }
+        .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
+        .url-text { font-size: 0.75rem; }
+        .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
+        .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+        .download-card { padding: 14px 10px 20px; min-height: 160px; }
+        .card-icon { border-radius: 8px; margin-bottom: 12px; }
+        .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
     }
 </style>
 </head>
@@ -357,15 +379,34 @@ function renderAbout() {
 }
 
 /* ========== 模式切换 ========== */
+const searchBox = document.getElementById('search');
+const mainCard = document.querySelector('.main-card');
+const navTabs = document.getElementById('navTabs');
+
+function positionSearchBox() {
+    if (document.body.classList.contains('simple-mode')) {
+        // 简洁版：搜索框放在卡片外部（header 之后、卡片之前）
+        if (searchBox.parentNode !== mainCard.parentNode) {
+            mainCard.parentNode.insertBefore(searchBox, mainCard);
+        }
+    } else {
+        // 全能版：搜索框放在卡片内部（导航标签之后）
+        if (searchBox.parentNode !== mainCard) {
+            navTabs.insertAdjacentElement('afterend', searchBox);
+        }
+    }
+}
+
 document.getElementById('modeToggleBtn').addEventListener('click', () => {
     const isSimple = document.body.classList.contains('simple-mode');
     document.body.classList.toggle('simple-mode', !isSimple);
     document.getElementById('modeToggleBtn').innerHTML = isSimple ? '切换<br>简洁版' : '切换<br>全能版';
+    positionSearchBox();
     if (isSimple) { renderDownloads(); renderAbout(); }
 });
 
 /* ========== 启动 ========== */
-loadConfig();
+loadConfig().then(() => { positionSearchBox(); });
 </script>
 </body>
 </html>
