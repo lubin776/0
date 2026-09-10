@@ -2,106 +2,668 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="pageTitle"></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>海量接口搬运备份</title>
 <style>
-/* 你的原 CSS 完全保留，此处省略 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #f5f7fa; color: #1e293b;
+        padding: 16px 12px 8px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        animation: pageFadeIn 0.15s ease-out forwards;
+    }
+    @keyframes pageFadeIn { to { opacity: 1; } }
+
+    .container {
+        max-width: 820px;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        padding: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ========== 切换按钮：固定左上角 ========== */
+    #modeToggleBtn {
+        position: absolute;
+        top: 12px;
+        left: 8px;
+        z-index: 999;
+        width: 52px;
+        height: 40px;
+        padding: 4px 2px;
+        border-radius: 12px;
+        border: 1px solid #4a9eff;
+        background: #fff;
+        color: #4a9eff;
+        font-size: 0.6rem;
+        line-height: 1.25;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #modeToggleBtn:active { transform: scale(0.95); }
+
+    /* ========== Header：Logo+标题整体居中 ========== */
+    .header-block { 
+        text-align: center; 
+        margin-bottom: 12px; 
+        padding: 12px 12px 12px 70px; /* 预留按钮空间 */
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    h1 { 
+        font-size: 1.3rem; 
+        font-weight: 600; 
+        color: #0b1e33; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 6px;
+        margin: 0 auto;
+    }
+    h1 .header-logo {
+        width: 1.8rem; 
+        height: 1.8rem; 
+        border-radius: 50%;
+        border: 1.5px solid #4a9eff; 
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+    .header-divider { 
+        height: 1px; 
+        background: #e9edf2; 
+        margin: 10px 0; 
+        width: 100%;
+    }
+    .subtitle { 
+        font-size: 0.8rem; 
+        color: #8b9eb0; 
+        line-height: 1.5; 
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* ========== 主内容区 ========== */
+    .main-card {
+        background: #ffffff; 
+        border-radius: 16px;
+        padding: 16px 18px 14px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        border: 1px solid #f0f3f8;
+        flex: 1;
+        width: 100%;
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-tabs { 
+        display: flex; 
+        gap: 10px; 
+        margin-bottom: 12px; 
+        justify-content: center; 
+        flex-wrap: wrap; 
+        width: 100%;
+    }
+    .nav-tab {
+        padding: 7px 24px; 
+        border: 1.5px solid #4a9eff;
+        border-radius: 40px; 
+        background: #fff; 
+        color: #4a9eff;
+        font-size: 0.82rem; 
+        font-weight: 500; 
+        cursor: pointer;
+        min-width: 80px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav-tab.active { background: #4a9eff; color: #fff; }
+    .nav-tab:active { transform: scale(0.96); }
+
+    .search-box {
+        width: 100%; 
+        padding: 12px 16px;
+        border: 1px solid #dce1e9; 
+        border-radius: 40px;
+        font-size: 0.95rem; 
+        background: #fff; 
+        outline: none;
+        margin-bottom: 20px;
+    }
+    .search-box:focus { 
+        border-color: #4a9eff; 
+        box-shadow: 0 0 0 3px rgba(74,158,255,0.15); 
+    }
+    body:not(.simple-mode) .search-box { margin-bottom: 12px; }
+
+    .tab-panel { display: none; width: 100%; }
+    .tab-panel.active { display: block; }
+
+    .api-list { 
+        padding: 0; 
+        border: none; 
+        background: transparent; 
+        flex: 1;
+        width: 100%;
+    }
+    .entry { 
+        padding: 16px 0; 
+        border-bottom: 1px solid #f0f4fa;
+        width: 100%;
+    }
+    .entry-header { 
+        display: flex; 
+        align-items: center; 
+        gap: 10px; 
+        margin-bottom: 8px;
+        width: 100%;
+    }
+    .entry-name {
+        font-size: 1.05rem; 
+        font-weight: 600; 
+        color: #0b1e33;
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    .entry-meta-inline {
+        margin-left: auto; 
+        display: flex; 
+        align-items: center;
+        gap: 10px; 
+        font-size: 0.75rem; 
+        color: #5a6f88;
+        flex-shrink: 0;
+    }
+    .entry-urls { display: block; width: 100%; }
+    .url-line {
+        padding: 5px 12px 5px 10px;
+        margin-bottom: 6px;
+        background: #f8fafc; 
+        border-radius: 40px; 
+        border: 1px solid #eef2f7;
+        display: flex; 
+        flex-wrap: wrap; 
+        align-items: center; 
+        gap: 6px 10px;
+        min-height: 36px;
+        width: 100%;
+    }
+    .url-tag {
+        font-size: 0.7rem; 
+        font-weight: 500; 
+        color: #4a6a8a;
+        background: #e6edf6; 
+        padding: 0 12px; 
+        border-radius: 30px;
+        line-height: 24px; 
+        white-space: nowrap; 
+        flex-shrink: 0;
+        min-width: 60px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .url-text {
+        font-size: 0.82rem; 
+        color: #2563eb;
+        word-break: break-all; 
+        line-height: 1.5; 
+        flex: 1; 
+        min-width: 40px;
+        display: flex;
+        align-items: center;
+    }
+    .copy-btn {
+        flex-shrink: 0; 
+        background: #4a9eff; 
+        color: white; 
+        border: none;
+        border-radius: 30px; 
+        padding: 0 14px; 
+        font-size: 0.7rem; 
+        font-weight: 500;
+        cursor: pointer; 
+        height: 26px; 
+        line-height: 26px;
+        min-width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+    }
+    .copy-btn:active { background: #2a7ed9; transform: scale(0.96); }
+    .copy-btn.copied { background: #3b9b6c; }
+
+    .loading, .empty { 
+        text-align: center; 
+        color: #9aadc2; 
+        padding: 48px 0; 
+        font-size: 0.9rem; 
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        width: 100%;
+    }
+    .error-msg { 
+        text-align: center; 
+        color: #d9534f; 
+        padding: 16px; 
+        font-size: 0.82rem; 
+        background: #fff3f3; 
+        border-radius: 10px; 
+        margin: 8px 0; 
+        width: 100%;
+    }
+
+    .source-section { 
+        background: #f8fafc; 
+        border-radius: 12px; 
+        padding: 12px 14px; 
+        margin-bottom: 12px; 
+        border: 1px solid #eef2f7; 
+        width: 100%;
+    }
+    .cards-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+        gap: 12px; 
+        width: 100%;
+    }
+    .download-card {
+        background: #fff; 
+        border-radius: 10px; 
+        padding: 16px 12px 24px;
+        text-align: center; 
+        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        border: 1px solid #e8eef5; 
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none; 
+        color: inherit;
+        width: 100%;
+    }
+    .about-inner { 
+        background: #f8fafc; 
+        border-radius: 12px; 
+        padding: 14px 16px; 
+        margin-bottom: 12px; 
+        border: 1px solid #eef2f7; 
+        width: 100%;
+    }
+    .domain-line { 
+        display: flex; 
+        align-items: center; 
+        gap: 8px; 
+        padding: 6px 14px; 
+        background: #fff; 
+        border-radius: 40px; 
+        border: 1px solid #e0e6ed; 
+        margin-top: 6px;
+        width: 100%;
+    }
+
+    .page-footer {
+        text-align: center; 
+        padding: 20px 0 8px; 
+        font-size: 0.72rem; 
+        color: #9aadc2; 
+        line-height: 1.8;
+        flex-shrink: 0;
+        min-height: 60px;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    body.simple-mode .nav-tabs { display: none !important; }
+    body.simple-mode #download-panel,
+    body.simple-mode #about-panel { display: none !important; }
+    body.simple-mode #api-panel { display: block !important; }
+    body.simple-mode .search-box { margin-bottom: 20px; }
+
+    /* ========== 移动端适配 ========== */
+    @media (max-width: 600px) {
+        body { padding: 12px 6px 4px; }
+        #modeToggleBtn { 
+            top: 10px; 
+            left: 6px; 
+            width: 46px; 
+            height: 36px;
+            font-size: 0.55rem; 
+            padding: 3px 1px; 
+            border-radius: 10px; 
+        }
+        .header-block { 
+            padding: 10px 6px 10px 60px;
+            margin-bottom: 8px; 
+            min-height: 100px;
+        }
+        h1 { font-size: 1.15rem; gap: 5px; }
+        h1 .header-logo { width: 1.6rem; height: 1.6rem; }
+        .main-card { padding: 12px 12px 10px; }
+        .nav-tab { padding: 6px 20px; font-size: 0.78rem; min-width: 70px; height: 32px; }
+        .entry { padding: 12px 0; }
+        .url-line { padding: 4px 8px; gap: 4px 6px; min-height: 32px; }
+        .copy-btn { height: 24px; line-height: 24px; min-width: 44px; }
+        .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+        .download-card { min-height: 160px; }
+        .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
+    }
 </style>
 </head>
 <body class="simple-mode">
 
 <div class="container">
-  <button id="modeToggleBtn"></button>
+    <button id="modeToggleBtn">切换<br>全能版</button>
 
-  <div class="header-block">
-    <h1>
-      <img class="header-logo" id="headerLogo" alt="Logo">
-      <span id="headerTitle"></span>
-    </h1>
-    <div class="header-divider"></div>
-    <p class="subtitle" id="headerSubtitle"></p>
-  </div>
-
-  <input class="search-box" id="search" type="text">
-
-  <div class="main-card">
-    <div class="nav-tabs" id="navTabs"></div>
-
-    <div class="tab-panel active" id="api-panel">
-      <div class="api-list" id="listContainer"></div>
+    <div class="header-block">
+        <h1>
+            <img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">
+            <span>海量接口搬运备份</span>
+        </h1>
+        <div class="header-divider"></div>
+        <p class="subtitle">备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
     </div>
 
-    <div class="tab-panel" id="download-panel">
-      <div id="downloads-content"></div>
+    <input class="search-box" id="search" type="text" placeholder="🔍 搜索...">
+
+    <div class="main-card">
+        <div class="nav-tabs" id="navTabs">
+            <button class="nav-tab active" data-tab="api">接口</button>
+            <button class="nav-tab" data-tab="download">下载</button>
+            <button class="nav-tab" data-tab="about">关于</button>
+        </div>
+
+        <div class="tab-panel active" id="api-panel">
+            <div class="api-list" id="listContainer">
+                <div class="loading">⏳ 正在加载接口列表...</div>
+            </div>
+        </div>
+
+        <div class="tab-panel" id="download-panel">
+            <div id="downloads-content">
+                <div class="loading">⏳ 正在加载下载资源...</div>
+            </div>
+        </div>
+
+        <div class="tab-panel" id="about-panel">
+            <div class="about-inner" id="aboutDomains">
+                <h3>🌐 备份线路域名</h3>
+                <p style="margin-bottom:6px;">三个域名互为备份，任一个可用：</p>
+                <div class="domain-line">
+                    <span>https://0.12yue.de5.net</span>
+                    <button class="copy-btn" data-url="https://0.12yue.de5.net">复制</button>
+                </div>
+                <div class="domain-line">
+                    <span>https://0.cdz.qzz.io</span>
+                    <button class="copy-btn" data-url="https://0.cdz.qzz.io">复制</button>
+                </div>
+                <div class="domain-line">
+                    <span>https://0.wdzb.eu.cc</span>
+                    <button class="copy-btn" data-url="https://0.wdzb.eu.cc">复制</button>
+                </div>
+            </div>
+            <div class="about-inner" id="aboutDecl">
+                <h3>📢 声明与联系</h3>
+                <ul><li>仅供测试学习使用。</li></ul>
+                <p style="margin-top:10px;">QQ群：1067685939</p>
+            </div>
+        </div>
     </div>
 
-    <div class="tab-panel" id="about-panel">
-      <div class="about-inner" id="aboutDomains"></div>
-      <div class="about-inner" id="aboutDecl"></div>
-    </div>
-  </div>
-
-  <footer class="page-footer" id="pageFooter"></footer>
+    <footer class="page-footer">
+        <p>本站接口资源由【误道者】整理。</p>
+    </footer>
 </div>
 
 <script>
-let CONFIG = {};
+/* ========== 全局配置 ========== */
+const MODE_KEY = 'site_mode';
+const btn = document.getElementById('modeToggleBtn');
+const searchBox = document.getElementById('search');
+const mainCard = document.querySelector('.main-card');
+const navTabs = document.getElementById('navTabs');
 
-async function loadConfig() {
-  const res = await fetch('config.json?t=' + Date.now());
-  if (!res.ok) throw new Error('config load failed');
-  CONFIG = await res.json();
+let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
+document.body.className = currentMode + '-mode';
+
+/* ========== 按钮文字更新 ========== */
+function updateBtnText() {
+    btn.innerHTML = currentMode === 'simple' ? '切换<br>全能版' : '切换<br>简洁版';
 }
 
-function renderStatic() {
-  const s = CONFIG.site;
-
-  document.getElementById('pageTitle').textContent = s.title;
-  document.getElementById('headerLogo').src = s.logo;
-  document.getElementById('headerTitle').textContent = s.headerTitle;
-  document.getElementById('headerSubtitle').innerHTML = s.subtitle;
-  document.getElementById('pageFooter').innerHTML = `<p>${s.footer}</p>`;
-  document.getElementById('search').placeholder = s.search.placeholder;
-  document.getElementById('modeToggleBtn').innerHTML = s.modeToggle.simple;
-
-  /* Tabs */
-  const nav = document.getElementById('navTabs');
-  nav.innerHTML = s.tabs.map(t =>
-    `<button class="nav-tab ${t.id==='api'?'active':''}" data-tab="${t.id}">${t.label}</button>`
-  ).join('');
-
-  /* About */
-  document.getElementById('aboutDomains').innerHTML = `
-    <h3>${s.about.domainsTitle}</h3>
-    <p>${s.about.domainsDesc}</p>
-    ${s.domains.map(d => `
-      <div class="domain-line">
-        <span>${d.text}</span>
-        <button class="copy-btn" data-url="${d.url}">复制</button>
-      </div>
-    `).join('')}
-  `;
-
-  document.getElementById('aboutDecl').innerHTML = `
-    <h3>${s.declaration.title}</h3>
-    <ul><li>${s.declaration.content}</li></ul>
-    <p style="margin-top:10px;">${s.declaration.qqGroup}</p>
-  `;
+/* ========== 复制功能 ========== */
+function bindCopy(container) {
+    if (!container) return;
+    container.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const url = this.getAttribute('data-url');
+            if (!url) return;
+            const done = () => {
+                const orig = this.textContent;
+                this.textContent = '✅ 已复制';
+                this.classList.add('copied');
+                setTimeout(() => {
+                    this.textContent = orig;
+                    this.classList.remove('copied');
+                }, 1500);
+            };
+            navigator.clipboard ? navigator.clipboard.writeText(url).then(done).catch(fallback) : fallback();
+            function fallback() {
+                const input = document.createElement('input');
+                input.value = url;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                done();
+            }
+        });
+    });
 }
 
-/* ===== 以下为你原有 JS 逻辑（仅把文案引用改为 CONFIG.site.xxx）===== */
-/* API / Download / Search / ModeToggle 逻辑全部保留 */
-/* 加载提示、错误提示统一使用 CONFIG.site.loading / error */
+/* ========== 接口列表渲染 ========== */
+function ensureJson(name) { return name.endsWith('.json') ? name : name + '.json'; }
 
-(async () => {
-  try {
-    await loadConfig();
-    renderStatic();
-    initApp(); // 你原来的入口逻辑
-  } catch (e) {
-    document.body.innerHTML = '<p style="padding:30px;text-align:center;color:red">配置文件加载失败</p>';
-  }
-})();
+function renderApi() {
+    const container = document.getElementById('listContainer');
+    const loadingTip = container.querySelector('.loading');
+    const formatDate = d => !d || d.length!==8 ? '----' : `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
+    const isRecent = d => {
+        if (!d || d.length!==8) return false;
+        const y=+d.slice(0,4), m=+d.slice(4,6)-1, day=+d.slice(6,8);
+        return (Date.now() - new Date(y,m,day).getTime())/86400000 <=2;
+    };
+
+    // 接口权重配置
+    const apiWeights = {
+        "菠菜园.json": 1, "香辣.json": 2, "饭太硬.json": 3, "道长.json": 4,
+        "盒子.json": 5, "小米.json": 6, "多多.json": 7, "胖鸭.json": 8,
+        "欧歌.json": 9, "吾爱.json": 10, "菜狗.json": 11, "开心.json": 12
+    };
+
+    // 备份域名配置
+    const apiDomains = [
+        { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
+        { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
+        { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" }
+    ];
+
+    fetch('list.txt?t='+Date.now(), {cache:'no-store'})
+        .then(res => res.ok ? res.text() : Promise.reject('HTTP '+res.status))
+        .then(text => {
+            loadingTip.style.display='none';
+            const items = text.trim().split('\n').filter(l=>l.trim()).map(line=>{
+                const [file,...rest] = line.split('|').map(s=>s.trim());
+                return {
+                    file, name: file.replace(/\.json$/i,''),
+                    date: rest[0]||'', size: rest[1]||'', origUrl: rest[2]||'',
+                    weight: apiWeights[file]??999
+                };
+            }).sort((a,b)=>a.weight!==b.weight ? a.weight-b.weight : a.name.localeCompare(b.name,'zh'));
+
+            container.innerHTML = items.map(it=>{
+                const isNew=isRecent(it.date), cls=isNew?'badge-new':'badge-old';
+                const jsonName=ensureJson(it.file);
+                let urls='';
+                if(it.origUrl) urls+=`<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
+                apiDomains.forEach(d=>{
+                    const url=d.base+jsonName;
+                    urls+=`<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
+                });
+                return `<div class="entry" data-name="${it.name.toLowerCase()}">
+                    <div class="entry-header">
+                        <div class="entry-name" title="${it.name}">${it.name}</div>
+                        <div class="entry-meta-inline">
+                            <span class="${cls}">备份时间 ${formatDate(it.date)}</span>
+                            ${it.size?`&nbsp;&nbsp;${it.size}`:''}
+                        </div>
+                    </div>
+                    <div class="entry-urls">${urls}</div>
+                </div>`;
+            }).join('');
+            bindCopy(container);
+        })
+        .catch(err=>{
+            loadingTip.style.display='none';
+            container.innerHTML=`<div class="error-msg">❌ 接口加载失败：${err}</div>`;
+        });
+}
+
+/* ========== 下载资源渲染 ========== */
+async function renderDownloads(force) {
+    const container=document.getElementById('downloads-content');
+    if(!container || (container.dataset.rendered && !force)) return;
+    container.dataset.rendered='true';
+    container.innerHTML=`<div class="loading">⏳ 正在加载下载资源...</div>`;
+
+    // 下载源配置
+    const downloadSources = [
+        { name: "TVBox安卓版", description: "稳定版/修改版合集", url: "https://0.12yue.de5.net/ry/tvbox.json" },
+        { name: "影视仓安卓版", description: "多线路支持", url: "https://0.12yue.de5.net/ry/ysck.json" },
+        { name: "宝盒仓安卓版", description: "轻量级播放器", url: "https://0.12yue.de5.net/ry/bhc.json" },
+        { name: "影迷仓安卓版", description: "高清资源聚合", url: "https://0.12yue.de5.net/ry/ymc.json" },
+        { name: "二哈仓安卓版", description: "极速解析", url: "https://0.12yue.de5.net/ry/ehc.json" },
+        { name: "OK影视安卓版", description: "大屏优化", url: "https://0.12yue.de5.net/ry/ok.json" },
+        { name: "OK影视TV版", description: "电视端专用", url: "https://0.12yue.de5.net/ry/oktv.json" }
+    ];
+
+    if(!downloadSources?.length){
+        container.innerHTML=`<div class="error-msg">⚠️ 未配置下载源</div>`;
+        return;
+    }
+    let html='';
+    for(const src of downloadSources){
+        try{
+            const res=await fetch(src.url+'?t='+Date.now());
+            if(!res.ok) throw new Error('HTTP '+res.status);
+            const data=JSON.parse(await res.text());
+            html+=`<div class="source-section">`;
+            if(src.name) html+=`<div class="source-title">${src.name}</div>`;
+            if(src.description) html+=`<div class="source-desc">${src.description}</div>`;
+            (data.list||data).forEach(group=>{
+                html+=`<div class="group-block">`;
+                if(group.name) html+=`<div class="group-title">${group.name}</div>`;
+                html+=`<div class="cards-grid">`;
+                (group.list||[]).forEach(i=>{
+                    html+=`<a class="download-card" href="${i.url||'#'}" target="_blank" rel="noopener" data-name="${(i.name||'').toLowerCase()}">
+                        <img class="card-icon" src="${i.icon||''}" onerror="this.style.visibility='hidden'">
+                        <div class="card-info"><div class="card-name">${i.name||''}</div>${i.version?`<div class="card-version">${i.version}</div>`:''}</div>
+                    </a>`;
+                });
+                html+=`</div></div>`;
+            });
+            html+=`</div>`;
+        }catch(e){
+            html+=`<div class="error-msg">❌ ${src.name}加载失败：${e.message}</div>`;
+        }
+    }
+    container.innerHTML=html;
+    bindCopy(container);
+}
+
+/* ========== 面板切换 ========== */
+function showPanel(tabId){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(`${tabId}-panel`)?.classList.add('active');
+    if(tabId==='download') renderDownloads();
+    const hideSearch = tabId !== 'api';
+    searchBox.style.display = hideSearch ? 'none' : '';
+}
+
+/* ========== 搜索功能 ========== */
+function globalSearch(){
+    const kw=(searchBox.value||'').toLowerCase().trim();
+    document.querySelectorAll('#api-panel .entry').forEach(e=>{
+        e.classList.toggle('hidden', !(e.dataset.name||'').includes(kw));
+    });
+    if(currentMode!=='simple'){
+        document.querySelectorAll('.download-card').forEach(c=>{
+            c.classList.toggle('hidden', !(c.dataset.name||'').includes(kw));
+        });
+    }
+}
+
+/* ========== 搜索框位置调整 ========== */
+function positionSearchBox(){
+    if(currentMode==='simple'){
+        if(searchBox.parentNode!==mainCard.parentNode) mainCard.parentNode.insertBefore(searchBox, mainCard);
+    }else{
+        if(searchBox.parentNode!==mainCard) navTabs.insertAdjacentElement('afterend', searchBox);
+    }
+}
+
+/* ========== 模式切换 ========== */
+btn.addEventListener('click', ()=>{
+    currentMode = currentMode==='simple' ? 'full' : 'simple';
+    localStorage.setItem(MODE_KEY, currentMode);
+    document.body.className = currentMode+'-mode';
+    updateBtnText();
+    positionSearchBox();
+    if(currentMode!=='simple'){ renderDownloads(); }
+    else showPanel('api');
+});
+
+navTabs.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        navTabs.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        showPanel(this.getAttribute('data-tab'));
+    });
+});
+
+searchBox.addEventListener('input', globalSearch);
+
+/* ========== 初始化 ========== */
+updateBtnText();
+positionSearchBox();
+renderApi();
+bindCopy(document.getElementById('about-panel'));
 </script>
+
 </body>
 </html>
