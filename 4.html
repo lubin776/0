@@ -24,9 +24,18 @@
         top: 12px;
         left: 8px;
         z-index: 999;
-        padding: 3px 10px; border-radius: 16px; border: 1px solid #4a9eff;
-        background: #fff; color: #4a9eff; font-size: 0.65rem; cursor: pointer;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: all 0.2s;
+        width: 52px;
+        padding: 4px 2px;
+        border-radius: 12px;
+        border: 1px solid #4a9eff;
+        background: #fff;
+        color: #4a9eff;
+        font-size: 0.6rem;
+        line-height: 1.25;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        transition: all 0.2s;
     }
     #modeToggleBtn:active { transform: scale(0.95); }
 
@@ -160,7 +169,7 @@
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
-        #modeToggleBtn { top: 10px; left: 6px; padding: 2px 8px; font-size: 0.58rem; }
+        #modeToggleBtn { top: 10px; left: 6px; width: 46px; font-size: 0.55rem; padding: 3px 1px; border-radius: 10px; }
         .header-block { padding-top: 8px; margin-bottom: 8px; }
         .main-card { padding: 12px 12px 10px; }
         h1 .header-logo { width: 1.6rem; height: 1.6rem; vertical-align: -0.4rem; }
@@ -183,7 +192,7 @@
 <body class="simple-mode">
 
 <div class="container">
-    <button id="modeToggleBtn">切换到全能版</button>
+    <button id="modeToggleBtn">切换<br>全能版</button>
 
     <div class="header-block">
         <h1 id="siteTitle"><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
@@ -279,7 +288,7 @@
     }
 
     function updateBtnText() {
-        btn.textContent = currentMode === 'simple' ? '切换到全能版' : '切换到简洁版';
+        btn.innerHTML = currentMode === 'simple' ? '切换<br>全能版' : '切换<br>简洁版';
     }
 
     function showPanel(tabId) {
