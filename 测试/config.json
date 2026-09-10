@@ -1,17 +1,35 @@
 {
+  "_说明": "本站全部内容配置。HTML 仅为空壳，所有文字/链接/结构由此文件驱动。仅 downloadSources 为外延下载源，其余为页面静态内容。",
+
   "site": {
     "title": "海量接口搬运备份",
     "logo": "https://0.12yue.de5.net/tvbox/x/jueson.jpg",
-    "subtitle": "备用数据源，防屏不迷路",
-    "qqGroup": "1067685939"
+    "logoAlt": "Logo",
+    "subtitle": [
+      "备用数据源，防屏不迷路",
+      "QQ交流群：1067685939"
+    ],
+    "defaultMode": "simple",
+    "toggleButton": {
+      "simpleText": "切换<br>全能版",
+      "fullText": "切换<br>简洁版"
+    }
   },
-  "footer": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
+
+  "search": {
+    "placeholder": "🔍 搜索..."
+  },
+
   "tabs": [
-    { "id": "api",      "label": "接口", "type": "api" },
-    { "id": "download", "label": "下载", "type": "download" },
-    { "id": "about",    "label": "关于", "type": "about", "hideSearch": true }
+    { "id": "api",      "label": "接口", "hideSearch": false },
+    { "id": "download", "label": "下载", "hideSearch": false },
+    { "id": "about",    "label": "关于", "hideSearch": true  }
   ],
+
   "api": {
+    "loadingText": "⏳ 正在加载接口列表...",
+    "failText": "❌ 接口加载失败：",
+    "dataFile": "list.txt",
     "domains": [
       { "tag": "备份一线", "base": "https://0.12yue.de5.net/tvbox/" },
       { "tag": "备份二线", "base": "https://0.cdz.qzz.io/tvbox/" },
@@ -21,29 +39,57 @@
       "菠菜园.json": 1, "少儿频道.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
       "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
       "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
-    }
+    },
+    "originalLine": {
+      "tag": "原始线路"
+    },
+    "dateFormat": "备份时间 ",
+    "recentDays": 2,
+    "recentClass": "badge-new",
+    "oldClass": "badge-old"
   },
-  "downloadSources": [
-    { "name": "菠菜园",   "url": "菠菜园下载.json",     "description": "整理者：误道者" },
-    { "name": "奇奇副本", "url": "ry/奇奇副本.json",    "description": "整理者：误道者" },
-    { "name": "无优",     "url": "ry/无忧下载.json",    "description": "云星" },
-    { "name": "潇洒",     "url": "ry/潇洒下载.json",    "description": "潇洒" },
-    { "name": "柒豪下载", "url": "ry/柒豪下载.json",    "description": "" },
-    { "name": "应用下载", "url": "ry/应用市场二.json",  "description": "" },
-    { "name": "应用市场", "url": "ry/应用市场一.json",  "description": "" }
-  ],
+
+  "download": {
+    "loadingText": "⏳ 正在加载下载资源...",
+    "emptyText": "⚠️ 未配置下载源（config.json 的 downloadSources 为空）",
+    "failText": "❌ ",
+    "failTextSuffix": " 加载失败：",
+    "downloadSources": [
+      { "name": "菠菜园",   "url": "菠菜园下载.json",     "description": "整理者：误道者" },
+      { "name": "奇奇副本", "url": "ry/奇奇副本.json",    "description": "整理者：误道者" },
+      { "name": "无优",     "url": "ry/无忧下载.json",    "description": "云星" },
+      { "name": "潇洒",     "url": "ry/潇洒下载.json",    "description": "潇洒" },
+      { "name": "柒豪下载", "url": "ry/柒豪下载.json",    "description": "" },
+      { "name": "应用下载", "url": "ry/应用市场二.json",  "description": "" },
+      { "name": "应用市场", "url": "ry/应用市场一.json",  "description": "" }
+    ]
+  },
+
   "about": {
-    "title": "📢 声明与联系",
-    "domainTitle": "🌐 备份线路域名",
-    "domainTip": "三个域名互为备份，任一个可用：",
-    "domains": [
-      "https://0.12yue.de5.net",
-      "https://0.cdz.qzz.io",
-      "https://0.wdzb.eu.cc"
-    ],
-    "declarationLabel": "声明",
-    "declaration": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
-    "qqGroupLabel": "QQ 交流群",
-    "qqGroup": "1067685939"
+    "sections": [
+      {
+        "id": "domains",
+        "title": "🌐 备份线路域名",
+        "intro": "三个域名互为备份，任一个可用：",
+        "items": [
+          { "label": "https://0.12yue.de5.net",  "url": "https://0.12yue.de5.net" },
+          { "label": "https://0.cdz.qzz.io",     "url": "https://0.cdz.qzz.io" },
+          { "label": "https://0.wdzb.eu.cc",     "url": "https://0.wdzb.eu.cc" }
+        ]
+      },
+      {
+        "id": "decl",
+        "title": "📢 声明与联系",
+        "list": [
+          "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。"
+        ],
+        "qqPrefix": "QQ 交流群：",
+        "qqNumber": "1067685939"
+      }
+    ]
+  },
+
+  "footer": {
+    "text": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。"
   }
 }
