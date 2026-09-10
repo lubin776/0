@@ -2,22 +2,24 @@ name: 每日解析在线本地包
 
 on:
   schedule:
-    # 每天 UTC 17:00 运行（北京时间次日 01:00）
-    # 想改时间就改这里，5 字段 cron，注意是 UTC
-    - cron: '0 17 * * *'
-  workflow_dispatch:  # 保留手动触发，方便随时试跑
+    - cron: '0 17 * * *'   # UTC 17:00 = 北京次日 01:00
+  workflow_dispatch:
+
+# ⭐ 关键：用唯一 group 名 + 串行，避免两个工作流同时 push 冲突
+concurrency:
+  group: daily-ry-parser
+  cancel-in-progress: false
 
 jobs:
-  run:
+  parse:   # ← job 名改成语义化
     runs-on: ubuntu-latest
-    # 防止同一时刻重复运行（可选）
-    concurrency:
-      group: tvbox-daily
-      cancel-in-progress: false
-
+    permissions:
+      contents: write
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # ← 关键：拉全量历史，避免 push 时 base 过旧
 
       - name: 设置 Python
         uses: actions/setup-python@v5
@@ -27,23 +29,28 @@ jobs:
       - name: 安装依赖
         run: pip3 install requests
 
+      - name: 清空旧产物（强制覆盖）
+        run: |
+          rm -rf ry
+          mkdir ry
+
       - name: 运行解析器
-        # 脚本放在 python/ 下，但从仓库根目录运行，
-        # 这样脚本里的 OUTPUT_DIR="./ry" 会解析为仓库根目录的 ry/
         run: python3 "python/ry下载器.py"
 
       - name: 提交结果
-        # 脚本把结果写到仓库根的 ./ry 目录，自动 commit 回仓库
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git config user.name  "ry-parser-bot[bot]"
+          git config user.email "ry-parser-bot[bot]@users.noreply.github.com"
+          git add ry/
           if git diff --cached --quiet; then
             echo "没有变化，跳过提交"
           else
-            git commit -m "chore: 每日更新 ry 解析结果 $(date -u +%Y-%m-%d)"
-            git push
+            git commit -m "chore(ry): 每日更新 ry 解析结果 $(date -u +%Y-%m-%d)"
+            # ⭐ 带重试，防止两个工作流 push 撞车
+            for i in 1 2 3; do
+              git pull --rebase origin ${{ github.ref_name }} && git push && break
+              sleep 5
+            done
           fi
         env:
-          # 使用内置 token 推送，无需额外配置
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
