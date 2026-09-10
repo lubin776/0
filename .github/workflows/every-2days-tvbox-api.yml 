@@ -1,4 +1,4 @@
-name: 两日一更备分接口
+name: 两日更备分接口
 
 on:
   schedule:
@@ -42,8 +42,10 @@ jobs:
         run: |
           DAY=$(date -u +%d)
           if [ $((10#$DAY % 2)) -eq 0 ]; then
+            echo "今天是偶日(UTC)，跳过本次运行"
             echo "should_run=false" >> $GITHUB_OUTPUT
           else
+            echo "今天是奇日(UTC)，正常执行"
             echo "should_run=true" >> $GITHUB_OUTPUT
           fi
 
@@ -60,7 +62,7 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "tvbox-api-bot[bot]"
-          git config user.email "tvbox-api-bot[bot]@users.noreply.github.com"
+          git config user.email "tvbox-api-bot[bot]@users.noreply.com"
           git add tvbox/ list.txt SUMMARY.txt || true
           if git diff --cached --quiet; then
             echo "无变更，跳过提交"
