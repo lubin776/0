@@ -1,43 +1,214 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简约导航</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; line-height: 1.5; max-width: 500px; margin: 40px auto; padding: 0 20px; background: #fff; color: #222; }
-        h2 { font-size: 1rem; color: #666; margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 4px; }
-        ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        a { font-size: 0.95rem; color: #0070f3; text-decoration: none; display: block; padding: 5px 0; }
-        a:hover { text-decoration: underline; }
-        .loading { color: #999; font-size: 0.9rem; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人书签</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa, #e4edf9, #fdf2e9);
+        color: #2d3748;
+    }
+
+    /* 顶栏 */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .header-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .header-content { display: flex; align-items: center; padding: 14px 0; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo i { font-size: 26px; color: #2b6cb0; }
+    .logo-text {
+        font-size: 20px; font-weight: 700;
+        background: linear-gradient(135deg, #2b6cb0, #f6ad55);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* 容器 */
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 40px; }
+
+    /* 分类卡片 */
+    .content-block {
+        background: rgba(255,255,255,0.65);
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: 16px;
+        padding: 26px 28px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(43,108,176,0.06);
+        animation: fadeUp .6s ease both;
+    }
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: none; }
+    }
+
+    .content-block h2 {
+        display: flex; align-items: center; gap: 10px;
+        font-size: 1.35rem; color: #2b6cb0;
+        padding-bottom: 10px; margin-bottom: 18px;
+        border-bottom: 2px solid rgba(43,108,176,0.18);
+    }
+    .content-block h2 i { color: #f6ad55; }
+
+    /* 书签网格：统一卡片 */
+    .bookmark-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 14px;
+    }
+
+    .bm-card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 60px;
+        padding: 14px 16px;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid rgba(43,108,176,0.08);
+        border-radius: 12px;
+        text-decoration: none;
+        color: #2d3748;
+        font-weight: 500;
+        overflow: hidden;
+        transition: all .25s ease;
+    }
+    .bm-card:before {
+        content: "";
+        position: absolute; left: 0; top: 0;
+        width: 4px; height: 100%;
+        background: #f6ad55;
+        transform: scaleY(0); transform-origin: top;
+        transition: transform .25s ease;
+    }
+    .bm-card:hover {
+        background: rgba(255,255,255,0.95);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(43,108,176,0.14);
+    }
+    .bm-card:hover:before { transform: scaleY(1); }
+
+    .bm-icon { color: #f6ad55; font-size: 1.05rem; width: 22px; text-align: center; flex-shrink: 0; }
+    .bm-body { flex: 1; min-width: 0; }
+    .bm-name { line-height: 1.3; }
+    .bm-domain {
+        margin-top: 2px;
+        font-size: .72rem; color: #718096;
+        font-family: monospace;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .status { font-size: .95rem; padding: 30px 0; }
+    .loading { color: #718096; }
+    .error { color: #e53e3e; }
+
+    footer {
+        text-align: center; margin-top: 30px;
+        font-size: .85rem; color: #718096; opacity: .8;
+    }
+
+    @media (max-width: 600px) {
+        .content-block { padding: 20px 16px; }
+        .bookmark-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    }
+</style>
 </head>
 <body>
-    <div id="app"><p class="loading">正在同步数据...</p></div>
 
-    <script>
-        async function loadBookmarks() {
-            const container = document.getElementById('app');
-            try {
-                // 读取同目录下的 data.json
-                const response = await fetch('./data.json');
-                if (!response.ok) throw new Error('数据加载失败');
-                const data = await response.json();
+<header>
+    <div class="header-container">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-bookmark"></i>
+                <span class="logo-text">个人书签</span>
+            </a>
+        </div>
+    </div>
+</header>
 
-                container.innerHTML = data.categories.map(cat => `
-                    <h2>${cat.name}</h2>
-                    <ul>
-                        ${cat.websites.map(site => `
-                            <li><a href="${site.url}" target="_blank" rel="noopener">${site.name}</a></li>
-                        `).join('')}
-                    </ul>
-                `).join('');
-            } catch (err) {
-                container.innerHTML = `<p style="color:red">错误: ${err.message}</p>`;
-            }
+<div class="container">
+    <div id="app"><p class="status loading">正在同步数据...</p></div>
+</div>
+
+<footer>Copyright &copy; 个人书签 · Powered by TV风格卡片</footer>
+
+<script>
+function esc(s) {
+    return String(s).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[m]));
+}
+
+function domainOf(url) {
+    try { return new URL(url).hostname.replace(/^www\./, ''); }
+    catch (e) { return ''; }
+}
+
+function catIcon(name) {
+    const n = name.toLowerCase();
+    if (n.includes('搜索') || n.includes('search')) return 'fa-magnifying-glass';
+    if (n.includes('工具') || n.includes('影视') || n.includes('tv')) return 'fa-toolbox';
+    return 'fa-folder';
+}
+
+function siteIcon(name, url) {
+    const t = (name + ' ' + url).toLowerCase();
+    if (t.includes('tvbox') || t.includes('tv') || t.includes('影视')) return 'fa-tv';
+    if (t.includes('ip') || t.includes('ping') || t.includes('延迟') || t.includes('网络')) return 'fa-network-wired';
+    if (t.includes('搜索') || t.includes('google') || t.includes('baidu') || t.includes('bing') || t.includes('yandex') || t.includes('search')) return 'fa-magnifying-glass';
+    if (t.includes('配置') || t.includes('编辑') || t.includes('解密') || t.includes('json')) return 'fa-gear';
+    return 'fa-link';
+}
+
+async function loadBookmarks() {
+    const app = document.getElementById('app');
+    try {
+        const res = await fetch('./data.json');
+        if (!res.ok) throw new Error('数据加载失败：' + res.status);
+        const data = await res.json();
+
+        if (!data.categories || !data.categories.length) {
+            app.innerHTML = '<p class="status error">书签为空</p>';
+            return;
         }
-        loadBookmarks();
-    </script>
+
+        app.innerHTML = data.categories.map((cat, i) => {
+            const cards = (cat.websites || []).map(site => {
+                const icon = siteIcon(site.name, site.url);
+                const domain = domainOf(site.url);
+                return `
+                    <a class="bm-card" href="${esc(site.url)}" target="_blank" rel="noopener">
+                        <span class="bm-icon"><i class="fas ${icon}"></i></span>
+                        <span class="bm-body">
+                            <span class="bm-name">${esc(site.name)}</span>
+                            ${domain ? `<span class="bm-domain">${esc(domain)}</span>` : ''}
+                        </span>
+                    </a>`;
+            }).join('');
+
+            return `
+                <section class="content-block" style="animation-delay:${i * 0.08}s">
+                    <h2><i class="fas ${catIcon(cat.name)}"></i> ${esc(cat.name)}</h2>
+                    <div class="bookmark-grid">${cards}</div>
+                </section>`;
+        }).join('');
+    } catch (err) {
+        app.innerHTML = `<p class="status error">错误：${esc(err.message)}</p>`;
+    }
+}
+
+loadBookmarks();
+</script>
 </body>
 </html>
