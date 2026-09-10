@@ -1,19 +1,23 @@
-name: 每日解析在线
+name: 每日解析在线本地包
 
 on:
   schedule:
-    - cron: '0 17 * * *'   # UTC 17:00 = 北京次日 01:00
-  workflow_dispatch:        # 手动触发
+    # 每天 UTC 17:00 运行（北京时间次日 01:00）
+    - cron: '0 17 * * *'
+  workflow_dispatch:
 
+# 放到 workflow 层级，和另一个工作流共享同一把锁，避免并发 push
 concurrency:
-  group: daily-ry-parser
+  group: tvbox-repo-write
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
-  parse:
+  run:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -28,27 +32,26 @@ jobs:
       - name: 安装依赖
         run: pip3 install requests
 
-      - name: 清空旧产物（强制覆盖）
-        run: |
-          rm -rf ry
-          mkdir ry
-
       - name: 运行解析器
         run: python3 "python/ry下载器.py"
 
       - name: 提交结果
         run: |
-          git config user.name  "ry-parser-bot[bot]"
-          git config user.email "ry-parser-bot[bot]@users.noreply.github.com"
-          git add ry/
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 只提交本工作流负责的目录，避免误提交别的 workflow 的改动
+          git add ry/ || true
+
           if git diff --cached --quiet; then
             echo "没有变化，跳过提交"
-          else
-            git commit -m "chore(ry): 每日更新 ry 解析结果 $(date -u +%Y-%m-%d)"
-            for i in 1 2 3; do
-              git pull --rebase origin ${{ github.ref_name }} && git push && break
-              sleep 5
-            done
+            exit 0
           fi
+
+          git commit -m "chore: 每日更新 ry 解析结果 $(date -u +%Y-%m-%d)"
+
+          # 先 rebase 再 push，降低并发 push 失败概率
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
