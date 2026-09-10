@@ -1,0 +1,48 @@
+name: 每日解析在线更新本地包
+
+on:
+  schedule:
+    # 每天 UTC 17:00 运行（北京时间次日 01:00）
+    # 想改时间就改这里，5 字段 cron，注意是 UTC
+    - cron: '0 17 * * *'
+  workflow_dispatch:  # 保留手动触发，方便随时试跑
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # 防止同一时刻重复运行（可选）
+    concurrency:
+      group: tvbox-daily
+      cancel-in-progress: false
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip3 install requests
+
+      - name: 运行解析器
+        working-directory: python   # 脚本放在仓库的 python/ 文件夹下
+        run: python3 "ry下载器.py"
+
+      - name: 提交结果
+        # 脚本会把结果写到 ./ry 目录，自动 commit 回仓库
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "没有变化，跳过提交"
+          else
+            git commit -m "chore: 每日更新 ry 解析结果 $(date -u +%Y-%m-%d)"
+            git push
+          fi
+        env:
+          # 使用内置 token 推送，无需额外配置
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
