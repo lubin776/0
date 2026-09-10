@@ -1,0 +1,9 @@
+[
+  {
+    "name": "无忧合集",
+    "list": [
+      { "name": "无忧版客户端", "url": "https://example.com/wy.apk", "icon": "", "version": "v1.2.0" },
+      { "name": "无忧插件包", "url": "https://example.com/wy-plugin.apk", "icon": "", "version": "" }
+    ]
+  }
+]
