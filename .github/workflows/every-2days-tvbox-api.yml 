@@ -1,8 +1,10 @@
-name: 两日更备分接口
+name: 两日一更备分接口
 
 on:
   schedule:
-    - cron: '5 16 * * *'   # UTC 16:05 = 北京次日 00:05
+    # 每天 UTC 16:05 触发，由 gate 步骤按奇偶日控制，实现每 2 天运行一次
+    - cron: '5 16 * * *'
+  # 保留手动触发：在 Actions 页面点一下立即补跑，且手动运行不受奇偶日 gate 限制
   workflow_dispatch:
     inputs:
       debug:
@@ -37,16 +39,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests idna || true
 
-      - name: Skip on off-day (实现两天一次)
+      - name: Skip on off-day (实现两天一次，手动触发时跳过此门槛)
         id: gate
         run: |
-          DAY=$(date -u +%d)
-          if [ $((10#$DAY % 2)) -eq 0 ]; then
-            echo "今天是偶日(UTC)，跳过本次运行"
-            echo "should_run=false" >> $GITHUB_OUTPUT
-          else
-            echo "今天是奇日(UTC)，正常执行"
+          # 手动触发（workflow_dispatch）时无论奇偶日都执行
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "手动触发，跳过奇偶日限制，正常执行"
             echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            DAY=$(date -u +%d)
+            if [ $((10#$DAY % 2)) -eq 0 ]; then
+              echo "今天是偶日(UTC)，跳过本次运行"
+              echo "should_run=false" >> $GITHUB_OUTPUT
+            else
+              echo "今天是奇日(UTC)，正常执行"
+              echo "should_run=true" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Run script
@@ -62,7 +70,7 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "tvbox-api-bot[bot]"
-          git config user.email "tvbox-api-bot[bot]@users.noreply.com"
+          git config user.email "tvbox-api-bot[bot]@users.noreply.github.com"
           git add tvbox/ list.txt SUMMARY.txt || true
           if git diff --cached --quiet; then
             echo "无变更，跳过提交"
