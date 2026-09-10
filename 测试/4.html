@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle"></title>
+<style>
+/* 你的原 CSS 完全保留，此处省略 */
+</style>
+</head>
+<body class="simple-mode">
+
+<div class="container">
+  <button id="modeToggleBtn"></button>
+
+  <div class="header-block">
+    <h1>
+      <img class="header-logo" id="headerLogo" alt="Logo">
+      <span id="headerTitle"></span>
+    </h1>
+    <div class="header-divider"></div>
+    <p class="subtitle" id="headerSubtitle"></p>
+  </div>
+
+  <input class="search-box" id="search" type="text">
+
+  <div class="main-card">
+    <div class="nav-tabs" id="navTabs"></div>
+
+    <div class="tab-panel active" id="api-panel">
+      <div class="api-list" id="listContainer"></div>
+    </div>
+
+    <div class="tab-panel" id="download-panel">
+      <div id="downloads-content"></div>
+    </div>
+
+    <div class="tab-panel" id="about-panel">
+      <div class="about-inner" id="aboutDomains"></div>
+      <div class="about-inner" id="aboutDecl"></div>
+    </div>
+  </div>
+
+  <footer class="page-footer" id="pageFooter"></footer>
+</div>
+
+<script>
+let CONFIG = {};
+
+async function loadConfig() {
+  const res = await fetch('config.json?t=' + Date.now());
+  if (!res.ok) throw new Error('config load failed');
+  CONFIG = await res.json();
+}
+
+function renderStatic() {
+  const s = CONFIG.site;
+
+  document.getElementById('pageTitle').textContent = s.title;
+  document.getElementById('headerLogo').src = s.logo;
+  document.getElementById('headerTitle').textContent = s.headerTitle;
+  document.getElementById('headerSubtitle').innerHTML = s.subtitle;
+  document.getElementById('pageFooter').innerHTML = `<p>${s.footer}</p>`;
+  document.getElementById('search').placeholder = s.search.placeholder;
+  document.getElementById('modeToggleBtn').innerHTML = s.modeToggle.simple;
+
+  /* Tabs */
+  const nav = document.getElementById('navTabs');
+  nav.innerHTML = s.tabs.map(t =>
+    `<button class="nav-tab ${t.id==='api'?'active':''}" data-tab="${t.id}">${t.label}</button>`
+  ).join('');
+
+  /* About */
+  document.getElementById('aboutDomains').innerHTML = `
+    <h3>${s.about.domainsTitle}</h3>
+    <p>${s.about.domainsDesc}</p>
+    ${s.domains.map(d => `
+      <div class="domain-line">
+        <span>${d.text}</span>
+        <button class="copy-btn" data-url="${d.url}">复制</button>
+      </div>
+    `).join('')}
+  `;
+
+  document.getElementById('aboutDecl').innerHTML = `
+    <h3>${s.declaration.title}</h3>
+    <ul><li>${s.declaration.content}</li></ul>
+    <p style="margin-top:10px;">${s.declaration.qqGroup}</p>
+  `;
+}
+
+/* ===== 以下为你原有 JS 逻辑（仅把文案引用改为 CONFIG.site.xxx）===== */
+/* API / Download / Search / ModeToggle 逻辑全部保留 */
+/* 加载提示、错误提示统一使用 CONFIG.site.loading / error */
+
+(async () => {
+  try {
+    await loadConfig();
+    renderStatic();
+    initApp(); // 你原来的入口逻辑
+  } catch (e) {
+    document.body.innerHTML = '<p style="padding:30px;text-align:center;color:red">配置文件加载失败</p>';
+  }
+})();
+</script>
+</body>
+</html>
