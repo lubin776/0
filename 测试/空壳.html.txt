@@ -199,34 +199,44 @@
     <button id="modeToggleBtn"></button>
 
     <div class="header-block">
-        <h1 id="siteTitle"><img class="header-logo" id="siteLogo" src="" alt=""> <span id="siteName"></span></h1>
+        <h1><img class="header-logo" id="headerLogo" alt="Logo"><span id="headerTitle"></span></h1>
         <div class="header-divider"></div>
-        <p class="subtitle" id="siteSubtitle"></p>
+        <p class="subtitle" id="subtitle"></p>
     </div>
 
-    <input class="search-box" id="search" type="text" placeholder="">
+    <input class="search-box" id="search" type="text">
 
     <div class="main-card">
         <div class="nav-tabs" id="navTabs"></div>
 
         <div class="tab-panel active" id="api-panel">
-            <div class="api-list" id="listContainer"></div>
+            <div class="api-list" id="listContainer">
+                <div class="loading" id="apiLoading"></div>
+            </div>
         </div>
 
         <div class="tab-panel" id="download-panel">
-            <div id="downloads-content"></div>
+            <div id="downloads-content"><div class="loading" id="downloadsLoading"></div></div>
         </div>
 
-        <div class="tab-panel" id="about-panel"></div>
+        <div class="tab-panel" id="about-panel">
+            <div class="about-inner" id="aboutDomains">
+                <h3 id="domainsTitle"></h3>
+                <p id="domainsDesc"></p>
+                <div id="domainsList"></div>
+            </div>
+            <div class="about-inner" id="aboutDecl">
+                <h3 id="declarationTitle"></h3>
+                <ul><li id="declarationContent"></li></ul>
+                <p id="declarationQQ"></p>
+            </div>
+        </div>
     </div>
 
-    <footer class="page-footer" id="siteFooter"></footer>
+    <footer class="page-footer" id="footer"></footer>
 </div>
 
 <script>
-    /* ============================================================
-       全局：从 config.json 读取全部内容，HTML 仅为空壳
-       ============================================================ */
     let CONFIG = {};
     const MODE_KEY = 'site_mode';
     const btn = document.getElementById('modeToggleBtn');
@@ -239,101 +249,169 @@
             const res = await fetch('config.json?t=' + Date.now(), { cache: 'no-store' });
             if (!res.ok) throw new Error('HTTP ' + res.status);
             CONFIG = await res.json();
+            applyConfig();
         } catch (e) {
-            console.error('config.json 加载失败', e);
-            CONFIG = {};
+            console.error('配置加载失败:', e);
+            CONFIG = { site: {}, apiDomains: [], apiWeights: {}, downloadSources: [] };
         }
     }
 
-    /* ===== 内容渲染：把 config 映射到空壳节点 ===== */
     function applyConfig() {
         const site = CONFIG.site || {};
-        // title
+        
+        // 设置页面标题
         document.getElementById('pageTitle').textContent = site.title || '';
-        // logo + 大字
-        const logo = document.getElementById('siteLogo');
-        logo.src = site.logo || '';
-        logo.alt = site.logoAlt || 'Logo';
-        document.getElementById('siteName').textContent = site.title || '';
-        // 小字两行
-        const sub = document.getElementById('siteSubtitle');
-        const lines = Array.isArray(site.subtitle) ? site.subtitle : [];
-        sub.innerHTML = lines.join('<br>');
-        // 搜索框占位符
-        searchBox.placeholder = (CONFIG.search && CONFIG.search.placeholder) || '';
-        // 切换按钮文字
-        const toggle = site.toggleButton || {};
-        btn.dataset.simpleText = toggle.simpleText || '切换<br>全能版';
-        btn.dataset.fullText = toggle.fullText || '切换<br>简洁版';
-        // footer
-        document.getElementById('siteFooter').innerHTML =
-            '<p>' + ((CONFIG.footer && CONFIG.footer.text) || '') + '</p>';
-        // 默认模式
-        return site.defaultMode || 'simple';
+        
+        // 设置logo
+        const logo = document.getElementById('headerLogo');
+        if (logo) logo.src = site.logo || '';
+        
+        // 设置头部标题
+        document.getElementById('headerTitle').textContent = site.headerTitle || '';
+        
+        // 设置副标题
+        document.getElementById('subtitle').innerHTML = site.subtitle || '';
+        
+        // 设置页脚
+        document.getElementById('footer').innerHTML = site.footer || '';
+        
+        // 设置搜索框占位符
+        searchBox.placeholder = site.search?.placeholder || '';
+        
+        // 设置加载文本
+        document.getElementById('apiLoading').textContent = site.loading?.api || '';
+        document.getElementById('downloadsLoading').textContent = site.loading?.downloads || '';
+        
+        // 设置关于页面内容
+        document.getElementById('domainsTitle').textContent = site.about?.domainsTitle || '';
+        document.getElementById('domainsDesc').textContent = site.about?.domainsDesc || '';
+        document.getElementById('declarationTitle').textContent = site.declaration?.title || '';
+        document.getElementById('declarationContent').textContent = site.declaration?.content || '';
+        document.getElementById('declarationQQ').innerHTML = site.declaration?.qqGroup || '';
+        
+        // 设置域名列表
+        const domainsList = document.getElementById('domainsList');
+        if (domainsList && site.domains) {
+            domainsList.innerHTML = site.domains.map(domain => `
+                <div class="domain-line">
+                    <span>${domain.text}</span>
+                    <button class="copy-btn" data-url="${domain.url}">复制</button>
+                </div>
+            `).join('');
+        }
+        
+        // 设置导航标签
+        renderTabs();
+        
+        // 设置切换按钮文本
+        updateBtnText();
     }
 
-    /* ===== 导航（全能版）===== */
-    function renderTabs() {
-        const tabs = (CONFIG.tabs || []).filter(t => t.id !== 'api');
-        const fullTabs = [{ id: 'api', label: '接口', hideSearch: false }, ...tabs];
-        navTabs.innerHTML = fullTabs.map(t =>
-            `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`
-        ).join('');
-        navTabs.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                navTabs.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                showPanel(this.getAttribute('data-tab'));
+    function ensureJson(name) { return name.endsWith('.json') ? name : name + '.json'; }
+
+    function bindCopy(container) {
+        if (!container) return;
+        container.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const url = this.getAttribute('data-url');
+                if (!url) return;
+                const done = () => {
+                    const orig = this.textContent;
+                    this.textContent = '✅ 已复制'; this.classList.add('copied');
+                    setTimeout(() => { this.textContent = orig; this.classList.remove('copied'); }, 1500);
+                };
+                if (navigator.clipboard) navigator.clipboard.writeText(url).then(done).catch(fallback);
+                else fallback();
+                function fallback() {
+                    const input = document.createElement('input');
+                    input.value = url; document.body.appendChild(input);
+                    input.select(); document.execCommand('copy'); document.body.removeChild(input); done();
+                }
             });
         });
     }
 
-    /* ===== 关于页（由 config.about 渲染）===== */
-    function renderAbout() {
-        const about = CONFIG.about || {};
-        const container = document.getElementById('about-panel');
-        const sections = about.sections || [];
-        container.innerHTML = sections.map(sec => {
-            let body = '';
-            if (sec.id === 'domains') {
-                body += `<h3>${sec.title || ''}</h3>`;
-                if (sec.intro) body += `<p style="margin-bottom:6px;">${sec.intro}</p>`;
-                (sec.items || []).forEach(it => {
-                    body += `<div class="domain-line"><span>${it.label || ''}</span><button class="copy-btn" data-url="${it.url || ''}">复制</button></div>`;
-                });
-            } else if (sec.id === 'decl') {
-                body += `<h3>${sec.title || ''}</h3>`;
-                (sec.list || []).forEach(li => { body += `<ul><li>${li}</li></ul>`; });
-                if (sec.qqNumber) {
-                    body += `<p style="margin-top:10px;">${sec.qqPrefix || 'QQ 交流群：'}<strong style="color:#4a9eff;">${sec.qqNumber}</strong></p>`;
-                }
-            }
-            return `<div class="about-inner" id="about-${sec.id}">${body}</div>`;
-        }).join('');
-        bindCopy(container);
-    }
+    function renderApi() {
+        const container = document.getElementById('listContainer');
+        const site = CONFIG.site || {};
+        
+        function formatDateToChinese(d) {
+            if (!d || d.length !== 8) return '----';
+            return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
+        }
+        function isRecent(d) {
+            if (!d || d.length !== 8) return false;
+            const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
+            return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
+        }
 
-    /* ===== 下载源（外延：来自 config.download.downloadSources）===== */
-    let DOWNLOAD_SOURCES = [];
-    function syncDownloadSources() {
-        const dl = (CONFIG.download || {});
-        DOWNLOAD_SOURCES = Array.isArray(dl.downloadSources) ? dl.downloadSources : [];
+        fetch('list.txt?t=' + Date.now(), { cache: 'no-store' })
+            .then(res => res.ok ? res.text() : Promise.reject('HTTP ' + res.status))
+            .then(text => {
+                const loadingTip = document.getElementById('apiLoading');
+                if (loadingTip) loadingTip.style.display = 'none';
+                const lines = text.trim().split('\n').filter(l => l.trim());
+                let items = lines.map(line => {
+                    const parts = line.split('|').map(s => s.trim());
+                    const file = parts[0];
+                    return {
+                        file: file,
+                        name: file.replace(/\.json$/i, ''),
+                        date: parts[1] || '', size: parts[2] || '', origUrl: parts[3] || '',
+                        weight: (CONFIG.apiWeights && CONFIG.apiWeights.hasOwnProperty(file)) ? CONFIG.apiWeights[file] : 999
+                    };
+                });
+                items.sort((a, b) => a.weight !== b.weight ? a.weight - b.weight : a.name.localeCompare(b.name, 'zh'));
+
+                let html = '';
+                items.forEach(it => {
+                    const isNew = isRecent(it.date);
+                    const cls = isNew ? 'badge-new' : 'badge-old';
+                    const jsonName = ensureJson(it.file);
+                    let linesHtml = '';
+                    if (it.origUrl) {
+                        linesHtml += `<div class="url-line"><span class="url-tag">${site.api?.originalLine || '原始线路'}</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
+                    }
+                    (CONFIG.apiDomains || []).forEach(d => {
+                        const url = d.base + jsonName;
+                        linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
+                    });
+                    html += `<div class="entry" data-name="${it.name.toLowerCase()}">
+                        <div class="entry-header">
+                            <div class="entry-name" title="${it.name}">${it.name}</div>
+                            <div class="entry-meta-inline">
+                                <span class="${cls}">${site.api?.backupTime || '备份时间'} ${formatDateToChinese(it.date)}</span>
+                                ${it.size ? '&nbsp;&nbsp;' + it.size : ''}
+                            </div>
+                        </div>
+                        <div class="entry-urls">${linesHtml}</div>
+                    </div>`;
+                });
+                container.innerHTML = html;
+                bindCopy(container);
+            })
+            .catch(err => {
+                const loadingTip = document.getElementById('apiLoading');
+                if (loadingTip) loadingTip.style.display = 'none';
+                container.innerHTML = `<div class="error-msg">${site.error?.api || '❌ 接口加载失败：'}${err}</div>`;
+            });
     }
 
     async function renderDownloads(force) {
         const container = document.getElementById('downloads-content');
+        const site = CONFIG.site || {};
         if (!container || (container.dataset.rendered && !force)) return;
         container.dataset.rendered = 'true';
-        const dl = (CONFIG.download || {});
-        container.innerHTML = '<div class="loading">' + (dl.loadingText || '⏳ 正在加载下载资源...') + '</div>';
+        container.innerHTML = `<div class="loading">${site.loading?.downloads || '⏳ 正在加载下载资源...'}</div>`;
 
-        if (!DOWNLOAD_SOURCES.length) {
-            container.innerHTML = '<div class="error-msg">' + (dl.emptyText || '⚠️ 未配置下载源') + '</div>';
+        if (!CONFIG.downloadSources || !CONFIG.downloadSources.length) {
+            container.innerHTML = `<div class="error-msg">${site.error?.download || '⚠️ 未配置下载源（config.json 的 downloadSources 为空）'}</div>`;
             return;
         }
 
         let html = '';
-        for (const src of DOWNLOAD_SOURCES) {
+        for (const src of CONFIG.downloadSources) {
             try {
                 const res = await fetch(src.url + '?t=' + Date.now());
                 if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -363,135 +441,51 @@
                 });
                 html += section + '</div>';
             } catch (e) {
-                html += `<div class="error-msg">${dl.failText || '❌ '}${src.name}（${src.url}）${dl.failTextSuffix || ''}${e.message}</div>`;
+                html += `<div class="error-msg">${site.error?.loadFail || '❌ 加载失败：'}${src.name}（${src.url}）${e.message}</div>`;
             }
         }
         container.innerHTML = html;
         bindCopy(container);
     }
 
-    /* ===== 接口列表（来自 list.txt + config.api 的域名/权重）===== */
-    function renderApi() {
-        const api = (CONFIG.api || {});
-        const container = document.getElementById('listContainer');
-        const loadingTip = document.getElementById('apiLoading');
-        if (loadingTip) loadingTip.style.display = 'none';
+    function renderAbout() { bindCopy(document.getElementById('about-panel')); }
 
-        const formatDate = d => {
-            if (!d || d.length !== 8) return '----';
-            return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
-        };
-        const isRecent = d => {
-            if (!d || d.length !== 8) return false;
-            const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
-            return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= (api.recentDays || 2);
-        };
-
-        fetch((api.dataFile || 'list.txt') + '?t=' + Date.now(), { cache: 'no-store' })
-            .then(res => res.ok ? res.text() : Promise.reject('HTTP ' + res.status))
-            .then(text => {
-                const lines = text.trim().split('\n').filter(l => l.trim());
-                let items = lines.map(line => {
-                    const parts = line.split('|').map(s => s.trim());
-                    const file = parts[0];
-                    return {
-                        file, name: file.replace(/\.json$/i, ''),
-                        date: parts[1] || '', size: parts[2] || '', origUrl: parts[3] || '',
-                        weight: (api.weights && api.weights.hasOwnProperty(file)) ? api.weights[file] : 999
-                    };
-                });
-                items.sort((a, b) => a.weight !== b.weight ? a.weight - b.weight : a.name.localeCompare(b.name, 'zh'));
-
-                const domains = api.domains || [];
-                const ensureJson = name => name.endsWith('.json') ? name : name + '.json';
-                const origTag = (api.originalLine && api.originalLine.tag) || '原始线路';
-                const datePrefix = api.dateFormat || '备份时间 ';
-
-                let html = '';
-                items.forEach(it => {
-                    const isNew = isRecent(it.date);
-                    const cls = isNew ? (api.recentClass || 'badge-new') : (api.oldClass || 'badge-old');
-                    const jsonName = ensureJson(it.file);
-                    let linesHtml = '';
-                    if (it.origUrl) {
-                        linesHtml += `<div class="url-line"><span class="url-tag">${origTag}</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
-                    }
-                    domains.forEach(d => {
-                        const url = d.base + jsonName;
-                        linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
-                    });
-                    html += `<div class="entry" data-name="${it.name.toLowerCase()}">
-                        <div class="entry-header">
-                            <div class="entry-name" title="${it.name}">${it.name}</div>
-                            <div class="entry-meta-inline">
-                                <span class="${cls}">${datePrefix}${formatDate(it.date)}</span>
-                                ${it.size ? '&nbsp;&nbsp;' + it.size : ''}
-                            </div>
-                        </div>
-                        <div class="entry-urls">${linesHtml}</div>
-                    </div>`;
-                });
-                container.innerHTML = html;
-                bindCopy(container);
-            })
-            .catch(err => {
-                container.innerHTML = `<div class="error-msg">${api.failText || '❌ 接口加载失败：'}${err}</div>`;
-            });
-    }
-
-    /* ===== 工具 ===== */
-    function bindCopy(container) {
-        if (!container) return;
-        container.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const url = this.getAttribute('data-url');
-                if (!url) return;
-                const done = () => {
-                    const orig = this.textContent;
-                    this.textContent = '✅ 已复制'; this.classList.add('copied');
-                    setTimeout(() => { this.textContent = orig; this.classList.remove('copied'); }, 1500);
-                };
-                if (navigator.clipboard) navigator.clipboard.writeText(url).then(done).catch(fallback);
-                else fallback();
-                function fallback() {
-                    const input = document.createElement('input');
-                    input.value = url; document.body.appendChild(input);
-                    input.select(); document.execCommand('copy'); document.body.removeChild(input); done();
-                }
+    function renderTabs() {
+        const nav = document.getElementById('navTabs');
+        const site = CONFIG.site || {};
+        if (!nav || !site.tabs) return;
+        
+        nav.innerHTML = site.tabs.map(t => 
+            `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`
+        ).join('');
+        
+        nav.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                nav.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                showPanel(this.getAttribute('data-tab'));
             });
         });
     }
 
-    /* ===== 模式切换 ===== */
-    let currentMode = 'simple';
-    function updateBtnText() {
-        const simple = (CONFIG.site && CONFIG.site.toggleButton && CONFIG.site.toggleButton.simpleText) || '切换<br>全能版';
-        const full = (CONFIG.site && CONFIG.site.toggleButton && CONFIG.site.toggleButton.fullText) || '切换<br>简洁版';
-        btn.innerHTML = currentMode === 'simple' ? simple : full;
-    }
-    function positionSearchBox() {
-        if (currentMode === 'simple') {
-            if (searchBox.parentNode !== mainCard.parentNode) mainCard.parentNode.insertBefore(searchBox, mainCard);
-        } else {
-            if (searchBox.parentNode !== mainCard) navTabs.insertAdjacentElement('afterend', searchBox);
-        }
-    }
     function showPanel(tabId) {
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
         if (panel) panel.classList.add('active');
         if (tabId === 'download') renderDownloads();
         if (tabId === 'about') renderAbout();
-        const targetTab = (CONFIG.tabs || []).find(t => t.id === tabId);
+        const site = CONFIG.site || {};
+        const targetTab = (site.tabs || []).find(t => t.id === tabId);
         if (searchBox) searchBox.style.display = (targetTab && targetTab.hideSearch) ? 'none' : '';
     }
+
     function globalSearch() {
         const kw = (searchBox.value || '').toLowerCase().trim();
         document.querySelectorAll('#api-panel .entry').forEach(e => {
             const name = e.getAttribute('data-name') || '';
             e.classList.toggle('hidden', !name.includes(kw));
         });
+        const currentMode = localStorage.getItem(MODE_KEY) || 'simple';
         if (currentMode !== 'simple') {
             document.querySelectorAll('.download-card').forEach(c => {
                 const name = c.getAttribute('data-name') || '';
@@ -500,8 +494,27 @@
         }
     }
 
-    /* ===== 启动 ===== */
+    function positionSearchBox() {
+        const currentMode = localStorage.getItem(MODE_KEY) || 'simple';
+        if (currentMode === 'simple') {
+            if (searchBox.parentNode !== mainCard.parentNode) mainCard.parentNode.insertBefore(searchBox, mainCard);
+        } else {
+            if (searchBox.parentNode !== mainCard) navTabs.insertAdjacentElement('afterend', searchBox);
+        }
+    }
+
+    function updateBtnText() {
+        const currentMode = localStorage.getItem(MODE_KEY) || 'simple';
+        const site = CONFIG.site || {};
+        if (currentMode === 'simple') {
+            btn.innerHTML = site.modeToggle?.simple || '切换<br>全能版';
+        } else {
+            btn.innerHTML = site.modeToggle?.full || '切换<br>简洁版';
+        }
+    }
+
     btn.addEventListener('click', () => {
+        let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
         currentMode = (currentMode === 'simple') ? 'full' : 'simple';
         localStorage.setItem(MODE_KEY, currentMode);
         document.body.className = currentMode + '-mode';
@@ -514,18 +527,22 @@
             showPanel('api');
         }
     });
-    searchBox.addEventListener('input', globalSearch);
 
+    // 初始化
     loadConfig().then(() => {
-        currentMode = localStorage.getItem(MODE_KEY) || applyConfig();
+        let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
         document.body.className = currentMode + '-mode';
-        updateBtnText();
         positionSearchBox();
-        renderTabs();
         renderApi();
-        syncDownloadSources();
-        if (currentMode !== 'simple') renderDownloads();
+        if (currentMode !== 'simple') {
+            renderDownloads();
+            renderAbout();
+        } else {
+            showPanel('api');
+        }
     });
+
+    searchBox.addEventListener('input', globalSearch);
 </script>
 </body>
 </html>
