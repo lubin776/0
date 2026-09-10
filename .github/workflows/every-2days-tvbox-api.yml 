@@ -1,9 +1,9 @@
-name: 两日一更备分
+name: 两日一更备分接口
 
 on:
   schedule:
-    - cron: '5 16 * * *'   # UTC 16:05 = 北京次日 00:05
-  workflow_dispatch:        # 手动触发（不受奇偶日限制）
+    - cron: "5 16 * * *"
+  workflow_dispatch:
     inputs:
       debug:
         description: "是否开启调试模式 (--debug)"
@@ -14,15 +14,17 @@ on:
           - "false"
           - "true"
 
+# 与工作流 1 共享同一把锁
 concurrency:
-  group: every-2days-tvbox-api
+  group: tvbox-repo-write
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
-  fetch:
+  run:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,19 +44,13 @@ jobs:
       - name: Skip on off-day (实现两天一次)
         id: gate
         run: |
-          # 手动触发时跳过奇偶日限制，定时触发才走奇偶判断
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "手动触发，跳过奇偶日限制，正常执行"
-            echo "should_run=true" >> $GITHUB_OUTPUT
+          DAY=$(date -u +%d)
+          if [ $((10#$DAY % 2)) -eq 0 ]; then
+            echo "今天是偶日(UTC)，跳过本次运行"
+            echo "should_run=false" >> $GITHUB_OUTPUT
           else
-            DAY=$(date -u +%d)
-            if [ $((10#$DAY % 2)) -eq 0 ]; then
-              echo "今天是偶日(UTC)，跳过本次运行"
-              echo "should_run=false" >> $GITHUB_OUTPUT
-            else
-              echo "今天是奇日(UTC)，正常执行"
-              echo "should_run=true" >> $GITHUB_OUTPUT
-            fi
+            echo "今天是奇日(UTC)，正常执行"
+            echo "should_run=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Run script
@@ -69,17 +65,19 @@ jobs:
       - name: Commit & push results
         if: steps.gate.outputs.should_run == 'true'
         run: |
-          git config user.name "tvbox-api-bot[bot]"
-          git config user.email "tvbox-api-bot[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add tvbox/ list.txt SUMMARY.txt || true
+
           if git diff --cached --quiet; then
             echo "无变更，跳过提交"
-          else
-            git commit -m "chore(tvbox): 每两日自动抓取更新 ($(date -u +%Y-%m-%dT%H:%M:%SZ))"
-            for i in 1 2 3; do
-              git pull --rebase origin ${{ github.ref_name }} && git push && break
-              sleep 5
-            done
+            exit 0
           fi
+
+          git commit -m "chore: 每两日自动抓取更新 ($(date -u +%Y-%m-%dT%H:%M:%SZ))"
+
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
