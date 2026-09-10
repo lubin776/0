@@ -5,13 +5,12 @@ on:
     - cron: '0 17 * * *'   # UTC 17:00 = 北京次日 01:00
   workflow_dispatch:
 
-# ⭐ 关键：用唯一 group 名 + 串行，避免两个工作流同时 push 冲突
 concurrency:
   group: daily-ry-parser
   cancel-in-progress: false
 
 jobs:
-  parse:   # ← job 名改成语义化
+  parse:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -19,7 +18,7 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # ← 关键：拉全量历史，避免 push 时 base 过旧
+          fetch-depth: 0
 
       - name: 设置 Python
         uses: actions/setup-python@v5
@@ -46,7 +45,6 @@ jobs:
             echo "没有变化，跳过提交"
           else
             git commit -m "chore(ry): 每日更新 ry 解析结果 $(date -u +%Y-%m-%d)"
-            # ⭐ 带重试，防止两个工作流 push 撞车
             for i in 1 2 3; do
               git pull --rebase origin ${{ github.ref_name }} && git push && break
               sleep 5
