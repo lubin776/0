@@ -1,18 +1,18 @@
-name: 两日一更备分接口
+name: 两日一更备分
 
 on:
   schedule:
-    # 每天 UTC 16:05 触发，由 gate 步骤按奇偶日控制，实现每 2 天运行一次
-    - cron: '5 16 * * *'
-  # 保留手动触发：在 Actions 页面点一下立即补跑，且手动运行不受奇偶日 gate 限制
-  workflow_dispatch:
+    - cron: '5 16 * * *'   # UTC 16:05 = 北京次日 00:05
+  workflow_dispatch:        # 手动触发（不受奇偶日限制）
     inputs:
       debug:
         description: "是否开启调试模式 (--debug)"
         required: false
         default: "false"
         type: choice
-        options: ["false", "true"]
+        options:
+          - "false"
+          - "true"
 
 concurrency:
   group: every-2days-tvbox-api
@@ -39,10 +39,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests idna || true
 
-      - name: Skip on off-day (实现两天一次，手动触发时跳过此门槛)
+      - name: Skip on off-day (实现两天一次)
         id: gate
         run: |
-          # 手动触发（workflow_dispatch）时无论奇偶日都执行
+          # 手动触发时跳过奇偶日限制，定时触发才走奇偶判断
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "手动触发，跳过奇偶日限制，正常执行"
             echo "should_run=true" >> $GITHUB_OUTPUT
