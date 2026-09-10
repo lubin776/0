@@ -1,4 +1,4 @@
-name: 每日解析在线本地包
+name: 每日解析在线
 
 on:
   schedule:
