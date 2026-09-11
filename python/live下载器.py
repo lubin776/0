@@ -10,13 +10,14 @@
 5. 合并生成仓库根 livelist.txt（旧记录保留、本次成功记录覆盖、仅更新时间变动）
 
 livelist.txt 位置约定：仓库根目录（REPO_ROOT / "livelist.txt"）。
+livelist.txt 行格式：名称|日期|大小|url|来源|
+  例：📡咪咕直播2|20260911|216B|http://27.18.216.122:55555|集多|
+  来源项为对应接口文件名去后缀（集多.json -> 集多）；ua 非空时追加为最后一列。
 """
 
-import os
-import re
+import ipaddress
 import json
 import time
-import uuid
 import requests
 from pathlib import Path
 from datetime import datetime
@@ -56,6 +57,20 @@ TODAY = datetime.now().strftime("%Y%m%d")
 DEBUG = False
 
 
+def is_private_host(url):
+    """精确判定私有/回环/链路本地地址（公网 IP 不过滤，如 124.x）。
+
+    仅过滤真正无法公网访问的地址：10/8、172.16/12、192.168/16、
+    127/8、169.254/16 及多播地址。域名一律保留。
+    """
+    try:
+        host = urlparse(url.strip()).hostname or ""
+        ip = ipaddress.ip_address(host)
+        return ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_multicast
+    except ValueError:
+        return False
+
+
 # ---------- 工具函数 ----------
 def normalize_url(url):
     try:
@@ -72,6 +87,8 @@ def is_valid_url(url):
         return False
     u = url.lower()
     if not u.startswith(("http://", "https://")):
+        return False
+    if is_private_host(url):
         return False
     return not any(kw.lower() in u for kw in IGNORE_URL_KEYWORDS)
 
@@ -111,12 +128,12 @@ def scan_and_extract_lives():
     for json_file in SCAN_DIR.glob("*.json"):
         if json_file.name == AGGREGATE_JSON.name or "live" in json_file.name:
             continue
-        source = json_file.name
+        source = json_file.stem   # 源头即去掉后缀：集多.json -> 集多
         try:
             with open(json_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except (json.JSONDecodeError, Exception) as e:
-            print(f"  skip {source}: {e}")
+            print(f"  skip {json_file.name}: {e}")
             continue
 
         lives = data.get("lives", [])
@@ -144,7 +161,7 @@ def scan_and_extract_lives():
                 "source": source,
             })
             valid += 1
-        print(f"  {source}: {valid} live(s)")
+        print(f"  {json_file.name}: {valid} live(s)")
 
     print(f"  total (deduped): {len(all_lives)}")
     return all_lives
@@ -177,11 +194,15 @@ def download_live_source(live):
     """下载单个直播源 -> tvbox/live/{name}.m3u + .txt。"""
     name, url, ua = live["name"], live["url"], live.get("ua", "")
     headers = dict(TVBOX_HEADERS)
-    headers["User-Agent"] = ua.strip() if ua and isinstance(ua, str) and ua.strip() else TVBOX_UAS[int(time.time()) % len(TVBOX_UAS)]
+    headers["User-Agent"] = (
+        ua.strip() if ua and isinstance(ua, str) and ua.strip()
+        else TVBOX_UAS[int(time.time()) % len(TVBOX_UAS)]
+    )
 
     for retry in range(MAX_RETRIES):
         try:
-            resp = requests.get(url, headers=headers, timeout=DOWNLOAD_TIMEOUT, allow_redirects=True, verify=True)
+            resp = requests.get(url, headers=headers, timeout=DOWNLOAD_TIMEOUT,
+                                 allow_redirects=True, verify=True)
             resp.raise_for_status()
             content = resp.content
             size = len(content)
@@ -240,9 +261,14 @@ def generate_livelist(lives, results):
         if name not in results or not results[name][0]:
             continue
         _, size = results[name]
-        new_records[name] = (
-            f"{name}|{TODAY}|{format_file_size(size)}|{live['url']}|{live['source']}|{live.get('ua', '')}"
-        )
+        source = Path(live['source']).stem   # 去后缀：集多.json -> 集多
+        ua = (live.get("ua") or "").strip()
+        # 格式：名称|日期|大小|url|来源|
+        # 例：📡咪咕直播2|20260911|216B|http://27.18.216.122:55555|集多|
+        line = f"{name}|{TODAY}|{format_file_size(size)}|{live['url']}|{source}|"
+        if ua:
+            line += f"{ua}|"
+        new_records[name] = line
 
     merged = {**old_records, **new_records}
 
@@ -254,7 +280,8 @@ def generate_livelist(lives, results):
         f.write("\n".join(final))
 
     print(f"  -> {LIVELIST_PATH}")
-    print(f"  updated: {len(new_records)}, preserved: {len(old_records) - len(new_records)}")
+    preserved = max(0, len(old_records) - len(new_records))
+    print(f"  updated: {len(new_records)}, preserved: {preserved}")
 
 
 def main():
@@ -264,7 +291,8 @@ def main():
     ap.add_argument("--debug", action="store_true", help="输出详细调试日志")
     ap.add_argument("--force", action="store_true", help="强制执行（工作流手动触发时使用）")
     args = ap.parse_args()
-    DEBUG = args.debug  # 模块级
+    global DEBUG
+    DEBUG = args.debug
     print("=" * 60)
     print("TVBox Live aggregator")
     print("=" * 60)
