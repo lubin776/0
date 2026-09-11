@@ -10,9 +10,13 @@
 5. 合并生成仓库根 livelist.txt（旧记录保留、本次成功记录覆盖、仅更新时间变动）
 
 livelist.txt 位置约定：仓库根目录（REPO_ROOT / "livelist.txt"）。
-livelist.txt 行格式：名称|日期|大小|url|来源|
-  例：📡咪咕直播2|20260911|216B|http://27.18.216.122:55555|集多|
-  来源项为对应接口文件名去后缀（集多.json -> 集多）；ua 非空时追加为最后一列。
+livelist.txt 行格式：真实播放列表文件名(带后缀)|日期|大小|原始url|来源|
+  例：驸马影视•电信专线.m3u|20260911|17.0K|http://fmys.top/lib/live.m3u|驸马|
+  第一列 = 最终真实播放列表文件的文件名（含真实后缀，如 .m3u/.txt），
+           取自成功下载到的那个文件，而非套壳 URL 的后缀；
+  url 项 = 原始套壳地址（全程不变）；
+  来源项 = 对应接口文件名去后缀（集多.json -> 集多）；
+  ua 非空时追加为最后一列。
 """
 
 import ipaddress
@@ -223,8 +227,45 @@ def parse_playlist_urls(text):
     return urls
 
 
+def filename_from_url(url):
+    """从 URL 取「文件名（含后缀）」，无文件名时返回空串。
+
+    例：http://fmys.top/lib/live.m3u -> live.m3u
+        http://193.123.86.190:14888/TV/iptv.php -> iptv.php
+    """
+    from urllib.parse import urlparse
+    return Path(urlparse(url).path).name
+
+
+def real_playlist_name(base_name, final_url):
+    """由【最终真实播放列表的 URL】决定接口名（接口名 + 真实后缀）。
+
+    - base_name : 接口原始名称（如 "综合直播"）
+    - final_url : 最终成功下载到的播放列表 URL（套壳展开后的那个）
+    - 返回      : 如 "综合直播.m3u"、"驸马影视•电信专线.m3u"
+    - 退化      : URL 无合法文件名 -> 保留原接口名（不带后缀）
+    """
+    fname = filename_from_url(final_url)
+    stem = Path(fname).stem
+    suffix = Path(fname).suffix
+    if stem and suffix:
+        return f"{base_name}{suffix}"
+    return base_name
+
+
+def sanitize_filename(name):
+    """文件名合法化：去掉路径分隔符等非法字符。"""
+    return re.sub(r'[\\/:*?"<>|\x00-\x1f]', "_", name).strip() or "live"
+
+
 def download_live_source(live, _chain=None):
-    """下载单个直播源 -> tvbox/live/{name}.m3u + .txt。
+    """下载单个直播源 -> tvbox/live/{最终文件名}.m3u + .txt。
+
+    返回值新增 final_name：最终成功下载的【真实播放列表文件名（带后缀）】，
+    由它作为 livelist 第一列接口名，保证"保留真实列表后缀"。
+      - 无套壳：final_name = 当前下载文件决定的名称
+      - 有套壳：递归追到最终播放列表，final_name 取最终那个文件的名称
+      - 下载失败：final_name = ""，由调用方退化处理
 
     套壳展开：若下载到的文本里只解析出「唯一一条有效 URL」（说明该地址
     只是把单个直播流/真实列表再套了一层），则把那条 URL 当作新下载对象
@@ -239,6 +280,7 @@ def download_live_source(live, _chain=None):
     _chain = _chain or []
 
     target = orig_url if not _chain else _chain[-1]
+    final_name = ""                 # 默认空，失败/无后缀时退化
 
     for retry in range(MAX_RETRIES):
         try:
@@ -249,10 +291,10 @@ def download_live_source(live, _chain=None):
                 import traceback
                 traceback.print_exc()
             if retry == MAX_RETRIES - 1:
-                return False, 0
+                return False, 0, final_name
             time.sleep(1)
     else:
-        return False, 0
+        return False, 0, final_name
 
     text = content.decode("utf-8", errors="replace")
     urls = parse_playlist_urls(text)
@@ -266,18 +308,29 @@ def download_live_source(live, _chain=None):
             if DEBUG:
                 print(f"      [unwrap] max depth reached, stop")
         else:
-            return download_live_source(
+            ok, size, sub_name = download_live_source(
                 {"name": name, "url": orig_url, "ua": ua}, new_chain)
+            # 子调用若成功取到真实文件名，用它的；否则用本层兜底
+            if ok and sub_name:
+                return ok, size, sub_name
+            # 子调用失败但本层内容可用 -> 用本层文件名兜底
+            if ok:
+                final_name = real_playlist_name(name, target)
+                return ok, size, final_name
+            return ok, size, final_name
 
     size = len(content)
-    with open(OUTPUT_LIVE_DIR / f"{name}.m3u", "wb") as f:
+    final_name = real_playlist_name(name, target)
+    safe = sanitize_filename(final_name)
+    # final_name 已含真实后缀（如 .m3u/.txt），直接作为文件名，不再追加
+    with open(OUTPUT_LIVE_DIR / safe, "wb") as f:
         f.write(b"#EXTM3U\n")
         f.write(f'#EXTINF:-1 tvg-name="{name}",{name}\n'.encode("utf-8"))
         f.write(content)
 
-    with open(OUTPUT_LIVE_DIR / f"{name}.txt", "w", encoding="utf-8") as f:
+    with open(OUTPUT_LIVE_DIR / f"{Path(safe).stem}.txt", "w", encoding="utf-8") as f:
         f.write(orig_url + "\n")   # 始终写原始（套壳前）地址
-    return True, size
+    return True, size, final_name
 
 
 def download_all_lives(lives):
@@ -286,8 +339,9 @@ def download_all_lives(lives):
     results = {}
     fail = []
     for idx, live in enumerate(lives, 1):
-        ok, size = download_live_source(live)
-        results[live["name"]] = (ok, size)
+        ok, size, final_name = download_live_source(live)
+        # 存 (ok, size, final_name)；final_name 为空时用原始接口名退化
+        results[live["name"]] = (ok, size, final_name or live["name"])
         print(f"  [{idx}/{len(lives)}] {live['name']} {'ok' if ok else 'FAIL'} ({format_file_size(size)})")
         if not ok:
             fail.append(live["name"])
@@ -315,21 +369,28 @@ def generate_livelist(lives, results):
         name = live["name"]
         if name not in results or not results[name][0]:
             continue
-        _, size = results[name]
+        _, size, final_name = results[name]
         source = Path(live['source']).stem   # 去后缀：集多.json -> 集多
         ua = (live.get("ua") or "").strip()
-        # 格式：名称|日期|大小|url|来源|
-        # 例：📡咪咕直播2|20260911|216B|http://27.18.216.122:55555|集多|
-        line = f"{name}|{TODAY}|{format_file_size(size)}|{live['url']}|{source}|"
+        # 格式：真实播放列表文件名(带后缀)|日期|大小|原始url|来源|
+        # 例：驸马影视•电信专线.m3u|20260911|17.0K|http://fmys.top/lib/live.m3u|驸马|
+        entry_name = final_name   # 已含真实后缀，如 综合直播.m3u
+        line = f"{entry_name}|{TODAY}|{format_file_size(size)}|{live['url']}|{source}|"
         if ua:
             line += f"{ua}|"
-        new_records[name] = line
+        new_records[entry_name] = (name, line)   # name 用于与旧记录对齐
 
-    merged = {**old_records, **new_records}
+    # 旧记录按「去后缀后的接口名」建索引，便于同名接口覆盖（兼容无后缀的旧格式）
+    old_by_raw = {}
+    for line in old_records.values():
+        parts = line.split("|")
+        raw = Path(parts[0]).stem
+        old_by_raw[raw] = line
 
     # 本次成功的排前面（按聚合顺序），旧记录未被覆盖的放后面
-    final = [new_records[n] for n in new_records]
-    final += [old_records[n] for n in old_records if n not in new_records]
+    final = [new_records[n][1] for n in new_records]
+    covered = {new_records[n][0] for n in new_records}
+    final += [line for raw, line in old_by_raw.items() if raw not in covered]
 
     with open(LIVELIST_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(final))
@@ -368,4 +429,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
