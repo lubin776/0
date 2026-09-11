@@ -17,6 +17,7 @@ livelist.txt 行格式：名称|日期|大小|url|来源|
 
 import ipaddress
 import json
+import re
 import time
 import requests
 from pathlib import Path
@@ -190,31 +191,59 @@ def aggregate_lives(lives):
     return aggregated
 
 
-def download_live_source(live):
-    """下载单个直播源 -> tvbox/live/{name}.m3u + .txt。"""
-    name, url, ua = live["name"], live["url"], live.get("ua", "")
+def _fetch(url, ua):
+    """带重试的通用 GET，返回 bytes；失败抛异常。"""
     headers = dict(TVBOX_HEADERS)
     headers["User-Agent"] = (
         ua.strip() if ua and isinstance(ua, str) and ua.strip()
         else TVBOX_UAS[int(time.time()) % len(TVBOX_UAS)]
     )
+    resp = requests.get(url, headers=headers, timeout=DOWNLOAD_TIMEOUT,
+                         allow_redirects=True, verify=True)
+    resp.raise_for_status()
+    return resp.content
+
+
+def parse_playlist_urls(text):
+    """从下载文本里提取播放列表条目 URL（支持 m3u / 纯文本）。
+
+    匹配规则：扫描所有 http(s) 字符串，过滤私有/忽略地址并去重。
+    返回去重后的有效 URL 列表。
+    """
+    urls = []
+    seen = set()
+    for raw in re.findall(r"https?://\S+", text):
+        u = raw.strip().strip('"').strip("'").rstrip(",").rstrip(")")
+        if not is_valid_url(u):
+            continue
+        if u in seen:
+            continue
+        seen.add(u)
+        urls.append(u)
+    return urls
+
+
+def download_live_source(live, _chain=None):
+    """下载单个直播源 -> tvbox/live/{name}.m3u + .txt。
+
+    套壳展开：若下载到的文本里只解析出「唯一一条有效 URL」（说明该地址
+    只是把单个直播流/真实列表再套了一层），则把那条 URL 当作新下载对象
+    继续下载，直至拿到真正的播放列表。
+
+    递归安全：通过 _chain 记录展开链路，防环 + 最大深度兜底（默认 5）。
+    livelist 使用的原始地址 live['url'] 全程不变。
+    """
+    name = live["name"]
+    orig_url = live["url"]          # 始终为最原始地址，递归展开也不变（livelist 依赖）
+    ua = live.get("ua", "")
+    _chain = _chain or []
+
+    target = orig_url if not _chain else _chain[-1]
 
     for retry in range(MAX_RETRIES):
         try:
-            resp = requests.get(url, headers=headers, timeout=DOWNLOAD_TIMEOUT,
-                                 allow_redirects=True, verify=True)
-            resp.raise_for_status()
-            content = resp.content
-            size = len(content)
-
-            with open(OUTPUT_LIVE_DIR / f"{name}.m3u", "wb") as f:
-                f.write(b"#EXTM3U\n")
-                f.write(f'#EXTINF:-1 tvg-name="{name}",{name}\n'.encode("utf-8"))
-                f.write(content)
-
-            with open(OUTPUT_LIVE_DIR / f"{name}.txt", "w", encoding="utf-8") as f:
-                f.write(url + "\n")
-            return True, size
+            content = _fetch(target, ua)
+            break
         except Exception:
             if DEBUG and retry == MAX_RETRIES - 1:
                 import traceback
@@ -222,7 +251,33 @@ def download_live_source(live):
             if retry == MAX_RETRIES - 1:
                 return False, 0
             time.sleep(1)
-    return False, 0
+    else:
+        return False, 0
+
+    text = content.decode("utf-8", errors="replace")
+    urls = parse_playlist_urls(text)
+
+    # 仅 1 条 URL -> 判定为套壳，展开它
+    if len(urls) == 1 and urls[0] != orig_url and urls[0] not in _chain:
+        if DEBUG:
+            print(f"      [unwrap] {target} -> {urls[0]}")
+        new_chain = _chain + [urls[0]]
+        if len(new_chain) > 5:   # 深度兜底，避免异常死循环
+            if DEBUG:
+                print(f"      [unwrap] max depth reached, stop")
+        else:
+            return download_live_source(
+                {"name": name, "url": orig_url, "ua": ua}, new_chain)
+
+    size = len(content)
+    with open(OUTPUT_LIVE_DIR / f"{name}.m3u", "wb") as f:
+        f.write(b"#EXTM3U\n")
+        f.write(f'#EXTINF:-1 tvg-name="{name}",{name}\n'.encode("utf-8"))
+        f.write(content)
+
+    with open(OUTPUT_LIVE_DIR / f"{name}.txt", "w", encoding="utf-8") as f:
+        f.write(orig_url + "\n")   # 始终写原始（套壳前）地址
+    return True, size
 
 
 def download_all_lives(lives):
