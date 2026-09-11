@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运备份gggg</title>
+<title>海量接口搬运备份</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -128,19 +128,6 @@
     .copy-btn:active { background: #2a7ed9; transform: scale(0.96); }
     .copy-btn.copied { background: #3b9b6c; }
     .entry.hidden, .download-card.hidden { display: none; }
-
-    /* 置顶接口专属样式 - 明显区分 */
-    .force-top-entry {
-        background: #f0f7ff;
-        border: 1.5px solid #4a9eff;
-        border-radius: 12px;
-        padding: 14px 16px;
-        margin-bottom: 16px;
-    }
-    .force-top-entry .entry-name::before {
-        content: "🔥 置顶推荐 · ";
-        color: #ff4d4f;
-    }
 
     .loading, .empty { text-align: center; color: #9aadc2; padding: 48px 0; font-size: 0.9rem; }
     .error-msg { text-align: center; color: #d9534f; padding: 16px; font-size: 0.82rem; background: #fff3f3; border-radius: 10px; margin: 8px 0; word-break: break-all; }
@@ -272,15 +259,9 @@
         "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
     };
 
-    // ===================== 强制置顶接口（写死，每次刷新随机一个） =====================
-    const FORCE_TOP_APIS = [
-        { name: "幸福年年", date: "20260101", size: "2KB", origUrl: "https://0.12yue.de5.net/tvbox/幸福年年.json" },
-        { name: "菠菜园", date: "20260101", size: "3KB", origUrl: "https://0.12yue.de5.net/tvbox/菠菜园.json" },
-        { name: "少儿频道", date: "20260101", size: "2KB", origUrl: "https://0.12yue.de5.net/tvbox/少儿频道.json" },
-        { name: "更新专用接口", date: "20260101", size: "4KB", origUrl: "https://0.12yue.de5.net/tvbox/更新专用接口.json" },
-        { name: "菠菜pro", date: "20260101", size: "3KB", origUrl: "https://0.12yue.de5.net/tvbox/菠菜pro.json" }
-    ];
-    // ==============================================================================
+    // ===================== 只在这里控制谁参与“随机第一位” =====================
+    const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
+    // =========================================================================
 
     const TABS = [
         { id: "api",      label: "接口", hideSearch: false },
@@ -330,60 +311,18 @@
         });
     }
 
-    // ===================== 置顶接口相关工具函数 =====================
-    function formatDateToChinese(d) {
-        if (!d || d.length !== 8) return '----';
-        return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
-    }
-    function isRecent(d) {
-        if (!d || d.length !== 8) return false;
-        const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
-        return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
-    }
-    // 生成随机置顶接口HTML
-    function renderForceTopApi() {
-        // 每次刷新随机选一个
-        const item = FORCE_TOP_APIS[Math.floor(Math.random() * FORCE_TOP_APIS.length)];
-        const jsonName = encodeURIComponent(item.name) + ".json";
-        const isNew = isRecent(item.date);
-        const cls = isNew ? 'badge-new' : 'badge-old';
-
-        let linesHtml = '';
-        // 原始线路
-        linesHtml += `<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${item.origUrl}</span><button class="copy-btn" data-url="${item.origUrl}">复制</button></div>`;
-        // 备份线路
-        API_DOMAINS.forEach(d => {
-            const url = d.base + jsonName;
-            linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
-        });
-
-        return `
-        <div class="entry force-top-entry" data-name="${item.name.toLowerCase()}">
-            <div class="entry-header">
-                <div class="entry-name">${item.name}</div>
-                <div class="entry-meta-inline">
-                    <span class="${cls}">备份时间 ${formatDateToChinese(item.date)}</span>
-                    ${item.size ? '&nbsp;&nbsp;' + item.size : ''}
-                </div>
-            </div>
-            <div class="entry-urls">${linesHtml}</div>
-        </div>`;
-    }
-    // ==============================================================================
-
     function renderApi() {
         const container = document.getElementById('listContainer');
-        function formatDateToChineseInner(d) {
+        function formatDateToChinese(d) {
             if (!d || d.length !== 8) return '----';
             return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
         }
-        function isRecentInner(d) {
+        function isRecent(d) {
             if (!d || d.length !== 8) return false;
             const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
             return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
         }
 
-        // 强制禁用缓存，加双随机参数
         fetch('list.txt?t=' + Date.now() + '&r=' + Math.random(), { 
             cache: 'no-store',
             headers: { 'Cache-Control': 'no-cache' }
@@ -407,23 +346,34 @@
                     };
                 });
 
-                // 过滤掉已经在置顶里的接口，避免重复显示
-                const forceTopNames = new Set(FORCE_TOP_APIS.map(i => i.name.toLowerCase()));
-                items = items.filter(item => !forceTopNames.has(item.name.toLowerCase()));
+                // ===================== 核心：随机置顶（不新增模块） =====================
+                const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
 
-                // 正常接口排序
-                items.sort((a, b) => {
+                // 从 list.txt 中挑出参与轮换的接口
+                const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
+                // 剩余正常接口
+                const normalItems = items.filter(i => !rotateSet.has(i.name.toLowerCase()));
+
+                // 打乱轮换组（每次刷新随机顺序）
+                for (let i = rotateItems.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [rotateItems[i], rotateItems[j]] = [rotateItems[j], rotateItems[i]];
+                }
+
+                // 重组：轮换组排在最前（顺序随机），其余按原权重
+                items = [...rotateItems, ...normalItems].sort((a, b) => {
+                    const aRotate = rotateSet.has(a.name.toLowerCase());
+                    const bRotate = rotateSet.has(b.name.toLowerCase());
+                    if (aRotate && !bRotate) return -1;
+                    if (!aRotate && bRotate) return 1;
                     if (a.weight !== b.weight) return a.weight - b.weight;
                     return a.name.localeCompare(b.name, 'zh');
                 });
+                // =====================================================================
 
-                // 生成置顶HTML（每次刷新随机一个）
-                const forceTopHtml = renderForceTopApi();
-
-                // 生成正常接口HTML
-                let normalHtml = '';
+                let html = '';
                 items.forEach(it => {
-                    const isNew = isRecentInner(it.date);
+                    const isNew = isRecent(it.date);
                     const cls = isNew ? 'badge-new' : 'badge-old';
                     const jsonName = ensureJson(it.file);
                     let linesHtml = '';
@@ -434,11 +384,11 @@
                         const url = d.base + jsonName;
                         linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
                     });
-                    normalHtml += `<div class="entry" data-name="${it.name.toLowerCase()}">
+                    html += `<div class="entry" data-name="${it.name.toLowerCase()}">
                         <div class="entry-header">
                             <div class="entry-name" title="${it.name}">${it.name}</div>
                             <div class="entry-meta-inline">
-                                <span class="${cls}">备份时间 ${formatDateToChineseInner(it.date)}</span>
+                                <span class="${cls}">备份时间 ${formatDateToChinese(it.date)}</span>
                                 ${it.size ? '&nbsp;&nbsp;' + it.size : ''}
                             </div>
                         </div>
@@ -446,8 +396,7 @@
                     </div>`;
                 });
 
-                // 拼接置顶+正常列表，强制置顶在最前
-                container.innerHTML = forceTopHtml + normalHtml;
+                container.innerHTML = html;
                 bindCopy(container);
             })
             .catch(err => {
