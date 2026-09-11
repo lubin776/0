@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运备份</title>
+<title>海量接口搬运备份pp</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -11,20 +11,40 @@
         background: #f5f7fa; color: #1e293b;
         padding: 16px 12px 8px;
         transition: padding 0.3s;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
-    .container { max-width: 820px; margin: 0 auto; position: relative; padding: 0; }
+    .container {
+        max-width: 820px;
+        margin: 0 auto;
+        position: relative;
+        padding: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
 
-    /* 切换按钮模块 */
     #modeToggleBtn {
-        position: absolute; top: 12px; left: 8px; z-index: 999;
-        width: 52px; padding: 4px 2px; border-radius: 12px;
-        border: 1px solid #4a9eff; background: #fff; color: #4a9eff;
-        font-size: 0.6rem; line-height: 1.25; text-align: center;
-        cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: all 0.2s;
+        position: absolute;
+        top: 12px;
+        left: 8px;
+        z-index: 999;
+        width: 52px;
+        padding: 4px 2px;
+        border-radius: 12px;
+        border: 1px solid #4a9eff;
+        background: #fff;
+        color: #4a9eff;
+        font-size: 0.6rem;
+        line-height: 1.25;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        transition: all 0.2s;
     }
     #modeToggleBtn:active { transform: scale(0.95); }
 
-    /* 头部模块：标题行（logo + 大字）+ 小字两行 */
     .header-block { text-align: center; margin-bottom: 12px; padding-top: 12px; }
     h1 { font-size: 1.3rem; font-weight: 600; color: #0b1e33; }
     h1 .header-logo {
@@ -35,36 +55,37 @@
     .header-divider { height: 1px; background: #e9edf2; margin: 10px 0; }
     .subtitle { font-size: 0.8rem; color: #8b9eb0; line-height: 1.5; }
 
-    /* 主卡片 + 导航栏组合模块（全能版显示） */
     .main-card {
         background: #ffffff; border-radius: 16px;
         padding: 16px 18px 14px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #f0f3f8;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        border: 1px solid #f0f3f8;
         transition: padding 0.3s;
+        flex: 1;
     }
     .nav-tabs { display: flex; gap: 10px; margin-bottom: 12px; justify-content: center; flex-wrap: wrap; }
     .nav-tab {
-        padding: 7px 24px; border: 1.5px solid #4a9eff; border-radius: 40px;
-        background: #fff; color: #4a9eff; font-size: 0.82rem; font-weight: 500;
-        cursor: pointer; transition: all 0.2s; white-space: nowrap;
+        padding: 7px 24px; border: 1.5px solid #4a9eff;
+        border-radius: 40px; background: #fff; color: #4a9eff;
+        font-size: 0.82rem; font-weight: 500; cursor: pointer;
+        transition: all 0.2s; white-space: nowrap;
     }
     .nav-tab.active { background: #4a9eff; color: #fff; }
     .nav-tab:active { transform: scale(0.96); }
 
-    /* 搜索框 */
     .search-box {
-        width: 100%; padding: 12px 16px; border: 1px solid #dce1e9;
-        border-radius: 40px; font-size: 0.95rem; background: #fff; outline: none; transition: 0.2s;
+        width: 100%; padding: 12px 16px;
+        border: 1px solid #dce1e9; border-radius: 40px;
+        font-size: 0.95rem; background: #fff; outline: none;
+        transition: 0.2s;
     }
     .search-box:focus { border-color: #4a9eff; box-shadow: 0 0 0 3px rgba(74,158,255,0.15); }
     body.simple-mode .search-box { margin-bottom: 20px; }
     body:not(.simple-mode) .search-box { margin-bottom: 12px; }
 
-    /* 分页面板：每页一个模块 */
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* 接口列表模块（分页1） */
     .api-list { padding: 0; border: none; background: transparent; }
     .entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
     .entry:first-of-type { padding-top: 4px; }
@@ -77,7 +98,8 @@
     }
     .entry-meta-inline {
         margin-left: auto; display: flex; align-items: center;
-        gap: 10px; font-size: 0.75rem; color: #5a6f88; white-space: nowrap; flex-shrink: 0;
+        gap: 10px; font-size: 0.75rem; color: #5a6f88;
+        white-space: nowrap; flex-shrink: 0;
     }
     .badge-new { color: #1b9e5a; } .badge-old { color: #b88b3a; }
     .entry-urls { display: block; }
@@ -93,8 +115,9 @@
         line-height: 24px; white-space: nowrap; flex-shrink: 0;
     }
     .url-text {
-        font-size: 0.82rem; color: #2563eb; word-break: break-all;
-        overflow-wrap: break-word; white-space: normal; line-height: 1.5; flex: 1 1 0; min-width: 40px;
+        font-size: 0.82rem; color: #2563eb;
+        word-break: break-all; overflow-wrap: break-word;
+        white-space: normal; line-height: 1.5; flex: 1 1 0; min-width: 40px;
     }
     .copy-btn {
         flex-shrink: 0; background: #4a9eff; color: white; border: none;
@@ -106,7 +129,9 @@
     .copy-btn.copied { background: #3b9b6c; }
     .entry.hidden, .download-card.hidden { display: none; }
 
-    /* 下载资源模块（分页2） */
+    .loading, .empty { text-align: center; color: #9aadc2; padding: 48px 0; font-size: 0.9rem; }
+    .error-msg { text-align: center; color: #d9534f; padding: 16px; font-size: 0.82rem; background: #fff3f3; border-radius: 10px; margin: 8px 0; word-break: break-all; }
+
     .source-section { background: #f8fafc; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; border: 1px solid #eef2f7; }
     .source-section:last-child { margin-bottom: 0; }
     .source-title { font-size: 0.95rem; font-weight: 600; color: #0b1e33; margin-bottom: 2px; }
@@ -128,7 +153,6 @@
     .card-name { font-size: 0.76rem; font-weight: 500; color: #1e293b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .card-version { font-size: 0.6rem; color: #8b9eb0; margin-top: 2px; }
 
-    /* 关于页面模块（分页3） */
     .about-inner { background: #f8fafc; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #eef2f7; }
     .about-inner:last-child { margin-bottom: 0; }
     .about-inner h3 { font-size: 0.92rem; font-weight: 600; color: #0b1e33; margin-bottom: 8px; }
@@ -137,20 +161,16 @@
     .domain-line { display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: #fff; border-radius: 40px; border: 1px solid #e0e6ed; margin-top: 6px; }
     .domain-line span { flex: 1; font-size: 0.75rem; color: #2563eb; word-break: break-all; }
 
-    /* 通用状态 */
-    .loading, .empty { text-align: center; color: #9aadc2; padding: 48px 0; font-size: 0.9rem; }
-    .error-msg { text-align: center; color: #d9534f; padding: 16px; font-size: 0.82rem; background: #fff3f3; border-radius: 10px; margin: 8px 0; word-break: break-all; }
+    .page-footer {
+        text-align: center; padding: 20px 0 8px; font-size: 0.72rem; color: #9aadc2; line-height: 1.8;
+        flex-shrink: 0;
+    }
 
-    /* Footer 模块 */
-    .page-footer { text-align: center; padding: 20px 0 8px; font-size: 0.72rem; color: #9aadc2; line-height: 1.8; }
-
-    /* 简洁版页面：只显示接口分页，隐藏导航与其它分页 */
     body.simple-mode .nav-tabs { display: none !important; }
     body.simple-mode #download-panel,
     body.simple-mode #about-panel { display: none !important; }
     body.simple-mode #api-panel { display: block !important; }
 
-    /* 移动端响应式（对齐旧版边距） */
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
         #modeToggleBtn { top: 10px; left: 6px; width: 46px; font-size: 0.55rem; padding: 3px 1px; border-radius: 10px; }
@@ -176,37 +196,29 @@
 <body class="simple-mode">
 
 <div class="container">
-    <!-- 切换按钮模块 -->
     <button id="modeToggleBtn">切换<br>全能版</button>
 
-    <!-- 头部模块：标题行（logo + 大字）+ 小字两行 -->
     <div class="header-block">
         <h1><img class="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
         <div class="header-divider"></div>
         <p class="subtitle">备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
     </div>
 
-    <!-- 搜索框（简洁版在卡片外，全能版在卡片内，由 JS 移动） -->
     <input class="search-box" id="search" type="text" placeholder="🔍 搜索..." oninput="globalSearch()">
 
-    <!-- 主卡片：全能版才有导航 + 多分页 -->
     <div class="main-card">
-        <!-- 导航栏组合模块（全能版显示，简洁版隐藏） -->
         <div class="nav-tabs" id="navTabs"></div>
 
-        <!-- 分页1：接口列表模块 -->
         <div class="tab-panel active" id="api-panel">
             <div class="api-list" id="listContainer">
                 <div class="loading" id="apiLoading">⏳ 正在加载接口列表...</div>
             </div>
         </div>
 
-        <!-- 分页2：下载资源模块（数据来自 config.json 的 downloadSources） -->
         <div class="tab-panel" id="download-panel">
             <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
         </div>
 
-        <!-- 分页3：关于页面模块 -->
         <div class="tab-panel" id="about-panel">
             <div class="about-inner" id="aboutDomains">
                 <h3>🌐 备份线路域名</h3>
@@ -223,36 +235,35 @@
         </div>
     </div>
 
-    <!-- Footer 模块 -->
     <footer class="page-footer">
         <p>本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。</p>
     </footer>
 </div>
 
 <script>
-    /* ============================================================
-       全局状态
-       - 接口列表（domains / weights）已写回静态 JS 常量
-       - 下载部分单独从 config.json 的 downloadSources 动态加载（外延逻辑）
-       ============================================================ */
     const MODE_KEY = 'site_mode';
     const btn = document.getElementById('modeToggleBtn');
     const searchBox = document.getElementById('search');
     const mainCard = document.querySelector('.main-card');
     const navTabs = document.getElementById('navTabs');
 
-    // 接口页静态配置（原 config.api，已恢复为硬编码）
     const API_DOMAINS = [
         { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
         { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
         { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" }
     ];
+
+    // ========== 你的原始权重，第2条开始完全按这个排，一行不动 ==========
     const API_WEIGHTS = {
-        "菠菜园.json": 1, "少儿频道.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
+        "幸福年年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
         "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
         "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
     };
-    // 导航标签静态配置（原 config.tabs）
+
+    // 指定组：只在这几个里随机挑 1 个放第 1 条
+    const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
+    // ==================================================================
+
     const TABS = [
         { id: "api",      label: "接口", hideSearch: false },
         { id: "download", label: "下载", hideSearch: false },
@@ -264,25 +275,20 @@
     updateBtnText();
     positionSearchBox();
 
-    /* ===== 下载外延逻辑：仅这一部分从 config.json 加载 ===== */
     let DOWNLOAD_SOURCES = [];
     async function loadDownloadConfig() {
         try {
-            const res = await fetch('config.json?t=' + Date.now(), { cache: 'no-store' });
+            const res = await fetch('config.json?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const cfg = await res.json();
             DOWNLOAD_SOURCES = Array.isArray(cfg.downloadSources) ? cfg.downloadSources : [];
         } catch (e) {
-            console.error('config.json 加载失败，下载页将不可用', e);
             DOWNLOAD_SOURCES = [];
         }
     }
 
-    /* ===== 工具函数 ===== */
-    // 文件名无 .json 后缀时自动补上（保证备份线路 URL 正确）
     function ensureJson(name) { return name.endsWith('.json') ? name : name + '.json'; }
 
-    // 为容器内所有 .copy-btn 绑定复制事件
     function bindCopy(container) {
         if (!container) return;
         container.querySelectorAll('.copy-btn').forEach(btn => {
@@ -306,7 +312,6 @@
         });
     }
 
-    /* ===== 分页1：接口列表模块（还原原始渲染：备份时间/新旧颜色/权重排序/补 .json）===== */
     function renderApi() {
         const container = document.getElementById('listContainer');
         function formatDateToChinese(d) {
@@ -319,11 +324,15 @@
             return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
         }
 
-        fetch('list.txt?t=' + Date.now(), { cache: 'no-store' })
+        fetch('list.txt?t=' + Date.now() + '&r=' + Math.random(), { 
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-cache' }
+        })
             .then(res => res.ok ? res.text() : Promise.reject('HTTP ' + res.status))
             .then(text => {
                 const loadingTip = document.getElementById('apiLoading');
                 if (loadingTip) loadingTip.style.display = 'none';
+
                 const lines = text.trim().split('\n').filter(l => l.trim());
                 let items = lines.map(line => {
                     const parts = line.split('|').map(s => s.trim());
@@ -331,11 +340,34 @@
                     return {
                         file: file,
                         name: file.replace(/\.json$/i, ''),
-                        date: parts[1] || '', size: parts[2] || '', origUrl: parts[3] || '',
+                        date: parts[1] || '',
+                        size: parts[2] || '',
+                        origUrl: parts[3] || '',
                         weight: API_WEIGHTS.hasOwnProperty(file) ? API_WEIGHTS[file] : 999
                     };
                 });
-                items.sort((a, b) => a.weight !== b.weight ? a.weight - b.weight : a.name.localeCompare(b.name, 'zh'));
+
+                // ========== 核心：只把随机选中的置顶项提到第1条，其余全部保持原权重排序 ==========
+                const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
+                // 1. 找出指定组里真实存在于 list.txt 的成员
+                const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
+
+                // 2. 随机选 1 个当置顶；如果它恰好也在 API_WEIGHTS 里，临时改成 Number.MIN_SAFE_INTEGER 确保绝对第一
+                let topItem = null;
+                if (rotateItems.length > 0) {
+                    topItem = rotateItems[Math.floor(Math.random() * rotateItems.length)];
+                    topItem.weight = Number.MIN_SAFE_INTEGER; // 只影响第1条
+                }
+
+                // 3. 其余所有项（包括指定组里没被选中的）weight 完全保持 API_WEIGHTS 原值
+                //    → 排序后从第2条开始，顺序和你原来的一模一样
+
+                // 4. 只排序一次
+                items.sort((a, b) => {
+                    if (a.weight !== b.weight) return a.weight - b.weight;
+                    return a.name.localeCompare(b.name, 'zh');
+                });
+                // ================================================================================
 
                 let html = '';
                 items.forEach(it => {
@@ -361,6 +393,7 @@
                         <div class="entry-urls">${linesHtml}</div>
                     </div>`;
                 });
+
                 container.innerHTML = html;
                 bindCopy(container);
             })
@@ -371,7 +404,6 @@
             });
     }
 
-    /* ===== 分页2：下载资源模块（数据来自 config.json 的 downloadSources，支持 ry/ 子目录）===== */
     async function renderDownloads(force) {
         const container = document.getElementById('downloads-content');
         if (!container || (container.dataset.rendered && !force)) return;
@@ -386,7 +418,7 @@
         let html = '';
         for (const src of DOWNLOAD_SOURCES) {
             try {
-                const res = await fetch(src.url + '?t=' + Date.now());
+                const res = await fetch(src.url + '?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const raw = await res.text();
                 const cleaned = raw
@@ -421,10 +453,8 @@
         bindCopy(container);
     }
 
-    /* ===== 分页3：关于页面模块（静态，内容已写回 HTML，此处仅补绑定）===== */
     function renderAbout() { bindCopy(document.getElementById('about-panel')); }
 
-    /* ===== 导航栏组合模块（全能版）===== */
     function renderTabs() {
         const nav = document.getElementById('navTabs');
         nav.innerHTML = TABS.map(t => `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`).join('');
@@ -437,7 +467,6 @@
         });
     }
 
-    /* ===== 分页控制：每页一个模块（下载/关于 懒加载）===== */
     function showPanel(tabId) {
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
@@ -448,7 +477,6 @@
         if (searchBox) searchBox.style.display = (targetTab && targetTab.hideSearch) ? 'none' : '';
     }
 
-    /* ===== 全局搜索 ===== */
     function globalSearch() {
         const kw = (searchBox.value || '').toLowerCase().trim();
         document.querySelectorAll('#api-panel .entry').forEach(e => {
@@ -463,7 +491,6 @@
         }
     }
 
-    /* ===== 搜索框位置切换（简洁版在卡片外 / 全能版在卡片内）===== */
     function positionSearchBox() {
         if (currentMode === 'simple') {
             if (searchBox.parentNode !== mainCard.parentNode) mainCard.parentNode.insertBefore(searchBox, mainCard);
@@ -476,7 +503,6 @@
         btn.innerHTML = currentMode === 'simple' ? '切换<br>全能版' : '切换<br>简洁版';
     }
 
-    /* ===== 模式切换（简洁版 ⇄ 全能版）===== */
     btn.addEventListener('click', () => {
         currentMode = (currentMode === 'simple') ? 'full' : 'simple';
         localStorage.setItem(MODE_KEY, currentMode);
@@ -484,14 +510,13 @@
         updateBtnText();
         positionSearchBox();
         if (currentMode !== 'simple') {
-            renderDownloads();   // 进入全能版时渲染下载页
+            renderDownloads();
             renderAbout();
         } else {
             showPanel('api');
         }
     });
 
-    /* ===== 启动 ===== */
     renderTabs();
     renderApi();
     loadDownloadConfig().then(() => {
