@@ -1,0 +1,73 @@
+name: 两日一更备分接口
+
+on:
+  schedule:
+    - cron: "5 16 * * *"   # UTC 16:05 = 北京时间次日 00:05
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "强制执行（跳过奇日判断，立即运行）"
+        required: false
+        type: boolean
+        default: false
+      debug:
+        description: "详细调试日志"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: tvbox-repo-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: pip install requests urllib3
+
+      - name: 检查执行日期（仅 UTC 奇日运行，手动触发可强制）
+        id: date_check
+        run: |
+          DAY=$(TZ='UTC' date +%d)
+          if [ "${{ github.event.inputs.force == 'true' && 'true' || 'false' }}" == "true" ]; then
+            echo "强制调试模式，跳过日期判断" >> $GITHUB_STEP_SUMMARY
+            echo "run=true" >> $GITHUB_OUTPUT
+          elif [ $((10#$DAY % 2)) -eq 1 ]; then
+            echo "UTC 当日为奇日（$DAY），执行抓取" >> $GITHUB_STEP_SUMMARY
+            echo "run=true" >> $GITHUB_OUTPUT
+          else
+            echo "UTC 当日为偶日（$DAY），跳过执行（手动运行时可勾选 force）" >> $GITHUB_STEP_SUMMARY
+            echo "run=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 运行 tvbox_get_api
+        if: steps.date_check.outputs.run == 'true'
+        run: |
+          ARGS=""
+          ${{ github.event.inputs.debug == 'true' && 'ARGS="$ARGS --debug"' || '' }}
+          ${{ github.event.inputs.force == 'true' && 'ARGS="$ARGS --force"' || '' }}
+          python python/tvbox_get_api.py $ARGS
+
+      - name: 提交产物
+        if: steps.date_check.outputs.run == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash
+          git add tvbox/ list.txt
+          git commit -m "chore(api): 两日一更接口更新 $(TZ='CST-8' date +%Y-%m-%d)" || echo "no changes"
+          git push

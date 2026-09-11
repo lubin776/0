@@ -2,11 +2,20 @@ name: 每日解析在线本地包
 
 on:
   schedule:
-    # 每天 UTC 17:00 运行（北京时间次日 01:00）
-    - cron: '0 17 * * *'
+    - cron: "0 17 * * *"   # UTC 17:00 = 北京时间次日 01:00
   workflow_dispatch:
+    inputs:
+      force:
+        description: "强制执行（忽略日期/频率限制，立即运行）"
+        required: false
+        type: boolean
+        default: false
+      debug:
+        description: "详细调试日志"
+        required: false
+        type: boolean
+        default: false
 
-# 放到 workflow 层级，和另一个工作流共享同一把锁，避免并发 push
 concurrency:
   group: tvbox-repo-write
   cancel-in-progress: false
@@ -15,43 +24,33 @@ permissions:
   contents: write
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 检出代码
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: 设置 Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: 安装依赖
-        run: pip3 install requests
+        run: pip install requests urllib3
 
-      - name: 运行解析器
-        run: python3 "python/ry下载器.py"
+      - name: 运行 ry下载器
+        run: |
+          ARGS=""
+          ${{ github.event.inputs.debug == 'true' && 'ARGS="$ARGS --debug"' || '' }}
+          ${{ github.event.inputs.force == 'true' && 'ARGS="$ARGS --force"' || '' }}
+          python python/ry下载器.py $ARGS
 
-      - name: 提交结果
+      - name: 提交产物
         run: |
           git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # 只提交本工作流负责的目录，避免误提交别的 workflow 的改动
-          git add ry/ || true
-
-          if git diff --cached --quiet; then
-            echo "没有变化，跳过提交"
-            exit 0
-          fi
-
-          git commit -m "chore: 每日更新 ry 解析结果 $(date -u +%Y-%m-%d)"
-
-          # 先 rebase 再 push，降低并发 push 失败概率
-          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash
+          git add ry/
+          git commit -m "chore(ry): 每日更新本地包 $(TZ='CST-8' date +%Y-%m-%d)" || echo "no changes"
+          git push

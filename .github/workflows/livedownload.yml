@@ -1,53 +1,56 @@
 name: 每日聚合TVBox直播源
 
-# 权限配置（必须，否则无法push）
-permissions:
-  contents: write
-
-# 触发条件：每日UTC 18:00（北京时间02:00）+ 手动触发
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: "0 18 * * *"   # UTC 18:00 = 北京时间次日 02:00
   workflow_dispatch:
+    inputs:
+      force:
+        description: "强制执行（忽略日期/频率限制，立即运行）"
+        required: false
+        type: boolean
+        default: false
+      debug:
+        description: "详细调试日志"
+        required: false
+        type: boolean
+        default: false
 
-# 并发控制：与其他两个工作流共用同一把锁，排队执行不冲突
 concurrency:
   group: tvbox-repo-write
   cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 拉取仓库代码
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 拉取完整历史，避免rebase冲突
+          fetch-depth: 0
 
-      - name: 设置Python环境
+      - name: 设置 Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.11"
 
       - name: 安装依赖
-        run: pip install requests
+        run: pip install requests urllib3
 
-      - name: 运行Live聚合下载器
-        run: python python/live下载器.py
-
-      - name: 配置Git用户
+      - name: 运行 live下载器
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          ARGS=""
+          ${{ github.event.inputs.debug == 'true' && 'ARGS="$ARGS --debug"' || '' }}
+          ${{ github.event.inputs.force == 'true' && 'ARGS="$ARGS --force"' || '' }}
+          python python/live下载器.py $ARGS
 
-      - name: 提交并推送变更
+      - name: 提交产物
         run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash
           git add tvbox/ livelist.txt
-          # 仅当有变更时才提交
-          if git diff --staged --quiet; then
-            echo "无变更，跳过提交"
-          else
-            git commit -m "每日更新：TVBox直播源（$(date +%Y%m%d)）"
-            git pull --rebase --autostash
-            git push
-          fi
+          git commit -m "chore(live): 每日更新直播源 $(TZ='CST-8' date +%Y-%m-%d)" || echo "no changes"
+          git push
