@@ -613,5 +613,19 @@
       "url": "https://jx.parwix.com:4433/player/?url="
     }
   ],
+  "flags": [
+    "youku",
+    "qq",
+    "iqiyi",
+    "qiyi",
+    "letv",
+    "sohu",
+    "tudou",
+    "pptv",
+    "mgtv",
+    "wasu",
+    "bilibili",
+    "renrenmi"
+  ],
   "wallpaper": "http://www.kf666888.cn/api/tvbox/img"
 }

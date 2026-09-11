@@ -378,5 +378,17 @@
       "type": 0,
       "url": "https://jx.m3u8.tv/jiexi/?url="
     }
+  ],
+  "flags": [
+    "youku",
+    "qq",
+    "iqiyi",
+    "qiyi",
+    "letv",
+    "sohu",
+    "tudou",
+    "pptv",
+    "mgtv",
+    "wasu"
   ]
 }

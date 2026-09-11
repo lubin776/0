@@ -1,7 +1,7 @@
 {
-  "spider": "https://img2.gelonghui.com/library/6b3f3-d6b2d2c3-70cd-47a6-8632-6096809927d4.png;md5;6b3f30565b0bb99d486b40049bcd4802",
+  "spider": "https://img2.gelonghui.com/library/46da6-aa33493f-1c1d-4f35-9990-0be4bdbf0c64.png;md5;46da6b6a6a111d7924717db2ae790de3",
   "wallpaper": "https://深色壁纸.xxooo.cf/",
-  "logo": "http://hello.xn--z7x900a.net/fm.gif",
+  "logo": "http://w.junce.dpdns.org/fm.gif",
   "sites": [
     {
       "key": "豆瓣",
@@ -51,11 +51,13 @@
       "filterable": 1,
       "ext": {
         "site_urls": [
-          "http://tvpanpan.site",
+          "http://xiaocge.fun",
           "http://feimo.fun",
+          "http://www.labi88.sbs",
+          "http://fmao.site",
+          "http://fmao.shop",
           "http://xiaocgege.shop",
-          "http://www.xiaocgege.shop",
-          "https://www.xiaocge.fun"
+          "http://www.xiaocgege.shop"
         ],
         "threadinfo": {
           "chunksize": 512,
@@ -72,11 +74,12 @@
       "filterable": 1,
       "ext": {
         "site_urls": [
-          "https://www.zhizhen8.click",
           "https://pan.mihdr.top",
           "https://www.zhizhen1.top",
           "https://www.mihdr.top",
-          "https://www.miqk.cc"
+          "https://www.miqk.cc",
+          "https://www.zhizhenpan.com",
+          "https://www.zhizhen8.click"
         ],
         "url_key": "http://肥猫.net/Netfixtv2",
         "threadinfo": {
@@ -103,8 +106,8 @@
       "key": "干饭",
       "name": "🍚┃干饭┃APP",
       "type": 3,
-      "api": "csp_AppQi",
-      "ext": "http://110.42.67.130:1226|kj37zs29q22jk96t"
+      "api": "csp_AppGet",
+      "ext": "https://www.douy32mf.top|1234567887654321"
     },
     {
       "key": "光盘",
@@ -117,15 +120,26 @@
       "key": "行动",
       "name": "😌┃行动┃APP",
       "type": 3,
-      "api": "csp_AppQi",
-      "ext": "https://lanyingjisu.oss-cn-wuhan-lr.aliyuncs.com/lyjszx.txt|oW5UxZ5kWVr1DI69"
+      "api": "csp_AppDrama",
+      "ext": {
+        "host": "",
+        "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
+        "publicKey": "http://肥猫.net/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "http://肥猫.net/D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
+        "dataIv": "http://肥猫.net/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "commonKey": "",
+        "version": "http://肥猫.net/3.0.0.7",
+        "pkg": "http://肥猫.net/com.dytiantang.one",
+        "appName": "http://肥猫.net/电影天堂",
+        "decrypt": "1"
+      }
     },
     {
       "key": "再来",
       "name": "✌️┃再来┃APP",
       "type": 3,
       "api": "csp_AppGet",
-      "ext": "https://www.douy32mf.top|1234567887654321"
+      "ext": "https://vv.229d.cn|8888888888888888"
     },
     {
       "key": "一碗",
@@ -136,7 +150,7 @@
     },
     {
       "key": "韩圈",
-      "name": "🥽┃韩圈┃APP",
+      "name": "⭕┃韩圈 ┃APP",
       "type": 3,
       "api": "csp_Hxq",
       "ext": " http://www.小不点.com/api/2026/fishhxq.php"
@@ -152,7 +166,8 @@
       "key": "csp_Jpys",
       "name": "🥇️┃金牌┃影视",
       "type": 3,
-      "api": "csp_Jpys"
+      "api": "csp_Jpys",
+      "ext": "https://y2s52n7.com"
     },
     {
       "key": "csp_Wwys",
@@ -193,7 +208,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://cz01.vip"
+      "ext": "https://www.czzy89.com"
     },
     {
       "key": "csp_SP360",
@@ -328,7 +343,7 @@
       "key": "儿童",
       "name": "📚┃儿童┃启蒙",
       "type": 3,
-      "api": "https://gh-proxy.net/https://raw.githubusercontent.com/fantaiying7/EXT/refs/heads/main/drpy2.min.js",
+      "api": "http://肥猫.net/api/drpy2.min.js",
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
@@ -336,7 +351,7 @@
         "type": "rect",
         "ratio": 1.597
       },
-      "ext": "https://gh-proxy.net/https://raw.githubusercontent.com/fantaiying7/EXT/refs/heads/main/%E5%85%94%E5%B0%8F%E8%B4%9D.js"
+      "ext": "http://肥猫.net/js/兔小贝.js"
     },
     {
       "key": "csp_少儿",
@@ -400,7 +415,7 @@
     },
     {
       "key": "push_agent",
-      "name": "关注公众号：肥猫宝贝",
+      "name": "关注公众号：熊猫是只肥猫",
       "type": 3,
       "api": "csp_Push",
       "playerType": "1",
@@ -460,21 +475,99 @@
       }
     }
   ],
+  "doh": [
+    {
+      "name": "Google",
+      "url": "https://dns.google/dns-query",
+      "ips": [
+        "8.8.4.4",
+        "8.8.8.8"
+      ]
+    },
+    {
+      "name": "Cloudflare",
+      "url": "https://cloudflare-dns.com/dns-query",
+      "ips": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ]
+    },
+    {
+      "name": "AdGuard",
+      "url": "https://dns.adguard.com/dns-query",
+      "ips": [
+        "94.140.14.140",
+        "94.140.14.141"
+      ]
+    },
+    {
+      "name": "DNSWatch",
+      "url": "https://resolver2.dns.watch/dns-query",
+      "ips": [
+        "84.200.69.80",
+        "84.200.70.40"
+      ]
+    },
+    {
+      "name": "Quad9",
+      "url": "https://dns.quad9.net/dns-quer",
+      "ips": [
+        "9.9.9.9",
+        "149.112.112.112"
+      ]
+    }
+  ],
   "lives": [
     {
       "name": "Kimentanm",
       "type": 0,
-      "url": "https://gh.llkk.cc/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
-      "playerType": 2
+      "url": "http://肥猫.net/lives/Kimentanm.txt"
     },
     {
       "name": "develop202",
       "type": 0,
-      "url": "https://gh.llkk.cc/http://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt",
-      "playerType": 2,
-      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
-      "logo": "https://epg.112114.xyz/logo/{name}.png"
+      "url": "http://肥猫.net/lives/develop202.txt",
+      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}"
     }
+  ],
+  "headers": [
+    {
+      "host": "hlsztemgsplive.miguvideo.com",
+      "header": {
+        "User-Agent": "okHttp/Mod-1.5.0.0"
+      }
+    }
+  ],
+  "proxy": [
+    "raw.githubusercontent.com",
+    "googlevideo.com",
+    "cdn.v82u1l.com",
+    "cdn.iz8qkg.com",
+    "cdn.kin6c1.com",
+    "c.biggggg.com",
+    "c.olddddd.com",
+    "haiwaikan.com",
+    "www.histar.tv",
+    "youtube.com",
+    "uhibo.com",
+    ".*boku.*",
+    ".*nivod.*",
+    ".*ulivetv.*",
+    "188766.xyz",
+    "4gtv.tv",
+    "iill.top"
+  ],
+  "hosts": [
+    "hlsztemgsplive.miguvideo.com=hlsztemgsplive.miguvideo.com.b.cdn.chinamobile.com",
+    "push-rtmp-hs-spe-f5.douyincdn.com=source-fcdn-spe-push.s.bytefcdn.com",
+    "cdn9.163189.xyz=gcore.jsdelivr.net",
+    "cache.ott.fifalive.itv.cmvideo.cn=cache.ott.fifalive.itv.cmvideo.cn.e.cdn.chinamobile.com",
+    "studentlive.migucloud.com=base-v4v6-miguvideo.e.cdn.chinamobile.com"
+  ],
+  "ads": [
+    "static-mozai.4gtv.tv"
   ],
   "rules": [
     {

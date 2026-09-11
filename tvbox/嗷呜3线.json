@@ -1,6 +1,7 @@
 {
-  "spider": "https://zl.wpscdn.cn/2026/09/09/space_img/3ef1e1c2-ba7d-4efc-a7c1-a52376c53b33.png;md5;42640332f373e640bc2945126324569f",
+  "spider": "https://zl.wpscdn.cn/2026/09/11/space_img/96c38469-df36-433c-b400-74ed5e5a7d7a.png;md5;6b076a8a31e03cbfa5db73e079155629",
   "logo": "https://file.icve.com.cn/file_doc/945/35/EC508FBD046D33EC4832BB76B63B6C94.gif",
+  "danmaku": "http://127.0.0.1:2525/danmu?name={name}&epid={episode}",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=AowuWapper&mode=2",
   "sites": [
     {
@@ -15,7 +16,7 @@
       "ext": "http://itv666.cc/aowu/Douban"
     },
     {
-      "name": "更新日期:【20260909】",
+      "name": "更新日期:【侏罗纪】",
       "key": "Y360",
       "type": 3,
       "api": "csp_Y360Amns",
@@ -213,26 +214,6 @@
       "ext": "http://itv666.cc/aowu/AppV6Tg"
     },
     {
-      "name": "☁️二小┃4K",
-      "key": "exWobg",
-      "type": 3,
-      "api": "csp_WobgAmns",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://itv666.cc/aowu/exWobg"
-    },
-    {
-      "name": "☁️至臻┃4K",
-      "key": "zzWobg",
-      "type": 3,
-      "api": "csp_WobgAmns",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://itv666.cc/aowu/zzWobg"
-    },
-    {
       "name": "☁️闪电┃4K",
       "key": "yxWobg",
       "type": 3,
@@ -253,16 +234,6 @@
       "ext": "http://itv666.cc/aowu/ddWobg"
     },
     {
-      "name": "☁️蜡笔┃4K",
-      "key": "lbWobg",
-      "type": 3,
-      "api": "csp_WobgAmns",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://itv666.cc/aowu/lbWobg"
-    },
-    {
       "name": "☁️虎斑┃4K",
       "key": "hbWobg",
       "type": 3,
@@ -271,6 +242,16 @@
       "quickSearch": 1,
       "changeable": 0,
       "ext": "http://itv666.cc/aowu/hbWobg"
+    },
+    {
+      "name": "☁️Sed┃4K",
+      "key": "SeedHub",
+      "type": 3,
+      "api": "csp_SeedHubAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "http://itv666.cc/aowu/SeedHub"
     },
     {
       "name": "☁️观影┃4K",
@@ -283,23 +264,14 @@
       "ext": "http://itv666.cc/aowu/Gying"
     },
     {
-      "name": "☁️盘链┃4K",
-      "key": "Panl",
+      "name": "☁️盘库┃4K",
+      "key": "Panku",
       "type": 3,
-      "api": "csp_PanlAmns",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0
-    },
-    {
-      "name": "☁️Sed┃4K",
-      "key": "SeedHub",
-      "type": 3,
-      "api": "csp_SeedHubAmns",
+      "api": "csp_PankuAmns",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 0,
-      "ext": "http://itv666.cc/aowu/SeedHub"
+      "ext": "http://itv666.cc/aowu/Panku"
     },
     {
       "name": "☁️七味┃4K",
@@ -349,10 +321,10 @@
       "changeable": 0
     },
     {
-      "name": "🐱囧途┃动漫",
-      "key": "DMcyc",
+      "name": "🐱番薯┃动漫",
+      "key": "DMfans",
       "type": 3,
-      "api": "csp_DMcycAmns",
+      "api": "csp_DMfansAmns",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 0
@@ -362,15 +334,6 @@
       "key": "DMox",
       "type": 3,
       "api": "csp_DMoxAmns",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0
-    },
-    {
-      "name": "🐱番薯┃动漫",
-      "key": "DMfans",
-      "type": 3,
-      "api": "csp_DMfansAmns",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 0
@@ -497,18 +460,11 @@
       "name": "🧩橘汁┃快速",
       "key": "Woshinidie",
       "type": 3,
-      "jar": "https://zl.wpscdn.cn/2026/09/09/space_img/980459c0-6c4a-4176-b726-2355e070e5d9.png;md5;27bd2800e2f603c4bebb91297ad64638",
+      "jar": "https://zl.wpscdn.cn/2026/09/11/space_img/0f5c235d-ee40-42a0-a19a-b7f29986c51c.png;md5;7a2cb30dc4937d27e57288b5c381e19c",
       "api": "csp_Woshinidie",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
-      "ext": {
-        "version": "http://itv666.cc/aowu/3.0.2.3",
-        "pkg": "http://itv666.cc/aowu/com.mxj.wylcjbxyx",
-        "md5": "http://itv666.cc/aowu/090DA8F91D3F60CC6CB250D86F06FE12",
-        "sha1": "http://itv666.cc/aowu/3DADB42485B7F864E766479ADA6B1176D81D8D73",
-        "site": "https://oss-1372779881.cos.ap-guangzhou.myqcloud.com/ross.txt"
-      }
+      "changeable": 0
     },
     {
       "name": "🧩金牌┃快速",
@@ -991,6 +947,100 @@
       "name": "优选",
       "type": 1,
       "url": "http://1.94.221.189:88/algorithm.php?url="
+    }
+  ],
+  "doh": [
+    {
+      "name": "阿里",
+      "url": "https://dns.alidns.com/dns-query",
+      "ips": [
+        "223.5.5.5",
+        "223.6.6.6",
+        "2400:3200::1"
+      ]
+    },
+    {
+      "name": "腾讯",
+      "url": "https://doh.pub/dns-query",
+      "ips": [
+        "119.29.29.29",
+        "119.28.28.28",
+        "2402:4e00::"
+      ]
+    },
+    {
+      "name": "360",
+      "url": "https://doh.360.cn/dns-query",
+      "ips": [
+        "101.226.4.6",
+        "218.30.118.6"
+      ]
+    },
+    {
+      "name": "OneDNS",
+      "url": "https://doh-pure.onedns.net/dns-query",
+      "ips": [
+        "117.50.10.10",
+        "52.80.52.52"
+      ]
+    },
+    {
+      "name": "Cloudflare",
+      "url": "https://cloudflare-dns.com/dns-query",
+      "ips": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ]
+    },
+    {
+      "name": "Google",
+      "url": "https://dns.google/dns-query",
+      "ips": [
+        "8.8.8.8",
+        "8.8.4.4"
+      ]
+    },
+    {
+      "name": "Quad9",
+      "url": "https://dns.quad9.net/dns-query",
+      "ips": [
+        "9.9.9.9",
+        "149.112.112.112"
+      ]
+    },
+    {
+      "name": "AdGuard",
+      "url": "https://dns.adguard-dns.com/dns-query",
+      "ips": [
+        "94.140.14.14",
+        "94.140.15.15"
+      ]
+    },
+    {
+      "name": "DNSWatch",
+      "url": "https://resolver2.dns.watch/dns-query",
+      "ips": [
+        "84.200.69.80",
+        "84.200.70.40"
+      ]
+    },
+    {
+      "name": "NextDNS",
+      "url": "https://dns.nextdns.io/your_profile_id",
+      "ips": [
+        "45.90.28.0",
+        "45.90.30.0"
+      ]
+    },
+    {
+      "name": "ControlD",
+      "url": "https://freedns.controld.com/p0",
+      "ips": [
+        "76.76.2.0",
+        "76.76.10.0"
+      ]
     }
   ],
   "rules": [

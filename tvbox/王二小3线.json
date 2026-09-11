@@ -5,7 +5,7 @@
   "sites": [
     {
       "key": "Douban",
-      "name": "🐮【王二小放牛娃】🐮",
+      "name": "🐮【免费分享】🐮",
       "type": 3,
       "api": "csp_DoubanGuard",
       "searchable": 0,
@@ -15,7 +15,7 @@
     },
     {
       "key": "Doubana",
-      "name": "🐮【更新日期:20260820】🐮",
+      "name": "🐮【更新日期:20260911】🐮",
       "type": 3,
       "api": "csp_DoubanGuard",
       "searchable": 0,
@@ -52,26 +52,10 @@
       "indexs": 0
     },
     {
-      "key": "Wexerxiaoziyuan",
-      "name": "💓指南┃4K💓‍",
-      "type": 3,
-      "api": "csp_WexerxiaoziyuanGuard",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
       "key": "玩偶",
       "name": "💓‍玩偶┃4K💓‍",
       "type": 3,
       "api": "csp_WoggGuard",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
-      "key": "Wexzhizhen",
-      "name": "💓至臻┃4K💓",
-      "type": 3,
-      "api": "csp_WexzhizhenGuard",
       "searchable": 1,
       "changeable": 1
     },
@@ -114,22 +98,6 @@
       "name": "💓虎斑┃4K💓",
       "type": 3,
       "api": "csp_WexhubanGuard",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
-      "key": "盘他",
-      "name": "💓‍盘他┃4K💓‍",
-      "type": 3,
-      "api": "csp_WexYDpantaGuard",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
-      "key": "雷鲸",
-      "name": "💓‍雷鲸┃4K💓‍",
-      "type": 3,
-      "api": "csp_WexleijingGuard",
       "searchable": 1,
       "changeable": 1
     },
@@ -685,6 +653,50 @@
       "url": "http://pan.qiaoji8.com/tvbox/neibu.php?url="
     }
   ],
+  "doh": [
+    {
+      "name": "Google",
+      "url": "https://dns.google/dns-query",
+      "ips": [
+        "8.8.4.4",
+        "8.8.8.8"
+      ]
+    },
+    {
+      "name": "Cloudflare",
+      "url": "https://cloudflare-dns.com/dns-query",
+      "ips": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ]
+    },
+    {
+      "name": "AdGuard",
+      "url": "https://dns.adguard.com/dns-query",
+      "ips": [
+        "94.140.14.140",
+        "94.140.14.141"
+      ]
+    },
+    {
+      "name": "DNSWatch",
+      "url": "https://resolver2.dns.watch/dns-query",
+      "ips": [
+        "84.200.69.80",
+        "84.200.70.40"
+      ]
+    },
+    {
+      "name": "Quad9",
+      "url": "https://dns.quad9.net/dns-quer",
+      "ips": [
+        "9.9.9.9",
+        "149.112.112.112"
+      ]
+    }
+  ],
   "rules": [
     {
       "name": "proxy",
@@ -786,6 +798,11 @@
       ]
     }
   ],
+  "ads": [
+    "mozai.4gtv.tv",
+    "pv.vipwm.cc",
+    "static-mozai.4gtv.tv"
+  ],
   "lives": [
     {
       "name": "Kimentanm",
@@ -799,6 +816,14 @@
       "playerType": 2,
       "url": "https://ghfast.top/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt",
       "ua": "bingcha/1.1 (mianfeifenxiang) "
+    }
+  ],
+  "headers": [
+    {
+      "host": "hlsztemgsplive.miguvideo.com",
+      "header": {
+        "User-Agent": "bingcha/1.1 (mianfeifenxiang) "
+      }
     }
   ]
 }
