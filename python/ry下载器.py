@@ -1,67 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-TVBox 批量解析器 —— 一键脚本
-=================================
-使用方式：改好下面「用户设置区」，然后 python3 tvbox_batch.py 即可，无需交互。
+"""TVBox 本地包（在线包）批量解析器。
 
-──────────────────────────────────
-【用户设置区】只改这里 ↓
-──────────────────────────────────
+链接列表（名称 + URL）分离到仓库根的 rylinks.txt，一行一条：「名称, 链接」，
+以 # 开头为注释，名称可省略。可用 -c / --config 指定其它配置文件。
+输出：ry/ 目录下的解析结果 JSON + _summary.json。
 """
 
-# ========== ① 链接列表：一行一个，「名称, 链接」 ==========
-# 说明：
-#   - 名称在前，链接在后，英文逗号分隔
-#   - 第一行链接会生成文件名：潇洒.json
-#   - 第二行链接会生成文件名：菠菜.json
-#   - 名称可省略（省略时自动用域名命名），逗号也可省略
-#   - 以 # 开头为注释
-#   - 支持 file:// 本地文件、raw:base64 内联，用来绕过 WAF
-
-LINKS = [
-    "潇洒下载, https://9877.kstore.space/single.json",
-    "奇奇下载, http://bd.qiqiv.cn/666.json",
-    "菠菜园下载, https://0.12yue.de5.net/tvbox/x/lib/菠菜园下载.json",
-    "奇奇副本, https://0.12yue.de5.net/tvbox/x/lib/666.json",
-    "柒豪下载, https://raw.gitcode.com/qihao/qihaoyyds/raw/main/版本.json",
-    "天神下载, https://cdn.jsdelivr.net/gh/IY-CPU/IY@main/天神小屋.png",
-    "应用市场二, https://cdn.jsdelivr.net/gh/woshishiq1/hipy-drpy2@main/wzxxcz/json/market.json",
-    "应用市场一, https://cdn.jsdelivr.net/gh/SimonWang911/simonwangsub@main/appupdate/appupdate.json",
-    # "本地测试, file:///data/workspace/test_data/single.json",   # 本地文件绕过 WAF
-    # "内联, raw:W3sibmFtZSI6InRlc3QifV0=",                       # 内联 base64
-    # "https://no-name.com/api.json",                             # 不写名称，自动用域名
-]
-
-# ========== ② 输出文件夹（结果保存到哪里） ==========
-OUTPUT_DIR = "./ry"
-
-# ========== ③ 名称里非法字符替换成这个（Windows 兼容） ==========
-NAME_SAFE_CHAR = "_"
-
-# ========== ④ 请求设置 ==========
+# ---------- 用户配置（按需修改） ----------
+DEFAULT_LINKS_FILE = "rylinks.txt"     # 链接配置文件，仓库根目录
+OUTPUT_DIR = "./ry"                    # 输出目录（相对 CWD，工作流下为仓库根/ry/）
+NAME_SAFE_CHAR = "_"                   # 文件名非法字符替换
 REQUEST_TIMEOUT = 20
-SSL_VERIFY = False      # 遇到自签证书设 False
-DISABLE_WAF = False     # True = 跳过真实网络，配合下方 MOCK_RESPONSES 本地调试
-ALLOW_HTTP_FALLBACK = True   # 请求失败时自动尝试 http://
+SSL_VERIFY = False                     # 自签证书时保持 False
+DISABLE_WAF = False                    # True = 本地 mock 模式，配合 MOCK_RESPONSES
+ALLOW_HTTP_FALLBACK = True             # 请求失败时自动尝试 http://
 
-# ========== ⑤ 本地调试用（DISABLE_WAF=True 时生效） ==========
-# 键为链接里的关键字，值为模拟响应文本（可为 JSON 字符串或 base64 等伪装内容）
+# 本地调试响应：键为 URL 关键字，值为模拟响应文本
 MOCK_RESPONSES = {
     "9877": '{"推荐":[{"name":"首页","url":"https://x.com/a.json"}],"本地包":[{"name":"v1","url":"https://x.com/b.json","version":"1.0"}]}',
     "example": '{"sites":[{"key":"abc","name":"测试","url":"https://example.com/source.json"}]}',
 }
-
-# ========== ⑥ 命令行参数（一般不需要改，可用 -o / -n 临时覆盖） ==========
-# --out  输出文件夹        --name  名称（单链接时覆盖用）
-# --waf  开启本地 mock 模式（等价于 DISABLE_WAF=True）
-
-"""
-──────────────────────────────────
-【用户设置区】只改上面 ↑
-──────────────────────────────────
-下面是解析核心，一般不用动。
-"""
+# -----------------------------------------
 
 import os
 import re
@@ -79,7 +39,8 @@ try:
 except ImportError:
     sys.exit("需要 requests: pip3 install requests")
 
-# ================== UA 池 ==================
+
+# ---------- UA 池 ----------
 TVBOX_UAS = [
     "okhttp/3.15", "okhttp/4.9.3", "TVBox/1.0.0",
     "com.github.tvbox",
@@ -91,7 +52,7 @@ HEADERS_BASE = {
 }
 
 
-# ================== AES-128-CBC（纯标准库） ==================
+# ---------- AES-128-CBC（纯标准库，解密） ----------
 class AES128:
     SBOX = [
         0x63,0x7C,0x77,0x7B,0xF2,0x6B,0x6F,0xC5,0x30,0x01,0x67,0x2B,0xFE,0xD7,0xAB,0x76,
@@ -205,37 +166,37 @@ class AES128:
         return bytes(plain).decode("utf-8",errors="replace")
 
 
-# ================== 文本工具 ==================
+# ---------- 文本工具 ----------
 def clean_json_comments(text):
     if not text: return text
-    if text.startswith('\ufeff'): text=text[1:]
-    lines=text.split('\n'); out=[]; in_block=False
+    if text.startswith("\ufeff"): text=text[1:]
+    lines=text.split("\n"); out=[]; in_block=False
     for line in lines:
         if in_block:
-            if '*/' in line: in_block=False; line=line[line.index('*/')+2:]
+            if "*/" in line: in_block=False; line=line[line.index("*/")+2:]
             else: continue
-        if '/*' in line:
-            before,after=line.split('/*',1)
-            if '*/' in after: line=before+after[after.index('*/')+2:]
-            else: line=before; in_block=True
-        if '//' in line:
-            in_str=False; sc=None
+        if "/*" in line:
+            before,after=line.split("/*",1)
+            line=before+(after[after.index("*/")+2:] if "*/" in after else "")
+            if "*/" not in after: in_block=True
+        if "//" in line:
+            in_str,sc=False,None
             for i,ch in enumerate(line):
-                if ch in ('"',"'") and (i==0 or line[i-1]!='\\'):
-                    if not in_str: in_str=True; sc=ch
+                if ch in ('"',"'") and (i==0 or line[i-1]!="\\"):
+                    if not in_str: in_str,sc=True,ch
                     elif ch==sc: in_str=False
-                elif ch=='/' and i+1<len(line) and line[i+1]=='/' and not in_str:
+                elif ch=="/" and i+1<len(line) and line[i+1]=="/" and not in_str:
                     line=line[:i]; break
         if line.strip(): out.append(line)
-    return '\n'.join(out)
+    return "\n".join(out)
 
 
 def extract_json(text):
     if not text: return text
     text=clean_json_comments(text)
-    start=next((i for i,ch in enumerate(text) if ch in '{['), -1)
+    start=next((i for i,ch in enumerate(text) if ch in "{["), -1)
     if start==-1: return text
-    end=next((i for i in range(len(text)-1,-1,-1) if text[i] in '}]'), -1)
+    end=next((i for i in range(len(text)-1,-1,-1) if text[i] in "}]"), -1)
     if end<=start: return text
     jt=text[start:end+1]
     try: json.loads(jt); return jt
@@ -243,7 +204,7 @@ def extract_json(text):
 
 
 def find_result(raw_text, _raw_bytes=None, _depth=0):
-    """递归解密/解混淆：base64、**壳、2423-AES、gzip，直到拿到 JSON"""
+    """递归解密/解混淆：base64、**壳、2423-AES、gzip，直到拿到 JSON。"""
     if _depth>10: return raw_text
     if _raw_bytes is None and raw_text is not None:
         _raw_bytes=raw_text.encode("utf-8",errors="ignore")
@@ -254,19 +215,16 @@ def find_result(raw_text, _raw_bytes=None, _depth=0):
         try: json.loads(content); return content
         except: pass
 
-    # ** 壳 + base64
     star=None
     if _raw_bytes is not None:
         pos=_raw_bytes.find(b"**")
         if pos>=8: star=pos
     if star is not None:
-        if _raw_bytes is not None:
-            b64=bytes(b for b in _raw_bytes[star+2:] if b not in (0x09,0x0a,0x0d,0x20))
-            try: return find_result(b64.decode("latin-1",errors="ignore"),_depth=_depth+1)
-            except: pass
+        b64=bytes(b for b in _raw_bytes[star+2:] if b not in (0x09,0x0a,0x0d,0x20))
+        try: return find_result(b64.decode("latin-1",errors="ignore"),_depth=_depth+1)
+        except: pass
 
     stripped=re.sub(r"\s+","",content).strip()
-    # 2423 AES
     if stripped.startswith("2423") and "2324" in stripped:
         try:
             i2324=stripped.index("2324")
@@ -278,14 +236,14 @@ def find_result(raw_text, _raw_bytes=None, _depth=0):
             res=AES128.decrypt_cbc(bytes.fromhex(data_hex),key.encode("latin-1")[:16],iv.encode("latin-1")[:16])
             return find_result(res,_depth=_depth+1)
         except: pass
-    # 纯 base64
+
     clean=re.sub(r"\s","",content)
     if re.match(r"^[A-Za-z0-9+/=]+$",clean) and len(clean)>50:
         try:
             d=base64.b64decode(clean+"==").decode("utf-8",errors="ignore")
             if d.strip().startswith(("{","[")): return find_result(d,_depth=_depth+1)
         except: pass
-    # gzip
+
     if _raw_bytes is not None:
         try:
             d=gzip.decompress(_raw_bytes).decode("utf-8",errors="ignore")
@@ -294,9 +252,8 @@ def find_result(raw_text, _raw_bytes=None, _depth=0):
     return content
 
 
-# ================== 解析入口 ==================
 def parse_text(raw_bytes):
-    """把原始响应字节 → 格式化 JSON 文本"""
+    """原始响应字节 -> 格式化 JSON 文本。"""
     decrypted=find_result("",_raw_bytes=raw_bytes)
     extracted=extract_json(decrypted)
     try:
@@ -306,9 +263,8 @@ def parse_text(raw_bytes):
         return extracted, False
 
 
-# ================== 网络 ==================
+# ---------- 网络 ----------
 def _prepare_url(url):
-    """IDN 域名处理"""
     if url.startswith("file://") or url.startswith("raw:"):
         return url
     try:
@@ -325,7 +281,7 @@ def fetch_url(url, ua=""):
     url=_prepare_url(url)
     if url.startswith("file://"):
         path=url[7:]
-        if not os.path.exists(path): raise RuntimeError(f"本地文件不存在: {path}")
+        if not os.path.exists(path): raise RuntimeError(f"local file not found: {path}")
         with open(path,"rb") as f: return f.read()
     if url.startswith("raw:"):
         return base64.b64decode(url[4:]+"==")
@@ -338,13 +294,13 @@ def fetch_url(url, ua=""):
 
 
 def fetch_with_fallback(url):
-    """带 http 降级 + UA 轮换；DISABLE_WAF 时用 mock"""
+    """带 http 降级 + UA 轮换；DISABLE_WAF 时用 mock。"""
     if DISABLE_WAF:
         for k,v in MOCK_RESPONSES.items():
             if k in url:
-                print(f"    [mock] 命中本地调试: {k}")
+                print(f"    [mock] {k}")
                 return v.encode("utf-8"), "MOCK", url
-        raise RuntimeError("DISABLE_WAF=True 但未匹配 MOCK_RESPONSES")
+        raise RuntimeError("DISABLE_WAF=True but no MOCK_RESPONSES matched")
 
     last=None
     candidates=[url]
@@ -355,157 +311,174 @@ def fetch_with_fallback(url):
             try:
                 raw=fetch_url(u,ua)
                 if raw.lstrip().startswith(b"<"):
-                    # HTML 响应（可能是 WAF 拦截页），尝试下一个 UA
-                    last=RuntimeError("返回 HTML，疑似 WAF 拦截")
+                    last=RuntimeError("HTML response (possible WAF block)")
                     continue
                 return raw,ua,u
             except Exception as e:
                 last=e; time.sleep(0.3)
-    raise RuntimeError(f"全部失败: {last}")
+    raise RuntimeError(f"all failed: {last}")
 
 
-# ================== 链接解析 ==================
+# ---------- 链接解析 ----------
+def load_links_from_file(path=None):
+    """从文本文件读取链接列表，返回 ["名称, 链接", ...]。
+
+    path 为 None 时按优先级查找：默认文件、旧文件名（ry_links.txt / links.txt）、
+    脚本同目录。找不到返回空列表。
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    def _find(cands):
+        for p in cands:
+            if p and os.path.exists(p):
+                return p
+        return None
+
+    if path:
+        if not os.path.exists(path):
+            print(f"config not found: {path}")
+            return []
+        chosen = path
+    else:
+        chosen = _find([
+            DEFAULT_LINKS_FILE,
+            "ry_links.txt",
+            os.path.join(script_dir, "rylinks.txt"),
+            os.path.join(script_dir, "links.txt"),
+        ])
+        if not chosen:
+            print(f"no links config found ({DEFAULT_LINKS_FILE}); create it or use -c")
+            return []
+
+    entries = []
+    with open(chosen, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                entries.append(line)
+    return entries
+
+
 def parse_link_entry(entry):
-    """
-    把一行配置解析成 (name, url)
-    支持格式：
-        潇洒, https://...
-        潇洒,https://...
-        https://...                    （无名称）
-    """
-    entry=entry.strip()
+    """一行配置 -> (name, url)。支持「名称, 链接」或仅「链接」。"""
+    entry = entry.strip().strip('"').strip("'").strip(",")
     if not entry or entry.startswith("#"):
         return None, None
-    # 去掉两端引号
-    entry=entry.strip().strip('"').strip("'").strip(",")
-    if not entry:
-        return None, None
-    # 按第一个逗号切分
     if "," in entry:
-        name,url=entry.split(",",1)
-        name=name.strip().strip('"').strip("'")
-        url=url.strip().strip('"').strip("'")
+        name, url = entry.split(",", 1)
+        name, url = name.strip().strip('"').strip("'"), url.strip().strip('"').strip("'")
     else:
-        url=entry
-        name=""
-    if not url:
-        return None, None
-    return name, url
+        url, name = entry, ""
+    return (None, None) if not url else (name, url)
 
 
 def safe_name(name, fallback_host):
-    """生成安全的文件名（不含扩展名）"""
     if not name:
-        name=fallback_host or "unnamed"
-    name=re.sub(r'[\\/:*?"<>|\x00-\x1f]', NAME_SAFE_CHAR, name)
-    name=name.strip().strip(".")
-    return name[:120] or "unnamed"
+        name = fallback_host or "unnamed"
+    name = re.sub(r'[\\/:*?"<>|\x00-\x1f]', NAME_SAFE_CHAR, name)
+    return name.strip().strip(".")[:120] or "unnamed"
 
 
-# ================== 主流程 ==================
+# ---------- 主流程 ----------
 def main():
-    ap=argparse.ArgumentParser(description="TVBox 批量解析器")
-    ap.add_argument("-o","--out",default=OUTPUT_DIR,help="输出文件夹")
-    ap.add_argument("-n","--name",default="",help="单链接时覆盖文件名（不含扩展名）")
-    ap.add_argument("-l","--links",default="",help="覆盖 LINKS：多个链接用 | 分隔，可用 file:// 或 raw:")
-    ap.add_argument("--waf",action="store_true",help="开启本地 mock 模式（绕过 WAF）")
-    args=ap.parse_args()
+    ap = argparse.ArgumentParser(description="TVBox 本地包批量解析器")
+    ap.add_argument("-o", "--out", default=OUTPUT_DIR, help="输出文件夹")
+    ap.add_argument("-n", "--name", default="", help="单链接时覆盖文件名（不含扩展名）")
+    ap.add_argument("-l", "--links", default="", help="覆盖链接列表，多个用 | 分隔，可用 file:// 或 raw:")
+    ap.add_argument("-c", "--config", default="", help="链接配置文件路径（默认仓库根/rylinks.txt）")
+    ap.add_argument("--waf", action="store_true", help="开启本地 mock 模式（绕过 WAF）")
+    ap.add_argument("--debug", action="store_true", help="输出详细调试日志")
+    ap.add_argument("--force", action="store_true", help="强制执行（工作流手动触发时使用）")
+    args = ap.parse_args()
 
-    out_dir=args.out
-    disable_waf=args.waf or DISABLE_WAF
+    DEBUG = args.debug
+    out_dir = args.out
+    disable_waf = args.waf or DISABLE_WAF
 
-    # 组装链接列表
-    entries=[]
+    entries = []
     if args.links:
-        for part in args.links.split("|"):
-            part=part.strip()
-            if part: entries.append(part)
+        entries = [p.strip() for p in args.links.split("|") if p.strip()]
     else:
-        entries=list(LINKS)
+        config_path = args.config if args.config else DEFAULT_LINKS_FILE
+        entries = load_links_from_file(config_path)
+        if entries:
+            print(f"loaded config: {os.path.abspath(config_path)} ({len(entries)} entries)")
 
-    # 解析 (name, url)
-    tasks=[]
+    tasks = []
     for ent in entries:
-        name,url=parse_link_entry(ent)
-        if url: tasks.append((name,url))
+        name, url = parse_link_entry(ent)
+        if url:
+            tasks.append((name, url))
 
     if not tasks:
-        print("⚠ 没有有效的链接。请在脚本头部「用户设置区」配置 LINKS。")
+        print("no valid links; check config (default rylinks.txt): 'name, url' per line")
         sys.exit(1)
 
-    os.makedirs(out_dir,exist_ok=True)
-    print(f"📁 输出目录: {os.path.abspath(out_dir)}")
-    print(f"🔗 共 {len(tasks)} 个链接\n")
+    os.makedirs(out_dir, exist_ok=True)
+    print(f"output: {os.path.abspath(out_dir)}")
+    print(f"total {len(tasks)} link(s)\n")
 
-    results=[]
-    for idx,(name,url) in enumerate(tasks,1):
-        # 单链接且命令行指定了 --name，覆盖
-        use_name=args.name if (args.name and len(tasks)==1) else name
-        host=urlparse(url).netloc or "local"
-        fname=safe_name(use_name,host)+".json"
+    results = []
+    for idx, (name, url) in enumerate(tasks, 1):
+        use_name = args.name if (args.name and len(tasks) == 1) else name
+        host = urlparse(url).netloc or "local"
+        fname = safe_name(use_name, host) + ".json"
 
-        print(f"[{idx}/{len(tasks)}] {use_name or '(自动命名)'} ← {url}")
-        print(f"    → 输出: {fname}")
+        print(f"[{idx}/{len(tasks)}] {use_name or '(auto)'} <- {url}")
+        print(f"    -> {fname}")
 
         try:
-            raw,ua,used=fetch_with_fallback(url)
-            print(f"    ✓ 下载 {len(raw)} 字节 (UA={ua.split('/')[0]})")
-            if used!=url: print(f"    实际地址: {used}")
+            raw, ua, used = fetch_with_fallback(url)
+            print(f"    ok {len(raw)} bytes (UA={ua.split('/')[0]})")
+            if used != url:
+                print(f"    actual: {used}")
         except Exception as e:
-            print(f"    ✗ 请求失败: {e}")
-            print(f"    💡 提示: 若被 WAF 拦截，请先用浏览器/手机保存响应，")
-            print(f"        再用 file:///path/to/saved.json 或 raw:<base64> 形式配置")
-            results.append({"name":use_name or host,"url":url,"file":None,"ok":False,"error":str(e)})
+            print(f"    fail: {e}")
+            results.append({"name": use_name or host, "url": url, "file": None, "ok": False, "error": str(e)})
             continue
 
-        text,ok=parse_text(raw)
-        out_path=os.path.join(out_dir,fname)
-        with open(out_path,"w",encoding="utf-8") as f:
+        text, ok = parse_text(raw)
+        with open(os.path.join(out_dir, fname), "w", encoding="utf-8") as f:
             f.write(text)
 
         if ok:
             try:
-                obj=json.loads(text)
-                if isinstance(obj,dict):
-                    keys=list(obj.keys())
-                    print(f"    ✓ 解析成功 · 字段: {keys}")
-                else:
-                    print(f"    ✓ 解析成功 · 数组，长度 {len(obj)}")
-            except: pass
+                obj = json.loads(text)
+                print(f"    parsed: {list(obj.keys()) if isinstance(obj, dict) else f'array[{len(obj)}]'}")
+            except Exception:
+                pass
         else:
-            print(f"    ⚠ 未能解析为 JSON，已保存原始文本")
-        results.append({"name":use_name or host,"url":url,"file":out_path,"ok":ok})
+            print("    warn: not valid JSON, saved as raw text")
+        results.append({"name": use_name or host, "url": url, "file": os.path.join(out_dir, fname), "ok": ok})
 
-    # 汇总
-    print("\n"+"="*50)
-    print("📊 汇总")
-    print("="*50)
-    ok_n=sum(1 for r in results if r["ok"])
+    ok_n = sum(1 for r in results if r["ok"])
+    print("\n" + "=" * 50)
+    print(f"summary: {ok_n}/{len(results)}")
     for r in results:
-        tag="✓" if r["ok"] else "✗"
-        nm=r["name"] or r["url"]
-        extra=os.path.basename(r["file"]) if r["ok"] else r.get("error","")
-        print(f"  {tag} {nm}  {extra}")
-    print(f"\n  成功 {ok_n}/{len(results)}")
-    print(f"  目录: {os.path.abspath(out_dir)}")
+        tag = "ok" if r["ok"] else "--"
+        extra = os.path.basename(r["file"]) if r["ok"] else r.get("error", "")
+        print(f"  {tag} {r['name'] or r['url']}  {extra}")
+    print("=" * 50)
 
-    # 写汇总文件
-    summary_path=os.path.join(out_dir,"_summary.json")
+    summary_path = os.path.join(out_dir, "_summary.json")
     try:
-        with open(summary_path,"w",encoding="utf-8") as f:
-            json.dump({"time":time.strftime("%Y-%m-%d %H:%M:%S"),
-                       "output_dir":os.path.abspath(out_dir),
-                       "total":len(results),"success":ok_n,
-                       "items":results},f,ensure_ascii=False,indent=2)
-    except: pass
+        with open(summary_path, "w", encoding="utf-8") as f:
+            json.dump({
+                "time": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "output_dir": os.path.abspath(out_dir),
+                "total": len(results), "success": ok_n, "items": results,
+            }, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
 
-    sys.exit(0 if ok_n==len(results) else 2)
+    sys.exit(0 if ok_n == len(results) else 2)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     if not SSL_VERIFY:
         try:
             import urllib3
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-        except: pass
+        except Exception:
+            pass
     main()
