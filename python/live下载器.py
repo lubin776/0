@@ -184,7 +184,7 @@ def aggregate_lives(lives):
 
     OUTPUT_LIVE_DIR.mkdir(parents=True, exist_ok=True)
     with open(AGGREGATE_JSON, "w", encoding="utf-8") as f:
-        json.dump(aggregated, f, ensure_ascii=False, indent=2)
+        json.dump({"lives": aggregated}, f, ensure_ascii=False, indent=2)
     print(f"  index -> {AGGREGATE_JSON}")
 
     return aggregated
