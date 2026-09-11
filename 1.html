@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运备份</title>
+<title>海量接口搬运备份uu</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -259,9 +259,9 @@
         "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
     };
 
-    // ===================== 只在这里控制谁参与“随机第一位” =====================
+    // ===================== 参与随机轮换的接口名（不带 .json） =====================
     const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
-    // =========================================================================
+    // ==========================================================================
 
     const TABS = [
         { id: "api",      label: "接口", hideSearch: false },
@@ -323,7 +323,7 @@
             return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
         }
 
-        fetch('list.txt?t=' + Date.now() + '&r=' + Math.random(), { 
+        fetch('list.txt?t=' + Date.now() + '&r=' + Math.random(), {
             cache: 'no-store',
             headers: { 'Cache-Control': 'no-cache' }
         })
@@ -346,30 +346,31 @@
                     };
                 });
 
-                // ===================== 核心：随机置顶（不新增模块） =====================
+                // ===================== 随机置顶（稳定版·只排序一次） =====================
                 const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
+                const usedWeights = new Set();
 
-                // 从 list.txt 中挑出参与轮换的接口
-                const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
-                // 剩余正常接口
-                const normalItems = items.filter(i => !rotateSet.has(i.name.toLowerCase()));
+                items.forEach(item => {
+                    if (rotateSet.has(item.name.toLowerCase())) {
+                        // 轮换接口：给一个唯一的随机负权重，保证排在最前且顺序随机
+                        let w;
+                        do {
+                            w = -(Math.random() * 99 + 1);
+                        } while (usedWeights.has(w));
+                        usedWeights.add(w);
+                        item.weight = w;
+                    } else {
+                        // 非轮换接口：保持原权重
+                        item.weight = API_WEIGHTS.hasOwnProperty(item.file) ? API_WEIGHTS[item.file] : 999;
+                    }
+                });
 
-                // 打乱轮换组（每次刷新随机顺序）
-                for (let i = rotateItems.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [rotateItems[i], rotateItems[j]] = [rotateItems[j], rotateItems[i]];
-                }
-
-                // 重组：轮换组排在最前（顺序随机），其余按原权重
-                items = [...rotateItems, ...normalItems].sort((a, b) => {
-                    const aRotate = rotateSet.has(a.name.toLowerCase());
-                    const bRotate = rotateSet.has(b.name.toLowerCase());
-                    if (aRotate && !bRotate) return -1;
-                    if (!aRotate && bRotate) return 1;
+                // 只排一次序（先按 weight，再按 name 兜底），绝不二次 sort
+                items.sort((a, b) => {
                     if (a.weight !== b.weight) return a.weight - b.weight;
                     return a.name.localeCompare(b.name, 'zh');
                 });
-                // =====================================================================
+                // =======================================================================
 
                 let html = '';
                 items.forEach(it => {
