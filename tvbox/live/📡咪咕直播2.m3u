@@ -1,0 +1,5 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="📡咪咕直播2",📡咪咕直播2
+#EXTM3U x-tvg-url="http://192.168.31.2:8210/epg/epg.gz"
+#EXTINF:-1 tvg-id="CCTV-1" tvg-name="CCTV-1" tvg-logo="https://www.xn--rgv465a.top/tvlogo/CCTV-1.png" group-title="🕘️更新时间",2026-09-09 21:40:19
+url

@@ -1,0 +1,208 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="驸马影视•电信专线",驸马影视•电信专线
+#EXTM3U x-tvg-url="https://since1986.fun/epg/t.xml.gz"
+
+#EXTINF:-1 tvg-name="CCTV1" tvg-logo="http://115.190.105.236/logo/CCTV1.png" group-title="『央✯视』"  ,CCTV1
+http://115.190.105.236:5566/live/cctv1?token=OK
+#EXTINF:-1 tvg-name="CCTV2" tvg-logo="http://115.190.105.236/logo/CCTV2.png" group-title="『央✯视』"  ,CCTV2
+http://115.190.105.236:5566/live/cctv2?token=OK
+#EXTINF:-1 tvg-name="CCTV3" tvg-logo="http://115.190.105.236/logo/CCTV3.png" group-title="『央✯视』"  ,CCTV3
+http://115.190.105.236:5566/live/cctv3?token=OK
+#EXTINF:-1 tvg-name="CCTV4" tvg-logo="http://115.190.105.236/logo/CCTV4.png" group-title="『央✯视』"  ,CCTV4
+http://115.190.105.236:5566/live/cctv4?token=OK
+#EXTINF:-1 tvg-name="CCTV5" tvg-logo="http://115.190.105.236/logo/CCTV5.png" group-title="『央✯视』"  ,CCTV5
+http://115.190.105.236:5566/live/cctv5?token=OK
+#EXTINF:-1 tvg-name="CCTV5+" tvg-logo="http://115.190.105.236/logo/CCTV5+.png" group-title="『央✯视』"  ,CCTV5+
+http://115.190.105.236:5566/live/cctv5p?token=OK
+#EXTINF:-1 tvg-name="CCTV6" tvg-logo="http://115.190.105.236/logo/CCTV6.png" group-title="『央✯视』"  ,CCTV6
+http://115.190.105.236:5566/live/cctv6?token=OK
+#EXTINF:-1 tvg-name="CCTV7" tvg-logo="http://115.190.105.236/logo/CCTV7.png" group-title="『央✯视』"  ,CCTV7
+http://115.190.105.236:5566/live/cctv7?token=OK
+#EXTINF:-1 tvg-name="CCTV8" tvg-logo="http://115.190.105.236/logo/CCTV8.png" group-title="『央✯视』"  ,CCTV8
+http://115.190.105.236:5566/live/cctv8?token=OK
+#EXTINF:-1 tvg-name="CCTV9" tvg-logo="http://115.190.105.236/logo/CCTV9.png" group-title="『央✯视』"  ,CCTV9
+http://115.190.105.236:5566/live/cctv9?token=OK
+#EXTINF:-1 tvg-name="CCTV10" tvg-logo="http://115.190.105.236/logo/CCTV10.png" group-title="『央✯视』"  ,CCTV10
+http://115.190.105.236:5566/live/cctv10?token=OK
+#EXTINF:-1 tvg-name="CCTV11" tvg-logo="http://115.190.105.236/logo/CCTV11.png" group-title="『央✯视』"  ,CCTV11
+http://115.190.105.236:5566/live/cctv11?token=OK
+#EXTINF:-1 tvg-name="CCTV12" tvg-logo="http://115.190.105.236/logo/CCTV12.png" group-title="『央✯视』"  ,CCTV12
+http://115.190.105.236:5566/live/cctv12?token=OK
+#EXTINF:-1 tvg-name="CCTV13" tvg-logo="http://115.190.105.236/logo/CCTV13.png" group-title="『央✯视』"  ,CCTV13
+http://115.190.105.236:5566/live/cctv13?token=OK
+#EXTINF:-1 tvg-name="CCTV14" tvg-logo="http://115.190.105.236/logo/CCTV14.png" group-title="『央✯视』"  ,CCTV14
+http://115.190.105.236:5566/live/cctv14?token=OK
+#EXTINF:-1 tvg-name="CCTV15" tvg-logo="http://115.190.105.236/logo/CCTV15.png" group-title="『央✯视』"  ,CCTV15
+http://115.190.105.236:5566/live/cctv15?token=OK
+#EXTINF:-1 tvg-name="CCTV16" tvg-logo="http://115.190.105.236/logo/CCTV16.png" group-title="『央✯视』"  ,CCTV16
+http://115.190.105.236:5566/live/cctv16?token=OK
+#EXTINF:-1 tvg-name="CCTV17" tvg-logo="http://115.190.105.236/logo/CCTV17.png" group-title="『央✯视』"  ,CCTV17
+http://115.190.105.236:5566/live/cctv17?token=OK
+
+
+#EXTINF:-1 tvg-name="重温经典" tvg-logo="http://115.190.105.236/logo/重温经典.png" group-title="『卫✯视』" ,重温经典
+http://115.190.105.236/zbzg.php?id=30167
+#EXTINF:-1 tvg-name="北京卫视" tvg-logo="http://115.190.105.236/logo/北京卫视.png" group-title="『卫✯视』" ,北京卫视
+http://115.190.105.236/zbzg.php?id=30024
+#EXTINF:-1 tvg-name="天津卫视" tvg-logo="http://115.190.105.236/logo/天津卫视.png" group-title="『卫✯视』" ,天津卫视
+http://115.190.105.236/zbzg.php?id=30027
+#EXTINF:-1 tvg-name="河北卫视" tvg-logo="http://115.190.105.236/logo/河北卫视.png" group-title="『卫✯视』" ,河北卫视
+http://115.190.105.236/zbzg.php?id=30035
+#EXTINF:-1 tvg-name="山西卫视" tvg-logo="http://115.190.105.236/logo/山西卫视.png" group-title="『卫✯视』" ,山西卫视
+http://115.190.105.236/zbzg.php?id=30044
+#EXTINF:-1 tvg-name="内蒙古卫视" tvg-logo="http://115.190.105.236/logo/内蒙古卫视.png" group-title="『卫✯视』" ,内蒙古卫视
+http://115.190.105.236/zbzg.php?id=30045
+#EXTINF:-1 tvg-name="辽宁卫视" tvg-logo="http://115.190.105.236/logo/辽宁卫视.png" group-title="『卫✯视』" ,辽宁卫视
+http://115.190.105.236/zbzg.php?id=30033
+#EXTINF:-1 tvg-name="吉林卫视" tvg-logo="http://115.190.105.236/logo/吉林卫视.png" group-title="『卫✯视』" ,吉林卫视
+http://115.190.105.236/zbzg.php?id=30037
+#EXTINF:-1 tvg-name="黑龙江卫视" tvg-logo="http://115.190.105.236/logo/黑龙江卫视.png" group-title="『卫✯视』" ,黑龙江卫视
+http://115.190.105.236/zbzg.php?id=30032
+#EXTINF:-1 tvg-name="东方卫视" tvg-logo="http://115.190.105.236/logo/东方卫视.png" group-title="『卫✯视』" ,东方卫视
+http://115.190.105.236/zbzg.php?id=30023
+#EXTINF:-1 tvg-name="江苏卫视" tvg-logo="http://115.190.105.236/logo/江苏卫视.png" group-title="『卫✯视』" ,江苏卫视
+http://115.190.105.236/zbzg.php?id=30021
+#EXTINF:-1 tvg-name="浙江卫视" tvg-logo="http://115.190.105.236/logo/浙江卫视.png" group-title="『卫✯视』" ,浙江卫视
+http://115.190.105.236/zbzg.php?id=30022
+#EXTINF:-1 tvg-name="安徽卫视" tvg-logo="http://115.190.105.236/logo/安徽卫视.png" group-title="『卫✯视』" ,安徽卫视
+http://115.190.105.236/zbzg.php?id=30030
+#EXTINF:-1 tvg-name="东南卫视" tvg-logo="http://115.190.105.236/logo/东南卫视.png" group-title="『卫✯视』" ,东南卫视
+http://115.190.105.236/zbzg.php?id=30038
+#EXTINF:-1 tvg-name="江西卫视" tvg-logo="http://115.190.105.236/logo/江西卫视.png" group-title="『卫✯视』" ,江西卫视
+http://115.190.105.236/zbzg.php?id=30036
+#EXTINF:-1 tvg-name="山东卫视" tvg-logo="http://115.190.105.236/logo/山东卫视.png" group-title="『卫✯视』" ,山东卫视
+http://115.190.105.236/zbzg.php?id=30028
+#EXTINF:-1 tvg-name="河南卫视" tvg-logo="http://115.190.105.236/logo/河南卫视.png" group-title="『卫✯视』" ,河南卫视
+http://115.190.105.236/zbzg.php?id=30041
+#EXTINF:-1 tvg-name="湖北卫视" tvg-logo="http://115.190.105.236/logo/湖北卫视.png" group-title="『卫✯视』" ,湖北卫视
+http://115.190.105.236/zbzg.php?id=30029
+#EXTINF:-1 tvg-name="湖南卫视" tvg-logo="http://115.190.105.236/logo/湖南卫视.png" group-title="『卫✯视』" ,湖南卫视
+http://115.190.105.236/zbzg.php?id=30000
+#EXTINF:-1 tvg-name="广东卫视" tvg-logo="http://115.190.105.236/logo/广东卫视.png" group-title="『卫✯视』" ,广东卫视
+http://115.190.105.236/zbzg.php?id=30025
+#EXTINF:-1 tvg-name="广西卫视" tvg-logo="http://115.190.105.236/logo/广西卫视.png" group-title="『卫✯视』" ,广西卫视
+http://115.190.105.236/zbzg.php?id=30040
+#EXTINF:-1 tvg-name="海南卫视" tvg-logo="http://115.190.105.236/logo/海南卫视.png" group-title="『卫✯视』" ,海南卫视
+http://115.190.105.236/zbzg.php?id=30048
+#EXTINF:-1 tvg-name="重庆卫视" tvg-logo="http://115.190.105.236/logo/重庆卫视.png" group-title="『卫✯视』" ,重庆卫视
+http://115.190.105.236/zbzg.php?id=30031
+#EXTINF:-1 tvg-name="四川卫视" tvg-logo="http://115.190.105.236/logo/四川卫视.png" group-title="『卫✯视』" ,四川卫视
+http://115.190.105.236/zbzg.php?id=30034
+#EXTINF:-1 tvg-name="贵州卫视" tvg-logo="http://115.190.105.236/logo/贵州卫视.png" group-title="『卫✯视』" ,贵州卫视
+http://115.190.105.236/zbzg.php?id=30039
+#EXTINF:-1 tvg-name="云南卫视" tvg-logo="http://115.190.105.236/logo/云南卫视.png" group-title="『卫✯视』" ,云南卫视
+http://115.190.105.236/zbzg.php?id=30047
+#EXTINF:-1 tvg-name="西藏卫视" tvg-logo="http://115.190.105.236/logo/西藏卫视.png" group-title="『卫✯视』" ,西藏卫视
+http://115.190.105.236/zbzg.php?id=30049
+#EXTINF:-1 tvg-name="陕西卫视" tvg-logo="http://115.190.105.236/logo/陕西卫视.png" group-title="『卫✯视』" ,陕西卫视
+http://115.190.105.236/zbzg.php?id=30050
+#EXTINF:-1 tvg-name="甘肃卫视" tvg-logo="http://115.190.105.236/logo/甘肃卫视.png" group-title="『卫✯视』" ,甘肃卫视
+http://115.190.105.236/zbzg.php?id=30042
+#EXTINF:-1 tvg-name="青海卫视" tvg-logo="http://115.190.105.236/logo/青海卫视.png" group-title="『卫✯视』" ,青海卫视
+http://115.190.105.236/zbzg.php?id=30043
+#EXTINF:-1 tvg-name="宁夏卫视" tvg-logo="http://115.190.105.236/logo/宁夏卫视.png" group-title="『卫✯视』" ,宁夏卫视
+http://115.190.105.236/zbzg.php?id=30046
+#EXTINF:-1 tvg-name="新疆卫视" tvg-logo="http://115.190.105.236/logo/新疆卫视.png" group-title="『卫✯视』" ,新疆卫视
+http://115.190.105.236/zbzg.php?id=30051
+#EXTINF:-1 tvg-name="兵团卫视" tvg-logo="http://115.190.105.236/logo/兵团卫视.png" group-title="『卫✯视』" ,兵团卫视
+http://115.190.105.236/zbzg.php?id=30121
+#EXTINF:-1 tvg-name="深圳卫视" tvg-logo="http://115.190.105.236/logo/深圳卫视.png" group-title="『卫✯视』" ,深圳卫视
+http://115.190.105.236/zbzg.php?id=30026
+#EXTINF:-1 tvg-name="厦门卫视" tvg-logo="http://115.190.105.236/logo/厦门卫视.png" group-title="『卫✯视』" ,厦门卫视
+http://115.190.105.236/zbzg.php?id=30123
+
+#EXTINF:-1 tvg-name="北京卫视4K" tvg-logo="http://115.190.105.236/logo/北京卫视4K.png" group-title="『北✯京』" ,北京卫视4K
+http://115.190.105.236/bjtime.php?id=bjws4k
+#EXTINF:-1 tvg-name="北京卫视" tvg-logo="http://115.190.105.236/logo/北京卫视.png" group-title="『北✯京』" ,北京卫视
+http://115.190.105.236/bjtime.php?id=bjws
+#EXTINF:-1 tvg-name="北京文艺" tvg-logo="http://115.190.105.236/logo/北京文艺.png" group-title="『北✯京』" ,北京文艺
+http://115.190.105.236/bjtime.php?id=bjwy
+#EXTINF:-1 tvg-name="北京纪实科教" tvg-logo="http://115.190.105.236/logo/北京纪实科教.png" group-title="『北✯京』" ,北京纪实科教
+http://115.190.105.236/bjtime.php?id=bjjs
+#EXTINF:-1 tvg-name="北京影视" tvg-logo="http://115.190.105.236/logo/北京影视.png" group-title="『北✯京』" ,北京影视
+http://115.190.105.236/bjtime.php?id=bjys
+#EXTINF:-1 tvg-name="北京生活" tvg-logo="http://115.190.105.236/logo/北京生活.png" group-title="『北✯京』" ,北京生活
+http://115.190.105.236/bjtime.php?id=bjsh
+#EXTINF:-1 tvg-name="北京新闻" tvg-logo="http://115.190.105.236/logo/北京新闻.png" group-title="『北✯京』" ,北京新闻
+http://115.190.105.236/bjtime.php?id=bjxw
+#EXTINF:-1 tvg-name="卡酷少儿" tvg-logo="http://115.190.105.236/logo/卡酷少儿.png" group-title="『北✯京』" ,卡酷少儿
+http://115.190.105.236/bjtime.php?id=bjkk
+
+#EXTINF:-1 tvg-name="河南卫视" tvg-logo="http://115.190.105.236/logo/河南卫视.png" group-title="『河✯南』" ,河南卫视
+http://115.190.105.236/daxiang.php?id=hnws
+#EXTINF:-1 tvg-name="河南都市" tvg-logo="http://115.190.105.236/logo/河南都市.png" group-title="『河✯南』" ,河南都市
+http://115.190.105.236/daxiang.php?id=hnds
+#EXTINF:-1 tvg-name="河南民生" tvg-logo="http://115.190.105.236/logo/河南民生.png" group-title="『河✯南』" ,河南民生
+http://115.190.105.236/daxiang.php?id=hnms
+#EXTINF:-1 tvg-name="河南电视剧" tvg-logo="http://115.190.105.236/logo/河南电视剧.png" group-title="『河✯南』" ,河南电视剧
+http://115.190.105.236/daxiang.php?id=hndsj
+#EXTINF:-1 tvg-name="河南公共" tvg-logo="http://115.190.105.236/logo/河南公共.png" group-title="『河✯南』" ,河南公共
+http://115.190.105.236/daxiang.php?id=hngg
+#EXTINF:-1 tvg-name="梨园" tvg-logo="http://115.190.105.236/logo/梨园.png" group-title="『河✯南』" ,梨园
+http://115.190.105.236/daxiang.php?id=hnly
+#EXTINF:-1 tvg-name="文物宝库" tvg-logo="http://115.190.105.236/logo/文物宝库.png" group-title="『河✯南』" ,文物宝库
+http://115.190.105.236/daxiang.php?id=wwbk
+#EXTINF:-1 tvg-name="武术世界" tvg-logo="http://115.190.105.236/logo/武术世界.png" group-title="『河✯南』" ,武术世界
+http://115.190.105.236/daxiang.php?id=wspd
+
+#EXTINF:-1 tvg-name="东方卫视" tvg-logo="http://115.190.105.236/logo/东方卫视.png" group-title="『上✯海』" ,东方卫视
+http://115.190.105.236/shweb.php?id=dfws
+#EXTINF:-1 tvg-name="上海新闻综合" tvg-logo="http://115.190.105.236/logo/上海新闻综合.png" group-title="『上✯海』" ,上海新闻综合
+http://115.190.105.236/shweb.php?id=xwzh
+#EXTINF:-1 tvg-name="新纪实" tvg-logo="http://115.190.105.236/logo/看东方.png" group-title="『上✯海』" ,新纪实
+http://115.190.105.236/shweb.php?id=xjs
+#EXTINF:-1 tvg-name="魔都眼" tvg-logo="http://115.190.105.236/logo/魔都眼.png" group-title="『上✯海』" ,魔都眼
+http://115.190.105.236/shweb.php?id=mdy
+#EXTINF:-1 tvg-name="乐游" tvg-logo="http://115.190.105.236/logo/乐游.png" group-title="『上✯海』" ,乐游
+http://115.190.105.236/shweb.php?id=ly
+#EXTINF:-1 tvg-name="第一财经" tvg-logo="http://115.190.105.236/logo/第一财经.png" group-title="『上✯海』" ,第一财经
+http://115.190.105.236/shweb.php?id=dycj
+#EXTINF:-1 tvg-name="上海都市" tvg-logo="http://115.190.105.236/logo/上海都市.png" group-title="『上✯海』" ,上海都市
+http://115.190.105.236/shweb.php?id=ds
+#EXTINF:-1 tvg-name="五星体育" tvg-logo="http://115.190.105.236/logo/五星体育.png" group-title="『上✯海』" ,五星体育
+http://115.190.105.236/shweb.php?id=wxty
+
+#EXTINF:-1 tvg-name="四川卫视" tvg-logo="http://115.190.105.236/logo/四川卫视.png" group-title="『四✯川』" ,四川卫视
+http://115.190.105.236/sctv.php?id=scws
+#EXTINF:-1 tvg-name="四川新闻" tvg-logo="http://115.190.105.236/logo/四川新闻.png" group-title="『四✯川』" ,四川新闻
+http://115.190.105.236/sctv.php?id=scxw
+#EXTINF:-1 tvg-name="四川经济" tvg-logo="http://115.190.105.236/logo/四川经济.png" group-title="『四✯川』" ,四川经济
+http://115.190.105.236/sctv.php?id=scjj
+#EXTINF:-1 tvg-name="四川文化旅游" tvg-logo="http://115.190.105.236/logo/四川文化旅游.png" group-title="『四✯川』" ,四川文化旅游
+http://115.190.105.236/sctv.php?id=scwhly
+#EXTINF:-1 tvg-name="四川影视文艺" tvg-logo="http://115.190.105.236/logo/四川影视文艺.png" group-title="『四✯川』" ,四川影视文艺
+http://115.190.105.236/sctv.php?id=scyswy
+#EXTINF:-1 tvg-name="四川妇女儿童" tvg-logo="http://115.190.105.236/logo/四川妇女儿童.png" group-title="『四✯川』" ,四川妇女儿童
+http://115.190.105.236/sctv.php?id=scfnet
+#EXTINF:-1 tvg-name="四川乡村" tvg-logo="http://115.190.105.236/logo/四川乡村.png" group-title="『四✯川』" ,四川乡村
+http://115.190.105.236/sctv.php?id=scxc
+#EXTINF:-1 tvg-name="康巴卫视" tvg-logo="http://115.190.105.236/logo/康巴卫视.png" group-title="『四✯川』" ,康巴卫视
+http://115.190.105.236/sctv.php?id=kbws
+
+#EXTINF:-1 tvg-name="海南卫视" tvg-logo="http://115.190.105.236/logo/海南卫视.png" group-title="『海✯南』" ,海南卫视
+http://115.190.105.236/hainan.php?id=hnws
+#EXTINF:-1 tvg-name="三沙卫视" tvg-logo="http://115.190.105.236/logo/三沙卫视.png" group-title="『海✯南』" ,三沙卫视
+http://115.190.105.236/hainan.php?id=ssws
+#EXTINF:-1 tvg-name="海南自贸" tvg-logo="http://115.190.105.236/logo/海南自贸.png" group-title="『海✯南』" ,海南自贸
+http://115.190.105.236/hainan.php?id=jjpd
+#EXTINF:-1 tvg-name="海南新闻" tvg-logo="http://115.190.105.236/logo/海南新闻.png" group-title="『海✯南』" ,海南新闻
+http://115.190.105.236/hainan.php?id=xwpd
+#EXTINF:-1 tvg-name="海南公共" tvg-logo="http://115.190.105.236/logo/海南公共.png" group-title="『海✯南』" ,海南公共
+http://115.190.105.236/hainan.php?id=ggpd
+#EXTINF:-1 tvg-name="海南文旅" tvg-logo="http://115.190.105.236/logo/海南文旅.png" group-title="『海✯南』" ,海南文旅
+http://115.190.105.236/hainan.php?id=wlpd
+#EXTINF:-1 tvg-name="海南少儿" tvg-logo="http://115.190.105.236/logo/海南少儿.png" group-title="『海✯南』" ,海南少儿
+http://115.190.105.236/hainan.php?id=sepd
+
+#EXTINF:-1  tvg-name="海峡卫视" tvg-logo="http://115.190.105.236/logo/海峡卫视.png" group-title="『福✯建』" ,海峡卫视
+http://115.190.105.236/fjtv.php?id=3
+#EXTINF:-1  tvg-name="福建综合" tvg-logo="http://115.190.105.236/logo/福建综合.png" group-title="『福✯建』" ,福建综合
+http://115.190.105.236/fjtv.php?id=4
+#EXTINF:-1  tvg-name="福建公共" tvg-logo="http://115.190.105.236/logo/福建公共.png" group-title="『福✯建』" ,福建公共
+http://115.190.105.236/fjtv.php?id=6
+#EXTINF:-1  tvg-name="福建旅游" tvg-logo="http://115.190.105.236/logo/福建旅游.png" group-title="『福✯建』" ,福建旅游
+http://115.190.105.236/fjtv.php?id=8
+#EXTINF:-1  tvg-name="福建经济" tvg-logo="http://115.190.105.236/logo/福建经济.png" group-title="『福✯建』" ,福建经济
+http://115.190.105.236/fjtv.php?id=9
+#EXTINF:-1  tvg-name="福建新闻" tvg-logo="http://115.190.105.236/logo/福建新闻.png" group-title="『福✯建』" ,福建新闻
+http://115.190.105.236/fjtv.php?id=13
