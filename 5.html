@@ -214,7 +214,7 @@
     .live-entry:last-child { margin-bottom: 0; }
     .live-entry .entry-name::before { content: none; }
 
-    /* ✅ 来源 + UA 行 */
+    /* ✅ 来源 + UA 行 —— padding-left:24px 让文字和"原始线路"文字本身对齐 */
     .live-source-line {
         display: flex;
         align-items: center;
@@ -223,6 +223,7 @@
         margin-bottom: 0;
         font-size: 0.78rem;
         color: #5a6f88;
+        padding-left: 24px;
     }
     .live-source-line .meta-source { font-weight: 500; color: #4a6a8a; }
     .live-source-line .meta-ua,
@@ -256,7 +257,7 @@
         margin-bottom: 6px;
     }
     .live-origin-module .live-source-line {
-        padding: 0 2px;
+        padding: 0 2px 0 24px;
         margin-bottom: 6px;
     }
     .live-origin-module .url-line {
