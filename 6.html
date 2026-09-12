@@ -86,6 +86,7 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
+    /* === 点播 & 直播 共用基础样式 === */
     .api-list { padding: 0; border: none; background: transparent; }
     .entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
     .entry:first-of-type { padding-top: 4px; }
@@ -98,7 +99,7 @@
     }
     .entry-meta-inline {
         margin-left: auto; display: flex; align-items: center;
-        gap: 10px; font-size: 0.75rem; color: #5a6f88;
+        gap: 10px; font-size: 0.75rem;
         white-space: nowrap; flex-shrink: 0;
     }
     .badge-new { color: #1b9e5a; } .badge-old { color: #b88b3a; }
@@ -172,7 +173,7 @@
     body.simple-mode #live-panel { display: none !important; }
     body.simple-mode #api-panel { display: block !important; }
 
-    /* ===================== 直播页专属样式 ===================== */
+    /* ===================== 直播页专属样式（与点播共用 entry-header / entry-meta-inline / url-line，保证对齐） ===================== */
     .live-top-aggregate {
         background: linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
         border-radius: 16px;
@@ -189,10 +190,7 @@
         align-items: center;
         gap: 8px;
     }
-    .live-top-aggregate h3::before {
-        content: "📡";
-        font-size: 1.2rem;
-    }
+    .live-top-aggregate h3::before { content: "📡"; font-size: 1.2rem; }
     .live-top-aggregate .domain-line {
         background: rgba(255,255,255,0.15);
         border: 1px solid rgba(255,255,255,0.3);
@@ -212,51 +210,15 @@
         color: #fff;
     }
 
-    .live-entry {
-        padding: 14px 0;
-        border-bottom: 1px solid #f0f4fa;
-    }
-    .live-entry:last-child { border-bottom: none; }
-    .live-entry-name {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: #0b1e33;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .live-entry-name::before {
+    /* 直播条目复用 .entry，名称前缀小圆点，其余结构（header / meta / url-line）与点播完全一致 */
+    .live-entry .entry-name::before {
         content: "▶";
         color: #ff4757;
         font-size: 0.8rem;
+        margin-right: 6px;
     }
-    .live-entry-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 6px 12px;
-        background: #f8fafc;
-        border-radius: 8px;
-        margin-bottom: 6px;
-    }
-    .live-entry-row:last-child { margin-bottom: 0; }
-    .live-entry-info {
-        font-size: 0.75rem;
-        color: #5a6f88;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        flex-shrink: 0;
-    }
-    .live-entry-url {
-        font-size: 0.82rem;
-        color: #2563eb;
-        word-break: break-all;
-        flex: 1;
-        min-width: 0;
-    }
-    /* ========================================================= */
+    /* 直播多出的「来源/UA」放在原始线路 URL 的上方；备份线路保留原始后缀（如 .m3u/.txt） */
+    /* =============================================================================================== */
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
@@ -277,15 +239,10 @@
         .download-card { padding: 14px 10px 20px; min-height: 160px; }
         .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
 
-        /* 直播页移动端适配 */
         .live-top-aggregate { padding: 14px 16px; margin-bottom: 14px; }
         .live-top-aggregate h3 { font-size: 1rem; }
-        .live-entry { padding: 12px 0; }
-        .live-entry-name { font-size: 1rem; }
-        .live-entry-row { padding: 6px 10px; flex-wrap: wrap; }
-        .live-entry-info { font-size: 0.7rem; }
-        .live-entry-url { font-size: 0.78rem; }
     }
+    /* ======================================================================= */
 </style>
 </head>
 <body class="simple-mode">
@@ -304,14 +261,14 @@
     <div class="main-card">
         <div class="nav-tabs" id="navTabs"></div>
 
-        <!-- 点播页 (原接口页) -->
+        <!-- 点播页 -->
         <div class="tab-panel active" id="api-panel">
             <div class="api-list" id="listContainer">
                 <div class="loading" id="apiLoading">⏳ 正在加载接口列表...</div>
             </div>
         </div>
 
-        <!-- 直播页 (新增) -->
+        <!-- 直播页 -->
         <div class="tab-panel" id="live-panel">
             <div class="loading" id="liveLoading">⏳ 正在加载直播源...</div>
             <div id="liveContainer"></div>
@@ -365,17 +322,15 @@
 
     const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
 
-    // ===================== 核心配置：直播页 =====================
     const LIVE_DOMAINS = [
         { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/live/" },
         { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/live/" },
         { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/live/" }
     ];
     const LIVE_AGGREGATE = {
-        name: "海量直播线路",
+        name: "海量直播聚合多线路专用接口",
         url: "https://0.12yue.de5.net/tvbox/海量直播线路.json"
     };
-    // =========================================================
 
     let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
     document.body.className = currentMode + '-mode';
@@ -391,9 +346,7 @@
         if (rotateItems.length === 1) return rotateItems[0];
         let idx = Math.abs(Math.floor(Math.sin(topSeed) * 10000)) % rotateItems.length;
         const candidate = rotateItems[idx];
-        if (candidate.name === lastTopName) {
-            idx = (idx + 1) % rotateItems.length;
-        }
+        if (candidate.name === lastTopName) idx = (idx + 1) % rotateItems.length;
         return rotateItems[idx];
     }
     function rollTop() { topSeed = Date.now() + Math.random(); }
@@ -470,58 +423,50 @@
     function renderApi(forceRoll) {
         const container = document.getElementById('listContainer');
         if (forceRoll) rollTop();
+        fetchListText().then(text => {
+            const loadingTip = document.getElementById('apiLoading');
+            if (loadingTip) loadingTip.style.display = 'none';
+            let items = parseItems(text);
+            const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
+            const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
+            const topItem = getTopItem(rotateItems);
+            if (topItem) { topItem.weight = Number.MIN_SAFE_INTEGER; lastTopName = topItem.name; }
+            items.sort((a, b) => a.weight - b.weight);
 
-        fetchListText()
-            .then(text => {
-                const loadingTip = document.getElementById('apiLoading');
-                if (loadingTip) loadingTip.style.display = 'none';
-
-                let items = parseItems(text);
-                const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
-                const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
-                const topItem = getTopItem(rotateItems);
-                if (topItem) {
-                    topItem.weight = Number.MIN_SAFE_INTEGER;
-                    lastTopName = topItem.name;
+            let html = '';
+            items.forEach(it => {
+                const isNew = isRecent(it.date);
+                const cls = isNew ? 'badge-new' : 'badge-old';
+                const jsonName = ensureJson(it.file);
+                let linesHtml = '';
+                if (it.origUrl) {
+                    linesHtml += `<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
                 }
-                items.sort((a, b) => a.weight - b.weight);
-
-                let html = '';
-                items.forEach(it => {
-                    const isNew = isRecent(it.date);
-                    const cls = isNew ? 'badge-new' : 'badge-old';
-                    const jsonName = ensureJson(it.file);
-                    let linesHtml = '';
-                    if (it.origUrl) {
-                        linesHtml += `<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
-                    }
-                    API_DOMAINS.forEach(d => {
-                        const url = d.base + jsonName;
-                        linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
-                    });
-                    html += `<div class="entry" data-name="${it.name.toLowerCase()}">
-                        <div class="entry-header">
-                            <div class="entry-name" title="${it.name}">${it.name}</div>
-                            <div class="entry-meta-inline">
-                                <span class="${cls}">备份时间 ${formatDateToChinese(it.date)}</span>
-                                ${it.size ? '&nbsp;&nbsp;' + it.size : ''}
-                            </div>
-                        </div>
-                        <div class="entry-urls">${linesHtml}</div>
-                    </div>`;
+                API_DOMAINS.forEach(d => {
+                    const url = d.base + jsonName;
+                    linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
                 });
-
-                container.innerHTML = html;
-                bindCopy(container);
-            })
-            .catch(err => {
-                const loadingTip = document.getElementById('apiLoading');
-                if (loadingTip) loadingTip.style.display = 'none';
-                container.innerHTML = `<div class="error-msg">❌ 接口加载失败：${err}</div>`;
+                html += `<div class="entry" data-name="${it.name.toLowerCase()}">
+                    <div class="entry-header">
+                        <div class="entry-name" title="${it.name}">${it.name}</div>
+                        <div class="entry-meta-inline">
+                            <span class="${cls}">备份时间 ${formatDateToChinese(it.date)}</span>
+                            ${it.size ? '&nbsp;&nbsp;' + it.size : ''}
+                        </div>
+                    </div>
+                    <div class="entry-urls">${linesHtml}</div>
+                </div>`;
             });
+            container.innerHTML = html;
+            bindCopy(container);
+        }).catch(err => {
+            const loadingTip = document.getElementById('apiLoading');
+            if (loadingTip) loadingTip.style.display = 'none';
+            container.innerHTML = `<div class="error-msg">❌ 接口加载失败：${err}</div>`;
+        });
     }
 
-    // ===================== 直播页渲染逻辑 =====================
+    // ===================== 直播页渲染（复用点播页结构，仅顺序：来源/UA → 原始线路 → 备份线路） =====================
     async function renderLive() {
         const container = document.getElementById('liveContainer');
         const loadingTip = document.getElementById('liveLoading');
@@ -532,7 +477,7 @@
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const text = await res.text();
 
-            // 1. 渲染置顶聚合模块
+            // 1) 置顶聚合模块（与上一版一致，使用 domain-line）
             let html = `<div class="live-top-aggregate">
                 <h3>${LIVE_AGGREGATE.name}</h3>
                 <div class="domain-line">
@@ -541,48 +486,66 @@
                 </div>
             </div>`;
 
-            // 2. 解析并渲染列表
+            // 2) 直播列表（6 字段解析）
             const lines = text.trim().split('\n').filter(l => l.trim());
-            html += '<div class="api-list">'; // 复用列表容器样式
+            html += '<div class="api-list">';
 
             lines.forEach(line => {
                 const parts = line.split('|').map(s => s.trim());
-                // 格式: 名称|日期|大小|URL|来源|UA
-                const fileName = parts[0] || '';
-                const date = parts[1] || '';
-                const size = parts[2] || '';
-                const rawUrl = parts[3] || '';
-                const source = parts[4] || '';
-                const ua = parts[5] || '';
+                const fileName = parts[0] || '';   // 0 名称
+                const date     = parts[1] || '';   // 1 日期
+                const size     = parts[2] || '';   // 2 大小
+                const rawUrl   = parts[3] || '';   // 3 URL
+                const source   = parts[4] || '';   // 4 来源（直播多出）
+                const ua       = parts[5] || '';   // 5 UA（直播多出）
 
-                // 省略文件名后缀 (如 .m3u, .txt)
-                const displayName = fileName.replace(/\.(m3u|txt|php)$/i, '');
-                
-                // 拼接 live 路径前缀
-                const fullUrl = rawUrl.startsWith('http') ? rawUrl : (LIVE_DOMAINS[0].base + rawUrl);
+                // 去后缀得到显示名（与点播 .replace('.json','') 对齐）
+                const displayName = fileName.replace(/\.[^.]+$/i, '');
 
-                html += `<div class="live-entry" data-name="${displayName.toLowerCase()}">
-                    <div class="live-entry-name" title="${displayName}">${displayName}</div>
-                    
-                    <!-- 上行：来源 + UA -->
-                    <div class="live-entry-row">
-                        <span class="live-entry-info">📁 ${source}</span>
-                        ${ua ? `<span class="live-entry-info">🤖 ${ua}</span>` : ''}
-                        <span class="live-entry-info" style="margin-left: auto;">📅 ${formatDateToChinese(date)} ${size}</span>
+                // ✅ 与点播完全一致的「新旧备份时间」色调（2 天内 = 绿 / 更早 = 橙）
+                const isNew = isRecent(date);
+                const cls = isNew ? 'badge-new' : 'badge-old';
+
+                html += `<div class="entry live-entry" data-name="${displayName.toLowerCase()}">
+                    <!-- ✅ 与点播完全同构：名称左 + meta(日期/大小)右，flex 同行对齐 -->
+                    <div class="entry-header">
+                        <div class="entry-name" title="${displayName}">${displayName}</div>
+                        <div class="entry-meta-inline">
+                            <span class="${cls}">备份时间 ${formatDateToChinese(date)}</span>
+                            ${size ? '&nbsp;&nbsp;' + size : ''}
+                        </div>
                     </div>
-                    
-                    <!-- 下行：URL + 复制 -->
-                    <div class="live-entry-row">
-                        <span class="live-entry-url">${fullUrl}</span>
-                        <button class="copy-btn" data-url="${fullUrl}">复制</button>
+
+                    <div class="entry-urls">
+                        <!-- ✅ 来源/UA（直播多出字段，放在原始线路 URL 的上面） -->
+                        ${source || ua ? `<div class="url-line">
+                            ${source ? '<span class="url-tag">📁 ' + source + '</span>' : ''}
+                            ${ua ? '<span class="url-tag">🤖 ' + ua + '</span>' : ''}
+                        </div>` : ''}
+
+                        <!-- ✅ 原始线路（与点播页一致：标签在最前 + 链接 + 复制按钮） -->
+                        <div class="url-line">
+                            <span class="url-tag">原始线路</span>
+                            <span class="url-text">${rawUrl}</span>
+                            <button class="copy-btn" data-url="${rawUrl}">复制</button>
+                        </div>
+
+                        <!-- ✅ 备份线路：路径多 /live/，保留原始后缀（如 .m3u/.txt），URL 强制中文不编码 -->
+                        ${LIVE_DOMAINS.map(d => {
+                            const url = d.base + fileName;  // 直接用原始文件名（保留后缀），无 encodeURIComponent
+                            return `<div class="url-line">
+                                <span class="url-tag">${d.tag}</span>
+                                <span class="url-text">${url}</span>
+                                <button class="copy-btn" data-url="${url}">复制</button>
+                            </div>`;
+                        }).join('')}
                     </div>
                 </div>`;
             });
 
             html += '</div>';
             container.innerHTML = html;
-            bindCopy(container); // 绑定复制事件
-
+            bindCopy(container);
         } catch (err) {
             container.innerHTML = `<div class="error-msg">❌ 直播源加载失败：${err}</div>`;
         }
@@ -594,12 +557,10 @@
         if (!container || (container.dataset.rendered && !force)) return;
         container.dataset.rendered = 'true';
         container.innerHTML = '<div class="loading">⏳ 正在加载下载资源...</div>';
-
         if (!DOWNLOAD_SOURCES.length) {
             container.innerHTML = '<div class="error-msg">⚠️ 未配置下载源（config.json 的 downloadSources 为空）</div>';
             return;
         }
-
         let html = '';
         for (const src of DOWNLOAD_SOURCES) {
             try {
@@ -608,7 +569,6 @@
                 const raw = await res.text();
                 const cleaned = raw.replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/：/g, ':').replace(/，/g, ',');
                 const data = JSON.parse(cleaned);
-
                 let section = `<div class="source-section">`;
                 if (src.name) section += `<div class="source-title">${src.name}</div>`;
                 if (src.description) section += `<div class="source-desc">${src.description}</div>`;
@@ -638,61 +598,49 @@
 
     function renderAbout() { bindCopy(document.getElementById('about-panel')); }
 
-    function renderTabs() {
-        // 修改点：将 "接口" 改为 "点播"，并在中间插入 "直播"
-        const tabsData = [
-            { id: "api", label: "点播", hideSearch: false },
-            { id: "live", label: "直播", hideSearch: false },
-            { id: "download", label: "下载", hideSearch: false },
-            { id: "about", label: "关于", hideSearch: true }
-        ];
+    const tabsData = [
+        { id: "api", label: "点播", hideSearch: false },
+        { id: "live", label: "直播", hideSearch: false },
+        { id: "download", label: "下载", hideSearch: false },
+        { id: "about", label: "关于", hideSearch: true }
+    ];
 
+    function renderTabs() {
         const nav = document.getElementById('navTabs');
         nav.innerHTML = tabsData.map(t => `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`).join('');
         nav.querySelectorAll('.nav-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 nav.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                const tabId = this.getAttribute('data-tab');
-                showPanel(tabId, true);
+                showPanel(this.getAttribute('data-tab'), true);
             });
         });
     }
 
     let lastTab = 'api';
     function showPanel(tabId, fromTabClick) {
-        if (tabId === 'api' && lastTab !== 'api' && fromTabClick !== false) {
-            renderApi(true);
-        }
-        if (tabId === 'live' && lastTab !== 'live') {
-            renderLive(); // 切换到直播页时加载数据
-        }
+        if (tabId === 'api' && lastTab !== 'api' && fromTabClick !== false) renderApi(true);
+        if (tabId === 'live' && lastTab !== 'live') renderLive();
         lastTab = tabId;
-
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
         if (panel) panel.classList.add('active');
-        
         if (tabId === 'download') renderDownloads();
         if (tabId === 'about') renderAbout();
-        
-        const targetTab = TABS.find(t => t.id === tabId);
+        const targetTab = tabsData.find(t => t.id === tabId);
         if (searchBox) searchBox.style.display = (targetTab && targetTab.hideSearch) ? 'none' : '';
     }
 
     function globalSearch() {
         const kw = (searchBox.value || '').toLowerCase().trim();
-        // 点播页搜索
         document.querySelectorAll('#api-panel .entry').forEach(e => {
             const name = e.getAttribute('data-name') || '';
             e.classList.toggle('hidden', !name.includes(kw));
         });
-        // 直播页搜索
         document.querySelectorAll('#live-panel .live-entry').forEach(e => {
             const name = e.getAttribute('data-name') || '';
             e.classList.toggle('hidden', !name.includes(kw));
         });
-        // 下载页搜索
         if (currentMode !== 'simple') {
             document.querySelectorAll('.download-card').forEach(c => {
                 const name = c.getAttribute('data-name') || '';
@@ -720,28 +668,13 @@
         document.body.className = currentMode + '-mode';
         updateBtnText();
         positionSearchBox();
-        if (currentMode !== 'simple') {
-            showPanel('api', true);
-            renderDownloads();
-            renderAbout();
-        } else {
-            showPanel('api', true);
-        }
+        if (currentMode !== 'simple') { showPanel('api', true); renderDownloads(); renderAbout(); }
+        else { showPanel('api', true); }
     });
-
-    // 初始化
-    const TABS = [
-        { id: "api", label: "点播", hideSearch: false },
-        { id: "live", label: "直播", hideSearch: false },
-        { id: "download", label: "下载", hideSearch: false },
-        { id: "about", label: "关于", hideSearch: true }
-    ];
 
     renderTabs();
     renderApi(false);
-    loadDownloadConfig().then(() => {
-        if (currentMode !== 'simple') renderDownloads();
-    });
+    loadDownloadConfig().then(() => { if (currentMode !== 'simple') renderDownloads(); });
 </script>
 </body>
 </html>
