@@ -172,7 +172,7 @@
     body.simple-mode #live-panel { display: none !important; }
     body.simple-mode #api-panel { display: block !important; }
 
-    /* ===================== 直播页专属样式 ===================== */
+    /* ===================== 直播页专属样式（已修改：单行整合） ===================== */
     .live-top-aggregate {
         background: linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
         border-radius: 16px;
@@ -217,20 +217,43 @@
         border-bottom: 1px solid #f0f4fa;
     }
     .live-entry:last-child { border-bottom: none; }
+
+    /* ✅ 核心修改：标题行整合（名称 + 备份时间 + 大小） */
+    .live-entry-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        min-height: 24px;
+    }
     .live-entry-name {
         font-size: 1.05rem;
         font-weight: 600;
         color: #0b1e33;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        /* 限制名称宽度，最多半行，超长省略 */
+        max-width: 50%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-shrink: 0;
     }
     .live-entry-name::before {
         content: "▶";
         color: #ff4757;
         font-size: 0.8rem;
+        margin-right: 8px;
     }
+    .live-entry-meta {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    /* ========================================================= */
+
     .live-entry-row {
         display: flex;
         align-items: center;
@@ -256,7 +279,6 @@
         flex: 1;
         min-width: 0;
     }
-    /* ========================================================= */
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
@@ -280,7 +302,9 @@
         .live-top-aggregate { padding: 14px 16px; margin-bottom: 14px; }
         .live-top-aggregate h3 { font-size: 1rem; }
         .live-entry { padding: 12px 0; }
-        .live-entry-name { font-size: 1rem; }
+        .live-entry-header { gap: 6px; }
+        .live-entry-name { font-size: 0.95rem; max-width: 45%; }
+        .live-entry-meta { gap: 6px; font-size: 0.7rem; }
         .live-entry-row { padding: 6px 10px; flex-wrap: wrap; }
         .live-entry-info { font-size: 0.7rem; }
         .live-entry-url { font-size: 0.78rem; }
@@ -522,7 +546,7 @@
             });
     }
 
-    // ===================== 直播页渲染逻辑（已对齐色调与布局） =====================
+    // ===================== 直播页渲染逻辑（已修改：单行整合 + 名称限宽） =====================
     async function renderLive() {
         const container = document.getElementById('liveContainer');
         const loadingTip = document.getElementById('liveLoading');
@@ -559,19 +583,18 @@
                 // 省略文件名后缀（如 .m3u/.txt/.php），和点播页逻辑一致
                 const displayName = fileName.replace(/\.[^.]+$/i, '');
                 
-                // ✅ 核心修改：应用色调逻辑（2天内绿色，更早橙色）
+                // ✅ 色调逻辑（2天内绿色，更早橙色）
                 const isNew = isRecent(date);
                 const cls = isNew ? 'badge-new' : 'badge-old';
 
                 html += `<div class="live-entry" data-name="${displayName.toLowerCase()}">
-                    <div class="live-entry-name" title="${displayName}">${displayName}</div>
-                    
-                    <!-- 上行：日期+大小（应用色调类，右对齐，与点播页一致） -->
-                    <div class="live-entry-row">
-                        <span class="live-entry-info" style="margin-left: auto;">
+                    <!-- ✅ 核心修改：名称 + 备份时间 + 大小 整合到一行 -->
+                    <div class="live-entry-header">
+                        <div class="live-entry-name" title="${displayName}">${displayName}</div>
+                        <div class="live-entry-meta">
                             <span class="${cls}">备份时间 ${formatDateToChinese(date)}</span>
-                            ${size ? '&nbsp;&nbsp;' + size : ''}
-                        </span>
+                            ${size ? `<span class="live-entry-info">${size}</span>` : ''}
+                        </div>
                     </div>
                     
                     <!-- 原始线路模块：包含来源、UA、原始URL -->
