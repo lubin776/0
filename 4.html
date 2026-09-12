@@ -221,46 +221,43 @@
     /* 名称：纯文字，无红色三角（::before 置空） */
     .live-entry .entry-name::before { content: none; }
 
-    /* ✅ 来源+UA 合并为一行，共用一个背景块 */
+    /* ✅ 统一整体容器：来源 + UA + 原始线路（标签/URL/复制）框进一个模块 */
+    .live-block {
+        background: #f8fafc;
+        border: 1px solid #e3eaf3;
+        border-radius: 12px;
+        padding: 10px 12px;
+        margin-bottom: 6px;
+    }
+    /* 来源 + UA 行：左边缘、字号、行高、内边距 与下排 .url-line 对齐，视觉成一列 */
     .live-meta {
-        background: #f8fafc;
-        border: 1px solid #eef2f7;
-        border-radius: 10px;
-        padding: 8px 12px;
-        margin-bottom: 6px;
-        font-size: 0.72rem;
+        display: flex; align-items: center;
+        gap: 6px 10px;
+        padding: 5px 12px 5px 10px;   /* ✅ 与 .url-line 同款内边距，左边缘对齐 */
+        margin: 0 0 6px 0;
+        line-height: 24px;             /* ✅ 与 .url-tag 行高一致 */
+        font-size: 0.82rem;            /* ✅ 与 .url-text 字号一致 */
         color: #5a6f88;
-        line-height: 1.5;
         word-break: break-all;
     }
-    .live-meta .meta-source { font-weight: 500; color: #4a6a8a; }
-    .live-meta .meta-ua { color: #5a6f88; }
-    .live-meta .meta-ua-null { color: #c3cdd8; font-style: italic; }
+    /* ✅ 来源名称 = 纯文本（去掉背景色），与 ua 显示风格一致 */
+    .live-meta .meta-source {
+        font-size: 0.82rem; font-weight: 400; color: #5a6f88;
+        background: none;
+        padding: 0; border-radius: 0;
+        line-height: 24px; white-space: nowrap; flex-shrink: 0;
+    }
+    /* ✅ ua: 部分 = 原始线路的 .url-text 字体，与 URL 文字同一基线 */
+    .live-meta .meta-ua,
+    .live-meta .meta-ua-null { font-size: 0.82rem; color: #5a6f88; font-style: normal; font-weight: 400; line-height: 24px; }
+    /* ✅ "ua:" 前缀 = 与来源、ua 值同字体，连成一句纯文本 */
+    .live-meta .meta-ua-prefix { font-size: 0.82rem; color: #5a6f88; font-weight: 400; line-height: 24px; flex-shrink: 0; }
 
-    .live-entry-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 6px 12px;
-        background: #f8fafc;
-        border-radius: 8px;
-        margin-bottom: 6px;
-    }
-    .live-entry-row:last-child { margin-bottom: 0; }
-    .live-entry-info {
-        font-size: 0.75rem;
-        color: #5a6f88;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        flex-shrink: 0;
-    }
-    .live-entry-url {
-        font-size: 0.82rem;
-        color: #2563eb;
-        word-break: break-all;
-        flex: 1;
-        min-width: 0;
+    /* 原始线路行：复用点播页 .url-line 结构，但去边框/背景（由外层 .live-block 提供） */
+    .live-block .url-line {
+        background: #fff;
+        border: 1px solid #eef2f7;
+        margin-bottom: 0;
     }
     /* ========================================================= */
 
@@ -287,10 +284,16 @@
         .live-top-aggregate h3 { font-size: 1rem; }
         .live-entry { padding: 12px 0; }
         .live-entry-name { font-size: 1rem; }
-        .live-entry-row { padding: 6px 10px; flex-wrap: wrap; }
-        .live-entry-info { font-size: 0.7rem; }
-        .live-entry-url { font-size: 0.78rem; }
-        .live-meta { font-size: 0.68rem; padding: 7px 10px; }
+        .live-block { padding: 9px 10px; }
+        .live-meta { padding: 4px 8px; gap: 4px 6px; line-height: 22px; font-size: 0.75rem; margin-bottom: 6px; }
+        .live-meta .meta-source { font-size: 0.75rem; padding: 0; line-height: 22px; }
+        .live-meta .meta-ua,
+        .live-meta .meta-ua-null { font-size: 0.75rem; line-height: 22px; }
+        .live-meta .meta-ua-prefix { font-size: 0.75rem; line-height: 22px; }
+        .live-block .url-line { padding: 5px 9px; gap: 5px 8px; }
+        .live-block .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
+        .live-block .url-text { font-size: 0.75rem; }
+        .live-block .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
     }
 </style>
 </head>
@@ -566,10 +569,20 @@
                 const cls = isNew ? 'badge-new' : 'badge-old';
 
                 // ✅ 来源+UA 合并为一行文本：有 UA 显示 "来源     ua: xxx"，无 UA 显示 "来源     ua: null"
-                let metaHtml = '';
+                // ✅ 来源、UA、原始线路（标签+URL+复制）框进同一个 .live-block 模块，视觉为一个整体
+                let blockInner = '';
                 if (source || ua) {
-                    const uaPart = ua ? `<span class="meta-ua">ua: ${ua}</span>` : `<span class="meta-ua-null">ua: null</span>`;
-                    metaHtml = `<div class="live-meta"><span class="meta-source">${source}</span>&nbsp;&nbsp;&nbsp;&nbsp;${uaPart}</div>`;
+                    // ✅ 结构：[来源胶囊] ua: [值] —— 与上排 [原始线路标签] + [URL] 左右对齐
+                    // ✅ 无 UA 时显示 "ua: null"（与点播页 url-text 同字体）
+                    const uaPart = ua ? `<span class="meta-ua">${ua}</span>` : `<span class="meta-ua-null">ua: null</span>`;
+                    blockInner += `<div class="live-meta"><span class="meta-source">${source}</span><span class="meta-ua-prefix">ua:</span>${uaPart}</div>`;
+                }
+                if (rawUrl) {
+                    blockInner += `<div class="url-line">
+                        <span class="url-tag">原始线路</span>
+                        <span class="url-text">${rawUrl}</span>
+                        <button class="copy-btn" data-url="${rawUrl}">复制</button>
+                    </div>`;
                 }
 
                 html += `<div class="live-entry" data-name="${displayName.toLowerCase()}">
@@ -581,13 +594,7 @@
                         </div>
                     </div>
 
-                    ${metaHtml}
-
-                    ${rawUrl ? `<div class="url-line">
-                        <span class="url-tag">原始线路</span>
-                        <span class="url-text">${rawUrl}</span>
-                        <button class="copy-btn" data-url="${rawUrl}">复制</button>
-                    </div>` : ''}
+                    ${blockInner ? `<div class="live-block">${blockInner}</div>` : ''}
 
                     ${LIVE_DOMAINS.map(d => {
                         const url = d.base + fileName; // ✅ 保留原始后缀
