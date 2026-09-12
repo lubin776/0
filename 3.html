@@ -68,7 +68,6 @@
     .api-list { padding: 0; border: none; background: transparent; }
     .entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
     .entry:first-of-type { padding-top: 4px; }
-    /* 滚动刷新动画 */
     .entry.fresh-top { animation: topRefresh 0.5s ease-out; }
     .entry:last-child { border-bottom: none; }
     .entry-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
@@ -123,7 +122,6 @@
         100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* 直播聚合蓝色模块 */
     .live-top-aggregate {
         background: linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
         border-radius: 16px; padding: 16px 18px; margin-bottom: 16px; color: #fff;
@@ -229,12 +227,12 @@
     ];
 
     const API_WEIGHTS = {
-        "幸福年年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
+        "幸福年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
         "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
         "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
     };
 
-    const ROTATE_NAMES = ["福年年", "菜园", "少儿道", "更新专接口", "pro"];
+    const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
 
     let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
     document.body.className = currentMode + '-mode';
@@ -243,10 +241,11 @@
 
     let DOWNLOAD_SOURCES = [];
     let topSeed = Date.now();
-    // lastTopName 保留但仅用于标记，不再用于跳过逻辑
     let lastTopName = null;
-    // 标记是否需要强制刷新第一条
     let needRefreshTop = false;
+
+    // ★ 记住当前 tab（用于切换模式后恢复）
+    let currentTabId = 'api';
 
     function getTopItem(rotateItems) {
         if (!rotateItems.length) return null;
@@ -356,7 +355,6 @@
                         const url = d.base + jsonName;
                         linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
                     });
-                    // 第一条加 fresh-top 类触发动画
                     const isFirst = index === 0;
                     const freshClass = (isFirst && needRefreshTop) ? ' fresh-top' : '';
                     html += `<div class="entry${freshClass}" data-name="${it.name.toLowerCase()}">
@@ -374,7 +372,6 @@
                 container.innerHTML = html;
                 bindCopy(container);
 
-                // 动画播完后移除 class，下次可再次触发
                 if (needRefreshTop) {
                     needRefreshTop = false;
                     const firstEntry = container.querySelector('.entry.fresh-top');
@@ -444,18 +441,19 @@
 
     function renderTabs() {
         const nav = document.getElementById('navTabs');
-        nav.innerHTML = tabsData.map(t => `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`).join('');
+        nav.innerHTML = tabsData.map(t => `<button class="nav-tab ${t.id === currentTabId ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`).join('');
         nav.querySelectorAll('.nav-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 nav.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                showPanel(this.getAttribute('data-tab'));
+                const tabId = this.getAttribute('data-tab');
+                currentTabId = tabId;  // ★ 记录当前 tab
+                showPanel(tabId);
             });
         });
     }
 
     function showPanel(tabId) {
-        // ★ 关键修复2：每次进入点播页都更新 topSeed + 标记刷新
         if (tabId === 'api') {
             topSeed = Date.now() + Math.random();
             needRefreshTop = true;
@@ -500,7 +498,6 @@
     }
 
     btn.addEventListener('click', () => {
-        // ★ 关键修复1：每次点击切换按钮都更新 seed + 标记刷新
         topSeed = Date.now() + Math.random();
         needRefreshTop = true;
 
@@ -511,9 +508,10 @@
         positionSearchBox();
 
         if (currentMode !== 'simple') {
-            showPanel('api');
+            // ★ 切回全能版：恢复到之前记住的 tab，同步导航 active 状态
+            renderTabs(); // 重新渲染 nav 以正确标记 active
+            showPanel(currentTabId);
         } else {
-            // 简洁模式直接渲染，也会走 needRefreshTop 逻辑
             renderApi();
         }
     });
