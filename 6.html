@@ -16,13 +16,8 @@
         flex-direction: column;
     }
     .container {
-        max-width: 820px;
-        margin: 0 auto;
-        position: relative;
-        padding: 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+        max-width: 820px; margin: 0 auto; position: relative;
+        padding: 0; flex: 1; display: flex; flex-direction: column;
     }
 
     #modeToggleBtn {
@@ -72,7 +67,9 @@
 
     .api-list { padding: 0; border: none; background: transparent; }
     .entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
-    .entry:first-of-type { padding-top: 4px; animation: topRefresh 0.4s ease-out; }
+    .entry:first-of-type { padding-top: 4px; }
+    /* 滚动刷新动画 */
+    .entry.fresh-top { animation: topRefresh 0.5s ease-out; }
     .entry:last-child { border-bottom: none; }
     .entry-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .entry-name {
@@ -122,10 +119,11 @@
     body.simple-mode #api-panel { display: block !important; }
 
     @keyframes topRefresh {
-        0% { opacity: 0; transform: translateY(-8px); }
+        0% { opacity: 0; transform: translateY(-10px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
+    /* 直播聚合蓝色模块 */
     .live-top-aggregate {
         background: linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
         border-radius: 16px; padding: 16px 18px; margin-bottom: 16px; color: #fff;
@@ -133,22 +131,10 @@
     }
     .live-top-aggregate h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
     .live-top-aggregate h3::before { content: "📡"; font-size: 1.2rem; }
-    .live-top-aggregate .domain-line { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); margin-top: 8px; }
-    .live-top-aggregate .domain-line span { color: #fff; font-weight: 500; }
+    .live-top-aggregate .domain-line { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); margin-top: 8px; display: flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 40px; }
+    .live-top-aggregate .domain-line span { flex: 1; font-size: 0.75rem; color: #fff; font-weight: 500; word-break: break-all; }
     .live-top-aggregate .copy-btn { background: rgba(255,255,255,0.9); color: #1e6fda; font-weight: 600; }
     .live-top-aggregate .copy-btn.copied { background: #3b9b6c; color: #fff; }
-
-    .live-entry { background: #eef2f7; border: 1px solid #dce6f0; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-    .live-entry:last-child { margin-bottom: 0; }
-    .live-source-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.78rem; color: #5a6f88; padding-left: 12px; }
-    .live-source-line .meta-source { font-weight: 500; color: #4a6a8a; }
-    .live-source-line .meta-ua, .live-source-line .meta-ua-null { color: #5a6f88; font-style: normal; font-weight: 400; }
-    .live-entry .url-line { background: #eaf2fd; border: 1px solid #d6e6fb; border-radius: 40px; padding: 6px 14px 6px 12px; margin-bottom: 6px; }
-    .live-entry .url-line .url-text { flex: 1 1 120px; word-break: break-all; overflow-wrap: break-word; }
-    .live-entry .url-line.backup-line { background: #f8fafc; border: 1px solid #eef2f7; }
-    .live-origin-module { background: #eaf2fd; border: 1px solid #d6e6fb; border-radius: 12px; padding: 10px 12px 6px; margin-bottom: 6px; }
-    .live-origin-module .live-source-line { padding: 0 2px 0 12px; margin-bottom: 6px; }
-    .live-origin-module .url-line { border: none; background: transparent; padding: 0; margin-bottom: 0; }
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
@@ -163,6 +149,8 @@
         .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
         .url-text { font-size: 0.75rem; }
         .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
+        .live-top-aggregate { padding: 14px 16px; margin-bottom: 14px; }
+        .live-top-aggregate h3 { font-size: 1rem; }
     }
 </style>
 </head>
@@ -182,30 +170,39 @@
     <div class="main-card">
         <div class="nav-tabs" id="navTabs"></div>
 
+        <!-- 点播页 -->
         <div class="tab-panel active" id="api-panel">
             <div class="api-list" id="listContainer">
                 <div class="loading" id="apiLoading">⏳ 正在加载接口列表...</div>
             </div>
         </div>
 
+        <!-- 直播页 -->
         <div class="tab-panel" id="live-panel">
-            <div class="loading" id="liveLoading">⏳ 正在加载直播源...</div>
-            <div id="liveContainer"></div>
+            <div class="live-top-aggregate">
+                <h3>海量直播聚合多线路专用接口</h3>
+                <div class="domain-line">
+                    <span>https://0.12yue.de5.net/tvbox/海量直播线路.json</span>
+                    <button class="copy-btn" data-url="https://0.12yue.de5.net/tvbox/海量直播线路.json">复制</button>
+                </div>
+            </div>
         </div>
 
+        <!-- 下载页 -->
         <div class="tab-panel" id="download-panel">
             <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
         </div>
 
+        <!-- 关于页 -->
         <div class="tab-panel" id="about-panel">
-            <div class="about-inner" style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
+            <div style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
                 <h3 style="font-size:0.92rem;font-weight:600;color:#0b1e33;margin-bottom:8px;">🌐 备份线路域名</h3>
                 <p style="margin-bottom:6px;font-size:0.76rem;color:#5a6f88;">三个域名互为备份，任一个可用：</p>
-                <div class="domain-line" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;margin-top:6px;"><span style="flex:1;font-size:0.75rem;color:#2563eb;">https://0.12yue.de5.net</span><button class="copy-btn" data-url="https://0.12yue.de5.net">复制</button></div>
-                <div class="domain-line" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;margin-top:6px;"><span style="flex:1;font-size:0.75rem;color:#2563eb;">https://0.cdz.qzz.io</span><button class="copy-btn" data-url="https://0.cdz.qzz.io">复制</button></div>
-                <div class="domain-line" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;margin-top:6px;"><span style="flex:1;font-size:0.75rem;color:#2563eb;">https://0.wdzb.eu.cc</span><button class="copy-btn" data-url="https://0.wdzb.eu.cc">复制</button></div>
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;margin-top:6px;"><span style="flex:1;font-size:0.75rem;color:#2563eb;">https://0.12yue.de5.net</span><button class="copy-btn" data-url="https://0.12yue.de5.net">复制</button></div>
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;margin-top:6px;"><span style="flex:1;font-size:0.75rem;color:#2563eb;">https://0.cdz.qzz.io</span><button class="copy-btn" data-url="https://0.cdz.qzz.io">复制</button></div>
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:40px;border:1px solid #e0e6ed;margin-top:6px;"><span style="flex:1;font-size:0.75rem;color:#2563eb;">https://0.wdzb.eu.cc</span><button class="copy-btn" data-url="https://0.wdzb.eu.cc">复制</button></div>
             </div>
-            <div class="about-inner" style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
+            <div style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
                 <h3 style="font-size:0.92rem;font-weight:600;color:#0b1e33;margin-bottom:8px;">📢 声明与联系</h3>
                 <ul style="padding-left:16px;"><li style="font-size:0.76rem;color:#5a6f88;line-height:1.6;">本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。</li></ul>
                 <p style="margin-top:10px;font-size:0.76rem;color:#5a6f88;">QQ 交流群：<strong style="color:#4a9eff;">1067685939</strong></p>
@@ -239,16 +236,6 @@
 
     const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
 
-    const LIVE_DOMAINS = [
-        { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/live/" },
-        { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/live/" },
-        { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/live/" }
-    ];
-    const LIVE_AGGREGATE = {
-        name: "海量直播聚合多线路专用接口",
-        url: "https://0.12yue.de5.net/tvbox/海量直播线路.json"
-    };
-
     let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
     document.body.className = currentMode + '-mode';
     updateBtnText();
@@ -256,9 +243,11 @@
 
     let DOWNLOAD_SOURCES = [];
     let topSeed = Date.now();
+    // lastTopName 保留但仅用于标记，不再用于跳过逻辑
     let lastTopName = null;
+    // 标记是否需要强制刷新第一条
+    let needRefreshTop = false;
 
-    // ✅ 修复：不再跳过 lastTopName，直接按 seed 选
     function getTopItem(rotateItems) {
         if (!rotateItems.length) return null;
         if (rotateItems.length === 1) return rotateItems[0];
@@ -347,6 +336,7 @@
                 const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
                 const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
                 const topItem = getTopItem(rotateItems);
+
                 if (topItem) {
                     topItem.weight = Number.MIN_SAFE_INTEGER;
                     lastTopName = topItem.name;
@@ -354,7 +344,7 @@
                 items.sort((a, b) => a.weight - b.weight);
 
                 let html = '';
-                items.forEach(it => {
+                items.forEach((it, index) => {
                     const isNew = isRecent(it.date);
                     const cls = isNew ? 'badge-new' : 'badge-old';
                     const jsonName = ensureJson(it.file);
@@ -366,7 +356,10 @@
                         const url = d.base + jsonName;
                         linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
                     });
-                    html += `<div class="entry" data-name="${it.name.toLowerCase()}">
+                    // 第一条加 fresh-top 类触发动画
+                    const isFirst = index === 0;
+                    const freshClass = (isFirst && needRefreshTop) ? ' fresh-top' : '';
+                    html += `<div class="entry${freshClass}" data-name="${it.name.toLowerCase()}">
                         <div class="entry-header">
                             <div class="entry-name" title="${it.name}">${it.name}</div>
                             <div class="entry-meta-inline">
@@ -380,75 +373,21 @@
 
                 container.innerHTML = html;
                 bindCopy(container);
+
+                // 动画播完后移除 class，下次可再次触发
+                if (needRefreshTop) {
+                    needRefreshTop = false;
+                    const firstEntry = container.querySelector('.entry.fresh-top');
+                    if (firstEntry) {
+                        setTimeout(() => { firstEntry.classList.remove('fresh-top'); }, 600);
+                    }
+                }
             })
             .catch(err => {
                 const loadingTip = document.getElementById('apiLoading');
                 if (loadingTip) loadingTip.style.display = 'none';
                 container.innerHTML = `<div class="error-msg">❌ 接口加载失败：${err}</div>`;
             });
-    }
-
-    async function renderLive() {
-        const container = document.getElementById('liveContainer');
-        const loadingTip = document.getElementById('liveLoading');
-        if (loadingTip) loadingTip.style.display = 'none';
-
-        try {
-            const res = await fetch('livelist.txt?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            const text = await res.text();
-
-            let html = `<div class="live-top-aggregate">
-                <h3>${LIVE_AGGREGATE.name}</h3>
-                <div class="domain-line"><span>${LIVE_AGGREGATE.url}</span><button class="copy-btn" data-url="${LIVE_AGGREGATE.url}">复制</button></div>
-            </div>`;
-
-            const lines = text.trim().split('\n').filter(l => l.trim());
-            html += '<div class="api-list">';
-
-            lines.forEach(line => {
-                const parts = line.split('|').map(s => s.trim());
-                const fileName = parts[0] || '';
-                const date = parts[1] || '';
-                const size = parts[2] || '';
-                const rawUrl = parts[3] || '';
-                const source = parts[4] || '';
-                const ua = parts[5] || '';
-                const displayName = fileName.replace(/\.[^.]+$/i, '');
-                const isNew = isRecent(date);
-                const cls = isNew ? 'badge-new' : 'badge-old';
-
-                let sourceLine = '';
-                if (source || ua) {
-                    const uaPart = ua ? `<span class="meta-ua">ua: ${ua}</span>` : `<span class="meta-ua-null">ua: null</span>`;
-                    sourceLine = `<div class="live-source-line"><span class="meta-source">${source}</span>${uaPart}</div>`;
-                }
-                let originLine = '';
-                if (rawUrl) {
-                    originLine = `<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${rawUrl}</span><button class="copy-btn" data-url="${rawUrl}">复制</button></div>`;
-                }
-                let combinedOriginModule = '';
-                if (sourceLine || originLine) {
-                    combinedOriginModule = `<div class="live-origin-module">${sourceLine}${originLine}</div>`;
-                }
-                const backupLines = LIVE_DOMAINS.map(d => {
-                    const url = d.base + fileName;
-                    return `<div class="url-line backup-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
-                }).join('');
-
-                html += `<div class="live-entry" data-name="${displayName.toLowerCase()}">
-                    <div class="entry-header"><div class="entry-name" title="${displayName}">${displayName}</div>
-                    <div class="entry-meta-inline"><span class="${cls}">备份时间 ${formatDateToChinese(date)}</span>${size ? '&nbsp;&nbsp;' + size : ''}</div></div>
-                    ${combinedOriginModule}${backupLines}
-                </div>`;
-            });
-
-            html += '</div>';
-            container.innerHTML = html;
-            bindCopy(container);
-        } catch (err) {
-            container.innerHTML = `<div class="error-msg">❌ 直播源加载失败：${err}</div>`;
-        }
     }
 
     async function renderDownloads(force) {
@@ -515,13 +454,13 @@
         });
     }
 
-    // ✅ 修复：lastTab 初始为空，api 页无条件渲染
-    let lastTab = '';
-
     function showPanel(tabId) {
-        if (tabId === 'api') renderApi();
-        if (tabId === 'live' && lastTab !== 'live') renderLive();
-        lastTab = tabId;
+        // ★ 关键修复2：每次进入点播页都更新 topSeed + 标记刷新
+        if (tabId === 'api') {
+            topSeed = Date.now() + Math.random();
+            needRefreshTop = true;
+            renderApi();
+        }
 
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
@@ -537,10 +476,6 @@
     function globalSearch() {
         const kw = (searchBox.value || '').toLowerCase().trim();
         document.querySelectorAll('#api-panel .entry').forEach(e => {
-            const name = e.getAttribute('data-name') || '';
-            e.classList.toggle('hidden', !name.includes(kw));
-        });
-        document.querySelectorAll('#live-panel .live-entry').forEach(e => {
             const name = e.getAttribute('data-name') || '';
             e.classList.toggle('hidden', !name.includes(kw));
         });
@@ -564,10 +499,10 @@
         btn.innerHTML = currentMode === 'simple' ? '切换<br>全能版' : '切换<br>简洁版';
     }
 
-    // ✅ 修复：每次点击生成新 seed，无条件触发 renderApi
     btn.addEventListener('click', () => {
+        // ★ 关键修复1：每次点击切换按钮都更新 seed + 标记刷新
         topSeed = Date.now() + Math.random();
-        lastTopName = null;
+        needRefreshTop = true;
 
         currentMode = (currentMode === 'simple') ? 'full' : 'simple';
         localStorage.setItem(MODE_KEY, currentMode);
@@ -578,6 +513,7 @@
         if (currentMode !== 'simple') {
             showPanel('api');
         } else {
+            // 简洁模式直接渲染，也会走 needRefreshTop 逻辑
             renderApi();
         }
     });
@@ -587,6 +523,7 @@
     loadDownloadConfig().then(() => {
         if (currentMode !== 'simple') renderDownloads();
     });
+    bindCopy(document.getElementById('live-panel'));
 </script>
 </body>
 </html>
