@@ -9,14 +9,9 @@
 4. 聚合索引 -> tvbox/海量直播线路.json
 5. 合并生成仓库根 livelist.txt（旧记录保留、本次成功记录覆盖、仅更新时间变动）
 
-livelist.txt 位置约定：仓库根目录（REPO_ROOT / "livelist.txt"）。
 livelist.txt 行格式：真实播放列表文件名(带后缀)|日期|大小|原始url|来源|ua|
-  例：驸马影视电信专线.m3u|20260913|17.0K|http://fmys.top/lib/live.m3u|驸马|null|
-  第一列 = 最终真实播放列表文件的文件名（含真实后缀，如 .m3u/.txt），
-           取自成功下载到的那个文件，而非套壳 URL 的后缀；
-  url 项 = 原始套壳地址（全程不变）；
-  来源项 = 对应接口文件名去后缀（集多.json -> 集多）；
-  ua 非空时为UA值，为空时固定输出 null。
+  livelist 第一列 = 最终真正下载到播放列表内容的文件名（带后缀），
+           基于最终URL（非套壳URL）决定后缀。
 """
 
 import ipaddress
@@ -45,11 +40,11 @@ TVBOX_HEADERS = {
 }
 
 # ---------- 路径配置 ----------
-REPO_ROOT = Path(__file__).resolve().parent.parent   # 仓库根目录
-SCAN_DIR = REPO_ROOT / "tvbox"                      # 接口 JSON 扫描目录
-OUTPUT_LIVE_DIR = SCAN_DIR / "live"                 # 直播源输出目录
-AGGREGATE_JSON = SCAN_DIR / "海量直播线路.json"      # 聚合索引文件
-LIVELIST_PATH = REPO_ROOT / "livelist.txt"          # 根目录 livelist
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SCAN_DIR = REPO_ROOT / "tvbox"
+OUTPUT_LIVE_DIR = SCAN_DIR / "live"
+AGGREGATE_JSON = SCAN_DIR / "海量直播线路.json"
+LIVELIST_PATH = REPO_ROOT / "livelist.txt"
 
 IGNORE_URL_KEYWORDS = [
     "127.0.0.1", "localhost", "example.com",
@@ -63,7 +58,6 @@ DEBUG = False
 
 
 def is_private_host(url):
-    """精确判定私有/回环/链路本地地址（公网 IP 不过滤，如 124.x）。"""
     try:
         host = urlparse(url.strip()).hostname or ""
         ip = ipaddress.ip_address(host)
@@ -72,7 +66,6 @@ def is_private_host(url):
         return False
 
 
-# ---------- 工具函数 ----------
 def normalize_url(url):
     try:
         p = urlparse(url.strip())
@@ -117,7 +110,6 @@ def get_unique_name(base, used):
 
 # ---------- 核心步骤 ----------
 def scan_and_extract_lives():
-    """扫描 tvbox/ 下所有 JSON，提取有效 live 条目（type=0）。"""
     print("\n[1/4] scan interface files, extract lives ...")
     all_lives = []
     used_urls = set()
@@ -169,7 +161,6 @@ def scan_and_extract_lives():
 
 
 def aggregate_lives(lives):
-    """命名 + 生成聚合索引 tvbox/海量直播线路.json。"""
     print("\n[2/4] aggregate & name ...")
     used_names = set()
     aggregated = []
@@ -192,7 +183,6 @@ def aggregate_lives(lives):
 
 
 def _fetch(url, ua):
-    """带重试的通用 GET，返回 bytes；失败抛异常。"""
     headers = dict(TVBOX_HEADERS)
     headers["User-Agent"] = (
         ua.strip() if ua and isinstance(ua, str) and ua.strip()
@@ -205,7 +195,6 @@ def _fetch(url, ua):
 
 
 def parse_playlist_urls(text):
-    """从下载文本里提取播放列表条目 URL。"""
     urls = []
     seen = set()
     for raw in re.findall(r"https?://\S+", text):
@@ -220,12 +209,11 @@ def parse_playlist_urls(text):
 
 
 def filename_from_url(url):
-    """从 URL 取「文件名（含后缀）」，无文件名时返回空串。"""
     return Path(urlparse(url).path).name
 
 
 def real_playlist_name(base_name, final_url):
-    """由最终真实播放列表 URL 决定接口名（接口名 + 真实后缀）。无后缀补 .txt。"""
+    """由最终真实播放列表 URL 决定接口名+后缀。无后缀补 .txt。"""
     fname = filename_from_url(final_url)
     stem = Path(fname).stem
     suffix = Path(fname).suffix
@@ -235,20 +223,24 @@ def real_playlist_name(base_name, final_url):
 
 
 def sanitize_filename(name):
-    """文件名强净化：仅保留中文、英文字母、数字，杜绝特殊符号和emoji。"""
+    """文件名强净化：仅保留中文、英文字母、数字。"""
     name = re.sub(r'[^\u4e00-\u9fa5a-zA-Z0-9]', '', name)
     return name.strip() or "live"
 
 
 def _ensure_suffix(name):
-    """确保文件名有后缀，没有就补 .txt"""
+    """确保有后缀，没有补 .txt"""
     if Path(name).suffix:
         return name
     return name + ".txt"
 
 
 def download_live_source(live, _chain=None):
-    """下载单个直播源 -> tvbox/live/{最终文件名}.m3u + .txt。"""
+    """下载单个直播源。返回值：(ok, size, final_name, final_url)
+
+    final_name: 最终真实播放列表的文件名（带后缀）
+    final_url:  最终真正下载到播放列表内容的 URL（非套壳）
+    """
     name = live["name"]
     orig_url = live["url"]
     ua = live.get("ua", "")
@@ -256,6 +248,7 @@ def download_live_source(live, _chain=None):
 
     target = orig_url if not _chain else _chain[-1]
     final_name = ""
+    final_url = target
 
     for retry in range(MAX_RETRIES):
         try:
@@ -266,14 +259,15 @@ def download_live_source(live, _chain=None):
                 import traceback
                 traceback.print_exc()
             if retry == MAX_RETRIES - 1:
-                return False, 0, final_name
+                return False, 0, final_name, final_url
             time.sleep(1)
     else:
-        return False, 0, final_name
+        return False, 0, final_name, final_url
 
     text = content.decode("utf-8", errors="replace")
     urls = parse_playlist_urls(text)
 
+    # 仅1条URL -> 套壳展开
     if len(urls) == 1 and urls[0] != orig_url and urls[0] not in _chain:
         if DEBUG:
             print(f"      [unwrap] {target} -> {urls[0]}")
@@ -282,17 +276,15 @@ def download_live_source(live, _chain=None):
             if DEBUG:
                 print(f"      [unwrap] max depth reached, stop")
         else:
-            ok, size, sub_name = download_live_source(
+            ok, size, sub_name, sub_url = download_live_source(
                 {"name": name, "url": orig_url, "ua": ua}, new_chain)
-            if ok and sub_name:
-                return ok, size, sub_name
             if ok:
-                final_name = real_playlist_name(name, target)
-                return ok, size, final_name
-            return ok, size, final_name
+                return ok, size, sub_name, sub_url
 
+    # 走到这里说明当前层就是最终有播放列表内容的一层
     size = len(content)
-    final_name = real_playlist_name(name, target)
+    final_url = target
+    final_name = real_playlist_name(name, final_url)
     safe = sanitize_filename(final_name)
     safe = _ensure_suffix(safe)
     with open(OUTPUT_LIVE_DIR / safe, "wb") as f:
@@ -303,7 +295,8 @@ def download_live_source(live, _chain=None):
     txt_name = Path(safe).stem + ".txt"
     with open(OUTPUT_LIVE_DIR / txt_name, "w", encoding="utf-8") as f:
         f.write(orig_url + "\n")
-    return True, size, final_name
+
+    return True, size, final_name, final_url
 
 
 def download_all_lives(lives):
@@ -312,8 +305,8 @@ def download_all_lives(lives):
     results = {}
     fail = []
     for idx, live in enumerate(lives, 1):
-        ok, size, final_name = download_live_source(live)
-        results[live["name"]] = (ok, size, final_name or live["name"])
+        ok, size, final_name, final_url = download_live_source(live)
+        results[live["name"]] = (ok, size, final_name or live["name"], final_url)
         print(f"  [{idx}/{len(lives)}] {live['name']} {'ok' if ok else 'FAIL'} ({format_file_size(size)})")
         if not ok:
             fail.append(live["name"])
@@ -324,7 +317,7 @@ def download_all_lives(lives):
 
 
 def generate_livelist(lives, results):
-    """合并新旧记录，写入仓库根 livelist.txt。新记录覆盖旧记录。"""
+    """合并新旧记录，写入仓库根 livelist.txt。"""
     print("\n[4/4] generate/merge livelist.txt ...")
 
     old_records = {}
@@ -341,12 +334,15 @@ def generate_livelist(lives, results):
         name = live["name"]
         if name not in results or not results[name][0]:
             continue
-        _, size, final_name = results[name]
+        _, size, final_name, final_url = results[name]
         source = Path(live['source']).stem
         ua = (live.get("ua") or "").strip()
         ua_field = ua if ua else "null"
+
+        # 文件名基于最终URL决定，确保带真实后缀
         entry_name = sanitize_filename(final_name)
         entry_name = _ensure_suffix(entry_name)
+
         line = f"{entry_name}|{TODAY}|{format_file_size(size)}|{live['url']}|{source}|{ua_field}|"
         new_records[entry_name] = (name, line)
 
@@ -373,7 +369,7 @@ def main():
     import argparse
     ap = argparse.ArgumentParser(description="TVBox 直播源聚合器")
     ap.add_argument("--debug", action="store_true", help="输出详细调试日志")
-    ap.add_argument("--force", action="store_true", help="强制执行（工作流手动触发时使用）")
+    ap.add_argument("--force", action="store_true", help="强制执行")
     args = ap.parse_args()
     global DEBUG
     DEBUG = args.debug
