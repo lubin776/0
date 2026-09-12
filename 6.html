@@ -153,7 +153,7 @@
     .live-badge-old { color: #b88b3a; }
     .live-urls { display: block; }
 
-    /* ✅ 直播URL行 - 调整对齐 */
+    /* ✅ 直播URL行（大胶囊） */
     .live-url-line {
         padding: 8px 12px 8px 10px; margin-bottom: 6px;
         background: #f8fafc; border-radius: 40px; border: 1px solid #eef2f7;
@@ -161,21 +161,14 @@
     }
     .live-url-line:last-child { margin-bottom: 0; }
 
-    /* ✅ 来源+UA 信息行 */
-    .live-info-row {
-        display: flex; align-items: center; gap: 12px;
-        margin-bottom: 4px; padding: 0 4px;
-    }
-    .live-info-source {
+    /* ✅ 来源+UA 在大胶囊内、标签上方 */
+    .live-info-inline {
+        width: 100%;
+        display: flex; align-items: center; gap: 6px;
+        padding: 0 4px 4px 4px;
         font-size: 0.68rem; color: #8b9eb0; line-height: 1.4;
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        flex: 1; min-width: 0;
     }
-    .live-info-ua {
-        font-size: 0.68rem; color: #8b9eb0; line-height: 1.4;
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        flex: 1; min-width: 0; text-align: right;
-    }
+    .live-info-inline .sep { color: #b0bec5; flex-shrink: 0; }
 
     .live-url-tag {
         font-size: 0.7rem; font-weight: 500; color: #4a6a8a;
@@ -207,8 +200,7 @@
         .live-url-line { padding: 4px 8px; gap: 4px 6px; }
         .live-url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
         .live-url-text { font-size: 0.75rem; }
-        .live-info-row { gap: 8px; }
-        .live-info-source, .live-info-ua { font-size: 0.62rem; }
+        .live-info-inline { font-size: 0.62rem; }
     }
 </style>
 </head>
@@ -412,7 +404,6 @@
             items.forEach((it, index) => {
                 const isNew = isRecent(it.date);
                 const cls = isNew ? 'badge-new' : 'badge-old';
-                const jsonName = ensureJson(it.file);
                 let linesHtml = '';
                 if (it.origUrl) {
                     linesHtml += `<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
@@ -470,8 +461,8 @@
                 date: parts[1] || '',
                 size: parts[2] || '',
                 origUrl: parts[3] || '',
-                source: parts[4] || '',   // 第5列：来源
-                ua: parts[5] || ''        // 第6列：UA
+                source: parts[4] || '',
+                ua: parts[5] || ''
             };
         });
     }
@@ -499,13 +490,13 @@
 
                 let urlsHtml = '';
                 if (it.origUrl) {
-                    // ✅ 来源和UA并排，在URL上方
+                    // ✅ 来源+UA 在大胶囊内、原始线路标签上方
                     urlsHtml += `
-                    <div class="live-info-row">
-                        <span class="live-info-source">来源：${it.source || '未知'}</span>
-                        ${it.ua ? `<span class="live-info-ua">UA：${it.ua}</span>` : ''}
-                    </div>
                     <div class="live-url-line">
+                        <div class="live-info-inline">
+                            <span>来源：${it.source || '未知'}</span>
+                            ${it.ua ? `<span class="sep">|</span><span>UA：${it.ua}</span>` : ''}
+                        </div>
                         <span class="live-url-tag">原始线路</span>
                         <span class="live-url-text">${it.origUrl}</span>
                         <button class="copy-btn" data-url="${it.origUrl}">复制</button>
