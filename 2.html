@@ -98,7 +98,7 @@
     }
     .entry-meta-inline {
         margin-left: auto; display: flex; align-items: center;
-        gap: 10px; font-size: 0.75rem; color: #5a6f88;
+        gap: 10px; font-size: 0.75rem;
         white-space: nowrap; flex-shrink: 0;
     }
     .badge-new { color: #1b9e5a; } .badge-old { color: #b88b3a; }
@@ -172,7 +172,7 @@
     body.simple-mode #live-panel { display: none !important; }
     body.simple-mode #api-panel { display: block !important; }
 
-    /* ===================== 直播页专属样式 ===================== */
+    /* ===================== 直播页专属样式（已修改：单行整合） ===================== */
     .live-top-aggregate {
         background: linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
         border-radius: 16px;
@@ -217,20 +217,43 @@
         border-bottom: 1px solid #f0f4fa;
     }
     .live-entry:last-child { border-bottom: none; }
+
+    /* ✅ 核心修改：标题行整合（名称 + 备份时间 + 大小） */
+    .live-entry-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        min-height: 24px;
+    }
     .live-entry-name {
         font-size: 1.05rem;
         font-weight: 600;
         color: #0b1e33;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        /* 限制名称宽度，最多半行，超长省略 */
+        max-width: 50%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-shrink: 0;
     }
     .live-entry-name::before {
         content: "▶";
         color: #ff4757;
         font-size: 0.8rem;
+        margin-right: 8px;
     }
+    .live-entry-meta {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    /* ========================================================= */
+
     .live-entry-row {
         display: flex;
         align-items: center;
@@ -256,7 +279,6 @@
         flex: 1;
         min-width: 0;
     }
-    /* ========================================================= */
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
@@ -280,7 +302,9 @@
         .live-top-aggregate { padding: 14px 16px; margin-bottom: 14px; }
         .live-top-aggregate h3 { font-size: 1rem; }
         .live-entry { padding: 12px 0; }
-        .live-entry-name { font-size: 1rem; }
+        .live-entry-header { gap: 6px; }
+        .live-entry-name { font-size: 0.95rem; max-width: 45%; }
+        .live-entry-meta { gap: 6px; font-size: 0.7rem; }
         .live-entry-row { padding: 6px 10px; flex-wrap: wrap; }
         .live-entry-info { font-size: 0.7rem; }
         .live-entry-url { font-size: 0.78rem; }
@@ -460,6 +484,8 @@
         if (!d || d.length !== 8) return '----';
         return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
     }
+    
+    // ✅ 时间判断逻辑（点播与直播共用）
     function isRecent(d) {
         if (!d || d.length !== 8) return false;
         const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
@@ -520,7 +546,7 @@
             });
     }
 
-    // ===================== 直播页渲染逻辑（核心修改点） =====================
+    // ===================== 直播页渲染逻辑（已修改：单行整合 + 名称限宽） =====================
     async function renderLive() {
         const container = document.getElementById('liveContainer');
         const loadingTip = document.getElementById('liveLoading');
@@ -531,7 +557,7 @@
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const text = await res.text();
 
-            // 1. 渲染置顶聚合模块（无编码，直接显示中文）
+            // 1. 渲染置顶聚合模块
             let html = `<div class="live-top-aggregate">
                 <h3>${LIVE_AGGREGATE.name}</h3>
                 <div class="domain-line">
@@ -540,7 +566,7 @@
                 </div>
             </div>`;
 
-            // 2. 解析并渲染列表（6字段：名称|日期|大小|URL|来源|UA）
+            // 2. 解析并渲染列表
             const lines = text.trim().split('\n').filter(l => l.trim());
             html += '<div class="api-list">';
 
@@ -557,18 +583,21 @@
                 // 省略文件名后缀（如 .m3u/.txt/.php），和点播页逻辑一致
                 const displayName = fileName.replace(/\.[^.]+$/i, '');
                 
-                // ✅ 核心修改：备份线路URL直接拼接中文名称，完全禁用encodeURIComponent
-                const fullUrl = rawUrl.startsWith('http') ? rawUrl : (LIVE_DOMAINS[0].base + displayName);
+                // ✅ 色调逻辑（2天内绿色，更早橙色）
+                const isNew = isRecent(date);
+                const cls = isNew ? 'badge-new' : 'badge-old';
 
                 html += `<div class="live-entry" data-name="${displayName.toLowerCase()}">
-                    <div class="live-entry-name" title="${displayName}">${displayName}</div>
-                    
-                    <!-- 上行：日期+大小（和点播页meta结构一致） -->
-                    <div class="live-entry-row">
-                        <span class="live-entry-info" style="margin-left: auto;">📅 ${formatDateToChinese(date)} ${size}</span>
+                    <!-- ✅ 核心修改：名称 + 备份时间 + 大小 整合到一行 -->
+                    <div class="live-entry-header">
+                        <div class="live-entry-name" title="${displayName}">${displayName}</div>
+                        <div class="live-entry-meta">
+                            <span class="${cls}">备份时间 ${formatDateToChinese(date)}</span>
+                            ${size ? `<span class="live-entry-info">${size}</span>` : ''}
+                        </div>
                     </div>
                     
-                    <!-- 原始线路模块：包含来源、UA、原始URL（直播多出的2个字段放在这里） -->
+                    <!-- 原始线路模块：包含来源、UA、原始URL -->
                     <div class="live-entry-row">
                         <span class="live-entry-info">📁 ${source}</span>
                         ${ua ? `<span class="live-entry-info">🤖 ${ua}</span>` : ''}
@@ -578,9 +607,8 @@
                         <button class="copy-btn" data-url="${rawUrl}">复制</button>
                     </div>
                     
-                    <!-- 备份线路模块：和点播页结构完全一致，仅路径多了/live/ -->
+                    <!-- 备份线路模块：直接拼接中文名称，无编码 -->
                     ${LIVE_DOMAINS.map(d => {
-                        // ✅ 核心修改：直接拼接中文名称，无编码
                         const url = d.base + displayName;
                         return `<div class="live-entry-row">
                             <span class="url-tag">${d.tag}</span>
@@ -651,7 +679,6 @@
     function renderAbout() { bindCopy(document.getElementById('about-panel')); }
 
     function renderTabs() {
-        // 导航栏：接口→点播，新增直播页
         const tabsData = [
             { id: "api", label: "点播", hideSearch: false },
             { id: "live", label: "直播", hideSearch: false },
@@ -694,17 +721,14 @@
 
     function globalSearch() {
         const kw = (searchBox.value || '').toLowerCase().trim();
-        // 点播页搜索
         document.querySelectorAll('#api-panel .entry').forEach(e => {
             const name = e.getAttribute('data-name') || '';
             e.classList.toggle('hidden', !name.includes(kw));
         });
-        // 直播页搜索
         document.querySelectorAll('#live-panel .live-entry').forEach(e => {
             const name = e.getAttribute('data-name') || '';
             e.classList.toggle('hidden', !name.includes(kw));
         });
-        // 下载页搜索
         if (currentMode !== 'simple') {
             document.querySelectorAll('.download-card').forEach(c => {
                 const name = c.getAttribute('data-name') || '';
@@ -741,7 +765,6 @@
         }
     });
 
-    // 初始化
     const tabsData = [
         { id: "api", label: "点播", hideSearch: false },
         { id: "live", label: "直播", hideSearch: false },
