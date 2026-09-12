@@ -2,254 +2,277 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>海量接口搬运备份</title>
 <style>
-/* 基础重置与变量 */
-:root {
-  --primary: #1e88e5;
-  --bg: #f5f7fa;
-  --card: #fff;
-  --text: #333;
-  --meta: #888;
-  --border: #e0e0e0;
-  --new: #4caf50;
-  --old: #9e9e9e;
-  --origin-bg: #e3f2fd;
-  --module-bg: #f0f7ff;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
-.main-card { max-width: 800px; margin: 0 auto; padding: 10px; }
-body.full-mode .main-card { padding-bottom: 60px; }
-
-/* 头部 */
-.header { text-align: center; margin: 15px 0; position: relative; }
-.header h1 { font-size: 22px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.sub-text { color: var(--meta); font-size: 14px; margin-top: 5px; }
-.mode-btn { position: absolute; left: 0; top: 0; border: 1px solid var(--primary); color: var(--primary); background: #fff; border-radius: 8px; padding: 5px 10px; font-size: 13px; cursor: pointer; }
-
-/* 导航 */
-#navTabs { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
-.nav-tab { border: 1px solid var(--primary); background: #fff; color: var(--primary); padding: 6px 20px; border-radius: 20px; cursor: pointer; font-size: 15px; }
-.nav-tab.active { background: var(--primary); color: #fff; }
-
-/* 搜索 */
-#searchBox { width: 100%; padding: 10px 15px; border: 1px solid #ccc; border-radius: 25px; margin: 10px 0 15px; font-size: 15px; outline: none; display: block; }
-
-/* 聚合块 */
-.live-top-aggregate { background: linear-gradient(135deg, #1976d2, #2196f3); color: #fff; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
-.live-top-aggregate h3 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.domain-line { display: flex; align-items: center; background: rgba(255,255,255,0.15); padding: 8px 12px; border-radius: 8px; gap: 10px; }
-.domain-line span { flex: 1; word-break: break-all; font-size: 14px; }
-.copy-btn { background: #fff; color: var(--primary); border: none; padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 13px; white-space: nowrap; }
-
-/* 条目卡片 (点播与直播通用) */
-.entry, .live-entry { background: var(--card); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-.entry-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 10px; }
-.entry-name { font-size: 18px; font-weight: bold; }
-.entry-meta-inline { font-size: 13px; color: var(--meta); white-space: nowrap; text-align: right; }
-.badge-new { color: var(--new); }
-.badge-old { color: var(--old); }
-
-/* 圈住的整体模块：来源UA + 原始线路 */
-.origin-module {
-  background: var(--module-bg);
-  border: 1px solid #bbdefb;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-.live-source-line { font-size: 14px; color: #444; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #bbdefb; word-break: break-all; }
-.meta-source { font-weight: bold; margin-right: 8px; }
-.meta-ua { color: #555; }
-.meta-ua-null { color: #999; }
-.url-line { display: flex; align-items: center; gap: 8px; padding: 6px 0; flex-wrap: wrap; }
-.url-tag { background: #e3f2fd; color: #1976d2; padding: 3px 8px; border-radius: 6px; font-size: 13px; white-space: nowrap; }
-.primary-line .url-tag { background: #1976d2; color: #fff; }
-.url-text { flex: 1; color: var(--primary); word-break: break-all; font-size: 14px; min-width: 0; }
-.url-line .copy-btn { padding: 3px 10px; font-size: 12px; }
-.backup-line .url-tag { background: #f5f5f5; color: #666; }
-
-/* 下载与关于 */
-.source-section { margin-bottom: 20px; }
-.source-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 10px; }
-.download-card { display: flex; align-items: center; padding: 10px; border: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: inherit; background: #fff; }
-.card-icon { width: 32px; height: 32px; margin-right: 8px; }
-.card-name { font-weight: bold; font-size: 14px; }
-.card-version { font-size: 12px; color: var(--meta); }
-.hidden { display: none !important; }
-.loading, .error-msg { text-align: center; padding: 20px; color: var(--meta); }
+    /* 基础重置与变量 */
+    :root {
+        --primary: #409eff;
+        --bg: #f5f7fa;
+        --card-bg: #fff;
+        --border: #e9ecef;
+        --text-main: #333;
+        --text-sub: #555;
+    }
+    body {
+        margin: 0; padding: 0; background: var(--bg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-main); font-size: 14px;
+    }
+    .main-card { background: var(--card-bg); margin: 10px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); padding: 15px; }
+    .header { text-align: center; margin-bottom: 15px; }
+    .header h1 { font-size: 22px; margin: 0 0 5px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .header p { margin: 0; color: #999; font-size: 13px; }
+    
+    /* 导航与搜索 */
+    .nav-tabs { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+    .nav-tab {
+        padding: 6px 20px; border: 1px solid var(--primary); background: #fff; color: var(--primary);
+        border-radius: 20px; cursor: pointer; font-size: 14px; transition: all 0.2s;
+    }
+    .nav-tab.active { background: var(--primary); color: #fff; }
+    .search-box {
+        width: 100%; box-sizing: border-box; padding: 8px 15px; border: 1px solid #dcdfe6;
+        border-radius: 20px; margin: 10px 0; outline: none; font-size: 14px;
+        background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E") no-repeat 10px center;
+        padding-left: 35px;
+    }
+    .toggle-btn {
+        position: fixed; top: 15px; left: 15px; z-index: 100;
+        padding: 5px 10px; border: 1px solid var(--primary); background: #fff; color: var(--primary);
+        border-radius: 8px; cursor: pointer; font-size: 12px;
+    }
+    
+    /* 顶部聚合接口 */
+    .top-api {
+        background: linear-gradient(135deg, #409eff, #66b1ff); color: #fff;
+        border-radius: 16px; padding: 15px; margin-bottom: 20px;
+    }
+    .top-api-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; }
+    .top-api-url {
+        background: rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px;
+        display: flex; align-items: center; gap: 10px;
+    }
+    .top-api-url span { flex: 1; word-break: break-all; font-size: 14px; }
+    
+    /* 列表项 */
+    .live-entry {
+        background: #f8f9fa; border: 1px solid var(--border); border-radius: 16px;
+        padding: 12px; margin-bottom: 15px;
+    }
+    .entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .entry-name { font-size: 18px; font-weight: bold; }
+    .entry-meta-inline { font-size: 13px; color: #67c23a; text-align: right; }
+    .entry-meta-inline .size { color: #666; margin-left: 8px; }
+    
+    /* ===== 核心修正：原始线路块 ===== */
+    .live-origin-block {
+        background: #fff; border: 1px solid var(--border); border-radius: 20px;
+        padding: 0; margin-bottom: 8px; overflow: hidden;
+    }
+    /* 上半部分：标签 + UA（统一灰色背景） */
+    .origin-top {
+        background: #f4f6f8; border-radius: 20px 20px 16px 16px;
+        padding: 6px 10px; margin: 2px;
+    }
+    .live-origin-label-row { margin-bottom: 4px; }
+    .live-origin-tag {
+        background: #eef2f5; border-radius: 12px; padding: 2px 10px;
+        font-size: 13px; color: var(--text-sub); display: inline-block;
+    }
+    .live-origin-ua-row {
+        font-size: 13px; color: #444; word-break: break-all; line-height: 1.4;
+    }
+    /* 下半部分：URL + 复制 */
+    .live-origin-url-row {
+        display: flex; align-items: center; gap: 8px; padding: 6px 10px 8px;
+    }
+    .live-origin-url {
+        flex: 1 1 0; min-width: 0; word-break: break-all; color: var(--primary); line-height: 1.4; font-size: 14px;
+    }
+    
+    /* ===== 备份线路 ===== */
+    .url-line {
+        background: #fff; border: 1px solid var(--border); border-radius: 20px;
+        padding: 6px 10px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+    }
+    .url-tag {
+        background: #f4f6f8; border-radius: 12px; padding: 2px 10px;
+        font-size: 13px; color: var(--text-sub); white-space: nowrap; flex-shrink: 0;
+    }
+    .url-line .live-origin-url { /* 复用URL样式 */ }
+    
+    /* 复制按钮（强制右对齐） */
+    .copy-btn {
+        margin-left: auto; flex-shrink: 0; background: var(--primary); color: #fff;
+        border: none; border-radius: 12px; padding: 4px 12px; font-size: 12px; cursor: pointer;
+    }
+    
+    .error-msg { color: #f56c6c; text-align: center; padding: 20px; }
+    .tab-panel { display: none; } .tab-panel.active { display: block; }
 </style>
 </head>
 <body class="full-mode">
-<div class="main-card">
-  <button id="modeBtn" class="mode-btn">切换<br>简洁版</button>
-  <div class="header">
-    <h1>🌟 海量接口搬运备份</h1>
-    <div class="sub-text">备用数据源，防屏不迷路<br>QQ交流群：1067685939</div>
-  </div>
-  <div id="navTabs"></div>
-  <input type="text" id="searchBox" placeholder="🔍 搜索...">
-  
-  <div id="api-panel" class="tab-panel">
-    <div id="apiLoading" class="loading">⏳ 加载中...</div>
-    <div id="listContainer"></div>
-  </div>
-  
-  <div id="live-panel" class="tab-panel" style="display:none;">
-    <div id="liveLoading" class="loading">⏳ 加载中...</div>
-    <div id="liveContainer"></div>
-  </div>
-  
-  <div id="download-panel" class="tab-panel" style="display:none;">
-    <div id="downloads-content"></div>
-  </div>
-  
-  <div id="about-panel" class="tab-panel" style="display:none;">
-    <div class="entry"><p>关于本页</p></div>
-  </div>
+
+<button class="toggle-btn" id="modeBtn">切换<br>简洁版</button>
+
+<div class="main-card" id="mainCard">
+    <div class="header">
+        <h1>🌐 海量接口搬运备份</h1>
+        <p>备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
+    </div>
+    
+    <div class="nav-tabs" id="navTabs"></div>
+    <input type="text" class="search-box" id="searchBox" placeholder="搜索...">
+    
+    <div id="api-panel" class="tab-panel">
+        <div class="top-api">
+            <div class="top-api-title">海量直播聚合多线路专用接口</div>
+            <div class="top-api-url">
+                <span>https://0.12yue.de5.net/tvbox/海量直播线路.json</span>
+                <button class="copy-btn" data-copy="https://0.12yue.de5.net/tvbox/海量直播线路.json">复制</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="live-panel" class="tab-panel active">
+        <div id="liveContainer"></div>
+    </div>
+    
+    <div id="download-panel" class="tab-panel"><div style="text-align:center;padding:20px;color:#999">下载页</div></div>
+    <div id="about-panel" class="tab-panel"><div style="text-align:center;padding:20px;color:#999">关于页</div></div>
 </div>
 
 <script>
-const MODE_KEY = 'site_mode';
-let currentMode = localStorage.getItem(MODE_KEY) || 'full';
-document.body.className = currentMode + '-mode';
+    // 模拟数据（实际请替换为真实 fetch 数据）
+    const mockLiveData = [
+        {
+            name: "综合直播", date: "2026年09月11日", size: "41.9K",
+            originSource: "王二小二线", ua: "bingcha/1.1 (mianfeifenxiang)",
+            originUrl: "http://193.123.86.190:14888/TV/iptv.php",
+            backups: [
+                { tag: "备份一线", url: "https://0.12yue.de5.net/tvbox/live/综合直播.php" },
+                { tag: "备份二线", url: "https://0.cdz.qzz.io/tvbox/live/综合直播.php" },
+                { tag: "备份三线", url: "https://0.wdzb.eu.cc/tvbox/live/综合直播.php" }
+            ]
+        },
+        {
+            name: "Kimentanm1线", date: "2026年09月11日", size: "21.4K",
+            originSource: "王二小线", ua: "",
+            originUrl: "https://ghfast.top/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
+            backups: [
+                { tag: "备份一线", url: "https://0.12yue.de5.net/tvbox/live/Kimentanm1线.m3u" },
+                { tag: "备份二线", url: "https://0.cdz.qzz.io/tvbox/live/Kimentanm1线.m3u" }
+            ]
+        }
+    ];
 
-// 模拟配置（保留原逻辑结构）
-const ROTATE_NAMES = [];
-const API_DOMAINS = [{tag:'备份一线', base:'https://0.12yue.de5.net/tvbox/'}, {tag:'备份二线', base:'https://0.cdz.qzz.io/tvbox/'}, {tag:'备份三线', base:'https://0.wdzb.eu.cc/tvbox/'}];
-const LIVE_DOMAINS = [{tag:'备份一线', base:'https://0.12yue.de5.net/tvbox/live/'}, {tag:'备份二线', base:'https://0.cdz.qzz.io/tvbox/live/'}, {tag:'备份三线', base:'https://0.wdzb.eu.cc/tvbox/live/'}];
-const LIVE_AGGREGATE = { name: '海量直播聚合多线路专用接口', url: 'https://0.12yue.de5.net/tvbox/海量直播线路.json' };
-const DOWNLOAD_SOURCES = [];
-
-function rollTop(){ window.scrollTo(0,0); }
-function bindCopy(c){ c.querySelectorAll('.copy-btn').forEach(b=>b.onclick=()=>{ navigator.clipboard.writeText(b.dataset.url); b.textContent='已复制'; setTimeout(()=>b.textContent='复制',1000); }); });
-function formatDateToChinese(d){ return d ? d.slice(0,4)+'年'+d.slice(4,6)+'月'+d.slice(6,8)+'日' : ''; }
-function isRecent(d){ if(!d) return false; const y=parseInt(d.slice(0,4)), m=parseInt(d.slice(4,6))-1, day=parseInt(d.slice(6,8)); return (Date.now()-new Date(y,m,day).getTime())/86400000<=2; }
-function ensureJson(f){ return f; }
-
-// 点播渲染（保留原结构）
-function renderApi(forceRoll){
-  if(forceRoll) rollTop();
-  document.getElementById('apiLoading').style.display='none';
-  // 此处保留原fetch与解析逻辑，为演示直接置空
-  document.getElementById('listContainer').innerHTML = '';
-}
-
-// 直播渲染：按最新要求，圈住部分整合为 .origin-module
-async function renderLive(){
-  document.getElementById('liveLoading').style.display='none';
-  const container = document.getElementById('liveContainer');
-  let html = `<div class="live-top-aggregate">
-    <h3>📡 ${LIVE_AGGREGATE.name}</h3>
-    <div class="domain-line"><span>${LIVE_AGGREGATE.url}</span><button class="copy-btn" data-url="${LIVE_AGGREGATE.url}">复制</button></div>
-  </div>`;
-  
-  // 模拟数据（对应截图）
-  const mockLines = [
-    "综合直播|20260911|41.9K|http://193.123.86.190:14888/TV/iptv.php|王二小二线|bingcha/1.1 (mianfeifenxiang)",
-    "Kimentanm1线|20260911|21.4K|https://ghfast.top/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u|王二小线|null"
-  ];
-  
-  html += '<div class="api-list">';
-  mockLines.forEach(line=>{
-    const parts = line.split('|');
-    const fileName = parts[0], date=parts[1], size=parts[2], rawUrl=parts[3], source=parts[4], ua=parts[5];
-    const displayName = fileName;
-    const isNew = isRecent(date);
-    const cls = isNew?'badge-new':'badge-old';
-    const uaPart = ua ? `<span class="meta-ua">ua: ${ua}</span>` : `<span class="meta-ua-null">ua: null</span>`;
+    function formatDateToChinese(date) { return date; }
     
-    // 圈住的整体模块：来源UA + 原始线路
-    const originModule = `
-      <div class="origin-module">
-        <div class="live-source-line"><span class="meta-source">${source}</span>${uaPart}</div>
-        <div class="url-line primary-line">
-          <span class="url-tag">原始线路</span>
-          <span class="url-text">${rawUrl}</span>
-          <button class="copy-btn" data-url="${rawUrl}">复制</button>
-        </div>
-      </div>`;
+    function renderLive() {
+        const container = document.getElementById('liveContainer');
+        let html = '';
+        
+        mockLiveData.forEach(item => {
+            const displayName = item.name;
+            const cls = "meta-text";
+            
+            // 原始线路块（标签+UA在一个浅灰底，URL+复制在下方）
+            const originBlock = `
+            <div class="live-origin-block">
+                <div class="origin-top">
+                    <div class="live-origin-label-row">
+                        <span class="live-origin-tag">${item.originSource} 原始线路</span>
+                    </div>
+                    ${item.ua ? `<div class="live-origin-ua-row">ua: ${item.ua}</div>` : ''}
+                </div>
+                <div class="live-origin-url-row">
+                    <span class="live-origin-url">${item.originUrl}</span>
+                    <button class="copy-btn" data-copy="${item.originUrl}">复制</button>
+                </div>
+            </div>`;
+            
+            // 备份线路
+            let backupLines = item.backups.map(b => `
+            <div class="url-line">
+                <span class="url-tag">${b.tag}</span>
+                <span class="live-origin-url">${b.url}</span>
+                <button class="copy-btn" data-copy="${b.url}">复制</button>
+            </div>`).join('');
+            
+            html += `
+            <div class="live-entry" data-name="${displayName.toLowerCase()}">
+                <div class="entry-header">
+                    <div class="entry-name" title="${displayName}">${displayName}</div>
+                    <div class="entry-meta-inline">
+                        <span class="${cls}">备份时间 ${formatDateToChinese(item.date)}</span>
+                        <span class="size">${item.size}</span>
+                    </div>
+                </div>
+                ${originBlock}
+                ${backupLines}
+            </div>`;
+        });
+        
+        container.innerHTML = html;
+        bindCopy(container);
+    }
+
+    // 复制功能
+    function bindCopy(root) {
+        root.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.onclick = () => {
+                const txt = btn.getAttribute('data-copy');
+                navigator.clipboard.writeText(txt).then(() => {
+                    const old = btn.innerText; btn.innerText = '已复制';
+                    setTimeout(() => btn.innerText = old, 1500);
+                });
+            };
+        });
+    }
+
+    // 导航与模式切换（精简保持运行）
+    const tabsData = [{id:"api",label:"点播"},{id:"live",label:"直播",active:true},{id:"download",label:"下载"},{id:"about",label:"关于"}];
+    function renderTabs() {
+        const nav = document.getElementById('navTabs');
+        nav.innerHTML = tabsData.map(t => `<button class="nav-tab ${t.id==='live'?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
+        nav.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                nav.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                showPanel(this.getAttribute('data-tab'));
+            });
+        });
+    }
+    let lastTab = 'live';
+    function showPanel(tabId) {
+        if (tabId === 'live' && lastTab !== 'live') renderLive();
+        lastTab = tabId;
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById(tabId + '-panel').classList.add('active');
+        document.getElementById('searchBox').style.display = (tabId==='about'?'none':'');
+    }
     
-    // 备份线路
-    let backupLines = LIVE_DOMAINS.map(d=>{
-      const url = d.base + fileName + (fileName.endsWith('.m3u')?'':'php');
-      return `<div class="url-line backup-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
-    }).join('');
+    document.getElementById('searchBox').addEventListener('input', function() {
+        const kw = this.value.toLowerCase().trim();
+        document.querySelectorAll('#live-panel .live-entry').forEach(e => {
+            e.style.display = (e.getAttribute('data-name')||'').includes(kw) ? '' : 'none';
+        });
+    });
     
-    html += `<div class="live-entry entry" data-name="${displayName.toLowerCase()}">
-      <div class="entry-header">
-        <div class="entry-name">${displayName}</div>
-        <div class="entry-meta-inline">
-          <span class="${cls}">备份时间 ${formatDateToChinese(date)}</span>&nbsp;&nbsp;${size}
-        </div>
-      </div>
-      <div class="entry-urls">
-        ${originModule}
-        ${backupLines}
-      </div>
-    </div>`;
-  });
-  html += '</div>';
-  container.innerHTML = html;
-  bindCopy(container);
-}
+    const btn = document.getElementById('modeBtn');
+    let currentMode = 'full';
+    btn.addEventListener('click', () => {
+        currentMode = currentMode === 'simple' ? 'full' : 'simple';
+        document.body.className = currentMode + '-mode';
+        btn.innerHTML = currentMode === 'simple' ? '切换<br>全能版' : '切换<br>简洁版';
+        const sb = document.getElementById('searchBox');
+        if (currentMode === 'simple') document.body.insertBefore(sb, document.getElementById('mainCard'));
+        else document.getElementById('navTabs').insertAdjacentElement('afterend', sb);
+    });
 
-function renderDownloads(force){ document.getElementById('downloads-content').innerHTML = '<div class="loading">下载源未配置</div>'; }
-function renderAbout(){ bindCopy(document.getElementById('about-panel')); }
-
-const tabsData = [ {id:"api",label:"点播"}, {id:"live",label:"直播"}, {id:"download",label:"下载"}, {id:"about",label:"关于"} ];
-function renderTabs(){
-  const nav=document.getElementById('navTabs');
-  nav.innerHTML=tabsData.map(t=>`<button class="nav-tab ${t.id==='api'?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
-  nav.querySelectorAll('.nav-tab').forEach(tab=>{
-    tab.onclick=function(){
-      nav.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-      this.classList.add('active');
-      showPanel(this.getAttribute('data-tab'), true);
-    };
-  });
-}
-
-let lastTab='api';
-function showPanel(tabId, fromTabClick){
-  if(tabId==='api' && lastTab!=='api' && fromTabClick!==false) renderApi(true);
-  if(tabId==='live' && lastTab!=='live') renderLive();
-  lastTab=tabId;
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  const panel=document.getElementById(tabId+'-panel');
-  if(panel) panel.classList.add('active');
-  if(tabId==='download') renderDownloads();
-  if(tabId==='about') renderAbout();
-  const searchBox=document.getElementById('searchBox');
-  searchBox.style.display = (tabId==='about'?'none':'');
-}
-
-const searchBox=document.getElementById('searchBox');
-function globalSearch(){
-  const kw=(searchBox.value||'').toLowerCase().trim();
-  document.querySelectorAll('#api-panel .entry').forEach(e=>{ const n=e.getAttribute('data-name')||''; e.classList.toggle('hidden',!n.includes(kw)); });
-  document.querySelectorAll('#live-panel .live-entry').forEach(e=>{ const n=e.getAttribute('data-name')||''; e.classList.toggle('hidden',!n.includes(kw)); });
-}
-searchBox.addEventListener('input',globalSearch);
-
-const btn=document.getElementById('modeBtn');
-function updateBtnText(){ btn.innerHTML=currentMode==='simple'?'切换<br>全能版':'切换<br>简洁版'; }
-btn.onclick=()=>{
-  rollTop();
-  currentMode=(currentMode==='simple')?'full':'simple';
-  localStorage.setItem(MODE_KEY,currentMode);
-  document.body.className=currentMode+'-mode';
-  updateBtnText();
-  showPanel('api',true);
-};
-
-renderTabs();
-renderApi(false);
-showPanel('live',false); // 默认展示直播效果
-updateBtnText();
+    renderTabs();
+    renderLive();
 </script>
 </body>
 </html>
