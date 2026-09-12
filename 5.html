@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运备份5</title>
+<title>海量接口搬运备份6</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -214,13 +214,13 @@
     .live-entry:last-child { margin-bottom: 0; }
     .live-entry .entry-name::before { content: none; }
 
-    /* ✅ 来源 + UA 行 —— padding-left:24px 让文字和"原始线路"文字本身对齐 */
+    /* ✅ 来源 + UA 行 */
     .live-source-line {
         display: flex;
         align-items: center;
         gap: 10px;
         flex-wrap: wrap;
-        margin-bottom: 0;
+        margin-bottom: 8px;
         font-size: 0.78rem;
         color: #5a6f88;
         padding-left: 24px;
@@ -229,42 +229,26 @@
     .live-source-line .meta-ua,
     .live-source-line .meta-ua-null { color: #5a6f88; font-style: normal; font-weight: 400; }
 
-    /* ✅ 原始线路：标签 + URL + 复制，整个行作为同一浅蓝背景容器 */
+    /* ✅ 原始线路行 —— 去掉了胶囊容器背景/边框/圆角，只保留布局 */
     .live-entry .url-line {
-        background: #eaf2fd;
-        border: 1px solid #d6e6fb;
-        border-radius: 40px;
-        padding: 6px 14px 6px 12px;
+        padding: 0 0 0 24px;
         margin-bottom: 6px;
+        background: transparent;
+        border: none;
+        border-radius: 0;
     }
     .live-entry .url-line .url-text {
         flex: 1 1 120px;
         word-break: break-all;
         overflow-wrap: break-word;
     }
-    /* 备份线路：淡灰，与原始线路区分 */
+
+    /* 备份线路：保留原有胶囊样式 */
     .live-entry .url-line.backup-line {
         background: #f8fafc;
         border: 1px solid #eef2f7;
-    }
-
-    /* ✅ 新增：来源+UA与原始线路合并的模块容器 */
-    .live-origin-module {
-        background: #eaf2fd;
-        border: 1px solid #d6e6fb;
-        border-radius: 12px;
-        padding: 10px 12px 6px;
-        margin-bottom: 6px;
-    }
-    .live-origin-module .live-source-line {
-        padding: 0 2px 0 24px;
-        margin-bottom: 6px;
-    }
-    .live-origin-module .url-line {
-        border: none;
-        background: transparent;
-        padding: 0;
-        margin-bottom: 0;
+        border-radius: 40px;
+        padding: 5px 12px 5px 10px;
     }
 
     @media (max-width: 600px) {
@@ -290,12 +274,12 @@
         .live-top-aggregate h3 { font-size: 1rem; }
         .live-entry { padding: 12px; }
         .live-source-line { font-size: 0.72rem; gap: 8px; margin-bottom: 7px; }
-        .live-entry .url-line { padding: 5px 10px; gap: 5px 8px; }
+        .live-entry .url-line { padding: 0 0 0 24px; }
         .live-entry .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
         .live-entry .url-text { font-size: 0.75rem; }
         .live-entry .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
 
-        .live-origin-module { padding: 8px 10px 4px; }
+        .live-entry .url-line.backup-line { padding: 5px 10px; }
     }
 </style>
 </head>
@@ -564,14 +548,14 @@
                 const isNew = isRecent(date);
                 const cls = isNew ? 'badge-new' : 'badge-old';
 
-                // ✅ 来源 + UA（上行）
+                // ✅ 来源 + UA 行
                 let sourceLine = '';
                 if (source || ua) {
                     const uaPart = ua ? `<span class="meta-ua">ua: ${ua}</span>` : `<span class="meta-ua-null">ua: null</span>`;
                     sourceLine = `<div class="live-source-line"><span class="meta-source">${source}</span>${uaPart}</div>`;
                 }
 
-                // ✅ 原始线路：标签 + URL + 复制（下行）
+                // ✅ 原始线路行（无胶囊容器）
                 let originLine = '';
                 if (rawUrl) {
                     originLine = `<div class="url-line">
@@ -581,16 +565,7 @@
                     </div>`;
                 }
 
-                // ✅ 将来源+UA与原始线路合并到同一个模块容器内（上行来源UA，下行原始线路）
-                let combinedOriginModule = '';
-                if (sourceLine || originLine) {
-                    combinedOriginModule = `<div class="live-origin-module">
-                        ${sourceLine}
-                        ${originLine}
-                    </div>`;
-                }
-
-                // 备份线路（保留原始后缀）
+                // 备份线路（保留胶囊样式）
                 const backupLines = LIVE_DOMAINS.map(d => {
                     const url = d.base + fileName;
                     return `<div class="url-line backup-line">
@@ -609,7 +584,8 @@
                         </div>
                     </div>
 
-                    ${combinedOriginModule}
+                    ${sourceLine}
+                    ${originLine}
                     ${backupLines}
                 </div>`;
             });
