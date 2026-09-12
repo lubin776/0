@@ -16,13 +16,8 @@
         flex-direction: column;
     }
     .container {
-        max-width: 820px;
-        margin: 0 auto;
-        position: relative;
-        padding: 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+        max-width: 820px; margin: 0 auto; position: relative;
+        padding: 0; flex: 1; display: flex; flex-direction: column;
     }
 
     #modeToggleBtn {
@@ -72,7 +67,9 @@
 
     .api-list { padding: 0; border: none; background: transparent; }
     .entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
-    .entry:first-of-type { padding-top: 4px; animation: topRefresh 0.4s ease-out; }
+    .entry:first-of-type { padding-top: 4px; }
+    /* 滚动刷新动画 */
+    .entry.fresh-top { animation: topRefresh 0.5s ease-out; }
     .entry:last-child { border-bottom: none; }
     .entry-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .entry-name {
@@ -122,7 +119,7 @@
     body.simple-mode #api-panel { display: block !important; }
 
     @keyframes topRefresh {
-        0% { opacity: 0; transform: translateY(-8px); }
+        0% { opacity: 0; transform: translateY(-10px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
@@ -180,7 +177,7 @@
             </div>
         </div>
 
-        <!-- 直播页（仅搜索栏 + 蓝色聚合模块） -->
+        <!-- 直播页 -->
         <div class="tab-panel" id="live-panel">
             <div class="live-top-aggregate">
                 <h3>海量直播聚合多线路专用接口</h3>
@@ -232,12 +229,12 @@
     ];
 
     const API_WEIGHTS = {
-        "幸福年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
+        "幸福年年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
         "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
         "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
     };
 
-    const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
+    const ROTATE_NAMES = ["福年年", "菜园", "少儿道", "更新专接口", "pro"];
 
     let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
     document.body.className = currentMode + '-mode';
@@ -246,7 +243,10 @@
 
     let DOWNLOAD_SOURCES = [];
     let topSeed = Date.now();
+    // lastTopName 保留但仅用于标记，不再用于跳过逻辑
     let lastTopName = null;
+    // 标记是否需要强制刷新第一条
+    let needRefreshTop = false;
 
     function getTopItem(rotateItems) {
         if (!rotateItems.length) return null;
@@ -336,6 +336,7 @@
                 const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
                 const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
                 const topItem = getTopItem(rotateItems);
+
                 if (topItem) {
                     topItem.weight = Number.MIN_SAFE_INTEGER;
                     lastTopName = topItem.name;
@@ -343,7 +344,7 @@
                 items.sort((a, b) => a.weight - b.weight);
 
                 let html = '';
-                items.forEach(it => {
+                items.forEach((it, index) => {
                     const isNew = isRecent(it.date);
                     const cls = isNew ? 'badge-new' : 'badge-old';
                     const jsonName = ensureJson(it.file);
@@ -355,7 +356,10 @@
                         const url = d.base + jsonName;
                         linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
                     });
-                    html += `<div class="entry" data-name="${it.name.toLowerCase()}">
+                    // 第一条加 fresh-top 类触发动画
+                    const isFirst = index === 0;
+                    const freshClass = (isFirst && needRefreshTop) ? ' fresh-top' : '';
+                    html += `<div class="entry${freshClass}" data-name="${it.name.toLowerCase()}">
                         <div class="entry-header">
                             <div class="entry-name" title="${it.name}">${it.name}</div>
                             <div class="entry-meta-inline">
@@ -369,6 +373,15 @@
 
                 container.innerHTML = html;
                 bindCopy(container);
+
+                // 动画播完后移除 class，下次可再次触发
+                if (needRefreshTop) {
+                    needRefreshTop = false;
+                    const firstEntry = container.querySelector('.entry.fresh-top');
+                    if (firstEntry) {
+                        setTimeout(() => { firstEntry.classList.remove('fresh-top'); }, 600);
+                    }
+                }
             })
             .catch(err => {
                 const loadingTip = document.getElementById('apiLoading');
@@ -441,11 +454,13 @@
         });
     }
 
-    let lastTab = '';
-
     function showPanel(tabId) {
-        if (tabId === 'api') renderApi();
-        lastTab = tabId;
+        // ★ 关键修复2：每次进入点播页都更新 topSeed + 标记刷新
+        if (tabId === 'api') {
+            topSeed = Date.now() + Math.random();
+            needRefreshTop = true;
+            renderApi();
+        }
 
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
@@ -485,8 +500,9 @@
     }
 
     btn.addEventListener('click', () => {
+        // ★ 关键修复1：每次点击切换按钮都更新 seed + 标记刷新
         topSeed = Date.now() + Math.random();
-        lastTopName = null;
+        needRefreshTop = true;
 
         currentMode = (currentMode === 'simple') ? 'full' : 'simple';
         localStorage.setItem(MODE_KEY, currentMode);
@@ -497,6 +513,7 @@
         if (currentMode !== 'simple') {
             showPanel('api');
         } else {
+            // 简洁模式直接渲染，也会走 needRefreshTop 逻辑
             renderApi();
         }
     });
