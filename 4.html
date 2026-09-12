@@ -155,7 +155,7 @@
 
     /* ✅ 直播URL大胶囊 */
     .live-url-line {
-        position: relative;           /* ← 新增：给绝对定位按钮做参照 */
+        position: relative;
         padding: 8px 12px 8px 10px; margin-bottom: 6px;
         background: #f8fafc; border-radius: 40px; border: 1px solid #eef2f7;
         display: flex; flex-direction: column; gap: 4px;
@@ -172,7 +172,7 @@
 
     /* ✅ 标签+URL+复制按钮（胶囊内第二行） */
     .live-url-body {
-        display: flex; align-items: flex-start; gap: 6px 10px;   /* ← align-items 改为 flex-start */
+        display: flex; align-items: flex-start; gap: 6px 10px;
     }
     .live-url-body .live-url-tag {
         font-size: 0.7rem; font-weight: 500; color: #4a6a8a;
@@ -182,13 +182,13 @@
     .live-url-body .live-url-text {
         font-size: 0.82rem; color: #2563eb; word-break: break-all;
         overflow-wrap: break-word; white-space: normal; line-height: 1.5; flex: 1 1 0; min-width: 40px;
-        padding-right: 60px;   /* ← 给绝对定位按钮留空间，防止文字被盖住 */
+        padding-right: 60px;
     }
     .live-url-body .copy-btn {
-        position: absolute;        /* ← 绝对定位 */
-        right: 12px;              /* ← 贴胶囊右边 */
-        top: 50%;                 /* ← 正中间 */
-        transform: translateY(-50%); /* ← 严格上下等距 */
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
         flex-shrink: 0;
     }
 
@@ -293,12 +293,12 @@
         { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
         { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" }
     ];
-
-    const LIVE_DOMAINS = [
-        { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/" },
-        { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
-        { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" }
-    ];
+    
+const LIVE_DOMAINS = [
+    { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/live/" },
+    { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/live/" },
+    { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/live/" }
+];
 
     const API_WEIGHTS = {
         "幸福年年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
@@ -334,8 +334,6 @@
             DOWNLOAD_SOURCES = Array.isArray(cfg.downloadSources) ? cfg.downloadSources : [];
         } catch (e) { DOWNLOAD_SOURCES = []; }
     }
-
-    function ensureJson(name) { return name.endsWith('.json') ? name : name + '.json'; }
 
     function bindCopy(container) {
         if (!container) return;
@@ -468,8 +466,10 @@
     function parseLiveItems(text) {
         return text.trim().split('\n').filter(l => l.trim()).map(line => {
             const parts = line.split('|').map(s => s.trim());
+            const rawName = parts[0] || '';
             return {
-                name: parts[0] || '',
+                name: rawName,
+                displayName: rawName.replace(/\.[^.]+$/, ''),  // ← 去所有后缀，通用
                 date: parts[1] || '',
                 size: parts[2] || '',
                 origUrl: parts[3] || '',
@@ -502,7 +502,6 @@
 
                 let urlsHtml = '';
                 if (it.origUrl) {
-                    // ✅ 大胶囊：来源UA在上，标签+URL+按钮在下，按钮绝对定位垂直居中
                     urlsHtml += `
                     <div class="live-url-line">
                         <div class="live-info-inline">
@@ -522,9 +521,9 @@
                     urlsHtml += `<div class="live-url-line"><div class="live-url-body"><span class="live-url-tag">${d.tag}</span><span class="live-url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div></div>`;
                 });
 
-                html += `<div class="live-entry" data-name="${it.name.toLowerCase()}">
+                html += `<div class="live-entry" data-name="${it.displayName.toLowerCase()}">
                     <div class="live-entry-header">
-                        <div class="live-entry-name" title="${it.name}">${it.name}</div>
+                        <div class="live-entry-name" title="${it.displayName}">${it.displayName}</div>
                         <div class="live-entry-meta">
                             <span class="${badgeClass}">${formatDateToChinese(it.date)}</span>
                             ${it.size ? '&nbsp;&nbsp;' + it.size : ''}
