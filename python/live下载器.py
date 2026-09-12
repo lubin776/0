@@ -63,11 +63,7 @@ DEBUG = False
 
 
 def is_private_host(url):
-    """精确判定私有/回环/链路本地地址（公网 IP 不过滤，如 124.x）。
-
-    仅过滤真正无法公网访问的地址：10/8、172.16/12、192.168/16、
-    127/8、169.254/16 及多播地址。域名一律保留。
-    """
+    """精确判定私有/回环/链路本地地址（公网 IP 不过滤，如 124.x）。"""
     try:
         host = urlparse(url.strip()).hostname or ""
         ip = ipaddress.ip_address(host)
@@ -133,7 +129,7 @@ def scan_and_extract_lives():
     for json_file in SCAN_DIR.glob("*.json"):
         if json_file.name == AGGREGATE_JSON.name or "live" in json_file.name:
             continue
-        source = json_file.stem   # 源头即去掉后缀：集多.json -> 集多
+        source = json_file.stem
         try:
             with open(json_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -209,11 +205,7 @@ def _fetch(url, ua):
 
 
 def parse_playlist_urls(text):
-    """从下载文本里提取播放列表条目 URL（支持 m3u / 纯文本）。
-
-    匹配规则：扫描所有 http(s) 字符串，过滤私有/忽略地址并去重。
-    返回去重后的有效 URL 列表。
-    """
+    """从下载文本里提取播放列表条目 URL。"""
     urls = []
     seen = set()
     for raw in re.findall(r"https?://\S+", text):
@@ -229,24 +221,30 @@ def parse_playlist_urls(text):
 
 def filename_from_url(url):
     """从 URL 取「文件名（含后缀）」，无文件名时返回空串。"""
-    from urllib.parse import urlparse
     return Path(urlparse(url).path).name
 
 
 def real_playlist_name(base_name, final_url):
-    """由【最终真实播放列表的 URL】决定接口名（接口名 + 真实后缀）。"""
+    """由最终真实播放列表 URL 决定接口名（接口名 + 真实后缀）。无后缀补 .txt。"""
     fname = filename_from_url(final_url)
     stem = Path(fname).stem
     suffix = Path(fname).suffix
     if stem and suffix:
         return f"{base_name}{suffix}"
-    return base_name
+    return f"{base_name}.txt"
 
 
 def sanitize_filename(name):
     """文件名强净化：仅保留中文、英文字母、数字，杜绝特殊符号和emoji。"""
     name = re.sub(r'[^\u4e00-\u9fa5a-zA-Z0-9]', '', name)
     return name.strip() or "live"
+
+
+def _ensure_suffix(name):
+    """确保文件名有后缀，没有就补 .txt"""
+    if Path(name).suffix:
+        return name
+    return name + ".txt"
 
 
 def download_live_source(live, _chain=None):
@@ -296,12 +294,14 @@ def download_live_source(live, _chain=None):
     size = len(content)
     final_name = real_playlist_name(name, target)
     safe = sanitize_filename(final_name)
+    safe = _ensure_suffix(safe)
     with open(OUTPUT_LIVE_DIR / safe, "wb") as f:
         f.write(b"#EXTM3U\n")
         f.write(f'#EXTINF:-1 tvg-name="{name}",{name}\n'.encode("utf-8"))
         f.write(content)
 
-    with open(OUTPUT_LIVE_DIR / f"{Path(safe).stem}.txt", "w", encoding="utf-8") as f:
+    txt_name = Path(safe).stem + ".txt"
+    with open(OUTPUT_LIVE_DIR / txt_name, "w", encoding="utf-8") as f:
         f.write(orig_url + "\n")
     return True, size, final_name
 
@@ -346,6 +346,7 @@ def generate_livelist(lives, results):
         ua = (live.get("ua") or "").strip()
         ua_field = ua if ua else "null"
         entry_name = sanitize_filename(final_name)
+        entry_name = _ensure_suffix(entry_name)
         line = f"{entry_name}|{TODAY}|{format_file_size(size)}|{live['url']}|{source}|{ua_field}|"
         new_records[entry_name] = (name, line)
 
