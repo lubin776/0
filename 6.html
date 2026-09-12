@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>量接口搬运备份</title>
+<title>海量接口搬运备份</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -11,7 +11,6 @@
         background: #f5f7fa; color: #1e293b;
         padding: 16px 12px 8px;
         transition: padding 0.3s;
-        /* ===== Footer 置底：让 body 占满整屏并成为 flex 容器 ===== */
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -21,11 +20,9 @@
         margin: 0 auto;
         position: relative;
         padding: 0;
-        /* ===== Footer 置底：container 占满 body 剩余高度，并把 footer 挤到底 ===== */
         flex: 1;
         display: flex;
         flex-direction: column;
-        /* header / search 按内容高度，main-card 负责撑开把 footer 推到底 */
     }
 
     #modeToggleBtn {
@@ -64,7 +61,6 @@
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         border: 1px solid #f0f3f8;
         transition: padding 0.3s;
-        /* ===== Footer 置底：主卡片自动撑开，把 footer 推到视窗底部 ===== */
         flex: 1;
     }
     .nav-tabs { display: flex; gap: 10px; margin-bottom: 12px; justify-content: center; flex-wrap: wrap; }
@@ -167,14 +163,100 @@
 
     .page-footer {
         text-align: center; padding: 20px 0 8px; font-size: 0.72rem; color: #9aadc2; line-height: 1.8;
-        /* ===== Footer 置底：防止被压缩，始终按原样式显示 ===== */
         flex-shrink: 0;
     }
 
     body.simple-mode .nav-tabs { display: none !important; }
     body.simple-mode #download-panel,
-    body.simple-mode #about-panel { display: none !important; }
+    body.simple-mode #about-panel,
+    body.simple-mode #live-panel { display: none !important; }
     body.simple-mode #api-panel { display: block !important; }
+
+    /* ===================== 直播页专属样式 ===================== */
+    .live-top-aggregate {
+        background: linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
+        border-radius: 16px;
+        padding: 16px 18px;
+        margin-bottom: 16px;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+    }
+    .live-top-aggregate h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .live-top-aggregate h3::before {
+        content: "📡";
+        font-size: 1.2rem;
+    }
+    .live-top-aggregate .domain-line {
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.3);
+        margin-top: 8px;
+    }
+    .live-top-aggregate .domain-line span {
+        color: #fff;
+        font-weight: 500;
+    }
+    .live-top-aggregate .copy-btn {
+        background: rgba(255,255,255,0.9);
+        color: #1e6fda;
+        font-weight: 600;
+    }
+    .live-top-aggregate .copy-btn.copied {
+        background: #3b9b6c;
+        color: #fff;
+    }
+
+    .live-entry {
+        padding: 14px 0;
+        border-bottom: 1px solid #f0f4fa;
+    }
+    .live-entry:last-child { border-bottom: none; }
+    .live-entry-name {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #0b1e33;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .live-entry-name::before {
+        content: "▶";
+        color: #ff4757;
+        font-size: 0.8rem;
+    }
+    .live-entry-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 12px;
+        background: #f8fafc;
+        border-radius: 8px;
+        margin-bottom: 6px;
+    }
+    .live-entry-row:last-child { margin-bottom: 0; }
+    .live-entry-info {
+        font-size: 0.75rem;
+        color: #5a6f88;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-shrink: 0;
+    }
+    .live-entry-url {
+        font-size: 0.82rem;
+        color: #2563eb;
+        word-break: break-all;
+        flex: 1;
+        min-width: 0;
+    }
+    /* ========================================================= */
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
@@ -193,8 +275,16 @@
         .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
         .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
         .download-card { padding: 14px 10px 20px; min-height: 160px; }
-        .card-icon { border-radius: 8px; margin-bottom: 12px; }
         .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
+
+        /* 直播页移动端适配 */
+        .live-top-aggregate { padding: 14px 16px; margin-bottom: 14px; }
+        .live-top-aggregate h3 { font-size: 1rem; }
+        .live-entry { padding: 12px 0; }
+        .live-entry-name { font-size: 1rem; }
+        .live-entry-row { padding: 6px 10px; flex-wrap: wrap; }
+        .live-entry-info { font-size: 0.7rem; }
+        .live-entry-url { font-size: 0.78rem; }
     }
 </style>
 </head>
@@ -214,16 +304,25 @@
     <div class="main-card">
         <div class="nav-tabs" id="navTabs"></div>
 
+        <!-- 点播页 (原接口页) -->
         <div class="tab-panel active" id="api-panel">
             <div class="api-list" id="listContainer">
                 <div class="loading" id="apiLoading">⏳ 正在加载接口列表...</div>
             </div>
         </div>
 
+        <!-- 直播页 (新增) -->
+        <div class="tab-panel" id="live-panel">
+            <div class="loading" id="liveLoading">⏳ 正在加载直播源...</div>
+            <div id="liveContainer"></div>
+        </div>
+
+        <!-- 下载页 -->
         <div class="tab-panel" id="download-panel">
             <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
         </div>
 
+        <!-- 关于页 -->
         <div class="tab-panel" id="about-panel">
             <div class="about-inner" id="aboutDomains">
                 <h3>🌐 备份线路域名</h3>
@@ -257,16 +356,26 @@
         { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/" },
         { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/" }
     ];
+
     const API_WEIGHTS = {
-        "菠菜园.json": 1, "少儿频道.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
+        "幸福年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
         "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
         "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
     };
-    const TABS = [
-        { id: "api",      label: "接口", hideSearch: false },
-        { id: "download", label: "下载", hideSearch: false },
-        { id: "about",    label: "关于", hideSearch: true  }
+
+    const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
+
+    // ===================== 核心配置：直播页 =====================
+    const LIVE_DOMAINS = [
+        { tag: "备份一线", base: "https://0.12yue.de5.net/tvbox/live/" },
+        { tag: "备份二线", base: "https://0.cdz.qzz.io/tvbox/live/" },
+        { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/live/" }
     ];
+    const LIVE_AGGREGATE = {
+        name: "海量直播线路",
+        url: "https://0.12yue.de5.net/tvbox/海量直播线路.json"
+    };
+    // =========================================================
 
     let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
     document.body.className = currentMode + '-mode';
@@ -274,16 +383,28 @@
     positionSearchBox();
 
     let DOWNLOAD_SOURCES = [];
+    let topSeed = Date.now();
+    let lastTopName = null;
+
+    function getTopItem(rotateItems) {
+        if (!rotateItems.length) return null;
+        if (rotateItems.length === 1) return rotateItems[0];
+        let idx = Math.abs(Math.floor(Math.sin(topSeed) * 10000)) % rotateItems.length;
+        const candidate = rotateItems[idx];
+        if (candidate.name === lastTopName) {
+            idx = (idx + 1) % rotateItems.length;
+        }
+        return rotateItems[idx];
+    }
+    function rollTop() { topSeed = Date.now() + Math.random(); }
+
     async function loadDownloadConfig() {
         try {
-            const res = await fetch('config.json?t=' + Date.now(), { cache: 'no-store' });
+            const res = await fetch('config.json?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const cfg = await res.json();
             DOWNLOAD_SOURCES = Array.isArray(cfg.downloadSources) ? cfg.downloadSources : [];
-        } catch (e) {
-            console.error('config.json 加载失败，下载页将不可用', e);
-            DOWNLOAD_SOURCES = [];
-        }
+        } catch (e) { DOWNLOAD_SOURCES = []; }
     }
 
     function ensureJson(name) { return name.endsWith('.json') ? name : name + '.json'; }
@@ -311,35 +432,59 @@
         });
     }
 
-    function renderApi() {
-        const container = document.getElementById('listContainer');
-        function formatDateToChinese(d) {
-            if (!d || d.length !== 8) return '----';
-            return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
-        }
-        function isRecent(d) {
-            if (!d || d.length !== 8) return false;
-            const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
-            return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
-        }
+    let rawListText = null;
+    async function fetchListText() {
+        if (rawListText !== null) return rawListText;
+        const res = await fetch('list.txt?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store', headers: { 'Cache-Control': 'no-cache' } });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        rawListText = await res.text();
+        return rawListText;
+    }
 
-        fetch('list.txt?t=' + Date.now(), { cache: 'no-store' })
-            .then(res => res.ok ? res.text() : Promise.reject('HTTP ' + res.status))
+    function parseItems(text) {
+        const lines = text.trim().split('\n').filter(l => l.trim());
+        return lines.map(line => {
+            const parts = line.split('|').map(s => s.trim());
+            const file = parts[0];
+            return {
+                file: file,
+                name: file.replace(/\.json$/i, ''),
+                date: parts[1] || '',
+                size: parts[2] || '',
+                origUrl: parts[3] || '',
+                weight: API_WEIGHTS.hasOwnProperty(file) ? API_WEIGHTS[file] : 999
+            };
+        });
+    }
+
+    function formatDateToChinese(d) {
+        if (!d || d.length !== 8) return '----';
+        return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
+    }
+    function isRecent(d) {
+        if (!d || d.length !== 8) return false;
+        const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
+        return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
+    }
+
+    function renderApi(forceRoll) {
+        const container = document.getElementById('listContainer');
+        if (forceRoll) rollTop();
+
+        fetchListText()
             .then(text => {
                 const loadingTip = document.getElementById('apiLoading');
                 if (loadingTip) loadingTip.style.display = 'none';
-                const lines = text.trim().split('\n').filter(l => l.trim());
-                let items = lines.map(line => {
-                    const parts = line.split('|').map(s => s.trim());
-                    const file = parts[0];
-                    return {
-                        file: file,
-                        name: file.replace(/\.json$/i, ''),
-                        date: parts[1] || '', size: parts[2] || '', origUrl: parts[3] || '',
-                        weight: API_WEIGHTS.hasOwnProperty(file) ? API_WEIGHTS[file] : 999
-                    };
-                });
-                items.sort((a, b) => a.weight !== b.weight ? a.weight - b.weight : a.name.localeCompare(b.name, 'zh'));
+
+                let items = parseItems(text);
+                const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
+                const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
+                const topItem = getTopItem(rotateItems);
+                if (topItem) {
+                    topItem.weight = Number.MIN_SAFE_INTEGER;
+                    lastTopName = topItem.name;
+                }
+                items.sort((a, b) => a.weight - b.weight);
 
                 let html = '';
                 items.forEach(it => {
@@ -365,6 +510,7 @@
                         <div class="entry-urls">${linesHtml}</div>
                     </div>`;
                 });
+
                 container.innerHTML = html;
                 bindCopy(container);
             })
@@ -374,6 +520,74 @@
                 container.innerHTML = `<div class="error-msg">❌ 接口加载失败：${err}</div>`;
             });
     }
+
+    // ===================== 直播页渲染逻辑 =====================
+    async function renderLive() {
+        const container = document.getElementById('liveContainer');
+        const loadingTip = document.getElementById('liveLoading');
+        if (loadingTip) loadingTip.style.display = 'none';
+
+        try {
+            const res = await fetch('livelist.txt?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const text = await res.text();
+
+            // 1. 渲染置顶聚合模块
+            let html = `<div class="live-top-aggregate">
+                <h3>${LIVE_AGGREGATE.name}</h3>
+                <div class="domain-line">
+                    <span>${LIVE_AGGREGATE.url}</span>
+                    <button class="copy-btn" data-url="${LIVE_AGGREGATE.url}">复制</button>
+                </div>
+            </div>`;
+
+            // 2. 解析并渲染列表
+            const lines = text.trim().split('\n').filter(l => l.trim());
+            html += '<div class="api-list">'; // 复用列表容器样式
+
+            lines.forEach(line => {
+                const parts = line.split('|').map(s => s.trim());
+                // 格式: 名称|日期|大小|URL|来源|UA
+                const fileName = parts[0] || '';
+                const date = parts[1] || '';
+                const size = parts[2] || '';
+                const rawUrl = parts[3] || '';
+                const source = parts[4] || '';
+                const ua = parts[5] || '';
+
+                // 省略文件名后缀 (如 .m3u, .txt)
+                const displayName = fileName.replace(/\.(m3u|txt|php)$/i, '');
+                
+                // 拼接 live 路径前缀
+                const fullUrl = rawUrl.startsWith('http') ? rawUrl : (LIVE_DOMAINS[0].base + rawUrl);
+
+                html += `<div class="live-entry" data-name="${displayName.toLowerCase()}">
+                    <div class="live-entry-name" title="${displayName}">${displayName}</div>
+                    
+                    <!-- 上行：来源 + UA -->
+                    <div class="live-entry-row">
+                        <span class="live-entry-info">📁 ${source}</span>
+                        ${ua ? `<span class="live-entry-info">🤖 ${ua}</span>` : ''}
+                        <span class="live-entry-info" style="margin-left: auto;">📅 ${formatDateToChinese(date)} ${size}</span>
+                    </div>
+                    
+                    <!-- 下行：URL + 复制 -->
+                    <div class="live-entry-row">
+                        <span class="live-entry-url">${fullUrl}</span>
+                        <button class="copy-btn" data-url="${fullUrl}">复制</button>
+                    </div>
+                </div>`;
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+            bindCopy(container); // 绑定复制事件
+
+        } catch (err) {
+            container.innerHTML = `<div class="error-msg">❌ 直播源加载失败：${err}</div>`;
+        }
+    }
+    // =========================================================
 
     async function renderDownloads(force) {
         const container = document.getElementById('downloads-content');
@@ -389,12 +603,10 @@
         let html = '';
         for (const src of DOWNLOAD_SOURCES) {
             try {
-                const res = await fetch(src.url + '?t=' + Date.now());
+                const res = await fetch(src.url + '?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const raw = await res.text();
-                const cleaned = raw
-                    .replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'")
-                    .replace(/：/g, ':').replace(/，/g, ',');
+                const cleaned = raw.replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/：/g, ':').replace(/，/g, ',');
                 const data = JSON.parse(cleaned);
 
                 let section = `<div class="source-section">`;
@@ -427,33 +639,60 @@
     function renderAbout() { bindCopy(document.getElementById('about-panel')); }
 
     function renderTabs() {
+        // 修改点：将 "接口" 改为 "点播"，并在中间插入 "直播"
+        const tabsData = [
+            { id: "api", label: "点播", hideSearch: false },
+            { id: "live", label: "直播", hideSearch: false },
+            { id: "download", label: "下载", hideSearch: false },
+            { id: "about", label: "关于", hideSearch: true }
+        ];
+
         const nav = document.getElementById('navTabs');
-        nav.innerHTML = TABS.map(t => `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`).join('');
+        nav.innerHTML = tabsData.map(t => `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`).join('');
         nav.querySelectorAll('.nav-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 nav.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                showPanel(this.getAttribute('data-tab'));
+                const tabId = this.getAttribute('data-tab');
+                showPanel(tabId, true);
             });
         });
     }
 
-    function showPanel(tabId) {
+    let lastTab = 'api';
+    function showPanel(tabId, fromTabClick) {
+        if (tabId === 'api' && lastTab !== 'api' && fromTabClick !== false) {
+            renderApi(true);
+        }
+        if (tabId === 'live' && lastTab !== 'live') {
+            renderLive(); // 切换到直播页时加载数据
+        }
+        lastTab = tabId;
+
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
         if (panel) panel.classList.add('active');
+        
         if (tabId === 'download') renderDownloads();
         if (tabId === 'about') renderAbout();
+        
         const targetTab = TABS.find(t => t.id === tabId);
         if (searchBox) searchBox.style.display = (targetTab && targetTab.hideSearch) ? 'none' : '';
     }
 
     function globalSearch() {
         const kw = (searchBox.value || '').toLowerCase().trim();
+        // 点播页搜索
         document.querySelectorAll('#api-panel .entry').forEach(e => {
             const name = e.getAttribute('data-name') || '';
             e.classList.toggle('hidden', !name.includes(kw));
         });
+        // 直播页搜索
+        document.querySelectorAll('#live-panel .live-entry').forEach(e => {
+            const name = e.getAttribute('data-name') || '';
+            e.classList.toggle('hidden', !name.includes(kw));
+        });
+        // 下载页搜索
         if (currentMode !== 'simple') {
             document.querySelectorAll('.download-card').forEach(c => {
                 const name = c.getAttribute('data-name') || '';
@@ -475,21 +714,31 @@
     }
 
     btn.addEventListener('click', () => {
+        rollTop();
         currentMode = (currentMode === 'simple') ? 'full' : 'simple';
         localStorage.setItem(MODE_KEY, currentMode);
         document.body.className = currentMode + '-mode';
         updateBtnText();
         positionSearchBox();
         if (currentMode !== 'simple') {
+            showPanel('api', true);
             renderDownloads();
             renderAbout();
         } else {
-            showPanel('api');
+            showPanel('api', true);
         }
     });
 
+    // 初始化
+    const TABS = [
+        { id: "api", label: "点播", hideSearch: false },
+        { id: "live", label: "直播", hideSearch: false },
+        { id: "download", label: "下载", hideSearch: false },
+        { id: "about", label: "关于", hideSearch: true }
+    ];
+
     renderTabs();
-    renderApi();
+    renderApi(false);
     loadDownloadConfig().then(() => {
         if (currentMode !== 'simple') renderDownloads();
     });
