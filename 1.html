@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运备份uu</title>
+<title>海量接口搬运备份</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -254,14 +254,15 @@
     ];
 
     const API_WEIGHTS = {
-        "幸福年年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
+        "幸福年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
         "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
         "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
     };
 
-    // ===================== 参与随机轮换的接口名（不带 .json） =====================
+    // ===================== 核心配置 =====================
+    // 置顶随机池：只在第 1 条从这个组里随机选 1 个
     const ROTATE_NAMES = ["幸福年年", "菠菜园", "少儿频道", "更新专用接口", "菠菜pro"];
-    // ==========================================================================
+    // ===================================================
 
     const TABS = [
         { id: "api",      label: "接口", hideSearch: false },
@@ -275,6 +276,28 @@
     positionSearchBox();
 
     let DOWNLOAD_SOURCES = [];
+
+    // ===================== 新增：随机种子控制 =====================
+    // 用 seed 决定当前置顶是哪一个，seed 变化 → 置顶切换
+    let topSeed = Date.now();
+    let lastTopName = null; // 记住上一次置顶，尽量不重复
+    function getTopItem(rotateItems) {
+        if (!rotateItems.length) return null;
+        // 只有一个候选时只能它自己；多个时尽量和上一次不同
+        if (rotateItems.length === 1) return rotateItems[0];
+        let idx = Math.abs(Math.floor(Math.sin(topSeed) * 10000)) % rotateItems.length;
+        const candidate = rotateItems[idx];
+        if (candidate.name === lastTopName) {
+            idx = (idx + 1) % rotateItems.length; // 相邻即换，保证必换人
+        }
+        return rotateItems[idx];
+    }
+    function rollTop() {
+        // 切换/刷新置顶：生成新 seed
+        topSeed = Date.now() + Math.random();
+    }
+    // =========================================================
+
     async function loadDownloadConfig() {
         try {
             const res = await fetch('config.json?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
@@ -311,66 +334,71 @@
         });
     }
 
-    function renderApi() {
-        const container = document.getElementById('listContainer');
-        function formatDateToChinese(d) {
-            if (!d || d.length !== 8) return '----';
-            return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
-        }
-        function isRecent(d) {
-            if (!d || d.length !== 8) return false;
-            const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
-            return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
-        }
-
-        fetch('list.txt?t=' + Date.now() + '&r=' + Math.random(), {
+    // 缓存 list.txt 原始解析结果，避免切页重复请求
+    let rawListText = null;
+    async function fetchListText() {
+        if (rawListText !== null) return rawListText;
+        const res = await fetch('list.txt?t=' + Date.now() + '&r=' + Math.random(), {
             cache: 'no-store',
             headers: { 'Cache-Control': 'no-cache' }
-        })
-            .then(res => res.ok ? res.text() : Promise.reject('HTTP ' + res.status))
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        rawListText = await res.text();
+        return rawListText;
+    }
+
+    function parseItems(text) {
+        const lines = text.trim().split('\n').filter(l => l.trim());
+        return lines.map(line => {
+            const parts = line.split('|').map(s => s.trim());
+            const file = parts[0];
+            return {
+                file: file,
+                name: file.replace(/\.json$/i, ''),
+                date: parts[1] || '',
+                size: parts[2] || '',
+                origUrl: parts[3] || '',
+                weight: API_WEIGHTS.hasOwnProperty(file) ? API_WEIGHTS[file] : 999
+            };
+        });
+    }
+
+    function formatDateToChinese(d) {
+        if (!d || d.length !== 8) return '----';
+        return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
+    }
+    function isRecent(d) {
+        if (!d || d.length !== 8) return false;
+        const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
+        return (Date.now() - new Date(y, m, day).getTime()) / 86400000 <= 2;
+    }
+
+    function renderApi(forceRoll) {
+        const container = document.getElementById('listContainer');
+
+        // 需要切换置顶时，先滚一次 seed
+        if (forceRoll) rollTop();
+
+        fetchListText()
             .then(text => {
                 const loadingTip = document.getElementById('apiLoading');
                 if (loadingTip) loadingTip.style.display = 'none';
 
-                const lines = text.trim().split('\n').filter(l => l.trim());
-                let items = lines.map(line => {
-                    const parts = line.split('|').map(s => s.trim());
-                    const file = parts[0];
-                    return {
-                        file: file,
-                        name: file.replace(/\.json$/i, ''),
-                        date: parts[1] || '',
-                        size: parts[2] || '',
-                        origUrl: parts[3] || '',
-                        weight: API_WEIGHTS.hasOwnProperty(file) ? API_WEIGHTS[file] : 999
-                    };
-                });
-
-                // ===================== 随机置顶（稳定版·只排序一次） =====================
+                let items = parseItems(text);
                 const rotateSet = new Set(ROTATE_NAMES.map(n => n.toLowerCase()));
-                const usedWeights = new Set();
 
-                items.forEach(item => {
-                    if (rotateSet.has(item.name.toLowerCase())) {
-                        // 轮换接口：给一个唯一的随机负权重，保证排在最前且顺序随机
-                        let w;
-                        do {
-                            w = -(Math.random() * 99 + 1);
-                        } while (usedWeights.has(w));
-                        usedWeights.add(w);
-                        item.weight = w;
-                    } else {
-                        // 非轮换接口：保持原权重
-                        item.weight = API_WEIGHTS.hasOwnProperty(item.file) ? API_WEIGHTS[item.file] : 999;
-                    }
-                });
+                // 找出指定组成员
+                const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
 
-                // 只排一次序（先按 weight，再按 name 兜底），绝不二次 sort
-                items.sort((a, b) => {
-                    if (a.weight !== b.weight) return a.weight - b.weight;
-                    return a.name.localeCompare(b.name, 'zh');
-                });
-                // =======================================================================
+                // 只在第 1 条做文章：选 1 个给最小权重，其余保持原权重
+                const topItem = getTopItem(rotateItems);
+                if (topItem) {
+                    topItem.weight = Number.MIN_SAFE_INTEGER;
+                    lastTopName = topItem.name; // 记录本次置顶，下次尽量换一个
+                }
+
+                // 其余全部用你原来的 API_WEIGHTS 排序，一行不动
+                items.sort((a, b) => a.weight - b.weight);
 
                 let html = '';
                 items.forEach(it => {
@@ -465,12 +493,20 @@
             tab.addEventListener('click', function() {
                 nav.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                showPanel(this.getAttribute('data-tab'));
+                const tabId = this.getAttribute('data-tab');
+                showPanel(tabId, true);
             });
         });
     }
 
-    function showPanel(tabId) {
+    let lastTab = 'api';
+    function showPanel(tabId, fromTabClick) {
+        // 从其他页切回接口页 → 强制刷新置顶条
+        if (tabId === 'api' && lastTab !== 'api' && fromTabClick !== false) {
+            renderApi(true);
+        }
+        lastTab = tabId;
+
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
         if (panel) panel.classList.add('active');
@@ -507,21 +543,25 @@
     }
 
     btn.addEventListener('click', () => {
+        // 模式切换按钮：先滚一次置顶，再切模式
+        rollTop();
         currentMode = (currentMode === 'simple') ? 'full' : 'simple';
         localStorage.setItem(MODE_KEY, currentMode);
         document.body.className = currentMode + '-mode';
         updateBtnText();
         positionSearchBox();
         if (currentMode !== 'simple') {
+            // 切到全能版（显示接口页）→ 强制刷新置顶条
+            showPanel('api', true);
             renderDownloads();
             renderAbout();
         } else {
-            showPanel('api');
+            showPanel('api', true);
         }
     });
 
     renderTabs();
-    renderApi();
+    renderApi(false);
     loadDownloadConfig().then(() => {
         if (currentMode !== 'simple') renderDownloads();
     });
