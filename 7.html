@@ -134,7 +134,6 @@
     .live-top-aggregate .copy-btn { background: rgba(255,255,255,0.9); color: #1e6fda; font-weight: 600; }
     .live-top-aggregate .copy-btn.copied { background: #3b9b6c; color: #fff; }
 
-    /* ✅ 直播列表新增样式 */
     .live-list { padding: 0; border: none; background: transparent; }
     .live-entry { padding: 16px 0; border-bottom: 1px solid #f0f4fa; }
     .live-entry:first-of-type { padding-top: 4px; }
@@ -160,8 +159,9 @@
     .live-url-line:last-child { margin-bottom: 0; }
     .live-url-tag {
         font-size: 0.7rem; font-weight: 500; color: #4a6a8a;
-        background: #e6edf6; padding: 0 12px; border-radius: 30px;
-        line-height: 24px; white-space: nowrap; flex-shrink: 0;
+        background: #e6edf6; padding: 3px 10px; border-radius: 30px;
+        line-height: 1.4; white-space: nowrap; flex-shrink: 0;
+        text-align: center; min-width: 64px;
     }
     .live-url-text {
         font-size: 0.82rem; color: #2563eb; word-break: break-all;
@@ -186,7 +186,7 @@
         .live-entry { padding: 12px 0; }
         .live-entry-name { font-size: 0.95rem; }
         .live-url-line { padding: 4px 8px; gap: 4px 6px; }
-        .live-url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
+        .live-url-tag { font-size: 0.6rem; padding: 2px 8px; line-height: 1.3; }
         .live-url-text { font-size: 0.75rem; }
     }
 </style>
@@ -224,7 +224,6 @@
                 </div>
             </div>
 
-            <!-- ✅ livelist.txt 展示模块 -->
             <div class="live-list" id="liveListContainer">
                 <div class="loading" id="liveLoading">⏳ 正在加载直播列表...</div>
             </div>
@@ -398,7 +397,7 @@
                     linesHtml += `<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
                 }
                 API_DOMAINS.forEach(d => {
-                    const url = d.base + jsonName;
+                    const url = d.base + it.name + '.json';
                     linesHtml += `<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
                 });
                 const isFirst = index === 0;
@@ -432,7 +431,7 @@
         });
     }
 
-    /* ===================== 直播列表相关 ===================== */
+    /* ===================== 直播列表 ===================== */
     let rawLiveText = null;
     async function fetchLiveText() {
         if (rawLiveText !== null) return rawLiveText;
@@ -449,8 +448,9 @@
                 name: parts[0] || '',
                 date: parts[1] || '',
                 size: parts[2] || '',
-                origUrl: parts[3] || ''
-                // 第5、6列预留，后续扩展
+                origUrl: parts[3] || '',
+                source: parts[4] || '',   // 第5列：来源
+                ua: parts[5] || ''        // ✅ 第6列：UA
             };
         });
     }
@@ -478,10 +478,22 @@
 
                 let urlsHtml = '';
                 if (it.origUrl) {
-                    urlsHtml += `<div class="live-url-line"><span class="live-url-tag">原始线路</span><span class="live-url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
+                    // ✅ 原始线路：标签两行 + UA+URL展示 + 复制只复制URL
+                    urlsHtml += `<div class="live-url-line">
+                        <span class="live-url-tag">
+                            <span style="display:block;font-size:0.55rem;color:#7a9bc2;line-height:1.2;">来源：${it.source || '未知'}</span>
+                            <span style="display:block;line-height:1.2;">原始线路</span>
+                        </span>
+                        <div style="flex:1;min-width:40px;">
+                            ${it.ua ? `<div style="font-size:0.68rem;color:#8b9eb0;line-height:1.4;word-break:break-all;margin-bottom:2px;">UA：${it.ua}</div>` : ''}
+                            <span class="live-url-text">${it.origUrl}</span>
+                        </div>
+                        <button class="copy-btn" data-url="${it.origUrl}">复制</button>
+                    </div>`;
                 }
+
                 LIVE_DOMAINS.forEach(d => {
-                    const url = d.base + encodeURIComponent(it.name);
+                    const url = d.base + it.name;
                     urlsHtml += `<div class="live-url-line"><span class="live-url-tag">${d.tag}</span><span class="live-url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
                 });
 
