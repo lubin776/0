@@ -214,13 +214,13 @@
     .live-entry:last-child { margin-bottom: 0; }
     .live-entry .entry-name::before { content: none; }
 
-    /* ✅ 来源 + UA 行：移到原始线路上方（横线上方） */
+    /* ✅ 来源 + UA 行 */
     .live-source-line {
         display: flex;
         align-items: center;
         gap: 10px;
         flex-wrap: wrap;
-        margin-bottom: 8px;
+        margin-bottom: 0;
         font-size: 0.78rem;
         color: #5a6f88;
     }
@@ -228,7 +228,7 @@
     .live-source-line .meta-ua,
     .live-source-line .meta-ua-null { color: #5a6f88; font-style: normal; font-weight: 400; }
 
-    /* ✅ 原始线路：标签 + URL + 复制，整个行作为同一浅蓝背景容器（圆角胶囊，URL 自适应换行） */
+    /* ✅ 原始线路：标签 + URL + 复制，整个行作为同一浅蓝背景容器 */
     .live-entry .url-line {
         background: #eaf2fd;
         border: 1px solid #d6e6fb;
@@ -246,7 +246,25 @@
         background: #f8fafc;
         border: 1px solid #eef2f7;
     }
-    /* ✅ 原始线路直接作为条目内的独立行，无额外嵌套容器 */
+
+    /* ✅ 新增：来源+UA与原始线路合并的模块容器 */
+    .live-origin-module {
+        background: #eaf2fd;
+        border: 1px solid #d6e6fb;
+        border-radius: 12px;
+        padding: 10px 12px 6px;
+        margin-bottom: 6px;
+    }
+    .live-origin-module .live-source-line {
+        padding: 0 2px;
+        margin-bottom: 6px;
+    }
+    .live-origin-module .url-line {
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin-bottom: 0;
+    }
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
@@ -275,6 +293,8 @@
         .live-entry .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
         .live-entry .url-text { font-size: 0.75rem; }
         .live-entry .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
+
+        .live-origin-module { padding: 8px 10px 4px; }
     }
 </style>
 </head>
@@ -543,20 +563,29 @@
                 const isNew = isRecent(date);
                 const cls = isNew ? 'badge-new' : 'badge-old';
 
-                // ✅ 来源 + UA（横线上方）
+                // ✅ 来源 + UA（上行）
                 let sourceLine = '';
                 if (source || ua) {
                     const uaPart = ua ? `<span class="meta-ua">ua: ${ua}</span>` : `<span class="meta-ua-null">ua: null</span>`;
                     sourceLine = `<div class="live-source-line"><span class="meta-source">${source}</span>${uaPart}</div>`;
                 }
 
-                // ✅ 原始线路：标签 + URL + 复制，同一浅蓝背景（无额外嵌套容器）
+                // ✅ 原始线路：标签 + URL + 复制（下行）
                 let originLine = '';
                 if (rawUrl) {
                     originLine = `<div class="url-line">
                         <span class="url-tag">原始线路</span>
                         <span class="url-text">${rawUrl}</span>
                         <button class="copy-btn" data-url="${rawUrl}">复制</button>
+                    </div>`;
+                }
+
+                // ✅ 将来源+UA与原始线路合并到同一个模块容器内（上行来源UA，下行原始线路）
+                let combinedOriginModule = '';
+                if (sourceLine || originLine) {
+                    combinedOriginModule = `<div class="live-origin-module">
+                        ${sourceLine}
+                        ${originLine}
                     </div>`;
                 }
 
@@ -579,8 +608,7 @@
                         </div>
                     </div>
 
-                    ${sourceLine}
-                    ${originLine}
+                    ${combinedOriginModule}
                     ${backupLines}
                 </div>`;
             });
