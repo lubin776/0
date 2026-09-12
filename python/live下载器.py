@@ -10,8 +10,9 @@
 5. 合并生成仓库根 livelist.txt（旧记录保留、本次成功记录覆盖、仅更新时间变动）
 
 livelist.txt 行格式：真实播放列表文件名(带后缀)|日期|大小|原始url|来源|ua|
-  livelist 第一列 = 最终真正下载到播放列表内容的文件名（带后缀），
-           基于最终URL（非套壳URL）决定后缀。
+  livelist 第一列 = 最终真正下载到播放列表内容的文件名（带真实后缀），
+           基于最终URL（非套壳URL）决定后缀，与磁盘文件完全一致。
+  ua 为空时固定输出 null。
 """
 
 import ipaddress
@@ -223,9 +224,15 @@ def real_playlist_name(base_name, final_url):
 
 
 def sanitize_filename(name):
-    """文件名强净化：仅保留中文、英文字母、数字。"""
-    name = re.sub(r'[^\u4e00-\u9fa5a-zA-Z0-9]', '', name)
-    return name.strip() or "live"
+    """文件名强净化：只净化 stem 部分（去 emoji/特殊符号），保留后缀。"""
+    p = Path(name)
+    stem = p.stem
+    suffix = p.suffix
+    clean_stem = re.sub(r'[^\u4e00-\u9fa5a-zA-Z0-9]', '', stem)
+    clean_stem = clean_stem.strip()
+    if not clean_stem:
+        clean_stem = "live"
+    return clean_stem + suffix
 
 
 def _ensure_suffix(name):
@@ -238,7 +245,7 @@ def _ensure_suffix(name):
 def download_live_source(live, _chain=None):
     """下载单个直播源。返回值：(ok, size, final_name, final_url)
 
-    final_name: 最终真实播放列表的文件名（带后缀）
+    final_name: 最终真实播放列表的文件名（带真实后缀）
     final_url:  最终真正下载到播放列表内容的 URL（非套壳）
     """
     name = live["name"]
@@ -339,7 +346,7 @@ def generate_livelist(lives, results):
         ua = (live.get("ua") or "").strip()
         ua_field = ua if ua else "null"
 
-        # 文件名基于最终URL决定，确保带真实后缀
+        # 文件名基于最终URL决定，保留真实后缀
         entry_name = sanitize_filename(final_name)
         entry_name = _ensure_suffix(entry_name)
 
