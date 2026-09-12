@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运备份</title>
+<title>海量接口搬运备份8</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -172,7 +172,7 @@
     body.simple-mode #live-panel { display: none !important; }
     body.simple-mode #api-panel { display: block !important; }
 
-    /* ===================== 直播页样式（仅删除原始线路的特殊样式覆盖，其他完全不变） ===================== */
+    /* ===================== 直播页专属样式 ===================== */
     .live-top-aggregate {
         background: linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
         border-radius: 16px;
@@ -212,53 +212,48 @@
         color: #fff;
     }
 
-    /* 一区：整个直播条目 - 稍深浅灰（完全不变） */
+    /* 一区：每个直播条目 */
     .live-entry {
-        background: #eef2f7;
-        border: 1px solid #dce6f0;
-        border-radius: 12px;
-        padding: 14px;
-        margin-bottom: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid #f0f4fa;
     }
-    .live-entry:last-child { margin-bottom: 0; }
-    /* 名称无红色三角，纯文字（完全不变） */
+    .live-entry:last-child { border-bottom: none; }
     .live-entry .entry-name::before { content: none; }
 
-    /* 二区：来源+UA+原始线路 - 淡灰背景（完全不变） */
-    .live-block {
+    /* ✅ 来源+UA + 原始线路，合并进同一个容器（减少一层嵌套） */
+    .live-origin {
         background: #f8fafc;
         border: 1px solid #e3eaf3;
-        border-radius: 10px;
+        border-radius: 12px;
         padding: 10px 12px;
         margin-bottom: 6px;
     }
-    /* 来源无背景，纯文本，与UA样式一致（完全不变） */
+    /* 上排：来源 + UA */
     .live-meta {
-        padding: 5px 0;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 6px;
-        font-size: 0.82rem;
+        font-size: 0.72rem;
         color: #5a6f88;
+        line-height: 1.5;
+        word-break: break-all;
+        margin-bottom: 8px;
     }
-    .live-meta .meta-source {
-        background: none;
-        padding: 0;
-        border-radius: 0;
-        font-weight: 400;
-        color: #5a6f88;
-    }
-    /* UA有值/无值样式完全一致（完全不变） */
+    .live-meta .meta-source { font-weight: 500; color: #4a6a8a; }
+    /* ua: xxx 与 ua: null 完全一致色调 */
     .live-meta .meta-ua,
-    .live-meta .meta-ua-null {
-        color: #5a6f88;
-        font-style: normal;
-        font-weight: 400;
+    .live-meta .meta-ua-null { color: #5a6f88; font-style: normal; font-weight: 400; }
+
+    /* 下排：原始线路（浅浅的浅蓝色背景，URL 自适应换行） */
+    .live-origin .url-line {
+        background: #eaf2fd;
+        border: 1px solid #d6e6fb;
+        margin-bottom: 0;
+        flex-wrap: wrap;
     }
-    /* ✅ 已删除原始线路的特殊样式覆盖，现在原始线路和备份线路用完全一样的.url-line样式 */
-    /* 备份线路在二区之外（完全不变） */
-    /* =================================================================================== */
+    .live-origin .url-text {
+        flex: 1 1 120px;
+        word-break: break-all;
+        overflow-wrap: break-word;
+    }
+    /* ========================================================= */
 
     @media (max-width: 600px) {
         body { padding: 12px 6px 4px; }
@@ -279,12 +274,15 @@
         .download-card { padding: 14px 10px 20px; min-height: 160px; }
         .page-footer { font-size: 0.68rem; padding: 16px 0 4px; }
 
-        /* 直播页移动端适配（完全不变） */
         .live-top-aggregate { padding: 14px 16px; margin-bottom: 14px; }
         .live-top-aggregate h3 { font-size: 1rem; }
-        .live-entry { padding: 12px; }
-        .live-meta { font-size: 0.75rem; gap: 8px; }
-        .live-block { padding: 8px 10px; }
+        .live-entry { padding: 12px 0; }
+        .live-origin { padding: 9px 10px; }
+        .live-meta { font-size: 0.68rem; margin-bottom: 7px; }
+        .live-origin .url-line { padding: 5px 9px; gap: 5px 8px; }
+        .live-origin .url-tag { font-size: 0.65rem; padding: 0 10px; line-height: 22px; }
+        .live-origin .url-text { font-size: 0.75rem; }
+        .live-origin .copy-btn { font-size: 0.65rem; padding: 0 10px; height: 24px; line-height: 24px; }
     }
 </style>
 </head>
@@ -304,25 +302,25 @@
     <div class="main-card">
         <div class="nav-tabs" id="navTabs"></div>
 
-        <!-- 点播页（完全不变） -->
+        <!-- 点播页 -->
         <div class="tab-panel active" id="api-panel">
             <div class="api-list" id="listContainer">
                 <div class="loading" id="apiLoading">⏳ 正在加载接口列表...</div>
             </div>
         </div>
 
-        <!-- 直播页（仅原始线路显示方式拷贝备份线路，其他完全不变） -->
+        <!-- 直播页 -->
         <div class="tab-panel" id="live-panel">
             <div class="loading" id="liveLoading">⏳ 正在加载直播源...</div>
             <div id="liveContainer"></div>
         </div>
 
-        <!-- 下载页（完全不变） -->
+        <!-- 下载页 -->
         <div class="tab-panel" id="download-panel">
             <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
         </div>
 
-        <!-- 关于页（完全不变） -->
+        <!-- 关于页 -->
         <div class="tab-panel" id="about-panel">
             <div class="about-inner" id="aboutDomains">
                 <h3>🌐 备份线路域名</h3>
@@ -459,7 +457,6 @@
         if (!d || d.length !== 8) return '----';
         return `${d.slice(0,4)}年${d.slice(4,6)}月${d.slice(6,8)}日`;
     }
-    
     function isRecent(d) {
         if (!d || d.length !== 8) return false;
         const y = parseInt(d.slice(0,4),10), m = parseInt(d.slice(4,6),10)-1, day = parseInt(d.slice(6,8),10);
@@ -554,6 +551,21 @@
                 const isNew = isRecent(date);
                 const cls = isNew ? 'badge-new' : 'badge-old';
 
+                // ✅ 来源+UA 与 原始线路 合并进同一个 .live-origin 容器
+                //    上排：来源 + UA    下排：原始线路（浅蓝背景，URL 自适应换行）
+                let originInner = '';
+                if (source || ua) {
+                    const uaPart = ua ? `<span class="meta-ua">ua: ${ua}</span>` : `<span class="meta-ua-null">ua: null</span>`;
+                    originInner += `<div class="live-meta"><span class="meta-source">${source}</span>&nbsp;&nbsp;&nbsp;&nbsp;${uaPart}</div>`;
+                }
+                if (rawUrl) {
+                    originInner += `<div class="url-line">
+                        <span class="url-tag">原始线路</span>
+                        <span class="url-text">${rawUrl}</span>
+                        <button class="copy-btn" data-url="${rawUrl}">复制</button>
+                    </div>`;
+                }
+
                 html += `<div class="live-entry" data-name="${displayName.toLowerCase()}">
                     <div class="entry-header">
                         <div class="entry-name" title="${displayName}">${displayName}</div>
@@ -562,22 +574,11 @@
                             ${size ? '&nbsp;&nbsp;' + size : ''}
                         </div>
                     </div>
-                    
-                    <div class="live-block">
-                        ${source || ua ? `<div class="live-meta">
-                            ${source ? `<span class="meta-source">${source}</span>` : ''}
-                            <span class="${ua ? 'meta-ua' : 'meta-ua-null'}">ua: ${ua || 'null'}</span>
-                        </div>` : ''}
-                        
-                        ${rawUrl ? `<div class="url-line">
-                            <span class="url-tag">原始线路</span>
-                            <span class="url-text">${rawUrl}</span>
-                            <button class="copy-btn" data-url="${rawUrl}">复制</button>
-                        </div>` : ''}
-                    </div>
+
+                    ${originInner ? `<div class="live-origin">${originInner}</div>` : ''}
 
                     ${LIVE_DOMAINS.map(d => {
-                        const url = d.base + fileName;
+                        const url = d.base + fileName; // ✅ 保留原始后缀
                         return `<div class="url-line">
                             <span class="url-tag">${d.tag}</span>
                             <span class="url-text">${url}</span>
@@ -645,14 +646,14 @@
 
     function renderAbout() { bindCopy(document.getElementById('about-panel')); }
 
-    function renderTabs() {
-        const tabsData = [
-            { id: "api", label: "点播", hideSearch: false },
-            { id: "live", label: "直播", hideSearch: false },
-            { id: "download", label: "下载", hideSearch: false },
-            { id: "about", label: "关于", hideSearch: true }
-        ];
+    const tabsData = [
+        { id: "api", label: "点播", hideSearch: false },
+        { id: "live", label: "直播", hideSearch: false },
+        { id: "download", label: "下载", hideSearch: false },
+        { id: "about", label: "关于", hideSearch: true }
+    ];
 
+    function renderTabs() {
         const nav = document.getElementById('navTabs');
         nav.innerHTML = tabsData.map(t => `<button class="nav-tab ${t.id === 'api' ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`).join('');
         nav.querySelectorAll('.nav-tab').forEach(tab => {
@@ -677,10 +678,10 @@
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         const panel = document.getElementById(tabId + '-panel');
         if (panel) panel.classList.add('active');
-        
+
         if (tabId === 'download') renderDownloads();
         if (tabId === 'about') renderAbout();
-        
+
         const targetTab = tabsData.find(t => t.id === tabId);
         if (searchBox) searchBox.style.display = (targetTab && targetTab.hideSearch) ? 'none' : '';
     }
@@ -730,13 +731,6 @@
             showPanel('api', true);
         }
     });
-
-    const tabsData = [
-        { id: "api", label: "点播", hideSearch: false },
-        { id: "live", label: "直播", hideSearch: false },
-        { id: "download", label: "下载", hideSearch: false },
-        { id: "about", label: "关于", hideSearch: true }
-    ];
 
     renderTabs();
     renderApi(false);
