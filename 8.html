@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>海量接口搬运备份</title>
+<title>海量接口搬运备份8</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -258,7 +258,7 @@ const LIVE_DOMAINS = [
     { tag: "备份三线", base: "https://0.wdzb.eu.cc/tvbox/live/" }
 ];
 const API_WEIGHTS = {
-    "幸福年年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
+    "幸福年.json": 1, "老子数到三.json": 2, "饭太硬.json": 4, "肥猫.json": 5,
     "摸鱼.json": 6, "王二小.json": 7, "集多.json": 8, "潇洒.json": 9,
     "小米.json": 10, "嗷呜.json": 11, "南风.json": 12, "小虎斑.json": 13
 };
@@ -345,7 +345,7 @@ function renderApi() {
         let items = parseItems(text);
 
         // 置顶轮播逻辑
-        const rotateNames = ["幸年", "菠园", "少道", "更新口", "菠o"];
+        const rotateNames = ["幸福年年", "菠菜园", "少儿频道", "更新口", "菠菜pro"];
         const rotateSet = new Set(rotateNames.map(n => n.toLowerCase()));
         const rotateItems = items.filter(i => rotateSet.has(i.name.toLowerCase()));
         if (rotateItems.length) {
