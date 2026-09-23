@@ -669,7 +669,7 @@
             </a>
 
             <!-- 主接口 (点击复制) -->
-            <div class="card-link" data-copy="http://www.影视仓.com" data-name="主接口">
+            <div class="card-link" data-copy="https://700sjro44343.vicp.fun/240731/one/" data-name="主接口">
                 <div class="left">
                     <div class="icon-wrap icon-main"><i class="fas fa-plug"></i></div>
                     <div class="info">
@@ -683,14 +683,14 @@
 
         <!-- ===== 固定横幅广告1  cpc ===== -->
 <!-- jiuyou cpm固定横幅 -->
-<script id="gg178-scr1pt" src="https://r8quse.icu/api/s/s2d41b828098.js"></script>
+<!--<script id="gg178-scr1pt" src="https://r8quse.icu/api/s/s2d41b828098.js"></script>-->
 
 <!-- 88 cpm固定横幅 -->
-<script src="https://k2n2fzb.com:866/slot?8225462100335650212-42429"></script>
+<!--<script src="https://k2n2fzb.com:866/slot?8225462100335650212-42429"></script>-->
 
 
             <!-- 备用接口 (点击复制) -->
-            <div class="card-link" data-copy="https://700sjro44343.vicp.fun/240731/one/" data-name="备用接口">
+            <div class="card-link" data-copy="http://www.影视仓.com" data-name="备用接口">
                 <div class="left">
                     <div class="icon-wrap icon-backup"><i class="fas fa-circle-nodes"></i></div>
                     <div class="info">
@@ -760,12 +760,12 @@
 
         <!-- ===== 固定横幅广告2  cpc ===== -->
 <!-- ===== jiuyo  cpc ===== -->
-<script id="gg178-scr1pt" src="https://r8quse.icu/api/s/sfd4904e5bb9.js"></script>
+<!--<script id="gg178-scr1pt" src="https://r8quse.icu/api/s/sfd4904e5bb9.js"></script>-->
 <!-- jiuyou cpm固定横幅 -->
-<script id="gg178-scr1pt" src="https://r8quse.icu/api/s/s2d41b828098.js"></script>
+<!--<script id="gg178-scr1pt" src="https://r8quse.icu/api/s/s2d41b828098.js"></script>-->
 
 <!-- 88 cpm固定横幅 -->
-<script src="https://k2n2fzb.com:866/slot?8225462100335650212-42429"></script>
+<!--<script src="https://k2n2fzb.com:866/slot?8225462100335650212-42429"></script>-->
 
 
         <!-- 底部 -->
