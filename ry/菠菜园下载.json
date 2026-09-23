@@ -4,15 +4,15 @@
     "list": [
       {
         "name": "下载①",
-        "url": "https://mpimg.cn/down.php/5163056ea492aa4245ac26f7b0e1d310",
+        "url": "https://gh-proxy.com/github.com/lubin776/trigger-download/releases/download/latest/tvboxX4.zip",
         "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-        "version": "09.08"
+        "version": "09.23"
       },
       {
         "name": "下载②",
-        "url": "https://mpimg.cn/down.php/5163056ea492aa4245ac26f7b0e1d310",
+        "url": "https://mpimg.cn/down.php/29f6b16b1867bcfa26db9860df9c56e4.zip",
         "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-        "version": "09.08"
+        "version": "09.23"
       },
       {
         "name": "白盒",
@@ -32,16 +32,16 @@
     "name": "X4本地包",
     "list": [
       {
-        "name": "代理下载",
-        "url": "https://mpimg.cn/down.php/5163056ea492aa4245ac26f7b0e1d310",
+        "name": "下载①",
+        "url": "https://gh-proxy.com/github.com/lubin776/trigger-download/releases/download/latest/tvboxX4.zip",
         "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-        "version": "09.08"
+        "version": "09.23"
       },
       {
-        "name": "直链下载",
-        "url": "https://mpimg.cn/down.php/5163056ea492aa4245ac26f7b0e1d310",
+        "name": "下载②",
+        "url": "https://mpimg.cn/down.php/29f6b16b1867bcfa26db9860df9c56e4.zip",
         "icon": "https://mpimg.cn/view.php/b1f2e8f59149aaf1c26d388e3ff6ac27.png",
-        "version": "09.08"
+        "version": "09.23"
       }
     ]
   },

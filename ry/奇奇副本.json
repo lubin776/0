@@ -3,21 +3,33 @@
     "name": "推荐",
     "list": [
       {
-        "name": "点击下载",
-        "url": "https://mpimg.cn/down.php/fe15c27aeb01b77b9f6708a1dac89fd0",
+        "name": "点击下载①",
+        "url": "https://gh-proxy.com/github.com/lubin776/trigger-download/releases/download/latest/tvboxqq.zip",
         "icon": "http://bd.qiqiv.cn/更新.jpg",
-        "version": "09.08"
+        "version": "09.23"
+      },
+      {
+        "name": "点击下载②",
+        "url": "https://mpimg.cn/down.php/c940f6ccf420663892779382fdf2894e.zip",
+        "icon": "http://bd.qiqiv.cn/更新.jpg",
+        "version": "09.23"
       }
     ]
   },
   {
-    "name": "最新：20260908",
+    "name": "奇奇本地包",
     "list": [
       {
-        "name": "点击下载",
-        "url": "https://mpimg.cn/down.php/fe15c27aeb01b77b9f6708a1dac89fd0",
+        "name": "点击下载①",
+        "url": "https://gh-proxy.com/github.com/lubin776/trigger-download/releases/download/latest/tvboxqq.zip",
         "icon": "http://bd.qiqiv.cn/更新.jpg",
-        "version": "09.08"
+        "version": "09.23"
+      },
+      {
+        "name": "点击下载②",
+        "url": "https://mpimg.cn/down.php/c940f6ccf420663892779382fdf2894e.zip",
+        "icon": "http://bd.qiqiv.cn/更新.jpg",
+        "version": "09.23"
       }
     ]
   }
