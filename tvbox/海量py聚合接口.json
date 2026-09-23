@@ -50,9 +50,9 @@
     },
     {
       "key": "星芽短剧",
-      "name": "😄星芽｜[短剧]",
+      "name": "星芽｜短剧",
       "type": 3,
-      "api": "http://150.158.52.248/tgyg/lib/apiv741星芽短剧.py",
+      "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/潇洒2026/lib/星芽短剧.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -61,34 +61,34 @@
       "key": "剧王短剧",
       "name": "剧王｜短剧",
       "type": 3,
-      "api": "http://47.96.82.41:5188/svip/py/剧王短剧.py",
+      "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/潇洒2026/lib/剧王短剧.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
     },
     {
       "key": "爱听音乐",
-      "name": "📻爱听｜音乐",
+      "name": "爱听 • 音乐",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/IY-CPU/IY/main/lib/爱听音乐.py",
+      "api": "https://pizazz.us.ci/other/py/爱听音乐.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
     },
     {
       "key": "网络直播",
-      "name": "📺网络┃点播",
+      "name": "网络┃直播",
       "type": 3,
-      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/网络直播.py",
+      "api": "https://ygbh.site/max/py/网络直播.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
     },
     {
       "key": "哔哩直播",
-      "name": "📺哔哩｜点播",
+      "name": "哔哩｜直播",
       "type": 3,
-      "api": "https://gh-proxy.com/raw.githubusercontent.com/IY-CPU/IY/main/lib/哔哩直播.py",
+      "api": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/潇洒2026/lib/BLZB.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -491,7 +491,7 @@
     },
     {
       "key": "qw",
-      "name": "🦋 七味.py(关梯)",
+      "name": "七味",
       "type": 3,
       "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/七味.py",
       "searchable": 1,
@@ -545,9 +545,9 @@
     },
     {
       "key": "MiFun",
-      "name": "MiFun｜动漫",
+      "name": "🦋 MiFun动漫.py",
       "type": 3,
-      "api": "https://clun.top/py/MiFunP.py",
+      "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/MiFun动漫.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -1139,7 +1139,7 @@
     },
     {
       "key": "py_guazi",
-      "name": "瓜子[py]",
+      "name": "瓜子影视[py]",
       "type": 3,
       "api": "https://clun.top/py/guazi.py",
       "searchable": 1,
@@ -1510,7 +1510,7 @@
       "key": "橘汁",
       "name": "橘汁",
       "type": 3,
-      "api": "https://mpimg.cn/down.php/9a77fbfdf66962bb95202e05bc5d551f.py",
+      "api": "https://mpimg.cn/down.php/dcdcff871e1139b45b15efe353872cc5.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -1760,18 +1760,18 @@
     },
     {
       "key": "央库云",
-      "name": "央视｜云聚",
+      "name": "🥇央视🔹大全",
       "type": 3,
-      "api": "http://47.96.82.41:5188/svip/py/央库云.py",
+      "api": "https://7337.kstore.vip/xw/py/央库云.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
     },
     {
       "key": "央视影视",
-      "name": "央视｜APP",
+      "name": "🥇央视🔹栏目",
       "type": 3,
-      "api": "http://47.96.82.41:5188/svip/py/央视影视.py",
+      "api": "https://7337.kstore.vip/xw/py/央视影视.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -1877,9 +1877,9 @@
     },
     {
       "key": "猎手影视",
-      "name": "猎手｜APP",
+      "name": "猎手┃影视",
       "type": 3,
-      "api": "https://gh.jasonzeng.dev/https://raw.githubusercontent.com/xmbjm/svip/refs/heads/main/py/猎手影视.py",
+      "api": "https://ygbh.site/max/py/猎手影视.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2086,7 +2086,7 @@
       "key": "聚合",
       "name": "聚合",
       "type": 3,
-      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/py/聚合.py",
+      "api": "https://gitee.com/hulanlu/04/raw/master/py/聚合.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2095,7 +2095,7 @@
       "key": "🦐傻瓜",
       "name": "🦐傻瓜",
       "type": 3,
-      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/py/瓜娃子.py",
+      "api": "https://gitee.com/hulanlu/04/raw/master/py/瓜娃子.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2104,7 +2104,7 @@
       "key": "兄弟影视",
       "name": "兄弟影视",
       "type": 3,
-      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/py/兄弟影视.min.py",
+      "api": "https://gitee.com/hulanlu/04/raw/master/py/兄弟影视.min.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2113,7 +2113,7 @@
       "key": "奇优动漫",
       "name": "奇优动漫",
       "type": 3,
-      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/奇优动漫.py",
+      "api": "https://gitee.com/hulanlu/04/raw/master/lib/奇优动漫.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2122,7 +2122,7 @@
       "key": "零度",
       "name": "🥶┃零度┃影视",
       "type": 3,
-      "api": "https://raw.giteeusercontent.com/hulanlu/04/raw/master/lib/lingdu.py",
+      "api": "https://gitee.com/hulanlu/04/raw/master/lib/lingdu.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2228,9 +2228,9 @@
     },
     {
       "key": "爱看剧",
-      "name": "看剧｜2K",
+      "name": "🌀看剧｜1920",
       "type": 3,
-      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/AppToV5.py",
+      "api": "https://gh-proxy.com/raw.githubusercontent.com/IY-CPU/IY/main/lib/AppToV5.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2753,6 +2753,15 @@
       "name": "推特APP.py",
       "type": 3,
       "api": "https://raw.githubusercontent.com/yuanwangokk-1/TV-BOX/main/纯福利/plugin/adult/推特APP.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "裤佬七星短剧",
+      "name": "七星丨短剧",
+      "type": 3,
+      "api": "https://mpimg.cn/down.php/48e9d346cdf6da376c53136693bec95a.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
