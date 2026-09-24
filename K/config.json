@@ -1,16 +1,4 @@
 {
-"quickLinks": {
-  "title": "常用工具",
-  "description": "播放器 · 直播源 · 格式转换 · 网络空间测绘",
-  "items": [
-    { "icon": "▶️", "name": "酷9",       "url": "https://pan.xunlei.com/x/VOc19v6j083vscOuJTHMotXXA1?pwd=prgs#", "desc": "安卓播放器" },
-    { "icon": "📺", "name": "TVBox",     "url": "https://www.kdocs.cn/l/cbqzlC3waPFX", "desc": "开源影视壳" },
-    { "icon": "🎬", "name": "BBLL改版",  "url": "https://pan.xunlei.com/x/VOcdMl7EZcqq_jOBuwZoyEiMA1?pwd=i5r9#", "desc": "BBLL 定制版" },
-    { "icon": "📡", "name": "OrionTV",   "url": "https://github.com/orion-lib/OrionTV/releases", "desc": "轻量直播壳" },
-    { "icon": "🌸", "name": "网易爆米花", "url": "https://bmh.163.com/", "desc": "智能媒体库" },
-    { "icon": "🌐", "name": "IPV6查询",  "url": "https://ipconfig.com/zh", "desc": "网络信息检测" }
-  ]
-},
   "site": {
     "title": "海量接口搬运备份",
     "logo": "vip/jueson.jpg",
@@ -18,10 +6,10 @@
     "qqGroup": "1067685939"
   },
   "tabs": [
-    { "id": "api", "label": "接口", "type": "api" },
+    { "id": "api",      "label": "接口", "type": "api" },
     { "id": "download", "label": "下载", "type": "download" },
-    { "id": "danmu", "label": "弹幕", "type": "danmu" },
-    { "id": "about", "label": "关于", "type": "about", "hideSearch": true }
+    { "id": "danmu",    "label": "弹幕", "type": "danmu" },
+    { "id": "about",    "label": "关于", "type": "about", "hideSearch": true }
   ],
   "api": {
     "domains": [
@@ -45,27 +33,12 @@
     }
   },
   "downloadSources": [
-    { "name": "菠菜园", "url": "ry/菠菜园下载.json", "description": "整理者：误道者" },
-    { "name": "奇奇副本", "url": "ry/奇奇副本.json", "description": "整理者：误道者" },
-    { "name": "无忧", "url": "ry/无忧下载.json", "description": "云星" },
-    { "name": "潇洒", "url": "ry/潇洒下载.json", "description": "潇洒" },
-    { "name": "柒豪下载", "url": "ry/柒豪下载.json", "description": "" },
-    { "name": "应用下载", "url": "ry/应用市场二.json", "description": "" },
-    { "name": "应用市场", "url": "ry/应用市场一.json", "description": "" }
+    { "name": "菠菜园",   "url": "ry/菠菜园下载.json",  "description": "整理者：误道者" },
+    { "name": "奇奇副本", "url": "ry/奇奇副本.json",    "description": "整理者：误道者" }
   ],
   "danmuSources": [
-    { "name": "ecs源", "url": "http://ecs.dysobo.cn:9321/87654321" },
-    { "name": "快源", "url": "http://43.143.108.212/87654321" },
-    { "name": "阿里云源", "url": "http://47.107.188.112:6008/87654321" },
-    { "name": "腾讯云源", "url": "http://43.135.134.121/87654321" },
-    { "name": "华为云源", "url": "http://114.116.228.54/87654321" },
-    { "name": "ucloud源", "url": "http://120.131.0.58/87654321" },
-    { "name": "天翼云源", "url": "http://106.55.240.101/87654321" },
-    { "name": "百度云源", "url": "http://180.76.120.66/87654321" },
-    { "name": "京东云源", "url": "http://114.67.161.57/87654321" },
-    { "name": "青云源", "url": "http://139.198.18.248/87654321" },
-    { "name": "移动云源", "url": "http://111.229.198.102/87654321" },
-    { "name": "联通云源", "url": "http://123.249.36.74/87654321" }
+    { "name": "ecs源",     "url": "http://ecs.dysobo.cn:9321/87654321" },
+    { "name": "快源",       "url": "http://43.143.108.212/87654321" }
   ],
   "danmuTutorial": {
     "enabled": true,
@@ -125,195 +98,35 @@
     { "id": "book-source", "icon": "📚", "label": "书源" },
     { "id": "comic-source", "icon": "📖", "label": "漫画源" },
     { "id": "music-source", "icon": "🎵", "label": "音源" },
-    { "id": "general-source-1", "icon": "💬", "label": "弹幕接口" },
-    { "id": "general-source-2", "icon": "🧩", "label": "通用资源二" },
-    { "id": "general-source-3", "icon": "🧩", "label": "通用资源三" }
+    { "id": "online-video", "icon": "🎬", "label": "在线视频" }
   ],
-  "sourceGroups": {
-    "general-source-2": {
-      "title": "通用资源",
-      "description": "常用接口合集",
-      "items": [
-        {
-          "name": "资源一名称",
-          "count": "说明一",
-          "desc": "说明二",
-          "tag": "标签",
-          "url": "https://example.com/resource1.json",
-          "id": 1
-        },
-        {
-          "name": "资源二",
-          "count": "",
-          "desc": "",
-          "tag": "标签",
-          "url": "https://example.com/resource2.json",
-          "id": 2
-        }
-      ]
-    },
-    "general-source-1": {
-  "title": "💬 弹幕接口",
-  "description": "点击「复制」把地址填入播放器的弹幕接口。",
-  "items": [
-    {
-      "name": "ecs源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://ecs.dysobo.cn:9321/87654321",
-      "id": 1
-    },
-    {
-      "name": "快源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://43.143.108.212/87654321",
-      "id": 2
-    },
-    {
-      "name": "阿里云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://47.107.188.112:6008/87654321",
-      "id": 3
-    },
-    {
-      "name": "腾讯云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://43.135.134.121/87654321",
-      "id": 4
-    },
-    {
-      "name": "华为云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://114.116.228.54/87654321",
-      "id": 5
-    },
-    {
-      "name": "ucloud源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://120.131.0.58/87654321",
-      "id": 6
-    },
-    {
-      "name": "天翼云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://106.55.240.101/87654321",
-      "id": 7
-    },
-    {
-      "name": "百度云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://180.76.120.66/87654321",
-      "id": 8
-    },
-    {
-      "name": "京东云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://114.67.161.57/87654321",
-      "id": 9
-    },
-    {
-      "name": "青云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://139.198.18.248/87654321",
-      "id": 10
-    },
-    {
-      "name": "移动云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://111.229.198.102/87654321",
-      "id": 11
-    },
-    {
-      "name": "联通云源",
-      "count": "",
-      "desc": "",
-      "tag": "线路",
-      "url": "http://123.249.36.74/87654321",
-      "id": 12
-    }
-  ]
-},
-    "general-source-3": {
-      "title": "通用资源三",
-      "description": "特殊用途接口",
-      "items": [
-        {
-          "name": "资源三名称",
-          "count": "长期维护",
-          "desc": "支持自定义规则",
-          "tag": "高级",
-          "url": "https://example.com/resource3.json",
-          "id": 3
-        }
-      ]
-    }
-  },
   "bookSource": {
     "title": "📚 书源收集",
     "description": "共 7 组书源。使用方法：阅读3.0（Legado）→ 我的 → 书源管理 → 右上角菜单 → 网络导入 → 粘贴地址 → 确定。",
     "items": [
+    
       { "name": "【新手必备】2159个综合书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250422.json", "badge": "2159 个源", "note": "强烈推荐首次使用" },
-      { "name": "【番茄小说】专属书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250410.json", "badge": "1 个源", "note": "番茄小说专用" },
-      { "name": "【69书源】起点小说专属源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250412.json", "badge": "1 个源", "note": "部分地区可能需要网络加速" },
-      { "name": "【超级精品】997个高质精选书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250415.json", "badge": "997 个源", "note": "大佬精心整理" },
-      { "name": "【三五中文网】书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250416.json", "badge": "1 个源", "note": "" },
-      { "name": "【漫画党福音】83个精品漫画书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250424.json", "badge": "83 个源", "note": "" },
-      { "name": "【有声听书】49个高质量听书书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/2504241.json", "badge": "49 个源", "note": "听书专用" }
+      { "name": "【番茄小说】专属书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250410.json", "badge": "1 个源", "note": "番茄小说专用" }
+      
     ]
   },
   "comicSource": {
     "title": "📖 漫画源收集",
     "description": "漫画书源已在书源列表中包含（第6项），如需单独管理可在此扩展。",
     "items": [
+    
       { "name": "【漫画党福音】83个精品漫画书源", "tag": "导入", "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250424.json", "badge": "83 个源", "note": "" }
+      
     ]
   },
   "musicSource": {
     "title": "🎵 落雪音源",
     "description": "共 20 个音源（已去重，原为 21 个），点击「复制」后打开洛雪音乐 → 设置 → 自定义音源 → 粘贴地址导入并启用。",
     "items": [
+    
       { "name": "FreeListen 1.1.2(原小熊猫)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/FreeListen 1.1.2(原小熊猫).js", "badge": "18.2 KB", "note": "" },
-      { "name": "FreeListen", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/FreeListen.js", "badge": "18.2 KB", "note": "" },
-      { "name": "IKUN音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/IKUN音源.js", "badge": "4.5 KB", "note": "" },
-      { "name": "[独家音源] v4.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/[独家音源] v4.0.js", "badge": "112.1 KB", "note": "" },
-      { "name": "filenamefish-music音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/filenamefish-music音源.js", "badge": "9.8 KB", "note": "" },
-      { "name": "lx-music-source V3.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/lx-music-source V3.0.js", "badge": "10.3 KB", "note": "" },
-      { "name": "lx-music-source-v6+(修复)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/lx-music-source-v6+(修复).js", "badge": "62.6 KB", "note": "" },
-      { "name": "【推荐】长青SVIP音源v1.2.0（全平台支持无损）", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/【推荐】长青SVIP音源v1.2.0（全平台支持无损）.js", "badge": "23.9 KB", "note": "" },
-      { "name": "云端音源 v2.1.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/云端音源 v2.1.0.js", "badge": "10.2 KB", "note": "" },
-      { "name": "其他源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/其他源.js", "badge": "112.1 KB", "note": "" },
-      { "name": "小熊猫音源1.1.2", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/小熊猫音源1.1.2.js", "badge": "18.6 KB", "note": "" },
-      { "name": "念心音源-V1.0.1", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/念心音源-V1.0.1.js", "badge": "26.4 KB", "note": "" },
-      { "name": "星空音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/星空音源.js", "badge": "62.3 KB", "note": "" },
-      { "name": "洛雪独家音源_v5(1)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/洛雪独家音源_v5(1).js", "badge": "61.4 KB", "note": "" },
-      { "name": "独家音源-v5", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/独家音源-v5.js", "badge": "61.4 KB", "note": "" },
-      { "name": "独家音源V6(1)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/独家音源V6(1).js", "badge": "61.4 KB", "note": "" },
-      { "name": "聚合API接口", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/聚合API接口.js", "badge": "18.1 KB", "note": "" },
-      { "name": "聚合音源v5.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/聚合音源v5.0.js", "badge": "31.6 KB", "note": "" },
-      { "name": "野花音源（强大）", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/野花音源（强大）.js", "badge": "7.3 KB", "note": "" },
-      { "name": "野草音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/野草音源.js", "badge": "7.0 KB", "note": "" },
-      { "name": "音乐下载器 v6", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/音乐下载器 v6.js", "badge": "1780.0 KB", "note": "" }
+      { "name": "FreeListen", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/FreeListen.js", "badge": "18.2 KB", "note": "" }
+      
     ]
   },
   "onlineVideo": {
@@ -321,25 +134,8 @@
     "description": "共 20 个在线影视站点，点击卡片直达；标注「需梯子」的需自备网络环境。",
     "items": [
       { "name": "饭搭子影视", "url": "https://fdzys.com/", "desc": "最新热门电影电视剧动漫综艺" },
-      { "name": "SA视频", "url": "https://www.lsjys11.com/", "desc": "最新电影电视剧动漫综艺" },
-      { "name": "91毒舌", "url": "https://www.duse0.com/", "desc": "最新Netflix新剧、4K高清" },
-      { "name": "好好看", "url": "https://www.hhkan2.com/", "desc": "4K高清Netflix新剧（需梯子）" },
-      { "name": "IFN", "url": "https://ifn.watch/register?code=8B1EF6", "desc": "为数不多的真4K，部分免费" },
-      { "name": "蛋蛋魔法", "url": "https://ddmf.net", "desc": "国内外热播剧（需梯子）" },
-      { "name": "青空次元", "url": "https://www.sorani.net", "desc": "网友称最夯动漫在线站" },
-      { "name": "APP影院", "url": "https://www.appmovie.art", "desc": "国内外热播剧，纯净无广告" },
-      { "name": "Auete影视", "url": "https://www.aeete.com", "desc": "蓝光超清精品影视" },
-      { "name": "电影人生", "url": "https://dyrs.tv", "desc": "高清电影在线观看" },
-      { "name": "黑夜影院", "url": "https://darkvod.com", "desc": "综合影视/资源多/无广告" },
-      { "name": "奈飞工厂", "url": "https://www.netflixgc.com", "desc": "最新美剧，无广告（需梯子）" },
-      { "name": "泥视频", "url": "https://www.nivod.vip", "desc": "热门国剧，更新快，无广告" },
-      { "name": "PPnix", "url": "https://www.ppnix.com/cn/", "desc": "热门在线影视，速度快/纯净" },
-      { "name": "多瑙影视", "url": "https://www.duonaovod.com", "desc": "海外华人在线影院（需梯子）" },
-      { "name": "白嫖者联盟", "url": "https://www.tdgo.shop", "desc": "热门热播剧（需梯子）" },
-      { "name": "爱电影", "url": "https://kuhh4jo.com", "desc": "最新热门电影/电视剧（需梯子）" },
-      { "name": "金牌影视", "url": "https://www.vv3nwjk.com", "desc": "全网VIP资源（需梯子）" },
-      { "name": "937影视", "url": "https://www.937tv.vip", "desc": "看全网影视剧（需梯子）" },
-      { "name": "注视影视", "url": "https://gaze.red/", "desc": "国内海外影视剧资源（需梯子）" }
+      { "name": "SA视频", "url": "https://www.lsjys11.com/", "desc": "最新电影电视剧动漫综艺" }
+      
     ]
   }
 }
