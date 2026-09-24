@@ -997,6 +997,42 @@
       "source": "老张"
     },
     {
+      "name": "IPv4",
+      "url": "http://101.200.122.188/66",
+      "ua": "okhttp/3.12.13",
+      "source": "海量直播聚合接口"
+    },
+    {
+      "name": "如果失效等候更新或者在线更新本地包防失效",
+      "url": "https://aaa.v.nxog.top/m/tv/?ou=38b",
+      "ua": "",
+      "source": "海量直播聚合接口"
+    },
+    {
+      "name": "冰茶",
+      "url": "https://bc.188766.xyz/?ip=&json=true",
+      "ua": "bingcha/1.1(mianfeifenxiang)",
+      "source": "海量直播聚合接口"
+    },
+    {
+      "name": "live2线",
+      "url": "http://app.aiyinch.cn/xzzb/xzvip.txt",
+      "ua": "",
+      "source": "海量直播聚合接口"
+    },
+    {
+      "name": "Yoursmile1线",
+      "url": "https://gh-proxy.org/https://raw.githubusercontent.com/yoursmile66/TVBox/main/live.txt",
+      "ua": "okhttp/3.15",
+      "source": "海量直播聚合接口"
+    },
+    {
+      "name": "TvLive1线",
+      "url": "https://live.kilvn.com/iptv.m3u",
+      "ua": "",
+      "source": "海量直播聚合接口"
+    },
+    {
       "name": "Ipv4",
       "url": "https://gh-proxy.com/raw.githubusercontent.com/lubin776/tvbox/refs/heads/main/xuexiji/lib/live.txt",
       "ua": "okhttp/3.15",
@@ -1021,12 +1057,6 @@
       "source": "海量直播聚合接口"
     },
     {
-      "name": "IPv4",
-      "url": "http://101.200.122.188/66",
-      "ua": "okhttp/3.12.13",
-      "source": "海量直播聚合接口"
-    },
-    {
       "name": "本地live文件",
       "url": "http://127.0.0.1:9978/file/XYQTVBox/live.txt",
       "ua": "",
@@ -1039,20 +1069,8 @@
       "source": "海量直播聚合接口"
     },
     {
-      "name": "TvLive1线",
-      "url": "https://live.kilvn.com/iptv.m3u",
-      "ua": "",
-      "source": "海量直播聚合接口"
-    },
-    {
       "name": "野火直播",
       "url": "https://zhangqun1818.serv00.net/zq/野火改.txt",
-      "ua": "",
-      "source": "海量直播聚合接口"
-    },
-    {
-      "name": "live2线",
-      "url": "http://app.aiyinch.cn/xzzb/xzvip.txt",
       "ua": "",
       "source": "海量直播聚合接口"
     },
@@ -1090,24 +1108,6 @@
       "name": "APTV1线",
       "url": "https://github.3x25.com/https://github.com/Kimentanm/aptv/raw/master/m3u/iptv.m3u",
       "ua": "okhttp/3.15,AptvPlayer/1.4.0",
-      "source": "海量直播聚合接口"
-    },
-    {
-      "name": "Yoursmile1线",
-      "url": "https://gh-proxy.org/https://raw.githubusercontent.com/yoursmile66/TVBox/main/live.txt",
-      "ua": "okhttp/3.15",
-      "source": "海量直播聚合接口"
-    },
-    {
-      "name": "如果失效等候更新或者在线更新本地包防失效",
-      "url": "https://aaa.v.nxog.top/m/tv/?ou=38b",
-      "ua": "",
-      "source": "海量直播聚合接口"
-    },
-    {
-      "name": "冰茶",
-      "url": "https://bc.188766.xyz/?ip=&json=true",
-      "ua": "bingcha/1.1(mianfeifenxiang)",
       "source": "海量直播聚合接口"
     }
   ]
