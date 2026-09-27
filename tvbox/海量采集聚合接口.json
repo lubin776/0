@@ -12,6 +12,15 @@
       "indexs": 1,
       "filterable": 1
     },
+{
+            "key": "yhys",
+            "name": "🍀樱花影视",
+            "type": 1,
+            "api": "https://yhzy.cc/api.php/provide/vod?ac=list",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
     {
       "key": "feifan",
       "name": "🍀非凡资源",
