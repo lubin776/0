@@ -1,35 +1,83 @@
 #EXTM3U
 #EXTINF:-1 tvg-name="📡咪咕直播3",📡咪咕直播3
 <!doctype html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
-<title>抱歉，站点已暂停</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iPTV · 播放列表</title>
 <style>
-html,body,div,h1,*{margin:0;padding:0;}
-body{
-	background-color:#fefefe;
-	color:#333
-}
-.box{
-	width:580px;
-	margin:0 auto;
-}
-h1{
-	font-size:20px;
-	text-align:center; 
-	background:url(data:image/png;base64,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) no-repeat top center; 
-	padding-top:160px;
-	margin-top:30%;
-	font-weight:normal;
-}
-
+:root{color-scheme:light;--bg:#f3f6fb;--surface:#fff;--surface-soft:#f8fafd;--surface-strong:#eef2f8;--line:#e2e8f0;--line-strong:#cbd5e1;--txt:#172033;--txt2:#5f6b7c;--muted:#8792a4;--pri:#4f63e9;--pri-hover:#4054d4;--pri-soft:#eef1ff;--pri-line:#cdd5ff;--cyan:#087e86;--cyan-soft:#ecf9fa;--cyan-line:#bce7e9;--r-panel:20px;--r-card:16px;--r-ctl:10px;--shadow-header:0 12px 34px rgba(31,45,78,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);font-size:15px;line-height:1.55;min-height:100vh;padding:26px}
+::selection{color:#fff;background:var(--pri)}
+.wrap{max-width:1120px;margin:0 auto}
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 18px;margin-bottom:22px;border:1px solid var(--line-strong);border-radius:var(--r-panel);background:rgba(255,255,255,.92);backdrop-filter:blur(18px);box-shadow:var(--shadow-header)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--pri);color:#fff;font-size:22px;box-shadow:0 8px 18px rgba(79,99,233,.2)}
+.brand-copy strong{display:block;font-size:16px}
+.brand-copy small{color:var(--muted);font-size:12px}
+.top-link{margin-left:auto}
+a.btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:9px 16px;border-radius:var(--r-ctl);border:1px solid var(--pri);background:var(--pri);color:#fff;font-weight:600;font-size:14px;text-decoration:none}
+a.btn:hover{border-color:var(--pri-hover);background:var(--pri-hover)}
+.note{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--cyan-soft);border:1px solid var(--cyan-line);border-radius:var(--r-card);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--txt2)}
+h2{font-size:18px;margin:2px 0 14px;letter-spacing:-.01em}
+.pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.pl-card{border:1px solid var(--line);border-radius:var(--r-card);padding:16px;background:var(--surface);display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(31,45,78,.03)}
+.pl-card-h{display:flex;align-items:center;gap:8px}
+.pl-card-h .nm{font-weight:700;font-size:15px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pl-card-h .cnt{font-size:12px;color:var(--txt2);background:var(--surface-strong);padding:2px 9px;border-radius:999px}
+.pl-card-h .def-tag{font-size:11px;color:var(--pri);background:var(--pri-soft);padding:2px 8px;border-radius:6px;font-weight:600}
+.pl-url{display:flex;gap:6px;align-items:center}
+.pl-url .lbl{width:34px;font-size:12px;color:var(--muted);flex:none;font-weight:700}
+.pl-url input{flex:1;min-width:0;min-height:36px;padding:7px 10px;font-size:12px;font-family:ui-monospace,Menlo,monospace;border:1px solid var(--line-strong);border-radius:var(--r-ctl);background:var(--surface-soft);color:#39445a}
+button.sm{min-height:32px;padding:6px 11px;border-radius:9px;font-size:12px;border:1px solid var(--line-strong);background:var(--surface);color:var(--txt2);font-weight:600;cursor:pointer}
+button.sm:hover{color:var(--pri);border-color:var(--pri-line);background:var(--pri-soft)}
+.pl-more{display:flex;gap:16px;flex-wrap:wrap;font-size:12px}
+.pl-more a{color:var(--pri);text-decoration:none;font-weight:600}
+.pl-more a:hover{text-decoration:underline}
+.empty{color:var(--muted);padding:20px;text-align:center;background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--r-card);grid-column:1/-1}
+.global{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-panel);padding:18px 20px}
+.g-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.g-lbl{width:78px;flex:none;font-weight:700;color:var(--muted);font-size:13px}
+.g-row code{flex:1;min-width:240px;background:var(--surface-strong);color:#39445a;padding:9px 11px;border-radius:var(--r-ctl);font-size:12px;font-family:ui-monospace,Menlo,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+footer{margin-top:24px;text-align:center;color:var(--muted);font-size:12px}
+@media(max-width:560px){body{padding:14px}.top-link{margin-left:0;flex-basis:100%}}
 </style>
 </head>
-
 <body>
-<div class="box">
-<h1>抱歉！该站点已经被管理员停止运行，请联系管理员了解详情！</h1>
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="brand-mark">📺</span><span class="brand-copy"><strong>iPTV 直播源系统</strong><small>共 2 条订阅地址 · 独立播放列表</small></span></div>
+    <div class="top-link"><a class="btn" href="http://120.24.194.118:10002/index.php/admin">⚙️ 管理后台</a></div>
+  </header>
+  <div class="note">💡 每条订阅地址都是独立播放列表，可单独编排分组 / 隐藏 / 排序。复制对应 M3U / TXT 地址，粘贴到 IPTV 播放器即可。</div>
+  <h2>📋 播放列表订阅地址</h2>
+  <div class="pl-grid">
+    <div class="pl-card">
+      <div class="pl-card-h"><span class="nm">默认档</span><span class="cnt">63 频道</span><span class="def-tag">默认</span></div>
+      <div class="pl-url"><span class="lbl">M3U</span><input readonly value="http://120.24.194.118:10002/index.php/interface.m3u?profile=default"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-url"><span class="lbl">TXT</span><input readonly value="http://120.24.194.118:10002/index.php/txt?profile=default"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-more"><a href="http://120.24.194.118:10002/index.php/interface.m3u?profile=default">打开 M3U</a><a href="http://120.24.194.118:10002/index.php/txt?profile=default">打开 TXT</a></div>
+    </div>
+    <div class="pl-card">
+      <div class="pl-card-h"><span class="nm">web</span><span class="cnt">0 频道</span></div>
+      <div class="pl-url"><span class="lbl">M3U</span><input readonly value="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujfnc18"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-url"><span class="lbl">TXT</span><input readonly value="http://120.24.194.118:10002/index.php/txt?profile=pl-mujfnc18"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-more"><a href="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujfnc18">打开 M3U</a><a href="http://120.24.194.118:10002/index.php/txt?profile=pl-mujfnc18">打开 TXT</a></div>
+    </div>
+  </div>
+  <div class="global">
+    <h2 style=margin-bottom:0>🔗 全局端点</h2>
+    <div class="g-row"><span class="g-lbl">EPG 节目单</span><code>http://120.24.194.118:10002/index.php/playback.xml</code><button class="sm" onclick="cpn(this)">复制</button></div>
+    <div class="g-row"><span class="g-lbl">管理后台</span><code>http://120.24.194.118:10002/index.php/admin</code><button class="sm" onclick="cpn(this)">复制</button></div>
+  </div>
+  <footer>iPTV PHP · 纯 PHP 直播源管理与分发系统</footer>
 </div>
+<script>
+function cp(btn){var i=btn.parentNode.querySelector('input');if(!i)return;i.focus();i.select();i.setSelectionRange(0,99999);try{document.execCommand('copy');flash(btn);}catch(e){}}
+function cpn(btn){var c=btn.parentNode.querySelector('code');if(!c)return;var t=c.textContent;if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){flash(btn);});}else{flash(btn);}}
+function flash(btn){var o=btn.textContent;btn.textContent='已复制';setTimeout(function(){btn.textContent=o;},1200);}
+</script>
 </body>
 </html>
