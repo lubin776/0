@@ -20,12 +20,6 @@
       "filterable": 1
     },
     {
-      "key": "本地媒体",
-      "name": "📁本地┃媒体",
-      "type": 3,
-      "api": "csp_LocalFile"
-    },
-    {
       "key": "ds05",
       "name": "🍀都司资源",
       "type": 0,
