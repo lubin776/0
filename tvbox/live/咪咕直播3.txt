@@ -48,23 +48,35 @@ footer{margin-top:24px;text-align:center;color:var(--muted);font-size:12px}
 <body>
 <div class="wrap">
   <header>
-    <div class="brand"><span class="brand-mark">📺</span><span class="brand-copy"><strong>iPTV 直播源系统</strong><small>共 2 条订阅地址 · 独立播放列表</small></span></div>
+    <div class="brand"><span class="brand-mark">📺</span><span class="brand-copy"><strong>iPTV 直播源系统</strong><small>共 4 条订阅地址 · 独立播放列表</small></span></div>
     <div class="top-link"><a class="btn" href="http://120.24.194.118:10002/index.php/admin">⚙️ 管理后台</a></div>
   </header>
   <div class="note">💡 每条订阅地址都是独立播放列表，可单独编排分组 / 隐藏 / 排序。复制对应 M3U / TXT 地址，粘贴到 IPTV 播放器即可。</div>
   <h2>📋 播放列表订阅地址</h2>
   <div class="pl-grid">
     <div class="pl-card">
-      <div class="pl-card-h"><span class="nm">默认档</span><span class="cnt">63 频道</span><span class="def-tag">默认</span></div>
+      <div class="pl-card-h"><span class="nm">网络源</span><span class="cnt">63 频道</span><span class="def-tag">默认</span></div>
       <div class="pl-url"><span class="lbl">M3U</span><input readonly value="http://120.24.194.118:10002/index.php/interface.m3u?profile=default"><button class="sm" onclick="cp(this)">复制</button></div>
       <div class="pl-url"><span class="lbl">TXT</span><input readonly value="http://120.24.194.118:10002/index.php/txt?profile=default"><button class="sm" onclick="cp(this)">复制</button></div>
       <div class="pl-more"><a href="http://120.24.194.118:10002/index.php/interface.m3u?profile=default">打开 M3U</a><a href="http://120.24.194.118:10002/index.php/txt?profile=default">打开 TXT</a></div>
     </div>
     <div class="pl-card">
-      <div class="pl-card-h"><span class="nm">web</span><span class="cnt">0 频道</span></div>
+      <div class="pl-card-h"><span class="nm">web源</span><span class="cnt">0 频道</span></div>
       <div class="pl-url"><span class="lbl">M3U</span><input readonly value="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujfnc18"><button class="sm" onclick="cp(this)">复制</button></div>
       <div class="pl-url"><span class="lbl">TXT</span><input readonly value="http://120.24.194.118:10002/index.php/txt?profile=pl-mujfnc18"><button class="sm" onclick="cp(this)">复制</button></div>
       <div class="pl-more"><a href="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujfnc18">打开 M3U</a><a href="http://120.24.194.118:10002/index.php/txt?profile=pl-mujfnc18">打开 TXT</a></div>
+    </div>
+    <div class="pl-card">
+      <div class="pl-card-h"><span class="nm">组播源</span><span class="cnt">0 频道</span></div>
+      <div class="pl-url"><span class="lbl">M3U</span><input readonly value="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujt530b"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-url"><span class="lbl">TXT</span><input readonly value="http://120.24.194.118:10002/index.php/txt?profile=pl-mujt530b"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-more"><a href="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujt530b">打开 M3U</a><a href="http://120.24.194.118:10002/index.php/txt?profile=pl-mujt530b">打开 TXT</a></div>
+    </div>
+    <div class="pl-card">
+      <div class="pl-card-h"><span class="nm">咪咕源</span><span class="cnt">0 频道</span></div>
+      <div class="pl-url"><span class="lbl">M3U</span><input readonly value="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujt5v1v"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-url"><span class="lbl">TXT</span><input readonly value="http://120.24.194.118:10002/index.php/txt?profile=pl-mujt5v1v"><button class="sm" onclick="cp(this)">复制</button></div>
+      <div class="pl-more"><a href="http://120.24.194.118:10002/index.php/interface.m3u?profile=pl-mujt5v1v">打开 M3U</a><a href="http://120.24.194.118:10002/index.php/txt?profile=pl-mujt5v1v">打开 TXT</a></div>
     </div>
   </div>
   <div class="global">
