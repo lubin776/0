@@ -26,6 +26,15 @@
       "api": "csp_LocalFile"
     },
     {
+      "key": "aqyzy",
+      "name": "🍀蜜源",
+      "type": 1,
+      "api": "https://iqiyizyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
       "key": "ds05",
       "name": "🍀都司资源",
       "type": 0,
