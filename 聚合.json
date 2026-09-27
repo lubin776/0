@@ -1,22 +1,11 @@
 {
     "urls": [
          {
-            "url": "/tvbox/海量py聚合接口.json",
+            "url": https://0.12yue.de5.net/tvbox/海量py聚合接口.json",
             "name": "海量py聚合接口"
         },
         {
-            "url": "{
-    "urls": [
-         {
-            "url": "https://0.12yue.de5.net/tvbox/海量py聚合接口.json",
-            "name": "海量py聚合接口"
-        },
-        {
-            "url": "https://lubin776.github.io/0/tvbox/海量采集聚合接口.json",
-            "name": "饭海量采集聚合接口"
-        }
-    ]
-}/tvbox/海量采集聚合接口.json",
+            "url": "https://0.12yue.de5.net/tvbox/海量采集聚合接口.json",
             "name": "饭海量采集聚合接口"
         }
     ]
