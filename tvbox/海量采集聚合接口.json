@@ -2549,6 +2549,24 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
+    },
+    {
+      "key": "aqyzy",
+      "name": "🍀蜜源",
+      "type": 1,
+      "api": "https://iqiyizyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "乐乐",
+      "name": "🎡️┃乐乐┃影视",
+      "type": 1,
+      "api": "https://leshizyapi.com/api.php/provide/vod/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
     }
   ],
   "parses": [

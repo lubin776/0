@@ -119,6 +119,7 @@ csp_xml_ikun|❤ikun资源|type: 1|api: https://ikunzyapi.com/api.php/provide/vo
 索尼|影视 | 索尼[直连]|type: 0|api: https://suoniapi.com/api.php/provide/vod/at/xml/
 建安采集|影视 | 建安|type: 1|api: http://154.219.117.232:9981/jacloudapi.php/provide/vod
 闪电资源|闪电资源(切)|type: 1|api: http://sdzyapi.com/api.php/provide/vod/
+aqyzy|🍀蜜源|type: 1|api: https://iqiyizyapi.com/api.php/provide/vod
 飘零影视|飘零影视|type: 1|api: https://p2100.net/api.php/provide/vod/?ac=list
 豆瓣影视|豆瓣影视|type: 1|api: https://caiji.dbzy5.com/api.php/provide/vod/from/dbm3u8/at/json/
 U酷影视|U酷影视|type: 1|api: https://api.ukuapi88.com/api.php/provide/vod/from/ukm3u8/at/json/
@@ -196,7 +197,6 @@ OK资源|OK资源|type: 0|api: https://api.okzy.org/api.php/provide/vod/from/okm
 飘花影院|飘花影院┃刺桐|type: 1|api: http://www.ahjiuman.com/api.php/provide/vod/at/json
 天翼资源|天翼资源┃刺桐|type: 1|api: https://www.911ysw.top/tianyi.php/provide/vod/
 最大资源|最大资源┃刺桐|type: 1|api: https://api.zuidapi.com/api.php/provide/vod/from/zuidam3u8/
-爱奇艺资源|爱奇艺资源┃刺桐|type: 1|api: https://iqiyizyapi.com/api.php/provide/vod/
 789资源|789资源┃刺桐|type: 1|api: http://www.caiji.cyou/api.php/provide/vod/
 金蝉资源|金蝉资源┃刺桐|type: 1|api: https://zy.jinchancaiji.com/api.php/provide/vod/
 wangwang|旺旺资源|type: 1|api: https://wwzy.tv/api.php/provide/vod
@@ -231,6 +231,7 @@ CK资源|🦋 CK资源｜🔞|type: 1|api: https://ckzy.me/api.php/provide/vod
 fqzy资源|🦋 国产资源｜🔞|type: 1|api: https://fqzy.me//api.php/provide/vod/?ac=list
 lsb资源|AV|🦋 lsb资源｜🔞|type: 1|api: https://apilsbzy1.com/api.php/provide/vod/
 91|🦋 传媒系列｜🔞(梯子)|type: 1|api: https://91md.me/api.php/provide/vod/
+乐乐|🎡️┃乐乐┃影视|type: 1|api: https://leshizyapi.com/api.php/provide/vod/at/json/
 旺旺短剧|旺旺短剧|type: 1|api: https://zhangqun1818.serv00.net/ww.php
 CNTV低分辨|CNTV低分辨|type: 1|api: https://zhangqun1818.serv00.net/cctv.php
 49zy|49Z｜影视|type: 1|api: https://49zyw.com/api.php/provide/vod/?ac=list
@@ -246,6 +247,7 @@ U酷资源|U酷资源|type: 0|api: https://api.ukuapi88.com/api.php/provide/vod/
 暴风资源|暴风资源|type: 0|api: http://by.bfzyapi.com/api.php/provide/vod/at/xml
 IKUN资源|IKUN资源|type: 1|api: https://www.ikunzy.org/api.php/provide/vod/at/json
 无上资源|无上┃采集|type: 1|api: https://mfgc.iwsyy.xyz/api.php/provide/vod/
+爱奇艺资源|爱奇艺资源┃刺桐|type: 1|api: https://iqiyizyapi.com/api.php/provide/vod/
 黄色仓库|AV|🦋 黄色仓库(旧)｜🔞|type: 1|api: https://hsckzy.vip/api.php/provide/vod/
 桃花资源|AV|🦋 桃花资源｜🔞|type: 1|api: https://thzy1.me/api.php/provide/vod/
 乐播资源|AV|🦋 乐播资源｜🔞|type: 1|api: https://lbapi9.com/api.php/provide/vod/
