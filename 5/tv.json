@@ -1,5 +1,5 @@
 {
-  "spider": "./lib/xs.jar",
+  "spider": "./lib/spider.jar",
   "logo": "./lib/jueson.jpg",
   "lives": [
     {
@@ -13,7 +13,7 @@
       "key": "jueson",
       "name": "🏠主页┃豆瓣",
       "type": 3,
-      "api": "csp_Douban",
+      "api": "csp_DouDou",
       "searchable": 0,
       "quickSearch": 0,
       "indexs": 1,
@@ -2531,15 +2531,6 @@
         "擦边短剧",
         "漫剧"
       ]
-    },
-    {
-      "key": "push_agent",
-      "name": "🔗链接┃解析",
-      "type": 3,
-      "api": "csp_Push",
-      "searchable": 0,
-      "filterable": 0,
-      "changeable": 0
     }
   ],
   "parses": [
