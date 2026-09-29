@@ -1,46 +1,4 @@
 {
-  "quickLinks": {
-    "title": "常用工具",
-    "description": "播放器 · 直播源 · 格式转换 · 网络空间测绘",
-    "items": [
-      {
-        "icon": "▶️",
-        "name": "酷99",
-        "url": "https://pan.xunlei.com/x/VOc19v6j083vscOuJTHMotXXA1?pwd=prgs#",
-        "desc": "安卓播放器"
-      },
-      {
-        "icon": "📺",
-        "name": "TVBox",
-        "url": "https://www.kdocs.cn/l/cbqzlC3waPFX",
-        "desc": "开源影视壳"
-      },
-      {
-        "icon": "🎬",
-        "name": "BBLL改版",
-        "url": "https://pan.xunlei.com/x/VOcdMl7EZcqq_jOBuwZoyEiMA1?pwd=i5r9#",
-        "desc": "BBLL 定制版"
-      },
-      {
-        "icon": "📡",
-        "name": "OrionTV",
-        "url": "https://github.com/orion-lib/OrionTV/releases",
-        "desc": "轻量直播壳"
-      },
-      {
-        "icon": "🌸",
-        "name": "网易爆米花",
-        "url": "https://bmh.163.com/",
-        "desc": "智能媒体库"
-      },
-      {
-        "icon": "🌐",
-        "name": "IPV6查询",
-        "url": "https://ipconfig.com/zh",
-        "desc": "网络信息检测"
-      }
-    ]
-  },
   "site": {
     "title": "海量接口搬运备份",
     "logo": "vip/jueson.jpg",
