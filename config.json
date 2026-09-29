@@ -254,6 +254,68 @@
     }
   ]
 },
+"book-source": {
+  "title": "📚 书源收集",
+  "description": "共 7 组书源。使用方法：阅读3.0（Legado）→ 我的 → 书源管理 → 右上角菜单 → 网络书源 → 粘贴地址 → 确定。",
+  "items": [
+    {
+      "name": "【新手必备】2159个综合书源",
+      "count": "2159 个源",
+      "desc": "强烈推荐首次使用",
+      "tag": "书源",
+      "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250422.json",
+      "id": 1
+    },
+    {
+      "name": "【番茄小说】专属书源",
+      "count": "1 个源",
+      "desc": "番茄小说专用",
+      "tag": "书源",
+      "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250410.json",
+      "id": 2
+    },
+    {
+      "name": "【69书源】起点小说专属源",
+      "count": "1 个源",
+      "desc": "部分地区可能需要网络加速",
+      "tag": "书源",
+      "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250412.json",
+      "id": 3
+    },
+    {
+      "name": "【超级精品】997个高质精选书源",
+      "count": "997 个源",
+      "desc": "大佬精心整理",
+      "tag": "书源",
+      "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250415.json",
+      "id": 4
+    },
+    {
+      "name": "【三五中文网】书源",
+      "count": "1 个源",
+      "desc": "",
+      "tag": "书源",
+      "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250416.json",
+      "id": 5
+    },
+    {
+      "name": "【漫画党福音】83个精品漫画书源",
+      "count": "83 个源",
+      "desc": "",
+      "tag": "书源",
+      "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/250424.json",
+      "id": 6
+    },
+    {
+      "name": "【有声听书】49个高质量听书书源",
+      "count": "49 个源",
+      "desc": "听书专用",
+      "tag": "书源",
+      "url": "https://gcore.jsdelivr.net/gh/yuedu520/yuedu/2504241.json",
+      "id": 7
+    }
+  ]
+},
     "general-source-3": {
       "title": "通用资源三",
       "description": "特殊用途接口",
