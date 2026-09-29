@@ -67,27 +67,6 @@
     { "name": "移动云源", "url": "http://111.229.198.102/87654321" },
     { "name": "联通云源", "url": "http://123.249.36.74/87654321" }
   ],
-  "danmuTutorial": {
-    "enabled": true,
-    "title": "弹幕使用教程",
-    "intro": "两种壳子填的东西不一样，按自己壳子的类型选对应的一段。",
-    "newShell": {
-      "title": "new 壳子：只填源本身",
-      "desc": "new 是单独一类壳子，它的弹幕接口只需要填弹幕源地址本身，填好后播放时会自动按片名+集数拉取弹幕。",
-      "format": "{弹幕源地址}"
-    },
-    "searchShell": {
-      "title": "需要搜索接口的壳子：填下面的搜索接口",
-      "desc": "如果你的壳子弹幕里需要填搜索接口，就填下面的完整地址；播放器会按片名和集数去拉弹幕。",
-      "format": "{弹幕源地址}/api/v2/fongmi/danmaku?name={name}&episode={episode}"
-    },
-    "steps": [
-      "先确认壳子类型：new 壳子只填源地址，需要搜索接口的壳子填完整地址",
-      "播放器 → 设置 → 弹幕，把对应地址粘贴进去并保存",
-      "播放时自动匹配弹幕；搜不到就换一个源"
-    ],
-    "note": "{name} 与 {episode} 是占位符，原样保留不要改成具体片名；更多弹幕源见上方「弹幕接口」。"
-  },
   "about": {
     "domains": [
       "https://0.12yue.de5.net",
@@ -153,6 +132,7 @@
       ]
     },
     "general-source-1": {
+    [
   "title": "💬 弹幕接口",
   "description": "点击「复制」把地址填入播放器的弹幕接口。",
   "items": [
@@ -252,7 +232,120 @@
       "url": "http://123.249.36.74/87654321",
       "id": 12
     }
-  ]
+  ],
+  [
+    [
+  "title": "弹幕使用教",
+  "description": "两种壳子填的东西不一样，按自己壳子的类型选对应的一段。",
+      "items": [
+        {
+          "name": "① new 壳子：只填源本身",
+          "count": "",
+          "desc": "new 是单独一类壳子，它的弹幕接口只需要填弹幕源地址本身，填好后播放时会自动按片名+集数拉取弹幕。",
+          "tag": "",
+          "url": "",
+          "id": 1
+        },
+        
+        
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "ecs源",
+          "url": "http://ecs.dysobo.cn:9321/87654321",
+          "id": 2
+        },
+        
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "量大",
+          "url": "http://38.207.186.41/87654321",
+          "id": 3
+        },
+
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "sym源",
+          "url": "https://danmu1.sym9233.dpdns.org/87654321",
+          "id": 4
+        },
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "777775源",
+          "url": "https://danmu.7777735.xyz/87654321",
+          "id": 5
+        },
+        {
+          "name": "② 需要搜索接口的壳子：填下面的搜索接口",
+          "count": "",
+          "desc": "如果你的壳子弹幕里需要填搜索接口，就填下面的完整地址；播放器会按片名和集数去拉弹幕。",
+          "tag": "",
+          "url": "",
+          "id": 6
+        },
+        
+        {
+          "name": "",
+          "count": "",
+          "desc": "搜索接口：{弹幕源地址}/api/v2/fongmi/danmaku?name={name}&episode={episode}",
+          "tag": "",
+          "url": "",
+          "id": 7
+        },
+        
+        
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "ecs源",
+          "url": "http://ecs.dysobo.cn:9321/87654321/api/v2/fongmi/danmaku?name={name}&episode={episode}",
+          "id": 8
+        },
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "量大",
+          "url": "http://38.207.186.41/87654321/api/v2/fongmi/danmaku?name={name}&episode={episode}",
+          "id": 9
+        },
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "sym源",
+          "url": "https://danmu1.sym9233.dpdns.org/87654321/api/v2/fongmi/danmaku?name={name}&episode={episode}",
+          "id": 10
+        },
+        {
+          "name": "",
+          "count": "",
+          "desc": "",
+          "tag": "777775源",
+          "url": "https://danmu.7777735.xyz/87654321/api/v2/fongmi/danmaku?name={name}&episode={episode}",
+          "id": 10
+        },     
+        {
+          "name": "使用步骤：",
+          "count": "",
+          "desc": "1. 先确认壳子类型：new 壳子只填源地址，需要搜索接口的壳子填完整地址",
+          "desc": "2. 播放器 → 设置 → 弹幕，把对应地址粘贴进去并保存",
+          "desc": "3. 播放时自动匹配弹幕；搜不到就换一个源",
+          "desc": "提示：{name} 与 {episode} 是占位符，原样保留不要改成具体片名；更多弹幕源见上方「弹幕」标签页。",
+      "tag": "线路",
+      "url": "",
+      "id": 11
+    },
+    ]
+    ]
 },
 "book-source": {
   "title": "📚 书源收集",
