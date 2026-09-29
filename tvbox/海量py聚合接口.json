@@ -2765,6 +2765,42 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
+    },
+    {
+      "key": "py_6v",
+      "name": "☀六微🔹视频",
+      "type": 3,
+      "api": "https://7337.kstore.vip/xw/py/6v.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "py_周六影库",
+      "name": "☀周六🔹颖院",
+      "type": 3,
+      "api": "https://7337.kstore.vip/xw/py/周六影库.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "py_华数",
+      "name": "☀华数🔹视频",
+      "type": 3,
+      "api": "https://7337.kstore.vip/xw/py/华数.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "py_咖啡直播",
+      "name": "⚽咖啡🔹球赛",
+      "type": 3,
+      "api": "https://7337.kstore.vip/xw/py/咖啡直播.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
     }
   ],
   "parses": [
