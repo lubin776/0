@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
-<title>海量接口搬运备份</title>
+<title>海量接口搬运备份6</title>
 <style>
 /* ============================================================
    公共 CSS
@@ -452,7 +452,8 @@ body.simple-mode #api-panel { display:block !important; }
 #about-panel > div { background:#f8fafc !important; border-radius:8px !important; padding:16px 18px !important; margin-bottom:14px !important; border:1px solid #e4ebf3 !important; }
 #about-panel h3 { font-size:.9rem !important; margin-bottom:10px !important; }
 #about-panel p, #about-panel li { font-size:.75rem !important; line-height:1.7 !important; }
-#about-panel > div > div { background:#fff !important; border:1px solid #e4ebf3 !important; border-radius:50px !important; padding:8px 16px !important; margin-top:8px !important; }
+#about-panel > div > div:not(#about-domains-list) { background:#fff !important; border:1px solid #e4ebf3 !important; border-radius:50px !important; padding:8px 16px !important; margin-top:8px !important; }
+#about-domains-list { background:transparent !important; padding:0 !important; border:none !important; border-radius:0 !important; margin-top:0 !important; }
 
 /* ===== 合作共创 ===== */
 .contributor-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px; }
@@ -786,8 +787,8 @@ function renderAboutDomains(domains) {
     return;
   }
   box.innerHTML = domains.map(d => `
-    <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-top:6px">
-      <span style="flex:1;font-size:.75rem;color:#2563eb">${d}</span>
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-bottom:8px;">
+      <span style="flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;">${d}</span>
       <button class="copy-btn" data-url="${d}">复制</button>
     </div>`).join('');
 }
