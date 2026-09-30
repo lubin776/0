@@ -3,8 +3,10 @@
     "title": "海量接口搬运备份",
     "logo": "vip/jueson.jpg",
     "subtitle": "备用数据源，防屏不迷路",
-    "qqGroup": "1067685939"
+    "qqGroup": "1067685939",
+    "footer": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。"
   },
+
   "about": {
     "domains": [
       "https://0.wudaozhe.net",
@@ -17,27 +19,73 @@
     "declaration": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
     "qqGroup": "1067685939",
     "telegram": "https://t.me/tg6603",
+    "projectUrl": "https://github.com/lubin776/tvbox-api-backup",
+    "contributorsNote": "* 还有部分贡献者因未留下署名信息而未在此列出，同样感谢你们的默默付出。如有遗漏请联系站长补充。",
     "contributors": [
-      {
-        "name": "误道者",
-        "role": "站长 / 资源整理",
-        "desc": "站点发起与接口资源整理",
-        "avatar": "vip/jueson.jpg"
-      },
-      {
-        "name": "沫离",
-        "role": "弹幕分页",
-        "desc": "贡献弹幕书源音乐源漫画源等模块",
-        "avatar": "vip/沫离.jpg"
-      },
-      {
-        "name": "简约风<格>",
-        "role": "推广贡献",
-        "desc": "将本网页内嵌 APP 进行推广分发",
-        "avatar": "vip/简约风格.jpg"
-      }
+      { "name": "误道者", "role": "站长 / 资源整理", "desc": "站点发起与接口资源整理", "avatar": "vip/jueson.jpg" },
+      { "name": "沫离", "role": "弹幕分页", "desc": "贡献弹幕书源音乐源漫画源等模块", "avatar": "vip/沫离.jpg" },
+      { "name": "简约风<格>", "role": "推广贡献", "desc": "将本网页内嵌 APP 进行推广分发", "avatar": "vip/简约风格.jpg" }
     ]
   },
+
+  "search": {
+    "placeholder": "🔍 搜索...",
+    "hideOnTabs": ["download", "video", "more", "about"],
+    "searchableTabs": ["api", "live"],
+    "searchableTabsFull": ["api", "live", "download", "video", "contributors"],
+    "selectors": {
+      "api": "#api-panel .api-item",
+      "live": "#live-panel .live-item",
+      "download": ".download-card",
+      "video": "#video-panel .online-item, #video-panel .tool-chip",
+      "contributors": ".contributor-card"
+    }
+  },
+
+  "apiDomains": [
+    { "tag": "备份一线", "base": "https://0.wudaozhe.net/tvbox/" },
+    { "tag": "备份二线", "base": "https://0.12yue.de5.net/tvbox/" },
+    { "tag": "备份三线", "base": "https://0.cdz.qzz.io/tvbox/" },
+    { "tag": "备份四线", "base": "https://0.wdzb.eu.cc/tvbox/" }
+  ],
+
+  "liveDomains": [
+    { "tag": "备份一线", "base": "https://0.wudaozhe.net/tvbox/live/" },
+    { "tag": "备份二线", "base": "https://0.12yue.de5.net/tvbox/live/" },
+    { "tag": "备份三线", "base": "https://0.cdz.qzz.io/tvbox/live/" },
+    { "tag": "备份四线", "base": "https://0.wdzb.eu.cc/tvbox/live/" }
+  ],
+
+  "apiWeights": {
+    "轮替占位.json": 1, "神马都没有.json": 2, "饭太硬.json": 4, "肥猫已死.json": 5,
+    "摸鱼.json": 6, "王二小.json": 7, "集多已死.json": 8, "潇洒.json": 9, "小米以死.json": 10,
+    "嗷呜.json": 11, "南风已死.json": 12, "幸福年年.json": 13
+  },
+
+  "rotate": {
+    "keywords": ["X4"],
+    "seed": "time-random",
+    "randomRange": 10000
+  },
+
+  "recent": {
+    "days": 2
+  },
+
+  "tabs": [
+    { "id": "api",      "label": "点播" },
+    { "id": "live",     "label": "直播" },
+    { "id": "download", "label": "下载" },
+    { "id": "video",    "label": "快链" },
+    { "id": "more",     "label": "更多" },
+    { "id": "about",    "label": "关于" }
+  ],
+
+  "liveAggregate": {
+    "title": "海量直播聚合多线路专用接口",
+    "url": "https://0.12yue.de5.net/tvbox/海量直播线路.json"
+  },
+
   "downloadSources": [
     { "name": "菠菜园",   "url": "ry/菠菜园下载.json",   "description": "整理者：误道者" },
     { "name": "奇奇副本", "url": "ry/奇奇副本.json",     "description": "整理者：误道者" },
@@ -47,20 +95,23 @@
     { "name": "应用下载", "url": "ry/应用市场二.json",   "description": "" },
     { "name": "应用市场", "url": "ry/应用市场一.json",   "description": "" }
   ],
+
   "videoTabs": [
     { "id": "online-video", "icon": "🎞️", "label": "在线视频", "file": "cy/站点2.json" },
     { "id": "tools",        "icon": "🧰", "label": "常用工具", "file": "cy/站点1.json" }
   ],
-   "moreTabs": [
-    { "id": "danmu", "icon": "💬", "label": "弹幕接口", "file": "cy/弹幕.json" },
-    { "id": "book-source",      "icon": "📚", "label": "书源",     "file": "cy/书源.json" },
-    { "id": "comic-source",     "icon": "📖", "label": "漫画源",   "file": "cy/漫画源.json" },
-    { "id": "music-source",     "icon": "🎵", "label": "音源",     "file": "cy/音源.json" },
-    { "id": "general-source", "icon": "🧩", "label": "通用模板","file": "cy/模板.json" }
+
+  "moreTabs": [
+    { "id": "danmu",          "icon": "💬", "label": "弹幕接口", "file": "cy/弹幕.json" },
+    { "id": "book-source",    "icon": "📚", "label": "书源",     "file": "cy/书源.json" },
+    { "id": "comic-source",   "icon": "📖", "label": "漫画源",   "file": "cy/漫画源.json" },
+    { "id": "music-source",   "icon": "🎵", "label": "音源",     "file": "cy/音源.json" },
+    { "id": "general-source", "icon": "🧩", "label": "通用模板", "file": "cy/模板.json" }
   ],
+
   "customApis": [
     {
-      "name": "X4菠菜园proo",
+      "name": "X4菠菜园",
       "date": "20260930",
       "size": "50.3K",
       "origUrl": "https://0.12yue.de5.net/5/x4.json",
@@ -71,5 +122,11 @@
         { "label": "备份四线", "url": "https://0.wdzb.eu.cc/tvbox/X4菠菜园.json" }
       ]
     }
-  ]
+  ],
+
+  "sourceFiles": {
+    "list": "list.txt",
+    "live": "livelist.txt",
+    "config": "config.json"
+  }
 }
