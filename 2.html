@@ -452,7 +452,8 @@ body.simple-mode #api-panel { display:block !important; }
 #about-panel > div { background:#f8fafc !important; border-radius:8px !important; padding:16px 18px !important; margin-bottom:14px !important; border:1px solid #e4ebf3 !important; }
 #about-panel h3 { font-size:.9rem !important; margin-bottom:10px !important; }
 #about-panel p, #about-panel li { font-size:.75rem !important; line-height:1.7 !important; }
-#about-panel > div > div { background:#fff !important; border:1px solid #e4ebf3 !important; border-radius:50px !important; padding:8px 16px !important; margin-top:8px !important; }
+#about-panel > div > div:not(#about-domains-list) { background:#fff !important; border:1px solid #e4ebf3 !important; border-radius:50px !important; padding:8px 16px !important; margin-top:8px !important; }
+#about-domains-list { background:transparent !important; padding:0 !important; border:none !important; border-radius:0 !important; margin-top:0 !important; }
 
 /* ===== 合作共创 ===== */
 .contributor-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px; }
@@ -587,50 +588,26 @@ body.simple-mode #api-panel { display:block !important; }
       <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
     </div>
 
-    <!-- 快链面板（原「视频」页面，已改为快链 + 左侧按钮分组） -->
+    <!-- 快链面板 -->
     <div class="tab-panel" id="video-panel">
       <div id="video-content">
         <div class="loading">⏳ 正在加载快链...</div>
       </div>
     </div>
 
-    <!-- 更多面板（k.html 动态版） -->
+    <!-- 更多面板 -->
     <div class="tab-panel" id="more-panel">
       <div id="more-content">
         <div class="loading">⏳ 正在加载更多资源...</div>
       </div>
     </div>
 
-    <!-- 关于面板 -->
+    <!-- 关于面板：域名列表改为动态渲染 -->
     <div class="tab-panel" id="about-panel">
       <div style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
         <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:8px">🌐 备份线路域名</h3>
         <p style="margin-bottom:6px;font-size:.76rem;color:#5a6f88">域名互为备份，任一个可用：</p>
-        <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-top:6px">
-          <span style="flex:1;font-size:.75rem;color:#2563eb">https://0.12yue.de5.net</span>
-          <button class="copy-btn" data-url="https://0.12yue.de5.net">复制</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-top:6px">
-          <span style="flex:1;font-size:.75rem;color:#2563eb">https://0.cdz.qzz.io</span>
-          <button class="copy-btn" data-url="https://0.cdz.qzz.io">复制</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-top:6px">
-          <span style="flex:1;font-size:.75rem;color:#2563eb">https://0.wdzb.eu.cc</span>
-          <button class="copy-btn" data-url="https://0.wdzb.eu.cc">复制</button>
-        </div>
-        
-        <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-top:6px">
-          <span style="flex:1;font-size:.75rem;color:#2563eb">https://0.wudaozhe.net</span>
-          <button class="copy-btn" data-url="https://0.wudaozhe.net">复制</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-top:6px">
-          <span style="flex:1;font-size:.75rem;color:#2563eb">https://tvbox.moliys.icu</span>
-          <button class="copy-btn" data-url="https://tvbox.moliys.icu">复制</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-top:6px">
-          <span style="flex:1;font-size:.75rem;color:#2563eb">https://ym.120733.xyz/</span>
-          <button class="copy-btn" data-url="https://ym.120733.xyz/">复制</button>
-        </div>
+        <div id="about-domains-list"></div>
       </div>
 
       <div id="contributors-card" style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
@@ -645,10 +622,10 @@ body.simple-mode #api-panel { display:block !important; }
       <div style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
         <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:8px">📢 声明与联系</h3>
         <ul style="padding-left:16px">
-          <li style="font-size:.76rem;color:#5a6f88;line-height:1.6">本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。</li>
+          <li id="about-declaration" style="font-size:.76rem;color:#5a6f88;line-height:1.6"></li>
         </ul>
-        <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">QQ 交流群：<a href="https://qm.qq.com/q/gmRKKPT3x0" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600">1067685939</a></p>
-        <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">Telegram群组：<a href="https://t.me/tg6603" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600">https://t.me/tg6603</a></p>
+        <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">QQ 交流群：<a id="about-qq" href="#" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600"></a></p>
+        <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">Telegram群组：<a id="about-tg" href="#" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600"></a></p>
         <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">项目地址：<a href="https://github.com/lubin776/tvbox-api-backup" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600">https://github.com/lubin776/tvbox-api-backup</a></p>
       </div>
     </div>
@@ -677,15 +654,17 @@ const headerLogo = document.getElementById('header-logo');
 const headerSubtitle = document.getElementById('header-subtitle');
 
 const API_DOMAINS = [
-  {tag:"备份一线", base:"https://0.12yue.de5.net/tvbox/"},
-  {tag:"备份二线", base:"https://0.cdz.qzz.io/tvbox/"},
-  {tag:"备份三线", base:"https://0.wdzb.eu.cc/tvbox/"}
+  {tag:"备份一线", base:"https://0.wudaozhe.net/tvbox/"},
+  {tag:"备份二线", base:"https://0.12yue.de5.net/tvbox/"},
+  {tag:"备份三线", base:"https://0.cdz.qzz.io/tvbox/"},
+  {tag:"备份四线", base:"https://0.wdzb.eu.cc/tvbox/"}
 ];
 
 const LIVE_DOMAINS = [
-  {tag:"备份一线", base:"https://0.12yue.de5.net/tvbox/live/"},
-  {tag:"备份二线", base:"https://0.cdz.qzz.io/tvbox/live/"},
-  {tag:"备份三线", base:"https://0.wdzb.eu.cc/tvbox/live/"}
+  {tag:"备份一线", base:"https://0.wudaozhe.net/tvbox/live/"},
+  {tag:"备份二线", base:"https://0.12yue.de5.net/tvbox/live/"},
+  {tag:"备份三线", base:"https://0.cdz.qzz.io/tvbox/live/"},
+  {tag:"备份四线", base:"https://0.wdzb.eu.cc/tvbox/live/"}
 ];
 
 const API_WEIGHTS = {
@@ -754,6 +733,13 @@ function isRecent(d) {
 }
 function getInitials(name) { return name ? name.slice(0,1).toUpperCase() : '?'; }
 
+/* ===== 通用 fetch JSON ===== */
+async function fetchJSON(path) {
+  const res = await fetch(path + '?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
+}
+
 /* ===== 配置加载 ===== */
 async function loadConfig() {
   if (SITE_CONFIG) return SITE_CONFIG;
@@ -764,6 +750,8 @@ async function loadConfig() {
     configData = SITE_CONFIG;
     DOWNLOAD_SOURCES = Array.isArray(SITE_CONFIG.downloadSources) ? SITE_CONFIG.downloadSources : [];
     renderContributors(SITE_CONFIG.about && SITE_CONFIG.about.contributors);
+    renderAboutDomains(SITE_CONFIG.about && SITE_CONFIG.about.domains);
+    renderAboutText(SITE_CONFIG.about);
 
     if (SITE_CONFIG.site) {
       if (SITE_CONFIG.site.logo) headerLogo.src = SITE_CONFIG.site.logo;
@@ -790,6 +778,37 @@ async function loadConfig() {
     }
     return SITE_CONFIG;
   } catch(e) { DOWNLOAD_SOURCES=[]; renderContributors([]); throw e; }
+}
+
+/* ===== 关于页动态渲染 ===== */
+function renderAboutDomains(domains) {
+  const box = document.getElementById('about-domains-list');
+  if (!box) return;
+  if (!Array.isArray(domains) || !domains.length) {
+    box.innerHTML = '<div class="error-msg">暂无域名</div>';
+    return;
+  }
+  box.innerHTML = domains.map(d => `
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-radius:50px;border:1px solid #e0e6ed;margin-bottom:8px;">
+      <span style="flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;">${d}</span>
+      <button class="copy-btn" data-url="${d}">复制</button>
+    </div>`).join('');
+}
+
+function renderAboutText(about) {
+  if (!about) return;
+  const dec = document.getElementById('about-declaration');
+  const qq  = document.getElementById('about-qq');
+  const tg  = document.getElementById('about-tg');
+  if (dec && about.declaration) dec.textContent = about.declaration;
+  if (qq && about.qqGroup) {
+    qq.textContent = about.qqGroup;
+    qq.href = 'https://qm.qq.com/q/gmRKKPT3x0';
+  }
+  if (tg && about.telegram) {
+    tg.textContent = about.telegram;
+    tg.href = about.telegram;
+  }
 }
 
 function renderContributors(list) {
@@ -860,30 +879,7 @@ function renderSourceGroup(title, description, items, isOnlineVideo) {
 </div>`;
 }
 
-/* ===== 快链面板 ===== */
-const COMMON_TOOLS = [
-  { icon:'▶️', name:'酷9',     url:'https://pan.xunlei.com/x/VOc19v6j083vscOuJTHMotXXA1?pwd=prgs#', desc:'安卓播放器' },
-  { icon:'📺', name:'TVBox',   url:'https://www.kdocs.cn/l/cbqzlC3waPFX', desc:'开源影视壳' },
-  { icon:'🎬', name:'BBLL改版', url:'https://pan.xunlei.com/x/VOcdMl7EZcqq_jOBuwZoyEiMA1?pwd=i5r9#', desc:'BBLL 定制版' },
-  { icon:'📡', name:'OrionTV', url:'https://github.com/orion-lib/OrionTV/releases', desc:'轻量直播壳' },
-  { icon:'🌸', name:'网易爆米花', url:'https://bmh.163.com/', desc:'智能媒体库' },
-  { icon:'🌐', name:'IPV6查询', url:'https://ipconfig.com/zh', desc:'网络信息检测' },
-  { icon:'🚀', name:'GitHub加速', url:'https://proxy.pipers.cn/', desc:'镜像加速' },
-  { icon:'🔄', name:'TXT/M3U转换', url:'https://www.qiushui.vip/gj/zh.html', desc:'格式互转' },
-  { icon:'🎞️', name:'Potplayer', url:'https://www.kdocs.cn/l/clmJIYpDA4mH', desc:'本地播放器' },
-  { icon:'✅', name:'M3U检测', url:'https://pan.xunlei.com/s/VObOEh5aX766n2zOEttkN1oPA1?pwd=t6ku#', desc:'源有效性检测' },
-  { icon:'📡', name:'IPTV源1', url:'http://iptv.cqshushu.com', desc:'每日更新直播源' },
-  { icon:'📡', name:'IPTV源2', url:'https://iptvs.hacks.tools/', desc:'IPv4/IPv6 源' },
-  { icon:'📡', name:'IPTV源3', url:'https://tonkiang.us/', desc:'电视直播源' },
-  { icon:'🔍', name:'IPTV源4', url:'https://iptv-search.com/zh-hans/', desc:'直播源搜索' },
-  { icon:'🧰', name:'转换/去重', url:'https://yang-1989.eu.org/Conversion.php', desc:'播放列表处理' },
-  { icon:'🛡️', name:'FOFA',    url:'https://fofa.info/', desc:'网络空间测绘' },
-  { icon:'🛡️', name:'Quake',   url:'https://quake.360.net/quake/#/index', desc:'360 测绘' },
-  { icon:'🛡️', name:'Hunter',  url:'https://hunter.qianxin.com/', desc:'奇安信测绘' },
-  { icon:'🛡️', name:'ZoomEye', url:'https://www.zoomeye.org/', desc:'知道创宇测绘' },
-  { icon:'🛡️', name:'Censys',  url:'https://search.censys.io/', desc:'资产发现' }
-];
-
+/* ===== 快链面板：改为按 config.videoTabs 动态 fetch ===== */
 async function renderVideo() {
   const container = document.getElementById('video-content');
   if (!container) return;
@@ -894,60 +890,57 @@ async function renderVideo() {
     return;
   }
 
-  const groups = [];
-  const ov = cfg.onlineVideo;
-  if (ov && Array.isArray(ov.items) && ov.items.length) {
-    groups.push({
-      id: 'online',
-      icon: '🎞️',
-      label: '在线视频',
-      title: ov.title || '在线视频',
-      description: ov.description || '在线播放与快链资源',
-      render: () => {
-        const list = `<div class="online-list">${ov.items.map(renderOnlineItem).join('\n')}</div>`;
-        return `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
-          <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${ov.title || '在线视频'}</h3>
-          <p style="font-size:.76rem;color:#5a6f88;margin-bottom:4px">${ov.description || ''}</p>
-          ${list}
-        </div>`;
-      }
-    });
-  }
-  groups.push({
-    id: 'tools',
-    icon: '🧰',
-    label: '常用工具',
-    title: '常用工具',
-    description: '播放器 / 直播源 / 格式转换 / 网络空间测绘',
-    render: () => {
-      const chips = COMMON_TOOLS.map(t =>
-        `<a class="tool-chip" href="${t.url}" target="_blank" rel="noopener noreferrer" title="${t.desc}" data-name="${(t.name || '').toLowerCase()}">
-          <span class="tool-icon">${t.icon}</span><span>${t.name}</span>
-        </a>`
-      ).join('\n');
-      return `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">常用工具</h3>
-        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:10px">播放器 · 直播源 · 格式转换 · 网络空间测绘</p>
-        <div class="tools-grid">${chips}</div>
-      </div>`;
-    }
-  });
-
-  if (!groups.length) {
-    container.innerHTML = `<div class="error-msg">⚠️ 暂无可用分组数据</div>`;
+  const tabs = cfg.videoTabs || [];
+  if (!tabs.length) {
+    container.innerHTML = `<div class="error-msg">⚠️ config.json 中未配置 videoTabs</div>`;
     return;
   }
 
-  const sidebarHtml = groups.map((g, i) =>
-    `<button class="vd-side-btn${i === 0 ? ' active' : ''}" data-vd-tab="${g.id}">
-      <span class="vd-side-icon">${g.icon}</span>
-      <span>${g.label}</span>
+  // 预加载每个按钮对应的 cy 文件
+  const dataMap = {};
+  await Promise.all(tabs.map(async t => {
+    try {
+      dataMap[t.id] = await fetchJSON(t.file);
+    } catch (e) {
+      dataMap[t.id] = { title: t.label, description: '加载失败：' + e.message, items: [] };
+    }
+  }));
+
+  const sidebarHtml = tabs.map((t, i) =>
+    `<button class="vd-side-btn${i === 0 ? ' active' : ''}" data-vd-tab="${t.id}">
+      <span class="vd-side-icon">${t.icon}</span>
+      <span>${t.label}</span>
     </button>`
   ).join('\n');
 
-  const bodyHtml = groups.map((g, i) =>
-    `<div class="vd-group${i === 0 ? ' active' : ''}" id="vd-${g.id}">${g.render()}</div>`
-  ).join('\n');
+  const bodyHtml = tabs.map((t, i) => {
+    const data = dataMap[t.id];
+    let inner;
+    if (t.id === 'online-video') {
+      // 在线视频：走 online-list 样式
+      const list = `<div class="online-list">${(data.items || []).map(renderOnlineItem).join('\n')}</div>`;
+      inner = `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
+        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${data.title || t.label}</h3>
+        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:4px">${data.description || ''}</p>
+        ${list}
+      </div>`;
+    } else if (t.id === 'tools') {
+      // 常用工具：走 tools-grid 样式
+      const chips = (data.items || []).map(item =>
+        `<a class="tool-chip" href="${item.url}" target="_blank" rel="noopener noreferrer" title="${item.desc}" data-name="${(item.name || '').toLowerCase()}">
+          <span class="tool-icon">${item.icon}</span><span>${item.name}</span>
+        </a>`
+      ).join('\n');
+      inner = `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
+        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${data.title || t.label}</h3>
+        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:10px">${data.description || ''}</p>
+        <div class="tools-grid">${chips}</div>
+      </div>`;
+    } else {
+      inner = renderSourceGroup(data.title || t.label, data.description || '', data.items || [], false);
+    }
+    return `<div class="vd-group${i === 0 ? ' active' : ''}" id="vd-${t.id}">${inner}</div>`;
+  }).join('\n');
 
   container.className = 'has-sidebar';
   container.innerHTML = `
@@ -970,6 +963,7 @@ async function renderVideo() {
   });
 }
 
+/* ===== 更多面板：改为按 config.moreTabs 动态 fetch ===== */
 async function renderMore() {
   const container = document.getElementById('more-content');
   if (!container) return;
@@ -990,6 +984,15 @@ async function renderMore() {
     return;
   }
 
+  const dataMap = {};
+  await Promise.all(tabs.map(async t => {
+    try {
+      dataMap[t.id] = await fetchJSON(t.file);
+    } catch (e) {
+      dataMap[t.id] = { title: t.label, description: '加载失败：' + e.message, items: [] };
+    }
+  }));
+
   const sidebarHtml = tabs.map((t, i) =>
     `<button class="dl-side-btn${i === 0 ? ' active' : ''}" data-more-tab="${t.id}">
       <span class="dl-side-icon">${t.icon}</span>
@@ -997,18 +1000,8 @@ async function renderMore() {
     </button>`
   ).join('\n');
 
-  const panelMap = {};
-  tabs.forEach(t => {
-    panelMap[t.id] = cfg[t.id] !== undefined
-      ? cfg[t.id]
-      : (cfg.sourceGroups && cfg.sourceGroups[t.id] !== undefined)
-        ? cfg.sourceGroups[t.id]
-        : null;
-  });
-
   const bodyHtml = tabs.map((t, i) => {
-    const data = panelMap[t.id];
-    if (!data) return '';
+    const data = dataMap[t.id];
     const isOnline = t.id === 'online-video';
     const content = renderSourceGroup(data.title || t.label, data.description || '', data.items || [], isOnline);
     return `<div class="more-group${i === 0 ? ' active' : ''}" id="more-${t.id}">${content}</div>`;
@@ -1034,7 +1027,7 @@ async function renderMore() {
   });
 }
 
-/* ===== 点播 ===== */
+/* ===== 点播：list.txt + config.customApis 混排 ===== */
 async function fetchListText() {
   if(rawListText!==null) return rawListText;
   const res = await fetch('list.txt?t='+Date.now()+'&r='+Math.random(), {cache:'no-store',headers:{'Cache-Control':'no-cache'}});
@@ -1048,27 +1041,73 @@ function parseItems(text) {
     return {file:p[0],name:p[0].replace(/\.json$/i,''),date:p[1]||'',size:p[2]||'',origUrl:p[3]||'',weight:API_WEIGHTS.hasOwnProperty(p[0])?API_WEIGHTS[p[0]]:999};
   }).filter(Boolean);
 }
-function renderApi() {
+
+/* 新增：把 config.customApis 转成与 parseItems 相同的条目结构 */
+function parseCustomApis() {
+  const list = (SITE_CONFIG && Array.isArray(SITE_CONFIG.customApis)) ? SITE_CONFIG.customApis : [];
+  return list.map(c => {
+    if (!c || !c.name) return null;
+    const urls = Array.isArray(c.urls) ? c.urls.filter(u => u && u.label && u.url) : [];
+    return {
+      file: c.name + '.json',
+      name: c.name,
+      date: c.date || '',
+      size: c.size || '',
+      origUrl: c.origUrl || '',
+      customUrls: urls,          // 自定义线路，渲染时优先使用
+      weight: 999
+    };
+  }).filter(Boolean);
+}
+
+/* 新增：渲染单条 URL 行（自动跳过空值） */
+function renderUrlLine(tag, url) {
+  if (!tag || !url) return '';
+  return `<div class="url-line"><span class="url-tag">${tag}</span><span class="url-text">${url}</span><button class="copy-btn" data-url="${url}">复制</button></div>`;
+}
+
+async function renderApi() {
   const container = document.getElementById('listContainer');
-  fetchListText().then(text=>{
+  try {
+    // 1) 先加载 config.json（保证 customApis 可用）
+    try { await loadConfig(); } catch(_) {}
+
+    const text = await fetchListText();
     const tip=document.getElementById('apiLoading'); if(tip) tip.style.display='none';
-    let items=parseItems(text);
-    if(!items.length){container.innerHTML='<div class="error-msg">⚠️ 接口列表为空，请检查 list.txt</div>';return;}
+
+    // 2) list.txt 条目 + config.customApis 条目
+    let items = parseItems(text).concat(parseCustomApis());
+    if(!items.length){container.innerHTML='<div class="error-msg">⚠️ 接口列表为空，请检查 list.txt 或 config.json 的 customApis</div>';return;}
+
+    // 3) 随机混排：X4 关键词置顶 + 权重排序
     const ri=items.filter(i=>ROTATE_KEYWORDS.some(kw=>i.name.toLowerCase().includes(kw.toLowerCase())));
     const top=getTopItem(ri); if(top) top.weight=Number.MIN_SAFE_INTEGER;
     items.sort((a,b)=>a.weight-b.weight);
+
+    // 4) 渲染
     let html='';
     items.forEach(it=>{
-      const isNew=isRecent(it.date); let lines='';
-      if(it.origUrl) lines+=`<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
-      API_DOMAINS.forEach(d=>{const u=d.base+it.name+'.json';lines+=`<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${u}</span><button class="copy-btn" data-url="${u}">复制</button></div>`;});
-      html+=`<div class="api-item" data-name="${it.name.toLowerCase()}"><div class="api-item-header"><div class="api-item-name" title="${it.name}">${it.name}</div><div class="api-item-meta"><span class="${isNew?'badge-new':'badge-old'}">备份时间 ${formatDateToChinese(it.date)}</span>${it.size?'&nbsp;&nbsp;'+it.size:''}</div></div><div class="api-item-urls">${lines}</div></div>`;
+      const isNew=isRecent(it.date);
+      let lines='';
+      // 原始线路（空则不显示）
+      if(it.origUrl) lines+=renderUrlLine('原始线路', it.origUrl);
+      // 自定义线路优先；没有则用 API_DOMAINS 拼
+      if (it.customUrls && it.customUrls.length) {
+        it.customUrls.forEach(u => { lines += renderUrlLine(u.label, u.url); });
+      } else {
+        API_DOMAINS.forEach(d=>{ lines += renderUrlLine(d.tag, d.base+it.name+'.json'); });
+      }
+      // meta：日期为空则不显示“备份时间”，size 为空则不显示
+      const dateHtml = it.date ? `<span class="${isNew?'badge-new':'badge-old'}">备份时间 ${formatDateToChinese(it.date)}</span>` : '';
+      const sizeHtml = it.size ? `&nbsp;&nbsp;${it.size}` : '';
+      const metaHtml = (dateHtml || sizeHtml) ? `<div class="api-item-meta">${dateHtml}${sizeHtml}</div>` : '';
+      html+=`<div class="api-item" data-name="${it.name.toLowerCase()}"><div class="api-item-header"><div class="api-item-name" title="${it.name}">${it.name}</div>${metaHtml}</div><div class="api-item-urls">${lines}</div></div>`;
     });
     container.innerHTML=html;
-  }).catch(err=>{
+  } catch(err) {
     const tip=document.getElementById('apiLoading'); if(tip) tip.style.display='none';
     container.innerHTML=`<div class="error-msg">❌ 接口加载失败：${err.message||err}</div>`;
-  });
+  }
 }
 
 /* ===== 直播 ===== */
