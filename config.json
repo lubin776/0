@@ -51,11 +51,25 @@
     { "id": "online-video", "icon": "🎞️", "label": "在线视频", "file": "cy/站点2.json" },
     { "id": "tools",        "icon": "🧰", "label": "常用工具", "file": "cy/站点1.json" }
   ],
-  "moreTabs": [
+   "moreTabs": [
     { "id": "danmu", "icon": "💬", "label": "弹幕接口", "file": "cy/弹幕.json" },
     { "id": "book-source",      "icon": "📚", "label": "书源",     "file": "cy/书源.json" },
     { "id": "comic-source",     "icon": "📖", "label": "漫画源",   "file": "cy/漫画源.json" },
     { "id": "music-source",     "icon": "🎵", "label": "音源",     "file": "cy/音源.json" },
     { "id": "general-source", "icon": "🧩", "label": "通用模板","file": "cy/模板.json" }
+  ],
+  "customApis": [
+    {
+      "name": "X4菠菜园",
+      "date": "20260930",
+      "size": "50.3K",
+      "origUrl": "https://0.12yue.de5.net/5/x4.json",
+      "urls": [
+        { "label": "备份一线", "url": "https://0.wudaozhe.net/tvbox/X4菠菜园.json" },
+        { "label": "备份二线", "url": "https://0.12yue.de5.net/tvbox/X4菠菜园.json" },
+        { "label": "备份三线", "url": "https://0.cdz.qzz.io/tvbox/X4菠菜园.json" },
+        { "label": "备份四线", "url": "https://0.wdzb.eu.cc/tvbox/X4菠菜园.json" }
+      ]
+    }
   ]
 }
