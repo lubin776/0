@@ -3,1302 +3,616 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
-<title>海量接口搬运备份8</title>
+<title>接口线路批量检测</title>
 <style>
-/* ============================================================
-   公共 CSS
-   ============================================================ */
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-html { height:100%; }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background:#eef2f7; color:#1a2b3d;
-  padding:20px 14px 10px;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  overflow-x:hidden;
-  -webkit-tap-highlight-color:transparent;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:#eef2f7;color:#1a2b3d;padding:20px 14px 10px;min-height:100vh;
+  display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent;
 }
-button:focus, button:focus-visible, input:focus, input:focus-visible,
-.nav-tab:focus, .copy-btn:focus { outline:none !important; }
+.container{max-width:820px;margin:auto;width:100%;flex:1;display:flex;flex-direction:column}
 
-/* 容器 */
-.container {
-  max-width:820px;
-  margin:0 auto;
-  position:relative;
-  width:100%;
-  overflow-x:hidden;
-  flex:1;
-  display:flex;
-  flex-direction:column;
+.header-block{text-align:center;margin-bottom:18px}
+h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
+.header-divider{height:1px;background:#e4ebf3;margin:12px 0}
+.subtitle{font-size:.78rem;color:#7a8fa3;line-height:1.6}
+
+/* 状态卡片（跳转前模式） */
+.status-card {
+  background:#fff; border-radius:8px;
+  padding:16px 18px; border:1px solid #d4dbe5;
+  margin-bottom:16px; text-align:center;
 }
+.status-text { font-size:.88rem; color:#2563eb; line-height:1.7; }
+.countdown { color:#10b981; font-weight:700; font-size:1.05rem; }
+
+/* 按钮通用 */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.btn-stay, .btn-goto {
+  border: none;
+  border-radius: 40px;
+  padding: 8px 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  flex: 0 1 auto;
+  min-width: 100px;
+}
+.btn-stay {
+  background: #eef2f7;
+  color: #3a5a7a;
+  border: 1px solid #cbd5e1;
+}
+.btn-stay:active { background: #d9e2ec; transform: scale(0.96); }
+.btn-goto {
+  background: #4a9eff;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(74, 158, 255, 0.3);
+}
+.btn-goto:active { background: #2a7ed9; transform: scale(0.96); }
+
+/* 控制卡片（批量检测模式） */
+.ctrl-card{background:#fff;border-radius:8px;padding:16px 18px;border:1px solid #d4dbe5;margin-bottom:16px}
+.ctrl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+.ctrl-label{font-size:.78rem;color:#5a6f88;white-space:nowrap}
+.ctrl-input{
+  flex:1;min-width:110px;height:32px;border:1px solid #d4dbe5;border-radius:6px;
+  padding:0 10px;font-size:.8rem;color:#1a2b3d;background:#f7fafd;outline:none;
+}
+.ctrl-input:focus{border-color:#4a9eff;background:#fff}
+.btn{
+  height:32px;padding:0 16px;border:none;border-radius:6px;font-size:.8rem;font-weight:500;
+  cursor:pointer;color:#fff;background:#4a9eff;white-space:nowrap;touch-action:manipulation;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:#2563eb}
+.btn.success{background:#10b981}
+.btn.ghost{background:#fff;color:#5a6f88;border:1px solid #d4dbe5}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.add-box{display:flex;gap:8px;margin-top:4px}
+.add-box .ctrl-input{flex:1}
+.hint{font-size:.7rem;color:#8fa3b8;line-height:1.6;margin-top:10px}
+.hint code{background:#f4f8fc;padding:1px 5px;border-radius:4px;font-size:.68rem;color:#2563eb}
+
+/* 状态栏（批量检测模式） */
+.status-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:#fff;border:1px solid #d4dbe5;border-radius:8px;padding:12px 16px;margin-bottom:14px;
+  font-size:.82rem;
+}
+.status-bar .stat{display:flex;gap:14px;flex-wrap:wrap}
+.status-bar .stat span{font-size:.78rem;color:#5a6f88}
+.status-bar .stat b{font-weight:700}
+.b-ok{color:#10b981}.b-fail{color:#ef4444}.b-wait{color:#f59e0b}.b-total{color:#2563eb}
+
+/* 列表卡片 */
+.domains-card{background:#fff;border-radius:8px;padding:18px 18px 14px;border:1px solid #d4dbe5}
+.domains-title{font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:6px}
+.domains-tip{font-size:.74rem;color:#5a6f88;margin-bottom:10px}
+
+/* 简单线路列表（跳转前模式） */
+.url-line-simple {
+  display:flex; align-items:center; gap:8px;
+  padding:6px 14px; background:#f4f8fc;
+  border:1px solid #e0e8f0; border-radius:50px;
+  margin-top:8px; min-width:0;
+  cursor:pointer;
+  transition: background .15s, border-color .15s;
+}
+.url-line-simple:hover { background:#e8f1fb; border-color:#4a9eff; }
+.url-line-simple:active { background:#dce9f8; }
+.url-line-simple .url-text {
+  flex:1; font-size:.75rem; color:#2563eb;
+  word-break:break-all; overflow-wrap:break-word;
+  line-height:1.4; min-width:0;
+}
+.copy-btn{
+  flex-shrink:0;background:#4a9eff;color:#fff;border:none;border-radius:30px;padding:0 12px;
+  font-size:.68rem;font-weight:500;cursor:pointer;height:26px;display:inline-flex;align-items:center;
+  justify-content:center;white-space:nowrap;touch-action:manipulation;-webkit-user-select:none;user-select:none;z-index:1;
+}
+.copy-btn:active{background:#2a7ed9;transform:scale(.96)}
+.copy-btn.copied{background:#3b9b6c}
+
+/* 批量检测列表（带状态圆点） */
+.url-line{
+  display:flex;align-items:center;gap:8px;padding:8px 14px;background:#f4f8fc;
+  border:1px solid #e0e8f0;border-radius:50px;margin-top:8px;min-width:0;cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+.url-line:hover{background:#e8f1fb;border-color:#4a9eff}
+.url-line .dot{
+  width:8px;height:8px;border-radius:50%;background:#cbd5e1;flex-shrink:0;transition:background .2s;
+}
+.url-line.ok .dot{background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+.url-line.fail .dot{background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+.url-line.checking .dot{background:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+.url-line .url-text{
+  flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;overflow-wrap:break-word;
+  line-height:1.4;min-width:0;
+}
+.url-line .lat{
+  flex-shrink:0;font-size:.7rem;color:#7a8fa3;font-variant-numeric:tabular-nums;min-width:52px;text-align:right;
+}
+.url-line.fail .url-text{color:#94a3b8;text-decoration:line-through;text-decoration-color:#cbd5e1}
+
+/* 批量模式顶部按钮栏 */
+.batch-jump-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.btn-enter-site {
+  height: 44px;
+  padding: 0 36px;
+  border: none;
+  border-radius: 44px;
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  transition: background .15s, transform .1s, box-shadow .15s;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-enter-site:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+.btn-enter-site:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.page-footer{text-align:center;padding:24px 0 10px;font-size:.7rem;color:#8fa3b8;line-height:1.8;margin-top:auto}
 
 /* 模式切换 */
-#modeToggleBtn {
-  position:absolute; top:14px; left:10px; z-index:999;
-  width:56px; padding:6px 4px; border-radius:50px;
-  border:1px solid #4a9eff; background:#fff; color:#4a9eff;
-  font-size:.58rem; line-height:1.3; text-align:center; cursor:pointer;
-}
+.mode-jump { display: block; }
+.mode-batch { display: none; }
+body.batch-mode .mode-jump { display: none; }
+body.batch-mode .mode-batch { display: block; }
 
-/* 标题 */
-.header-block { text-align:center; margin-bottom:16px; padding-top:14px; }
-h1 { font-size:1.35rem; font-weight:700; color:#0a1a2b; }
-h1 .header-logo {
-  width:2rem; height:2rem; border-radius:50%; border:1px solid #4a9eff;
-  object-fit:cover; vertical-align:-.5rem; margin-right:8px;
-}
-.header-divider { height:1px; background:#e4ebf3; margin:12px 0; }
-.subtitle { font-size:.78rem; color:#7a8fa3; line-height:1.6; }
-
-/* 搜索框 */
-.search-box {
-  width:100%; padding:10px 16px; border:1px solid #d4dbe5;
-  border-radius:50px; font-size:.92rem; background:#fff; outline:none; -webkit-appearance:none;
-}
-body.simple-mode .search-box { margin-bottom:20px; }
-body:not(.simple-mode) .search-box { margin-bottom:14px; }
-
-/* 主卡片 */
-.main-card {
-  background:#fff; border-radius:8px; padding:20px 22px 18px;
-  border:1px solid #d4dbe5;
-  width:100%; overflow-x:hidden; flex:1;
-}
-
-/* 导航栏 */
-.nav-tabs {
-  display:flex; gap:6px; margin-bottom:14px;
-  justify-content:center; flex-wrap:nowrap; overflow-x:auto;
-  -webkit-overflow-scrolling:touch; padding:2px 0;
-}
-.nav-tabs::-webkit-scrollbar { display:none; }
-.nav-tab {
-  padding:5px 12px; border:1.5px solid #4a9eff; border-radius:30px;
-  background:#fff; color:#4a9eff;
-  font-size:.72rem; font-weight:500; cursor:pointer; white-space:nowrap; flex-shrink:0; line-height:1.2;
-}
-.nav-tab.active { background:#4a9eff; color:#fff; }
-.nav-tab:active { transform:scale(.95); }
-
-/* 面板 */
-.tab-panel { display:none; width:100%; }
-.tab-panel.active { display:block; }
-
-/* ===== 点播列表 ===== */
-.api-list { display:flex; flex-direction:column; width:100%; }
-.api-item { padding:14px 0; border-bottom:1px solid #e4ebf3; }
-.api-item:last-child { border-bottom:none; }
-.api-item.hidden { display:none !important; }
-.api-item-header { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
-.api-item-name { font-size:1rem; font-weight:700; color:#0a1a2b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; min-width:0; }
-.api-item-meta { display:flex; align-items:center; gap:8px; font-size:.72rem; white-space:nowrap; flex-shrink:0; }
-.badge-new { color:#16a34a; font-weight:600; }
-.badge-old { color:#ca8a04; font-weight:600; }
-.api-item-urls { display:flex; flex-direction:column; gap:6px; }
-.url-line {
-  display:flex; align-items:center; gap:8px; padding:6px 14px;
-  background:#f4f8fc; border:1px solid #e0e8f0; border-radius:50px; min-width:0;
-}
-.url-tag { font-size:.68rem; font-weight:600; color:#3a5a7a; background:#d8e8f8; padding:2px 14px; border-radius:50px; white-space:nowrap; flex-shrink:0; }
-.url-text { font-size:.78rem; color:#2563eb; word-break:break-all; overflow-wrap:break-word; line-height:1.4; flex:1; min-width:0; }
-
-/* 复制按钮 */
-.copy-btn {
-  flex-shrink:0; background:#4a9eff; color:#fff; border:none; border-radius:30px;
-  padding:0 14px; font-size:.7rem; font-weight:500; cursor:pointer; height:26px;
-  display:inline-flex; align-items:center; justify-content:center;
-  transition:background .15s, transform .05s; white-space:nowrap; margin-left:auto;
-  position:relative; z-index:2; touch-action:manipulation; -webkit-user-select:none; user-select:none;
-}
-.copy-btn:active { background:#2a7ed9; transform:scale(.96); }
-.copy-btn.copied { background:#3b9b6c; }
-
-.loading { text-align:center; color:#8fa3b8; padding:60px 0; font-size:.88rem; }
-.error-msg { text-align:center; color:#dc2626; padding:16px 20px; font-size:.8rem; background:#fef2f2; border:1px solid #fecaca; border-radius:4px; margin:12px 0; word-break:break-all; }
-
-.page-footer { text-align:center; padding:24px 0 10px; font-size:.7rem; color:#8fa3b8; line-height:1.8; margin-top:auto; }
-
-/* 简洁模式 */
-body.simple-mode .nav-tabs { display:none !important; }
-body.simple-mode #live-panel,
-body.simple-mode #download-panel,
-body.simple-mode #video-panel,
-body.simple-mode #about-panel { display:none !important; }
-body.simple-mode #api-panel { display:block !important; }
-
-/* ===== 直播面板 ===== */
-#live-panel { overflow-x:hidden; width:100%; }
-.live-top-aggregate {
-  background:linear-gradient(135deg, #4a9eff 0%, #1e6fda 100%);
-  border-radius:16px; padding:18px 20px; margin-bottom:18px; color:#fff;
-  box-shadow:0 4px 12px rgba(74,158,255,.3); overflow-x:hidden;
-}
-.live-top-aggregate h3 { font-size:1.05rem; font-weight:700; margin-bottom:10px; }
-.live-top-aggregate .domain-line {
-  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3);
-  margin-top:10px; display:flex; align-items:center; gap:10px;
-  padding:8px 16px; border-radius:50px; min-width:0;
-}
-.live-top-aggregate .domain-line span { flex:1; font-size:.74rem; font-weight:500; word-break:break-all; overflow-wrap:break-word; }
-.live-top-aggregate .copy-btn {
-  position:relative; z-index:2; background:rgba(255,255,255,.92); color:#1a4a7a;
-  margin-left:0; border-radius:30px; cursor:pointer; touch-action:manipulation;
-  -webkit-user-select:none; user-select:none;
-}
-.live-top-aggregate .copy-btn:active { transform:scale(.96); background:rgba(255,255,255,1); }
-.live-top-aggregate .copy-btn.copied { background:#d1f5e0; color:#0a6a3a; }
-.live-top-aggregate .domain-line span { pointer-events:none; }
-.live-list { display:flex; flex-direction:column; width:100%; }
-.live-item { padding:14px 0; border-bottom:1px solid #e4ebf3; }
-.live-item:last-child { border-bottom:none; }
-.live-item.hidden { display:none !important; }
-.live-item-header { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
-.live-item-name { font-size:1rem; font-weight:700; color:#0a1a2b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; min-width:0; }
-.live-item-meta { display:flex; align-items:center; gap:8px; font-size:.72rem; white-space:nowrap; flex-shrink:0; }
-.live-badge-new { color:#16a34a; font-weight:600; }
-.live-badge-old { color:#ca8a04; font-weight:600; }
-.live-item-urls { display:flex; flex-direction:column; gap:6px; }
-.live-url-line {
-  background:#f4f8fc; border:1px solid #e0e8f0; border-radius:8px;
-  padding:10px 14px; display:flex; flex-direction:column; gap:6px; width:100%; min-width:0;
-}
-.live-info-inline { display:flex; align-items:center; gap:6px; font-size:.65rem; color:#7a8fa3; line-height:1.4; flex-wrap:wrap; word-break:break-all; }
-.live-info-inline .sep { color:#b8c8d8; }
-.live-url-body { display:flex; align-items:center; gap:8px; min-width:0; }
-.live-url-tag { font-size:.68rem; font-weight:600; color:#3a5a7a; background:#d8e8f8; padding:2px 14px; border-radius:50px; white-space:nowrap; flex-shrink:0; }
-.live-url-text { font-size:.78rem; color:#2563eb; word-break:break-all; overflow-wrap:break-word; line-height:1.4; flex:1; min-width:0; }
-
-/* ===== 下载面板 ===== */
-#download-panel { overflow-x:hidden; width:100%; }
-#downloads-content { width:100%; overflow-x:hidden; }
-#downloads-content.has-sidebar {
-  display:flex; flex-direction:row; gap:12px; align-items:flex-start;
-}
-.dl-sidebar {
-  flex:0 0 auto; width:96px;
-  display:flex; flex-direction:column; gap:8px;
-  padding:4px 2px 4px 0;
-  position:sticky; top:0; align-self:flex-start;
-  max-height:72vh; overflow-y:auto;
-}
-.dl-side-btn {
-  width:100%; padding:11px 6px;
-  border:1.5px solid #4a9eff; border-radius:12px;
-  background:#fff; color:#4a9eff;
-  font-size:.76rem; font-weight:600; line-height:1.3;
-  cursor:pointer; text-align:center;
-  display:flex; flex-direction:column; align-items:center; gap:4px;
-  word-break:break-word;
-  transition:background .15s, color .15s, transform .05s;
-}
-.dl-side-btn .dl-side-icon { font-size:1.15rem; line-height:1; }
-.dl-side-btn.active { background:#4a9eff; color:#fff; }
-.dl-side-btn:active { transform:scale(.96); }
-.dl-body { flex:1; min-width:0; }
-.dl-group { display:none; width:100%; }
-.dl-group.active { display:block; }
-.dl-group-title { font-size:.95rem; font-weight:600; color:#0b1e33; margin-bottom:2px; }
-.dl-group-desc { font-size:.7rem; color:#8b9eb0; margin-bottom:10px; }
-/* 下载卡片列表 —— 与快链模块 .online-list 对齐 */
-.dl-cards {
-  display:flex; flex-direction:column;
-  gap:10px; width:100%; max-width:100%; overflow:hidden;
-}
-.download-card {
-  display:flex; align-items:center; gap:12px;
-  background:#fff; border:1px solid #e4ebf3; border-radius:10px;
-  padding:10px 12px; text-decoration:none; color:inherit;
-  transition:border-color .15s, box-shadow .15s;
-  min-width:0; width:100%;
-}
-.download-card:active {
-  border-color:#4a9eff;
-  box-shadow:0 2px 8px rgba(74,158,255,.15);
-}
-.download-card.hidden { display:none !important; }
-
-/* 左侧图标 */
-.dl-item-icon {
-  flex-shrink:0; width:44px; height:44px; border-radius:10px;
-  overflow:hidden; display:flex; align-items:center; justify-content:center;
-  background:#f0f3f8;
-}
-.dl-item-icon img { width:100%; height:100%; object-fit:cover; border-radius:10px; }
-.dl-item-icon .site-ph { font-size:1.2rem; font-weight:700; color:#4a9eff; }
-
-/* 中间文字 */
-.dl-item-info {
-  flex:1; min-width:0;
-  display:flex; flex-direction:column; justify-content:center;
-}
-.dl-item-name {
-  font-size:.82rem; font-weight:600; color:#0a1a2b;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-}
-.dl-item-desc {
-  font-size:.68rem; color:#8b9eb0; margin-top:3px; line-height:1.4;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-}
-
-/* 右侧下载按钮 */
-.dl-item-btn {
-  flex-shrink:0;
-  display:inline-flex; align-items:center; justify-content:center;
-  gap:4px;
-  height:32px; padding:0 14px;
-  background:#4a9eff; color:#fff;
-  border:none; border-radius:30px;
-  font-size:.7rem; font-weight:500; line-height:1;
-  cursor:pointer; white-space:nowrap;
-  transition:background .15s, transform .05s;
-}
-.dl-item-btn:active { background:#2a7ed9; transform:scale(.96); }
-
-/* 大屏：两列 */
-@media (min-width:600px) {
-  .dl-cards {
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:10px;
-  }
-}
-
-@media (max-width:600px) {
-  #downloads-content.has-sidebar { gap:8px; }
-  .dl-sidebar { width:72px; gap:6px; max-height:66vh; }
-  .dl-side-btn { padding:9px 3px; font-size:.66rem; border-radius:10px; }
-  .dl-side-btn .dl-side-icon { font-size:.95rem; }
-  .dl-item-icon { width:40px; height:40px; }
-  .dl-item-btn { height:30px; padding:0 12px; font-size:.66rem; }
-}
-
-/* ===== 更多面板（k.html 同步版） ===== */
-#more-panel { overflow-x:hidden; width:100%; }
-#more-content { width:100%; overflow-x:hidden; }
-#more-content.has-sidebar {
-  display:flex; flex-direction:row; gap:12px; align-items:flex-start;
-}
-.more-group { display:none; width:100%; }
-.more-group.active { display:block; }
-
-/* 快链 - 列表布局 */
-.online-list {
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  width:100%;
-}
-
-.online-item {
-  display:flex;
-  align-items:center;
-  gap:14px;
-  background:#fff;
-  border:1px solid #e4ebf3;
-  border-radius:10px;
-  padding:12px 14px;
-  text-decoration:none;
-  color:inherit;
-  transition:border-color .15s, box-shadow .15s;
-  min-width:0;
-  width:100%;
-}
-
-.online-item:active {
-  border-color:#4a9eff;
-  box-shadow:0 2px 8px rgba(74,158,255,.15);
-}
-
-.online-item-icon {
-  flex-shrink:0;
-  width:48px;
-  height:48px;
-  border-radius:10px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f0f3f8;
-}
-
-.online-item-icon img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:10px;
-}
-
-.online-item-icon .site-ph {
-  font-size:1.2rem;
-  font-weight:700;
-  color:#4a9eff;
-}
-
-.online-item-info {
-  flex:1;
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.online-item-name {
-  font-size:.82rem;
-  font-weight:600;
-  color:#0a1a2b;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.online-item-desc {
-  font-size:.68rem;
-  color:#8b9eb0;
-  margin-top:3px;
-  line-height:1.4;
-  white-space:normal;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-}
-
-/* 大屏：自适应多列 */
-@media (min-width:600px) {
-  .online-list {
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
-    gap:10px;
-  }
-}
-
-/* 超大屏最多2列 */
-@media (min-width:1100px) {
-  .online-list {
-    grid-template-columns:repeat(2, 1fr);
-  }
-}
-
-/* ===== 快链面板 - 左侧按钮分组 ===== */
-#video-content.has-sidebar {
-  display:flex; flex-direction:row; gap:12px; align-items:flex-start;
-}
-.vd-sidebar {
-  flex:0 0 auto; width:96px;
-  display:flex; flex-direction:column; gap:8px;
-  padding:4px 2px 4px 0;
-  position:sticky; top:0; align-self:flex-start;
-  max-height:72vh; overflow-y:auto;
-}
-.vd-side-btn {
-  width:100%; padding:11px 6px;
-  border:1.5px solid #4a9eff; border-radius:12px;
-  background:#fff; color:#4a9eff;
-  font-size:.76rem; font-weight:600; line-height:1.3;
-  cursor:pointer; text-align:center;
-  display:flex; flex-direction:column; align-items:center; gap:4px;
-  word-break:break-word;
-  transition:background .15s, color .15s, transform .05s;
-}
-.vd-side-btn .vd-side-icon { font-size:1.15rem; line-height:1; }
-.vd-side-btn.active { background:#4a9eff; color:#fff; }
-.vd-side-btn:active { transform:scale(.96); }
-.vd-body { flex:1; min-width:0; }
-.vd-group { display:none; width:100%; }
-.vd-group.active { display:block; }
-.vd-group-title { font-size:.95rem; font-weight:600; color:#0b1e33; margin-bottom:2px; }
-.vd-group-desc { font-size:.7rem; color:#8b9eb0; margin-bottom:10px; }
-
-/* 常用工具 - 紧凑网格 */
-.tools-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
-  gap:8px;
-  width:100%;
-}
-.tool-chip {
-  display:flex; align-items:center; justify-content:center; gap:6px;
-  padding:10px 12px;
-  background:#fff; border:1px solid #e4ebf3; border-radius:10px;
-  text-decoration:none; color:#0a1a2b;
-  font-size:.74rem; font-weight:500; line-height:1.3;
-  text-align:center;
-  transition:border-color .15s, box-shadow .15s, background .15s;
-  min-width:0;
-}
-.tool-chip:active {
-  border-color:#4a9eff;
-  background:#f0f7ff;
-  box-shadow:0 2px 8px rgba(74,158,255,.15);
-}
-.tool-chip .tool-icon { font-size:.9rem; flex-shrink:0; }
-
-@media (max-width:600px) {
-  #video-content.has-sidebar { gap:8px; }
-  .vd-sidebar { width:72px; gap:6px; max-height:66vh; }
-  .vd-side-btn { padding:9px 3px; font-size:.66rem; border-radius:10px; }
-  .vd-side-btn .vd-side-icon { font-size:.95rem; }
-  .tools-grid { grid-template-columns:repeat(auto-fill, minmax(110px, 1fr)); gap:6px; }
-  .tool-chip { padding:8px 8px; font-size:.68rem; }
-}
-
-/* ===== 关于面板 ===== */
-#about-panel > div { background:#f8fafc !important; border-radius:8px !important; padding:16px 18px !important; margin-bottom:14px !important; border:1px solid #e4ebf3 !important; }
-#about-panel h3 { font-size:.9rem !important; margin-bottom:10px !important; }
-#about-panel p, #about-panel li { font-size:.75rem !important; line-height:1.7 !important; }
-#about-panel > div > div { background:#fff !important; border:1px solid #e4ebf3 !important; border-radius:50px !important; padding:8px 16px !important; margin-top:8px !important; }
-
-/* ===== 合作共创 ===== */
-.contributor-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px; }
-@media (min-width:600px) { .contributor-grid { grid-template-columns:repeat(3,1fr); } }
-@media (min-width:960px) { .contributor-grid { grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); } }
-.contributor-card {
-  background:rgba(255,255,255,.75);
-  border:1px solid rgba(255,255,255,.6);
-  border-radius:12px;
-  padding:12px 14px;
-  min-width:0;
-  width:100%;
-}
-.contributor-card.hidden { display:none !important; }
-
-/* 透明无边框隐形卡片：固定创作者信息内部布局 */
-.contributor-inner-card {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  width:100%;
-  min-width:0;
-  background:transparent;
-  border:none;
-  border-radius:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-.contributor-avatar {
-  width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0;
-  background:linear-gradient(135deg,#4a9eff,#1e6fda); color:#fff;
-  display:flex; align-items:center; justify-content:center; font-weight:600; font-size:.85rem;
-}
-.contributor-info { flex:1; min-width:0; }
-.contributor-name {
-  font-size:.82rem; font-weight:600; color:#0a1a2b;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
-.contributor-role {
-  display:inline-block; margin-top:4px; font-size:.6rem; font-weight:500;
-  color:#4a9eff; background:#e8f2ff; padding:2px 10px; border-radius:50px;
-  max-width:100%; overflow-wrap:break-word; word-break:break-word;
-}
-.contributor-desc {
-  margin-top:6px; font-size:.68rem; color:#7a8fa3; line-height:1.4;
-  overflow-wrap:break-word; word-break:break-word;
-}
-.contributor-social {
-  margin-top:6px; font-size:.68rem; color:#4a9eff;
-  overflow-wrap:break-word; word-break:break-word;
-}
-
-/* ============================================================
-   移动端（≤600px）
-   ============================================================ */
-@media (max-width: 600px) {
-  body { padding: 14px 8px 6px; }
-  #modeToggleBtn { top:10px; left:6px; width:48px; font-size:.52rem; padding:4px 2px; }
-  .main-card { padding:14px 14px 12px; }
-  .header-block { padding-top:10px; margin-bottom:12px; }
-  h1 { font-size:1.15rem; }
-  h1 .header-logo { width:1.7rem; height:1.7rem; vertical-align:-.4rem; }
-  .nav-tabs { gap:4px; margin-bottom:10px; justify-content:space-between; flex-wrap:nowrap; }
-  .nav-tab { flex:1; text-align:center; padding:4px 0; font-size:.95rem; border-radius:24px; white-space:nowrap; }
-  .api-item, .live-item { padding:12px 0; }
-  .api-item-name, .live-item-name { font-size:.92rem; }
-  .url-line { padding:6px 10px; gap:6px; }
-  .url-tag, .live-url-tag { font-size:.62rem; padding:2px 10px; }
-  .url-text, .live-url-text { font-size:.72rem; }
-  .copy-btn { font-size:.62rem; padding:0 10px; height:24px; }
-  .live-top-aggregate { padding:14px 16px; }
-  .live-url-line { padding:8px 10px; }
-  .live-url-body .live-url-tag { font-size:.62rem; padding:2px 10px; }
-  .live-url-body .live-url-text { font-size:.72rem; }
-  .live-info-inline { font-size:.6rem; }
-  .contributor-grid { grid-template-columns:repeat(2,1fr) !important; gap:8px; }
-  .contributor-card { padding:8px 10px; }
-  .contributor-inner-card { gap:8px; }
-  .contributor-avatar { width:36px; height:36px; font-size:.75rem; }
-  .contributor-name { font-size:.78rem; }
-  .contributor-role { font-size:.58rem; padding:2px 8px; }
-  .contributor-desc { font-size:.65rem; line-height:1.35; }
-  #more-content.has-sidebar { gap:8px; }
-  #more-content .dl-sidebar { width:72px; gap:6px; max-height:66vh; }
-  #more-content .dl-side-btn { padding:9px 3px; font-size:.66rem; border-radius:10px; }
-  #more-content .dl-side-btn .dl-side-icon { font-size:.95rem; }
+@media (max-width:600px){
+  body{padding:14px 10px 6px}
+  .ctrl-card,.status-bar,.domains-card,.status-card{padding:14px 12px 10px}
+  .status-bar{flex-direction:column;gap:8px;align-items:flex-start}
+  .btn-stay, .btn-goto { padding: 7px 14px; font-size: 0.75rem; min-width: 80px; }
+  .btn-enter-site { height: 40px; padding: 0 28px; font-size: .86rem; }
 }
 </style>
 </head>
-
-<body class="simple-mode">
-
+<body>
 <div class="container">
-  <button id="modeToggleBtn">切换<br>全能版</button>
 
   <div class="header-block">
-    <h1><img class="header-logo" id="header-logo" src="https://0.12yue.de5.net/tvbox/x/jueson.jpg" alt="Logo">海量接口搬运备份</h1>
+    <h1>🔍 接口线路批量检测</h1>
     <div class="header-divider"></div>
-    <p class="subtitle" id="header-subtitle">备用数据源，防屏不迷路<br>QQ交流群：1067685939</p>
+    <p class="subtitle" id="subtitle">备用数据源，防屏不迷路 · 点击整行直接跳转</p>
   </div>
 
-  <div class="main-card">
-    <div class="nav-tabs" id="navTabs"></div>
-
-    <!-- 搜索框 -->
-    <input class="search-box" id="search" type="text" placeholder="🔍 搜索..." oninput="globalSearch()">
-
-    <!-- 点播面板 -->
-    <div class="tab-panel active" id="api-panel">
-      <div class="api-list" id="listContainer">
-        <div class="loading" id="apiLoading">⏳ 正在加载接口列表...</div>
+  <!-- ========== 跳转前模式 ========== -->
+  <div class="mode-jump" id="modeJump">
+    <div class="status-card">
+      <div class="status-text" id="status">⏳ 正在检测可用线路...</div>
+      <div class="action-buttons" id="actionButtons" style="display:none;">
+        <button class="btn-stay" id="stayBtn">🧷 留在本页</button>
+        <button class="btn-goto" id="gotoBtn">🚀 立即跳转</button>
       </div>
     </div>
 
-    <!-- 直播面板 -->
-    <div class="tab-panel" id="live-panel">
-      <div class="live-top-aggregate">
-        <h3>海量直播聚合多线路专用接口</h3>
-        <div class="domain-line">
-          <span>https://0.12yue.de5.net/tvbox/海量直播线路.json</span>
-          <button class="copy-btn" data-url="https://0.12yue.de5.net/tvbox/海量直播线路.json">复制</button>
-        </div>
-      </div>
-      <div class="live-list" id="liveListContainer">
-        <div class="loading" id="liveLoading">⏳ 正在加载直播列表...</div>
-      </div>
-    </div>
-
-    <!-- 下载面板 -->
-    <div class="tab-panel" id="download-panel">
-      <div id="downloads-content"><div class="loading">⏳ 正在加载下载资源...</div></div>
-    </div>
-
-    <!-- 快链面板 -->
-    <div class="tab-panel" id="video-panel">
-      <div id="video-content">
-        <div class="loading">⏳ 正在加载快链...</div>
-      </div>
-    </div>
-
-    <!-- 更多面板 -->
-    <div class="tab-panel" id="more-panel">
-      <div id="more-content">
-        <div class="loading">⏳ 正在加载更多资源...</div>
-      </div>
-    </div>
-
-    <!-- 关于面板：域名列表改为动态渲染 -->
-    <div class="tab-panel" id="about-panel">
-      <div style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:8px">🌐 备份线路域名</h3>
-        <p style="margin-bottom:6px;font-size:.76rem;color:#5a6f88">域名互为备份，任一个可用：</p>
-        <div id="about-domains-list"></div>
-      </div>
-
-      <div id="contributors-card" style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">🤝 合作共创</h3>
-        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:4px">感谢以下伙伴对本站的内容贡献与支持（<strong style="color:#ca8a04">排名不分先后</strong>）：</p>
-        <div class="contributor-grid" id="contributors-list">
-          <div class="loading">⏳ 正在加载贡献者...</div>
-        </div>
-        <p style="font-size:.68rem;color:#8fa3b8;margin-top:10px;line-height:1.5;font-style:italic">* 还有部分贡献者因未留下署名信息而未在此列出，同样感谢你们的默默付出。如有遗漏请联系站长补充。</p>
-      </div>
-
-      <div style="background:#f8fafc;border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:8px">📢 声明与联系</h3>
-        <ul style="padding-left:16px">
-          <li id="about-declaration" style="font-size:.76rem;color:#5a6f88;line-height:1.6"></li>
-        </ul>
-        <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">QQ 交流群：<a id="about-qq" href="#" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600"></a></p>
-        <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">Telegram群组：<a id="about-tg" href="#" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600"></a></p>
-        <p style="margin-top:10px;font-size:.76rem;color:#5a6f88">项目地址：<a href="https://github.com/lubin776/tvbox-api-backup" target="_blank" rel="noopener noreferrer" style="color:#4a9eff;text-decoration:none;font-weight:600">https://github.com/lubin776/tvbox-api-backup</a></p>
-      </div>
+    <div class="domains-card">
+      <div class="domains-title">🌐 备份线路域名</div>
+      <div class="domains-tip">四个域名互为备份，任一个可用（点击整行跳转）：</div>
+      <div id="simpleList"></div>
     </div>
   </div>
 
-  <footer class="page-footer">
-    <p>本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。 QQ 群：1067685939。</p>
-  </footer>
+  <!-- ========== 批量检测模式 ========== -->
+  <div class="mode-batch" id="modeBatch">
+    <!-- 顶部按钮栏：进入网站 -->
+    <div class="batch-jump-bar">
+      <button class="btn-enter-site" id="btnEnterSite">🌐 进入网站</button>
+    </div>
+
+    <!-- 控制区 -->
+    <div class="ctrl-card">
+      <div class="ctrl-row">
+        <span class="ctrl-label">并发数</span>
+        <input class="ctrl-input" id="concurrency" type="number" min="1" max="20" value="6" style="max-width:80px">
+        <span class="ctrl-label">超时(秒)</span>
+        <input class="ctrl-input" id="timeout" type="number" min="2" max="60" value="12" style="max-width:80px">
+        <button class="btn primary" id="btnStart">开始检测</button>
+        <button class="btn ghost" id="btnStop">停止</button>
+        <button class="btn success" id="btnCopyOK">复制可用</button>
+      </div>
+      <div class="add-box">
+        <input class="ctrl-input" id="addInput" type="text" placeholder="粘贴新线路，可一次粘多行/多个，逗号或空格分隔，回车即添加">
+        <button class="btn" id="btnAdd">添加</button>
+        <button class="btn ghost" id="btnClear">清空</button>
+      </div>
+      <p class="hint">
+        域名列表在源码 <code>DOMAINS</code> 数组里，可直接改默认值；上方输入框支持运行时临时追加。
+      </p>
+    </div>
+
+    <!-- 统计 -->
+    <div class="status-bar">
+      <div class="stat">
+        <span>总数 <b class="b-total" id="stTotal">0</b></span>
+        <span>可用 <b class="b-ok" id="stOk">0</b></span>
+        <span>失败 <b class="b-fail" id="stFail">0</b></span>
+        <span>等待 <b class="b-wait" id="stWait">0</b></span>
+      </div>
+      <div class="stat">
+        <span id="stMsg">就绪</span>
+      </div>
+    </div>
+
+    <!-- 列表 -->
+    <div class="domains-card">
+      <div class="domains-title">🌐 线路列表</div>
+      <div class="domains-tip">点整行跳转，点右侧按钮复制单条地址；检测结果与延迟实时刷新。</div>
+      <div id="list"></div>
+    </div>
+  </div>
+
 </div>
 
+<footer class="page-footer">
+  <p>线路由使用者自行填写，仅做连通性探测，不存储、不转发任何内容。<br>仅供测试学习使用。</p>
+</footer>
+
 <script>
-/* ============================================================
-   完整 JS 逻辑
-   ============================================================ */
-
-const MODE_KEY = 'site_mode';
-const TAB_KEY = 'current_tab';
-const VALID_TABS = ['api','live','download','video','more','about'];
-
-const btn = document.getElementById('modeToggleBtn');
-const searchBox = document.getElementById('search');
-const mainCard = document.querySelector('.main-card');
-const navTabs = document.getElementById('navTabs');
-
-const headerLogo = document.getElementById('header-logo');
-const headerSubtitle = document.getElementById('header-subtitle');
-
-const API_DOMAINS = [
-  {tag:"备份一线", base:"https://0.12yue.de5.net/tvbox/"},
-  {tag:"备份二线", base:"https://0.cdz.qzz.io/tvbox/"},
-  {tag:"备份三线", base:"https://0.wdzb.eu.cc/tvbox/"}
+/* ===== 默认线路列表（两套模式共用） ===== */
+const DOMAINS = [
+  "https://0.wudaozhe.net/app",
+  "https://0.12yue.de5.net/app",
+  "https://0.cdz.qzz.io/app",
+  "https://0.wdzb.eu.cc/app",
+  "https://lubin776.github.io/0/app",
+  "https://tvbox.moliys.icu",
+  "https://ym.120733.xyz"
 ];
+/* ====================================== */
 
-const LIVE_DOMAINS = [
-  {tag:"备份一线", base:"https://0.12yue.de5.net/tvbox/live/"},
-  {tag:"备份二线", base:"https://0.cdz.qzz.io/tvbox/live/"},
-  {tag:"备份三线", base:"https://0.wdzb.eu.cc/tvbox/live/"}
-];
+/* ========== 全局状态 ========== */
+let mode = 'jump';
+let items = DOMAINS.map(u => ({ url: u, state: "wait", lat: null }));
+let jumpTargetUrl = null;
 
-const API_WEIGHTS = {
-  "轮替占位.json":1,"神马都没有.json":2,"饭太硬.json":4,"肥猫已死.json":5,
-  "摸鱼.json":6,"王二小.json":7,"集多已死.json":8,"潇洒.json":9,"小米以死.json":10,
-  "嗷呜.json":11,"南风已死.json":12,"幸福年年.json":13
-};
+/* ========== 元素引用 ========== */
+const bodyEl = document.body;
+const subtitle = document.getElementById('subtitle');
 
-const ROTATE_KEYWORDS = ["X4","X4"];
+// 跳转前元素
+const statusEl = document.getElementById('status');
+const actionButtons = document.getElementById('actionButtons');
+const stayBtn = document.getElementById('stayBtn');
+const gotoBtn = document.getElementById('gotoBtn');
+const simpleListEl = document.getElementById('simpleList');
 
-let currentMode = localStorage.getItem(MODE_KEY) || 'simple';
-let currentTabId = VALID_TABS.includes(localStorage.getItem(TAB_KEY))
-  ? localStorage.getItem(TAB_KEY)
-  : 'api';
+// 批量检测元素
+const listEl   = document.getElementById("list");
+const stTotal  = document.getElementById("stTotal");
+const stOk     = document.getElementById("stOk");
+const stFail   = document.getElementById("stFail");
+const stWait   = document.getElementById("stWait");
+const stMsg    = document.getElementById("stMsg");
+const btnStart = document.getElementById("btnStart");
+const btnEnterSite = document.getElementById("btnEnterSite");
 
-let topSeed = Date.now();
-let rawListText = null;
-let rawLiveText = null;
-let DOWNLOAD_SOURCES = [];
-let SITE_CONFIG = null;
-let configData = null;
+/* ========== 工具函数 ========== */
+function normalize(u){ return u.trim().replace(/\s+/g,""); }
+function displayUrl(u){ return u.replace(/\/$/,"").replace(/\/app$/,"") || u; }
 
-document.body.className = currentMode + '-mode';
-updateBtnText();
-positionSearchBox();
+/* ========== 模式切换 ========== */
+function switchToBatchMode() {
+  mode = 'batch';
+  bodyEl.classList.add('batch-mode');
+  subtitle.textContent = '并发探测 + 自动测速，绿色=可用，红色=失败，点击整行直接跳转';
+  items = DOMAINS.map(u => ({ url: u, state: "wait", lat: null }));
+  renderBatchList();
+  updateBatchStats();
+  updateEnterButton();
+  // 自动开始检测
+  startBatchCheck();
+}
 
-/* ===== 全局复制 ===== */
-document.addEventListener('click', function(e) {
-  const copyBtn = e.target.closest('.copy-btn');
-  if (!copyBtn) return;
-  e.preventDefault(); e.stopPropagation();
-  const url = copyBtn.getAttribute('data-url');
-  if (!url) return;
-  const done = () => {
-    const originalText = copyBtn.textContent;
-    copyBtn.textContent = '✅ 已复制';
-    copyBtn.classList.add('copied');
-    setTimeout(() => { copyBtn.textContent = originalText; copyBtn.classList.remove('copied'); }, 1500);
+/* 返回倒计时模式（进入网站按钮逻辑） */
+function switchToJumpMode() {
+  mode = 'jump';
+  bodyEl.classList.remove('batch-mode');
+  subtitle.textContent = '备用数据源，防屏不迷路 · 点击整行直接跳转';
+  
+  // 如果批量检测中有可用线路，更新跳转目标为延迟最低的
+  const okItems = items.filter(i => i.state === "ok").sort((a, b) => (a.lat || 9999) - (b.lat || 9999));
+  if (okItems.length > 0) {
+    jumpTargetUrl = okItems[0].url;
+  }
+  // 如果有跳转目标，重新开始倒计时；否则重新检测
+  if (jumpTargetUrl) {
+    startJumpCountdown(jumpTargetUrl, 5);
+  } else {
+    checkFirstAvailable();
+  }
+}
+
+/* 更新进入网站按钮状态 */
+function updateEnterButton() {
+  const okItems = items.filter(i => i.state === "ok");
+  if (okItems.length > 0) {
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = `🌐 进入网站 (${okItems.length} 条可用)`;
+  } else {
+    // 没有可用线路时，按钮仍可点击（会尝试重新检测），但显示提示
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = '🌐 进入网站';
+  }
+}
+
+/* ========== 跳转前模式 ========== */
+function renderSimpleList() {
+  simpleListEl.innerHTML = '';
+  const unique = [...new Set(DOMAINS.map(displayUrl))].slice(0, 6);
+  unique.forEach(url => {
+    const line = document.createElement('div');
+    line.className = 'url-line-simple';
+    line.dataset.url = url;
+    line.innerHTML = `
+      <span class="url-text">${url}</span>
+      <button class="copy-btn" data-url="${url}">复制</button>
+    `;
+    simpleListEl.appendChild(line);
+  });
+}
+
+async function checkFirstAvailable() {
+  for (let i = 0; i < DOMAINS.length; i++) {
+    const url = DOMAINS[i];
+    statusEl.textContent = `⏳ 正在检测第 ${i + 1} 个线路：${url}`;
+    const ok = await probeUrl(url, 12);
+    if (ok) {
+      jumpTargetUrl = url;
+      startJumpCountdown(url, 5);
+      return;
+    }
+  }
+  statusEl.innerHTML = '❌ 所有线路均不可用，请稍后再试';
+  actionButtons.style.display = 'none';
+}
+
+function probeUrl(url, timeoutSec) {
+  return new Promise(resolve => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutSec * 1000);
+    fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store', signal: controller.signal })
+      .then(() => { clearTimeout(timer); resolve(true); })
+      .catch(() => { clearTimeout(timer); resolve(false); });
+  });
+}
+
+let jumpTimer = null;
+function startJumpCountdown(url, seconds) {
+  if (jumpTimer) clearInterval(jumpTimer);
+  let remain = seconds;
+  actionButtons.style.display = 'flex';
+  stayBtn.style.display = 'inline-flex';
+  gotoBtn.style.display = 'inline-flex';
+
+  const update = () => {
+    statusEl.innerHTML = `✅ 线路可用，<span class="countdown">${remain}</span> 秒后跳转<br><span style="font-size:.75rem;color:#5a6f88">${url}</span>`;
   };
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(done).catch(fb);
-  } else { fb(); }
-  function fb() {
-    const input = document.createElement('input'); input.value = url;
-    input.style.position='fixed'; input.style.opacity='0';
-    document.body.appendChild(input); input.focus(); input.select();
-    try{document.execCommand('copy');}catch(_){}
-    document.body.removeChild(input); done();
-  }
-});
+  update();
 
-/* ===== 工具 ===== */
-function getTopItem(rotateItems) {
-  if (!rotateItems || !rotateItems.length) return null;
-  if (rotateItems.length === 1) return rotateItems[0];
-  return rotateItems[Math.abs(Math.floor(Math.sin(topSeed)*10000))%rotateItems.length];
-}
-function formatDateToChinese(d) {
-  if(!d||d.length!==8) return '----';
-  return d.slice(0,4)+'年'+d.slice(4,6)+'月'+d.slice(6,8)+'日';
-}
-function isRecent(d) {
-  if(!d||d.length!==8) return false;
-  const y=parseInt(d.slice(0,4)),m=parseInt(d.slice(4,6))-1,day=parseInt(d.slice(6,8));
-  return (Date.now()-new Date(y,m,day).getTime())/86400000 <= 2;
-}
-function getInitials(name) { return name ? name.slice(0,1).toUpperCase() : '?'; }
-
-/* ===== 通用 fetch JSON ===== */
-async function fetchJSON(path) {
-  const res = await fetch(path + '?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  return res.json();
-}
-
-/* ===== 配置加载 ===== */
-async function loadConfig() {
-  if (SITE_CONFIG) return SITE_CONFIG;
-  try {
-    const res = await fetch('config.json?t='+Date.now()+'&r='+Math.random(), {cache:'no-store'});
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    SITE_CONFIG = await res.json();
-    configData = SITE_CONFIG;
-    DOWNLOAD_SOURCES = Array.isArray(SITE_CONFIG.downloadSources) ? SITE_CONFIG.downloadSources : [];
-    renderContributors(SITE_CONFIG.about && SITE_CONFIG.about.contributors);
-    renderAboutDomains(SITE_CONFIG.about && SITE_CONFIG.about.domains);
-    renderAboutText(SITE_CONFIG.about);
-
-    if (SITE_CONFIG.site) {
-      if (SITE_CONFIG.site.logo) headerLogo.src = SITE_CONFIG.site.logo;
-      if (SITE_CONFIG.site.title) {
-        const h1 = headerLogo.parentNode;
-        let found = false;
-        h1.childNodes.forEach(n => {
-          if (n.nodeType === Node.TEXT_NODE && n.textContent.trim()) {
-            if (!found) { n.textContent = SITE_CONFIG.site.title; found = true; }
-            else n.textContent = '';
-          }
-        });
-        if (!found) h1.appendChild(document.createTextNode(SITE_CONFIG.site.title));
-      }
-      if (SITE_CONFIG.site.subtitle || SITE_CONFIG.site.qqGroup) {
-        let sub = SITE_CONFIG.site.subtitle || '备用数据源，防屏不迷路';
-        if (SITE_CONFIG.site.qqGroup) {
-          sub += '<br>QQ交流群：' + SITE_CONFIG.site.qqGroup;
-        } else {
-          sub += '<br>QQ交流群：1067685939';
-        }
-        headerSubtitle.innerHTML = sub;
-      }
-    }
-    return SITE_CONFIG;
-  } catch(e) { DOWNLOAD_SOURCES=[]; renderContributors([]); throw e; }
-}
-
-/* ===== 关于页动态渲染 ===== */
-function renderAboutDomains(domains) {
-  const box = document.getElementById('about-domains-list');
-  if (!box) return;
-  if (!Array.isArray(domains) || !domains.length) {
-    box.innerHTML = '<div class="error-msg">暂无域名</div>';
-    return;
-  }
-  box.innerHTML = domains.map(d => `
-    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;">
-      <span style="flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;">${d}</span>
-      <button class="copy-btn" data-url="${d}">复制</button>
-    </div>`).join('');
-}
-
-function renderAboutText(about) {
-  if (!about) return;
-  const dec = document.getElementById('about-declaration');
-  const qq  = document.getElementById('about-qq');
-  const tg  = document.getElementById('about-tg');
-  if (dec && about.declaration) dec.textContent = about.declaration;
-  if (qq && about.qqGroup) {
-    qq.textContent = about.qqGroup;
-    qq.href = 'https://qm.qq.com/q/gmRKKPT3x0';
-  }
-  if (tg && about.telegram) {
-    tg.textContent = about.telegram;
-    tg.href = about.telegram;
-  }
-}
-
-function renderContributors(list) {
-  const c = document.getElementById('contributors-list');
-  if (!c) return;
-  if (!Array.isArray(list) || !list.length) {
-    c.innerHTML = '<div class="error-msg">暂无合作共创人员</div>';
-    return;
-  }
-  c.innerHTML = list.map(c => `
-    <div class="contributor-card" data-name="${(c.name || '').toLowerCase()}">
-      <div class="contributor-inner-card">
-        ${c.avatar
-          ? `<img class="contributor-avatar" src="${c.avatar}" alt="${c.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="contributor-avatar" style="display:none">${getInitials(c.name)}</div>`
-          : `<div class="contributor-avatar">${getInitials(c.name)}</div>`}
-        <div class="contributor-info">
-          <div class="contributor-name" title="${c.name}">${c.name}</div>
-          ${c.role ? `<div class="contributor-role">${c.role}</div>` : ''}
-          ${c.desc ? `<div class="contributor-desc">${c.desc}</div>` : ''}
-          ${c.social ? `<div class="contributor-social">${c.social}</div>` : ''}
-        </div>
-      </div>
-    </div>`).join('');
-}
-
-/* ===== 更多面板渲染函数 ===== */
-function renderApiItemCard(item) {
-  const badge = item.badge || item.count || '';
-  const note  = item.note  || item.desc  || '';
-  let noteHtml = note ? `<div style="font-size:.68rem;color:#8b9eb0;margin-top:6px">${note}</div>` : '';
-  return `<div class="api-item" data-name="${item.name.toLowerCase()}">
-  <div class="api-item-header">
-    <div class="api-item-name" title="${item.name}">${item.name}</div>
-    <div class="api-item-meta"><span class="badge-new">${badge}</span></div>
-  </div>
-  ${noteHtml}
-  <div class="api-item-urls">
-    <div class="url-line">
-      <span class="url-tag">${item.tag || '导入'}</span>
-      <span class="url-text">${item.url}</span>
-      <button class="copy-btn" data-url="${item.url}">复制</button>
-    </div>
-  </div>
-</div>`;
-}
-
-function renderOnlineItem(item) {
-  const host = (item.url.match(/https?:\/\/([^/]+)/) || [, ''])[1];
-  const ph = item.name.charAt(0);
-  return `<a class="online-item" href="${item.url}" target="_blank" rel="noopener noreferrer" data-name="${(item.name||'').toLowerCase()}">
-  <span class="online-item-icon"><img src="https://favicon.im/${host}?larger=true" alt="${item.name}" loading="lazy" onerror="this.onerror=null;this.src='https://icon.horse/icon/${host}';this.addEventListener('error',()=>{this.style.display='none';this.nextElementSibling.style.display='flex';},{once:true})"><span class="site-ph" style="display:none">${ph}</span></span>
-  <div class="online-item-info"><div class="online-item-name">${item.name}</div><div class="online-item-desc">${item.desc}</div></div>
-</a>`;
-}
-
-function renderSourceGroup(title, description, items, isOnlineVideo) {
-  let bodyHtml = '';
-  if (isOnlineVideo) {
-    bodyHtml = `<div class="online-list">${items.map(renderOnlineItem).join('\n')}</div>`;
-  } else {
-    bodyHtml = `<div class="api-list">${items.map(renderApiItemCard).join('\n')}</div>`;
-  }
-
-  return `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
-  <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${title}</h3>
-  <p style="font-size:.76rem;color:#5a6f88;margin-bottom:4px">${description}</p>
-  ${bodyHtml}
-</div>`;
-}
-
-/* ===== 快链面板：改为按 config.videoTabs 动态 fetch ===== */
-async function renderVideo() {
-  const container = document.getElementById('video-content');
-  if (!container) return;
-
-  let cfg;
-  try { cfg = await loadConfig(); } catch (err) {
-    container.innerHTML = `<div class="error-msg">❌ 配置加载失败：${err.message || err}<br>请确认 config.json 文件存在且可访问。</div>`;
-    return;
-  }
-
-  const tabs = cfg.videoTabs || [];
-  if (!tabs.length) {
-    container.innerHTML = `<div class="error-msg">⚠️ config.json 中未配置 videoTabs</div>`;
-    return;
-  }
-
-  // 预加载每个按钮对应的 cy 文件
-  const dataMap = {};
-  await Promise.all(tabs.map(async t => {
-    try {
-      dataMap[t.id] = await fetchJSON(t.file);
-    } catch (e) {
-      dataMap[t.id] = { title: t.label, description: '加载失败：' + e.message, items: [] };
-    }
-  }));
-
-  const sidebarHtml = tabs.map((t, i) =>
-    `<button class="vd-side-btn${i === 0 ? ' active' : ''}" data-vd-tab="${t.id}">
-      <span class="vd-side-icon">${t.icon}</span>
-      <span>${t.label}</span>
-    </button>`
-  ).join('\n');
-
-  const bodyHtml = tabs.map((t, i) => {
-    const data = dataMap[t.id];
-    let inner;
-    if (t.id === 'online-video') {
-      // 在线视频：走 online-list 样式
-      const list = `<div class="online-list">${(data.items || []).map(renderOnlineItem).join('\n')}</div>`;
-      inner = `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${data.title || t.label}</h3>
-        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:4px">${data.description || ''}</p>
-        ${list}
-      </div>`;
-    } else if (t.id === 'tools') {
-      // 常用工具：走 tools-grid 样式
-      const chips = (data.items || []).map(item =>
-        `<a class="tool-chip" href="${item.url}" target="_blank" rel="noopener noreferrer" title="${item.desc}" data-name="${(item.name || '').toLowerCase()}">
-          <span class="tool-icon">${item.icon}</span><span>${item.name}</span>
-        </a>`
-      ).join('\n');
-      inner = `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${data.title || t.label}</h3>
-        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:10px">${data.description || ''}</p>
-        <div class="tools-grid">${chips}</div>
-      </div>`;
+  jumpTimer = setInterval(() => {
+    remain--;
+    if (remain > 0) {
+      update();
     } else {
-      inner = renderSourceGroup(data.title || t.label, data.description || '', data.items || [], false);
+      clearInterval(jumpTimer);
+      jumpTimer = null;
+      window.location.href = url;
     }
-    return `<div class="vd-group${i === 0 ? ' active' : ''}" id="vd-${t.id}">${inner}</div>`;
-  }).join('\n');
+  }, 1000);
 
-  container.className = 'has-sidebar';
-  container.innerHTML = `
-    <div class="vd-sidebar" id="vdSidebar">
-      ${sidebarHtml}
-    </div>
-    <div class="vd-body" id="vdBody">
-      ${bodyHtml}
-    </div>`;
+  stayBtn.onclick = (e) => {
+    e.preventDefault(); e.stopPropagation();
+    if (jumpTimer) { clearInterval(jumpTimer); jumpTimer = null; }
+    switchToBatchMode();
+  };
 
-  document.querySelectorAll('#vdSidebar .vd-side-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#vdSidebar .vd-side-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const tab = btn.getAttribute('data-vd-tab');
-      document.querySelectorAll('.vd-group').forEach(g => g.classList.remove('active'));
-      const target = document.getElementById('vd-' + tab);
-      if (target) target.classList.add('active');
-    });
+  gotoBtn.onclick = (e) => {
+    e.preventDefault(); e.stopPropagation();
+    if (jumpTimer) { clearInterval(jumpTimer); jumpTimer = null; }
+    window.location.href = url;
+  };
+}
+
+/* ========== 批量检测模式 ========== */
+let aborting = false;
+
+function renderBatchList() {
+  listEl.innerHTML = "";
+  items.forEach((it, i) => {
+    const line = document.createElement("div");
+    line.className = "url-line" + (it.state !== "wait" ? " " + it.state : "");
+    line.dataset.idx = i;
+    const latTxt = it.state === "ok" ? (it.lat + " ms")
+                 : it.state === "fail" ? "失败"
+                 : it.state === "checking" ? "探测中…" : "—";
+    line.innerHTML =
+      `<span class="dot"></span>
+       <span class="url-text">${displayUrl(it.url)}</span>
+       <span class="lat">${latTxt}</span>
+       <button class="copy-btn" data-url="${it.url}">复制</button>`;
+    listEl.appendChild(line);
+  });
+  updateBatchStats();
+  updateEnterButton();
+}
+
+function updateBatchStats() {
+  let ok = 0, fail = 0, wait = 0, checking = 0;
+  items.forEach(it => {
+    if (it.state === "ok") ok++;
+    else if (it.state === "fail") fail++;
+    else if (it.state === "checking") checking++;
+    else wait++;
+  });
+  stTotal.textContent = items.length;
+  stOk.textContent = ok;
+  stFail.textContent = fail;
+  stWait.textContent = wait + checking;
+}
+
+function setItemState(i, state, lat) {
+  items[i].state = state;
+  if (lat !== undefined) items[i].lat = lat;
+  renderBatchList();
+}
+
+async function startBatchCheck() {
+  aborting = false;
+  btnStart.disabled = true;
+  const conc = Math.max(1, Math.min(20, parseInt(document.getElementById("concurrency").value) || 6));
+  items = items.map(it => ({ url: it.url, state: "wait", lat: null }));
+  renderBatchList();
+
+  let idx = 0;
+  const workers = Array.from({ length: conc }, async () => {
+    while (!aborting) {
+      const i = idx++;
+      if (i >= items.length) break;
+      setItemState(i, "checking");
+      const r = await probeWithLatency(items[i].url);
+      if (aborting) break;
+      setItemState(i, r.ok ? "ok" : "fail", r.lat);
+      updateBatchMsg();
+    }
+  });
+  await Promise.all(workers);
+  btnStart.disabled = false;
+  if (aborting) {
+    stMsg.textContent = "已停止";
+  } else {
+    const ok = items.filter(i => i.state === "ok").length;
+    stMsg.textContent = ok ? `完成，可用 ${ok} 条` : "全部不可用";
+  }
+  updateEnterButton();
+}
+
+function probeWithLatency(url) {
+  const controller = new AbortController();
+  const t0 = performance.now();
+  const timeoutSec = parseInt(document.getElementById("timeout").value) || 12;
+  const to = setTimeout(() => controller.abort(), timeoutSec * 1000);
+  return new Promise(resolve => {
+    fetch(url, { method: "GET", mode: "no-cors", cache: "no-store", signal: controller.signal })
+      .then(() => { clearTimeout(to); resolve({ ok: true, lat: Math.round(performance.now() - t0) }); })
+      .catch(() => { clearTimeout(to); resolve({ ok: false }); });
   });
 }
 
-/* ===== 更多面板：改为按 config.moreTabs 动态 fetch ===== */
-async function renderMore() {
-  const container = document.getElementById('more-content');
-  if (!container) return;
-  container.className = 'has-sidebar';
-  container.innerHTML = `<div class="loading">⏳ 正在加载更多资源...</div>`;
+function updateBatchMsg() {
+  const done = items.filter(i => i.state === "ok" || i.state === "fail").length;
+  stMsg.textContent = `进度 ${done}/${items.length}`;
+}
 
-  let cfg;
-  try {
-    cfg = await loadConfig();
-  } catch (err) {
-    container.innerHTML = `<div class="error-msg">❌ 配置加载失败：${err.message || err}<br>请确认 config.json 文件存在且可访问。</div>`;
+/* 批量检测界面事件绑定 */
+document.getElementById("btnStart").addEventListener("click", startBatchCheck);
+document.getElementById("btnStop").addEventListener("click", () => { aborting = true; });
+
+document.getElementById("btnAdd").addEventListener("click", addFromInput);
+document.getElementById("addInput").addEventListener("keydown", e => { if (e.key === "Enter") addFromInput(); });
+function addFromInput() {
+  const raw = document.getElementById("addInput").value;
+  const urls = raw.split(/[\n,，;；\s]+/).map(normalize).filter(Boolean);
+  if (!urls.length) return;
+  urls.forEach(u => { if (!items.some(it => it.url === u)) items.push({ url: u, state: "wait", lat: null }); });
+  document.getElementById("addInput").value = "";
+  renderBatchList();
+}
+document.getElementById("btnClear").addEventListener("click", () => {
+  if (confirm("清空全部线路？")) { items = []; renderBatchList(); }
+});
+
+document.getElementById("btnCopyOK").addEventListener("click", () => {
+  const ok = items.filter(i => i.state === "ok").sort((a, b) => (a.lat || 9999) - (b.lat || 9999)).map(i => i.url);
+  if (!ok.length) { stMsg.textContent = "暂无可用线路"; return; }
+  copyText(ok.join("\n"), () => stMsg.textContent = `已复制 ${ok.length} 条可用线路`);
+});
+
+/* 进入网站按钮：退回到倒计时模式，不直接跳转 */
+btnEnterSite.addEventListener("click", () => {
+  switchToJumpMode();
+});
+
+/* 批量列表点击事件（跳转 & 复制） */
+document.addEventListener("click", e => {
+  const copy = e.target.closest(".copy-btn");
+  if (copy) {
+    e.preventDefault(); e.stopPropagation();
+    const url = copy.dataset.url;
+    copyText(url, () => {
+      const o = copy.textContent;
+      copy.textContent = "✅ 已复制"; copy.classList.add("copied");
+      setTimeout(() => { copy.textContent = o; copy.classList.remove("copied"); }, 1500);
+    });
     return;
   }
-
-  const tabs = cfg.moreTabs || [];
-  if (!tabs.length) {
-    container.innerHTML = `<div class="error-msg">⚠️ config.json 中未配置 moreTabs</div>`;
-    return;
-  }
-
-  const dataMap = {};
-  await Promise.all(tabs.map(async t => {
-    try {
-      dataMap[t.id] = await fetchJSON(t.file);
-    } catch (e) {
-      dataMap[t.id] = { title: t.label, description: '加载失败：' + e.message, items: [] };
+  if (mode === 'batch') {
+    const line = e.target.closest(".url-line");
+    if (line && line.dataset.idx !== undefined) {
+      window.open(items[line.dataset.idx].url, "_blank");
     }
-  }));
-
-  const sidebarHtml = tabs.map((t, i) =>
-    `<button class="dl-side-btn${i === 0 ? ' active' : ''}" data-more-tab="${t.id}">
-      <span class="dl-side-icon">${t.icon}</span>
-      <span>${t.label}</span>
-    </button>`
-  ).join('\n');
-
-  const bodyHtml = tabs.map((t, i) => {
-    const data = dataMap[t.id];
-    const isOnline = t.id === 'online-video';
-    const content = renderSourceGroup(data.title || t.label, data.description || '', data.items || [], isOnline);
-    return `<div class="more-group${i === 0 ? ' active' : ''}" id="more-${t.id}">${content}</div>`;
-  }).join('\n');
-
-  container.innerHTML = `
-    <div class="dl-sidebar" id="moreSidebar">
-      ${sidebarHtml}
-    </div>
-    <div class="dl-body" id="moreBody">
-      ${bodyHtml}
-    </div>`;
-
-  document.querySelectorAll('#moreSidebar .dl-side-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#moreSidebar .dl-side-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const tab = btn.getAttribute('data-more-tab');
-      document.querySelectorAll('.more-group').forEach(g => g.classList.remove('active'));
-      const target = document.getElementById('more-' + tab);
-      if (target) target.classList.add('active');
-    });
-  });
-}
-
-/* ===== 点播 ===== */
-async function fetchListText() {
-  if(rawListText!==null) return rawListText;
-  const res = await fetch('list.txt?t='+Date.now()+'&r='+Math.random(), {cache:'no-store',headers:{'Cache-Control':'no-cache'}});
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  rawListText = await res.text(); return rawListText;
-}
-function parseItems(text) {
-  if(!text||!text.trim()) return [];
-  return text.trim().split('\n').filter(l=>l.trim()).map(line=>{
-    const p=line.split('|').map(s=>s.trim()); if(!p[0]) return null;
-    return {file:p[0],name:p[0].replace(/\.json$/i,''),date:p[1]||'',size:p[2]||'',origUrl:p[3]||'',weight:API_WEIGHTS.hasOwnProperty(p[0])?API_WEIGHTS[p[0]]:999};
-  }).filter(Boolean);
-}
-function renderApi() {
-  const container = document.getElementById('listContainer');
-  fetchListText().then(text=>{
-    const tip=document.getElementById('apiLoading'); if(tip) tip.style.display='none';
-    let items=parseItems(text);
-    if(!items.length){container.innerHTML='<div class="error-msg">⚠️ 接口列表为空，请检查 list.txt</div>';return;}
-    const ri=items.filter(i=>ROTATE_KEYWORDS.some(kw=>i.name.toLowerCase().includes(kw.toLowerCase())));
-    const top=getTopItem(ri); if(top) top.weight=Number.MIN_SAFE_INTEGER;
-    items.sort((a,b)=>a.weight-b.weight);
-    let html='';
-    items.forEach(it=>{
-      const isNew=isRecent(it.date); let lines='';
-      if(it.origUrl) lines+=`<div class="url-line"><span class="url-tag">原始线路</span><span class="url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div>`;
-      API_DOMAINS.forEach(d=>{const u=d.base+it.name+'.json';lines+=`<div class="url-line"><span class="url-tag">${d.tag}</span><span class="url-text">${u}</span><button class="copy-btn" data-url="${u}">复制</button></div>`;});
-      html+=`<div class="api-item" data-name="${it.name.toLowerCase()}"><div class="api-item-header"><div class="api-item-name" title="${it.name}">${it.name}</div><div class="api-item-meta"><span class="${isNew?'badge-new':'badge-old'}">备份时间 ${formatDateToChinese(it.date)}</span>${it.size?'&nbsp;&nbsp;'+it.size:''}</div></div><div class="api-item-urls">${lines}</div></div>`;
-    });
-    container.innerHTML=html;
-  }).catch(err=>{
-    const tip=document.getElementById('apiLoading'); if(tip) tip.style.display='none';
-    container.innerHTML=`<div class="error-msg">❌ 接口加载失败：${err.message||err}</div>`;
-  });
-}
-
-/* ===== 直播 ===== */
-async function fetchLiveText() {
-  if(rawLiveText!==null) return rawLiveText;
-  const res = await fetch('livelist.txt?t='+Date.now(), {cache:'no-store'});
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  rawLiveText = await res.text(); return rawLiveText;
-}
-function parseLiveItems(text) {
-  if(!text||!text.trim()) return [];
-  return text.trim().split('\n').filter(l=>l.trim()).map(line=>{
-    const p=line.split('|').map(s=>s.trim()); if(!p[0]) return null;
-    return {name:p[0]||'',displayName:p[0].replace(/\.[^.]+$/,'') ,date:p[1]||'',size:p[2]||'',origUrl:p[3]||'',source:p[4]||'',ua:p[5]||''};
-  }).filter(Boolean);
-}
-function renderLiveList() {
-  const container=document.getElementById('liveListContainer'); const loading=document.getElementById('liveLoading');
-  fetchLiveText().then(text=>{
-    if(loading) loading.style.display='none';
-    const items=parseLiveItems(text);
-    if(!items.length){container.innerHTML='<div class="error-msg">⚠️ 直播列表为空，请检查 livelist.txt</div>';return;}
-    let html='';
-    items.forEach(it=>{
-      const isNew=isRecent(it.date); let urls='';
-      if(it.origUrl) urls+=`<div class="live-url-line"><div class="live-info-inline"><span>来源：${it.source||'未知'}</span>${it.ua?'<span class="sep">|</span><span>UA：'+it.ua+'</span>':''}</div><div class="live-url-body"><span class="live-url-tag">原始线路</span><span class="live-url-text">${it.origUrl}</span><button class="copy-btn" data-url="${it.origUrl}">复制</button></div></div>`;
-      LIVE_DOMAINS.forEach(d=>{const u=d.base+it.name;urls+=`<div class="live-url-line"><div class="live-url-body"><span class="live-url-tag">${d.tag}</span><span class="live-url-text">${u}</span><button class="copy-btn" data-url="${u}">复制</button></div></div>`;});
-      html+=`<div class="live-item" data-name="${it.displayName.toLowerCase()}"><div class="live-item-header"><div class="live-item-name" title="${it.displayName}">${it.displayName}</div><div class="live-item-meta"><span class="${isNew?'live-badge-new':'live-badge-old'}">备份时间 ${formatDateToChinese(it.date)}</span>${it.size?'&nbsp;&nbsp;'+it.size:''}</div></div><div class="live-item-urls">${urls}</div></div>`;
-    });
-    container.innerHTML=html;
-  }).catch(err=>{if(loading)loading.style.display='none';container.innerHTML=`<div class="error-msg">❌ 直播列表加载失败：${err.message||err}</div>`;});
-}
-
-/* ===== 下载 ===== */
-let dlCache = new Map();
-let dlCurrentGroup = null;
-
-async function renderDownloads(force) {
-  const container = document.getElementById('downloads-content');
-  if (!container || (container.dataset.rendered && !force)) return;
-  if (!DOWNLOAD_SOURCES.length) { container.innerHTML = '<div class="error-msg">⚠️ 未配置下载源</div>'; return; }
-
-  if (!container.dataset.rendered) {
-    container.dataset.rendered = 'true';
-    container.className = 'has-sidebar';
-    container.innerHTML = `
-      <div class="dl-sidebar" id="dlSidebar"></div>
-      <div class="dl-body" id="dlBody"><div class="loading">⏳ 正在加载下载资源...</div></div>`;
-  }
-
-  const sidebar = document.getElementById('dlSidebar');
-  const body = document.getElementById('dlBody');
-
-  if (!sidebar.dataset.built) {
-    sidebar.dataset.built = 'true';
-    sidebar.innerHTML = DOWNLOAD_SOURCES.map((src, idx) => {
-      const icon = src.icon ? `<img src="${src.icon}" style="width:1.4rem;height:1.4rem;border-radius:6px;object-fit:cover">`
-                            : `<span class="dl-side-icon">📦</span>`;
-      return `<button class="dl-side-btn ${idx === 0 ? 'active' : ''}" data-key="${src.url}">${icon}<span>${src.name || ('组' + (idx + 1))}</span></button>`;
-    }).join('');
-
-    sidebar.querySelectorAll('.dl-side-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        sidebar.querySelectorAll('.dl-side-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        showDownloadGroup(btn.getAttribute('data-key'));
-      });
-    });
-  }
-
-  await Promise.all(DOWNLOAD_SOURCES.map(async src => {
-    if (dlCache.has(src.url)) return;
-    try {
-      const res = await fetch(src.url + '?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const raw = await res.text();
-      const cleaned = raw.replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/：/g, ':').replace(/，/g, ',');
-      const data = JSON.parse(cleaned);
-      let cards = [];
-      const arr = data.list || data;
-      if (Array.isArray(arr)) {
-        arr.forEach(group => {
-          if (group && Array.isArray(group.list)) group.list.forEach(i => cards.push(i));
-          else cards.push(group);
-        });
-      }
-      dlCache.set(src.url, { src, cards });
-    } catch (e) {
-      dlCache.set(src.url, { src, cards: [], error: e.message });
+  } else {
+    const simpleLine = e.target.closest(".url-line-simple");
+    if (simpleLine && simpleLine.dataset.url) {
+      window.open(simpleLine.dataset.url, "_blank");
     }
-  }));
-
-  const firstKey = DOWNLOAD_SOURCES[0].url;
-  showDownloadGroup(dlCurrentGroup || firstKey);
-}
-
-function showDownloadGroup(key) {
-  dlCurrentGroup = key;
-  const body = document.getElementById('dlBody');
-  if (!body) return;
-  const entry = dlCache.get(key);
-  if (!entry) { body.innerHTML = '<div class="loading">⏳ 加载中...</div>'; return; }
-  const { src, cards, error } = entry;
-  if (error) { body.innerHTML = `<div class="error-msg">❌ ${src.name} 加载失败：${error}</div>`; return; }
-  if (!cards.length) { body.innerHTML = `<div class="error-msg">⚠️ ${src.name} 暂无资源</div>`; return; }
-
-  const title = src.name ? `<div class="dl-group-title">${src.name}</div>` : '';
-  const desc = src.description ? `<div class="dl-group-desc">${src.description}</div>` : '';
-  const cardsHtml = cards.map(i => {
-    const ph = (i.name || '?').slice(0, 1).toUpperCase();
-    const iconImg = i.icon
-      ? `<img src="${i.icon}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';">`
-      : '';
-    return `
-    <a class="download-card" href="${i.url || '#'}" target="_blank" rel="noopener noreferrer" data-name="${(i.name || '').toLowerCase()}">
-      <span class="dl-item-icon">${iconImg}<span class="site-ph" style="display:${i.icon ? 'none' : 'flex'}">${ph}</span></span>
-      <span class="dl-item-info">
-        <span class="dl-item-name">${i.name || ''}</span>
-        ${i.version ? `<span class="dl-item-desc">${i.version}</span>` : ''}
-      </span>
-      <span class="dl-item-btn">⬇ 下载</span>
-    </a>`;
-  }).join('');
-
-  body.innerHTML = `
-    <div class="dl-group active">
-      ${title}${desc}
-      <div class="dl-cards">${cardsHtml}</div>
-    </div>`;
-}
-
-/* ===== 导航 ===== */
-const tabsData = [
-  {id:"api",label:"点播"},
-  {id:"live",label:"直播"},
-  {id:"download",label:"下载"},
-  {id:"video",label:"快链"},
-  {id:"more",label:"更多"},
-  {id:"about",label:"关于"}
-];
-
-function renderTabs() {
-  navTabs.innerHTML=tabsData.map(t=>`<button class="nav-tab ${t.id===currentTabId?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
-  navTabs.querySelectorAll('.nav-tab').forEach(tab=>{
-    tab.addEventListener('click',function(){
-      navTabs.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-      this.classList.add('active');
-      currentTabId=this.getAttribute('data-tab');
-      localStorage.setItem(TAB_KEY, currentTabId);
-      showPanel(currentTabId);
-    });
-  });
-}
-
-function showPanel(tabId) {
-  if(searchBox){
-    searchBox.value='';
-    document.querySelectorAll('#api-panel .api-item.hidden').forEach(e=>e.classList.remove('hidden'));
-    document.querySelectorAll('#live-panel .live-item.hidden').forEach(e=>e.classList.remove('hidden'));
-    document.querySelectorAll('.download-card.hidden').forEach(e=>e.classList.remove('hidden'));
-    document.querySelectorAll('.contributor-card.hidden').forEach(e=>e.classList.remove('hidden'));
-  }
-
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  const panel=document.getElementById(tabId+'-panel'); if(panel) panel.classList.add('active');
-
-  const hideSearchTabs = ['download','video','more','about'];
-  if(searchBox){
-    searchBox.style.display = hideSearchTabs.includes(tabId) ? 'none' : '';
-  }
-
-  if(tabId==='api'){
-    topSeed=Date.now()+Math.random();
-    renderApi();
-  }
-  if(tabId==='live') renderLiveList();
-  if(tabId==='download') renderDownloads();
-  if(tabId==='video') renderVideo();
-  if(tabId==='more') renderMore();
-}
-
-/* ===== 搜索 ===== */
-function globalSearch() {
-  const kw=(searchBox.value||'').toLowerCase().trim();
-  document.querySelectorAll('#api-panel .api-item').forEach(e=>{const n=e.getAttribute('data-name')||'';e.classList.toggle('hidden',!n.includes(kw));});
-  document.querySelectorAll('#live-panel .live-item').forEach(e=>{const n=e.getAttribute('data-name')||'';e.classList.toggle('hidden',!n.includes(kw));});
-  if(currentMode!=='simple'){
-    document.querySelectorAll('.download-card').forEach(c=>{const n=c.getAttribute('data-name')||'';c.classList.toggle('hidden',!n.includes(kw));});
-    document.querySelectorAll('#video-panel .online-item').forEach(e=>{const n=e.getAttribute('data-name')||'';e.classList.toggle('hidden',!n.includes(kw));});
-    document.querySelectorAll('#video-panel .tool-chip').forEach(e=>{const n=e.getAttribute('data-name')||'';e.classList.toggle('hidden',!n.includes(kw));});
-    document.querySelectorAll('.contributor-card').forEach(c=>{const n=c.getAttribute('data-name')||'';c.classList.toggle('hidden',!n.includes(kw));});
-  }
-}
-
-function positionSearchBox() {
-  if(currentMode==='simple'){
-    if(searchBox.parentNode!==mainCard.parentNode) mainCard.parentNode.insertBefore(searchBox,mainCard);
-  } else {
-    if(searchBox.parentNode!==mainCard) navTabs.insertAdjacentElement('afterend',searchBox);
-  }
-}
-function updateBtnText(){btn.innerHTML=currentMode==='simple'?'切换<br>全能版':'切换<br>简洁版';}
-
-btn.addEventListener('click',()=>{
-  topSeed=Date.now()+Math.random();
-  currentMode=currentMode==='simple'?'full':'simple';
-  localStorage.setItem(MODE_KEY,currentMode);
-  document.body.className=currentMode+'-mode';
-  updateBtnText();
-
-  if(currentMode!=='simple'){
-    positionSearchBox();
-    renderTabs();
-    showPanel(currentTabId);
-  } else {
-    currentTabId='api';
-    localStorage.setItem(TAB_KEY,'api');
-    searchBox.style.display='';
-    positionSearchBox();
-    renderApi();
   }
 });
 
-renderTabs();
-
-if (currentMode === 'simple') {
-  currentTabId = 'api';
-  localStorage.setItem(TAB_KEY, 'api');
-  renderApi();
-} else {
-  showPanel(currentTabId);
+/* 通用复制 */
+function copyText(text, done) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fb());
+  } else fb();
+  function fb() {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand("copy"); } catch (_) {}
+    document.body.removeChild(ta); done();
+  }
 }
 
-loadConfig().then(()=>{
-  if(currentMode!=='simple'){
-    renderDownloads();
-    renderVideo();
-    renderMore();
-  }
-});
+/* ========== 初始化 ========== */
+renderSimpleList();
+checkFirstAvailable();
 </script>
 </body>
 </html>
