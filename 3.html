@@ -226,7 +226,23 @@ h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
   opacity: .7;
 }
 
-.page-footer{text-align:center;padding:16px 0 10px;font-size:.7rem;color:#8fa3b8;line-height:1.8;margin-top:auto}
+/* 页脚：居左对齐，自动混排换行 */
+.page-footer{
+  text-align: left;
+  padding: 8px 4px 10px;
+  font-size: .7rem;
+  color: #8fa3b8;
+  line-height: 1.8;
+  margin-top: auto;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.page-footer p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
 
 /* 模式切换 */
 .mode-jump { display: block; }
@@ -241,6 +257,7 @@ body.batch-mode .mode-batch { display: block; }
   .btn-stay, .btn-goto { padding: 7px 14px; font-size: 0.75rem; min-width: 80px; }
   .btn-enter-site { height: 40px; padding: 0 28px; font-size: .86rem; }
   .contact-section { padding: 8px 4px 2px; }
+  .page-footer { padding: 6px 4px 8px; }
 }
 </style>
 </head>
@@ -339,8 +356,8 @@ body.batch-mode .mode-batch { display: block; }
 
 <footer class="page-footer">
   <p>
-    本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。<br>
-    仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。<br>
+    本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。
+    仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。
     如涉及侵权，请联系删除。QQ 群：
     <a class="qq-link" href="https://qm.qq.com/q/gmRKKPT3x0" target="_blank" rel="noopener noreferrer">1067685939</a>。
   </p>
