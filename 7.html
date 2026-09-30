@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
-<title>接口线路批量检测</title>
+<title>海量接口搬运备份</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
@@ -154,59 +154,38 @@ h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
 .batch-jump-bar {
   display: flex;
   justify-content: center;
-  gap: 12px;
   margin-bottom: 14px;
-  flex-wrap: wrap;
 }
-.btn-jump-main {
-  height: 40px;
-  padding: 0 24px;
+.btn-enter-site {
+  height: 44px;
+  padding: 0 36px;
   border: none;
-  border-radius: 40px;
-  font-size: .85rem;
+  border-radius: 44px;
+  font-size: .92rem;
   font-weight: 600;
   cursor: pointer;
   color: #fff;
-  background: #8b5cf6;
-  box-shadow: 0 3px 10px rgba(139, 92, 246, 0.35);
-  transition: background .15s, transform .1s;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  transition: background .15s, transform .1s, box-shadow .15s;
   touch-action: manipulation;
   -webkit-user-select: none;
   user-select: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
 }
-.btn-jump-main:active { background: #7c3aed; transform: scale(0.96); }
-.btn-jump-main:disabled {
+.btn-enter-site:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+.btn-enter-site:disabled {
   background: #cbd5e1;
   box-shadow: none;
   cursor: not-allowed;
   transform: none;
 }
-
-/* 返回按钮 */
-.btn-back {
-  height: 40px;
-  padding: 0 20px;
-  border: 1px solid #d4dbe5;
-  border-radius: 40px;
-  font-size: .82rem;
-  font-weight: 500;
-  cursor: pointer;
-  color: #5a6f88;
-  background: #fff;
-  transition: background .15s, transform .1s;
-  touch-action: manipulation;
-  -webkit-user-select: none;
-  user-select: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.btn-back:active { background: #f1f5f9; transform: scale(0.96); }
 
 .page-footer{text-align:center;padding:24px 0 10px;font-size:.7rem;color:#8fa3b8;line-height:1.8;margin-top:auto}
 
@@ -221,8 +200,7 @@ body.batch-mode .mode-batch { display: block; }
   .ctrl-card,.status-bar,.domains-card,.status-card{padding:14px 12px 10px}
   .status-bar{flex-direction:column;gap:8px;align-items:flex-start}
   .btn-stay, .btn-goto { padding: 7px 14px; font-size: 0.75rem; min-width: 80px; }
-  .btn-jump-main { height: 36px; padding: 0 18px; font-size: .8rem; }
-  .btn-back { height: 36px; padding: 0 14px; font-size: .78rem; }
+  .btn-enter-site { height: 40px; padding: 0 28px; font-size: .86rem; }
 }
 </style>
 </head>
@@ -230,9 +208,12 @@ body.batch-mode .mode-batch { display: block; }
 <div class="container">
 
   <div class="header-block">
-    <h1>🔍 接口线路批量检测</h1>
+    <h1>海量接口搬运备份</h1>
     <div class="header-divider"></div>
-    <p class="subtitle" id="subtitle">备用数据源，防屏不迷路 · 点击整行直接跳转</p>
+    <p class="subtitle">
+      备用数据源，防屏不迷路<br>
+      QQ交流群：1067685939
+    </p>
   </div>
 
   <!-- ========== 跳转前模式 ========== -->
@@ -254,10 +235,9 @@ body.batch-mode .mode-batch { display: block; }
 
   <!-- ========== 批量检测模式 ========== -->
   <div class="mode-batch" id="modeBatch">
-    <!-- 顶部按钮栏：跳转进入 + 返回倒计时 -->
+    <!-- 顶部按钮栏：进入网站 -->
     <div class="batch-jump-bar">
-      <button class="btn-jump-main" id="btnJumpMain">🚀 跳转进入</button>
-      <button class="btn-back" id="btnBack">↩️ 返回倒计时</button>
+      <button class="btn-enter-site" id="btnEnterSite">🌐 进入网站</button>
     </div>
 
     <!-- 控制区 -->
@@ -305,7 +285,11 @@ body.batch-mode .mode-batch { display: block; }
 </div>
 
 <footer class="page-footer">
-  <p>线路由使用者自行填写，仅做连通性探测，不存储、不转发任何内容。<br>仅供测试学习使用。</p>
+  <p>
+    本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。<br>
+    仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。<br>
+    如涉及侵权，请联系删除。QQ 群：1067685939。
+  </p>
 </footer>
 
 <script>
@@ -325,7 +309,6 @@ const DOMAINS = [
 let mode = 'jump';
 let items = DOMAINS.map(u => ({ url: u, state: "wait", lat: null }));
 let jumpTargetUrl = null;
-let countdownStartTime = null; // 用于记录倒计时开始时间
 
 /* ========== 元素引用 ========== */
 const bodyEl = document.body;
@@ -346,8 +329,7 @@ const stFail   = document.getElementById("stFail");
 const stWait   = document.getElementById("stWait");
 const stMsg    = document.getElementById("stMsg");
 const btnStart = document.getElementById("btnStart");
-const btnJumpMain = document.getElementById("btnJumpMain");
-const btnBack = document.getElementById("btnBack");
+const btnEnterSite = document.getElementById("btnEnterSite");
 
 /* ========== 工具函数 ========== */
 function normalize(u){ return u.trim().replace(/\s+/g,""); }
@@ -357,46 +339,40 @@ function displayUrl(u){ return u.replace(/\/$/,"").replace(/\/app$/,"") || u; }
 function switchToBatchMode() {
   mode = 'batch';
   bodyEl.classList.add('batch-mode');
-  subtitle.textContent = '并发探测 + 自动测速，绿色=可用，红色=失败，点击整行直接跳转';
+  subtitle.innerHTML = '备用数据源，防屏不迷路<br>QQ交流群：1067685939';
   items = DOMAINS.map(u => ({ url: u, state: "wait", lat: null }));
   renderBatchList();
   updateBatchStats();
-  updateJumpButton();
-  // 自动开始检测
+  updateEnterButton();
   startBatchCheck();
 }
 
-/* 返回倒计时模式 */
+/* 返回倒计时模式（进入网站按钮逻辑） */
 function switchToJumpMode() {
   mode = 'jump';
   bodyEl.classList.remove('batch-mode');
-  subtitle.textContent = '备用数据源，防屏不迷路 · 点击整行直接跳转';
-  
-  // 如果之前有记录的可用地址，重新开始倒计时
+  subtitle.innerHTML = '备用数据源，防屏不迷路<br>QQ交流群：1067685939';
+
+  const okItems = items.filter(i => i.state === "ok").sort((a, b) => (a.lat || 9999) - (b.lat || 9999));
+  if (okItems.length > 0) {
+    jumpTargetUrl = okItems[0].url;
+  }
   if (jumpTargetUrl) {
     startJumpCountdown(jumpTargetUrl, 5);
   } else {
-    // 重新检测
     checkFirstAvailable();
   }
 }
 
-/* 更新顶部跳转按钮状态 */
-function updateJumpButton() {
-  const okItems = items.filter(i => i.state === "ok").sort((a, b) => (a.lat || 9999) - (b.lat || 9999));
+/* 更新进入网站按钮状态 */
+function updateEnterButton() {
+  const okItems = items.filter(i => i.state === "ok");
   if (okItems.length > 0) {
-    jumpTargetUrl = okItems[0].url;
-    btnJumpMain.disabled = false;
-    btnJumpMain.textContent = `🚀 跳转进入 (${okItems.length} 条可用)`;
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = `🌐 进入网站 (${okItems.length} 条可用)`;
   } else {
-    if (jumpTargetUrl) {
-      btnJumpMain.disabled = false;
-      btnJumpMain.textContent = '🚀 跳转进入';
-    } else {
-      jumpTargetUrl = null;
-      btnJumpMain.disabled = true;
-      btnJumpMain.textContent = '🚀 跳转进入 (无可用)';
-    }
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = '🌐 进入网站';
   }
 }
 
@@ -498,7 +474,7 @@ function renderBatchList() {
     listEl.appendChild(line);
   });
   updateBatchStats();
-  updateJumpButton();
+  updateEnterButton();
 }
 
 function updateBatchStats() {
@@ -548,7 +524,7 @@ async function startBatchCheck() {
     const ok = items.filter(i => i.state === "ok").length;
     stMsg.textContent = ok ? `完成，可用 ${ok} 条` : "全部不可用";
   }
-  updateJumpButton();
+  updateEnterButton();
 }
 
 function probeWithLatency(url) {
@@ -592,24 +568,8 @@ document.getElementById("btnCopyOK").addEventListener("click", () => {
   copyText(ok.join("\n"), () => stMsg.textContent = `已复制 ${ok.length} 条可用线路`);
 });
 
-/* 顶部跳转按钮：点击后不直接跳转，而是退回到起始刷新倒计时 */
-btnJumpMain.addEventListener("click", () => {
-  // 如果当前有可用线路，记录它作为跳转目标
-  const okItems = items.filter(i => i.state === "ok").sort((a, b) => (a.lat || 9999) - (b.lat || 9999));
-  if (okItems.length > 0) {
-    jumpTargetUrl = okItems[0].url;
-  }
-  // 如果没有任何可用线路，也尝试使用之前记录的目标
-  if (!jumpTargetUrl) {
-    stMsg.textContent = "暂无可用线路，请先检测";
-    return;
-  }
-  // 切换回跳转模式，并重新开始倒计时
-  switchToJumpMode();
-});
-
-/* 返回倒计时按钮 */
-btnBack.addEventListener("click", () => {
+/* 进入网站按钮：退回到倒计时模式，不直接跳转 */
+btnEnterSite.addEventListener("click", () => {
   switchToJumpMode();
 });
 
