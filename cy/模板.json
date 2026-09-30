@@ -1,0 +1,7 @@
+{
+  "title": "通用资源三",
+  "description": "特殊用途接口",
+  "items": [
+    { "name": "资源三名称", "count": "长期维护", "desc": "支持自定义规则", "tag": "高级", "url": "https://example.com/resource3.json", "id": 3 }
+  ]
+}

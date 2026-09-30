@@ -1,0 +1,27 @@
+{
+  "title": "🎵 落雪音源",
+  "description": "共 20 个音源（已去重，原为 21 个），点击「复制」后打开洛雪音乐 → 设置 → 自定义音源 → 粘贴地址导入并启用。",
+  "items": [
+    { "name": "FreeListen 1.1.2(原小熊猫)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/FreeListen 1.1.2(原小熊猫).js", "badge": "18.2 KB", "note": "" },
+    { "name": "FreeListen", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/FreeListen.js", "badge": "18.2 KB", "note": "" },
+    { "name": "IKUN音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/IKUN音源.js", "badge": "4.5 KB", "note": "" },
+    { "name": "[独家音源] v4.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/[独家音源] v4.0.js", "badge": "112.1 KB", "note": "" },
+    { "name": "filenamefish-music音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/filenamefish-music音源.js", "badge": "9.8 KB", "note": "" },
+    { "name": "lx-music-source V3.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/lx-music-source V3.0.js", "badge": "10.3 KB", "note": "" },
+    { "name": "lx-music-source-v6+(修复)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/lx-music-source-v6+(修复).js", "badge": "62.6 KB", "note": "" },
+    { "name": "【推荐】长青SVIP音源v1.2.0（全平台支持无损）", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/【推荐】长青SVIP音源v1.2.0（全平台支持无损）.js", "badge": "23.9 KB", "note": "" },
+    { "name": "云端音源 v2.1.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/云端音源 v2.1.0.js", "badge": "10.2 KB", "note": "" },
+    { "name": "其他源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/其他源.js", "badge": "112.1 KB", "note": "" },
+    { "name": "小熊猫音源1.1.2", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/小熊猫音源1.1.2.js", "badge": "18.6 KB", "note": "" },
+    { "name": "念心音源-V1.0.1", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/念心音源-V1.0.1.js", "badge": "26.4 KB", "note": "" },
+    { "name": "星空音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/星空音源.js", "badge": "62.3 KB", "note": "" },
+    { "name": "洛雪独家音源_v5(1)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/洛雪独家音源_v5(1).js", "badge": "61.4 KB", "note": "" },
+    { "name": "独家音源-v5", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/独家音源-v5.js", "badge": "61.4 KB", "note": "" },
+    { "name": "独家音源V6(1)", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/独家音源V6(1).js", "badge": "61.4 KB", "note": "" },
+    { "name": "聚合API接口", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/聚合API接口.js", "badge": "18.1 KB", "note": "" },
+    { "name": "聚合音源v5.0", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/聚合音源v5.0.js", "badge": "31.6 KB", "note": "" },
+    { "name": "野花音源（强大）", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/野花音源（强大）.js", "badge": "7.3 KB", "note": "" },
+    { "name": "野草音源", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/野草音源.js", "badge": "7.0 KB", "note": "" },
+    { "name": "音乐下载器 v6", "tag": "音源", "url": "https://tvbox.moliys.icu/yinyuan/音乐下载器 v6.js", "badge": "1780.0 KB", "note": "" }
+  ]
+}
