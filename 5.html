@@ -4,33 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
 <title>海量接口搬运备份</title>
-
 <style>
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-html, body { height:100%; }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background:#eef2f7; color:#1a2b3d;
-  padding:20px 14px 10px;
-  min-height:100vh;
-  display:flex; flex-direction:column;
-  -webkit-tap-highlight-color:transparent;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:#eef2f7;color:#1a2b3d;padding:20px 14px 10px;min-height:100vh;
+  display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent;
 }
+.container{max-width:820px;margin:auto;width:100%;flex:1;display:flex;flex-direction:column}
 
-.container {
-  max-width:820px; margin:auto; width:100%;
-  flex:1; display:flex; flex-direction:column;
-}
+.header-block{text-align:center;margin-bottom:18px}
+h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
+.header-divider{height:1px;background:#e4ebf3;margin:12px 0}
+.subtitle{font-size:.78rem;color:#7a8fa3;line-height:1.6}
+.qq-link{color:#4a9eff;text-decoration:none;font-weight:600}
+.qq-link:active{opacity:.7}
 
-/* 头部 */
-.header-block { text-align:center; margin-bottom:20px; }
-h1 { font-size:1.35rem; font-weight:700; color:#0a1a2b; }
-.header-divider { height:1px; background:#e4ebf3; margin:12px 0; }
-.subtitle { font-size:.78rem; color:#7a8fa3; line-height:1.6; }
-
-/* 状态卡片 */
+/* 状态卡片（跳转前模式） */
 .status-card {
   background:#fff; border-radius:8px;
   padding:16px 18px; border:1px solid #d4dbe5;
@@ -39,7 +30,7 @@ h1 { font-size:1.35rem; font-weight:700; color:#0a1a2b; }
 .status-text { font-size:.88rem; color:#2563eb; line-height:1.7; }
 .countdown { color:#10b981; font-weight:700; font-size:1.05rem; }
 
-/* 按钮容器 */
+/* 按钮通用 */
 .action-buttons {
   display: flex;
   justify-content: center;
@@ -47,8 +38,7 @@ h1 { font-size:1.35rem; font-weight:700; color:#0a1a2b; }
   margin-top: 12px;
   flex-wrap: wrap;
 }
-
-.btn-stay, .btn-goto, .btn-retry {
+.btn-stay, .btn-goto {
   border: none;
   border-radius: 40px;
   padding: 8px 18px;
@@ -62,105 +52,62 @@ h1 { font-size:1.35rem; font-weight:700; color:#0a1a2b; }
   flex: 0 1 auto;
   min-width: 100px;
 }
-
 .btn-stay {
   background: #eef2f7;
   color: #3a5a7a;
   border: 1px solid #cbd5e1;
 }
-.btn-stay:active {
-  background: #d9e2ec;
-  transform: scale(0.96);
-}
-
+.btn-stay:active { background: #d9e2ec; transform: scale(0.96); }
 .btn-goto {
   background: #4a9eff;
   color: #fff;
   box-shadow: 0 2px 6px rgba(74, 158, 255, 0.3);
 }
-.btn-goto:active {
-  background: #2a7ed9;
-  transform: scale(0.96);
-}
+.btn-goto:active { background: #2a7ed9; transform: scale(0.96); }
 
-.btn-retry {
-  background: #10b981;
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
-  border: none;
+/* 控制卡片（批量检测模式） */
+.ctrl-card{background:#fff;border-radius:8px;padding:16px 18px;border:1px solid #d4dbe5;margin-bottom:16px}
+.ctrl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+.ctrl-label{font-size:.78rem;color:#5a6f88;white-space:nowrap}
+.ctrl-input{
+  flex:1;min-width:110px;height:32px;border:1px solid #d4dbe5;border-radius:6px;
+  padding:0 10px;font-size:.8rem;color:#1a2b3d;background:#f7fafd;outline:none;
 }
-.btn-retry:active {
-  background: #059669;
-  transform: scale(0.96);
+.ctrl-input:focus{border-color:#4a9eff;background:#fff}
+.btn{
+  height:32px;padding:0 16px;border:none;border-radius:6px;font-size:.8rem;font-weight:500;
+  cursor:pointer;color:#fff;background:#4a9eff;white-space:nowrap;touch-action:manipulation;
+  display:inline-flex;align-items:center;justify-content:center;
 }
+.btn:active{transform:scale(.96)}
+.btn.primary{background:#2563eb}
+.btn.success{background:#10b981}
+.btn.ghost{background:#fff;color:#5a6f88;border:1px solid #d4dbe5}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 
-/* 检测结果列表样式 */
-.result-list {
-  margin-top: 14px;
-  text-align: left;
-  border-top: 1px solid #e4ebf3;
-  padding-top: 12px;
-}
-.result-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 0;
-  font-size: .78rem;
-  line-height: 1.5;
-  border-bottom: 1px dashed #e8eef5;
-  word-break: break-all;
-}
-.result-item:last-child {
-  border-bottom: none;
-}
-.result-icon {
-  flex-shrink: 0;
-  width: 20px;
-  text-align: center;
-}
-.result-icon.ok { color: #10b981; }
-.result-icon.fail { color: #ef4444; }
-.result-url {
-  flex: 1;
-  color: #2c3e50;
-  min-width: 0;
-}
-.result-status {
-  flex-shrink: 0;
-  font-weight: 500;
-  font-size: .7rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-}
-.result-status.ok {
-  background: #d1fae5;
-  color: #065f46;
-}
-.result-status.fail {
-  background: #fee2e2;
-  color: #991b1b;
-}
-.result-status.checking {
-  background: #fef3c7;
-  color: #92400e;
-}
+.add-box{display:flex;gap:8px;margin-top:4px}
+.add-box .ctrl-input{flex:1}
+.hint{font-size:.7rem;color:#8fa3b8;line-height:1.6;margin-top:10px}
+.hint code{background:#f4f8fc;padding:1px 5px;border-radius:4px;font-size:.68rem;color:#2563eb}
 
-/* 域名列表卡片 */
-.domains-card {
-  background:#fff; border-radius:8px;
-  padding:18px 18px 14px; border:1px solid #d4dbe5;
+/* 状态栏（批量检测模式） */
+.status-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:#fff;border:1px solid #d4dbe5;border-radius:8px;padding:12px 16px;margin-bottom:14px;
+  font-size:.82rem;
 }
+.status-bar .stat{display:flex;gap:14px;flex-wrap:wrap}
+.status-bar .stat span{font-size:.78rem;color:#5a6f88}
+.status-bar .stat b{font-weight:700}
+.b-ok{color:#10b981}.b-fail{color:#ef4444}.b-wait{color:#f59e0b}.b-total{color:#2563eb}
 
-.domains-title {
-  font-size:.92rem; font-weight:600; color:#0b1e33;
-  margin-bottom:6px;
-}
-.domains-tip {
-  font-size:.74rem; color:#5a6f88; margin-bottom:10px;
-}
+/* 列表卡片 */
+.domains-card{background:#fff;border-radius:8px;padding:18px 18px 14px;border:1px solid #d4dbe5}
+.domains-title{font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:6px}
+.domains-tip{font-size:.74rem;color:#5a6f88;margin-bottom:10px}
 
-.url-line {
+/* 简单线路列表（跳转前模式） */
+.url-line-simple {
   display:flex; align-items:center; gap:8px;
   padding:6px 14px; background:#f4f8fc;
   border:1px solid #e0e8f0; border-radius:50px;
@@ -168,115 +115,189 @@ h1 { font-size:1.35rem; font-weight:700; color:#0a1a2b; }
   cursor:pointer;
   transition: background .15s, border-color .15s;
 }
-.url-line:hover {
-  background:#e8f1fb;
-  border-color:#4a9eff;
-}
-.url-line:active {
-  background:#dce9f8;
-}
-.url-text {
+.url-line-simple:hover { background:#e8f1fb; border-color:#4a9eff; }
+.url-line-simple:active { background:#dce9f8; }
+.url-line-simple .url-text {
   flex:1; font-size:.75rem; color:#2563eb;
   word-break:break-all; overflow-wrap:break-word;
   line-height:1.4; min-width:0;
 }
-.copy-btn {
-  flex-shrink:0; background:#4a9eff; color:#fff; border:none;
-  border-radius:30px; padding:0 14px; font-size:.68rem; font-weight:500;
-  cursor:pointer; height:26px; display:inline-flex; align-items:center; justify-content:center;
-  white-space:nowrap; touch-action:manipulation; -webkit-user-select:none; user-select:none;
-  position:relative;
-  z-index:1;
+.copy-btn{
+  flex-shrink:0;background:#4a9eff;color:#fff;border:none;border-radius:30px;padding:0 12px;
+  font-size:.68rem;font-weight:500;cursor:pointer;height:26px;display:inline-flex;align-items:center;
+  justify-content:center;white-space:nowrap;touch-action:manipulation;-webkit-user-select:none;user-select:none;z-index:1;
 }
-.copy-btn:active { background:#2a7ed9; transform:scale(.96); }
-.copy-btn.copied { background:#3b9b6c; }
+.copy-btn:active{background:#2a7ed9;transform:scale(.96)}
+.copy-btn.copied{background:#3b9b6c}
 
-/* footer */
-.page-footer {
-  text-align:center; padding:24px 0 10px;
-  font-size:.7rem; color:#8fa3b8; line-height:1.8; margin-top:auto;
+/* 批量检测列表（带状态圆点） */
+.url-line{
+  display:flex;align-items:center;gap:8px;padding:8px 14px;background:#f4f8fc;
+  border:1px solid #e0e8f0;border-radius:50px;margin-top:8px;min-width:0;cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+.url-line:hover{background:#e8f1fb;border-color:#4a9eff}
+.url-line .dot{
+  width:8px;height:8px;border-radius:50%;background:#cbd5e1;flex-shrink:0;transition:background .2s;
+}
+.url-line.ok .dot{background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+.url-line.fail .dot{background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+.url-line.checking .dot{background:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+.url-line .url-text{
+  flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;overflow-wrap:break-word;
+  line-height:1.4;min-width:0;
+}
+.url-line .lat{
+  flex-shrink:0;font-size:.7rem;color:#7a8fa3;font-variant-numeric:tabular-nums;min-width:52px;text-align:right;
+}
+.url-line.fail .url-text{color:#94a3b8;text-decoration:line-through;text-decoration-color:#cbd5e1}
+
+/* 批量模式顶部按钮栏 */
+.batch-jump-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.btn-enter-site {
+  height: 44px;
+  padding: 0 36px;
+  border: none;
+  border-radius: 44px;
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  transition: background .15s, transform .1s, box-shadow .15s;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-enter-site:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+.btn-enter-site:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
 
-@media (max-width:600px) {
-  body { padding:14px 10px 6px; }
-  .status-card { padding:14px 12px; }
-  .domains-card { padding:14px 12px 10px; }
-  .btn-stay, .btn-goto, .btn-retry { padding: 7px 14px; font-size: 0.75rem; min-width: 80px; }
-  .result-item { font-size: .72rem; }
+.page-footer{text-align:center;padding:24px 0 10px;font-size:.7rem;color:#8fa3b8;line-height:1.8;margin-top:auto}
+
+/* 模式切换 */
+.mode-jump { display: block; }
+.mode-batch { display: none; }
+body.batch-mode .mode-jump { display: none; }
+body.batch-mode .mode-batch { display: block; }
+
+@media (max-width:600px){
+  body{padding:14px 10px 6px}
+  .ctrl-card,.status-bar,.domains-card,.status-card{padding:14px 12px 10px}
+  .status-bar{flex-direction:column;gap:8px;align-items:flex-start}
+  .btn-stay, .btn-goto { padding: 7px 14px; font-size: 0.75rem; min-width: 80px; }
+  .btn-enter-site { height: 40px; padding: 0 28px; font-size: .86rem; }
 }
 </style>
 </head>
-
 <body>
-
 <div class="container">
 
-  <!-- 头部 -->
   <div class="header-block">
-    <h1>
-      海量接口搬运备份
-    </h1>
+    <h1>海量接口搬运备份</h1>
     <div class="header-divider"></div>
     <p class="subtitle">
       备用数据源，防屏不迷路<br>
-      QQ交流群：1067685939
+      QQ交流群：<a class="qq-link" href="https://qm.qq.com/q/gmRKKPT3x0" target="_blank" rel="noopener noreferrer">1067685939</a>
     </p>
   </div>
 
-  <!-- 检测状态 -->
-  <div class="status-card">
-    <div class="status-text" id="status">⏳ 正在检测可用线路...</div>
-    <!-- 操作按钮区域 -->
-    <div class="action-buttons" id="actionButtons" style="display: none;">
-      <button class="btn-stay" id="stayBtn">🧷 留在本页</button>
-      <button class="btn-goto" id="gotoBtn">🚀 立即跳转</button>
-      <button class="btn-retry" id="retryBtn" style="display: none;">🔄 重新检测</button>
+  <!-- ========== 跳转前模式 ========== -->
+  <div class="mode-jump" id="modeJump">
+    <div class="status-card">
+      <div class="status-text" id="status">⏳ 正在检测可用线路...</div>
+      <div class="action-buttons" id="actionButtons" style="display:none;">
+        <button class="btn-stay" id="stayBtn">🧷 留在本页</button>
+        <button class="btn-goto" id="gotoBtn">🚀 立即跳转</button>
+      </div>
     </div>
-    <!-- 检测结果列表区域（留在本页后显示） -->
-    <div class="result-list" id="resultList" style="display: none;"></div>
+
+    <div class="domains-card">
+      <div class="domains-title">🌐 备份线路域名</div>
+      <div class="domains-tip">四个域名互为备份，任一个可用（点击整行跳转）：</div>
+      <div id="simpleList"></div>
+    </div>
   </div>
 
-  <!-- 四域名展示 -->
-  <div class="domains-card">
-    <div class="domains-title">🌐 备份线路域名</div>
-    <div class="domains-tip">四个域名互为备份，任一个可用（点击整行跳转）：</div>
+  <!-- ========== 批量检测模式 ========== -->
+  <div class="mode-batch" id="modeBatch">
+    <!-- 顶部按钮栏：进入网站 -->
+    <div class="batch-jump-bar">
+      <button class="btn-enter-site" id="btnEnterSite">🌐 进入网站</button>
+    </div>
 
-    <div class="url-line" data-url="https://0.wudaozhe.net">
-      <span class="url-text">https://0.wudaozhe.net</span>
-      <button class="copy-btn" data-url="https://0.wudaozhe.net">复制</button>
+    <!-- 控制区 -->
+    <div class="ctrl-card">
+      <div class="ctrl-row">
+        <span class="ctrl-label">并发数</span>
+        <input class="ctrl-input" id="concurrency" type="number" min="1" max="20" value="6" style="max-width:80px">
+        <span class="ctrl-label">超时(秒)</span>
+        <input class="ctrl-input" id="timeout" type="number" min="2" max="60" value="12" style="max-width:80px">
+        <button class="btn primary" id="btnStart">开始检测</button>
+        <button class="btn ghost" id="btnStop">停止</button>
+        <button class="btn success" id="btnCopyOK">复制可用</button>
+      </div>
+      <div class="add-box">
+        <input class="ctrl-input" id="addInput" type="text" placeholder="粘贴新线路，可一次粘多行/多个，逗号或空格分隔，回车即添加">
+        <button class="btn" id="btnAdd">添加</button>
+        <button class="btn ghost" id="btnClear">清空</button>
+      </div>
+      <p class="hint">
+        域名列表在源码 <code>DOMAINS</code> 数组里，可直接改默认值；上方输入框支持运行时临时追加。
+      </p>
     </div>
-    <div class="url-line" data-url="https://0.12yue.de5.net/">
-      <span class="url-text">https://0.12yue.de5.net</span>
-      <button class="copy-btn" data-url="https://0.12yue.de5.net/">复制</button>
+
+    <!-- 统计 -->
+    <div class="status-bar">
+      <div class="stat">
+        <span>总数 <b class="b-total" id="stTotal">0</b></span>
+        <span>可用 <b class="b-ok" id="stOk">0</b></span>
+        <span>失败 <b class="b-fail" id="stFail">0</b></span>
+        <span>等待 <b class="b-wait" id="stWait">0</b></span>
+      </div>
+      <div class="stat">
+        <span id="stMsg">就绪</span>
+      </div>
     </div>
-    <div class="url-line" data-url="https://0.cdz.qzz.io/">
-      <span class="url-text">https://0.cdz.qzz.io</span>
-      <button class="copy-btn" data-url="https://0.cdz.qzz.io/">复制</button>
-    </div>
-    <div class="url-line" data-url="https://0.wdzb.eu.cc/">
-      <span class="url-text">https://0.wdzb.eu.cc</span>
-      <button class="copy-btn" data-url="https://0.wdzb.eu.cc/">复制</button>
-    </div>
-    <div class="url-line" data-url="https://tvbox.moliys.icu">
-      <span class="url-text">https://tvbox.moliys.icu</span>
-      <button class="copy-btn" data-url="https://tvbox.moliys.icu">复制</button>
-    </div>
-    <div class="url-line" data-url="https://ym.120733.xyz">
-      <span class="url-text">https://ym.120733.xyz</span>
-      <button class="copy-btn" data-url="https://ym.120733.xyz">复制</button>
+
+    <!-- 列表 -->
+    <div class="domains-card">
+      <div class="domains-title">🌐 线路列表</div>
+      <div class="domains-tip">点整行跳转，点右侧按钮复制单条地址；检测结果与延迟实时刷新。</div>
+      <div id="list"></div>
     </div>
   </div>
+
 </div>
-<!-- footer -->
+
 <footer class="page-footer">
   <p>
     本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。<br>
     仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。<br>
-    如涉及侵权，请联系删除。QQ 群：1067685939。
+    如涉及侵权，请联系删除。QQ 群：
+    <a class="qq-link" href="https://qm.qq.com/q/gmRKKPT3x0" target="_blank" rel="noopener noreferrer">1067685939</a>。
   </p>
 </footer>
+
 <script>
-const domains = [
+/* ===== 默认线路列表（两套模式共用） ===== */
+const DOMAINS = [
   "https://0.wudaozhe.net/app",
   "https://0.12yue.de5.net/app",
   "https://0.cdz.qzz.io/app",
@@ -285,387 +306,325 @@ const domains = [
   "https://tvbox.moliys.icu",
   "https://ym.120733.xyz"
 ];
+/* ====================================== */
 
-const statusEl = document.getElementById("status");
-const actionButtons = document.getElementById("actionButtons");
-const stayBtn = document.getElementById("stayBtn");
-const gotoBtn = document.getElementById("gotoBtn");
-const retryBtn = document.getElementById("retryBtn");
-const resultList = document.getElementById("resultList");
+/* ========== 全局状态 ========== */
+let mode = 'jump';
+let items = DOMAINS.map(u => ({ url: u, state: "wait", lat: null }));
+let jumpTargetUrl = null;
+let aborting = false;
 
-// 全局倒计时定时器引用，用于取消
-let countdownTimer = null;
-// 当前跳转目标
-let currentTargetUrl = null;
-// 是否处于"留在本页"后的连续检测模式
-let stayMode = false;
-// 用于存储每个线路的检测结果（索引 -> 状态：'ok' | 'fail' | 'checking'）
-let detectionResults = [];
+/* ========== 元素引用 ========== */
+const bodyEl = document.body;
 
-/* 点击整行跳转 */
-document.addEventListener('click', function(e) {
-  if (e.target.closest('.copy-btn')) return;
+// 跳转前元素
+const statusEl = document.getElementById('status');
+const actionButtons = document.getElementById('actionButtons');
+const stayBtn = document.getElementById('stayBtn');
+const gotoBtn = document.getElementById('gotoBtn');
+const simpleListEl = document.getElementById('simpleList');
 
-  const line = e.target.closest('.url-line');
-  if (!line) return;
-  const url = line.getAttribute('data-url');
-  if (url) {
-    window.open(url, '_blank');
+// 批量检测元素
+const listEl   = document.getElementById("list");
+const stTotal  = document.getElementById("stTotal");
+const stOk     = document.getElementById("stOk");
+const stFail   = document.getElementById("stFail");
+const stWait   = document.getElementById("stWait");
+const stMsg    = document.getElementById("stMsg");
+const btnStart = document.getElementById("btnStart");
+const btnEnterSite = document.getElementById("btnEnterSite");
+
+/* ========== 工具函数 ========== */
+function normalize(u){ return u.trim().replace(/\s+/g,""); }
+function displayUrl(u){ return u.replace(/\/$/,"").replace(/\/app$/,"") || u; }
+
+/* ========== 模式切换 ========== */
+function switchToBatchMode() {
+  mode = 'batch';
+  bodyEl.classList.add('batch-mode');
+  
+  if (!items.length) {
+    items = DOMAINS.map(u => ({ url: u, state: "wait", lat: null }));
   }
-});
-
-/* 复制 */
-document.addEventListener('click', function(e) {
-  const btn = e.target.closest('.copy-btn');
-  if (!btn) return;
-  e.preventDefault(); e.stopPropagation();
-  const url = btn.getAttribute('data-url');
-  if (!url) return;
-
-  const done = () => {
-    const original = btn.textContent;
-    btn.textContent = '✅ 已复制';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
-  };
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(done).catch(() => fb());
-  } else { fb(); }
-
-  function fb() {
-    const input = document.createElement('input');
-    input.value = url; input.style.position='fixed'; input.style.opacity='0';
-    document.body.appendChild(input); input.focus(); input.select();
-    try { document.execCommand('copy'); } catch(_){}
-    document.body.removeChild(input); done();
-  }
-});
-
-/* 检测域名 */
-async function checkDomain(url, timeout = 20000) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeout);
-  try {
-    await fetch(url, { method:"GET", mode:"no-cors", signal:controller.signal });
-    clearTimeout(timer);
-    return true;
-  } catch(e) {
-    clearTimeout(timer);
-    return false;
+  
+  renderBatchList();
+  updateBatchStats();
+  updateEnterButton();
+  
+  const allWait = items.every(it => it.state === "wait");
+  if (allWait) {
+    startBatchCheck();
   }
 }
 
-/* 清理倒计时（不清除结果） */
-function clearCountdown() {
-  if (countdownTimer) {
-    clearInterval(countdownTimer);
-    countdownTimer = null;
+/* 返回倒计时模式（进入网站按钮逻辑） */
+function switchToJumpMode() {
+  mode = 'jump';
+  bodyEl.classList.remove('batch-mode');
+
+  const okItems = items.filter(i => i.state === "ok").sort((a, b) => (a.lat || 9999) - (b.lat || 9999));
+  if (okItems.length > 0) {
+    jumpTargetUrl = okItems[0].url;
   }
-  currentTargetUrl = null;
+  if (jumpTargetUrl) {
+    startJumpCountdown(jumpTargetUrl, 5);
+  } else {
+    checkFirstAvailable();
+  }
 }
 
-/* 渲染检测结果列表 */
-function renderResults() {
-  if (!detectionResults.length) {
-    resultList.style.display = 'none';
-    return;
+/* 更新进入网站按钮状态 */
+function updateEnterButton() {
+  const okItems = items.filter(i => i.state === "ok");
+  if (okItems.length > 0) {
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = `🌐 进入网站 (${okItems.length} 条可用)`;
+  } else {
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = '🌐 进入网站';
   }
-  resultList.style.display = 'block';
-  resultList.innerHTML = detectionResults.map((item, idx) => {
-    let icon = '⏳';
-    let statusText = '检测中';
-    let statusClass = 'checking';
-    if (item.status === 'ok') {
-      icon = '✅';
-      statusText = '可用';
-      statusClass = 'ok';
-    } else if (item.status === 'fail') {
-      icon = '❌';
-      statusText = '不可用';
-      statusClass = 'fail';
-    }
-    return `<div class="result-item">
-      <span class="result-icon ${statusClass}">${icon}</span>
-      <span class="result-url">${item.url}</span>
-      <span class="result-status ${statusClass}">${statusText}</span>
-    </div>`;
-  }).join('');
 }
 
-/* 倒计时跳转 —— 支持留在本页并继续检测所有线路 */
-function startCountdown(url, seconds = 5) {
-  if (countdownTimer) {
-    clearInterval(countdownTimer);
-    countdownTimer = null;
-  }
-
-  currentTargetUrl = url;
-  let remain = seconds;
-
-  // 显示操作按钮容器，只显示 stay 和 goto，隐藏 retry
-  actionButtons.style.display = 'flex';
-  stayBtn.style.display = 'inline-flex';
-  gotoBtn.style.display = 'inline-flex';
-  retryBtn.style.display = 'none';
-  // 隐藏结果列表（倒计时阶段不显示）
-  resultList.style.display = 'none';
-
-  const updateStatus = () => {
-    statusEl.innerHTML = `✅ 线路可用，<span class="countdown">${remain}</span> 秒后跳转<br><span style="font-size:.75rem;color:#5a6f88">${url}</span>`;
-  };
-
-  updateStatus();
-
-  countdownTimer = setInterval(() => {
-    remain--;
-    if (remain > 0) {
-      updateStatus();
-    } else {
-      clearInterval(countdownTimer);
-      countdownTimer = null;
-      actionButtons.style.display = 'none';
-      window.location.href = url;
-    }
-  }, 1000);
-
-  // “留在本页”按钮：不停止检测，继续检测剩余所有线路
-  stayBtn.onclick = function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    // 清除倒计时
-    if (countdownTimer) {
-      clearInterval(countdownTimer);
-      countdownTimer = null;
-    }
-    // 隐藏按钮区域，因为接下来进入纯结果展示模式
-    actionButtons.style.display = 'none';
-    // 进入留在本页模式
-    stayMode = true;
-    // 更新状态提示
-    statusEl.innerHTML = `📌 已取消自动跳转，正在检测剩余线路...`;
-    // 继续检测所有线路（会处理结果渲染）
-    continueDetectionFromCurrent();
-  };
-
-  // “立即跳转”按钮
-  gotoBtn.onclick = function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (countdownTimer) {
-      clearInterval(countdownTimer);
-      countdownTimer = null;
-    }
-    actionButtons.style.display = 'none';
-    if (currentTargetUrl) {
-      window.location.href = currentTargetUrl;
-    }
-  };
+/* ========== 跳转前模式 ========== */
+function renderSimpleList() {
+  simpleListEl.innerHTML = '';
+  const unique = [...new Set(DOMAINS.map(displayUrl))].slice(0, 6);
+  unique.forEach(url => {
+    const line = document.createElement('div');
+    line.className = 'url-line-simple';
+    line.dataset.url = url;
+    line.innerHTML = `
+      <span class="url-text">${url}</span>
+      <button class="copy-btn" data-url="${url}">复制</button>
+    `;
+    simpleListEl.appendChild(line);
+  });
 }
 
-/* 从当前进度继续检测剩余线路（用在“留在本页”后）
-   思路：当前已经检测到第 index 个线路可用，并且检测结果里已有部分结果。
-   我们将从下一个索引开始继续检测，并更新结果列表。 
-   注意：这个函数需要知道当前已经检测到哪里。我们通过一个全局变量 currentCheckIndex 来跟踪。 */
-let currentCheckIndex = 0; // 当前正在检测的索引
-
-async function continueDetectionFromCurrent() {
-  // 确保结果列表显示
-  resultList.style.display = 'block';
-
-  // 如果检测结果数组长度小于 domains 长度，补齐并标记未检测的为 checking
-  for (let i = 0; i < domains.length; i++) {
-    if (!detectionResults[i]) {
-      detectionResults[i] = { url: domains[i], status: 'checking' };
-    }
-  }
-  renderResults();
-
-  // 从 currentCheckIndex + 1 开始继续检测（因为 currentCheckIndex 指向的是刚检测成功的那个，它的状态已经是 ok 了）
-  // 但要注意，currentCheckIndex 可能在倒计时启动时被设置。
-  // 我们在这里重新计算：找到第一个状态为 'checking' 的索引开始
-  let startIdx = detectionResults.findIndex(item => item && item.status === 'checking');
-  if (startIdx === -1) {
-    // 没有待检测的，说明全部检测完了
-    finalizeStayMode();
-    return;
-  }
-
-  for (let i = startIdx; i < domains.length; i++) {
-    // 如果该位置已有明确结果（ok/fail），跳过（可能是在倒计时前已经检测过的）
-    if (detectionResults[i] && detectionResults[i].status !== 'checking') {
-      continue;
-    }
-    // 更新当前检测索引
-    currentCheckIndex = i;
-    // 标记为检测中（已经是）
-    detectionResults[i] = { url: domains[i], status: 'checking' };
-    renderResults();
-    // 更新状态文本
-    statusEl.innerHTML = `⏳ 正在检测第 ${i + 1} 个线路：${domains[i]}`;
-    // 检测
-    const ok = await checkDomain(domains[i]);
+async function checkFirstAvailable() {
+  for (let i = 0; i < DOMAINS.length; i++) {
+    const url = DOMAINS[i];
+    statusEl.textContent = `⏳ 正在检测第 ${i + 1} 个线路：${url}`;
+    const ok = await probeUrl(url, 12);
     if (ok) {
-      detectionResults[i].status = 'ok';
-    } else {
-      detectionResults[i].status = 'fail';
-    }
-    renderResults();
-  }
-
-  // 所有检测完成
-  finalizeStayMode();
-}
-
-/* 完成留在本页模式，显示重新检测按钮和汇总信息 */
-function finalizeStayMode() {
-  const okCount = detectionResults.filter(r => r && r.status === 'ok').length;
-  const total = detectionResults.length;
-  statusEl.innerHTML = `📋 检测完成：共 ${total} 条线路，${okCount} 条可用<br><span style="font-size:.75rem;color:#5a6f88">您可以点击下方线路手动访问，或重新检测</span>`;
-  // 显示重新检测按钮
-  actionButtons.style.display = 'flex';
-  stayBtn.style.display = 'none';
-  gotoBtn.style.display = 'none';
-  retryBtn.style.display = 'inline-flex';
-  // 确保结果列表显示
-  resultList.style.display = 'block';
-  renderResults();
-}
-
-/* 开始检测（重新检测） */
-async function startCheck() {
-  // 重置全局状态
-  clearCountdown();
-  stayMode = false;
-  detectionResults = [];
-  currentCheckIndex = 0;
-
-  // 隐藏结果列表，隐藏按钮
-  resultList.style.display = 'none';
-  actionButtons.style.display = 'none';
-  stayBtn.style.display = 'inline-flex';
-  gotoBtn.style.display = 'inline-flex';
-  retryBtn.style.display = 'none';
-
-  // 重置状态文本
-  statusEl.textContent = '⏳ 正在检测可用线路...';
-
-  // 顺序检测，直到找到第一个可用线路
-  for (let i = 0; i < domains.length; i++) {
-    // 记录检测结果
-    detectionResults[i] = { url: domains[i], status: 'checking' };
-    // 当前索引
-    currentCheckIndex = i;
-
-    statusEl.textContent = `⏳ 正在检测第 ${i + 1} 个线路：${domains[i]}`;
-    const ok = await checkDomain(domains[i]);
-    if (ok) {
-      detectionResults[i].status = 'ok';
-      // 找到可用线路，开始倒计时，并传递当前索引信息
-      // 倒计时里“留在本页”会从下一个索引继续检测
-      startCountdownWithIndex(domains[i], 5, i);
+      jumpTargetUrl = url;
+      startJumpCountdown(url, 5);
       return;
-    } else {
-      detectionResults[i].status = 'fail';
     }
   }
-
-  // 全部不可用
-  statusEl.innerHTML = "❌ 所有线路均不可用，请稍后再试";
+  statusEl.innerHTML = '❌ 所有线路均不可用，请稍后再试';
   actionButtons.style.display = 'none';
-  // 可以显示结果列表，让用户看到所有失败
-  resultList.style.display = 'block';
-  renderResults();
 }
 
-/* 带索引的倒计时启动，记录当前检测到第几个可用 */
-function startCountdownWithIndex(url, seconds, foundIndex) {
-  currentCheckIndex = foundIndex; // 记录当前可用线路的索引
+function probeUrl(url, timeoutSec) {
+  return new Promise(resolve => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutSec * 1000);
+    fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store', signal: controller.signal })
+      .then(() => { clearTimeout(timer); resolve(true); })
+      .catch(() => { clearTimeout(timer); resolve(false); });
+  });
+}
 
-  if (countdownTimer) {
-    clearInterval(countdownTimer);
-    countdownTimer = null;
-  }
-
-  currentTargetUrl = url;
+let jumpTimer = null;
+function startJumpCountdown(url, seconds) {
+  if (jumpTimer) clearInterval(jumpTimer);
   let remain = seconds;
-
   actionButtons.style.display = 'flex';
   stayBtn.style.display = 'inline-flex';
   gotoBtn.style.display = 'inline-flex';
-  retryBtn.style.display = 'none';
-  resultList.style.display = 'none';
 
-  const updateStatus = () => {
+  const update = () => {
     statusEl.innerHTML = `✅ 线路可用，<span class="countdown">${remain}</span> 秒后跳转<br><span style="font-size:.75rem;color:#5a6f88">${url}</span>`;
   };
+  update();
 
-  updateStatus();
-
-  countdownTimer = setInterval(() => {
+  jumpTimer = setInterval(() => {
     remain--;
     if (remain > 0) {
-      updateStatus();
+      update();
     } else {
-      clearInterval(countdownTimer);
-      countdownTimer = null;
-      actionButtons.style.display = 'none';
+      clearInterval(jumpTimer);
+      jumpTimer = null;
       window.location.href = url;
     }
   }, 1000);
 
-  stayBtn.onclick = function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (countdownTimer) {
-      clearInterval(countdownTimer);
-      countdownTimer = null;
-    }
-    actionButtons.style.display = 'none';
-    stayMode = true;
-    statusEl.innerHTML = `📌 已取消自动跳转，正在检测剩余线路...`;
-    // 继续检测：从 foundIndex + 1 开始，但因为有全局 detectionResults，我们直接调用 continueDetectionFromCurrent
-    // 注意：当前 detectionResults 里 foundIndex 位置已经是 'ok'，其他还未检测的没填充。
-    // 先确保检测结果数组填充
-    for (let i = 0; i < domains.length; i++) {
-      if (!detectionResults[i]) {
-        detectionResults[i] = { url: domains[i], status: 'checking' };
-      }
-    }
-    renderResults();
-    continueDetectionFromCurrent();
+  stayBtn.onclick = (e) => {
+    e.preventDefault(); e.stopPropagation();
+    if (jumpTimer) { clearInterval(jumpTimer); jumpTimer = null; }
+    switchToBatchMode();
   };
 
-  gotoBtn.onclick = function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (countdownTimer) {
-      clearInterval(countdownTimer);
-      countdownTimer = null;
-    }
-    actionButtons.style.display = 'none';
-    if (currentTargetUrl) {
-      window.location.href = currentTargetUrl;
-    }
+  gotoBtn.onclick = (e) => {
+    e.preventDefault(); e.stopPropagation();
+    if (jumpTimer) { clearInterval(jumpTimer); jumpTimer = null; }
+    window.location.href = url;
   };
 }
 
-// 重新检测按钮逻辑
-retryBtn.onclick = function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  // 隐藏结果列表，重置视图，开始全新检测
-  resultList.style.display = 'none';
-  actionButtons.style.display = 'none';
-  // 清除之前的结果
-  detectionResults = [];
-  stayMode = false;
-  startCheck();
-};
+/* ========== 批量检测模式 ========== */
 
-// 启动初始检测
-startCheck();
+function renderBatchList() {
+  listEl.innerHTML = "";
+  items.forEach((it, i) => {
+    const line = document.createElement("div");
+    line.className = "url-line" + (it.state !== "wait" ? " " + it.state : "");
+    line.dataset.idx = i;
+    const latTxt = it.state === "ok" ? (it.lat + " ms")
+                 : it.state === "fail" ? "失败"
+                 : it.state === "checking" ? "探测中…" : "—";
+    line.innerHTML =
+      `<span class="dot"></span>
+       <span class="url-text">${displayUrl(it.url)}</span>
+       <span class="lat">${latTxt}</span>
+       <button class="copy-btn" data-url="${it.url}">复制</button>`;
+    listEl.appendChild(line);
+  });
+  updateBatchStats();
+  updateEnterButton();
+}
+
+function updateBatchStats() {
+  let ok = 0, fail = 0, wait = 0, checking = 0;
+  items.forEach(it => {
+    if (it.state === "ok") ok++;
+    else if (it.state === "fail") fail++;
+    else if (it.state === "checking") checking++;
+    else wait++;
+  });
+  stTotal.textContent = items.length;
+  stOk.textContent = ok;
+  stFail.textContent = fail;
+  stWait.textContent = wait + checking;
+}
+
+function setItemState(i, state, lat) {
+  items[i].state = state;
+  if (lat !== undefined) items[i].lat = lat;
+  renderBatchList();
+}
+
+async function startBatchCheck() {
+  aborting = false;
+  btnStart.disabled = true;
+  const conc = Math.max(1, Math.min(20, parseInt(document.getElementById("concurrency").value) || 6));
+  
+  items = items.map(it => ({ url: it.url, state: "wait", lat: null }));
+  renderBatchList();
+
+  let idx = 0;
+  const workers = Array.from({ length: conc }, async () => {
+    while (!aborting) {
+      const i = idx++;
+      if (i >= items.length) break;
+      setItemState(i, "checking");
+      const r = await probeWithLatency(items[i].url);
+      if (aborting) break;
+      setItemState(i, r.ok ? "ok" : "fail", r.lat);
+      updateBatchMsg();
+    }
+  });
+  await Promise.all(workers);
+  btnStart.disabled = false;
+  if (aborting) {
+    stMsg.textContent = "已停止";
+  } else {
+    const ok = items.filter(i => i.state === "ok").length;
+    stMsg.textContent = ok ? `完成，可用 ${ok} 条` : "全部不可用";
+  }
+  updateEnterButton();
+}
+
+function probeWithLatency(url) {
+  const controller = new AbortController();
+  const t0 = performance.now();
+  const timeoutSec = parseInt(document.getElementById("timeout").value) || 12;
+  const to = setTimeout(() => controller.abort(), timeoutSec * 1000);
+  return new Promise(resolve => {
+    fetch(url, { method: "GET", mode: "no-cors", cache: "no-store", signal: controller.signal })
+      .then(() => { clearTimeout(to); resolve({ ok: true, lat: Math.round(performance.now() - t0) }); })
+      .catch(() => { clearTimeout(to); resolve({ ok: false }); });
+  });
+}
+
+function updateBatchMsg() {
+  const done = items.filter(i => i.state === "ok" || i.state === "fail").length;
+  stMsg.textContent = `进度 ${done}/${items.length}`;
+}
+
+/* 批量检测界面事件绑定 */
+document.getElementById("btnStart").addEventListener("click", startBatchCheck);
+document.getElementById("btnStop").addEventListener("click", () => { aborting = true; });
+
+document.getElementById("btnAdd").addEventListener("click", addFromInput);
+document.getElementById("addInput").addEventListener("keydown", e => { if (e.key === "Enter") addFromInput(); });
+function addFromInput() {
+  const raw = document.getElementById("addInput").value;
+  const urls = raw.split(/[\n,，;；\s]+/).map(normalize).filter(Boolean);
+  if (!urls.length) return;
+  urls.forEach(u => { if (!items.some(it => it.url === u)) items.push({ url: u, state: "wait", lat: null }); });
+  document.getElementById("addInput").value = "";
+  renderBatchList();
+}
+document.getElementById("btnClear").addEventListener("click", () => {
+  if (confirm("清空全部线路？")) { items = []; renderBatchList(); }
+});
+
+document.getElementById("btnCopyOK").addEventListener("click", () => {
+  const ok = items.filter(i => i.state === "ok").sort((a, b) => (a.lat || 9999) - (b.lat || 9999)).map(i => i.url);
+  if (!ok.length) { stMsg.textContent = "暂无可用线路"; return; }
+  copyText(ok.join("\n"), () => stMsg.textContent = `已复制 ${ok.length} 条可用线路`);
+});
+
+/* 进入网站按钮：退回到倒计时模式，不直接跳转 */
+btnEnterSite.addEventListener("click", () => {
+  switchToJumpMode();
+});
+
+/* 批量列表点击事件（跳转 & 复制） */
+document.addEventListener("click", e => {
+  const copy = e.target.closest(".copy-btn");
+  if (copy) {
+    e.preventDefault(); e.stopPropagation();
+    const url = copy.dataset.url;
+    copyText(url, () => {
+      const o = copy.textContent;
+      copy.textContent = "✅ 已复制"; copy.classList.add("copied");
+      setTimeout(() => { copy.textContent = o; copy.classList.remove("copied"); }, 1500);
+    });
+    return;
+  }
+  if (mode === 'batch') {
+    const line = e.target.closest(".url-line");
+    if (line && line.dataset.idx !== undefined) {
+      window.open(items[line.dataset.idx].url, "_blank");
+    }
+  } else {
+    const simpleLine = e.target.closest(".url-line-simple");
+    if (simpleLine && simpleLine.dataset.url) {
+      window.open(simpleLine.dataset.url, "_blank");
+    }
+  }
+});
+
+/* 通用复制 */
+function copyText(text, done) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fb());
+  } else fb();
+  function fb() {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand("copy"); } catch (_) {}
+    document.body.removeChild(ta); done();
+  }
+}
+
+/* ========== 初始化 ========== */
+renderSimpleList();
+checkFirstAvailable();
 </script>
-
 </body>
 </html>
