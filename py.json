@@ -1,17 +1,5 @@
 {
-  "spider": "https://mpimg.cn/down.php/d479d37ee36fa366b646f77d17b76fb1.jar",
-  "logo": "https://mpimg.cn/down.php/7c35e9376677a03556efe5193bf23cec.jpg",
   "sites": [
-    {
-      "key": "jueson",
-      "name": "🏠主页┃豆瓣",
-      "type": 3,
-      "api": "csp_DouDou",
-      "searchable": 0,
-      "quickSearch": 0,
-      "indexs": 1,
-      "filterable": 1
-    },
     {
       "key": "py_apple",
       "name": "🍎┃苹果┃影视",
