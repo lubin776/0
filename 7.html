@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
-<title>接口线路批量检测</title>
+<title>线路批量检测</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
@@ -13,6 +13,32 @@ body{
   display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent;
 }
 .container{max-width:820px;margin:auto;width:100%;flex:1;display:flex;flex-direction:column}
+
+/* ===== 左上角悬浮 APP 按钮组 ===== */
+.float-nav{
+  position:fixed;top:12px;left:12px;z-index:50;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.app-btn{
+  width:54px;height:54px;flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  border-radius:15px;padding:0;
+  background:linear-gradient(180deg,#ffffff 0%,#f1f7fe 100%);
+  border:1px solid #d4dbe5;color:#2563eb;
+  font-family:inherit;text-decoration:none;line-height:1;cursor:pointer;
+  box-shadow:0 3px 10px rgba(10,26,43,.10),0 1px 2px rgba(10,26,43,.06);
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease,border-color .15s ease;
+}
+.app-btn .app-ico{font-size:1.06rem;line-height:1;display:block}
+.app-btn .app-txt{font-size:.56rem;font-weight:600;letter-spacing:.02em;color:#4a6b8f;white-space:nowrap}
+.app-btn:active{
+  transform:scale(.93);
+  background:#eaf3fe;border-color:#4a9eff;
+  box-shadow:0 1px 5px rgba(10,26,43,.16);
+}
+.app-btn.spin .app-ico{animation:app-spin .5s ease}
+@keyframes app-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
 .header-block{text-align:center;margin-bottom:18px}
 h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
@@ -58,6 +84,7 @@ h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
 .chk-line input{width:15px;height:15px;accent-color:#2563eb;cursor:pointer}
 .hint{font-size:.7rem;color:#8fa3b8;line-height:1.6;margin-top:10px}
 .hint code{background:#f4f8fc;padding:1px 5px;border-radius:4px;font-size:.68rem;color:#2563eb}
+.hint b{color:#5a6f88}
 
 /* 状态栏 */
 .status-bar{
@@ -170,7 +197,7 @@ h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
 .page-footer{text-align:center;padding:24px 0 10px;font-size:.7rem;color:#8fa3b8;line-height:1.8;margin-top:auto}
 
 @media (max-width:600px){
-  body{padding:14px 10px 6px}
+  body{padding:80px 10px 6px}
   .ctrl-card,.status-bar,.domains-card{padding:14px 12px 10px}
   .status-bar{flex-direction:column;gap:8px;align-items:flex-start}
   .add-textarea{min-height:140px}
@@ -178,14 +205,30 @@ h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
 }
 @media (max-width:480px){
   .url-line .dns{display:none}
+  .app-btn{width:50px;height:50px;border-radius:14px}
+  .app-btn .app-ico{font-size:1rem}
+  .app-btn .app-txt{font-size:.54rem}
 }
 </style>
 </head>
 <body>
+
+<!-- ===== 左上角悬浮 APP 按钮组：返回首页 + 刷新 ===== -->
+<div class="float-nav">
+  <a class="app-btn" id="homeLink" href="/" title="返回接口大全">
+    <span class="app-ico">🏠</span>
+    <span class="app-txt">接口大全</span>
+  </a>
+  <button class="app-btn" id="btnRefresh" type="button" title="刷新页面">
+    <span class="app-ico">🔄</span>
+    <span class="app-txt">刷新</span>
+  </button>
+</div>
+
 <div class="container">
 
   <div class="header-block">
-    <h1>🔍 接口线路批量检测</h1>
+    <h1>🔍 线路批量检测</h1>
     <div class="header-divider"></div>
     <p class="subtitle">并发探测 + 自动测速，绿色=可用，红色=失败，点击整行直接跳转</p>
   </div>
@@ -227,7 +270,8 @@ https://aaa.bbb.ccc/app
 
     <p class="hint">
       已内置检测记录缓存：联通的线路会把延迟、解析 IP、DNS 耗时写入 <code>localStorage</code>，
-      <b>永久保存</b>并在下次打开页面时自动载入。点 <b>「检测记录」</b> 可查看 / 管理全部缓存线路。
+      <b>永久保存</b>并在下次打开页面时自动载入。点 <b>「检测记录」</b> 可查看 / 管理全部缓存线路。<br>
+      注意：<b>「清空列表」只清理当前界面显示，缓存记录会保留</b>；如需删除缓存请用 <b>「清除缓存」</b>。
     </p>
   </div>
 
@@ -274,6 +318,35 @@ https://aaa.bbb.ccc/app
 </footer>
 
 <script>
+/* ============================================================
+   首页按钮：动态指向当前域名的根路径（去掉所有目录 / 文件名）
+   例如页面在 https://xxx.com/a/b/check.html → 点按钮跳 https://xxx.com/
+   本地 file:// 打开时无域名，退回同目录 index.html
+   ============================================================ */
+(function(){
+  const homeLink = document.getElementById("homeLink");
+  const isFile = location.protocol === "file:";
+  if(isFile){
+    homeLink.href = "./index.html";
+    homeLink.title = "返回 index.html";
+  }else{
+    homeLink.href = location.origin + "/";
+    homeLink.title = location.origin + "/";
+  }
+})();
+
+/* ============================================================
+   刷新按钮：点击后带一点旋转动效再刷新页面
+   ============================================================ */
+(function(){
+  const btnRefresh = document.getElementById("btnRefresh");
+  btnRefresh.addEventListener("click", ()=>{
+    if(btnRefresh.classList.contains("spin")) return;
+    btnRefresh.classList.add("spin");
+    setTimeout(()=>location.reload(), 170);
+  });
+})();
+
 /* ============================================================
    默认线路列表：已清空，只能通过上方输入框粘贴添加
    ============================================================ */
@@ -718,7 +791,7 @@ function addFromInput(){
   let urls = raw.split(/[\n\r,，;；\s]+/).map(normalize).filter(Boolean);
   if(!urls.length){ stMsg.textContent = "没有识别到有效链接"; return; }
 
-  let added = 0;
+  let added = 0, fromCache = 0;
   urls.forEach(u=>{
     if(!/^https?:\/\//i.test(u)) u = "https://" + u;   // 缺协议自动补全
     if(items.some(it => it.url === u)) return;
@@ -727,6 +800,7 @@ function addFromInput(){
     if(c && c.state === "ok"){
       items.push({ url:u, state:"ok", lat:(c.lat != null ? c.lat : null),
                    ip:c.ip || null, dnsMs:(c.dnsMs != null ? c.dnsMs : null), cached:true });
+      fromCache++;
     }else{
       items.push({ url:u, state:"wait", lat:null, ip:null, dnsMs:null, cached:false });
     }
@@ -735,21 +809,26 @@ function addFromInput(){
 
   addInput.value = "";
   render();
-  stMsg.textContent = added ? `已添加 ${added} 条线路` : "线路已存在，未重复添加";
+  if(!added){
+    stMsg.textContent = "线路已存在，未重复添加";
+  }else if(fromCache){
+    stMsg.textContent = `已添加 ${added} 条线路（其中 ${fromCache} 条命中缓存）`;
+  }else{
+    stMsg.textContent = `已添加 ${added} 条线路`;
+  }
 }
 
-/* 清空列表（同时移除这些线路的缓存记录） */
+/* 清空列表 —— 仅清理界面显示，缓存记录保留 */
 document.getElementById("btnClear").addEventListener("click", ()=>{
   if(!items.length) return;
-  if(confirm("清空全部线路？同时会移除它们的缓存记录。")){
-    items.forEach(it => cacheDel(it.url));
+  if(confirm("清空列表？\n仅清空当前界面显示，检测记录（缓存）会保留。")){
     items = [];
     render();
-    stMsg.textContent = "已清空";
+    stMsg.textContent = "列表已清空，缓存记录仍保留";
   }
 });
 
-/* 清除缓存 —— 顶部快捷入口 */
+/* 清除缓存 —— 顶部快捷入口（会同时重置列表里依赖缓存的线路） */
 btnClearCache.addEventListener("click", ()=>{
   const cacheCount = Object.keys(cache).length;
   if(!cacheCount){ stMsg.textContent = "缓存本来就是空的"; return; }
