@@ -108,6 +108,10 @@
         "url": "https://0.12yue.de5.net/iptool/1" 
         },
         { 
+        "name": "线路检测", 
+        "url": "../线路检测" 
+        },
+        { 
         "name": "域名检测", 
         "url": "https://www.whatsmydns.net/" 
         },
