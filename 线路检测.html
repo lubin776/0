@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+<title>线路批量检测</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:#eef2f7;color:#1a2b3d;padding:20px 14px 10px;min-height:100vh;
+  display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent;
+}
+.container{max-width:820px;margin:auto;width:100%;flex:1;display:flex;flex-direction:column}
+
+/* ===== 左上角首页按钮 ===== */
+.home-link{
+  position:fixed;top:12px;left:12px;z-index:50;
+  display:inline-flex;align-items:center;gap:5px;
+  height:32px;padding:0 14px;border-radius:20px;
+  background:#fff;border:1px solid #d4dbe5;color:#2563eb;
+  font-size:.78rem;font-weight:500;text-decoration:none;
+  box-shadow:0 2px 8px rgba(10,26,43,.06);
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:background .15s,border-color .15s;
+}
+.home-link:active{transform:scale(.96);background:#eef4fb;border-color:#4a9eff}
+
+.header-block{text-align:center;margin-bottom:18px}
+h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
+.header-divider{height:1px;background:#e4ebf3;margin:12px 0}
+.subtitle{font-size:.78rem;color:#7a8fa3;line-height:1.6}
+
+/* 控制卡片 */
+.ctrl-card{background:#fff;border-radius:8px;padding:16px 18px;border:1px solid #d4dbe5;margin-bottom:16px}
+.ctrl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+.ctrl-label{font-size:.78rem;color:#5a6f88;white-space:nowrap}
+.ctrl-input{
+  flex:1;min-width:110px;height:32px;border:1px solid #d4dbe5;border-radius:6px;
+  padding:0 10px;font-size:.8rem;color:#1a2b3d;background:#f7fafd;outline:none;
+}
+.ctrl-input:focus{border-color:#4a9eff;background:#fff}
+.btn{
+  height:32px;padding:0 16px;border:none;border-radius:6px;font-size:.8rem;font-weight:500;
+  cursor:pointer;color:#fff;background:#4a9eff;white-space:nowrap;touch-action:manipulation;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:#2563eb}
+.btn.success{background:#10b981}
+.btn.violet{background:#8b5cf6}
+.btn.danger{background:#fff;color:#ef4444;border:1px solid #f3c8c8}
+.btn.ghost{background:#fff;color:#5a6f88;border:1px solid #d4dbe5}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* 输入区：六行足宽 */
+.add-box{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.add-textarea{
+  width:100%;min-height:150px;display:block;
+  border:1px solid #d4dbe5;border-radius:8px;padding:10px 12px;
+  font-size:.8rem;line-height:1.65;color:#1a2b3d;background:#f7fafd;
+  outline:none;resize:vertical;font-family:inherit;-webkit-appearance:none;
+}
+.add-textarea:focus{border-color:#4a9eff;background:#fff}
+.add-actions{display:flex;gap:8px;flex-wrap:wrap}
+.chk-line{
+  display:flex;align-items:center;gap:6px;font-size:.74rem;color:#5a6f88;
+  margin-top:10px;cursor:pointer;-webkit-user-select:none;user-select:none;
+}
+.chk-line input{width:15px;height:15px;accent-color:#2563eb;cursor:pointer}
+.hint{font-size:.7rem;color:#8fa3b8;line-height:1.6;margin-top:10px}
+.hint code{background:#f4f8fc;padding:1px 5px;border-radius:4px;font-size:.68rem;color:#2563eb}
+.hint b{color:#5a6f88}
+
+/* 状态栏 */
+.status-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:#fff;border:1px solid #d4dbe5;border-radius:8px;padding:12px 16px;margin-bottom:14px;
+  font-size:.82rem;
+}
+.status-bar .stat{display:flex;gap:14px;flex-wrap:wrap}
+.status-bar .stat span{font-size:.78rem;color:#5a6f88}
+.status-bar .stat b{font-weight:700}
+.b-ok{color:#10b981}.b-fail{color:#ef4444}.b-wait{color:#f59e0b}.b-total{color:#2563eb}
+.b-cache{color:#8b5cf6}
+
+/* 列表 */
+.domains-card{background:#fff;border-radius:8px;padding:18px 18px 14px;border:1px solid #d4dbe5}
+.domains-title{font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:6px}
+.domains-tip{font-size:.74rem;color:#5a6f88;margin-bottom:10px}
+
+.empty-tip{text-align:center;padding:26px 10px;font-size:.78rem;color:#8fa3b8;line-height:1.8}
+
+.url-line{
+  display:flex;align-items:center;gap:8px;padding:8px 14px;background:#f4f8fc;
+  border:1px solid #e0e8f0;border-radius:50px;margin-top:8px;min-width:0;cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+.url-line:hover{background:#e8f1fb;border-color:#4a9eff}
+.url-line .dot{
+  width:8px;height:8px;border-radius:50%;background:#cbd5e1;flex-shrink:0;transition:background .2s;
+}
+.url-line.ok .dot{background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+.url-line.fail .dot{background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+.url-line.checking .dot{background:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+.url-text{
+  flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;overflow-wrap:break-word;
+  line-height:1.4;min-width:0;
+}
+.url-line .dns{
+  flex-shrink:0;font-size:.66rem;color:#8fa3b8;max-width:100px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums;
+}
+.url-line .lat{
+  flex-shrink:0;font-size:.7rem;color:#7a8fa3;font-variant-numeric:tabular-nums;min-width:52px;text-align:right;
+}
+.url-line.cached .lat{color:#8b5cf6}
+.url-line.fail .url-text{color:#94a3b8;text-decoration:line-through;text-decoration-color:#cbd5e1}
+.copy-btn{
+  flex-shrink:0;background:#4a9eff;color:#fff;border:none;border-radius:30px;padding:0 12px;
+  font-size:.68rem;font-weight:500;cursor:pointer;height:26px;display:inline-flex;align-items:center;
+  justify-content:center;white-space:nowrap;touch-action:manipulation;-webkit-user-select:none;user-select:none;z-index:1;
+}
+.copy-btn:active{background:#2a7ed9;transform:scale(.96)}
+.copy-btn.copied{background:#3b9b6c}
+
+/* ===== 检测记录弹窗 ===== */
+.modal-mask{
+  position:fixed;inset:0;background:rgba(10,26,43,.45);backdrop-filter:blur(2px);
+  display:none;align-items:center;justify-content:center;padding:18px 12px;z-index:99;
+}
+.modal-mask.show{display:flex}
+.modal{
+  background:#fff;border-radius:12px;width:100%;max-width:640px;max-height:84vh;
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 18px 50px rgba(10,26,43,.28);
+}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:14px 18px;border-bottom:1px solid #e4ebf3;
+}
+.modal-head .t{font-size:.9rem;font-weight:600;color:#0b1e33}
+.modal-head .t small{font-size:.7rem;font-weight:400;color:#8fa3b8;margin-left:6px}
+.modal-head .x{
+  border:none;background:#f4f8fc;color:#5a6f88;width:28px;height:28px;border-radius:50%;
+  font-size:.85rem;cursor:pointer;line-height:1;flex-shrink:0;
+}
+.modal-head .x:active{background:#e4ebf3}
+.modal-body{overflow-y:auto;padding:12px 14px;flex:1;-webkit-overflow-scrolling:touch}
+.modal-foot{
+  display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;
+  padding:12px 16px;border-top:1px solid #e4ebf3;background:#fafcfe;
+}
+
+.rec-empty{text-align:center;padding:38px 10px;font-size:.78rem;color:#8fa3b8;line-height:1.9}
+
+.rec-item{
+  border:1px solid #e4ebf3;border-radius:9px;padding:10px 12px;margin-bottom:10px;background:#f9fbfe;
+}
+.rec-item:last-child{margin-bottom:0}
+.rec-url{
+  font-size:.76rem;color:#2563eb;word-break:break-all;overflow-wrap:break-word;
+  line-height:1.5;margin-bottom:8px;
+}
+.rec-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.rec-tag{
+  font-size:.65rem;padding:2px 9px;border-radius:20px;background:#eef4fb;color:#5a6f88;
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.rec-tag.lat{background:#e7f7ef;color:#0f9d63;font-weight:600}
+.rec-tag.ip{background:#eef2ff;color:#4f46e5}
+.rec-tag.dns{background:#fdf3e7;color:#c2790b}
+.rec-tag.time{background:#f4f8fc;color:#8fa3b8}
+.rec-acts{display:flex;gap:6px;flex-wrap:wrap}
+.rec-acts button{
+  height:25px;padding:0 11px;border-radius:20px;font-size:.66rem;cursor:pointer;
+  border:1px solid #d4dbe5;background:#fff;color:#5a6f88;touch-action:manipulation;
+}
+.rec-acts button:active{transform:scale(.96)}
+.rec-acts button.c{background:#4a9eff;border-color:#4a9eff;color:#fff}
+.rec-acts button.d{color:#ef4444;border-color:#f3c8c8}
+
+.page-footer{text-align:center;padding:24px 0 10px;font-size:.7rem;color:#8fa3b8;line-height:1.8;margin-top:auto}
+
+@media (max-width:600px){
+  body{padding:58px 10px 6px}
+  .ctrl-card,.status-bar,.domains-card{padding:14px 12px 10px}
+  .status-bar{flex-direction:column;gap:8px;align-items:flex-start}
+  .add-textarea{min-height:140px}
+  .modal{max-height:88vh}
+}
+@media (max-width:480px){
+  .url-line .dns{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 左上角首页按钮 -->
+<a class="home-link" href="./index.html" title="返回首页">🏠 首页</a>
+
+<div class="container">
+
+  <div class="header-block">
+    <h1>🔍 线路批量检测</h1>
+    <div class="header-divider"></div>
+    <p class="subtitle">并发探测 + 自动测速，绿色=可用，红色=失败，点击整行直接跳转</p>
+  </div>
+
+  <!-- 控制区 -->
+  <div class="ctrl-card">
+    <div class="ctrl-row">
+      <span class="ctrl-label">并发数</span>
+      <input class="ctrl-input" id="concurrency" type="number" min="1" max="20" value="6" style="max-width:80px">
+      <span class="ctrl-label">超时(秒)</span>
+      <input class="ctrl-input" id="timeout" type="number" min="2" max="60" value="12" style="max-width:80px">
+    </div>
+    <div class="ctrl-row">
+      <button class="btn primary" id="btnStart">开始检测</button>
+      <button class="btn ghost" id="btnStop">停止</button>
+      <button class="btn success" id="btnCopyOK">复制可用</button>
+      <button class="btn violet" id="btnRecords">检测记录</button>
+      <button class="btn danger" id="btnClearCache">清除缓存</button>
+    </div>
+
+    <label class="chk-line">
+      <input type="checkbox" id="useCache" checked>
+      缓存直通：已确认联通的线路直接放行，不再重测
+    </label>
+
+    <div class="add-box">
+      <textarea class="add-textarea" id="addInput" rows="6"
+        placeholder="在此粘贴线路（一行一条，也支持逗号 / 空格 / 分号分隔）
+例如：
+https://example.com/app
+https://aaa.bbb.ccc/app
+
+支持 Ctrl + Enter 快速添加"></textarea>
+      <div class="add-actions">
+        <button class="btn" id="btnAdd">添加线路</button>
+        <button class="btn ghost" id="btnClear">清空列表</button>
+      </div>
+    </div>
+
+    <p class="hint">
+      已内置检测记录缓存：联通的线路会把延迟、解析 IP、DNS 耗时写入 <code>localStorage</code>，
+      <b>永久保存</b>并在下次打开页面时自动载入。点 <b>「检测记录」</b> 可查看 / 管理全部缓存线路。<br>
+      注意：<b>「清空列表」只清理当前界面显示，缓存记录会保留</b>；如需删除缓存请用 <b>「清除缓存」</b>。
+    </p>
+  </div>
+
+  <!-- 统计 -->
+  <div class="status-bar">
+    <div class="stat">
+      <span>总数 <b class="b-total" id="stTotal">0</b></span>
+      <span>可用 <b class="b-ok" id="stOk">0</b></span>
+      <span>失败 <b class="b-fail" id="stFail">0</b></span>
+      <span>等待 <b class="b-wait" id="stWait">0</b></span>
+      <span>缓存 <b class="b-cache" id="stCache">0</b></span>
+    </div>
+    <div class="stat">
+      <span id="stMsg">就绪</span>
+    </div>
+  </div>
+
+  <!-- 列表 -->
+  <div class="domains-card">
+    <div class="domains-title">🌐 线路列表</div>
+    <div class="domains-tip">点整行跳转，点右侧按钮复制单条地址；检测结果、DNS 与延迟实时刷新。</div>
+    <div id="list"></div>
+  </div>
+
+</div>
+
+<!-- ===== 检测记录弹窗 ===== -->
+<div class="modal-mask" id="recMask">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="t">📋 检测记录<small id="recCount"></small></span>
+      <button class="x" id="recClose" title="关闭">✕</button>
+    </div>
+    <div class="modal-body" id="recBody"></div>
+    <div class="modal-foot">
+      <button class="btn ghost" id="recCopyAll">复制全部记录</button>
+      <button class="btn danger" id="recClearAll">清空全部记录</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <p>线路由使用者自行填写，仅做连通性探测，不存储、不转发任何内容。<br>仅供测试学习使用。</p>
+</footer>
+
+<script>
+/* ============================================================
+   默认线路列表：已清空，只能通过上方输入框粘贴添加
+   ============================================================ */
+const DOMAINS = [];
+
+/* ============================================================
+   缓存（存储器）—— 永久保存，仅手动清除
+   ============================================================ */
+const CACHE_KEY = "line_checker_cache_v1";
+
+let aborting = false;
+let items = [];
+
+const listEl    = document.getElementById("list");
+const stTotal   = document.getElementById("stTotal");
+const stOk      = document.getElementById("stOk");
+const stFail    = document.getElementById("stFail");
+const stWait    = document.getElementById("stWait");
+const stCache   = document.getElementById("stCache");
+const stMsg     = document.getElementById("stMsg");
+const btnStart  = document.getElementById("btnStart");
+const btnRecords = document.getElementById("btnRecords");
+const btnClearCache = document.getElementById("btnClearCache");
+const addInput  = document.getElementById("addInput");
+
+const recMask   = document.getElementById("recMask");
+const recBody   = document.getElementById("recBody");
+const recCount  = document.getElementById("recCount");
+
+/* ---------- 缓存读写 ---------- */
+let cache = loadCache();
+
+function loadCache(){
+  try{
+    const raw = localStorage.getItem(CACHE_KEY);
+    if(!raw) return {};
+    const obj = JSON.parse(raw);
+    return (obj && typeof obj === "object" && !Array.isArray(obj)) ? obj : {};
+  }catch(_){ return {}; }
+}
+function saveCache(){
+  try{ localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); }catch(_){}
+}
+/* 取缓存：永久有效，不再判断时间 */
+function cacheGet(url){
+  return cache[url] || null;
+}
+function cacheSet(url, data){
+  cache[url] = Object.assign({ ts: Date.now() }, data);
+  saveCache();
+}
+function cacheDel(url){
+  if(cache[url]){ delete cache[url]; saveCache(); }
+}
+
+/* ---------- 工具 ---------- */
+function normalize(u){ return u.trim().replace(/\s+/g, ""); }
+function displayUrl(u){ return u.replace(/\/$/, "").replace(/\/app$/, "") || u; }
+function hostOf(u){ try{ return new URL(u).hostname; }catch(_){ return ""; } }
+
+function fmtTime(ts){
+  if(!ts) return "—";
+  const d = new Date(ts);
+  const p = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+/* ---------- 从缓存恢复列表 ---------- */
+function restoreFromCache(){
+  Object.keys(cache).forEach(url=>{
+    const c = cache[url] || {};
+    if(c.state !== "ok") return;
+    items.push({
+      url,
+      state : "ok",
+      lat   : (c.lat != null ? c.lat : null),
+      ip    : c.ip || null,
+      dnsMs : (c.dnsMs != null ? c.dnsMs : null),
+      cached: true
+    });
+  });
+}
+
+/* ---------- 渲染主列表 ---------- */
+function render(){
+  listEl.innerHTML = "";
+  let ok = 0, fail = 0, wait = 0, checking = 0, cached = 0;
+
+  if(!items.length){
+    const empty = document.createElement("div");
+    empty.className = "empty-tip";
+    empty.textContent = "暂无线路，请在上方输入框粘贴链接后点击「添加线路」";
+    listEl.appendChild(empty);
+  }
+
+  items.forEach((it, i)=>{
+    if(it.state === "ok") ok++;
+    else if(it.state === "fail") fail++;
+    else if(it.state === "checking") checking++;
+    else wait++;
+    if(it.cached) cached++;
+
+    const line = document.createElement("div");
+    line.className = "url-line";
+    if(it.state !== "wait") line.classList.add(it.state);
+    if(it.cached) line.classList.add("cached");
+    line.dataset.idx = i;
+
+    const dot = document.createElement("span");
+    dot.className = "dot";
+
+    const txt = document.createElement("span");
+    txt.className = "url-text";
+    txt.textContent = displayUrl(it.url);
+
+    const dns = document.createElement("span");
+    dns.className = "dns";
+    dns.textContent = it.ip ? String(it.ip).split(",")[0].trim() : "";
+    if(it.dnsMs != null) dns.title = "DNS 解析耗时 " + it.dnsMs + " ms";
+    else if(it.ip) dns.title = "解析 IP";
+
+    const lat = document.createElement("span");
+    lat.className = "lat";
+    lat.textContent = it.state === "ok"       ? (it.lat != null ? it.lat + " ms" : "可用")
+                    : it.state === "fail"     ? "失败"
+                    : it.state === "checking" ? "探测中…" : "—";
+    if(it.cached) lat.title = "缓存结果（未重新测速）";
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.dataset.url = it.url;
+    btn.textContent = "复制";
+
+    line.append(dot, txt, dns, lat, btn);
+    listEl.appendChild(line);
+  });
+
+  stTotal.textContent = items.length;
+  stOk.textContent    = ok;
+  stFail.textContent  = fail;
+  stWait.textContent  = wait + checking;
+
+  const cacheCount = Object.keys(cache).length;
+  stCache.textContent = cacheCount;
+  btnClearCache.textContent = cacheCount ? `清除缓存 (${cacheCount})` : "清除缓存";
+  btnRecords.textContent = cacheCount ? `检测记录 (${cacheCount})` : "检测记录";
+}
+
+function updateMsg(){
+  const done = items.filter(i => i.state === "ok" || i.state === "fail").length;
+  stMsg.textContent = `进度 ${done}/${items.length}`;
+}
+
+/* ---------- 渲染检测记录弹窗 ---------- */
+function renderRecords(){
+  const keys = Object.keys(cache);
+  recCount.textContent = keys.length ? `共 ${keys.length} 条` : "";
+  recBody.innerHTML = "";
+
+  if(!keys.length){
+    const e = document.createElement("div");
+    e.className = "rec-empty";
+    e.textContent = "暂无检测记录\n检测出可用线路后会自动写入这里";
+    e.style.whiteSpace = "pre-line";
+    recBody.appendChild(e);
+    return;
+  }
+
+  // 按缓存时间倒序（新的在上）
+  keys.sort((a,b) => (cache[b].ts || 0) - (cache[a].ts || 0));
+
+  keys.forEach(url=>{
+    const c = cache[url] || {};
+    const box = document.createElement("div");
+    box.className = "rec-item";
+
+    const u = document.createElement("div");
+    u.className = "rec-url";
+    u.textContent = url;
+
+    const meta = document.createElement("div");
+    meta.className = "rec-meta";
+
+    if(c.lat != null){
+      const t = document.createElement("span");
+      t.className = "rec-tag lat";
+      t.textContent = c.lat + " ms";
+      meta.appendChild(t);
+    }else{
+      const t = document.createElement("span");
+      t.className = "rec-tag lat";
+      t.textContent = "已联通";
+      meta.appendChild(t);
+    }
+    if(c.ip){
+      const t = document.createElement("span");
+      t.className = "rec-tag ip";
+      t.textContent = "IP " + String(c.ip).split(",")[0].trim();
+      t.title = "解析 IP：" + c.ip;
+      meta.appendChild(t);
+    }
+    if(c.dnsMs != null){
+      const t = document.createElement("span");
+      t.className = "rec-tag dns";
+      t.textContent = "DNS " + c.dnsMs + " ms" + (c.dnsSrv ? "（" + c.dnsSrv + "）" : "");
+      meta.appendChild(t);
+    }
+    const tTime = document.createElement("span");
+    tTime.className = "rec-tag time";
+    tTime.textContent = fmtTime(c.ts);
+    meta.appendChild(tTime);
+
+    const acts = document.createElement("div");
+    acts.className = "rec-acts";
+    acts.innerHTML =
+      `<button class="c" data-act="copy">复制</button>
+       <button data-act="open">打开</button>
+       <button data-act="del" class="d">删除</button>`;
+
+    box.append(u, meta, acts);
+    box.dataset.url = url;
+    recBody.appendChild(box);
+  });
+}
+
+/* ---------- 弹窗开关 ---------- */
+function openRecords(){
+  renderRecords();
+  recMask.classList.add("show");
+}
+function closeRecords(){
+  recMask.classList.remove("show");
+}
+
+btnRecords.addEventListener("click", openRecords);
+document.getElementById("recClose").addEventListener("click", closeRecords);
+recMask.addEventListener("click", e=>{ if(e.target === recMask) closeRecords(); });
+document.addEventListener("keydown", e=>{ if(e.key === "Escape" && recMask.classList.contains("show")) closeRecords(); });
+
+/* 记录内操作（事件委托） */
+recBody.addEventListener("click", e=>{
+  const btn = e.target.closest("button[data-act]");
+  if(!btn) return;
+  const item = btn.closest(".rec-item");
+  if(!item) return;
+  const url = item.dataset.url;
+  const act = btn.dataset.act;
+
+  if(act === "copy"){
+    copyText(url, ()=>{
+      const o = btn.textContent;
+      btn.textContent = "✅ 已复制";
+      setTimeout(()=>{ btn.textContent = o; }, 1400);
+    });
+  }else if(act === "open"){
+    window.open(url, "_blank");
+  }else if(act === "del"){
+    cacheDel(url);
+    items.forEach(it=>{
+      if(it.url === url && it.cached){ it.state = "wait"; it.lat = null; it.cached = false; }
+    });
+    render();
+    renderRecords();
+    stMsg.textContent = "已删除该条记录";
+  }
+});
+
+/* 复制全部记录 */
+document.getElementById("recCopyAll").addEventListener("click", ()=>{
+  const keys = Object.keys(cache);
+  if(!keys.length){ stMsg.textContent = "暂无检测记录"; return; }
+  keys.sort((a,b) => (cache[b].ts || 0) - (cache[a].ts || 0));
+  copyText(keys.join("\n"), ()=> stMsg.textContent = `已复制 ${keys.length} 条记录`);
+});
+
+/* 清空全部记录 */
+document.getElementById("recClearAll").addEventListener("click", ()=>{
+  const n = Object.keys(cache).length;
+  if(!n){ stMsg.textContent = "缓存本来就是空的"; return; }
+  if(confirm(`确定清空全部检测记录（共 ${n} 条）？\n清除后所有线路需要重新探测。`)){
+    cache = {};
+    saveCache();
+    items.forEach(it=>{
+      if(it.cached){ it.state = "wait"; it.lat = null; it.cached = false; }
+    });
+    render();
+    renderRecords();
+    stMsg.textContent = "检测记录已清空";
+  }
+});
+
+/* ---------- 连通性探测 ---------- */
+function probe(url){
+  const controller = new AbortController();
+  const t0 = performance.now();
+  const to = setTimeout(
+    ()=>controller.abort(),
+    (parseInt(document.getElementById("timeout").value) || 12) * 1000
+  );
+  return new Promise(resolve=>{
+    fetch(url, { method:"GET", mode:"no-cors", cache:"no-store", signal:controller.signal })
+      .then(()=>{ clearTimeout(to); resolve({ ok:true, lat: Math.round(performance.now() - t0) }); })
+      .catch(()=>{ clearTimeout(to); resolve({ ok:false }); });
+  });
+}
+
+/* ---------- DNS 查询（DoH，先 Cloudflare 后 Google） ---------- */
+async function lookupDNS(host){
+  if(!host) return null;
+  const providers = [
+    { url: "https://cloudflare-dns.com/dns-query?name=" + encodeURIComponent(host) + "&type=A", server: "Cloudflare" },
+    { url: "https://dns.google/resolve?name="        + encodeURIComponent(host) + "&type=A", server: "Google" }
+  ];
+  for(const p of providers){
+    let ac = null, to = null;
+    try{
+      ac = new AbortController();
+      to = setTimeout(()=>ac.abort(), 3500);
+      const t0  = performance.now();
+      const res = await fetch(p.url, {
+        headers: { Accept: "application/dns-json" },
+        cache: "no-store",
+        signal: ac.signal
+      });
+      clearTimeout(to);
+      if(!res.ok) continue;
+      const j = await res.json();
+      const ips = (j.Answer || []).filter(a => a.type === 1).map(a => a.data);
+      if(ips.length){
+        return {
+          ip: ips.join(", "),
+          dnsMs: Math.round(performance.now() - t0),
+          dnsServer: p.server
+        };
+      }
+    }catch(_){ if(to) clearTimeout(to); }
+  }
+  return null;
+}
+
+/* ---------- 开始检测 ---------- */
+async function startCheck(){
+  if(!items.length){ stMsg.textContent = "请先添加线路"; return; }
+
+  aborting = false;
+  btnStart.disabled = true;
+
+  const conc = Math.max(1, Math.min(20, parseInt(document.getElementById("concurrency").value) || 6));
+  const useCacheFlag = document.getElementById("useCache").checked;
+
+  items.forEach(it=>{ it.state = "wait"; it.lat = null; it.cached = false; });
+  render();
+
+  let idx = 0;
+  const workers = Array.from({ length: conc }, async ()=>{
+    while(!aborting){
+      const i = idx++;
+      if(i >= items.length) break;
+
+      const it = items[i];
+
+      /* —— 缓存直通：已联通即放行（永久有效） —— */
+      if(useCacheFlag){
+        const c = cacheGet(it.url);
+        if(c && c.state === "ok"){
+          it.state  = "ok";
+          it.lat    = (c.lat != null ? c.lat : null);
+          it.ip     = c.ip || it.ip;
+          it.dnsMs  = (c.dnsMs != null ? c.dnsMs : it.dnsMs);
+          it.cached = true;
+          render(); updateMsg();
+          continue;
+        }
+      }
+
+      /* —— 实际探测 —— */
+      it.state  = "checking";
+      it.cached = false;
+      render();
+
+      const r = await probe(it.url);
+      if(aborting) break;
+
+      if(r.ok){
+        let dns = null;
+        try{ dns = await lookupDNS(hostOf(it.url)); }catch(_){}
+        if(aborting) break;
+
+        it.state = "ok";
+        it.lat   = r.lat;
+        if(dns){ it.ip = dns.ip; it.dnsMs = dns.dnsMs; }
+
+        /* 联通的线路写入缓存：延迟 + IP + DNS 信息（永久保存） */
+        cacheSet(it.url, {
+          state   : "ok",
+          lat     : r.lat,
+          host    : hostOf(it.url),
+          ip      : it.ip || null,
+          dnsMs   : it.dnsMs != null ? it.dnsMs : null,
+          dnsSrv  : dns ? dns.dnsServer : null
+        });
+      }else{
+        it.state = "fail";
+        it.lat   = null;
+        cacheDel(it.url);   // 不再联通就清掉旧的缓存记录
+      }
+
+      render(); updateMsg();
+    }
+  });
+
+  await Promise.all(workers);
+  btnStart.disabled = false;
+
+  if(aborting){
+    stMsg.textContent = "已停止";
+  }else{
+    const ok  = items.filter(i => i.state === "ok").length;
+    const cch = items.filter(i => i.cached).length;
+    stMsg.textContent = ok
+      ? `完成，可用 ${ok} 条${cch ? "（缓存直通 " + cch + " 条）" : ""}`
+      : "全部不可用";
+  }
+  render();
+
+  // 若记录弹窗正开着，同步刷新
+  if(recMask.classList.contains("show")) renderRecords();
+}
+
+/* ---------- 按钮事件 ---------- */
+btnStart.addEventListener("click", startCheck);
+document.getElementById("btnStop").addEventListener("click", ()=>{ aborting = true; });
+
+/* 添加线路 */
+document.getElementById("btnAdd").addEventListener("click", addFromInput);
+addInput.addEventListener("keydown", e=>{
+  if(e.key === "Enter" && (e.ctrlKey || e.metaKey)){ e.preventDefault(); addFromInput(); }
+});
+
+function addFromInput(){
+  const raw = addInput.value;
+  let urls = raw.split(/[\n\r,，;；\s]+/).map(normalize).filter(Boolean);
+  if(!urls.length){ stMsg.textContent = "没有识别到有效链接"; return; }
+
+  let added = 0, fromCache = 0;
+  urls.forEach(u=>{
+    if(!/^https?:\/\//i.test(u)) u = "https://" + u;   // 缺协议自动补全
+    if(items.some(it => it.url === u)) return;
+
+    const c = cacheGet(u);
+    if(c && c.state === "ok"){
+      items.push({ url:u, state:"ok", lat:(c.lat != null ? c.lat : null),
+                   ip:c.ip || null, dnsMs:(c.dnsMs != null ? c.dnsMs : null), cached:true });
+      fromCache++;
+    }else{
+      items.push({ url:u, state:"wait", lat:null, ip:null, dnsMs:null, cached:false });
+    }
+    added++;
+  });
+
+  addInput.value = "";
+  render();
+  if(!added){
+    stMsg.textContent = "线路已存在，未重复添加";
+  }else if(fromCache){
+    stMsg.textContent = `已添加 ${added} 条线路（其中 ${fromCache} 条命中缓存）`;
+  }else{
+    stMsg.textContent = `已添加 ${added} 条线路`;
+  }
+}
+
+/* 清空列表 —— 仅清理界面显示，缓存记录保留 */
+document.getElementById("btnClear").addEventListener("click", ()=>{
+  if(!items.length) return;
+  if(confirm("清空列表？\n仅清空当前界面显示，检测记录（缓存）会保留。")){
+    items = [];
+    render();
+    stMsg.textContent = "列表已清空，缓存记录仍保留";
+  }
+});
+
+/* 清除缓存 —— 顶部快捷入口（会同时重置列表里依赖缓存的线路） */
+btnClearCache.addEventListener("click", ()=>{
+  const cacheCount = Object.keys(cache).length;
+  if(!cacheCount){ stMsg.textContent = "缓存本来就是空的"; return; }
+  if(confirm(`确定清除全部检测缓存（共 ${cacheCount} 条）？\n清除后所有线路需要重新探测。`)){
+    cache = {};
+    saveCache();
+    items.forEach(it=>{
+      if(it.cached){ it.state = "wait"; it.lat = null; it.cached = false; }
+    });
+    render();
+    if(recMask.classList.contains("show")) renderRecords();
+    stMsg.textContent = "缓存已清除，下次检测将重新探测";
+  }
+});
+
+/* 复制可用 */
+document.getElementById("btnCopyOK").addEventListener("click", ()=>{
+  const ok = items
+    .filter(i => i.state === "ok")
+    .sort((a,b) => (a.lat != null ? a.lat : 99999) - (b.lat != null ? b.lat : 99999))
+    .map(i => i.url);
+  if(!ok.length){ stMsg.textContent = "暂无可用线路"; return; }
+  copyText(ok.join("\n"), ()=> stMsg.textContent = `已复制 ${ok.length} 条可用线路`);
+});
+
+/* ---------- 整行跳转 / 复制 ---------- */
+document.addEventListener("click", e=>{
+  const copy = e.target.closest(".copy-btn");
+  if(copy){
+    e.preventDefault(); e.stopPropagation();
+    const url = copy.dataset.url;
+    copyText(url, ()=>{
+      const o = copy.textContent;
+      copy.textContent = "✅ 已复制";
+      copy.classList.add("copied");
+      setTimeout(()=>{ copy.textContent = o; copy.classList.remove("copied"); }, 1500);
+    });
+    return;
+  }
+  const line = e.target.closest(".url-line");
+  if(line && line.dataset.idx !== undefined){
+    const it = items[line.dataset.idx];
+    if(it) window.open(it.url, "_blank");
+  }
+});
+
+function copyText(text, done){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fb());
+  } else fb();
+  function fb(){
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try{ document.execCommand("copy"); }catch(_){}
+    document.body.removeChild(ta);
+    done();
+  }
+}
+
+/* ---------- 初始化 ---------- */
+items = DOMAINS.map(u => ({ url:u, state:"wait", lat:null, ip:null, dnsMs:null, cached:false }));
+restoreFromCache();   // 从缓存载入历史线路
+render();
+</script>
+</body>
+</html>
