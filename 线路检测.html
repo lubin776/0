@@ -197,8 +197,8 @@ h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
 </head>
 <body>
 
-<!-- 左上角首页按钮 -->
-<a class="home-link" href="./index.html" title="返回首页">接口大全</a>
+<!-- 左上角首页按钮：指向当前域名根路径（去掉所有路径），由脚本动态设置 -->
+<a class="home-link" id="homeLink" href="/" title="返回站首页">接口大全</a>
 
 <div class="container">
 
@@ -293,6 +293,23 @@ https://aaa.bbb.ccc/app
 </footer>
 
 <script>
+/* ============================================================
+   首页按钮：动态指向当前域名的根路径（去掉所有目录 / 文件名）
+   例如页面在 https://xxx.com/a/b/check.html → 点按钮跳 https://xxx.com/
+   本地 file:// 打开时无域名，退回同目录 index.html
+   ============================================================ */
+(function(){
+  const homeLink = document.getElementById("homeLink");
+  const isFile = location.protocol === "file:";
+  if(isFile){
+    homeLink.href = "./index.html";
+    homeLink.title = "返回 index.html";
+  }else{
+    homeLink.href = location.origin + "/";
+    homeLink.title = location.origin + "/";
+  }
+})();
+
 /* ============================================================
    默认线路列表：已清空，只能通过上方输入框粘贴添加
    ============================================================ */
