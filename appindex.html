@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>海量接口搬运备份</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:#eef2f7;color:#1a2b3d;padding:20px 14px 10px;min-height:100vh;
+  display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent;
+}
+.container{max-width:820px;margin:auto;width:100%;flex:1;display:flex;flex-direction:column}
+
+.header-block{text-align:center;margin-bottom:18px}
+h1{font-size:1.35rem;font-weight:700;color:#0a1a2b}
+.version-tag{
+  display:inline-block;font-size:.66rem;font-weight:600;color:#4a9eff;
+  background:#e8f1fb;border:1px solid #c9e0f9;border-radius:20px;
+  padding:1px 9px;vertical-align:middle;margin-left:6px;letter-spacing:.3px;
+}
+.header-divider{height:1px;background:#e4ebf3;margin:12px 0}
+.subtitle{font-size:.78rem;color:#7a8fa3;line-height:1.6}
+.qq-link{color:#4a9eff;text-decoration:none;font-weight:600}
+.qq-link:active{opacity:.7}
+
+.status-card{
+  background:#fff;border-radius:8px;padding:16px 18px;
+  border:1px solid #d4dbe5;margin-bottom:16px;text-align:center;
+}
+.status-text{font-size:.88rem;color:#2563eb;line-height:1.7}
+.countdown{color:#10b981;font-weight:700;font-size:1.05rem}
+
+.action-buttons{display:flex;justify-content:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.btn-stay,.btn-goto{
+  border:none;border-radius:40px;padding:8px 18px;font-size:.8rem;font-weight:500;
+  cursor:pointer;transition:background .15s,transform .1s;touch-action:manipulation;
+  -webkit-user-select:none;user-select:none;flex:0 1 auto;min-width:100px;
+}
+.btn-stay{background:#eef2f7;color:#3a5a7a;border:1px solid #cbd5e1}
+.btn-stay:active{background:#d9e2ec;transform:scale(.96)}
+.btn-goto{background:#4a9eff;color:#fff;box-shadow:0 2px 6px rgba(74,158,255,.3)}
+.btn-goto:active{background:#2a7ed9;transform:scale(.96)}
+
+.domains-card{background:#fff;border-radius:8px;padding:18px 18px 14px;border:1px solid #d4dbe5}
+.domains-title{font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:6px}
+.domains-tip{font-size:.74rem;color:#5a6f88;margin-bottom:10px}
+
+.merged-card{
+  background:#fff;border-radius:8px;padding:16px 18px 14px;
+  border:1px solid #d4dbe5;margin-bottom:16px;
+}
+
+.batch-jump-bar{display:flex;justify-content:center;margin-bottom:14px}
+.btn-enter-site{
+  height:44px;padding:0 36px;border:none;border-radius:44px;font-size:.92rem;font-weight:600;
+  cursor:pointer;color:#fff;background:linear-gradient(135deg,#8b5cf6,#6366f1);
+  box-shadow:0 4px 14px rgba(99,102,241,.4);
+  transition:background .15s,transform .1s,box-shadow .15s;
+  touch-action:manipulation;-webkit-user-select:none;user-select:none;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-enter-site:active{transform:scale(.96);box-shadow:0 2px 8px rgba(99,102,241,.3)}
+.btn-enter-site:disabled{background:#cbd5e1;box-shadow:none;cursor:not-allowed;transform:none}
+
+.btn{
+  height:32px;padding:0 16px;border:none;border-radius:6px;font-size:.8rem;font-weight:500;
+  cursor:pointer;color:#fff;background:#4a9eff;white-space:nowrap;touch-action:manipulation;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:#2563eb}
+.btn.success{background:#10b981}
+.btn.ghost{background:#fff;color:#5a6f88;border:1px solid #d4dbe5}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.ctrl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:14px}
+
+.status-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:#f7fafd;border:1px solid #e0e8f0;border-radius:8px;
+  padding:10px 14px;margin:14px 0;font-size:.82rem;
+}
+.status-bar .stat{display:flex;gap:14px;flex-wrap:wrap}
+.status-bar .stat span{font-size:.78rem;color:#5a6f88}
+.status-bar .stat b{font-weight:700}
+.b-ok{color:#10b981}.b-fail{color:#ef4444}.b-wait{color:#f59e0b}.b-total{color:#2563eb}
+
+.list-title{font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:6px}
+.list-tip{font-size:.74rem;color:#5a6f88;margin-bottom:10px}
+
+.url-line-simple{
+  display:flex;align-items:center;gap:8px;padding:6px 14px;background:#f4f8fc;
+  border:1px solid #e0e8f0;border-radius:50px;margin-top:8px;min-width:0;cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+.url-line-simple:hover{background:#e8f1fb;border-color:#4a9eff}
+.url-line-simple:active{background:#dce9f8}
+.url-line-simple .url-text{
+  flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;
+  overflow-wrap:break-word;line-height:1.4;min-width:0;
+}
+.copy-btn{
+  flex-shrink:0;background:#4a9eff;color:#fff;border:none;border-radius:30px;padding:0 12px;
+  font-size:.68rem;font-weight:500;cursor:pointer;height:26px;
+  display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;
+  touch-action:manipulation;-webkit-user-select:none;user-select:none;z-index:1;
+}
+.copy-btn:active{background:#2a7ed9;transform:scale(.96)}
+.copy-btn.copied{background:#3b9b6c}
+
+.url-line{
+  display:flex;align-items:center;gap:8px;padding:8px 14px;background:#f4f8fc;
+  border:1px solid #e0e8f0;border-radius:50px;margin-top:8px;min-width:0;cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+.url-line:hover{background:#e8f1fb;border-color:#4a9eff}
+.url-line .dot{
+  width:8px;height:8px;border-radius:50%;background:#cbd5e1;flex-shrink:0;transition:background .2s;
+}
+.url-line.ok .dot{background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+.url-line.fail .dot{background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+.url-line.checking .dot{background:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+.url-line .url-text{
+  flex:1;font-size:.75rem;color:#2563eb;word-break:break-all;
+  overflow-wrap:break-word;line-height:1.4;min-width:0;
+}
+.url-line .lat{
+  flex-shrink:0;font-size:.7rem;color:#7a8fa3;
+  font-variant-numeric:tabular-nums;min-width:52px;text-align:right;
+}
+.url-line.fail .url-text{color:#94a3b8;text-decoration:line-through;text-decoration-color:#cbd5e1}
+
+.contact-section{
+  text-align:left;padding:10px 4px 4px;max-width:820px;margin:0 auto;width:100%;
+}
+.contact-section p{margin-top:8px;font-size:.76rem;color:#5a6f88;line-height:1.6}
+.contact-section a{color:#4a9eff;text-decoration:none;font-weight:600;word-break:break-all}
+.contact-section a:active{opacity:.7}
+
+.page-footer{
+  text-align:left;padding:8px 4px 10px;font-size:.7rem;color:#8fa3b8;line-height:1.8;
+  margin-top:auto;max-width:820px;margin-left:auto;margin-right:auto;width:100%;
+}
+.page-footer p{word-break:break-word;overflow-wrap:break-word}
+
+.mode-jump{display:block}
+.mode-batch{display:none}
+body.batch-mode .mode-jump{display:none}
+body.batch-mode .mode-batch{display:block}
+
+@media (max-width:600px){
+  body{padding:14px 10px 6px}
+  .merged-card,.status-card,.domains-card{padding:14px 12px 10px}
+  .status-bar{flex-direction:column;gap:8px;align-items:flex-start}
+  .btn-stay,.btn-goto{padding:7px 14px;font-size:.75rem;min-width:80px}
+  .btn-enter-site{height:40px;padding:0 28px;font-size:.86rem}
+  .contact-section{padding:8px 4px 2px}
+  .page-footer{padding:6px 4px 8px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header-block">
+    <h1>海量接口搬运备份<span class="version-tag">v1.0.4</span></h1>
+    <div class="header-divider"></div>
+    <p class="subtitle">
+      备用数据源，防屏不迷路<br>
+      <a class="qq-link" href="https://qm.qq.com/q/gmRKKPT3x0" target="_blank" rel="noopener noreferrer">猛戳这里加入QQ群: <span style="color:#00C853;">点击</span></a>
+    </p>
+  </div>
+
+  <div class="mode-jump" id="modeJump">
+    <div class="status-card">
+      <div class="status-text" id="status">⏳ 正在检测可用线路...</div>
+      <div class="action-buttons" id="actionButtons" style="display:none;">
+        <button class="btn-stay" id="stayBtn">🧷 留在本页</button>
+        <button class="btn-goto" id="gotoBtn">🚀 立即跳转</button>
+      </div>
+    </div>
+
+    <div class="domains-card">
+      <div class="domains-title">🌐 备份线路域名</div>
+      <div class="domains-tip">以下域名互为备份，任一个可用（点击整行跳转）：</div>
+      <div id="simpleList"></div>
+    </div>
+  </div>
+
+  <div class="mode-batch" id="modeBatch">
+    <div class="merged-card">
+      <div class="batch-jump-bar">
+        <button class="btn-enter-site" id="btnEnterSite">🌐 进入网站</button>
+      </div>
+
+      <div class="ctrl-row">
+        <button class="btn primary" id="btnStart">重新检测</button>
+        <button class="btn success" id="btnCopyOK">复制可用</button>
+      </div>
+
+      <div class="status-bar">
+        <div class="stat">
+          <span>总数 <b class="b-total" id="stTotal">0</b></span>
+          <span>可用 <b class="b-ok" id="stOk">0</b></span>
+          <span>失败 <b class="b-fail" id="stFail">0</b></span>
+          <span>等待 <b class="b-wait" id="stWait">0</b></span>
+        </div>
+        <div class="stat">
+          <span id="stMsg">就绪</span>
+        </div>
+      </div>
+
+      <div class="list-title">🌐 线路列表</div>
+      <div class="list-tip">点整行跳转，点右侧按钮复制单条地址；检测结果与延迟实时刷新。</div>
+      <div id="list"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="contact-section">
+  <p>加入Q群请点击：
+    <a id="about-qq" href="https://qm.qq.com/q/gmRKKPT3x0" target="_blank" rel="noopener noreferrer">1067685939</a>
+  </p>
+  <p>加入tg群组请点击：
+    <a id="about-tg" href="https://t.me/tg6603" target="_blank" rel="noopener noreferrer">https://t.me/tg6603</a>
+  </p>
+  <p>项目地址：
+    <a href="https://github.com/lubin776/tvbox-api-backup" target="_blank" rel="noopener noreferrer">https://github.com/lubin776/tvbox-api-backup</a>
+  </p>
+</div>
+
+<footer class="page-footer">
+  <p>
+    本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。
+    仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。
+    如涉及侵权，请联系删除。
+  </p>
+</footer>
+
+<script>
+const CONFIG = {
+  countdownUrls: [
+    "https://0.wudaozhe.net/app",
+    "https://0.12yue.de5.net/app",
+    "https://0.cdz.qzz.io/app",
+    "https://0.wdzb.eu.cc/app",
+    "https://tvbox.moliys.icu",
+    "https://ym.120733.xyz",
+    "https://liujin86.ccwu.cc"
+  ],
+  batchUrls: [
+    "https://0.wudaozhe.net/app",
+    "https://0.12yue.de5.net/app",
+    "https://0.cdz.qzz.io/app",
+    "https://0.wdzb.eu.cc/app",
+    "https://tvbox.moliys.icu",
+    "https://ym.120733.xyz",
+    "https://liujin86.ccwu.cc"
+  ]
+};
+
+const CONCURRENCY = 6;
+const TIMEOUT_SEC = 12;
+
+function noCacheUrl(url) {
+  const sep = url.includes("?") ? "&" : "?";
+  return url + sep + "_t=" + Date.now();
+}
+
+(function clearAllCaches() {
+  if (window.caches && caches.keys) {
+    caches.keys().then(function(keys) {
+      keys.forEach(function(k) { caches.delete(k); });
+    }).catch(function(){});
+  }
+  if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+    navigator.serviceWorker.getRegistrations().then(function(regs) {
+      regs.forEach(function(r) { r.unregister(); });
+    }).catch(function(){});
+  }
+})();
+
+let mode = 'jump';
+let items = CONFIG.batchUrls.map(function(u) { return { url: u, state: "wait", lat: null }; });
+let jumpTargetUrl = null;
+let aborting = false;
+
+const bodyEl = document.body;
+
+const statusEl = document.getElementById('status');
+const actionButtons = document.getElementById('actionButtons');
+const stayBtn = document.getElementById('stayBtn');
+const gotoBtn = document.getElementById('gotoBtn');
+const simpleListEl = document.getElementById('simpleList');
+
+const listEl = document.getElementById("list");
+const stTotal = document.getElementById("stTotal");
+const stOk = document.getElementById("stOk");
+const stFail = document.getElementById("stFail");
+const stWait = document.getElementById("stWait");
+const stMsg = document.getElementById("stMsg");
+const btnStart = document.getElementById("btnStart");
+const btnEnterSite = document.getElementById("btnEnterSite");
+
+function displayUrl(u) { return u.replace(/\/$/, "").replace(/\/app$/, "") || u; }
+
+function resetItemsToOriginalOrder() {
+  items = CONFIG.batchUrls.map(function(u) { return { url: u, state: "wait", lat: null }; });
+}
+
+function switchToBatchMode() {
+  mode = 'batch';
+  bodyEl.classList.add('batch-mode');
+
+  resetItemsToOriginalOrder();
+
+  renderBatchList();
+  updateBatchStats();
+  updateEnterButton();
+
+  startBatchCheck();
+}
+
+function switchToJumpMode() {
+  mode = 'jump';
+  bodyEl.classList.remove('batch-mode');
+
+  resetItemsToOriginalOrder();
+  jumpTargetUrl = null;
+
+  actionButtons.style.display = 'none';
+  statusEl.textContent = '⏳ 正在检测可用线路...';
+
+  checkFirstAvailable();
+}
+
+function updateEnterButton() {
+  const okItems = items.filter(function(i) { return i.state === "ok"; });
+  if (okItems.length > 0) {
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = '🌐 进入网站 (' + okItems.length + ' 条可用)';
+  } else {
+    btnEnterSite.disabled = false;
+    btnEnterSite.textContent = '🌐 进入网站';
+  }
+}
+
+function renderSimpleList() {
+  simpleListEl.innerHTML = '';
+  const seen = new Set();
+  CONFIG.batchUrls.forEach(function(u) {
+    const d = displayUrl(u);
+    if (!seen.has(d)) {
+      seen.add(d);
+      const line = document.createElement('div');
+      line.className = 'url-line-simple';
+      line.dataset.url = d;
+      line.innerHTML =
+        '<span class="url-text">' + d + '</span>' +
+        '<button class="copy-btn" data-url="' + d + '">复制</button>';
+      simpleListEl.appendChild(line);
+    }
+  });
+}
+
+async function checkFirstAvailable() {
+  const urls = CONFIG.countdownUrls;
+  for (let i = 0; i < urls.length; i++) {
+    const url = urls[i];
+    statusEl.textContent = '⏳ 正在检测第 ' + (i + 1) + ' 个线路：' + url;
+    const ok = await probeUrl(url, TIMEOUT_SEC);
+    if (ok) {
+      jumpTargetUrl = url;
+      startJumpCountdown(url, 5);
+      return;
+    }
+  }
+  statusEl.innerHTML = '❌ 所有线路均不可用，请稍后再试';
+  actionButtons.style.display = 'none';
+}
+
+function probeUrl(url, timeoutSec) {
+  return new Promise(function(resolve) {
+    const controller = new AbortController();
+    const timer = setTimeout(function() { controller.abort(); }, timeoutSec * 1000);
+    fetch(noCacheUrl(url), {
+      method: 'GET',
+      mode: 'no-cors',
+      cache: 'no-store',
+      signal: controller.signal,
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then(function() { clearTimeout(timer); resolve(true); })
+      .catch(function() { clearTimeout(timer); resolve(false); });
+  });
+}
+
+let jumpTimer = null;
+function startJumpCountdown(url, seconds) {
+  if (jumpTimer) clearInterval(jumpTimer);
+  let remain = seconds;
+  actionButtons.style.display = 'flex';
+  stayBtn.style.display = 'inline-flex';
+  gotoBtn.style.display = 'inline-flex';
+
+  function update() {
+    statusEl.innerHTML = '✅ 线路可用，<span class="countdown">' + remain + '</span> 秒后跳转<br>' +
+      '<span style="font-size:.75rem;color:#5a6f88">' + url + '</span>';
+  }
+  update();
+
+  jumpTimer = setInterval(function() {
+    remain--;
+    if (remain > 0) {
+      update();
+    } else {
+      clearInterval(jumpTimer);
+      jumpTimer = null;
+      window.location.href = url;
+    }
+  }, 1000);
+
+  stayBtn.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (jumpTimer) { clearInterval(jumpTimer); jumpTimer = null; }
+    switchToBatchMode();
+  };
+
+  gotoBtn.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (jumpTimer) { clearInterval(jumpTimer); jumpTimer = null; }
+    window.location.href = url;
+  };
+}
+
+function renderBatchList() {
+  listEl.innerHTML = "";
+  items.forEach(function(it, i) {
+    const line = document.createElement("div");
+    line.className = "url-line" + (it.state !== "wait" ? " " + it.state : "");
+    line.dataset.idx = i;
+    const latTxt = it.state === "ok" ? (it.lat + " ms")
+                 : it.state === "fail" ? "失败"
+                 : it.state === "checking" ? "探测中…" : "—";
+    line.innerHTML =
+      '<span class="dot"></span>' +
+      '<span class="url-text">' + displayUrl(it.url) + '</span>' +
+      '<span class="lat">' + latTxt + '</span>' +
+      '<button class="copy-btn" data-url="' + it.url + '">复制</button>';
+    listEl.appendChild(line);
+  });
+  updateBatchStats();
+  updateEnterButton();
+}
+
+function updateBatchStats() {
+  let ok = 0, fail = 0, wait = 0, checking = 0;
+  items.forEach(function(it) {
+    if (it.state === "ok") ok++;
+    else if (it.state === "fail") fail++;
+    else if (it.state === "checking") checking++;
+    else wait++;
+  });
+  stTotal.textContent = items.length;
+  stOk.textContent = ok;
+  stFail.textContent = fail;
+  stWait.textContent = wait + checking;
+}
+
+function setItemState(i, state, lat) {
+  items[i].state = state;
+  if (lat !== undefined) items[i].lat = lat;
+  renderBatchList();
+}
+
+async function startBatchCheck() {
+  aborting = false;
+  btnStart.disabled = true;
+
+  resetItemsToOriginalOrder();
+  renderBatchList();
+
+  let idx = 0;
+  const workers = Array.from({ length: CONCURRENCY }, async function() {
+    while (!aborting) {
+      const i = idx++;
+      if (i >= items.length) break;
+      setItemState(i, "checking");
+      const r = await probeWithLatency(items[i].url);
+      if (aborting) break;
+      setItemState(i, r.ok ? "ok" : "fail", r.lat);
+      updateBatchMsg();
+    }
+  });
+  await Promise.all(workers);
+  btnStart.disabled = false;
+  if (aborting) {
+    stMsg.textContent = "已停止";
+  } else {
+    const ok = items.filter(function(i) { return i.state === "ok"; }).length;
+    stMsg.textContent = ok ? '完成，可用 ' + ok + ' 条' : "全部不可用";
+  }
+  updateEnterButton();
+}
+
+function probeWithLatency(url) {
+  const controller = new AbortController();
+  const t0 = performance.now();
+  const to = setTimeout(function() { controller.abort(); }, TIMEOUT_SEC * 1000);
+  return new Promise(function(resolve) {
+    fetch(noCacheUrl(url), {
+      method: "GET",
+      mode: "no-cors",
+      cache: "no-store",
+      signal: controller.signal,
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache'
+      }
+    })
+      .then(function() {
+        clearTimeout(to);
+        resolve({ ok: true, lat: Math.round(performance.now() - t0) });
+      })
+      .catch(function() {
+        clearTimeout(to);
+        resolve({ ok: false });
+      });
+  });
+}
+
+function updateBatchMsg() {
+  const done = items.filter(function(i) { return i.state === "ok" || i.state === "fail"; }).length;
+  stMsg.textContent = '进度 ' + done + '/' + items.length;
+}
+
+document.getElementById("btnStart").addEventListener("click", startBatchCheck);
+
+document.getElementById("btnCopyOK").addEventListener("click", function() {
+  const ok = items
+    .filter(function(i) { return i.state === "ok"; })
+    .sort(function(a, b) { return (a.lat || 9999) - (b.lat || 9999); })
+    .map(function(i) { return i.url; });
+  if (!ok.length) {
+    stMsg.textContent = "暂无可用线路";
+    return;
+  }
+  copyText(ok.join("\n"), function() {
+    stMsg.textContent = '已复制 ' + ok.length + ' 条可用线路';
+  });
+});
+
+btnEnterSite.addEventListener("click", function() {
+  switchToJumpMode();
+});
+
+document.addEventListener("click", function(e) {
+  const copy = e.target.closest(".copy-btn");
+  if (copy) {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = copy.dataset.url;
+    copyText(url, function() {
+      const o = copy.textContent;
+      copy.textContent = "✅ 已复制";
+      copy.classList.add("copied");
+      setTimeout(function() {
+        copy.textContent = o;
+        copy.classList.remove("copied");
+      }, 1500);
+    });
+    return;
+  }
+  if (mode === 'batch') {
+    const line = e.target.closest(".url-line");
+    if (line && line.dataset.idx !== undefined) {
+      window.open(items[line.dataset.idx].url, "_blank");
+    }
+  } else {
+    const simpleLine = e.target.closest(".url-line-simple");
+    if (simpleLine && simpleLine.dataset.url) {
+      window.open(simpleLine.dataset.url, "_blank");
+    }
+  }
+});
+
+function copyText(text, done) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(function() { fallback(); });
+  } else {
+    fallback();
+  }
+  function fallback() {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand("copy"); } catch (_) {}
+    document.body.removeChild(ta);
+    done();
+  }
+}
+
+resetItemsToOriginalOrder();
+renderSimpleList();
+checkFirstAvailable();
+</script>
+</body>
+</html>
