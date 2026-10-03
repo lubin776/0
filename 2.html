@@ -1,122 +1,187 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>颜色对比预览</title>
-<style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #eef2f7;
-    color: #1a2b3d;
-    padding: 24px 16px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  h1 {
-    font-size: 1.1rem;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #0a1a2b;
-  }
-  .item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: #fff;
-    border: 1px solid #d4dbe5;
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-bottom: 12px;
-  }
-  .swatch {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    flex-shrink: 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,.12);
-  }
-  .info {
-    flex: 1;
-  }
-  .name {
-    font-size: .82rem;
-    font-weight: 600;
-    color: #0b1e33;
-    margin-bottom: 4px;
-  }
-  .code {
-    font-size: .72rem;
-    color: #8fa3b8;
-    font-family: monospace;
-    margin-bottom: 6px;
-  }
-  .preview {
-    font-size: .84rem;
-    color: #2563eb;
-  }
-  .preview span {
-    font-weight: 600;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVBox 配置编辑器</title>
+    <!-- 引入 Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .editor-container { max-width: 1200px; margin: 2rem auto; }
+        .json-editor { font-family: monospace; height: 500px; resize: vertical; }
+        .card-header { font-weight: 600; }
+        .source-item { border-left: 3px solid #0d6efd; padding-left: 1rem; margin-bottom: 1rem; }
+    </style>
 </head>
 <body>
+    <div id="app" class="editor-container">
+        <h2 class="mb-4 text-center">📺 TVBox 配置编辑器</h2>
 
-  <h1>颜色对比预览</h1>
+        <!-- 模式切换 -->
+        <div class="d-flex justify-content-center mb-4">
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" v-model="mode" value="visual" id="modeVisual">
+                <label class="btn btn-outline-primary" for="modeVisual">可视化编辑</label>
+                <input type="radio" class="btn-check" v-model="mode" value="json" id="modeJson">
+                <label class="btn btn-outline-primary" for="modeJson">JSON源码编辑</label>
+            </div>
+        </div>
 
-  <div class="item">
-    <div class="swatch" style="background:#FF4500;"></div>
-    <div class="info">
-      <div class="name">橙红（推荐）</div>
-      <div class="code">#FF4500</div>
-      <div class="preview">猛戳这里加入QQ群: <span style="color:#FF4500;">点击</span></div>
+        <!-- 可视化编辑模式 -->
+        <div v-show="mode === 'visual'">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>📡 点播源 (Sites)</span>
+                    <button class="btn btn-sm btn-success" @click="addSite">+ 添加源</button>
+                </div>
+                <div class="card-body">
+                    <div v-for="(site, index) in config.sites" :key="index" class="source-item">
+                        <div class="row g-2 align-items-end">
+                            <div class="col-md-3">
+                                <label class="form-label small">名称 (name)</label>
+                                <input type="text" class="form-control form-control-sm" v-model="site.name">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small">接口地址 (api)</label>
+                                <input type="text" class="form-control form-control-sm" v-model="site.api">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label small">类型 (type)</label>
+                                <input type="text" class="form-control form-control-sm" v-model="site.type">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-sm btn-danger w-100" @click="removeSite(index)">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p v-if="config.sites.length === 0" class="text-muted text-center my-3">暂无点播源，点击上方按钮添加</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>📺 直播源 (Lives)</span>
+                    <button class="btn btn-sm btn-success" @click="addLive">+ 添加直播</button>
+                </div>
+                <div class="card-body">
+                    <div v-for="(live, index) in config.lives" :key="index" class="source-item">
+                        <div class="row g-2 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label small">名称 (name)</label>
+                                <input type="text" class="form-control form-control-sm" v-model="live.name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small">地址 (url)</label>
+                                <input type="text" class="form-control form-control-sm" v-model="live.url">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-sm btn-danger w-100" @click="removeLive(index)">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p v-if="config.lives.length === 0" class="text-muted text-center my-3">暂无直播源，点击上方按钮添加</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JSON 源码编辑模式 -->
+        <div v-show="mode === 'json'">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>📝 JSON 配置源码</span>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary me-2" @click="formatJson">格式化</button>
+                        <button class="btn btn-sm btn-primary" @click="copyJson">复制</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <textarea class="form-control json-editor" v-model="jsonText" @input="onJsonInput"></textarea>
+                    <div v-if="jsonError" class="alert alert-danger mt-2">{{ jsonError }}</div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="item">
-    <div class="swatch" style="background:#FF8C00;"></div>
-    <div class="info">
-      <div class="name">亮橙</div>
-      <div class="code">#FF8C00</div>
-      <div class="preview">猛戳这里加入QQ群: <span style="color:#FF8C00;">点击</span></div>
-    </div>
-  </div>
+    <!-- 引入 Vue 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp, ref, watch } = Vue;
 
-  <div class="item">
-    <div class="swatch" style="background:#E91E63;"></div>
-    <div class="info">
-      <div class="name">玫红</div>
-      <div class="code">#E91E63</div>
-      <div class="preview">猛戳这里加入QQ群: <span style="color:#E91E63;">点击</span></div>
-    </div>
-  </div>
+        createApp({
+            setup() {
+                const mode = ref('visual');
+                const jsonText = ref('');
+                const jsonError = ref('');
 
-  <div class="item">
-    <div class="swatch" style="background:#FF0000;"></div>
-    <div class="info">
-      <div class="name">鲜红</div>
-      <div class="code">#FF0000</div>
-      <div class="preview">猛戳这里加入QQ群: <span style="color:#FF0000;">点击</span></div>
-    </div>
-  </div>
+                // 默认配置结构
+                const config = ref({
+                    sites: [
+                        { name: '示例点播源', api: 'csp_AppYsV2', type: '1' }
+                    ],
+                    lives: [
+                        { name: '示例直播', url: 'http://example.com/live.m3u' }
+                    ]
+                });
 
-  <div class="item">
-    <div class="swatch" style="background:#00C853;"></div>
-    <div class="info">
-      <div class="name">翠绿</div>
-      <div class="code">#00C853</div>
-      <div class="preview">猛戳这里加入QQ群: <span style="color:#00C853;">点击</span></div>
-    </div>
-  </div>
+                // 同步配置到 JSON 文本
+                const syncConfigToJson = () => {
+                    jsonText.value = JSON.stringify(config.value, null, 2);
+                    jsonError.value = '';
+                };
 
-  <div class="item">
-    <div class="swatch" style="background:#FFD700;"></div>
-    <div class="info">
-      <div class="name">金色（原方案）</div>
-      <div class="code">#FFD700</div>
-      <div class="preview">猛戳这里加入QQ群: <span style="color:#FFD700;">点击</span></div>
-    </div>
-  </div>
+                // 初始化
+                syncConfigToJson();
 
+                // 监听配置变化，自动同步到 JSON 文本
+                watch(config, () => {
+                    if (mode.value === 'visual') {
+                        syncConfigToJson();
+                    }
+                }, { deep: true });
+
+                // JSON 文本变化时，尝试解析并更新配置
+                const onJsonInput = () => {
+                    try {
+                        const parsed = JSON.parse(jsonText.value);
+                        config.value = parsed;
+                        jsonError.value = '';
+                    } catch (e) {
+                        jsonError.value = 'JSON 格式错误：' + e.message;
+                    }
+                };
+
+                // 添加/删除源
+                const addSite = () => config.value.sites.push({ name: '', api: '', type: '' });
+                const removeSite = (index) => config.value.sites.splice(index, 1);
+                const addLive = () => config.value.lives.push({ name: '', url: '' });
+                const removeLive = (index) => config.value.lives.splice(index, 1);
+
+                // 格式化 JSON
+                const formatJson = () => {
+                    try {
+                        const parsed = JSON.parse(jsonText.value);
+                        jsonText.value = JSON.stringify(parsed, null, 2);
+                        jsonError.value = '';
+                    } catch (e) {
+                        jsonError.value = 'JSON 格式错误，无法格式化';
+                    }
+                };
+
+                // 复制 JSON
+                const copyJson = () => {
+                    navigator.clipboard.writeText(jsonText.value).then(() => {
+                        alert('已复制到剪贴板');
+                    });
+                };
+
+                return {
+                    mode, config, jsonText, jsonError,
+                    addSite, removeSite, addLive, removeLive,
+                    onJsonInput, formatJson, copyJson
+                };
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
