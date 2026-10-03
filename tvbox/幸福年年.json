@@ -1,5 +1,5 @@
 {
-  "spider": "http://150.158.52.248/tgyg/09201933.png;md5;af187c2a2be1bcbb5e183d77e740b21b",
+  "spider": "http://150.158.52.248/tgyg/spider.jar",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "logo": "https://s1.aigei.com/src/img/gif/3a/3a4291b819b44459a7daab25e07c4d10.gif?imageMogr2/auto-orient/thumbnail/!282x282r/gravity/Center/crop/282x282/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:7yb38J_pZJIDQ7koAP9BfTNkYpY=",
   "sites": [
@@ -8,6 +8,139 @@
       "name": "豆瓣 • 公众号:微风的小星",
       "type": 3,
       "api": "csp_Douban",
+      "searchable": 0
+    },
+    {
+      "key": "drpy_js_310直播",
+      "name": "🏀┃体育┃直播",
+      "type": 3,
+      "api": "https://gitlab.com/fantaiying/ext/-/raw/main/drpy2.min.js",
+      "changeable": 0,
+      "gridview": 3,
+      "style": {
+        "type": "list"
+      },
+      "ext": "https://img2.gelonghui.com/library/d6014-7a5d5b19-3fe5-456a-8335-925bc845606fnull",
+      "jar": "https://img2.gelonghui.com/library/9c8e4-b797010b-366e-48f9-86b6-16be897c90c2.png;md5;9c8e45f60d3d413d8b140ec21811deb0"
+    },
+    {
+      "key": "荐片",
+      "name": "🎬┃荐片┃影视 磁力",
+      "quickSearch": 0,
+      "changeable": "0",
+      "searchable": 1,
+      "timeout": 15,
+      "type": 3,
+      "api": "csp_Jianpian",
+      "jar": "https://cdn2.wemiaow.com/20260401232042-14-Vwa30U.jpg;md5;59bcc1aa8c1ecf7d08a282ac63705ab3",
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      },
+      "ext": "https://api.ztcgi.com"
+    },
+    {
+      "key": "csp_Gz360",
+      "name": "🍉瓜子｜影视",
+      "type": 3,
+      "timeout": 12,
+      "searchable": 1,
+      "quickSearch": 0,
+      "jar": "http://154.37.215.249:8889/down/CbFspeifNxbT.jar",
+      "api": "csp_Gz360"
+    },
+    {
+      "key": "咕噜1080p.py",
+      "name": "咕噜1080",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/咕噜1080p.py"
+    },
+    {
+      "key": "九合一版",
+      "name": "九合一版.py",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/九合一版.py"
+    },
+    {
+      "key": "各种豆采集.py",
+      "name": "各种豆采集",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/各种豆采集.py"
+    },
+    {
+      "key": "初见影视.py",
+      "name": "初见影视.py",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/初见影视.py"
+    },
+    {
+      "key": "指南",
+      "name": "指南｜免扫JX",
+      "type": 3,
+      "api": "csp_Zhinan4K",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "https://yp.wya6.cn/tz/wyby.php;md5;a108d5e5b4588a469116d1fa5b9cdeca",
+      "timeout": 90,
+      "ext": {
+        "site": [
+          "https://4kzn.cc"
+        ],
+        "drives": [
+          "夸克",
+          "UC",
+          "百度"
+        ]
+      }
+    },
+    {
+      "key": "雪狐",
+      "name": "雪狐影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "http://150.158.52.248/tgyg/jar/XBPQ.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "ext": {
+        "首页": "0",
+        "分类": "电影$movie#电视剧$tv#综艺$variety#动漫$anime",
+        "二次截取": "col-3\">&&loadmore||&&",
+        "数组": "j:data||<a&&</a>",
+        "标题": "j:name||alt=\"&&\"",
+        "图片": "j:image||data-src=\"&&\"",
+        "链接": "http://150.158.52.248/tgyg/href=\"&&\"||https:/www.soushitv.com/tv/detail/id/✚j:id✚.html",
+        "副标题": "episode\">&&<||j:douban_score",
+        "影片地区": "ys-player-meta-chip\">&&<[含序号:2]",
+        "影片年代": "ys-player-meta-chip\">&&<",
+        "影片状态": "ys-player-meta-chip\">&&<[含序号:3]",
+        "导演": "http://150.158.52.248/tgyg/导演</span>&&</div>",
+        "演员": "http://150.158.52.248/tgyg/主演</span>&&</div>",
+        "分类url": "https://www.soushitv.com/{cateId}/list/year/{year}/page/{catePg}.html;;aAv✚",
+        "简介": "http://150.158.52.248/tgyg/简介</span>&&</div>",
+        "线路标题": "雪狐在线",
+        "播放数组": "http://150.158.52.248/tgyg/grid>&&</div>||id=\"mobile-player\"&&data-poster",
+        "播放列表": "http://150.158.52.248/tgyg/<a&&/a>||data-url=&&",
+        "播放标题": ">&&<||全集",
+        "播放链接": "href=\"&&\"||\"&&\"",
+        "跳转播放链接": "data-url=\"&&\"",
+        "搜索模式": "1",
+        "搜索url": "http://150.158.52.248/search/index?keyword={wd}&page={pg}"
+      }
+    },
+    {
+      "key": "4k-av",
+      "name": "💓‍4k-av",
+      "type": 3,
+      "api": "https://pan.szfx.top/down.php/21da377c5e328d67e943a2acc1947ff3.py",
+      "jar": "http://oss4liview.moji.com/thd_file/2026/09/11/21bf5077bc286e074ee40ba1d527e814.jpg;md5;bd387114ab7a7078f8ae8f120c733907"
+    },
+    {
+      "key": "globaltrack",
+      "name": "Ⓜ️全球丨影视榜单",
+      "type": 3,
+      "api": "csp_GlobalTrack",
+      "indexs": 1,
       "searchable": 0
     },
     {

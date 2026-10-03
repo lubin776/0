@@ -51,7 +51,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "如果你是花钱买的，那你就上当了",
+      "name": "中秋快乐🥮免费分享",
       "type": 3,
       "api": "csp_Douban",
       "jar": "https://gitee.com/KYSY1/dyy/raw/master/bh2601251.jar",
@@ -597,75 +597,67 @@
       "ext": "https://gh-proxy.net/https://raw.githubusercontent.com/fantaiying7/EXT/refs/heads/main/%E5%85%94%E5%B0%8F%E8%B4%9D.js"
     },
     {
-      "key": "少儿教育",
+      "key": "csp_少儿",
       "name": "学前📚教育",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 0,
-      "quickSearch": 0,
-      "filterable": 1,
-      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi.jar",
+      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi1.jar",
+      "playerType": 2,
       "ext": {
-        "json": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/education/json/SEJY.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+        "json": "https://img2.gelonghui.com/library/1903b-eb0f1675-2437-4e72-bcf0-427b1626d79fnull",
+        "cookie": ""
       },
       "style": {
         "type": "rect",
-        "ratio": 1.597
+        "ratio": 1.333
       }
     },
     {
-      "key": "小学课堂",
-      "name": "小学🧒课堂",
+      "key": "csp_小学",
+      "name": "小学📚课堂",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 0,
-      "quickSearch": 0,
-      "filterable": 1,
-      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi.jar",
+      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi1.jar",
+      "playerType": 2,
       "ext": {
-        "json": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/education/json/XXKT.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+        "json": "https://img2.gelonghui.com/library/a1140-144855fe-3eaa-44f3-b689-6812c233de54null",
+        "cookie": ""
       },
       "style": {
         "type": "rect",
-        "ratio": 1.597
+        "ratio": 1.333
       }
     },
     {
-      "key": "初中课堂",
-      "name": "初中🧒课堂",
+      "key": "csp_初中",
+      "name": "初中📚课堂",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 0,
-      "quickSearch": 0,
-      "filterable": 1,
-      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi.jar",
+      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi1.jar",
+      "playerType": 2,
       "ext": {
-        "json": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/education/json/CZKT.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+        "json": "https://img2.gelonghui.com/library/ba156-73e16cad-8257-4f33-b8c0-e051e72e546dnull",
+        "cookie": ""
       },
       "style": {
         "type": "rect",
-        "ratio": 1.597
+        "ratio": 1.333
       }
     },
     {
-      "key": "高中课堂",
-      "name": "高中🧒课堂",
+      "key": "csp_高中",
+      "name": "高中📚课堂",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 0,
-      "quickSearch": 0,
-      "filterable": 1,
-      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi.jar",
+      "jar": "https://raw.giteeusercontent.com/taoyong1/jk/raw/master/xuexi1.jar",
+      "playerType": 2,
       "ext": {
-        "json": "https://git.yylx.win/raw.githubusercontent.com/PizazzGY/NewTVBox/main/education/json/GZKT.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+        "json": "https://img2.gelonghui.com/library/e44b3-4a82ab48-e014-49b2-bb66-ee5207e8f195null",
+        "cookie": ""
       },
       "style": {
         "type": "rect",
-        "ratio": 1.597
+        "ratio": 1.333
       }
     },
     {

@@ -1,6 +1,6 @@
 {
-  "spider": "https://0.12yue.de5.net/5/lib/b.jar",
-  "logo": "https://0.12yue.de5.net/5/lib/jueson.jpg",
+  "spider": "https://0.wudaozhe.net/5/lib/b.jar",
+  "logo": "https://0.wudaozhe.net/5/lib/jueson.jpg",
   "sites": [
     {
       "key": "哔哩哔哩",
@@ -10,7 +10,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/哔哩合集.json"
+      "ext": "https://0.wudaozhe.net/5/lib/哔哩合集.json"
     },
     {
       "key": "csp_XYQHiker_兔小贝",
@@ -20,8 +20,8 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/兔小贝.json",
-      "jar": "https://0.12yue.de5.net/5/lib/csp_XYQHiker_兔小贝.jar"
+      "ext": "https://0.wudaozhe.net/5/lib/兔小贝.json",
+      "jar": "https://0.wudaozhe.net/5/lib/csp_XYQHiker_兔小贝.jar"
     },
     {
       "key": "csp_XYQHiker_兔小贝2",
@@ -31,8 +31,8 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/兔小贝2.json",
-      "jar": "https://0.12yue.de5.net/5/lib/csp_XYQHiker_兔小贝.jar"
+      "ext": "https://0.wudaozhe.net/5/lib/兔小贝2.json",
+      "jar": "https://0.wudaozhe.net/5/lib/csp_XYQHiker_兔小贝.jar"
     },
     {
       "key": "csp_XYQHiker_童趣",
@@ -42,8 +42,8 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/播视童趣.json",
-      "jar": "https://0.12yue.de5.net/5/lib/csp_XYQHiker_兔小贝.jar"
+      "ext": "https://0.wudaozhe.net/5/lib/播视童趣.json",
+      "jar": "https://0.wudaozhe.net/5/lib/csp_XYQHiker_兔小贝.jar"
     },
     {
       "key": "幼儿启蒙",
@@ -53,7 +53,7 @@
       "searchable": 0,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/幼儿启蒙.json"
+      "ext": "https://0.wudaozhe.net/5/lib/幼儿启蒙.json"
     },
     {
       "key": "益智",
@@ -63,7 +63,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 0,
-      "ext": "https://0.12yue.de5.net/5/lib/益智动画.json"
+      "ext": "https://0.wudaozhe.net/5/lib/益智动画.json"
     },
     {
       "key": "幼小衔接",
@@ -73,7 +73,7 @@
       "searchable": 0,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/幼小衔接.json"
+      "ext": "https://0.wudaozhe.net/5/lib/幼小衔接.json"
     },
     {
       "key": "小灯塔",
@@ -83,7 +83,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/小灯塔百科.json"
+      "ext": "https://0.wudaozhe.net/5/lib/小灯塔百科.json"
     },
     {
       "key": "小灯塔科学",
@@ -93,7 +93,7 @@
       "searchable": 0,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/小灯塔科学.json"
+      "ext": "https://0.wudaozhe.net/5/lib/小灯塔科学.json"
     },
     {
       "key": "小灯塔地理",
@@ -103,7 +103,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/小灯塔地理.json"
+      "ext": "https://0.wudaozhe.net/5/lib/小灯塔地理.json"
     },
     {
       "key": "小灯塔国学",
@@ -113,7 +113,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/小灯塔国学.json"
+      "ext": "https://0.wudaozhe.net/5/lib/小灯塔国学.json"
     },
     {
       "key": "小灯塔人文",
@@ -123,7 +123,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/小灯塔人文.json"
+      "ext": "https://0.wudaozhe.net/5/lib/小灯塔人文.json"
     },
     {
       "key": "儿童拼音",
@@ -133,7 +133,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童拼音.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童拼音.json"
     },
     {
       "key": "儿童识字",
@@ -143,7 +143,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童识字.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童识字.json"
     },
     {
       "key": "儿童英语",
@@ -153,7 +153,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童英语.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童英语.json"
     },
     {
       "key": "儿童硬笔",
@@ -163,7 +163,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童硬笔.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童硬笔.json"
     },
     {
       "key": "儿童思维",
@@ -173,7 +173,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童思维.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童思维.json"
     },
     {
       "key": "儿童口才",
@@ -183,7 +183,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童口才.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童口才.json"
     },
     {
       "key": "儿童编程",
@@ -193,7 +193,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童编程.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童编程.json"
     },
     {
       "key": "儿童武术",
@@ -203,7 +203,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/儿童武术.json"
+      "ext": "https://0.wudaozhe.net/5/lib/儿童武术.json"
     },
     {
       "key": "兴趣培养",
@@ -213,7 +213,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/兴趣培养.json"
+      "ext": "https://0.wudaozhe.net/5/lib/兴趣培养.json"
     },
     {
       "key": "小学",
@@ -223,7 +223,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/哔哩哔哩小学.json"
+      "ext": "https://0.wudaozhe.net/5/lib/哔哩哔哩小学.json"
     },
     {
       "key": "初中",
@@ -234,7 +234,7 @@
       "quickSearch": 1,
       "filterable": 1,
       "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie饭.txt",
-      "ext": "https://0.12yue.de5.net/5/lib/哔哩哔哩初中.json"
+      "ext": "https://0.wudaozhe.net/5/lib/哔哩哔哩初中.json"
     },
     {
       "key": "高中",
@@ -244,7 +244,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/哔哩哔哩高中.json"
+      "ext": "https://0.wudaozhe.net/5/lib/哔哩哔哩高中.json"
     },
     {
       "key": "ysjd",
@@ -254,7 +254,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "filterable": 0,
-      "ext": "https://0.12yue.de5.net/5/lib/央视经典.json"
+      "ext": "https://0.wudaozhe.net/5/lib/央视经典.json"
     }
   ],
   "parses": [

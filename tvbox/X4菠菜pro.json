@@ -1,6 +1,6 @@
 {
-  "spider": "https://0.12yue.de5.net/5/lib/p.jar",
-  "logo": "https://0.12yue.de5.net/5/lib/jueson.jpg",
+  "spider": "https://0.wudaozhe.net/5/lib/p.jar",
+  "logo": "https://0.wudaozhe.net/5/lib/jueson.jpg",
   "lives": [
     {
       "name": "Guovin",
@@ -18,7 +18,7 @@
       "quickSearch": 0,
       "indexs": 1,
       "filterable": 1,
-      "jar": "https://0.12yue.de5.net/5/lib/spider.jar"
+      "jar": "https://0.wudaozhe.net/5/lib/spider.jar"
     },
     {
       "key": "短剧┃搜索1",
@@ -2895,7 +2895,7 @@
       "filterable": 1,
       "ext": {
         "appName": "橘汁",
-        "publicKey": "https://0.12yue.de5.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
+        "publicKey": "https://0.wudaozhe.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
         "dataKey": "DGVQRUX5R1LWWDLHTGJSUKG1DJRVPQ==",
         "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
         "pkg": "com.lxf.snzlcgtzxyx",
@@ -2915,7 +2915,7 @@
       "filterable": 1,
       "ext": {
         "appName": "华谊",
-        "publicKey": "https://0.12yue.de5.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
+        "publicKey": "https://0.wudaozhe.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
         "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
         "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
         "pkg": "com.muyue.tool",
@@ -2944,12 +2944,12 @@
       "api": "csp_XBPQ",
       "ext": {
         "请求头": "手机",
-        "简介": "https://0.12yue.de5.net/5/text cor3\">[*],&&</div>",
+        "简介": "https://0.wudaozhe.net/5/text cor3\">[*],&&</div>",
         "图片": "data-src=\"&&\"[替换:amp;>>空]",
         "主页url": "https://www.cd-zj.com/label/qq.html",
-        "副标题": "https://0.12yue.de5.net/5/ft2\">&&</i>",
-        "线路数组": "https://0.12yue.de5.net/5/<i class=\"fa ds-dianying\">&&</span>",
-        "播放数组": "https://0.12yue.de5.net/5/anthology-list-play size\">&&</ul>",
+        "副标题": "https://0.wudaozhe.net/5/ft2\">&&</i>",
+        "线路数组": "https://0.wudaozhe.net/5/<i class=\"fa ds-dianying\">&&</span>",
+        "播放数组": "https://0.wudaozhe.net/5/anthology-list-play size\">&&</ul>",
         "分类url": "https://www.cd-zj.com/cupfox-list/{cateId}-{area}--{class}-----{catePg}---{year}.html",
         "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5"
       }
@@ -2978,7 +2978,7 @@
         "key": "nzEqOgYk3QzHuEP8",
         "init": "V122",
         "api": 2,
-        "ua": "https://0.12yue.de5.net/5/okhttp/3.10.0"
+        "ua": "https://0.wudaozhe.net/5/okhttp/3.10.0"
       },
       "categories": [
         "动漫",
@@ -3035,7 +3035,7 @@
       "api": "csp_App99",
       "ext": {
         "host": "http://111.170.140.70:19987/app/bn",
-        "LoginPath": "https://0.12yue.de5.net/app/log",
+        "LoginPath": "https://0.wudaozhe.net/app/log",
         "version": "",
         "appkey": "c403317c2a2946659b0bcbabdd5de43a",
         "versionName": "1.0.1",
@@ -3052,7 +3052,7 @@
       "api": "csp_App99",
       "ext": {
         "host": "http://113.31.180.218:19987/app/bn",
-        "LoginPath": "https://0.12yue.de5.net/app/log",
+        "LoginPath": "https://0.wudaozhe.net/app/log",
         "appkey": "6e8f3764a0644f3686ab5cdd57bcdf48",
         "versionName": "4.3.1",
         "name": "小橙子",
@@ -3083,7 +3083,7 @@
       "api": "csp_App99",
       "ext": {
         "host": "http://175.178.65.250:19987/app/bn",
-        "LoginPath": "https://0.12yue.de5.net/app/log",
+        "LoginPath": "https://0.wudaozhe.net/app/log",
         "appkey": "f66f65db127e48449f073c2c6eb0f993",
         "versionName": "6.4.5",
         "name": "双子星动漫",
@@ -3102,7 +3102,7 @@
       "filterable": 1,
       "ext": {
         "appName": "电影天堂",
-        "publicKey": "https://0.12yue.de5.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "publicKey": "https://0.wudaozhe.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
         "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
         "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
         "pkg": "com.dytiantang.one",
@@ -3122,7 +3122,7 @@
       "filterable": 1,
       "ext": {
         "appName": "小苹果",
-        "publicKey": "https://0.12yue.de5.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "publicKey": "https://0.wudaozhe.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
         "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
         "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
         "pkg": "com.juechufsh.android.xpg1",
@@ -3142,7 +3142,7 @@
       "filterable": 1,
       "ext": {
         "appName": "薯条影视",
-        "publicKey": "https://0.12yue.de5.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "publicKey": "https://0.wudaozhe.net/5/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
         "dataKey": "A1VACZJWDKRZY1P3MFV0DDRAZ3F3PT0=",
         "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
         "pkg": "com.st.standroid",
@@ -3175,7 +3175,7 @@
         "dataIv": "eecbio48dsq13kkk",
         "search": "searchList4",
         "init": "initV122",
-        "ua": "https://0.12yue.de5.net/5/okhttp/3.10.0"
+        "ua": "https://0.wudaozhe.net/5/okhttp/3.10.0"
       }
     },
     {
@@ -3190,7 +3190,7 @@
         "dataKey": "ca94b06ca359d80e",
         "dataIv": "ca94b06ca359d80e",
         "init": "initV120",
-        "ua": "https://0.12yue.de5.net/5/okhttp/3.10.0"
+        "ua": "https://0.wudaozhe.net/5/okhttp/3.10.0"
       }
     },
     {
@@ -3205,7 +3205,7 @@
         "dataKey": "FTgP4Gq8zPiqbt7M",
         "dataIv": "FTgP4Gq8zPiqbt7M",
         "init": "initV120",
-        "ua": "https://0.12yue.de5.net/5/okhttp/3.10.0"
+        "ua": "https://0.wudaozhe.net/5/okhttp/3.10.0"
       }
     },
     {
@@ -3369,7 +3369,7 @@
       "type": 3,
       "api": "csp_XBPQ",
       "ext": {
-        "线路数组": "https://0.12yue.de5.net/5/<a data-toggle=\"tab\"&&/a>",
+        "线路数组": "https://0.wudaozhe.net/5/<a data-toggle=\"tab\"&&/a>",
         "线路标题": ">&&<",
         "分类url": "http://dyxz.tv/list/{cateId}_{catePg}.html",
         "分类": "电影$1#电视剧$2#动漫$3#综艺$4"
@@ -3673,7 +3673,7 @@
         "key": "wNCwbXzr0Bm6cS2C",
         "init": "V122",
         "api": 2,
-        "ua": "https://0.12yue.de5.net/5/okhttp/3.10.0"
+        "ua": "https://0.wudaozhe.net/5/okhttp/3.10.0"
       }
     },
     {
@@ -3686,7 +3686,7 @@
         "key": "ca94b06ca359d80e",
         "init": "V120",
         "api": 2,
-        "ua": "https://0.12yue.de5.net/5/okhttp/3.10.0"
+        "ua": "https://0.wudaozhe.net/5/okhttp/3.10.0"
       },
       "categories": [
         "动漫",
@@ -3708,7 +3708,7 @@
         "key": "8R33VQSxzmCaHpEX",
         "init": "V122",
         "api": 2,
-        "ua": "https://0.12yue.de5.net/5/okhttp/3.10.0"
+        "ua": "https://0.wudaozhe.net/5/okhttp/3.10.0"
       }
     },
     {
@@ -3866,7 +3866,7 @@
         "ratio": 1.433
       },
       "ext": {
-        "json": "https://0.12yue.de5.net/5/lib/哔哩合集1.json",
+        "json": "https://0.wudaozhe.net/5/lib/哔哩合集1.json",
         "cookie": ""
       }
     },
@@ -3880,7 +3880,7 @@
       "filterable": 0,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/哔哩哔哩演唱会.json"
+        "json": "https://0.wudaozhe.net/5/lib/哔哩哔哩演唱会.json"
       },
       "style": {
         "type": "rect",
@@ -3897,7 +3897,7 @@
       "filterable": 0,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/哔哩哔哩听书.json"
+        "json": "https://0.wudaozhe.net/5/lib/哔哩哔哩听书.json"
       },
       "style": {
         "type": "rect",
@@ -3908,20 +3908,20 @@
       "key": "爱上听书",
       "name": "🅱️爱上｜听书",
       "type": 3,
-      "api": "https://0.12yue.de5.net/5/lib/drpy2.min.js",
-      "ext": "https://0.12yue.de5.net/5/lib/爱上听书.js",
+      "api": "https://0.wudaozhe.net/5/lib/drpy2.min.js",
+      "ext": "https://0.wudaozhe.net/5/lib/爱上听书.js",
       "playerType": "2"
     },
     {
       "key": "博看听书网",
       "name": "🅱️博看｜小说",
       "type": 3,
-      "api": "https://0.12yue.de5.net/5/lib/drpy2.min.js",
+      "api": "https://0.wudaozhe.net/5/lib/drpy2.min.js",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
       "order_num": 0,
-      "ext": "https://0.12yue.de5.net/5/lib/博看听书.js"
+      "ext": "https://0.wudaozhe.net/5/lib/博看听书.js"
     },
     {
       "key": "哔哩哔哩相声",
@@ -3933,7 +3933,7 @@
       "filterable": 0,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/哔哩哔哩相声.json"
+        "json": "https://0.wudaozhe.net/5/lib/哔哩哔哩相声.json"
       },
       "style": {
         "type": "rect",
@@ -3950,7 +3950,7 @@
       "filterable": 0,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/哔哩哔哩小品.json"
+        "json": "https://0.wudaozhe.net/5/lib/哔哩哔哩小品.json"
       },
       "style": {
         "type": "rect",
@@ -3967,7 +3967,7 @@
       "filterable": 0,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/哔哩哔哩戏曲.json"
+        "json": "https://0.wudaozhe.net/5/lib/哔哩哔哩戏曲.json"
       },
       "style": {
         "type": "rect",
@@ -3982,7 +3982,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "https://0.12yue.de5.net/5/lib/戏曲多多.json"
+      "ext": "https://0.wudaozhe.net/5/lib/戏曲多多.json"
     },
     {
       "key": "哔哩医药合集",
@@ -3998,7 +3998,7 @@
         "ratio": 1.433
       },
       "ext": {
-        "json": "https://0.12yue.de5.net/5/lib/中医药.json",
+        "json": "https://0.wudaozhe.net/5/lib/中医药.json",
         "cookie": ""
       }
     },
@@ -4006,8 +4006,8 @@
       "key": "兔小贝",
       "name": "🅱️兔小贝｜幼教",
       "type": 3,
-      "api": "https://0.12yue.de5.net/5/lib/drpy2.min.js",
-      "ext": "https://0.12yue.de5.net/5/lib/兔小贝.js",
+      "api": "https://0.wudaozhe.net/5/lib/drpy2.min.js",
+      "ext": "https://0.wudaozhe.net/5/lib/兔小贝.js",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -4017,8 +4017,8 @@
       "key": "贝乐虎",
       "name": "🅱️贝乐虎｜幼教",
       "type": 3,
-      "api": "https://0.12yue.de5.net/5/lib/drpy2.min.js",
-      "ext": "https://0.12yue.de5.net/5/lib/贝乐虎.js",
+      "api": "https://0.wudaozhe.net/5/lib/drpy2.min.js",
+      "ext": "https://0.wudaozhe.net/5/lib/贝乐虎.js",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -4028,14 +4028,14 @@
       "key": "drpy_js_兔小贝",
       "name": "🅱️儿童┃启蒙",
       "type": 3,
-      "api": "https://0.12yue.de5.net/5/lib/drpy.min.js",
+      "api": "https://0.wudaozhe.net/5/lib/drpy.min.js",
       "searchable": 0,
       "changeable": 0,
       "style": {
         "type": "rect",
         "ratio": 1.597
       },
-      "ext": "https://0.12yue.de5.net/5/lib/兔小贝.js"
+      "ext": "https://0.wudaozhe.net/5/lib/兔小贝.js"
     },
     {
       "key": "儿童拼音",
@@ -4047,7 +4047,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童拼音1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童拼音1.json"
       },
       "style": {
         "type": "rect",
@@ -4064,7 +4064,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童识字1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童识字1.json"
       },
       "style": {
         "type": "rect",
@@ -4081,7 +4081,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童英语1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童英语1.json"
       },
       "style": {
         "type": "rect",
@@ -4098,7 +4098,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童硬笔1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童硬笔1.json"
       },
       "style": {
         "type": "rect",
@@ -4115,7 +4115,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童思维1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童思维1.json"
       },
       "style": {
         "type": "rect",
@@ -4132,7 +4132,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童口才1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童口才1.json"
       },
       "style": {
         "type": "rect",
@@ -4149,7 +4149,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童编程1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童编程1.json"
       },
       "style": {
         "type": "rect",
@@ -4166,7 +4166,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/儿童武术1.json"
+        "json": "https://0.wudaozhe.net/5/lib/儿童武术1.json"
       },
       "style": {
         "type": "rect",
@@ -4183,7 +4183,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/小灯塔百科1.json"
+        "json": "https://0.wudaozhe.net/5/lib/小灯塔百科1.json"
       },
       "style": {
         "type": "rect",
@@ -4200,7 +4200,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/小灯塔科学1.json"
+        "json": "https://0.wudaozhe.net/5/lib/小灯塔科学1.json"
       },
       "style": {
         "type": "rect",
@@ -4217,7 +4217,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/小灯塔地理1.json"
+        "json": "https://0.wudaozhe.net/5/lib/小灯塔地理1.json"
       },
       "style": {
         "type": "rect",
@@ -4234,7 +4234,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/小灯塔国学1.json"
+        "json": "https://0.wudaozhe.net/5/lib/小灯塔国学1.json"
       },
       "style": {
         "type": "rect",
@@ -4251,7 +4251,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/小灯塔人文1.json"
+        "json": "https://0.wudaozhe.net/5/lib/小灯塔人文1.json"
       },
       "style": {
         "type": "rect",
@@ -4268,7 +4268,7 @@
       "filterable": 1,
       "ext": {
         "cookie": "",
-        "json": "https://0.12yue.de5.net/5/lib/外语课堂.json"
+        "json": "https://0.wudaozhe.net/5/lib/外语课堂.json"
       },
       "style": {
         "type": "rect",
@@ -4284,7 +4284,7 @@
       "quickSearch": 0,
       "filterable": 1,
       "ext": {
-        "json": "https://0.12yue.de5.net/5/lib/少儿教育.json",
+        "json": "https://0.wudaozhe.net/5/lib/少儿教育.json",
         "cookie": ""
       },
       "style": {
@@ -4301,7 +4301,7 @@
       "quickSearch": 0,
       "filterable": 1,
       "ext": {
-        "json": "https://0.12yue.de5.net/5/lib/小学课堂.json",
+        "json": "https://0.wudaozhe.net/5/lib/小学课堂.json",
         "cookie": ""
       },
       "style": {
@@ -4318,7 +4318,7 @@
       "quickSearch": 0,
       "filterable": 1,
       "ext": {
-        "json": "https://0.12yue.de5.net/5/lib/初中课堂.json",
+        "json": "https://0.wudaozhe.net/5/lib/初中课堂.json",
         "cookie": ""
       },
       "style": {
@@ -4335,7 +4335,7 @@
       "quickSearch": 0,
       "filterable": 1,
       "ext": {
-        "json": "https://0.12yue.de5.net/5/lib/高中课堂.json",
+        "json": "https://0.wudaozhe.net/5/lib/高中课堂.json",
         "cookie": ""
       },
       "style": {
