@@ -122,6 +122,18 @@ body.simple-mode #api-panel { display:block !important; }
 .dl-group.active { display:block; }
 .dl-group-title { font-size:.95rem; font-weight:600; color:#0b1e33; margin-bottom:2px; }
 .dl-group-desc { font-size:.7rem; color:#8b9eb0; margin-bottom:10px; }
+
+/* ===== 下载页二级分类 ===== */
+.dl-subgroup { margin-bottom:16px; }
+.dl-subgroup:last-child { margin-bottom:0; }
+.dl-subgroup-title {
+  font-size:.82rem; font-weight:600; color:#0b1e33;
+  line-height:1.3; margin:2px 0 8px;
+  padding-left:9px; border-left:3px solid #4a9eff;
+  word-break:break-word;
+}
+.dl-subgroup-empty { font-size:.7rem; color:#8fa3b8; padding:4px 2px; }
+
 .dl-cards { display:flex; flex-direction:column; gap:10px; width:100%; max-width:100%; overflow:hidden; }
 .download-card { display:flex; align-items:center; gap:12px; background:#fff; border:1px solid #e4ebf3; border-radius:10px; padding:10px 12px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s; min-width:0; width:100%; }
 .download-card:active { border-color:#4a9eff; box-shadow:0 2px 8px rgba(74,158,255,.15); }
@@ -142,6 +154,7 @@ body.simple-mode #api-panel { display:block !important; }
   .dl-side-btn .dl-side-icon { font-size:.95rem; }
   .dl-item-icon { width:40px; height:40px; }
   .dl-item-btn { height:30px; padding:0 12px; font-size:.66rem; }
+  .dl-subgroup-title { font-size:.76rem; }
 }
 
 #more-panel { overflow-x:hidden; width:100%; }
@@ -840,17 +853,22 @@ async function renderDownloads(force) {
       const raw = await res.text();
       const cleaned = raw.replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/：/g, ':').replace(/，/g, ',');
       const data = JSON.parse(cleaned);
-      let cards = [];
+      /* ==== 修改点：保留 JSON 中的分组（分类）结构 ==== */
+      let groups = [];
       const arr = data.list || data;
       if (Array.isArray(arr)) {
         arr.forEach(group => {
-          if (group && Array.isArray(group.list)) group.list.forEach(i => cards.push(i));
-          else cards.push(group);
+          if (group && Array.isArray(group.list)) {
+            groups.push({ name: group.name || '', list: group.list });
+          } else if (group) {
+            groups.push({ name: '', list: [group] });
+          }
         });
       }
-      dlCache.set(src.url, { src, cards });
+      /* ============================================== */
+      dlCache.set(src.url, { src, groups });
     } catch (e) {
-      dlCache.set(src.url, { src, cards: [], error: e.message });
+      dlCache.set(src.url, { src, groups: [], error: e.message });
     }
   }));
 
@@ -864,28 +882,40 @@ function showDownloadGroup(key) {
   if (!body) return;
   const entry = dlCache.get(key);
   if (!entry) { body.innerHTML = '<div class="loading">⏳ 加载中...</div>'; return; }
-  const { src, cards, error } = entry;
+  const { src, groups, error } = entry;
   if (error) { body.innerHTML = `<div class="error-msg">❌ ${src.name} 加载失败：${error}</div>`; return; }
-  if (!cards.length) { body.innerHTML = `<div class="error-msg">⚠️ ${src.name} 暂无资源</div>`; return; }
+
+  const total = (groups || []).reduce((n, g) => n + ((g.list || []).length), 0);
+  if (!total) { body.innerHTML = `<div class="error-msg">⚠️ ${src.name} 暂无资源</div>`; return; }
 
   const title = src.name ? `<div class="dl-group-title">${src.name}</div>` : '';
   const desc = src.description ? `<div class="dl-group-desc">${src.description}</div>` : '';
-  const cardsHtml = cards.map(i => {
-    const ph = (i.name || '?').slice(0, 1).toUpperCase();
-    const iconImg = i.icon
-      ? `<img src="${i.icon}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';">`
-      : '';
-    return `
-    <a class="download-card" href="${i.url || '#'}" target="_blank" rel="noopener noreferrer" data-name="${(i.name || '').toLowerCase()}">
-      <span class="dl-item-icon">${iconImg}<span class="site-ph" style="display:${i.icon ? 'none' : 'flex'}">${ph}</span></span>
-      <span class="dl-item-info">
-        <span class="dl-item-name">${i.name || ''}</span>
-        ${i.version ? `<span class="dl-item-desc">${i.version}</span>` : ''}
-      </span>
-      <span class="dl-item-btn">⬇ 下载</span>
-    </a>`;
+
+  /* ==== 修改点：按分类名称分组渲染 ==== */
+  const groupsHtml = (groups || []).map(g => {
+    const list = g.list || [];
+    if (!list.length) return '';
+    const cardsHtml = list.map(i => {
+      const ph = (i.name || '?').slice(0, 1).toUpperCase();
+      const iconImg = i.icon
+        ? `<img src="${i.icon}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';">`
+        : '';
+      return `
+      <a class="download-card" href="${i.url || '#'}" target="_blank" rel="noopener noreferrer" data-name="${(i.name || '').toLowerCase()}">
+        <span class="dl-item-icon">${iconImg}<span class="site-ph" style="display:${i.icon ? 'none' : 'flex'}">${ph}</span></span>
+        <span class="dl-item-info">
+          <span class="dl-item-name">${i.name || ''}</span>
+          ${i.version ? `<span class="dl-item-desc">${i.version}</span>` : ''}
+        </span>
+        <span class="dl-item-btn">⬇ 下载</span>
+      </a>`;
+    }).join('');
+    const gTitle = g.name ? `<div class="dl-subgroup-title">${g.name}</div>` : '';
+    return `<div class="dl-subgroup">${gTitle}<div class="dl-cards">${cardsHtml}</div></div>`;
   }).join('');
-  body.innerHTML = `<div class="dl-group active">${title}${desc}<div class="dl-cards">${cardsHtml}</div></div>`;
+  /* =================================== */
+
+  body.innerHTML = `<div class="dl-group active">${title}${desc}${groupsHtml}</div>`;
 }
 
 /* ===== 导航 ===== */
