@@ -1562,9 +1562,9 @@
     },
     {
       "key": "4k-av",
-      "name": "4k-av",
+      "name": "💓‍4k-av",
       "type": 3,
-      "api": "https://pan.szfx.top/down.php/0c67ff200a5ff8b2a2e95a14d3b80563.py",
+      "api": "https://pan.szfx.top/down.php/21da377c5e328d67e943a2acc1947ff3.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -2210,7 +2210,7 @@
     },
     {
       "key": "多多",
-      "name": "♨️多多｜4K线路",
+      "name": "🌀多多｜1920",
       "type": 3,
       "api": "https://gh-proxy.com/raw.githubusercontent.com/IY-CPU/IY/main/lib/dd.py",
       "searchable": 1,
@@ -2798,6 +2798,60 @@
       "name": "⚽咖啡🔹球赛",
       "type": 3,
       "api": "https://7337.kstore.vip/xw/py/咖啡直播.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "咕噜1080p.py",
+      "name": "咕噜1080",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/咕噜1080p.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "九合一版",
+      "name": "九合一版.py",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/九合一版.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "各种豆采集.py",
+      "name": "各种豆采集",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/各种豆采集.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "初见影视.py",
+      "name": "初见影视.py",
+      "type": 3,
+      "api": "http://150.158.52.248/tgyg/py/初见影视.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "py_如意",
+      "name": "如意[py]",
+      "type": 3,
+      "api": "https://clun.top/py/ruyishipin.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "py_8kvod",
+      "name": "酷客[py]",
+      "type": 3,
+      "api": "https://clun.top/py/8kvod.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
