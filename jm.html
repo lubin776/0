@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVBox 接口抓取工具</title>
+<title>TVBox 接口抓取工具22</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 20px; }
@@ -104,7 +104,11 @@ input[type="text"] { width: 100%; padding: 10px 14px; border-radius: 8px; border
 </div>
 
 <script>
-const BACKEND_BASE = "https://tvboxtool.pages.dev";
+// ============================================================
+// B 版：前端部署在别的服务器，跨域调用后端
+// 后端地址写死
+// ============================================================
+const BACKEND_BASE = "https://jm.wudaozhe.net";
 const PREVIEW_LIMIT = 2000;
 
 const UA_OPTIONS = [
@@ -248,7 +252,7 @@ async function startFetch() {
     }
   } catch (err) {
     log(`连接错误: ${err.message}`, "error");
-    log(`若是 CORS 错误：确认后端已放行当前域名`, "error");
+    log(`若是 CORS 错误：确认后端已放行当前域名 ${window.location.origin}`, "error");
   }
 
   btn.disabled = false;
