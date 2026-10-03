@@ -66,42 +66,6 @@
         { 
         "name": "ping0", 
         "url": "http://ping0.cc/" 
-        }
-      ]
-    },    {
-      "name": "4776",
-      "websites": [
-        { 
-        "name": "ltf8de5", 
-        "url": "https://ltf8.jueson.de5.net" 
-        },
-        { 
-        "name": "ltf8qzz", 
-        "url": "https://ltf8.jueson.qzz.io" 
-        },
-        { 
-        "name": "bd8dde5", 
-        "url": "https://bd8d.12yue.de5.net" 
-        },
-        { 
-        "name": "bd8dqzz", 
-        "url": "https://bd8d.cdz.qzz.io" 
-        },
-        { 
-        "name": "bd8deucc", 
-        "url": "https://bd8d.wdzb.eu.cc" 
-        },
-        { 
-        "name": "书签qzz", 
-        "url": "https://0.cdz.qzz.io/" 
-        },
-        { 
-        "name": "书签de5", 
-        "url": "https://0.12yue.de5.net/" 
-        },
-        { 
-        "name": "书签eucc", 
-        "url": "https://0.wdzb.eu.cc/" 
         },
         { 
         "name": "ip测试", 
@@ -118,59 +82,6 @@
         { 
         "name": "tvbox资源集合", 
         "url": "https://0.12yue.de5.net/tvboxtool/" 
-        }
-      ]
-    },
-    {
-      "name": "35895",
-      "websites": [
-        { 
-        "name": "kvideoDe5", 
-        "url": "https://vd.wdz.de5.net" 
-        },
-        { 
-        "name": "kvideoEucc", 
-        "url": "https://vd.cdzb.eu.cc" 
-        },
-        { 
-        "name": "lu358-0-De5", 
-        "url": "https://wdz.de5.net" 
-        },
-        { 
-        "name": "lu358-0-Eucc", 
-        "url": "https://cdzb.eu.cc" 
-        },
-        { 
-        "name": "ed8d节点eucc", 
-        "url": "https://ed8d.cdzb.eu.cc/" 
-        },
-        { 
-        "name": "ed8d节点de5", 
-        "url": "https://ed8d.wdz.de5.net" 
-        },
-        { 
-        "name": "cd8d节点de5", 
-        "url": "https://cd8d.wdz.de5.net" 
-        },
-        { 
-        "name": "cd8d节点eucc", 
-        "url": "https://cd8d.cdzb.eu.cc/" 
-        },
-        { 
-        "name": "ss节点eucc", 
-        "url": "https://ss.cdzb.eu.cc" 
-        },
-        { 
-        "name": "ss节点de5", 
-        "url": "https://ss.wdz.de5.net" 
-        },
-        { 
-        "name": "cn节点de5", 
-        "url": "https://cn.wdz.de5.net" 
-        },
-        { 
-        "name": "cn节点eucc", 
-        "url": "https://cn.cdzb.eu.cc" 
         }
       ]
     }
