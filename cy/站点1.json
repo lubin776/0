@@ -18,10 +18,10 @@
     { "icon": "🔍", "name": "IPTV源4", "url": "https://iptv-search.com/zh-hans/", "desc": "直播源搜索" },
     { "icon": "🧰", "name": "转换/去重", "url": "https://yang-1989.eu.org/Conversion.php", "desc": "播放列表处理" },
     { "icon": "🛡️", "name": "FOFA", "url": "https://fofa.info/", "desc": "网络空间测绘" },
-    { "icon": "🛡️", "name": "Quake", "url": "https://quake.360.net/quake/#/index", "desc": "360 测绘" },
-    { "icon": "🛡️", "name": "Hunter", "url": "https://hunter.qianxin.com/", "desc": "奇安信测绘" },
-    { "icon": "🛡️", "name": "ZoomEye", "url": "https://www.zoomeye.org/", "desc": "知道创宇测绘" },
-    { "icon": "🛡️", "name": "Censys", "url": "https://search.censys.io/", "desc": "资产发现" },
-    { "icon": "", "name": "线路检测", "url": "./线路检测", "desc": "检测" }
+    { "icon": "🛡️", "name": "Quake", "url": "https://quake.360.net/quake/#/index", "desc": "" },
+    { "icon": "", "name": "短剧网", "url": "https://www.duanju2.com/", "desc": "" },
+    { "icon": "", "name": "168短剧", "url": "https://www.xzyx168.com/", "desc": "" },
+    { "icon": "", "name": "55短剧", "url": "https://www.duanju55.com/", "desc": "" },
+    { "icon": "", "name": "线路检测", "url": "./线路检测", "desc": "" }
   ]
 }
