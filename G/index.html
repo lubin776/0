@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVBox 万能解密3</title>
+<title>TVBox 万能解密</title>
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +20,7 @@
     text-align: center; cursor: pointer; transition: .2s; background: #1e293b;
     margin-bottom: 20px;
   }
-  #drop:hover, #drop.over { border-color: #0ea5e9; background: #1e293b; box-shadow: 0 0 0 3px rgba(14,165,233,.2); }
+  #drop:hover, #drop.over { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,.2); }
   #drop .icon { font-size: 48px; margin-bottom: 12px; }
   #drop .title { font-size: 18px; margin-bottom: 6px; }
   #drop .desc { font-size: 13px; color: #64748b; }
@@ -89,7 +89,7 @@
     </div>
   </div>
 
-  <div class="card" id="logCard">
+  <div class="card">
     <h3>解密过程</h3>
     <div class="log" id="log"></div>
   </div>
@@ -130,45 +130,66 @@ const COMMON_KEYS = [
    工具
    ================================================================== */
 function $(id) { return document.getElementById(id); }
-function log(msg, cls = '') {
+
+function log(msg, cls) {
   const el = $('log');
   const line = document.createElement('div');
   line.className = 'step';
-  line.innerHTML = `<span class="${cls}">${msg}</span>`;
+  const span = document.createElement('span');
+  span.className = cls || '';
+  span.textContent = msg;
+  line.appendChild(span);
   el.appendChild(line);
   el.scrollTop = el.scrollHeight;
 }
 function clearLog() { $('log').innerHTML = ''; }
 
 /* ==================================================================
-   文本清理：删除所有非 JSON 语法的内容
-   - 删除 //  /* */  #  ;  <!-- --> 等所有注释
-   - 删除所有空白字符（空格/换行/制表/全角空格/零宽字符）
-   - 只保留 JSON 合法字符
+   文本清理
+   目标：只保留能构成 JSON 的字符，删掉一切注释和空白
    ================================================================== */
 function cleanText(text) {
   if (!text) return '';
-  let t = text;
+  let t = String(text);
 
-  // 1) 去掉 BOM
-  t = t.replace(/^\uFEFF/, '');
+  // 1) 去 BOM
+  t = t.replace(/\uFEFF/g, '');
 
-  // 2) 删除所有注释（无论什么语法）
-  t = t.replace(/\/\*[\s\S]*?\*\//g, '');          // /* ... */
-  t = t.replace(/<!--[\s\S]*?-->/g, '');            // <!-- ... -->
-  t = t.replace(/(^|\n)[ \t]*\/\/[^\n]*/g, '$1');   // 行首 //
-  t = t.replace(/(^|\n)[ \t]*#[^\n]*/g, '$1');      // 行首 #
-  t = t.replace(/(^|\n)[ \t]*;[^\n]*/g, '$1');      // 行首 ;
-  // 行尾 // 注释（排除 http:// 之类）
-  t = t.replace(/([^:\/])\/\/[^\n]*/g, '$1');
+  // 2) 删块注释
+  t = t.replace(/\/\*[\s\S]*?\*\//g, '');
+  t = t.replace(/<!--[\s\S]*?-->/g, '');
 
-  // 3) 只保留 JSON 合法字符：
-  //    { } [ ] : , " 数字 0-9 . - + e E 字母(键名) 以及转义用的 \
-  //    其他一切（含所有空白、控制符、非 ASCII 杂字符）全部删掉
-  t = t.replace(/[^{}\[\]:,"\d.\-+eEa-zA-Z_\\\/]/g, '');
+  // 3) 删行注释：逐行处理，避免复杂正则出错
+  const lines = t.split('\n');
+  const outLines = [];
+  for (let line of lines) {
+    // 去掉行尾的 // 注释（保护 http:// https://）
+    // 策略：找 // 但前面不是 : 的位置
+    let idx = -1;
+    for (let i = 0; i < line.length - 1; i++) {
+      if (line[i] === '/' && line[i+1] === '/') {
+        // 检查前一个字符
+        const prev = i > 0 ? line[i-1] : '';
+        if (prev !== ':') { idx = i; break; }
+      }
+    }
+    if (idx >= 0) line = line.slice(0, idx);
+    outLines.push(line);
+  }
+  t = outLines.join('\n');
 
-  // 4) 兜底：再删一遍残余空白
-  t = t.replace(/\s+/g, '');
+  // 4) 删整行以 # 或 ; 开头的行（仅当该行去空白后以这些字符开头）
+  t = t.split('\n').filter(line => {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('#')) return false;
+    if (trimmed.startsWith(';')) return false;
+    return true;
+  }).join('\n');
+
+  // 5) 只保留 JSON 合法字符
+  //    合法：{ } [ ] : , " 0-9 . - + e E 字母 _ \ / 以及中文
+  //    其余全部删除
+  t = t.replace(/[^{}\[\]:,"0-9.\-+eEa-zA-Z_\\\/\u4e00-\u9fa5]/g, '');
 
   return t;
 }
@@ -203,8 +224,8 @@ function bytesToText(bytes) {
     try {
       const txt = new TextDecoder(enc, { fatal: false }).decode(bytes);
       const bad = (txt.match(/\uFFFD/g) || []).length;
-      if (bad / Math.max(txt.length,1) < 0.01) return { text: txt, enc };
-    } catch {}
+      if (bad / Math.max(txt.length, 1) < 0.01) return { text: txt, enc: enc };
+    } catch (e) {}
   }
   return { text: new TextDecoder('utf-8').decode(bytes), enc: 'utf-8' };
 }
@@ -213,14 +234,14 @@ function bytesToText(bytes) {
    解密核心
    ================================================================== */
 function looksLikeBase64(s) {
-  const t = s.trim().replace(/\s/g, '');
+  const t = String(s).replace(/\s/g, '');
   if (t.length < 8) return false;
   if (!/^[A-Za-z0-9+/=_-]+$/.test(t)) return false;
   return t.length % 4 === 0 || /[=_-]/.test(t);
 }
 
 function b64Decode(str) {
-  let s = str.trim().replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
+  let s = String(str).replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
   while (s.length % 4) s += '=';
   const bin = atob(s);
   const bytes = new Uint8Array(bin.length);
@@ -229,18 +250,18 @@ function b64Decode(str) {
 }
 
 function b64ToWordArray(str) {
-  let s = str.trim().replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
+  let s = String(str).replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
   while (s.length % 4) s += '=';
   return CryptoJS.enc.Base64.parse(s);
 }
 
 function tryParseJson(text) {
   if (!text) return null;
-  let t = text.trim().replace(/^\uFEFF/, '');
-  try { return JSON.parse(t); } catch {}
+  let t = String(text).trim().replace(/\uFEFF/g, '');
+  try { return JSON.parse(t); } catch (e) {}
   const i = t.indexOf('{'), j = t.lastIndexOf('}');
   if (i >= 0 && j > i) {
-    try { return JSON.parse(t.slice(i, j+1)); } catch {}
+    try { return JSON.parse(t.slice(i, j + 1)); } catch (e) {}
   }
   return null;
 }
@@ -262,30 +283,31 @@ function tryDecrypt(cipherText, algo, keyStr, ivStr, mode, pad, keyFmt) {
     switch (algo) {
       case 'AES':
         dec = CryptoJS.AES.decrypt({ ciphertext: cipherText }, key,
-          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+          { iv: iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
         break;
       case 'DES':
         dec = CryptoJS.DES.decrypt({ ciphertext: cipherText }, key,
-          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+          { iv: iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
         break;
       case 'TripleDES':
         dec = CryptoJS.TripleDES.decrypt({ ciphertext: cipherText }, key,
-          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+          { iv: iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
         break;
       case 'RC4':
         dec = CryptoJS.RC4.decrypt({ ciphertext: cipherText }, key);
         break;
       case 'Rabbit':
         dec = CryptoJS.Rabbit.decrypt({ ciphertext: cipherText }, key,
-          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+          { iv: iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
         break;
       case 'RabbitLegacy':
         dec = CryptoJS.RabbitLegacy.decrypt({ ciphertext: cipherText }, key,
-          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+          { iv: iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
         break;
     }
+    if (!dec) return '';
     return dec.toString(CryptoJS.enc.Utf8);
-  } catch {
+  } catch (e) {
     return '';
   }
 }
@@ -299,67 +321,75 @@ async function handleFile(file) {
   $('preview').style.display = 'none';
   $('meta').innerHTML = '';
 
-  const buf = await readAsArrayBuffer(file);
-  const bytes = new Uint8Array(buf);
+  try {
+    const buf = await readAsArrayBuffer(file);
+    const bytes = new Uint8Array(buf);
 
-  const info = {
-    name: file.name,
-    size: file.size,
-    type: file.type || '未知',
-    imageType: isImageBytes(bytes),
-  };
+    const imageType = isImageBytes(bytes);
 
-  addChip(`📄 ${file.name}`);
-  addChip(`${(file.size/1024).toFixed(1)} KB`);
-  addChip(`类型: ${info.type || '未知'}`);
+    addChip('📄 ' + file.name);
+    addChip((file.size / 1024).toFixed(1) + ' KB');
+    addChip('类型: ' + (file.type || '未知'));
 
-  if (info.imageType) {
-    const blob = new Blob([bytes], { type: 'image/' + info.imageType });
-    $('preview').src = URL.createObjectURL(blob);
-    $('preview').style.display = 'block';
-    addChip(`🖼 图片 (${info.imageType})`, 'warn');
-    log(`检测到图片文件 (${info.imageType})，将尝试从图片中提取隐藏数据`, 'info');
+    if (imageType) {
+      const blob = new Blob([bytes], { type: 'image/' + imageType });
+      $('preview').src = URL.createObjectURL(blob);
+      $('preview').style.display = 'block';
+      addChip('🖼 图片 (' + imageType + ')', 'warn');
+      log('检测到图片文件 (' + imageType + ')，尝试提取隐藏数据', 'info');
 
-    const tailText = cleanText(bytesToText(bytes).text);
-    const b64Match = tailText.match(/[A-Za-z0-9+/=_-]{40,}/);
-    if (b64Match) {
-      log('在图片中发现疑似 Base64 数据', 'hit');
-      $('raw').value = b64Match[0];
-      run();
-    } else {
-      log('图片中未发现可提取的文本数据', 'miss');
+      const tailText = bytesToText(bytes).text;
+      // 图片二进制里直接找 base64 串
+      const b64Match = tailText.match(/[A-Za-z0-9+/=_-]{40,}/);
+      if (b64Match) {
+        log('在图片中发现疑似 Base64 数据', 'hit');
+        $('raw').value = b64Match[0];
+        run();
+      } else {
+        log('图片中未发现可提取的文本数据', 'miss');
+      }
+      return;
     }
-    return;
-  }
 
-  const { text, enc } = bytesToText(bytes);
-  const isText = !/[\x00-\x08\x0E-\x1F]/.test(text.slice(0, 1000));
+    const result = bytesToText(bytes);
+    const text = result.text;
+    const enc = result.enc;
+    // 判断是否文本：前 1000 字符里是否有大量控制字符
+    const sample = text.slice(0, 1000);
+    let ctrlCount = 0;
+    for (let i = 0; i < sample.length; i++) {
+      const c = sample.charCodeAt(i);
+      if (c < 32 && c !== 9 && c !== 10 && c !== 13) ctrlCount++;
+    }
+    const isText = ctrlCount / Math.max(sample.length, 1) < 0.05;
 
-  if (isText) {
-    addChip(`📝 文本 (${enc})`, 'ok');
-    const cleaned = cleanText(text);
-    const removed = text.length - cleaned.length;
-    $('raw').value = cleaned;
-    log(`按 ${enc} 解码为文本，原始长度 ${text.length}`, 'info');
-    log(`🧹 清理注释与空白：删除 ${removed} 个字符，剩余 ${cleaned.length}`, 'info');
-    run();
-  } else {
-    addChip('🔢 二进制', 'warn');
-    log('文件是二进制格式，尝试按各种方式解析', 'info');
-    const asText = bytesToText(bytes).text;
-    if (looksLikeBase64(asText)) {
-      const cleaned = cleanText(asText);
+    if (isText) {
+      addChip('📝 文本 (' + enc + ')', 'ok');
+      const cleaned = cleanText(text);
+      const removed = text.length - cleaned.length;
       $('raw').value = cleaned;
+      log('按 ' + enc + ' 解码，原始长度 ' + text.length, 'info');
+      log('🧹 清理注释与空白：删除 ' + removed + ' 字符，剩余 ' + cleaned.length, 'info');
       run();
     } else {
-      log('二进制内容无法识别为文本，可能需要专用工具', 'miss');
+      addChip('🔢 二进制', 'warn');
+      log('文件是二进制格式，尝试按文本解析', 'info');
+      const asText = text;
+      if (looksLikeBase64(asText)) {
+        $('raw').value = cleanText(asText);
+        run();
+      } else {
+        log('二进制内容无法识别为文本', 'miss');
+      }
     }
+  } catch (e) {
+    log('❌ 读取文件出错：' + e.message, 'miss');
   }
 }
 
-function addChip(text, cls = '') {
+function addChip(text, cls) {
   const el = document.createElement('span');
-  el.className = 'chip ' + cls;
+  el.className = 'chip ' + (cls || '');
   el.textContent = text;
   $('meta').appendChild(el);
 }
@@ -376,9 +406,9 @@ function run() {
   clearLog();
   const removed = rawValue.length - cleaned.length;
   if (removed > 0) {
-    log(`🧹 清理注释与空白：删除 ${removed} 个字符`, 'info');
+    log('🧹 清理注释与空白：删除 ' + removed + ' 字符', 'info');
   }
-  log(`输入长度: ${cleaned.length} 字符`, 'info');
+  log('输入长度: ' + cleaned.length + ' 字符', 'info');
 
   const input = cleaned;
 
@@ -403,9 +433,6 @@ function run() {
       } else if (decoded && decoded.length > 10) {
         log('Base64 解码成功但非 JSON，作为中间结果继续尝试', 'info');
         const decodedClean = cleanText(decoded);
-        if (decodedClean !== decoded) {
-          log(`🧹 中间结果再次清理：删除 ${decoded.length - decodedClean.length} 字符`, 'info');
-        }
         if (decodedClean && decodedClean !== input) {
           $('raw').value = decodedClean;
           run();
@@ -417,7 +444,7 @@ function run() {
     }
   }
 
-  // 第 3 步：Base64 → 密文，遍历密钥和算法
+  // 第 3 步：Base64 → 密文，暴力遍历
   let cipherText;
   try {
     cipherText = b64ToWordArray(input);
@@ -432,31 +459,35 @@ function run() {
   const pads  = ['Pkcs7', 'ZeroPadding', 'NoPadding', 'Iso97971', 'AnsiX923'];
   const keyFmts = ['utf8', 'hex'];
 
-  let tried = 0, hits = [];
+  let tried = 0;
+  let hits = [];
   const MAX_TRY = 20000;
 
   outer:
-  for (const algo of algos) {
-    for (const keyStr of COMMON_KEYS) {
-      for (const keyFmt of keyFmts) {
+  for (let ai = 0; ai < algos.length; ai++) {
+    const algo = algos[ai];
+    for (let ki = 0; ki < COMMON_KEYS.length; ki++) {
+      const keyStr = COMMON_KEYS[ki];
+      for (let fi = 0; fi < keyFmts.length; fi++) {
+        const keyFmt = keyFmts[fi];
         if (keyFmt === 'hex' && (keyStr.length % 2 !== 0 || !/^[0-9a-fA-F]*$/.test(keyStr))) continue;
 
         const modeList = (algo === 'RC4') ? ['CBC'] : modes;
         const padList  = (algo === 'RC4') ? ['Pkcs7'] : pads;
 
-        for (const mode of modeList) {
-          for (const pad of padList) {
+        for (let mi = 0; mi < modeList.length; mi++) {
+          for (let pi = 0; pi < padList.length; pi++) {
             tried++;
             if (tried > MAX_TRY) break outer;
 
-            const out = tryDecrypt(cipherText, algo, keyStr, '', mode, pad, keyFmt);
+            const out = tryDecrypt(cipherText, algo, keyStr, '', modeList[mi], padList[pi], keyFmt);
             if (!out) continue;
 
             const json = tryParseJson(out);
             if (json) {
               const isTvbox = looksLikeTvBoxJson(json);
-              hits.push({ algo, key: keyStr || '(空)', mode, pad, keyFmt, json, isTvbox });
-              log(`🎯 命中: ${algo} / key="${keyStr || '(空)'}" / ${mode} / ${pad} / ${keyFmt}${isTvbox ? ' 【TVBox 特征】' : ''}`, 'hit');
+              hits.push({ algo: algo, key: keyStr || '(空)', mode: modeList[mi], pad: padList[pi], keyFmt: keyFmt, json: json, isTvbox: isTvbox });
+              log('🎯 命中: ' + algo + ' / key="' + (keyStr || '(空)') + '" / ' + modeList[mi] + ' / ' + padList[pi] + ' / ' + keyFmt + (isTvbox ? ' 【TVBox 特征】' : ''), 'hit');
               if (isTvbox) break outer;
             }
           }
@@ -465,24 +496,24 @@ function run() {
     }
   }
 
-  log(`共尝试 ${tried} 种组合，命中 ${hits.length} 个`, hits.length ? 'hit' : 'miss');
+  log('共尝试 ' + tried + ' 种组合，命中 ' + hits.length + ' 个', hits.length ? 'hit' : 'miss');
 
   if (hits.length === 0) {
     log('❌ 未能自动解密。可能原因：', 'miss');
-    log('  • 密钥不在内置字典中（需从源码逆向获取）', 'miss');
+    log('  • 密钥不在内置字典中', 'miss');
     log('  • 使用了自定义加密方式', 'miss');
-    log('  • 数据经过了压缩（gzip/zlib）或其他预处理', 'miss');
+    log('  • 数据经过了压缩（gzip/zlib）', 'miss');
     return;
   }
 
-  hits.sort((a, b) => (b.isTvbox ? 1 : 0) - (a.isTvbox ? 1 : 0));
+  hits.sort(function(a, b) { return (b.isTvbox ? 1 : 0) - (a.isTvbox ? 1 : 0); });
   showResult(hits[0].json, hits[0]);
 }
 
 function showResult(json, meta) {
   $('output').value = JSON.stringify(json, null, 2);
   if (meta) {
-    const info = `${meta.algo} | key="${meta.key}" | ${meta.mode} | ${meta.pad} | ${meta.keyFmt}`;
+    const info = meta.algo + ' | key="' + meta.key + '" | ' + meta.mode + ' | ' + meta.pad + ' | ' + meta.keyFmt;
     addChip('🔑 ' + info, 'ok');
   }
 }
@@ -490,28 +521,45 @@ function showResult(json, meta) {
 /* ==================================================================
    UI 交互
    ================================================================== */
-const drop = $('drop');
-drop.addEventListener('click', () => $('fileInput').click());
-$('fileInput').addEventListener('change', e => {
-  if (e.target.files[0]) handleFile(e.target.files[0]);
-});
+function initUI() {
+  const drop = $('drop');
+  const fileInput = $('fileInput');
 
-['dragenter','dragover'].forEach(ev => {
-  drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); });
-  document.body.addEventListener(ev, e => e.preventDefault());
-});
-['dragleave','drop'].forEach(ev => {
-  drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); });
-});
-drop.addEventListener('drop', e => {
-  const f = e.dataTransfer.files[0];
-  if (f) handleFile(f);
-});
-document.body.addEventListener('drop', e => {
-  e.preventDefault();
-  const f = e.dataTransfer.files[0];
-  if (f) handleFile(f);
-});
+  // 点击区域触发文件选择
+  drop.addEventListener('click', function(e) {
+    // 避免点到 input 自身时重复触发
+    if (e.target !== fileInput) fileInput.click();
+  });
+
+  fileInput.addEventListener('change', function(e) {
+    if (e.target.files && e.target.files[0]) {
+      handleFile(e.target.files[0]);
+      // 清空以便再次选择同一个文件也能触发
+      e.target.value = '';
+    }
+  });
+
+  // 拖拽高亮
+  drop.addEventListener('dragenter', function(e) { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragover',  function(e) { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', function(e) { e.preventDefault(); drop.classList.remove('over'); });
+  drop.addEventListener('drop', function(e) {
+    e.preventDefault();
+    drop.classList.remove('over');
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  });
+
+  // 全局拖放（防止浏览器直接打开文件）
+  window.addEventListener('dragover', function(e) { e.preventDefault(); });
+  window.addEventListener('drop', function(e) {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  });
+}
 
 function clearAll() {
   $('raw').value = '';
@@ -523,13 +571,13 @@ function clearAll() {
 function copyOut() {
   const el = $('output');
   el.select();
-  document.execCommand('copy');
-  if (navigator.clipboard) navigator.clipboard.writeText(el.value).catch(()=>{});
+  try { document.execCommand('copy'); } catch (e) {}
+  if (navigator.clipboard) navigator.clipboard.writeText(el.value).catch(function(){});
 }
 function formatJson() {
   try {
     $('output').value = JSON.stringify(JSON.parse($('output').value), null, 2);
-  } catch {}
+  } catch (e) {}
 }
 function downloadJson() {
   const blob = new Blob([$('output').value], { type: 'application/json' });
@@ -539,6 +587,9 @@ function downloadJson() {
   a.click();
   URL.revokeObjectURL(a.href);
 }
+
+// 页面加载后初始化
+window.addEventListener('DOMContentLoaded', initUI);
 </script>
 </body>
 </html>
