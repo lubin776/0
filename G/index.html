@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVBox 解密工具箱也</title>
+<title>TVBox 万能解密</title>
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -11,678 +11,510 @@
     font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
     background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 20px;
   }
-  .container { max-width: 1100px; margin: 0 auto; }
-  h1 { text-align: center; margin-bottom: 24px; font-size: 26px; color: #38bdf8; }
-  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-  .tab {
-    padding: 10px 20px; background: #1e293b; border: 1px solid #334155;
-    border-radius: 8px; cursor: pointer; transition: .2s; color: #94a3b8;
+  .container { max-width: 1000px; margin: 0 auto; }
+  h1 { text-align: center; margin-bottom: 8px; font-size: 24px; color: #38bdf8; }
+  .sub { text-align: center; color: #64748b; font-size: 13px; margin-bottom: 24px; }
+
+  #drop {
+    border: 2px dashed #334155; border-radius: 16px; padding: 48px 20px;
+    text-align: center; cursor: pointer; transition: .2s; background: #1e293b;
+    margin-bottom: 20px;
   }
-  .tab.active { background: #0ea5e9; color: #fff; border-color: #0ea5e9; }
-  .panel { display: none; }
-  .panel.active { display: block; }
+  #drop:hover, #drop.over { border-color: #0ea5e9; background: #1e293b; box-shadow: 0 0 0 3px rgba(14,165,233,.2); }
+  #drop .icon { font-size: 48px; margin-bottom: 12px; }
+  #drop .title { font-size: 18px; margin-bottom: 6px; }
+  #drop .desc { font-size: 13px; color: #64748b; }
+
   .card {
     background: #1e293b; border: 1px solid #334155; border-radius: 12px;
     padding: 20px; margin-bottom: 16px;
   }
-  label { display: block; margin-bottom: 6px; font-size: 14px; color: #94a3b8; }
-  textarea, input[type=text], input[type=password], select {
-    width: 100%; padding: 10px; background: #0f172a; color: #e2e8f0;
-    border: 1px solid #334155; border-radius: 6px; font-family: monospace;
-    font-size: 13px; resize: vertical;
+  .card h3 { font-size: 15px; color: #94a3b8; margin-bottom: 12px; font-weight: normal; }
+
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip {
+    background: #0f172a; border: 1px solid #334155; border-radius: 20px;
+    padding: 5px 14px; font-size: 12px; color: #94a3b8;
   }
-  textarea { min-height: 140px; }
-  input:focus, textarea:focus, select:focus { outline: none; border-color: #0ea5e9; }
-  .row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
-  .row > * { flex: 1; min-width: 140px; }
+  .chip.ok { color: #4ade80; border-color: #166534; }
+  .chip.warn { color: #fbbf24; border-color: #78350f; }
+
+  textarea {
+    width: 100%; padding: 12px; background: #0f172a; color: #e2e8f0;
+    border: 1px solid #334155; border-radius: 8px; font-family: monospace;
+    font-size: 13px; resize: vertical; min-height: 300px; line-height: 1.5;
+  }
+  textarea:focus { outline: none; border-color: #0ea5e9; }
+
+  .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
   button {
-    padding: 10px 20px; background: #0ea5e9; color: #fff; border: none;
-    border-radius: 6px; cursor: pointer; font-size: 14px; transition: .2s;
+    padding: 9px 18px; background: #0ea5e9; color: #fff; border: none;
+    border-radius: 6px; cursor: pointer; font-size: 13px; transition: .2s;
   }
   button:hover { background: #0284c7; }
   button.secondary { background: #334155; }
   button.secondary:hover { background: #475569; }
-  .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .status { margin-top: 10px; font-size: 13px; min-height: 20px; }
-  .status.ok { color: #4ade80; }
-  .status.err { color: #f87171; }
-  .hint { font-size: 12px; color: #64748b; margin-top: 6px; line-height: 1.6; }
-  #imgPreview { max-width: 100%; margin-top: 12px; border-radius: 8px; display: none; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
-  code { background: #0f172a; padding: 2px 6px; border-radius: 4px; color: #38bdf8; }
-  input[type=file] {
-    padding: 8px; background: #0f172a; color: #e2e8f0;
-    border: 1px solid #334155; border-radius: 6px; font-size: 13px;
-    cursor: pointer; width: 100%;
-  }
-  input[type=file]::file-selector-button {
-    background: #0ea5e9; color: #fff; border: none; padding: 6px 12px;
-    border-radius: 4px; cursor: pointer; margin-right: 10px;
-  }
-  input[type=file]::file-selector-button:hover { background: #0284c7; }
-  .drag-over { border-color: #0ea5e9 !important; box-shadow: 0 0 0 2px rgba(14,165,233,.3); }
+
+  .log { font-family: monospace; font-size: 12px; color: #64748b; line-height: 1.8; max-height: 240px; overflow-y: auto; }
+  .log .hit { color: #4ade80; }
+  .log .miss { color: #475569; }
+  .log .info { color: #38bdf8; }
+
+  .step { padding: 4px 0; border-bottom: 1px solid #1e293b; }
+  #preview { max-width: 100%; border-radius: 8px; margin-top: 12px; display: none; }
+  .hidden { display: none; }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>🔓 TVBox 解密工具箱</h1>
+  <h1>🔓 TVBox 万能解密</h1>
+  <div class="sub">拖入任意文件，自动识别并解密为接口 JSON</div>
 
-  <div class="tabs">
-    <div class="tab active" data-tab="tvbox">TVBox 接口解密</div>
-    <div class="tab" data-tab="base64">Base64 编解码</div>
-    <div class="tab" data-tab="image">图片处理</div>
-    <div class="tab" data-tab="text">文本处理</div>
+  <div id="drop">
+    <div class="icon">📂</div>
+    <div class="title">拖入文件 / 点击选择</div>
+    <div class="desc">任意格式、任意后缀，或直接把加密串粘贴到下方</div>
+    <input type="file" id="fileInput" class="hidden">
   </div>
 
-  <!-- ============ TVBox 接口解密 ============ -->
-  <div class="panel active" id="panel-tvbox">
-    <div class="card">
-      <label>接口地址 (URL) —— 用于自动拉取（受 CORS 限制）</label>
-      <div class="row">
-        <input type="text" id="tvboxUrl" placeholder="https://example.com/api.php/provide/vod/">
-        <button style="flex:0 0 auto" onclick="fetchTvbox()">拉取</button>
-      </div>
-      <div class="hint">若跨域失败，请手动复制接口内容粘贴到下方，或直接从本地文件打开。</div>
-    </div>
-
-    <div class="card">
-      <div class="row" style="margin-bottom:12px">
-        <div>
-          <label>📂 从本地文件打开 (.txt / .json / 任意文本)</label>
-          <input type="file" id="tvboxFile" accept=".txt,.json,.js,.conf,.xml,text/*,application/json">
-        </div>
-        <div style="flex:0 0 160px">
-          <label>文件编码</label>
-          <select id="tvboxFileEnc">
-            <option value="UTF-8">UTF-8</option>
-            <option value="GBK">GBK</option>
-            <option value="GB2312">GB2312</option>
-            <option value="GB18030">GB18030</option>
-          </select>
-        </div>
-      </div>
-      <div class="hint" style="margin-bottom:12px">也可以直接把文件拖到下面的输入框里。</div>
-
-      <label>加密内容 (Base64 / 密文)</label>
-      <textarea id="tvboxInput" placeholder="粘贴 TVBox 接口返回的加密字符串，或拖入文件..."></textarea>
-
-      <div class="row" style="margin-top:12px">
-        <div>
-          <label>加密方式</label>
-          <select id="tvboxAlgo">
-            <option value="none">仅 Base64 解码</option>
-            <option value="aes">AES</option>
-            <option value="des">DES</option>
-            <option value="rc4">RC4</option>
-            <option value="rabbit">Rabbit</option>
-          </select>
-        </div>
-        <div>
-          <label>密钥 (Key)</label>
-          <input type="text" id="tvboxKey" placeholder="例如: 1234567890abcdef">
-        </div>
-        <div>
-          <label>IV (仅 AES/DES 需要)</label>
-          <input type="text" id="tvboxIv" placeholder="可留空">
-        </div>
-        <div>
-          <label>模式 (AES)</label>
-          <select id="tvboxMode">
-            <option value="CBC">CBC</option>
-            <option value="ECB">ECB</option>
-            <option value="CFB">CFB</option>
-            <option value="OFB">OFB</option>
-            <option value="CTR">CTR</option>
-          </select>
-        </div>
-        <div>
-          <label>填充</label>
-          <select id="tvboxPad">
-            <option value="Pkcs7">Pkcs7</option>
-            <option value="ZeroPadding">ZeroPadding</option>
-            <option value="NoPadding">NoPadding</option>
-            <option value="Iso97971">Iso97971</option>
-            <option value="AnsiX923">AnsiX923</option>
-          </select>
-        </div>
-        <div>
-          <label>密钥格式</label>
-          <select id="tvboxKeyFmt">
-            <option value="utf8">UTF-8 字符串</option>
-            <option value="hex">Hex 十六进制</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="btns">
-        <button onclick="decryptTvbox()">🔓 解密</button>
-        <button class="secondary" onclick="formatJson()">🎨 格式化 JSON</button>
-        <button class="secondary" onclick="copyResult('tvboxOutput')">📋 复制结果</button>
-        <button class="secondary" onclick="clearAll('tvboxInput','tvboxOutput')">🗑 清空</button>
-      </div>
-      <div class="status" id="tvboxStatus"></div>
-    </div>
-
-    <div class="card">
-      <label>解密结果</label>
-      <textarea id="tvboxOutput" placeholder="结果将显示在这里..." style="min-height:260px"></textarea>
+  <div class="card">
+    <h3>识别结果</h3>
+    <div class="meta" id="meta"></div>
+    <textarea id="raw" placeholder="也可以直接在这里粘贴加密内容..."></textarea>
+    <div class="btns">
+      <button onclick="run()">🚀 开始解密</button>
+      <button class="secondary" onclick="clearAll()">🗑 清空</button>
+      <button class="secondary" onclick="copyOut()">📋 复制结果</button>
     </div>
   </div>
 
-  <!-- ============ Base64 编解码 ============ -->
-  <div class="panel" id="panel-base64">
-    <div class="grid2">
-      <div class="card">
-        <label>原文 (明文)</label>
-        <textarea id="b64Plain" placeholder="输入要编码的文本..."></textarea>
-        <div class="btns">
-          <button onclick="encodeBase64()">编码 →</button>
-          <button class="secondary" onclick="clearAll('b64Plain')">清空</button>
-        </div>
-      </div>
-      <div class="card">
-        <label>Base64 密文</label>
-        <textarea id="b64Encoded" placeholder="输入要解码的 Base64..."></textarea>
-        <div class="btns">
-          <button onclick="decodeBase64()">← 解码</button>
-          <button class="secondary" onclick="copyResult('b64Encoded')">复制</button>
-          <button class="secondary" onclick="clearAll('b64Encoded')">清空</button>
-        </div>
-        <div class="status" id="b64Status"></div>
-      </div>
-    </div>
-    <div class="card">
-      <label>URL-Safe Base64 (替换 +/ 为 -_，去掉 =)</label>
-      <div class="btns">
-        <button onclick="toUrlSafe()">转为 URL-Safe</button>
-        <button onclick="fromUrlSafe()">还原标准 Base64</button>
-      </div>
+  <div class="card" id="logCard">
+    <h3>解密过程</h3>
+    <div class="log" id="log"></div>
+  </div>
+
+  <div class="card">
+    <h3>明文结果 (TVBox JSON)</h3>
+    <textarea id="output" placeholder="解密后的 JSON 会显示在这里..."></textarea>
+    <div class="btns">
+      <button class="secondary" onclick="formatJson()">🎨 格式化</button>
+      <button class="secondary" onclick="downloadJson()">⬇ 下载 JSON</button>
     </div>
   </div>
 
-  <!-- ============ 图片处理 ============ -->
-  <div class="panel" id="panel-image">
-    <div class="card">
-      <label>选择图片文件</label>
-      <input type="file" id="imgFile" accept="image/*">
-      <div class="hint">图片完全在本地处理，不会上传到任何服务器。</div>
-      <img id="imgPreview" alt="预览">
-    </div>
-
-    <div class="card">
-      <label>图片 → Base64 DataURL</label>
-      <div class="btns">
-        <button onclick="imgToBase64()">生成 Base64</button>
-        <button class="secondary" onclick="copyResult('imgBase64')">复制</button>
-      </div>
-      <textarea id="imgBase64" placeholder="DataURL 显示在这里..." style="margin-top:10px;min-height:120px"></textarea>
-    </div>
-
-    <div class="card">
-      <label>Base64 DataURL → 图片</label>
-      <textarea id="imgBase64Input" placeholder="粘贴 data:image/png;base64,xxxxx"></textarea>
-      <div class="btns">
-        <button onclick="base64ToImg()">还原图片</button>
-      </div>
-      <div class="status" id="imgStatus"></div>
-    </div>
-
-    <div class="card">
-      <label>图片缩放 / 压缩</label>
-      <div class="row">
-        <div>
-          <label>宽度 (px)</label>
-          <input type="text" id="imgWidth" placeholder="留空保持原宽">
-        </div>
-        <div>
-          <label>质量 (0.1 ~ 1.0，仅 JPEG/WEBP)</label>
-          <input type="text" id="imgQuality" value="0.85">
-        </div>
-        <div>
-          <label>输出格式</label>
-          <select id="imgFormat">
-            <option value="image/jpeg">JPEG</option>
-            <option value="image/png">PNG</option>
-            <option value="image/webp">WEBP</option>
-          </select>
-        </div>
-      </div>
-      <div class="btns">
-        <button onclick="processImage()">处理并下载</button>
-      </div>
-      <div class="status" id="imgProcStatus"></div>
-    </div>
-  </div>
-
-  <!-- ============ 文本处理 ============ -->
-  <div class="panel" id="panel-text">
-    <div class="card">
-      <div class="row" style="margin-bottom:12px">
-        <div>
-          <label>📂 从本地文件打开</label>
-          <input type="file" id="txtFile" accept=".txt,.json,.js,.conf,.xml,.csv,.log,text/*,application/json">
-        </div>
-        <div style="flex:0 0 160px">
-          <label>文件编码</label>
-          <select id="txtFileEnc">
-            <option value="UTF-8">UTF-8</option>
-            <option value="GBK">GBK</option>
-            <option value="GB2312">GB2312</option>
-            <option value="GB18030">GB18030</option>
-          </select>
-        </div>
-      </div>
-      <div class="hint" style="margin-bottom:12px">也可以直接把文件拖到下面的输入框里。</div>
-
-      <label>输入文本</label>
-      <textarea id="txtInput" placeholder="粘贴文本，或拖入文件..." style="min-height:180px"></textarea>
-    </div>
-
-    <div class="card">
-      <label>操作</label>
-      <div class="btns">
-        <button onclick="txtOp('upper')">转大写</button>
-        <button onclick="txtOp('lower')">转小写</button>
-        <button onclick="txtOp('trim')">去首尾空白</button>
-        <button onclick="txtOp('dedupLines')">行去重</button>
-        <button onclick="txtOp('sortLines')">行排序</button>
-        <button onclick="txtOp('removeEmpty')">删除空行</button>
-        <button onclick="txtOp('json')">JSON 格式化</button>
-        <button onclick="txtOp('jsonMin')">JSON 压缩</button>
-        <button onclick="txtOp('urlencode')">URL 编码</button>
-        <button onclick="txtOp('urldecode')">URL 解码</button>
-        <button onclick="txtOp('unicode')">转 Unicode</button>
-        <button onclick="txtOp('ununicode')">Unicode 还原</button>
-        <button onclick="txtOp('hex')">转 Hex</button>
-        <button onclick="txtOp('unhex')">Hex 还原</button>
-      </div>
-      <div class="row" style="margin-top:12px">
-        <div>
-          <label>正则查找</label>
-          <input type="text" id="regexFind" placeholder="正则表达式">
-        </div>
-        <div>
-          <label>替换为</label>
-          <input type="text" id="regexReplace" placeholder="替换内容">
-        </div>
-        <button style="flex:0 0 auto;align-self:flex-end" onclick="txtOp('regex')">替换</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <label>输出结果</label>
-      <textarea id="txtOutput" placeholder="结果..." style="min-height:180px"></textarea>
-      <div class="btns">
-        <button class="secondary" onclick="copyResult('txtOutput')">复制</button>
-        <button class="secondary" onclick="document.getElementById('txtInput').value=document.getElementById('txtOutput').value">↑ 用输出覆盖输入</button>
-      </div>
-      <div class="status" id="txtStatus"></div>
-    </div>
-  </div>
+  <img id="preview" alt="预览">
 </div>
 
 <script>
-/* ============ 通用工具 ============ */
+/* ==================================================================
+   常见 TVBox 接口密钥字典
+   这些是网上流通的接口常用的固定密钥，覆盖率较高
+   ================================================================== */
+const COMMON_KEYS = [
+  '', '12345678', '1234567890', '1234567890123456',
+  'tvbox', 'TVBox', 'tvbox123', 'tvbox1234', 'tvbox2023', 'tvbox2024', 'tvbox2025',
+  'TVBOX', 'TVBOX123', 'tvbox888', 'tvbox666',
+  'vbox', 'vbox123', 'VBOX', 'VBOX123',
+  '1234', '123456', '0000', '000000', '00000000',
+  'abcd1234', 'admin123', 'password', 'qwerty123',
+  'tvboxapi', 'tvboxconfig', 'tvboxdemo', 'tvboxpro',
+  'caomei', 'caomei123', 'cctv', 'cctv123',
+  'fongmi', 'tv', 'TV', 'ds', 'yx', 'xiao',
+  '9527', '521', '520', '88888888', '66666666',
+  'a1b2c3d4e5f6g7h8', '1qaz2wsx', 'abcdefgh', 'abcdefghijklmnop',
+  '0000000000000000', '1111111111111111', '0123456789abcdef',
+  '3.1415926535', 'woaini', 'woaini1314', 'iloveyou',
+];
+
+/* ==================================================================
+   工具
+   ================================================================== */
 function $(id) { return document.getElementById(id); }
-
-function copyResult(id) {
-  const el = $(id);
-  el.select();
-  document.execCommand('copy');
-  if (navigator.clipboard) navigator.clipboard.writeText(el.value).catch(()=>{});
-  const statusMap = { tvboxOutput: 'tvboxStatus', b64Encoded: 'b64Status', txtOutput: 'txtStatus', imgBase64: 'imgStatus' };
-  setStatus(statusMap[id], '已复制到剪贴板', 'ok');
+function log(msg, cls = '') {
+  const el = $('log');
+  const line = document.createElement('div');
+  line.className = 'step';
+  line.innerHTML = `<span class="${cls}">${msg}</span>`;
+  el.appendChild(line);
+  el.scrollTop = el.scrollHeight;
 }
+function clearLog() { $('log').innerHTML = ''; }
 
-function clearAll(...ids) { ids.forEach(id => { if ($(id)) $(id).value = ''; }); }
-
-function setStatus(id, msg, type = '') {
-  if (!id || !$(id)) return;
-  const el = $(id);
-  el.textContent = msg;
-  el.className = 'status ' + type;
-}
-
-/* ============ Tab 切换 ============ */
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    $('panel-' + tab.dataset.tab).classList.add('active');
-  });
-});
-
-/* ============ 密钥解析 ============ */
-function parseKey(str, fmt) {
-  if (fmt === 'hex') return CryptoJS.enc.Hex.parse(str);
-  return CryptoJS.enc.Utf8.parse(str);
-}
-
-/* ============ 本地文件打开 + 拖拽 ============ */
-function readFileWithEncoding(file, encoding) {
+/* ==================================================================
+   文件读取：统一读成 ArrayBuffer，再智能判断内容类型
+   ================================================================== */
+function readAsArrayBuffer(file) {
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      try {
-        const buf = ev.target.result;
-        // 尝试用指定编码解码，失败则退回 UTF-8
-        let text;
-        try {
-          text = new TextDecoder(encoding || 'utf-8').decode(buf);
-        } catch {
-          text = new TextDecoder('utf-8').decode(buf);
-        }
-        // 如果指定非 UTF-8 但解码结果全是替换字符，再试 UTF-8
-        if (encoding && encoding.toUpperCase() !== 'UTF-8' && /\uFFFD/.test(text)) {
-          const alt = new TextDecoder('utf-8').decode(buf);
-          if (!/\uFFFD/.test(alt)) text = alt;
-        }
-        resolve({ text, size: file.size, name: file.name });
-      } catch (e) { reject(e); }
-    };
-    reader.onerror = () => reject(reader.error);
-    reader.readAsArrayBuffer(file);
+    const r = new FileReader();
+    r.onload = e => resolve(e.target.result);
+    r.onerror = () => reject(r.error);
+    r.readAsArrayBuffer(file);
   });
 }
 
-async function loadFileInto(file, targetId, statusId, encId) {
-  try {
-    const enc = encId && $(encId) ? $(encId).value : 'UTF-8';
-    const { text, size, name } = await readFileWithEncoding(file, enc);
-    $(targetId).value = text;
-    setStatus(statusId, `✅ 已读取：${name} (${(size/1024).toFixed(1)} KB, ${enc})`, 'ok');
-  } catch (e) {
-    setStatus(statusId, '❌ 读取失败：' + e.message, 'err');
-  }
+// 判断是否为图片
+function isImageBytes(bytes) {
+  if (bytes.length < 4) return false;
+  const b = bytes;
+  // PNG
+  if (b[0]===0x89 && b[1]===0x50 && b[2]===0x4E && b[3]===0x47) return 'png';
+  // JPEG
+  if (b[0]===0xFF && b[1]===0xD8 && b[2]===0xFF) return 'jpeg';
+  // GIF
+  if (b[0]===0x47 && b[1]===0x49 && b[2]===0x46) return 'gif';
+  // BMP
+  if (b[0]===0x42 && b[1]===0x4D) return 'bmp';
+  // WEBP (RIFF....WEBP)
+  if (b[0]===0x52 && b[1]===0x49 && b[2]===0x46 && b[3]===0x46 &&
+      b[8]===0x57 && b[9]===0x45 && b[10]===0x42 && b[11]===0x50) return 'webp';
+  return false;
 }
 
-function bindFileOpen(inputId, targetId, statusId, encId) {
-  const el = $(inputId);
-  if (!el) return;
-  el.addEventListener('change', e => {
-    const file = e.target.files[0];
-    if (file) loadFileInto(file, targetId, statusId, encId);
-  });
-}
-
-function bindDragDrop(targetId, statusId, encId) {
-  const el = $(targetId);
-  if (!el) return;
-  el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('drag-over'); });
-  el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
-  el.addEventListener('drop', e => {
-    e.preventDefault();
-    el.classList.remove('drag-over');
-    const file = e.dataTransfer.files[0];
-    if (file) loadFileInto(file, targetId, statusId, encId);
-  });
-}
-
-bindFileOpen('tvboxFile', 'tvboxInput', 'tvboxStatus', 'tvboxFileEnc');
-bindDragDrop('tvboxInput', 'tvboxStatus', 'tvboxFileEnc');
-
-bindFileOpen('txtFile', 'txtInput', 'txtStatus', 'txtFileEnc');
-bindDragDrop('txtInput', 'txtStatus', 'txtFileEnc');
-
-/* ============ TVBox 拉取 ============ */
-async function fetchTvbox() {
-  const url = $('tvboxUrl').value.trim();
-  if (!url) return setStatus('tvboxStatus', '请输入接口地址', 'err');
-  setStatus('tvboxStatus', '拉取中...');
-  try {
-    const res = await fetch(url);
-    const text = await res.text();
-    $('tvboxInput').value = text;
-    setStatus('tvboxStatus', '拉取成功，共 ' + text.length + ' 字符', 'ok');
-  } catch (e) {
-    setStatus('tvboxStatus', '拉取失败(可能是 CORS)：' + e.message, 'err');
-  }
-}
-
-/* ============ TVBox 解密 ============ */
-function decryptTvbox() {
-  const input = $('tvboxInput').value.trim();
-  if (!input) return setStatus('tvboxStatus', '请输入加密内容', 'err');
-
-  const algo = $('tvboxAlgo').value;
-  const keyStr = $('tvboxKey').value;
-  const ivStr = $('tvboxIv').value;
-  const keyFmt = $('tvboxKeyFmt').value;
-
-  let result = '';
-
-  try {
-    if (algo === 'none') {
-      result = tryBase64Decode(input);
-    } else {
-      let cipherText;
-      try {
-        cipherText = CryptoJS.enc.Base64.parse(input);
-      } catch {
-        cipherText = CryptoJS.enc.Utf8.parse(input);
-      }
-
-      const key = parseKey(keyStr, keyFmt);
-      const iv = ivStr ? parseKey(ivStr, keyFmt) : CryptoJS.enc.Hex.parse('0000000000000000');
-
-      let decrypted;
-      switch (algo) {
-        case 'aes': {
-          const mode = CryptoJS.mode[$('tvboxMode').value];
-          const pad = CryptoJS.pad[$('tvboxPad').value];
-          decrypted = CryptoJS.AES.decrypt(
-            { ciphertext: cipherText }, key,
-            { iv, mode, padding: pad }
-          );
-          break;
-        }
-        case 'des':
-          decrypted = CryptoJS.DES.decrypt(
-            { ciphertext: cipherText }, key,
-            { iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
-          );
-          break;
-        case 'rc4':
-          decrypted = CryptoJS.RC4.decrypt({ ciphertext: cipherText }, key);
-          break;
-        case 'rabbit':
-          decrypted = CryptoJS.Rabbit.decrypt(
-            { ciphertext: cipherText }, key,
-            { iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
-          );
-          break;
-      }
-
-      result = decrypted.toString(CryptoJS.enc.Utf8);
-    }
-
-    $('tvboxOutput').value = result;
-    setStatus('tvboxStatus', '✅ 解密成功，共 ' + result.length + ' 字符', 'ok');
-  } catch (e) {
+// 尝试多种编码解码为文本
+function bytesToText(bytes) {
+  const encodings = ['utf-8', 'gbk', 'gb18030', 'big5'];
+  for (const enc of encodings) {
     try {
-      const fallback = tryBase64Decode(input);
-      $('tvboxOutput').value = fallback;
-      setStatus('tvboxStatus', '⚠ 加密解密失败，但 Base64 解码成功：' + e.message, 'ok');
-    } catch {
-      setStatus('tvboxStatus', '❌ 解密失败：' + e.message, 'err');
-    }
+      const txt = new TextDecoder(enc, { fatal: false }).decode(bytes);
+      // 统计替换字符比例，越低越可信
+      const bad = (txt.match(/\uFFFD/g) || []).length;
+      if (bad / Math.max(txt.length,1) < 0.01) return { text: txt, enc };
+    } catch {}
   }
+  return { text: new TextDecoder('utf-8').decode(bytes), enc: 'utf-8' };
 }
 
-function tryBase64Decode(str) {
-  const s = str.trim().replace(/\s/g, '');
-  const binary = atob(s);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+/* ==================================================================
+   解密核心
+   ================================================================== */
+
+// 判断字符串是否像 Base64
+function looksLikeBase64(s) {
+  const t = s.trim().replace(/\s/g, '');
+  if (t.length < 8) return false;
+  if (!/^[A-Za-z0-9+/=_-]+$/.test(t)) return false;
+  // 去掉填充后长度应为 4 的倍数附近
+  return t.length % 4 === 0 || /[=_-]/.test(t);
+}
+
+// Base64 → 文本（UTF-8）
+function b64Decode(str) {
+  let s = str.trim().replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
+  while (s.length % 4) s += '=';
+  const bin = atob(s);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
   return new TextDecoder('utf-8').decode(bytes);
 }
 
-function formatJson() {
-  const out = $('tvboxOutput');
+// Base64 → WordArray
+function b64ToWordArray(str) {
+  let s = str.trim().replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
+  while (s.length % 4) s += '=';
+  return CryptoJS.enc.Base64.parse(s);
+}
+
+// 尝试解析 JSON（宽松：允许前后有杂字符）
+function tryParseJson(text) {
+  if (!text) return null;
+  let t = text.trim();
+  // 去掉 BOM
+  t = t.replace(/^\uFEFF/, '');
+  try { return JSON.parse(t); } catch {}
+  // 找第一个 { 和最后一个 }
+  const i = t.indexOf('{'), j = t.lastIndexOf('}');
+  if (i >= 0 && j > i) {
+    try { return JSON.parse(t.slice(i, j+1)); } catch {}
+  }
+  return null;
+}
+
+// 判断 JSON 是否像 TVBox 接口（有 sites / lives / parses / spider 等字段）
+function looksLikeTvBoxJson(obj) {
+  if (!obj || typeof obj !== 'object') return false;
+  const keys = ['sites','lives','parses','spider','wallpaper','logo','flags','rules','ijk','doh','ads'];
+  return keys.some(k => k in obj);
+}
+
+// 用某个算法 + 密钥尝试解密
+function tryDecrypt(cipherText, algo, keyStr, ivStr, mode, pad, keyFmt) {
+  const key = keyFmt === 'hex' ? CryptoJS.enc.Hex.parse(keyStr) : CryptoJS.enc.Utf8.parse(keyStr);
+  const iv = ivStr
+    ? (keyFmt === 'hex' ? CryptoJS.enc.Hex.parse(ivStr) : CryptoJS.enc.Utf8.parse(ivStr))
+    : CryptoJS.enc.Hex.parse('0000000000000000');
+
+  let dec;
   try {
-    const obj = JSON.parse(out.value);
-    out.value = JSON.stringify(obj, null, 2);
-    setStatus('tvboxStatus', '✅ JSON 格式化成功', 'ok');
-  } catch (e) {
-    setStatus('tvboxStatus', '❌ 不是有效 JSON：' + e.message, 'err');
+    switch (algo) {
+      case 'AES':
+        dec = CryptoJS.AES.decrypt({ ciphertext: cipherText }, key,
+          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+        break;
+      case 'DES':
+        dec = CryptoJS.DES.decrypt({ ciphertext: cipherText }, key,
+          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+        break;
+      case 'TripleDES':
+        dec = CryptoJS.TripleDES.decrypt({ ciphertext: cipherText }, key,
+          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+        break;
+      case 'RC4':
+        dec = CryptoJS.RC4.decrypt({ ciphertext: cipherText }, key);
+        break;
+      case 'Rabbit':
+        dec = CryptoJS.Rabbit.decrypt({ ciphertext: cipherText }, key,
+          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+        break;
+      case 'RabbitLegacy':
+        dec = CryptoJS.RabbitLegacy.decrypt({ ciphertext: cipherText }, key,
+          { iv, mode: CryptoJS.mode[mode], padding: CryptoJS.pad[pad] });
+        break;
+    }
+    return dec.toString(CryptoJS.enc.Utf8);
+  } catch {
+    return '';
   }
 }
 
-/* ============ Base64 ============ */
-function encodeBase64() {
-  const plain = $('b64Plain').value;
-  try {
-    const bytes = new TextEncoder().encode(plain);
-    let bin = '';
-    bytes.forEach(b => bin += String.fromCharCode(b));
-    $('b64Encoded').value = btoa(bin);
-    setStatus('b64Status', '✅ 编码成功', 'ok');
-  } catch (e) {
-    setStatus('b64Status', '❌ 编码失败：' + e.message, 'err');
-  }
-}
+/* ==================================================================
+   主流程：自动分析 + 遍历解密
+   ================================================================== */
+let currentFileInfo = null;
 
-function decodeBase64() {
-  const enc = $('b64Encoded').value.trim();
-  try {
-    $('b64Plain').value = tryBase64Decode(enc);
-    setStatus('b64Status', '✅ 解码成功', 'ok');
-  } catch (e) {
-    setStatus('b64Status', '❌ 解码失败：' + e.message, 'err');
-  }
-}
+async function handleFile(file) {
+  clearLog();
+  $('output').value = '';
+  $('preview').style.display = 'none';
+  $('meta').innerHTML = '';
 
-function toUrlSafe() {
-  let v = $('b64Encoded').value.trim();
-  v = v.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-  $('b64Encoded').value = v;
-  setStatus('b64Status', '已转为 URL-Safe', 'ok');
-}
+  const buf = await readAsArrayBuffer(file);
+  const bytes = new Uint8Array(buf);
 
-function fromUrlSafe() {
-  let v = $('b64Encoded').value.trim();
-  v = v.replace(/-/g, '+').replace(/_/g, '/');
-  while (v.length % 4) v += '=';
-  $('b64Encoded').value = v;
-  setStatus('b64Status', '已还原标准 Base64', 'ok');
-}
-
-/* ============ 图片处理 ============ */
-let currentImage = null;
-
-$('imgFile').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const img = new Image();
-    img.onload = () => {
-      currentImage = img;
-      $('imgPreview').src = ev.target.result;
-      $('imgPreview').style.display = 'block';
-      setStatus('imgStatus', `✅ 已加载：${file.name} (${img.naturalWidth}×${img.naturalHeight})`, 'ok');
-    };
-    img.src = ev.target.result;
+  const info = {
+    name: file.name,
+    size: file.size,
+    type: file.type || '未知',
+    imageType: isImageBytes(bytes),
   };
-  reader.readAsDataURL(file);
-});
 
-function imgToBase64() {
-  if (!currentImage) return setStatus('imgStatus', '请先选择图片', 'err');
-  const canvas = document.createElement('canvas');
-  canvas.width = currentImage.naturalWidth;
-  canvas.height = currentImage.naturalHeight;
-  canvas.getContext('2d').drawImage(currentImage, 0, 0);
-  $('imgBase64').value = canvas.toDataURL('image/png');
-  setStatus('imgStatus', '✅ 已生成 Base64 DataURL', 'ok');
-}
+  addChip(`📄 ${file.name}`);
+  addChip(`${(file.size/1024).toFixed(1)} KB`);
+  addChip(`类型: ${info.type || '未知'}`);
 
-function base64ToImg() {
-  const v = $('imgBase64Input').value.trim();
-  if (!v.startsWith('data:image')) return setStatus('imgStatus', '❌ 不是有效的 DataURL', 'err');
-  const img = new Image();
-  img.onload = () => {
-    currentImage = img;
-    $('imgPreview').src = v;
-    $('imgPreview').style.display = 'block';
-    setStatus('imgStatus', '✅ 图片已还原', 'ok');
-  };
-  img.onerror = () => setStatus('imgStatus', '❌ 图片加载失败', 'err');
-  img.src = v;
-}
-
-function processImage() {
-  if (!currentImage) return setStatus('imgProcStatus', '请先选择图片', 'err');
-  const targetW = parseInt($('imgWidth').value) || currentImage.naturalWidth;
-  const ratio = targetW / currentImage.naturalWidth;
-  const targetH = Math.round(currentImage.naturalHeight * ratio);
-  const quality = parseFloat($('imgQuality').value) || 0.85;
-  const format = $('imgFormat').value;
-
-  const canvas = document.createElement('canvas');
-  canvas.width = targetW;
-  canvas.height = targetH;
-  const ctx = canvas.getContext('2d');
-  if (format === 'image/jpeg') {
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, targetW, targetH);
+  // 如果是图片，显示预览
+  if (info.imageType) {
+    const blob = new Blob([bytes], { type: 'image/' + info.imageType });
+    $('preview').src = URL.createObjectURL(blob);
+    $('preview').style.display = 'block';
+    addChip(`🖼 图片 (${info.imageType})`, 'warn');
+    log(`检测到图片文件 (${info.imageType})，将尝试从图片中提取隐藏数据`, 'info');
+    // 图片里可能藏着附加数据（如 base64 追加在末尾）
+    const tailText = bytesToText(bytes).text;
+    const b64Match = tailText.match(/[A-Za-z0-9+/=_-]{100,}/);
+    if (b64Match) {
+      log('在图片末尾发现疑似 Base64 数据', 'hit');
+      $('raw').value = b64Match[0];
+    } else {
+      log('图片中未发现可提取的文本数据', 'miss');
+    }
+    return;
   }
-  ctx.drawImage(currentImage, 0, 0, targetW, targetH);
 
-  canvas.toBlob(blob => {
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'processed.' + format.split('/')[1];
-    a.click();
-    URL.revokeObjectURL(a.href);
-    setStatus('imgProcStatus', `✅ 已处理并下载 (${targetW}×${targetH}, ${(blob.size/1024).toFixed(1)}KB)`, 'ok');
-  }, format, quality);
+  // 判断是文本还是二进制
+  const { text, enc } = bytesToText(bytes);
+  const isText = !/[\x00-\x08\x0E-\x1F]/.test(text.slice(0, 1000));
+
+  if (isText) {
+    addChip(`📝 文本 (${enc})`, 'ok');
+    $('raw').value = text.trim();
+    log(`按 ${enc} 解码为文本，长度 ${text.length}`, 'info');
+    run();
+  } else {
+    addChip('🔢 二进制', 'warn');
+    log('文件是二进制格式，尝试按各种方式解析', 'info');
+    // 尝试整个文件当 base64 文本
+    const asText = bytesToText(bytes).text;
+    if (looksLikeBase64(asText)) {
+      $('raw').value = asText.trim();
+      run();
+    } else {
+      log('二进制内容无法识别为文本，可能需要专用工具', 'miss');
+    }
+  }
 }
 
-/* ============ 文本处理 ============ */
-function txtOp(op) {
-  const v = $('txtInput').value;
-  let out = v;
-  try {
-    switch (op) {
-      case 'upper': out = v.toUpperCase(); break;
-      case 'lower': out = v.toLowerCase(); break;
-      case 'trim': out = v.trim(); break;
-      case 'dedupLines': out = [...new Set(v.split('\n'))].join('\n'); break;
-      case 'sortLines': out = v.split('\n').sort().join('\n'); break;
-      case 'removeEmpty': out = v.split('\n').filter(l => l.trim()).join('\n'); break;
-      case 'json': out = JSON.stringify(JSON.parse(v), null, 2); break;
-      case 'jsonMin': out = JSON.stringify(JSON.parse(v)); break;
-      case 'urlencode': out = encodeURIComponent(v); break;
-      case 'urldecode': out = decodeURIComponent(v); break;
-      case 'unicode':
-        out = v.split('').map(c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')).join('');
-        break;
-      case 'ununicode':
-        out = v.replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
-        break;
-      case 'hex':
-        out = Array.from(new TextEncoder().encode(v)).map(b => b.toString(16).padStart(2, '0')).join('');
-        break;
-      case 'unhex': {
-        const hex = v.replace(/\s/g, '');
-        const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
-        out = new TextDecoder().decode(bytes);
-        break;
+function addChip(text, cls = '') {
+  const el = document.createElement('span');
+  el.className = 'chip ' + cls;
+  el.textContent = text;
+  $('meta').appendChild(el);
+}
+
+/* ==================================================================
+   自动遍历解密
+   ================================================================== */
+function run() {
+  const input = $('raw').value.trim();
+  if (!input) { log('内容为空', 'miss'); return; }
+
+  clearLog();
+  log(`输入长度: ${input.length} 字符`, 'info');
+
+  // ---------- 第 1 步：如果本身是明文 JSON，直接结束 ----------
+  const directJson = tryParseJson(input);
+  if (directJson) {
+    log('✅ 内容本身就是明文 JSON', 'hit');
+    showResult(directJson);
+    return;
+  }
+
+  // ---------- 第 2 步：纯 Base64 解码 ----------
+  if (looksLikeBase64(input)) {
+    log('尝试纯 Base64 解码...', 'info');
+    try {
+      const decoded = b64Decode(input);
+      const json = tryParseJson(decoded);
+      if (json) {
+        log('✅ Base64 解码后得到 JSON', 'hit');
+        showResult(json);
+        return;
+      } else if (decoded && decoded.length > 10) {
+        log('Base64 解码成功但非 JSON，作为中间结果继续尝试', 'info');
+        // 递归一层
+        $('raw').value = decoded;
+        // 继续往下走，尝试对解码结果再做加密解密
       }
-      case 'regex': {
-        const re = new RegExp($('regexFind').value, 'g');
-        out = v.replace(re, $('regexReplace').value);
-        break;
+    } catch (e) {
+      log('Base64 解码失败: ' + e.message, 'miss');
+    }
+  }
+
+  // ---------- 第 3 步：Base64 → 密文，遍历密钥和算法 ----------
+  let cipherText;
+  try {
+    cipherText = b64ToWordArray(input);
+    log('输入可作为 Base64 密文处理', 'info');
+  } catch (e) {
+    log('无法作为密文处理: ' + e.message, 'miss');
+    return;
+  }
+
+  const algos = ['AES', 'DES', 'TripleDES', 'RC4', 'Rabbit', 'RabbitLegacy'];
+  const modes = ['CBC', 'ECB', 'CFB', 'OFB', 'CTR'];
+  const pads  = ['Pkcs7', 'ZeroPadding', 'NoPadding', 'Iso97971', 'AnsiX923'];
+  const keyFmts = ['utf8', 'hex'];
+
+  let tried = 0, hits = [];
+  const MAX_TRY = 20000;
+
+  outer:
+  for (const algo of algos) {
+    for (const keyStr of COMMON_KEYS) {
+      for (const keyFmt of keyFmts) {
+        // hex 密钥必须是偶数长度
+        if (keyFmt === 'hex' && (keyStr.length % 2 !== 0 || !/^[0-9a-fA-F]*$/.test(keyStr))) continue;
+
+        // RC4 没有 mode/pad
+        const modeList = (algo === 'RC4') ? ['CBC'] : modes;
+        const padList  = (algo === 'RC4') ? ['Pkcs7'] : pads;
+
+        for (const mode of modeList) {
+          for (const pad of padList) {
+            tried++;
+            if (tried > MAX_TRY) break outer;
+
+            const out = tryDecrypt(cipherText, algo, keyStr, '', mode, pad, keyFmt);
+            if (!out) continue;
+
+            const json = tryParseJson(out);
+            if (json) {
+              const isTvbox = looksLikeTvBoxJson(json);
+              hits.push({ algo, key: keyStr || '(空)', mode, pad, keyFmt, json, isTvbox });
+              log(`🎯 命中: ${algo} / key="${keyStr || '(空)'}" / ${mode} / ${pad} / ${keyFmt}${isTvbox ? ' 【TVBox 特征】' : ''}`, 'hit');
+              // 找到 TVBox 特征就立即停止
+              if (isTvbox) break outer;
+            }
+          }
+        }
       }
     }
-    $('txtOutput').value = out;
-    setStatus('txtStatus', '✅ 操作完成', 'ok');
-  } catch (e) {
-    setStatus('txtStatus', '❌ 错误：' + e.message, 'err');
   }
+
+  log(`共尝试 ${tried} 种组合，命中 ${hits.length} 个`, hits.length ? 'hit' : 'miss');
+
+  if (hits.length === 0) {
+    log('❌ 未能自动解密。可能原因：', 'miss');
+    log('  • 密钥不在内置字典中（需从源码逆向获取）', 'miss');
+    log('  • 使用了自定义加密方式', 'miss');
+    log('  • 数据经过了压缩（gzip/zlib）或其他预处理', 'miss');
+    return;
+  }
+
+  // 优先展示 TVBox 特征的命中
+  hits.sort((a, b) => (b.isTvbox ? 1 : 0) - (a.isTvbox ? 1 : 0));
+  showResult(hits[0].json, hits[0]);
+}
+
+function showResult(json, meta) {
+  $('output').value = JSON.stringify(json, null, 2);
+  if (meta) {
+    const info = `${meta.algo} | key="${meta.key}" | ${meta.mode} | ${meta.pad} | ${meta.keyFmt}`;
+    addChip('🔑 ' + info, 'ok');
+  }
+}
+
+/* ==================================================================
+   UI 交互
+   ================================================================== */
+const drop = $('drop');
+drop.addEventListener('click', () => $('fileInput').click());
+$('fileInput').addEventListener('change', e => {
+  if (e.target.files[0]) handleFile(e.target.files[0]);
+});
+
+['dragenter','dragover'].forEach(ev => {
+  drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); });
+  document.body.addEventListener(ev, e => e.preventDefault());
+});
+['dragleave','drop'].forEach(ev => {
+  drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); });
+});
+drop.addEventListener('drop', e => {
+  const f = e.dataTransfer.files[0];
+  if (f) handleFile(f);
+});
+// 全局拖拽
+document.body.addEventListener('drop', e => {
+  e.preventDefault();
+  const f = e.dataTransfer.files[0];
+  if (f) handleFile(f);
+});
+
+function clearAll() {
+  $('raw').value = '';
+  $('output').value = '';
+  $('meta').innerHTML = '';
+  $('preview').style.display = 'none';
+  clearLog();
+}
+function copyOut() {
+  const el = $('output');
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) navigator.clipboard.writeText(el.value).catch(()=>{});
+}
+function formatJson() {
+  try {
+    $('output').value = JSON.stringify(JSON.parse($('output').value), null, 2);
+  } catch {}
+}
+function downloadJson() {
+  const blob = new Blob([$('output').value], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'tvbox.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
 }
 </script>
 </body>
