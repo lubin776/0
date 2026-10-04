@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVBox 万能解密</title>
+<title>TVBox 万能解密3</title>
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,6 +43,7 @@
     width: 100%; padding: 12px; background: #0f172a; color: #e2e8f0;
     border: 1px solid #334155; border-radius: 8px; font-family: monospace;
     font-size: 13px; resize: vertical; min-height: 300px; line-height: 1.5;
+    word-break: break-all;
   }
   textarea:focus { outline: none; border-color: #0ea5e9; }
 
@@ -108,7 +109,6 @@
 <script>
 /* ==================================================================
    常见 TVBox 接口密钥字典
-   这些是网上流通的接口常用的固定密钥，覆盖率较高
    ================================================================== */
 const COMMON_KEYS = [
   '', '12345678', '1234567890', '1234567890123456',
@@ -141,7 +141,40 @@ function log(msg, cls = '') {
 function clearLog() { $('log').innerHTML = ''; }
 
 /* ==================================================================
-   文件读取：统一读成 ArrayBuffer，再智能判断内容类型
+   文本清理：删除所有非 JSON 语法的内容
+   - 删除 //  /* */  #  ;  <!-- --> 等所有注释
+   - 删除所有空白字符（空格/换行/制表/全角空格/零宽字符）
+   - 只保留 JSON 合法字符
+   ================================================================== */
+function cleanText(text) {
+  if (!text) return '';
+  let t = text;
+
+  // 1) 去掉 BOM
+  t = t.replace(/^\uFEFF/, '');
+
+  // 2) 删除所有注释（无论什么语法）
+  t = t.replace(/\/\*[\s\S]*?\*\//g, '');          // /* ... */
+  t = t.replace(/<!--[\s\S]*?-->/g, '');            // <!-- ... -->
+  t = t.replace(/(^|\n)[ \t]*\/\/[^\n]*/g, '$1');   // 行首 //
+  t = t.replace(/(^|\n)[ \t]*#[^\n]*/g, '$1');      // 行首 #
+  t = t.replace(/(^|\n)[ \t]*;[^\n]*/g, '$1');      // 行首 ;
+  // 行尾 // 注释（排除 http:// 之类）
+  t = t.replace(/([^:\/])\/\/[^\n]*/g, '$1');
+
+  // 3) 只保留 JSON 合法字符：
+  //    { } [ ] : , " 数字 0-9 . - + e E 字母(键名) 以及转义用的 \
+  //    其他一切（含所有空白、控制符、非 ASCII 杂字符）全部删掉
+  t = t.replace(/[^{}\[\]:,"\d.\-+eEa-zA-Z_\\\/]/g, '');
+
+  // 4) 兜底：再删一遍残余空白
+  t = t.replace(/\s+/g, '');
+
+  return t;
+}
+
+/* ==================================================================
+   文件读取
    ================================================================== */
 function readAsArrayBuffer(file) {
   return new Promise((resolve, reject) => {
@@ -152,31 +185,23 @@ function readAsArrayBuffer(file) {
   });
 }
 
-// 判断是否为图片
 function isImageBytes(bytes) {
   if (bytes.length < 4) return false;
   const b = bytes;
-  // PNG
   if (b[0]===0x89 && b[1]===0x50 && b[2]===0x4E && b[3]===0x47) return 'png';
-  // JPEG
   if (b[0]===0xFF && b[1]===0xD8 && b[2]===0xFF) return 'jpeg';
-  // GIF
   if (b[0]===0x47 && b[1]===0x49 && b[2]===0x46) return 'gif';
-  // BMP
   if (b[0]===0x42 && b[1]===0x4D) return 'bmp';
-  // WEBP (RIFF....WEBP)
   if (b[0]===0x52 && b[1]===0x49 && b[2]===0x46 && b[3]===0x46 &&
       b[8]===0x57 && b[9]===0x45 && b[10]===0x42 && b[11]===0x50) return 'webp';
   return false;
 }
 
-// 尝试多种编码解码为文本
 function bytesToText(bytes) {
   const encodings = ['utf-8', 'gbk', 'gb18030', 'big5'];
   for (const enc of encodings) {
     try {
       const txt = new TextDecoder(enc, { fatal: false }).decode(bytes);
-      // 统计替换字符比例，越低越可信
       const bad = (txt.match(/\uFFFD/g) || []).length;
       if (bad / Math.max(txt.length,1) < 0.01) return { text: txt, enc };
     } catch {}
@@ -187,17 +212,13 @@ function bytesToText(bytes) {
 /* ==================================================================
    解密核心
    ================================================================== */
-
-// 判断字符串是否像 Base64
 function looksLikeBase64(s) {
   const t = s.trim().replace(/\s/g, '');
   if (t.length < 8) return false;
   if (!/^[A-Za-z0-9+/=_-]+$/.test(t)) return false;
-  // 去掉填充后长度应为 4 的倍数附近
   return t.length % 4 === 0 || /[=_-]/.test(t);
 }
 
-// Base64 → 文本（UTF-8）
 function b64Decode(str) {
   let s = str.trim().replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
   while (s.length % 4) s += '=';
@@ -207,21 +228,16 @@ function b64Decode(str) {
   return new TextDecoder('utf-8').decode(bytes);
 }
 
-// Base64 → WordArray
 function b64ToWordArray(str) {
   let s = str.trim().replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
   while (s.length % 4) s += '=';
   return CryptoJS.enc.Base64.parse(s);
 }
 
-// 尝试解析 JSON（宽松：允许前后有杂字符）
 function tryParseJson(text) {
   if (!text) return null;
-  let t = text.trim();
-  // 去掉 BOM
-  t = t.replace(/^\uFEFF/, '');
+  let t = text.trim().replace(/^\uFEFF/, '');
   try { return JSON.parse(t); } catch {}
-  // 找第一个 { 和最后一个 }
   const i = t.indexOf('{'), j = t.lastIndexOf('}');
   if (i >= 0 && j > i) {
     try { return JSON.parse(t.slice(i, j+1)); } catch {}
@@ -229,14 +245,12 @@ function tryParseJson(text) {
   return null;
 }
 
-// 判断 JSON 是否像 TVBox 接口（有 sites / lives / parses / spider 等字段）
 function looksLikeTvBoxJson(obj) {
   if (!obj || typeof obj !== 'object') return false;
   const keys = ['sites','lives','parses','spider','wallpaper','logo','flags','rules','ijk','doh','ads'];
   return keys.some(k => k in obj);
 }
 
-// 用某个算法 + 密钥尝试解密
 function tryDecrypt(cipherText, algo, keyStr, ivStr, mode, pad, keyFmt) {
   const key = keyFmt === 'hex' ? CryptoJS.enc.Hex.parse(keyStr) : CryptoJS.enc.Utf8.parse(keyStr);
   const iv = ivStr
@@ -277,10 +291,8 @@ function tryDecrypt(cipherText, algo, keyStr, ivStr, mode, pad, keyFmt) {
 }
 
 /* ==================================================================
-   主流程：自动分析 + 遍历解密
+   主流程
    ================================================================== */
-let currentFileInfo = null;
-
 async function handleFile(file) {
   clearLog();
   $('output').value = '';
@@ -301,41 +313,43 @@ async function handleFile(file) {
   addChip(`${(file.size/1024).toFixed(1)} KB`);
   addChip(`类型: ${info.type || '未知'}`);
 
-  // 如果是图片，显示预览
   if (info.imageType) {
     const blob = new Blob([bytes], { type: 'image/' + info.imageType });
     $('preview').src = URL.createObjectURL(blob);
     $('preview').style.display = 'block';
     addChip(`🖼 图片 (${info.imageType})`, 'warn');
     log(`检测到图片文件 (${info.imageType})，将尝试从图片中提取隐藏数据`, 'info');
-    // 图片里可能藏着附加数据（如 base64 追加在末尾）
-    const tailText = bytesToText(bytes).text;
-    const b64Match = tailText.match(/[A-Za-z0-9+/=_-]{100,}/);
+
+    const tailText = cleanText(bytesToText(bytes).text);
+    const b64Match = tailText.match(/[A-Za-z0-9+/=_-]{40,}/);
     if (b64Match) {
-      log('在图片末尾发现疑似 Base64 数据', 'hit');
+      log('在图片中发现疑似 Base64 数据', 'hit');
       $('raw').value = b64Match[0];
+      run();
     } else {
       log('图片中未发现可提取的文本数据', 'miss');
     }
     return;
   }
 
-  // 判断是文本还是二进制
   const { text, enc } = bytesToText(bytes);
   const isText = !/[\x00-\x08\x0E-\x1F]/.test(text.slice(0, 1000));
 
   if (isText) {
     addChip(`📝 文本 (${enc})`, 'ok');
-    $('raw').value = text.trim();
-    log(`按 ${enc} 解码为文本，长度 ${text.length}`, 'info');
+    const cleaned = cleanText(text);
+    const removed = text.length - cleaned.length;
+    $('raw').value = cleaned;
+    log(`按 ${enc} 解码为文本，原始长度 ${text.length}`, 'info');
+    log(`🧹 清理注释与空白：删除 ${removed} 个字符，剩余 ${cleaned.length}`, 'info');
     run();
   } else {
     addChip('🔢 二进制', 'warn');
     log('文件是二进制格式，尝试按各种方式解析', 'info');
-    // 尝试整个文件当 base64 文本
     const asText = bytesToText(bytes).text;
     if (looksLikeBase64(asText)) {
-      $('raw').value = asText.trim();
+      const cleaned = cleanText(asText);
+      $('raw').value = cleaned;
       run();
     } else {
       log('二进制内容无法识别为文本，可能需要专用工具', 'miss');
@@ -350,17 +364,25 @@ function addChip(text, cls = '') {
   $('meta').appendChild(el);
 }
 
-/* ==================================================================
-   自动遍历解密
-   ================================================================== */
 function run() {
-  const input = $('raw').value.trim();
-  if (!input) { log('内容为空', 'miss'); return; }
+  const rawValue = $('raw').value;
+  const cleaned = cleanText(rawValue);
+  if (!cleaned) { log('内容为空', 'miss'); return; }
+
+  if (cleaned !== rawValue) {
+    $('raw').value = cleaned;
+  }
 
   clearLog();
-  log(`输入长度: ${input.length} 字符`, 'info');
+  const removed = rawValue.length - cleaned.length;
+  if (removed > 0) {
+    log(`🧹 清理注释与空白：删除 ${removed} 个字符`, 'info');
+  }
+  log(`输入长度: ${cleaned.length} 字符`, 'info');
 
-  // ---------- 第 1 步：如果本身是明文 JSON，直接结束 ----------
+  const input = cleaned;
+
+  // 第 1 步：本身是 JSON
   const directJson = tryParseJson(input);
   if (directJson) {
     log('✅ 内容本身就是明文 JSON', 'hit');
@@ -368,7 +390,7 @@ function run() {
     return;
   }
 
-  // ---------- 第 2 步：纯 Base64 解码 ----------
+  // 第 2 步：纯 Base64
   if (looksLikeBase64(input)) {
     log('尝试纯 Base64 解码...', 'info');
     try {
@@ -380,16 +402,22 @@ function run() {
         return;
       } else if (decoded && decoded.length > 10) {
         log('Base64 解码成功但非 JSON，作为中间结果继续尝试', 'info');
-        // 递归一层
-        $('raw').value = decoded;
-        // 继续往下走，尝试对解码结果再做加密解密
+        const decodedClean = cleanText(decoded);
+        if (decodedClean !== decoded) {
+          log(`🧹 中间结果再次清理：删除 ${decoded.length - decodedClean.length} 字符`, 'info');
+        }
+        if (decodedClean && decodedClean !== input) {
+          $('raw').value = decodedClean;
+          run();
+          return;
+        }
       }
     } catch (e) {
       log('Base64 解码失败: ' + e.message, 'miss');
     }
   }
 
-  // ---------- 第 3 步：Base64 → 密文，遍历密钥和算法 ----------
+  // 第 3 步：Base64 → 密文，遍历密钥和算法
   let cipherText;
   try {
     cipherText = b64ToWordArray(input);
@@ -411,10 +439,8 @@ function run() {
   for (const algo of algos) {
     for (const keyStr of COMMON_KEYS) {
       for (const keyFmt of keyFmts) {
-        // hex 密钥必须是偶数长度
         if (keyFmt === 'hex' && (keyStr.length % 2 !== 0 || !/^[0-9a-fA-F]*$/.test(keyStr))) continue;
 
-        // RC4 没有 mode/pad
         const modeList = (algo === 'RC4') ? ['CBC'] : modes;
         const padList  = (algo === 'RC4') ? ['Pkcs7'] : pads;
 
@@ -431,7 +457,6 @@ function run() {
               const isTvbox = looksLikeTvBoxJson(json);
               hits.push({ algo, key: keyStr || '(空)', mode, pad, keyFmt, json, isTvbox });
               log(`🎯 命中: ${algo} / key="${keyStr || '(空)'}" / ${mode} / ${pad} / ${keyFmt}${isTvbox ? ' 【TVBox 特征】' : ''}`, 'hit');
-              // 找到 TVBox 特征就立即停止
               if (isTvbox) break outer;
             }
           }
@@ -450,7 +475,6 @@ function run() {
     return;
   }
 
-  // 优先展示 TVBox 特征的命中
   hits.sort((a, b) => (b.isTvbox ? 1 : 0) - (a.isTvbox ? 1 : 0));
   showResult(hits[0].json, hits[0]);
 }
@@ -483,7 +507,6 @@ drop.addEventListener('drop', e => {
   const f = e.dataTransfer.files[0];
   if (f) handleFile(f);
 });
-// 全局拖拽
 document.body.addEventListener('drop', e => {
   e.preventDefault();
   const f = e.dataTransfer.files[0];
