@@ -1,155 +1,578 @@
+<!DOCTYPE html>
 <html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVBox 解密工具箱</title>
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { text-align: center; margin-bottom: 24px; font-size: 26px; color: #38bdf8; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab {
+    padding: 10px 20px; background: #1e293b; border: 1px solid #334155;
+    border-radius: 8px; cursor: pointer; transition: .2s; color: #94a3b8;
+  }
+  .tab.active { background: #0ea5e9; color: #fff; border-color: #0ea5e9; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .card {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+    padding: 20px; margin-bottom: 16px;
+  }
+  label { display: block; margin-bottom: 6px; font-size: 14px; color: #94a3b8; }
+  textarea, input[type=text], input[type=password], select {
+    width: 100%; padding: 10px; background: #0f172a; color: #e2e8f0;
+    border: 1px solid #334155; border-radius: 6px; font-family: monospace;
+    font-size: 13px; resize: vertical;
+  }
+  textarea { min-height: 140px; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: #0ea5e9; }
+  .row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .row > * { flex: 1; min-width: 140px; }
+  button {
+    padding: 10px 20px; background: #0ea5e9; color: #fff; border: none;
+    border-radius: 6px; cursor: pointer; font-size: 14px; transition: .2s;
+  }
+  button:hover { background: #0284c7; }
+  button.secondary { background: #334155; }
+  button.secondary:hover { background: #475569; }
+  .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .status { margin-top: 10px; font-size: 13px; min-height: 20px; }
+  .status.ok { color: #4ade80; }
+  .status.err { color: #f87171; }
+  .hint { font-size: 12px; color: #64748b; margin-top: 6px; line-height: 1.6; }
+  #imgPreview { max-width: 100%; margin-top: 12px; border-radius: 8px; display: none; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+  code { background: #0f172a; padding: 2px 6px; border-radius: 4px; color: #38bdf8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🔓 TVBox 解密工具箱</h1>
 
-------
+  <div class="tabs">
+    <div class="tab active" data-tab="tvbox">TVBox 接口解密</div>
+    <div class="tab" data-tab="base64">Base64 编解码</div>
+    <div class="tab" data-tab="image">图片处理</div>
+    <div class="tab" data-tab="text">文本处理</div>
+  </div>
 
-<html lang="zh-CN"> 
- <head> 
-  <meta charset="UTF-8"></meta>
- 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
- 
-  <title>配置编辑器 - TVBox/猫影视0</title>
- 
-  <script type="module" crossorigin="" src="/assets/index-BqogsD8X.js"></script>
- 
-  <link rel="stylesheet" crossorigin="" href="/assets/index-zJxumPlz.css"></link>
- </head>
- 
- <body> 
-  <div id="root"> 
-   <div class="min-h-screen flex flex-col text-slate-900"> 
-    <header class="sticky top-0 z-30 border-b border-teal-200/60 bg-white/85 backdrop-blur-md shadow-sm shadow-teal-900/5"> 
-     <div class="h-0.5 sm:h-1 w-full bg-gradient-to-r from-teal-500 via-sky-400 to-violet-400" aria-hidden="true"></div>
- 
-     <div class="max-w-6xl mx-auto px-3 sm:px-6 h-11 sm:h-14 flex items-center justify-between gap-2"> 
-      <div class="min-w-0"> 
-       <h1 class="text-[15px] sm:text-lg font-semibold tracking-tight truncate text-slate-900"> 
-        <span class="hidden sm:inline text-teal-600 mr-1.5" aria-hidden="true">●</span>
- TVBox 接口编辑器 </h1>
- 
-       <p class="hidden sm:block text-xs text-slate-500 truncate mt-0.5">关注公众号「白虾工具」</p>
- </div>
- 
-      <a class="shrink-0 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-teal-200 bg-teal-50 text-teal-700 hover:bg-teal-100 hover:text-teal-900 transition" title="进入后台" aria-label="进入后台" href="/admin"> 
-       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> 
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
- 
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
- </svg>
- </a>
- </div>
- </header>
- 
-    <div class="flex-1 px-2.5 py-2.5 sm:px-6 sm:py-6"> 
-     <div class="max-w-6xl mx-auto space-y-3 sm:space-y-4"> 
-      <section class="rounded-xl sm:rounded-2xl border border-teal-200/70 bg-gradient-to-br from-white via-white to-teal-50/80 shadow-md shadow-teal-900/5 p-3 sm:p-5 relative z-10"> 
-       <div class="flex items-center justify-between gap-2 mb-2"> 
-        <label class="text-sm font-semibold text-teal-900">接口地址</label>
- 
-        <div class="ce-h-scroll flex items-center gap-1.5 max-w-[65%] sm:max-w-none"> 
-         <span class="text-xs text-teal-600/70 hidden sm:inline">回车即可解密</span>
- </div>
- </div>
- 
-       <div class="flex flex-col sm:flex-row gap-2 sm:gap-2.5"> 
-        <div class="relative flex-1 min-w-0"> 
-         <input inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="粘贴接口 URL，或点选线路" class="w-full h-11 sm:h-12 px-3 sm:px-4 rounded-xl border border-teal-200/80 bg-white text-[16px] sm:text-base text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-teal-400/40 focus:border-teal-500 outline-none transition" title="可自行输入，或点击输入框后从列表选择" type="url" value=""></input>
- </div>
- 
-        <button type="button" disabled="" class="h-11 sm:h-12 sm:min-w-[8.5rem] px-5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 text-white hover:from-teal-600 hover:to-cyan-700 disabled:opacity-45 text-[15px] sm:text-base font-semibold whitespace-nowrap shadow-lg shadow-teal-500/25 transition active:scale-[0.99]">一键解密</button>
- </div>
- </section>
- 
-      <section class="rounded-xl sm:rounded-2xl border border-sky-200/60 bg-white/95 shadow-md shadow-sky-900/5 overflow-hidden relative z-0"> 
-       <div class="border-b border-sky-100 bg-gradient-to-r from-sky-50/90 via-white to-violet-50/60"> 
-        <div class="flex items-center gap-2 px-2.5 py-2 sm:px-4 sm:py-2.5 sm:flex-wrap"> 
-         <div class="inline-flex shrink-0 p-0.5 sm:p-1 rounded-lg sm:rounded-xl bg-white/90 border border-sky-200/70 shadow-sm"> 
-          <button type="button" class="min-h-8 sm:min-h-9 px-2.5 sm:px-4 rounded-md sm:rounded-lg text-xs sm:text-sm font-semibold transition text-slate-500 hover:text-teal-700 hover:bg-teal-50">可视</button>
- 
-          <button type="button" class="min-h-8 sm:min-h-9 px-2.5 sm:px-4 rounded-md sm:rounded-lg text-xs sm:text-sm font-semibold transition bg-gradient-to-r from-violet-500 to-indigo-500 text-white shadow-sm">源码</button>
- </div>
- 
-         <div class="ce-h-scroll flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1"> 
-          <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-sky-100 text-sky-800 border-sky-200">复制</button>
- 
-          <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-emerald-100 text-emerald-800 border-emerald-300">保存</button>
- 
-          <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-rose-100 text-rose-800 border-rose-200">清空</button>
- 
-          <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-violet-200 text-violet-900 border-violet-300" aria-expanded="true"> 
-           <span class="sm:hidden">收起</span>
- 
-           <span class="hidden sm:inline">收起工具</span>
- </button>
- </div>
- </div>
- 
-        <div class="px-2.5 pb-2.5 sm:px-4 sm:pb-3 space-y-2.5 sm:space-y-3 border-t border-violet-100 bg-gradient-to-b from-violet-50/50 to-sky-50/40"> 
-         <div class="pt-2 sm:pt-3"> 
-          <div class="text-[11px] sm:text-xs font-semibold text-violet-500 mb-1.5 sm:mb-2">
- 导入导出</div>
- 
-          <div class="flex flex-wrap gap-1.5 sm:gap-2"> 
-           <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-cyan-100 text-cyan-800 border-cyan-200" title="将当前源码框内容以时间戳.json 下载">下载json</button>
- 
-           <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-sky-100 text-sky-800 border-sky-200" title="下载配置中 spider 字段的 jar">下载jar</button>
- 
-           <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-fuchsia-100 text-fuchsia-800 border-fuchsia-200">上传加密文件</button>
- 
-           <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-orange-100 text-orange-800 border-orange-200">配置转图片</button>
- 
-           <button type="button" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-teal-100 text-teal-800 border-teal-200">图片转代码</button>
- </div>
- </div>
- 
-         <div class="pt-1"> 
-          <div class="text-[11px] sm:text-xs font-semibold text-violet-500 mb-1.5 sm:mb-2">
- 自定义</div>
- 
-          <div class="flex flex-wrap gap-1.5 sm:gap-2"> 
-           <a href="https://pan.quark.cn/s/2bc08e80d1ec" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-sky-100 text-sky-800 border-sky-200 no-underline" title="https://pan.quark.cn/s/2bc08e80d1ec">本地包</a>
- 
-           <a href="https://upload.dhsv.eu.org/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-rose-100 text-rose-800 border-rose-200 no-underline" title="https://upload.dhsv.eu.org/">上传配置</a>
- 
-           <a href="https://jk.catvod.site/cesu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-amber-100 text-amber-900 border-amber-200 no-underline" title="https://jk.catvod.site/cesu">接口测速</a>
- 
-           <a href="https://mpimg.cn/upload.php" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-indigo-100 text-indigo-800 border-indigo-200 no-underline" title="https://mpimg.cn/upload.php">上传配置2</a>
- 
-           <a href="https://do.xo.je/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center min-h-9 sm:min-h-10 px-2.5 sm:px-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border shadow-sm hover:brightness-[0.97] active:scale-[0.98] transition disabled:opacity-50 whitespace-nowrap bg-teal-100 text-teal-800 border-teal-200 no-underline" title="https://do.xo.je/">配置转图</a>
- </div>
- </div>
- </div>
- </div>
- 
-       <input accept="image/*" class="hidden" aria-label="配置转图片-选择图片" type="file"></input>
- 
-       <input accept=".json,.txt,application/json" class="hidden" aria-label="配置转图片-选择配置文件" type="file"></input>
- 
-       <input accept="image/*" class="hidden" aria-label="图片转代码-选择图片" type="file"></input>
- 
-       <input accept=".json,.txt,application/json,application/octet-stream" class="hidden" aria-label="上传加密文件进行解密" type="file"></input>
- 
-       <textarea class="w-full min-h-[42vh] sm:min-h-[min(60vh,520px)] p-3 sm:p-4 font-mono text-[13px] sm:text-sm leading-relaxed border-0 resize-y focus:ring-0 focus:outline-none bg-white text-slate-800" spellcheck="false">{
-  "sites": [],
-  "parses": [],
-  "lives": []
-}</textarea>
- </section>
- </div>
- </div>
- 
-    <footer class="py-3 sm:py-4 text-center text-sm text-slate-500 border-t border-teal-100 bg-white/80"> 
-     <div>
- © 2024-2026 肥猫工具箱 All Rights Reserved 
-      <br></br>
-      <br></br>
- 
-      <a href="https://mp.weixin.qq.com/s/tIN00Yf7akgstrS2Ovim1g" target="_blank" rel="noopener">我要反馈</a>
- </div>
- </footer>
- </div>
- </div>
- 
-  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon="{" version":"2024.11.0","token":"f22783bf6e884ea0a8294ded18a3ae52","r":1,"spa":2}"="" crossorigin="anonymous"></script>
- 
- </body></html>
+  <!-- ============ TVBox 接口解密 ============ -->
+  <div class="panel active" id="panel-tvbox">
+    <div class="card">
+      <label>接口地址 (URL) —— 用于自动拉取（受 CORS 限制）</label>
+      <div class="row">
+        <input type="text" id="tvboxUrl" placeholder="https://example.com/api.php/provide/vod/">
+        <button style="flex:0 0 auto" onclick="fetchTvbox()">拉取</button>
+      </div>
+      <div class="hint">若跨域失败，请手动复制接口内容粘贴到下方。</div>
+    </div>
+
+    <div class="card">
+      <label>加密内容 (Base64 / 密文)</label>
+      <textarea id="tvboxInput" placeholder="粘贴 TVBox 接口返回的加密字符串..."></textarea>
+
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>加密方式</label>
+          <select id="tvboxAlgo">
+            <option value="none">仅 Base64 解码</option>
+            <option value="aes">AES</option>
+            <option value="des">DES</option>
+            <option value="rc4">RC4</option>
+            <option value="rabbit">Rabbit</option>
+          </select>
+        </div>
+        <div>
+          <label>密钥 (Key)</label>
+          <input type="text" id="tvboxKey" placeholder="例如: 1234567890abcdef">
+        </div>
+        <div>
+          <label>IV (仅 AES/DES 需要)</label>
+          <input type="text" id="tvboxIv" placeholder="可留空">
+        </div>
+        <div>
+          <label>模式 (AES)</label>
+          <select id="tvboxMode">
+            <option value="CBC">CBC</option>
+            <option value="ECB">ECB</option>
+            <option value="CFB">CFB</option>
+            <option value="OFB">OFB</option>
+            <option value="CTR">CTR</option>
+          </select>
+        </div>
+        <div>
+          <label>填充</label>
+          <select id="tvboxPad">
+            <option value="Pkcs7">Pkcs7</option>
+            <option value="ZeroPadding">ZeroPadding</option>
+            <option value="NoPadding">NoPadding</option>
+            <option value="Iso97971">Iso97971</option>
+            <option value="AnsiX923">AnsiX923</option>
+          </select>
+        </div>
+        <div>
+          <label>密钥格式</label>
+          <select id="tvboxKeyFmt">
+            <option value="utf8">UTF-8 字符串</option>
+            <option value="hex">Hex 十六进制</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button onclick="decryptTvbox()">🔓 解密</button>
+        <button class="secondary" onclick="formatJson()">🎨 格式化 JSON</button>
+        <button class="secondary" onclick="copyResult('tvboxOutput')">📋 复制结果</button>
+        <button class="secondary" onclick="clearAll('tvboxInput','tvboxOutput')">🗑 清空</button>
+      </div>
+      <div class="status" id="tvboxStatus"></div>
+    </div>
+
+    <div class="card">
+      <label>解密结果</label>
+      <textarea id="tvboxOutput" placeholder="结果将显示在这里..." style="min-height:260px"></textarea>
+    </div>
+  </div>
+
+  <!-- ============ Base64 编解码 ============ -->
+  <div class="panel" id="panel-base64">
+    <div class="grid2">
+      <div class="card">
+        <label>原文 (明文)</label>
+        <textarea id="b64Plain" placeholder="输入要编码的文本..."></textarea>
+        <div class="btns">
+          <button onclick="encodeBase64()">编码 →</button>
+          <button class="secondary" onclick="clearAll('b64Plain')">清空</button>
+        </div>
+      </div>
+      <div class="card">
+        <label>Base64 密文</label>
+        <textarea id="b64Encoded" placeholder="输入要解码的 Base64..."></textarea>
+        <div class="btns">
+          <button onclick="decodeBase64()">← 解码</button>
+          <button class="secondary" onclick="copyResult('b64Encoded')">复制</button>
+          <button class="secondary" onclick="clearAll('b64Encoded')">清空</button>
+        </div>
+        <div class="status" id="b64Status"></div>
+      </div>
+    </div>
+    <div class="card">
+      <label>URL-Safe Base64 (替换 +/ 为 -_，去掉 =)</label>
+      <div class="btns">
+        <button onclick="toUrlSafe()">转为 URL-Safe</button>
+        <button onclick="fromUrlSafe()">还原标准 Base64</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 图片处理 ============ -->
+  <div class="panel" id="panel-image">
+    <div class="card">
+      <label>选择图片文件</label>
+      <input type="file" id="imgFile" accept="image/*" style="padding:8px;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:6px">
+      <div class="hint">图片完全在本地处理，不会上传到任何服务器。</div>
+      <img id="imgPreview" alt="预览">
+    </div>
+
+    <div class="card">
+      <label>图片 → Base64 DataURL</label>
+      <div class="btns">
+        <button onclick="imgToBase64()">生成 Base64</button>
+        <button class="secondary" onclick="copyResult('imgBase64')">复制</button>
+      </div>
+      <textarea id="imgBase64" placeholder="DataURL 显示在这里..." style="margin-top:10px;min-height:120px"></textarea>
+    </div>
+
+    <div class="card">
+      <label>Base64 DataURL → 图片</label>
+      <textarea id="imgBase64Input" placeholder="粘贴 data:image/png;base64,xxxxx"></textarea>
+      <div class="btns">
+        <button onclick="base64ToImg()">还原图片</button>
+      </div>
+      <div class="status" id="imgStatus"></div>
+    </div>
+
+    <div class="card">
+      <label>图片缩放 / 压缩</label>
+      <div class="row">
+        <div>
+          <label>宽度 (px)</label>
+          <input type="text" id="imgWidth" placeholder="留空保持原宽">
+        </div>
+        <div>
+          <label>质量 (0.1 ~ 1.0，仅 JPEG/WEBP)</label>
+          <input type="text" id="imgQuality" value="0.85">
+        </div>
+        <div>
+          <label>输出格式</label>
+          <select id="imgFormat">
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/png">PNG</option>
+            <option value="image/webp">WEBP</option>
+          </select>
+        </div>
+      </div>
+      <div class="btns">
+        <button onclick="processImage()">处理并下载</button>
+      </div>
+      <div class="status" id="imgProcStatus"></div>
+    </div>
+  </div>
+
+  <!-- ============ 文本处理 ============ -->
+  <div class="panel" id="panel-text">
+    <div class="card">
+      <label>输入文本</label>
+      <textarea id="txtInput" placeholder="粘贴文本..." style="min-height:180px"></textarea>
+    </div>
+
+    <div class="card">
+      <label>操作</label>
+      <div class="btns">
+        <button onclick="txtOp('upper')">转大写</button>
+        <button onclick="txtOp('lower')">转小写</button>
+        <button onclick="txtOp('trim')">去首尾空白</button>
+        <button onclick="txtOp('dedupLines')">行去重</button>
+        <button onclick="txtOp('sortLines')">行排序</button>
+        <button onclick="txtOp('removeEmpty')">删除空行</button>
+        <button onclick="txtOp('json')">JSON 格式化</button>
+        <button onclick="txtOp('jsonMin')">JSON 压缩</button>
+        <button onclick="txtOp('urlencode')">URL 编码</button>
+        <button onclick="txtOp('urldecode')">URL 解码</button>
+        <button onclick="txtOp('unicode')">转 Unicode</button>
+        <button onclick="txtOp('ununicode')">Unicode 还原</button>
+        <button onclick="txtOp('hex')">转 Hex</button>
+        <button onclick="txtOp('unhex')">Hex 还原</button>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>正则查找</label>
+          <input type="text" id="regexFind" placeholder="正则表达式">
+        </div>
+        <div>
+          <label>替换为</label>
+          <input type="text" id="regexReplace" placeholder="替换内容">
+        </div>
+        <button style="flex:0 0 auto;align-self:flex-end" onclick="txtOp('regex')">替换</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <label>输出结果</label>
+      <textarea id="txtOutput" placeholder="结果..." style="min-height:180px"></textarea>
+      <div class="btns">
+        <button class="secondary" onclick="copyResult('txtOutput')">复制</button>
+        <button class="secondary" onclick="txtOutput.value=txtInput.value">↑ 用输出覆盖输入</button>
+      </div>
+      <div class="status" id="txtStatus"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ 通用工具 ============ */
+function $(id) { return document.getElementById(id); }
+
+function copyResult(id) {
+  const el = $(id);
+  el.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) navigator.clipboard.writeText(el.value).catch(()=>{});
+  setStatus(id.replace('Output','Status').replace('Encoded','Status') || null, '已复制', 'ok');
+}
+
+function clearAll(...ids) { ids.forEach(id => { if ($(id)) $(id).value = ''; }); }
+
+function setStatus(id, msg, type = '') {
+  if (!id || !$(id)) return;
+  const el = $(id);
+  el.textContent = msg;
+  el.className = 'status ' + type;
+}
+
+/* ============ Tab 切换 ============ */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    $('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ============ 密钥解析 ============ */
+function parseKey(str, fmt) {
+  if (fmt === 'hex') return CryptoJS.enc.Hex.parse(str);
+  return CryptoJS.enc.Utf8.parse(str);
+}
+
+/* ============ TVBox 拉取 ============ */
+async function fetchTvbox() {
+  const url = $('tvboxUrl').value.trim();
+  if (!url) return setStatus('tvboxStatus', '请输入接口地址', 'err');
+  setStatus('tvboxStatus', '拉取中...');
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    $('tvboxInput').value = text;
+    setStatus('tvboxStatus', '拉取成功，共 ' + text.length + ' 字符', 'ok');
+  } catch (e) {
+    setStatus('tvboxStatus', '拉取失败(可能是 CORS)：' + e.message, 'err');
+  }
+}
+
+/* ============ TVBox 解密 ============ */
+function decryptTvbox() {
+  const input = $('tvboxInput').value.trim();
+  if (!input) return setStatus('tvboxStatus', '请输入加密内容', 'err');
+
+  const algo = $('tvboxAlgo').value;
+  const keyStr = $('tvboxKey').value;
+  const ivStr = $('tvboxIv').value;
+  const keyFmt = $('tvboxKeyFmt').value;
+
+  let result = '';
+
+  try {
+    if (algo === 'none') {
+      result = tryBase64Decode(input);
+    } else {
+      // 先尝试 Base64 解码得到密文
+      let cipherText;
+      try {
+        cipherText = CryptoJS.enc.Base64.parse(input);
+      } catch {
+        cipherText = CryptoJS.enc.Utf8.parse(input);
+      }
+
+      const key = parseKey(keyStr, keyFmt);
+      const iv = ivStr ? parseKey(ivStr, keyFmt) : CryptoJS.enc.Hex.parse('0000000000000000');
+
+      let decrypted;
+      switch (algo) {
+        case 'aes': {
+          const mode = CryptoJS.mode[$('tvboxMode').value];
+          const pad = CryptoJS.pad[$('tvboxPad').value];
+          decrypted = CryptoJS.AES.decrypt(
+            { ciphertext: cipherText }, key,
+            { iv, mode, padding: pad }
+          );
+          break;
+        }
+        case 'des':
+          decrypted = CryptoJS.DES.decrypt(
+            { ciphertext: cipherText }, key,
+            { iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
+          );
+          break;
+        case 'rc4':
+          decrypted = CryptoJS.RC4.decrypt({ ciphertext: cipherText }, key);
+          break;
+        case 'rabbit':
+          decrypted = CryptoJS.Rabbit.decrypt(
+            { ciphertext: cipherText }, key,
+            { iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
+          );
+          break;
+      }
+
+      result = decrypted.toString(CryptoJS.enc.Utf8);
+    }
+
+    $('tvboxOutput').value = result;
+    setStatus('tvboxStatus', '✅ 解密成功，共 ' + result.length + ' 字符', 'ok');
+  } catch (e) {
+    // 回退：尝试纯 Base64
+    try {
+      const fallback = tryBase64Decode(input);
+      $('tvboxOutput').value = fallback;
+      setStatus('tvboxStatus', '⚠ 加密解密失败，但 Base64 解码成功：' + e.message, 'ok');
+    } catch {
+      setStatus('tvboxStatus', '❌ 解密失败：' + e.message, 'err');
+    }
+  }
+}
+
+function tryBase64Decode(str) {
+  const s = str.trim().replace(/\s/g, '');
+  const binary = atob(s);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+function formatJson() {
+  const out = $('tvboxOutput');
+  try {
+    const obj = JSON.parse(out.value);
+    out.value = JSON.stringify(obj, null, 2);
+    setStatus('tvboxStatus', '✅ JSON 格式化成功', 'ok');
+  } catch (e) {
+    setStatus('tvboxStatus', '❌ 不是有效 JSON：' + e.message, 'err');
+  }
+}
+
+/* ============ Base64 ============ */
+function encodeBase64() {
+  const plain = $('b64Plain').value;
+  try {
+    const bytes = new TextEncoder().encode(plain);
+    let bin = '';
+    bytes.forEach(b => bin += String.fromCharCode(b));
+    $('b64Encoded').value = btoa(bin);
+    setStatus('b64Status', '✅ 编码成功', 'ok');
+  } catch (e) {
+    setStatus('b64Status', '❌ 编码失败：' + e.message, 'err');
+  }
+}
+
+function decodeBase64() {
+  const enc = $('b64Encoded').value.trim();
+  try {
+    $('b64Plain').value = tryBase64Decode(enc);
+    setStatus('b64Status', '✅ 解码成功', 'ok');
+  } catch (e) {
+    setStatus('b64Status', '❌ 解码失败：' + e.message, 'err');
+  }
+}
+
+function toUrlSafe() {
+  let v = $('b64Encoded').value.trim();
+  v = v.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  $('b64Encoded').value = v;
+  setStatus('b64Status', '已转为 URL-Safe', 'ok');
+}
+
+function fromUrlSafe() {
+  let v = $('b64Encoded').value.trim();
+  v = v.replace(/-/g, '+').replace(/_/g, '/');
+  while (v.length % 4) v += '=';
+  $('b64Encoded').value = v;
+  setStatus('b64Status', '已还原标准 Base64', 'ok');
+}
+
+/* ============ 图片处理 ============ */
+let currentImage = null;
+
+$('imgFile').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      currentImage = img;
+      $('imgPreview').src = ev.target.result;
+      $('imgPreview').style.display = 'block';
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+function imgToBase64() {
+  if (!currentImage) return setStatus('imgStatus', '请先选择图片', 'err');
+  const canvas = document.createElement('canvas');
+  canvas.width = currentImage.naturalWidth;
+  canvas.height = currentImage.naturalHeight;
+  canvas.getContext('2d').drawImage(currentImage, 0, 0);
+  $('imgBase64').value = canvas.toDataURL('image/png');
+  setStatus('imgStatus', '✅ 已生成 Base64 DataURL', 'ok');
+}
+
+function base64ToImg() {
+  const v = $('imgBase64Input').value.trim();
+  if (!v.startsWith('data:image')) return setStatus('imgStatus', '❌ 不是有效的 DataURL', 'err');
+  const img = new Image();
+  img.onload = () => {
+    currentImage = img;
+    $('imgPreview').src = v;
+    $('imgPreview').style.display = 'block';
+    setStatus('imgStatus', '✅ 图片已还原', 'ok');
+  };
+  img.onerror = () => setStatus('imgStatus', '❌ 图片加载失败', 'err');
+  img.src = v;
+}
+
+function processImage() {
+  if (!currentImage) return setStatus('imgProcStatus', '请先选择图片', 'err');
+  const targetW = parseInt($('imgWidth').value) || currentImage.naturalWidth;
+  const ratio = targetW / currentImage.naturalWidth;
+  const targetH = Math.round(currentImage.naturalHeight * ratio);
+  const quality = parseFloat($('imgQuality').value) || 0.85;
+  const format = $('imgFormat').value;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = targetW;
+  canvas.height = targetH;
+  const ctx = canvas.getContext('2d');
+  if (format === 'image/jpeg') {
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, targetW, targetH);
+  }
+  ctx.drawImage(currentImage, 0, 0, targetW, targetH);
+
+  canvas.toBlob(blob => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'processed.' + format.split('/')[1];
+    a.click();
+    URL.revokeObjectURL(a.href);
+    setStatus('imgProcStatus', `✅ 已处理并下载 (${targetW}×${targetH}, ${(blob.size/1024).toFixed(1)}KB)`, 'ok');
+  }, format, quality);
+}
+
+/* ============ 文本处理 ============ */
+function txtOp(op) {
+  const v = $('txtInput').value;
+  let out = v;
+  try {
+    switch (op) {
+      case 'upper': out = v.toUpperCase(); break;
+      case 'lower': out = v.toLowerCase(); break;
+      case 'trim': out = v.trim(); break;
+      case 'dedupLines': out = [...new Set(v.split('\n'))].join('\n'); break;
+      case 'sortLines': out = v.split('\n').sort().join('\n'); break;
+      case 'removeEmpty': out = v.split('\n').filter(l => l.trim()).join('\n'); break;
+      case 'json': out = JSON.stringify(JSON.parse(v), null, 2); break;
+      case 'jsonMin': out = JSON.stringify(JSON.parse(v)); break;
+      case 'urlencode': out = encodeURIComponent(v); break;
+      case 'urldecode': out = decodeURIComponent(v); break;
+      case 'unicode':
+        out = v.split('').map(c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')).join('');
+        break;
+      case 'ununicode':
+        out = v.replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
+        break;
+      case 'hex':
+        out = Array.from(new TextEncoder().encode(v)).map(b => b.toString(16).padStart(2, '0')).join('');
+        break;
+      case 'unhex': {
+        const hex = v.replace(/\s/g, '');
+        const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+        out = new TextDecoder().decode(bytes);
+        break;
+      }
+      case 'regex': {
+        const re = new RegExp($('regexFind').value, 'g');
+        out = v.replace(re, $('regexReplace').value);
+        break;
+      }
+    }
+    $('txtOutput').value = out;
+    setStatus('txtStatus', '✅ 操作完成', 'ok');
+  } catch (e) {
+    setStatus('txtStatus', '❌ 错误：' + e.message, 'err');
+  }
+}
+</script>
+</body>
+</html>
