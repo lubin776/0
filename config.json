@@ -113,8 +113,8 @@
   "customApis": [
     {
       "name": "X4菠菜园",
-      "date": "站长推荐",
-      "size": "",
+      "date": "",
+      "size": "站长推荐",
       "origUrl": "https://0.wudaozhe.net/5/x4.json",
       "urls": [
         { "label": "备份一线", "url": "https://0.wudaozhe.net/tvbox/X4菠菜园.json" },
