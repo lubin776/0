@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVBox 解密工具箱</title>
+<title>TVBox 解密工具箱也</title>
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,6 +51,17 @@
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
   code { background: #0f172a; padding: 2px 6px; border-radius: 4px; color: #38bdf8; }
+  input[type=file] {
+    padding: 8px; background: #0f172a; color: #e2e8f0;
+    border: 1px solid #334155; border-radius: 6px; font-size: 13px;
+    cursor: pointer; width: 100%;
+  }
+  input[type=file]::file-selector-button {
+    background: #0ea5e9; color: #fff; border: none; padding: 6px 12px;
+    border-radius: 4px; cursor: pointer; margin-right: 10px;
+  }
+  input[type=file]::file-selector-button:hover { background: #0284c7; }
+  .drag-over { border-color: #0ea5e9 !important; box-shadow: 0 0 0 2px rgba(14,165,233,.3); }
 </style>
 </head>
 <body>
@@ -72,12 +83,29 @@
         <input type="text" id="tvboxUrl" placeholder="https://example.com/api.php/provide/vod/">
         <button style="flex:0 0 auto" onclick="fetchTvbox()">拉取</button>
       </div>
-      <div class="hint">若跨域失败，请手动复制接口内容粘贴到下方。</div>
+      <div class="hint">若跨域失败，请手动复制接口内容粘贴到下方，或直接从本地文件打开。</div>
     </div>
 
     <div class="card">
+      <div class="row" style="margin-bottom:12px">
+        <div>
+          <label>📂 从本地文件打开 (.txt / .json / 任意文本)</label>
+          <input type="file" id="tvboxFile" accept=".txt,.json,.js,.conf,.xml,text/*,application/json">
+        </div>
+        <div style="flex:0 0 160px">
+          <label>文件编码</label>
+          <select id="tvboxFileEnc">
+            <option value="UTF-8">UTF-8</option>
+            <option value="GBK">GBK</option>
+            <option value="GB2312">GB2312</option>
+            <option value="GB18030">GB18030</option>
+          </select>
+        </div>
+      </div>
+      <div class="hint" style="margin-bottom:12px">也可以直接把文件拖到下面的输入框里。</div>
+
       <label>加密内容 (Base64 / 密文)</label>
-      <textarea id="tvboxInput" placeholder="粘贴 TVBox 接口返回的加密字符串..."></textarea>
+      <textarea id="tvboxInput" placeholder="粘贴 TVBox 接口返回的加密字符串，或拖入文件..."></textarea>
 
       <div class="row" style="margin-top:12px">
         <div>
@@ -177,7 +205,7 @@
   <div class="panel" id="panel-image">
     <div class="card">
       <label>选择图片文件</label>
-      <input type="file" id="imgFile" accept="image/*" style="padding:8px;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:6px">
+      <input type="file" id="imgFile" accept="image/*">
       <div class="hint">图片完全在本地处理，不会上传到任何服务器。</div>
       <img id="imgPreview" alt="预览">
     </div>
@@ -230,8 +258,25 @@
   <!-- ============ 文本处理 ============ -->
   <div class="panel" id="panel-text">
     <div class="card">
+      <div class="row" style="margin-bottom:12px">
+        <div>
+          <label>📂 从本地文件打开</label>
+          <input type="file" id="txtFile" accept=".txt,.json,.js,.conf,.xml,.csv,.log,text/*,application/json">
+        </div>
+        <div style="flex:0 0 160px">
+          <label>文件编码</label>
+          <select id="txtFileEnc">
+            <option value="UTF-8">UTF-8</option>
+            <option value="GBK">GBK</option>
+            <option value="GB2312">GB2312</option>
+            <option value="GB18030">GB18030</option>
+          </select>
+        </div>
+      </div>
+      <div class="hint" style="margin-bottom:12px">也可以直接把文件拖到下面的输入框里。</div>
+
       <label>输入文本</label>
-      <textarea id="txtInput" placeholder="粘贴文本..." style="min-height:180px"></textarea>
+      <textarea id="txtInput" placeholder="粘贴文本，或拖入文件..." style="min-height:180px"></textarea>
     </div>
 
     <div class="card">
@@ -270,7 +315,7 @@
       <textarea id="txtOutput" placeholder="结果..." style="min-height:180px"></textarea>
       <div class="btns">
         <button class="secondary" onclick="copyResult('txtOutput')">复制</button>
-        <button class="secondary" onclick="txtOutput.value=txtInput.value">↑ 用输出覆盖输入</button>
+        <button class="secondary" onclick="document.getElementById('txtInput').value=document.getElementById('txtOutput').value">↑ 用输出覆盖输入</button>
       </div>
       <div class="status" id="txtStatus"></div>
     </div>
@@ -286,7 +331,8 @@ function copyResult(id) {
   el.select();
   document.execCommand('copy');
   if (navigator.clipboard) navigator.clipboard.writeText(el.value).catch(()=>{});
-  setStatus(id.replace('Output','Status').replace('Encoded','Status') || null, '已复制', 'ok');
+  const statusMap = { tvboxOutput: 'tvboxStatus', b64Encoded: 'b64Status', txtOutput: 'txtStatus', imgBase64: 'imgStatus' };
+  setStatus(statusMap[id], '已复制到剪贴板', 'ok');
 }
 
 function clearAll(...ids) { ids.forEach(id => { if ($(id)) $(id).value = ''; }); }
@@ -313,6 +359,72 @@ function parseKey(str, fmt) {
   if (fmt === 'hex') return CryptoJS.enc.Hex.parse(str);
   return CryptoJS.enc.Utf8.parse(str);
 }
+
+/* ============ 本地文件打开 + 拖拽 ============ */
+function readFileWithEncoding(file, encoding) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const buf = ev.target.result;
+        // 尝试用指定编码解码，失败则退回 UTF-8
+        let text;
+        try {
+          text = new TextDecoder(encoding || 'utf-8').decode(buf);
+        } catch {
+          text = new TextDecoder('utf-8').decode(buf);
+        }
+        // 如果指定非 UTF-8 但解码结果全是替换字符，再试 UTF-8
+        if (encoding && encoding.toUpperCase() !== 'UTF-8' && /\uFFFD/.test(text)) {
+          const alt = new TextDecoder('utf-8').decode(buf);
+          if (!/\uFFFD/.test(alt)) text = alt;
+        }
+        resolve({ text, size: file.size, name: file.name });
+      } catch (e) { reject(e); }
+    };
+    reader.onerror = () => reject(reader.error);
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+async function loadFileInto(file, targetId, statusId, encId) {
+  try {
+    const enc = encId && $(encId) ? $(encId).value : 'UTF-8';
+    const { text, size, name } = await readFileWithEncoding(file, enc);
+    $(targetId).value = text;
+    setStatus(statusId, `✅ 已读取：${name} (${(size/1024).toFixed(1)} KB, ${enc})`, 'ok');
+  } catch (e) {
+    setStatus(statusId, '❌ 读取失败：' + e.message, 'err');
+  }
+}
+
+function bindFileOpen(inputId, targetId, statusId, encId) {
+  const el = $(inputId);
+  if (!el) return;
+  el.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) loadFileInto(file, targetId, statusId, encId);
+  });
+}
+
+function bindDragDrop(targetId, statusId, encId) {
+  const el = $(targetId);
+  if (!el) return;
+  el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('drag-over'); });
+  el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+  el.addEventListener('drop', e => {
+    e.preventDefault();
+    el.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFileInto(file, targetId, statusId, encId);
+  });
+}
+
+bindFileOpen('tvboxFile', 'tvboxInput', 'tvboxStatus', 'tvboxFileEnc');
+bindDragDrop('tvboxInput', 'tvboxStatus', 'tvboxFileEnc');
+
+bindFileOpen('txtFile', 'txtInput', 'txtStatus', 'txtFileEnc');
+bindDragDrop('txtInput', 'txtStatus', 'txtFileEnc');
 
 /* ============ TVBox 拉取 ============ */
 async function fetchTvbox() {
@@ -345,7 +457,6 @@ function decryptTvbox() {
     if (algo === 'none') {
       result = tryBase64Decode(input);
     } else {
-      // 先尝试 Base64 解码得到密文
       let cipherText;
       try {
         cipherText = CryptoJS.enc.Base64.parse(input);
@@ -390,7 +501,6 @@ function decryptTvbox() {
     $('tvboxOutput').value = result;
     setStatus('tvboxStatus', '✅ 解密成功，共 ' + result.length + ' 字符', 'ok');
   } catch (e) {
-    // 回退：尝试纯 Base64
     try {
       const fallback = tryBase64Decode(input);
       $('tvboxOutput').value = fallback;
@@ -472,6 +582,7 @@ $('imgFile').addEventListener('change', e => {
       currentImage = img;
       $('imgPreview').src = ev.target.result;
       $('imgPreview').style.display = 'block';
+      setStatus('imgStatus', `✅ 已加载：${file.name} (${img.naturalWidth}×${img.naturalHeight})`, 'ok');
     };
     img.src = ev.target.result;
   };
