@@ -66,6 +66,23 @@
     ]
   },
   {
+    "name": "接口大全",
+    "list": [
+      {
+        "name": "下载地址一",
+        "url": "https://mpimg.cn/down.php/0181c5c501b376b22258f30c94cda256.apk",
+        "icon": "https://0.wudaozhe.net/5/lib/jueson.jpg",
+        "version": "1.0.4"
+      },
+      {
+        "name": "下载地址二",
+                "url": "https://gh-proxy.com/https://github.com/lubin776/trigger-download/releases/download/latest/jiekoudaquan1.0.4.apk",
+        "icon": "https://0.wudaozhe.net/5/lib/jueson.jpg",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  {
     "name": "白盒原版",
     "list": [
             {
