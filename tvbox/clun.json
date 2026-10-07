@@ -10,6 +10,18 @@
       "filterable": 0
     },
     {
+      "key": "py_shortfilm",
+      "name": "短剧[py]",
+      "type": 3,
+      "api": "https://clun.top/py/shortfilm.py"
+    },
+    {
+      "key": "py_apples",
+      "name": "苹果[py]",
+      "type": 3,
+      "api": "https://clun.top/py/apples.py"
+    },
+    {
       "key": "py_maple",
       "name": "枫叶[py]",
       "type": 3,
@@ -17,9 +29,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": {
-        "sitesIndex": 0
-      }
+      "ext": {}
     },
     {
       "key": "py_juzong",
@@ -207,6 +217,15 @@
       "name": "多多影视[py]",
       "type": 3,
       "api": "https://clun.top/py/duoduo.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+    {
+      "key": "py_oule",
+      "name": "欧乐影院[py]",
+      "type": 3,
+      "api": "https://clun.top/py/oule.py",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1

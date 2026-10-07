@@ -1,5 +1,5 @@
 {
-  "spider": "https://img.51shazhu.com/autoupload/g1b6f/20261006/eAnR/0X0/10060024.png;md5;92e9198a999a7435858fca24777b7d72",
+  "spider": "https://img.51shazhu.com/autoupload/g1b6f/20261007/Yc2n/0X0/10071447.png;md5;b6fc17ade72f89a0c9594c4bde5ebf13",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "logo": "https://pic7.fukit.cn/autoupload/gE6Y0Af2tjXBCNig6CtNDI12_FRYNb81z6UPhMWD8iI/20251224/dJkT/1080X1080/logo.jpg/webp",
   "sites": [
@@ -150,6 +150,27 @@
         "host": "",
         "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
         "version": "3.0.0.7",
+        "decrypt": "0"
+      }
+    },
+    {
+      "key": "苹果",
+      "name": "苹果 • APP",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "小苹果",
+        "commonKey": "ed5fdsgucxumegqa",
+        "publicKey": "https://9877.kstore.space/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "com.juechufsh.android.xpg1",
+        "host": "",
+        "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
+        "version": "1.0.0.3",
         "decrypt": "0"
       }
     },
@@ -408,6 +429,25 @@
       "timeout": 60
     },
     {
+      "key": "蜡笔",
+      "name": "蜡笔 • 4K",
+      "type": 3,
+      "api": "csp_PanWebShare",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "ext": {
+        "site": [
+          "https://www.fmcf.fun",
+          "https://www.mmpanpan.site",
+          "http://tvpanpan.site",
+          "http://www.tvpanpan.site"
+        ]
+      },
+      "timeout": 60
+    },
+    {
       "key": "多多",
       "name": "多多 • 4K",
       "type": 3,
@@ -628,10 +668,23 @@
       "api": "csp_Feiyu"
     },
     {
+      "key": "旺旺影视",
+      "name": "旺旺 • 影视",
+      "type": 3,
+      "api": "csp_Wwys",
+      "ext": "https://vip.wwgz.cn:5200"
+    },
+    {
       "key": "独播影视",
       "name": "独播 • 影视",
       "type": 3,
       "api": "csp_Duboku"
+    },
+    {
+      "key": "瓜子影视",
+      "name": "瓜子 • 影视",
+      "type": 3,
+      "api": "csp_Gz360"
     },
     {
       "key": "厂长影视",
