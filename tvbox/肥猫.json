@@ -5,7 +5,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "🐼┃公众号：熊猫是只肥猫┃",
+      "name": "🐼┃QQ频道：肥猫宝贝┃",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
@@ -121,25 +121,36 @@
       "name": "😌┃行动┃APP",
       "type": 3,
       "api": "csp_AppDrama",
-      "ext": {
-        "host": "",
-        "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
-        "publicKey": "http://肥猫.net/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-        "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "commonKey": "",
-        "version": "3.0.0.7",
-        "pkg": "com.dytiantang.one",
-        "appName": "电影天堂",
-        "decrypt": "1"
-      }
+ext": {
+                "host": "",
+                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
+                "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
+                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+                "commonKey": "ed5fdsgucxumegqa",
+                "version": " 1.0.0.4 ",
+                "pkg": "com.muyue.tool",
+                "appName": "华谊",
+                "site": " https://1851089669.cdn.123clouddisk.com/1851089669/oss/az5.txt ",
+                "decrypt": "1"
+            }
     },
     {
       "key": "再来",
       "name": "✌️┃再来┃APP",
       "type": 3,
-      "api": "csp_AppGet",
-      "ext": "https://vv.229d.cn|8888888888888888"
+      "api": "csp_AppDrama",
+ext": {
+                "host": "",
+                "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+                "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
+                "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+                "commonKey": "ed5fdsgucxumegqa",
+                "version": " 3.0.0.7 ",
+                "pkg": "com.dytiantang.one",
+                "appName": "电影天堂",
+                "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
+                "decrypt": "1"
+            }
     },
     {
       "key": "一碗",
@@ -167,7 +178,7 @@
       "name": "🥇️┃金牌┃影视",
       "type": 3,
       "api": "csp_Jpys",
-      "ext": "https://y2s52n7.com"
+      "ext":"https://y2s52n7.com"
     },
     {
       "key": "csp_Wwys",
@@ -343,7 +354,7 @@
       "key": "儿童",
       "name": "📚┃儿童┃启蒙",
       "type": 3,
-      "api": "http://肥猫.net/api/drpy2.min.js",
+      "api": "./api/drpy2.min.js",
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
@@ -351,7 +362,7 @@
         "type": "rect",
         "ratio": 1.597
       },
-      "ext": "http://肥猫.net/js/兔小贝.js"
+      "ext": "./js/兔小贝.js"
     },
     {
       "key": "csp_少儿",
@@ -415,12 +426,12 @@
     },
     {
       "key": "push_agent",
-      "name": "关注公众号：熊猫是只肥猫",
+      "name": "QQ频道：肥猫宝贝",
       "type": 3,
       "api": "csp_Push",
       "playerType": "1",
       "searchable": 0,
-      "ext": "http://肥猫.net/.json/txt/ken.txt"
+      "ext": ".json/txt/ken.txt"
     }
   ],
   "parses": [
@@ -475,18 +486,96 @@
       }
     }
   ],
-  "lives": [
+  "doh": [
     {
-      "name": "Kimentanm",
-      "type": 0,
-      "url": "./lives/Kimentanm.txt"
+      "name": "Google",
+      "url": "https://dns.google/dns-query",
+      "ips": [
+        "8.8.4.4",
+        "8.8.8.8"
+      ]
     },
     {
-      "name": "develop202",
-      "type": 0,
-      "url": "./lives/develop202.txt",
-      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}"
+      "name": "Cloudflare",
+      "url": "https://cloudflare-dns.com/dns-query",
+      "ips": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "2606:4700:4700::1111",
+        "2606:4700:4700::1001"
+      ]
+    },
+    {
+      "name": "AdGuard",
+      "url": "https://dns.adguard.com/dns-query",
+      "ips": [
+        "94.140.14.140",
+        "94.140.14.141"
+      ]
+    },
+    {
+      "name": "DNSWatch",
+      "url": "https://resolver2.dns.watch/dns-query",
+      "ips": [
+        "84.200.69.80",
+        "84.200.70.40"
+      ]
+    },
+    {
+      "name": "Quad9",
+      "url": "https://dns.quad9.net/dns-quer",
+      "ips": [
+        "9.9.9.9",
+        "149.112.112.112"
+      ]
     }
+  ],
+  "lives": [
+    {
+      "name": "Gather「果」",
+      "type": 3,
+      "url": "https://tv.tmxk.kdns.fr/yplrnuc7",
+      "epg":"https://material.1989.click/epg.xml.gz",
+      "ua": "okhttp/3.8.1",
+      "timeout": 10,
+      "playerType": 2
+  }],
+  "headers": [
+    {
+      "host": "hlsztemgsplive.miguvideo.com",
+      "header": {
+        "User-Agent": "okHttp/Mod-1.5.0.0"
+      }
+    }
+  ],
+  "proxy": [
+    "raw.githubusercontent.com",
+    "googlevideo.com",
+    "cdn.v82u1l.com",
+    "cdn.iz8qkg.com",
+    "cdn.kin6c1.com",
+    "c.biggggg.com",
+    "c.olddddd.com",
+    "haiwaikan.com",
+    "www.histar.tv",
+    "youtube.com",
+    "uhibo.com",
+    ".*boku.*",
+    ".*nivod.*",
+    ".*ulivetv.*",
+    "188766.xyz",
+    "4gtv.tv",
+    "iill.top"
+  ],
+  "hosts": [
+    "hlsztemgsplive.miguvideo.com=hlsztemgsplive.miguvideo.com.b.cdn.chinamobile.com",
+    "push-rtmp-hs-spe-f5.douyincdn.com=source-fcdn-spe-push.s.bytefcdn.com",
+    "cdn9.163189.xyz=gcore.jsdelivr.net",
+    "cache.ott.fifalive.itv.cmvideo.cn=cache.ott.fifalive.itv.cmvideo.cn.e.cdn.chinamobile.com",
+    "studentlive.migucloud.com=base-v4v6-miguvideo.e.cdn.chinamobile.com"
+  ],
+  "ads": [
+    "static-mozai.4gtv.tv"
   ],
   "rules": [
     {

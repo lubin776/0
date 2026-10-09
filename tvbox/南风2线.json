@@ -326,7 +326,7 @@
       "api": "csp_AppV7Amns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "AppV7Mtq",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -337,8 +337,19 @@
       "api": "csp_AppV7Amns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "AppV7Xyz",
+      "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
+    },
+    {
+      "name": "📦师兄",
+      "key": "AppV7Dsx",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": "AppV7Dsx",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -348,7 +359,7 @@
       "api": "csp_AppV7Amns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "AppV7Zjdr",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -359,7 +370,7 @@
       "api": "csp_AppV7Amns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "AppV7Xhr",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -370,7 +381,7 @@
       "api": "csp_AppV7Amns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "AppV7Xy",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -381,7 +392,7 @@
       "api": "csp_AppV7Amns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "AppV7Llq",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -392,7 +403,7 @@
       "api": "csp_AppV6Amns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "AppV6Tg",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -414,7 +425,7 @@
       "api": "csp_DMoxAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -424,7 +435,7 @@
       "api": "csp_DMfansAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -434,7 +445,7 @@
       "api": "csp_DMqingkAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -444,7 +455,7 @@
       "api": "csp_DMmoduAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -454,7 +465,7 @@
       "api": "csp_HxqAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -464,7 +475,7 @@
       "api": "csp_HgdhAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "shortdrama",
       "ext": "Hgdh",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
@@ -476,7 +487,7 @@
       "api": "csp_HgggAmns",
       "searchable": 0,
       "quickSearch": 0,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "DjHggg",
       "genre": "shortdrama",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
@@ -488,7 +499,7 @@
       "api": "csp_HHkkAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "shortdrama",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -499,7 +510,7 @@
       "api": "csp_HemaAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "shortdrama",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -510,7 +521,7 @@
       "api": "csp_BddjAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "shortdrama",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -521,7 +532,7 @@
       "api": "csp_WgdjAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "shortdrama",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -532,7 +543,7 @@
       "api": "csp_QmdjAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "shortdrama",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -543,7 +554,7 @@
       "api": "csp_XydjAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "shortdrama",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -554,7 +565,7 @@
       "api": "csp_GuaziLiveAmns",
       "searchable": 0,
       "quickSearch": 0,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "GuaziLive",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -565,7 +576,7 @@
       "api": "csp_FeiqLiveAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -575,7 +586,7 @@
       "api": "csp_BbkqLiveAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "ext": "BbkqLive",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -586,7 +597,7 @@
       "api": "csp_KafLiveAmns",
       "searchable": 0,
       "quickSearch": 0,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -596,7 +607,7 @@
       "api": "csp_TStyAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -606,7 +617,7 @@
       "api": "csp_TStzgAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -616,7 +627,7 @@
       "api": "csp_TSaowuAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
     {
@@ -626,7 +637,7 @@
       "api": "csp_KuwoAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "music",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },
@@ -637,7 +648,7 @@
       "api": "csp_QTfmAmns",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
+      "changeable": 1,
       "genre": "music",
       "jar": "https://file.icve.com.cn/file_doc/81/326/14751AFEF3EF30B1AFFFA398F1E9D961.png"
     },

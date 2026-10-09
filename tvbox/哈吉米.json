@@ -190,32 +190,6 @@
       "api": "https://mpimg.cn/down.php/6f7f933b02ae7a30553c474642e92347.py"
     },
     {
-      "key": "光影",
-      "name": "光影",
-      "type": 3,
-      "api": "https://fastlink.cokey.xyz/f/nLaNhm/get.js",
-      "ext": {
-        "host": "https://yun-1316442804.cos.ap-guangzhou.myqcloud.com/603.txt",
-        "key": "FTgP4Gq8zPiqbt7M",
-        "init": "V122",
-        "api": 2,
-        "ua": "https://17264.kstore.space/okhttp/3.10.0"
-      }
-    },
-    {
-      "key": "星河",
-      "name": "星河",
-      "type": 3,
-      "api": "https://fastlink.cokey.xyz/f/nLaNhm/get.js",
-      "ext": {
-        "host": "http://110.42.67.130:1226",
-        "key": "kj37zs29q22jk96t",
-        "init": "V122",
-        "api": 2,
-        "ua": "https://17264.kstore.space/okhttp/3.10.0"
-      }
-    },
-    {
       "key": "雪落",
       "name": "雪落",
       "type": 3,
