@@ -1,6 +1,15 @@
 {
   "sites": [
     {
+      "key": "hbmg",
+      "name": "含苞玫瑰",
+      "type": 3,
+      "api": "https://mpimg.cn/down.php/08ac7f6850a666b9e6273d276d61dc33.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
       "key": "py_apple",
       "name": "🍎┃苹果┃影视",
       "type": 3,
