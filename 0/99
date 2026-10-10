@@ -10,16 +10,6 @@
   "logo": "https://0.wudaozhe.net/tvbox/x/jueson.jpg",
   "sites": [
     {
-      "key": "jueson",
-      "name": "🏠主页┃豆瓣",
-      "type": 3,
-      "api": "csp_DouDou",
-      "searchable": 0,
-      "quickSearch": 0,
-      "indexs": 1,
-      "filterable": 1
-    },
-    {
       "key": "hbmg",
       "name": "🔞含苞玫瑰",
       "type": 3,
