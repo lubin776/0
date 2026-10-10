@@ -1,0 +1,8 @@
+{
+  "title": "站长精选",
+  "description": "精选站点，点击卡片直达。",
+  "items": [
+    { "name": "归零box", "url": "https://tvbox.moliys.icu/apk", "icon": "vip/归零.jpg", "desc": "壳子新势力" },
+    { "name": "华缘社", "url": "https://xydh.fun/hysdh", "icon": "vip/华缘社.jpg", "desc": "共创聚合，互联无疆"  }
+  ]
+}
