@@ -131,7 +131,7 @@
 
   "liveAggregate": {
     "title": "海量直播聚合多线路专用接口",
-    "url": "https://0.wudaozhe.net/tvbox/海量直播线路.json"
+    "url": "https://0.wudaozhe.net/tvbox/海量直播聚合接口.json"
   },
 
   "downloadSources": [
