@@ -8,62 +8,7 @@
   },
 
   "about": {
-    "domains": [
-      {
-        "name": "误道者站点",
-        "icon": "vip/jueson.jpg",
-        "desc": "",
-        "domains": [
-          "https://0.wudaozhe.net",
-          "https://0.12yue.de5.net",
-          "https://0.cdz.qzz.io",
-          "https://0.wdzb.eu.cc"
-        ]
-      },
-      {
-        "name": "雪衣玉龙站点",
-        "icon": "vip/雪衣玉龙.jpg",
-        "desc": "",
-        "domains": [
-          "https://ym.120733.xyz",
-          "https://4.wudaozhe.net"
-        ]
-      },
-      {
-        "name": "韧忍仁人站点",
-        "icon": "vip/刘军.jpg",
-        "desc": "",
-        "domains": [
-          "https://liujin86.ccwu.cc",
-          "https://8.wudaozhe.net"
-        ]
-      },
-      {
-        "name": "第五站点",
-        "icon": "vip/第五.jpg",
-        "desc": "",
-        "domains": [
-          "https://tvthaox.cc.cd"
-        ]
-      },
-      {
-        "name": "祥子站点",
-        "icon": "vip/祥子.jpg",
-        "desc": "",
-        "domains": [
-          "https://nxz.de5.net",
-          "https://6.wudaozhe.net"
-        ]
-      },
-      {
-        "name": "第七站点",
-        "icon": "vip/第七.jpg",
-        "desc": "",
-        "domains": [
-          "https://tvbox-api.luca.dpdns.org"
-        ]
-      }
-    ],
+    "domains": "cy/站点域名分组.json",
     "declaration": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
     "qqGroup": "1067685939",
     "telegram": "https://t.me/tg6603",
@@ -131,47 +76,34 @@
 
   "liveAggregate": {
     "title": "海量直播聚合多线路专用接口",
-    "url": "https://0.wudaozhe.net/tvbox/海量直播聚合接口.json"
+    "url": "https://0.wudaozhe.net/tvbox/海量直播线路.json"
   },
 
   "downloadSources": [
-    { "name": "菠菜园",   "url": "ry/菠菜园下载.json",   "description": "整理者：误道者" },
-    { "name": "奇奇副本", "url": "ry/奇奇副本.json",     "description": "整理者：误道者" },
-    { "name": "无忧",     "url": "ry/无忧下载.json",     "description": "云星" },
-    { "name": "潇洒",     "url": "ry/潇洒下载.json",     "description": "潇洒" },
-    { "name": "柒豪下载", "url": "ry/柒豪下载.json",     "description": "" },
-    { "name": "应用下载", "url": "ry/应用市场二.json",   "description": "" },
-    { "name": "应用市场", "url": "ry/应用市场一.json",   "description": "" }
+    { "name": "菠菜园",   "url": "ry/菠菜园下载.json",   "icon": "🥬", "description": "整理者：误道者" },
+    { "name": "奇奇副本", "url": "ry/奇奇副本.json",     "icon": "🎬", "description": "整理者：误道者" },
+    { "name": "无忧",     "url": "ry/无忧下载.json",     "icon": "☁️", "description": "云星" },
+    { "name": "潇洒",     "url": "ry/潇洒下载.json",     "icon": "🕶️", "description": "潇洒" },
+    { "name": "柒豪下载", "url": "ry/柒豪下载.json",     "icon": "📦", "description": "" },
+    { "name": "应用下载", "url": "ry/应用市场二.json",   "icon": "📱", "description": "" },
+    { "name": "应用市场", "url": "ry/应用市场一.json",   "icon": "🛒", "description": "" }
   ],
 
   "videoTabs": [
-    { "id": "shop-recommend", "icon": "⭐", "label": "站长推荐", "file": "cy/站长推荐.json", "pinned": true },
-    { "id": "online-video",   "icon": "🎞️", "label": "在线视频", "file": "cy/站点2.json" },
-    { "id": "tools",          "icon": "🧰", "label": "常用工具", "file": "cy/站点1.json" }
+    { "id": "shop-recommend", "icon": "⭐", "label": "店长推荐", "file": "cy/站点2.json", "pinned": true, "type": "online" },
+    { "id": "online-video",   "icon": "🎞️", "label": "在线视频", "file": "cy/站点2.json", "type": "online" },
+    { "id": "tools",          "icon": "🧰", "label": "常用工具", "file": "cy/站点1.json", "type": "tools" }
   ],
 
   "moreTabs": [
-    { "id": "danmu",          "icon": "💬", "label": "弹幕接口", "file": "cy/弹幕.json" },
-    { "id": "book-source",    "icon": "📚", "label": "书源",     "file": "cy/书源.json" },
-    { "id": "comic-source",   "icon": "📖", "label": "漫画源",   "file": "cy/漫画源.json" },
-    { "id": "music-source",   "icon": "🎵", "label": "音源",     "file": "cy/音源.json" },
-    { "id": "general-source", "icon": "🧩", "label": "通用模板", "file": "cy/模板.json" }
+    { "id": "danmu",          "icon": "💬", "label": "弹幕接口", "file": "cy/弹幕.json",     "type": "api" },
+    { "id": "book-source",    "icon": "📚", "label": "书源",     "file": "cy/书源.json",     "type": "api" },
+    { "id": "comic-source",   "icon": "📖", "label": "漫画源",   "file": "cy/漫画源.json",   "type": "api" },
+    { "id": "music-source",   "icon": "🎵", "label": "音源",     "file": "cy/音源.json",     "type": "api" },
+    { "id": "general-source", "icon": "🧩", "label": "通用模板", "file": "cy/模板.json",     "type": "api" }
   ],
 
-  "customApis": [
-    {
-      "name": "X4菠菜园",
-      "date": "",
-      "size": "站长推荐",
-      "origUrl": "https://0.wudaozhe.net/5/x4.json",
-      "urls": [
-        { "label": "备份一线", "url": "https://0.wudaozhe.net/tvbox/X4菠菜园.json" },
-        { "label": "备份二线", "url": "https://0.12yue.de5.net/tvbox/X4菠菜园.json" },
-        { "label": "备份三线", "url": "https://0.cdz.qzz.io/tvbox/X4菠菜园.json" },
-        { "label": "备份四线", "url": "https://0.wdzb.eu.cc/tvbox/X4菠菜园.json" }
-      ]
-    }
-  ],
+  "customApis": "cy/自定义点播混排.json",
 
   "sourceFiles": {
     "list": "list.txt",
