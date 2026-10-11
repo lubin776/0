@@ -76,12 +76,12 @@
 
   "liveAggregate": {
     "title": "海量直播聚合多线路专用接口",
-    "url": "https://0.wudaozhe.net/tvbox/海量直播线路.json"
+    "url": "https://0.wudaozhe.net/tvbox/海量直播聚合接口.json"
   },
 
   "downloadSources": [
     { "name": "菠菜园",   "url": "ry/菠菜园下载.json",   "icon": "🥬", "description": "整理者：误道者" },
-    { "name": "奇奇副本", "url": "ry/奇奇副本.json",     "icon": "🎬", "description": "整理者：误道者" },
+    { "name": "奇奇副本", "url": "ry/奇奇副本.json",     "icon": "📦", "description": "整理者：误道者" },
     { "name": "无忧",     "url": "ry/无忧下载.json",     "icon": "☁️", "description": "云星" },
     { "name": "潇洒",     "url": "ry/潇洒下载.json",     "icon": "🕶️", "description": "潇洒" },
     { "name": "柒豪下载", "url": "ry/柒豪下载.json",     "icon": "📦", "description": "" },
@@ -90,7 +90,7 @@
   ],
 
   "videoTabs": [
-    { "id": "shop-recommend", "icon": "⭐", "label": "店长推荐", "file": "cy/站点2.json", "pinned": true, "type": "online" },
+    { "id": "shop-recommend", "icon": "⭐", "label": "站长推荐", "file": "cy/站长推荐.json", "pinned": true, "type": "online" },
     { "id": "online-video",   "icon": "🎞️", "label": "在线视频", "file": "cy/站点2.json", "type": "online" },
     { "id": "tools",          "icon": "🧰", "label": "常用工具", "file": "cy/站点1.json", "type": "tools" }
   ],
