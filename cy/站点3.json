@@ -1,0 +1,29 @@
+{
+  "title": "常用站点测试版",
+  "description": "测试版常用站点与在线工具，点击直达。",
+  "items": [
+    { "icon": "🧭", "name": "Eternity导航", "url": "https://sp.jierry.ccwu.cc", "desc": "综合导航站" },
+    { "icon": "📺", "name": "短剧网", "url": "https://www.duanju2.com/", "desc": "免费短剧在线观看" },
+    { "icon": "🎬", "name": "168短剧", "url": "https://www.xzyx168.com/", "desc": "热门短剧合集" },
+    { "icon": "🎭", "name": "55短剧", "url": "https://www.duanju55.com/", "desc": "短剧在线播放" },
+
+    { "icon": "🔵", "name": "百度", "url": "https://www.baidu.com", "desc": "中文搜索引擎" },
+    { "icon": "🌐", "name": "谷歌", "url": "https://www.google.com", "desc": "全球搜索引擎（需梯子）" },
+    { "icon": "🐙", "name": "GitHub", "url": "https://github.com", "desc": "全球最大代码托管平台" },
+    { "icon": "📦", "name": "Gitee 码云", "url": "https://gitee.com", "desc": "国内代码托管平台" },
+    { "icon": "📚", "name": "知乎", "url": "https://www.zhihu.com", "desc": "中文问答社区" },
+    { "icon": "🎥", "name": "哔哩哔哩", "url": "https://www.bilibili.com", "desc": "B站视频弹幕网" },
+    { "icon": "🛒", "name": "淘宝", "url": "https://www.taobao.com", "desc": "综合购物平台" },
+    { "icon": "📖", "name": "百度百科", "url": "https://baike.baidu.com", "desc": "中文百科" },
+
+    { "icon": "🌍", "name": "域名检测", "url": "https://www.itdog.cn/http/", "desc": "多节点 HTTP 检测" },
+    { "icon": "🔍", "name": "ITDOG 线路检测", "url": "https://www.itdog.cn/ping/", "desc": "全国 Ping / TCPing 检测" },
+    { "icon": "📍", "name": "IP 检测", "url": "https://ip.sb", "desc": "查询本机 IP 与归属地" },
+    { "icon": "🛰️", "name": "IP138", "url": "https://www.ip138.com", "desc": "IP / 域名归属地查询" },
+    { "icon": "🔒", "name": "SSL 证书检测", "url": "https://myssl.com", "desc": "SSL 证书状态与评级" },
+    { "icon": "⚡", "name": "站长工具", "url": "https://tool.chinaz.com", "desc": "综合站长工具箱" },
+    { "icon": "🧪", "name": "Ping 检测", "url": "https://ping.chinaz.com", "desc": "多地 Ping 延迟测试" },
+
+    { "icon": "🧰", "name": "线路检测", "url": "./线路检测", "desc": "本地线路检测工具" }
+  ]
+}
