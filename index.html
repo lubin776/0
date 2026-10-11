@@ -114,7 +114,8 @@ body.simple-mode #api-panel { display:block !important; }
 #downloads-content.has-sidebar { display:flex; flex-direction:row; gap:12px; align-items:flex-start; }
 .dl-sidebar { flex:0 0 auto; width:96px; display:flex; flex-direction:column; gap:8px; padding:4px 2px 4px 0; position:sticky; top:0; align-self:flex-start; max-height:72vh; overflow-y:auto; }
 .dl-side-btn { width:100%; padding:11px 6px; border:1.5px solid #4a9eff; border-radius:12px; background:#fff; color:#4a9eff; font-size:.76rem; font-weight:600; line-height:1.3; cursor:pointer; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px; word-break:break-word; transition:background .15s, color .15s, transform .05s; }
-.dl-side-btn .dl-side-icon { font-size:1.15rem; line-height:1; }
+.dl-side-btn .dl-side-icon { font-size:1.15rem; line-height:1; display:flex; align-items:center; justify-content:center; width:1.4rem; height:1.4rem; }
+.dl-side-btn .dl-side-icon img { width:100%; height:100%; border-radius:6px; object-fit:cover; }
 .dl-side-btn.active { background:#4a9eff; color:#fff; }
 .dl-side-btn:active { transform:scale(.96); }
 .dl-body { flex:1; min-width:0; }
@@ -151,7 +152,7 @@ body.simple-mode #api-panel { display:block !important; }
   #downloads-content.has-sidebar { gap:8px; }
   .dl-sidebar { width:72px; gap:6px; max-height:66vh; }
   .dl-side-btn { padding:9px 3px; font-size:.66rem; border-radius:10px; }
-  .dl-side-btn .dl-side-icon { font-size:.95rem; }
+  .dl-side-btn .dl-side-icon { font-size:.95rem; width:1.2rem; height:1.2rem; }
   .dl-item-icon { width:40px; height:40px; }
   .dl-item-btn { height:30px; padding:0 12px; font-size:.66rem; }
   .dl-subgroup-title { font-size:.76rem; }
@@ -178,7 +179,8 @@ body.simple-mode #api-panel { display:block !important; }
 #video-content.has-sidebar { display:flex; flex-direction:row; gap:12px; align-items:flex-start; }
 .vd-sidebar { flex:0 0 auto; width:96px; display:flex; flex-direction:column; gap:8px; padding:4px 2px 4px 0; position:sticky; top:0; align-self:flex-start; max-height:72vh; overflow-y:auto; }
 .vd-side-btn { width:100%; padding:11px 6px; border:1.5px solid #4a9eff; border-radius:12px; background:#fff; color:#4a9eff; font-size:.76rem; font-weight:600; line-height:1.3; cursor:pointer; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px; word-break:break-word; transition:background .15s, color .15s, transform .05s; }
-.vd-side-btn .vd-side-icon { font-size:1.15rem; line-height:1; }
+.vd-side-btn .vd-side-icon { font-size:1.15rem; line-height:1; display:flex; align-items:center; justify-content:center; width:1.4rem; height:1.4rem; }
+.vd-side-btn .vd-side-icon img { width:100%; height:100%; border-radius:6px; object-fit:cover; }
 .vd-side-btn.active { background:#4a9eff; color:#fff; }
 .vd-side-btn:active { transform:scale(.96); }
 .vd-body { flex:1; min-width:0; }
@@ -189,9 +191,17 @@ body.simple-mode #api-panel { display:block !important; }
 .tools-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:8px; width:100%; }
 .tool-chip { display:flex; align-items:center; justify-content:center; gap:6px; padding:10px 12px; background:#fff; border:1px solid #e4ebf3; border-radius:10px; text-decoration:none; color:#0a1a2b; font-size:.74rem; font-weight:500; line-height:1.3; text-align:center; transition:border-color .15s, box-shadow .15s, background .15s; min-width:0; }
 .tool-chip:active { border-color:#4a9eff; background:#f0f7ff; box-shadow:0 2px 8px rgba(74,158,255,.15); }
-.tool-chip .tool-icon { font-size:.9rem; flex-shrink:0; }
+.tool-chip .tool-icon { font-size:.9rem; flex-shrink:0; display:flex; align-items:center; justify-content:center; width:1.1rem; height:1.1rem; }
+.tool-chip .tool-icon img { width:100%; height:100%; border-radius:4px; object-fit:cover; }
 
-/* ===== 快链 · 店长推荐固定按钮 ===== */
+/* ===== 通用图标容器（支持 img 或 emoji/文字） ===== */
+.icon-box {
+  display:inline-flex; align-items:center; justify-content:center;
+  flex-shrink:0; line-height:1;
+}
+.icon-box img { width:100%; height:100%; object-fit:contain; border-radius:inherit; }
+
+/* ===== 快链 · 置顶固定按钮（金色主题） ===== */
 .vd-side-btn.vd-pinned {
   border-color:#f5a623; color:#f5a623;
   background:linear-gradient(180deg,#fff9ec 0%,#fff 100%);
@@ -209,7 +219,7 @@ body.simple-mode #api-panel { display:block !important; }
   #video-content.has-sidebar { gap:8px; }
   .vd-sidebar { width:72px; gap:6px; max-height:66vh; }
   .vd-side-btn { padding:9px 3px; font-size:.66rem; border-radius:10px; }
-  .vd-side-btn .vd-side-icon { font-size:.95rem; }
+  .vd-side-btn .vd-side-icon { font-size:.95rem; width:1.2rem; height:1.2rem; }
   .tools-grid { grid-template-columns:repeat(auto-fill, minmax(110px, 1fr)); gap:6px; }
   .tool-chip { padding:8px 8px; font-size:.68rem; }
 }
@@ -233,8 +243,9 @@ body.simple-mode #api-panel { display:block !important; }
   width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0;
   background:linear-gradient(135deg,#4a9eff,#1e6fda); color:#fff;
   display:flex; align-items:center; justify-content:center;
-  font-weight:600; font-size:.9rem;
+  font-weight:600; font-size:.9rem; overflow:hidden;
 }
+#about-domains-list .domain-group-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
 #about-domains-list .domain-group-info { flex:1; min-width:0; }
 #about-domains-list .domain-group-name {
   font-size:.85rem; font-weight:700; color:#0a1a2b;
@@ -264,7 +275,8 @@ body.simple-mode #api-panel { display:block !important; }
 .contributor-card { background:rgba(255,255,255,.75); border:1px solid rgba(255,255,255,.6); border-radius:12px; padding:12px 14px; min-width:0; width:100%; }
 .contributor-card.hidden { display:none !important; }
 .contributor-inner-card { display:flex; align-items:center; gap:12px; width:100%; min-width:0; background:transparent; border:none; border-radius:0; padding:0; box-sizing:border-box; }
-.contributor-avatar { width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0; background:linear-gradient(135deg,#4a9eff,#1e6fda); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:.85rem; }
+.contributor-avatar { width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0; background:linear-gradient(135deg,#4a9eff,#1e6fda); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:.85rem; overflow:hidden; }
+.contributor-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
 .contributor-info { flex:1; min-width:0; }
 .contributor-name { font-size:.82rem; font-weight:600; color:#0a1a2b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .contributor-role { display:inline-block; margin-top:4px; font-size:.6rem; font-weight:500; color:#4a9eff; background:#e8f2ff; padding:2px 10px; border-radius:50px; max-width:100%; overflow-wrap:break-word; word-break:break-word; }
@@ -301,7 +313,7 @@ body.simple-mode #api-panel { display:block !important; }
   #more-content.has-sidebar { gap:8px; }
   #more-content .dl-sidebar { width:72px; gap:6px; max-height:66vh; }
   #more-content .dl-side-btn { padding:9px 3px; font-size:.66rem; border-radius:10px; }
-  #more-content .dl-side-btn .dl-side-icon { font-size:.95rem; }
+  #more-content .dl-side-btn .dl-side-icon { font-size:.95rem; width:1.2rem; height:1.2rem; }
   #about-domains-list .domain-group-card { padding:12px 12px; }
   #about-domains-list .domain-group-avatar { width:38px; height:38px; font-size:.8rem; }
   #about-domains-list .domain-group-name { font-size:.8rem; }
@@ -429,6 +441,62 @@ let DOWNLOAD_SOURCES = [];
 document.body.className = currentMode + '-mode';
 updateBtnText();
 
+/* ============================================================
+   图标智能渲染工具
+   —— 判断 icon 值是"图片 URL"还是"emoji/文字"
+   ============================================================ */
+function isImageIcon(icon) {
+  if (!icon || typeof icon !== 'string') return false;
+  const s = icon.trim();
+  if (!s) return false;
+  if (/^(https?:)?\/\//i.test(s)) return true;
+  if (/^(\.{1,2}\/|\/)/.test(s)) return true;
+  if (/^data:image\//i.test(s)) return true;
+  if (/\.(png|jpe?g|gif|webp|svg|ico|bmp|avif)(\?.*)?$/i.test(s)) return true;
+  return false;
+}
+
+function renderIcon(icon, opts) {
+  opts = opts || {};
+  const size   = opts.size || '1.1rem';
+  const box    = opts.box || '1.4rem';
+  const fallback = opts.fallback || '📌';
+  const cls    = opts.cls || '';
+
+  const val = (icon && String(icon).trim()) ? icon : fallback;
+
+  if (isImageIcon(val)) {
+    const url = String(val).trim();
+    return `<span class="icon-box ${cls}" style="width:${box};height:${box}">
+      <img src="${url}" alt="" loading="lazy"
+        onerror="this.style.display='none';this.parentNode.innerHTML='<span style=&quot;font-size:${size}&quot;>${fallback}</span>';">
+    </span>`;
+  } else {
+    return `<span class="icon-box ${cls}" style="font-size:${size}">${val}</span>`;
+  }
+}
+
+/* ============================================================
+   外部资源智能解析
+   —— 如果字段值是"字符串路径"，则 fetch 该 JSON 文件
+   —— 如果是内联数组/对象，直接返回
+   —— 支持 config 里把 domains / customApis 等拆成独立文件
+   ============================================================ */
+async function resolveExternal(value, fallback) {
+  if (Array.isArray(value) || (value && typeof value === 'object')) return value;
+  if (typeof value === 'string' && value.trim()) {
+    try {
+      const res = await fetch(value.trim() + '?t=' + Date.now() + '&r=' + Math.random(), { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    } catch (e) {
+      console.warn('外部资源加载失败:', value, e);
+      return fallback;
+    }
+  }
+  return fallback;
+}
+
 /* ===== 全局复制 ===== */
 document.addEventListener('click', function(e) {
   const copyBtn = e.target.closest('.copy-btn');
@@ -519,7 +587,9 @@ async function loadConfig() {
   VALID_TABS = TABS.map(t => t.id);
 
   DOWNLOAD_SOURCES = Array.isArray(SITE_CONFIG.downloadSources) ? SITE_CONFIG.downloadSources : [];
-  CUSTOM_APIS = Array.isArray(SITE_CONFIG.customApis) ? SITE_CONFIG.customApis : [];
+
+  // 外部资源智能解析：支持内联数组 或 字符串路径
+  CUSTOM_APIS = await resolveExternal(SITE_CONFIG.customApis, []);
 
   const agg = SITE_CONFIG.liveAggregate || {};
   const aggTitle = document.getElementById('liveAggTitle');
@@ -529,9 +599,13 @@ async function loadConfig() {
   if (aggUrl) aggUrl.textContent = agg.url || '';
   if (aggCopy) aggCopy.setAttribute('data-url', agg.url || '');
 
-  renderContributors((SITE_CONFIG.about && SITE_CONFIG.about.contributors) || []);
-  renderAboutDomains((SITE_CONFIG.about && SITE_CONFIG.about.domains) || []);
-  renderAboutText(SITE_CONFIG.about || {});
+  const about = SITE_CONFIG.about || {};
+  // domains 也支持内联数组 或 字符串路径
+  const domainsData = await resolveExternal(about.domains, []);
+
+  renderContributors(about.contributors || []);
+  renderAboutDomains(domainsData);
+  renderAboutText(about);
 
   currentTabId = VALID_TABS.includes(localStorage.getItem(TAB_KEY))
     ? localStorage.getItem(TAB_KEY)
@@ -564,11 +638,10 @@ function renderAboutDomains(domains) {
     const desc = g.desc || '';
     const list = Array.isArray(g.domains) ? g.domains.filter(Boolean) : [];
 
-    const avatarHtml = g.icon
-      ? `<img class="domain-group-avatar" src="${g.icon}" alt="${name}" loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-         <div class="domain-group-avatar" style="display:none">${getInitials(name)}</div>`
-      : `<div class="domain-group-avatar">${getInitials(name)}</div>`;
+    const avatarHtml = isImageIcon(g.icon)
+      ? `<div class="domain-group-avatar"><img src="${g.icon}" alt="${name}" loading="lazy"
+            onerror="this.style.display='none';this.parentNode.textContent='${getInitials(name)}';"></div>`
+      : `<div class="domain-group-avatar">${(g.icon && String(g.icon).trim()) || getInitials(name)}</div>`;
 
     const domainHtml = list.length
       ? list.map(d => `
@@ -621,12 +694,16 @@ function renderContributors(list) {
     c.innerHTML = '<div class="error-msg">暂无合作共创人员</div>';
     return;
   }
-  c.innerHTML = list.map(x => `
+  c.innerHTML = list.map(x => {
+    const avatarHtml = isImageIcon(x.avatar)
+      ? `<div class="contributor-avatar"><img src="${x.avatar}" alt="${x.name}" loading="lazy"
+            onerror="this.style.display='none';this.parentNode.textContent='${getInitials(x.name)}';"></div>`
+      : `<div class="contributor-avatar">${(x.avatar && String(x.avatar).trim()) || getInitials(x.name)}</div>`;
+
+    return `
     <div class="contributor-card" data-name="${(x.name || '').toLowerCase()}">
       <div class="contributor-inner-card">
-        ${x.avatar
-          ? `<img class="contributor-avatar" src="${x.avatar}" alt="${x.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="contributor-avatar" style="display:none">${getInitials(x.name)}</div>`
-          : `<div class="contributor-avatar">${getInitials(x.name)}</div>`}
+        ${avatarHtml}
         <div class="contributor-info">
           <div class="contributor-name" title="${x.name}">${x.name}</div>
           ${x.role ? `<div class="contributor-role">${x.role}</div>` : ''}
@@ -634,15 +711,57 @@ function renderContributors(list) {
           ${x.social ? `<div class="contributor-social">${x.social}</div>` : ''}
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
-/* ===== 更多/快链通用渲染 ===== */
+/* ============================================================
+   通用渲染：三种内容类型
+   ============================================================ */
+
+function renderOnlineItem(item) {
+  const name = item.name || '';
+  const url  = item.url || '#';
+  const desc = item.desc || '';
+  const ph   = name.charAt(0) || '?';
+
+  let iconHtml;
+  if (item.icon && String(item.icon).trim()) {
+    if (isImageIcon(item.icon)) {
+      iconHtml = `<img src="${item.icon}" alt="${name}" loading="lazy"
+        onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <span class="site-ph" style="display:none">${ph}</span>`;
+    } else {
+      iconHtml = `<span class="site-ph" style="display:flex;font-size:1.4rem">${item.icon}</span>`;
+    }
+  } else {
+    const host = (url.match(/https?:\/\/([^/]+)/) || [, ''])[1];
+    iconHtml = `<img src="https://favicon.im/${host}?larger=true" alt="${name}" loading="lazy"
+      onerror="this.onerror=null;this.src='https://icon.horse/icon/${host}';this.addEventListener('error',()=>{this.style.display='none';this.nextElementSibling.style.display='flex';},{once:true})">
+      <span class="site-ph" style="display:none">${ph}</span>`;
+  }
+
+  return `<a class="online-item" href="${url}" target="_blank" rel="noopener noreferrer" data-name="${name.toLowerCase()}">
+  <span class="online-item-icon">${iconHtml}</span>
+  <div class="online-item-info"><div class="online-item-name">${name}</div><div class="online-item-desc">${desc}</div></div>
+</a>`;
+}
+
+function renderToolChip(item) {
+  const name = item.name || '';
+  const url  = item.url || '#';
+  const desc = item.desc || '';
+  const iconHtml = renderIcon(item.icon, { size: '.9rem', box: '1.1rem', fallback: '🔗' });
+  return `<a class="tool-chip" href="${url}" target="_blank" rel="noopener noreferrer" title="${desc}" data-name="${name.toLowerCase()}">
+    ${iconHtml}<span>${name}</span>
+  </a>`;
+}
+
 function renderApiItemCard(item) {
   const badge = item.badge || item.count || '';
   const note  = item.note  || item.desc  || '';
   let noteHtml = note ? `<div style="font-size:.68rem;color:#8b9eb0;margin-top:6px">${note}</div>` : '';
-  return `<div class="api-item" data-name="${item.name.toLowerCase()}">
+  return `<div class="api-item" data-name="${(item.name || '').toLowerCase()}">
   <div class="api-item-header">
     <div class="api-item-name" title="${item.name}">${item.name}</div>
     <div class="api-item-meta"><span class="badge-new">${badge}</span></div>
@@ -658,54 +777,29 @@ function renderApiItemCard(item) {
 </div>`;
 }
 
-/* ============================================================
-   在线站点卡片渲染
-   —— 优先使用 item.icon（自定义图标 URL）
-   —— 无 icon 才回退到 favicon 自动获取
-   ============================================================ */
-function renderOnlineItem(item) {
-  const name = item.name || '';
-  const url  = item.url || '#';
-  const desc = item.desc || '';
-  const ph   = name.charAt(0) || '?';
-
-  let iconHtml;
-  if (item.icon) {
-    // 使用自定义图标 URL
-    iconHtml = `<img src="${item.icon}" alt="${name}" loading="lazy"
-      onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <span class="site-ph" style="display:none">${ph}</span>`;
-  } else {
-    // 回退：favicon 自动获取
-    const host = (url.match(/https?:\/\/([^/]+)/) || [, ''])[1];
-    iconHtml = `<img src="https://favicon.im/${host}?larger=true" alt="${name}" loading="lazy"
-      onerror="this.onerror=null;this.src='https://icon.horse/icon/${host}';this.addEventListener('error',()=>{this.style.display='none';this.nextElementSibling.style.display='flex';},{once:true})">
-      <span class="site-ph" style="display:none">${ph}</span>`;
+function renderItemsByType(type, items) {
+  const list = Array.isArray(items) ? items : [];
+  switch (type) {
+    case 'online':
+      return `<div class="online-list">${list.map(renderOnlineItem).join('\n')}</div>`;
+    case 'tools':
+      return `<div class="tools-grid">${list.map(renderToolChip).join('\n')}</div>`;
+    case 'api':
+    default:
+      return `<div class="api-list">${list.map(renderApiItemCard).join('\n')}</div>`;
   }
-
-  return `<a class="online-item" href="${url}" target="_blank" rel="noopener noreferrer" data-name="${name.toLowerCase()}">
-  <span class="online-item-icon">${iconHtml}</span>
-  <div class="online-item-info"><div class="online-item-name">${name}</div><div class="online-item-desc">${desc}</div></div>
-</a>`;
 }
 
-function renderSourceGroup(title, description, items, isOnlineVideo) {
-  let bodyHtml = '';
-  if (isOnlineVideo) {
-    bodyHtml = `<div class="online-list">${items.map(renderOnlineItem).join('\n')}</div>`;
-  } else {
-    bodyHtml = `<div class="api-list">${items.map(renderApiItemCard).join('\n')}</div>`;
-  }
+function renderPanelCard(title, description, type, items) {
   return `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
   <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${title}</h3>
   <p style="font-size:.76rem;color:#5a6f88;margin-bottom:4px">${description}</p>
-  ${bodyHtml}
+  ${renderItemsByType(type, items)}
 </div>`;
 }
 
 /* ============================================================
    快链面板
-   —— 支持 pinned:true 的 tab 固定在侧边栏顶部（如"店长推荐"）
    ============================================================ */
 async function renderVideo() {
   const container = document.getElementById('video-content');
@@ -724,45 +818,24 @@ async function renderVideo() {
     catch (e) { dataMap[t.id] = { title: t.label, description: '加载失败：' + e.message, items: [] }; }
   }));
 
-  // 固定置顶的 tab（pinned:true）排前面，用分隔线隔开
   const pinnedTabs = tabs.filter(t => t.pinned);
   const normalTabs = tabs.filter(t => !t.pinned);
   const orderedTabs = pinnedTabs.concat(normalTabs);
 
   const sidebarHtml = orderedTabs.map((t, i) => {
     const isPinned = !!t.pinned;
-    // 在固定组与普通组之间插入分隔线
     const needDivider = isPinned && i === pinnedTabs.length - 1 && normalTabs.length > 0;
+    const iconHtml = renderIcon(t.icon, { size: '1.15rem', box: '1.4rem', fallback: '📌' });
     const btn = `<button class="vd-side-btn${isPinned ? ' vd-pinned' : ''}${i === 0 ? ' active' : ''}" data-vd-tab="${t.id}">
-      <span class="vd-side-icon">${t.icon}</span><span>${t.label}</span>
+      ${iconHtml}<span>${t.label}</span>
     </button>`;
     return btn + (needDivider ? '<div class="vd-side-divider"></div>' : '');
   }).join('\n');
 
   const bodyHtml = orderedTabs.map((t, i) => {
-    const data = dataMap[t.id];
-    let inner;
-    if (t.id === 'online-video' || t.pinned) {
-      // 在线视频 / 店长推荐：使用在线站点卡片
-      const list = `<div class="online-list">${(data.items || []).map(renderOnlineItem).join('\n')}</div>`;
-      inner = `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${data.title || t.label}</h3>
-        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:4px">${data.description || ''}</p>
-        ${list}
-      </div>`;
-    } else if (t.id === 'tools') {
-      const chips = (data.items || []).map(item =>
-        `<a class="tool-chip" href="${item.url}" target="_blank" rel="noopener noreferrer" title="${item.desc}" data-name="${(item.name || '').toLowerCase()}">
-          <span class="tool-icon">${item.icon}</span><span>${item.name}</span>
-        </a>`).join('\n');
-      inner = `<div style="background:#f8fafc;border-radius:12px;padding:14px 16px;border:1px solid #eef2f7">
-        <h3 style="font-size:.92rem;font-weight:600;color:#0b1e33;margin-bottom:4px">${data.title || t.label}</h3>
-        <p style="font-size:.76rem;color:#5a6f88;margin-bottom:10px">${data.description || ''}</p>
-        <div class="tools-grid">${chips}</div>
-      </div>`;
-    } else {
-      inner = renderSourceGroup(data.title || t.label, data.description || '', data.items || [], false);
-    }
+    const data = dataMap[t.id] || {};
+    const type = t.type || 'api';
+    const inner = renderPanelCard(data.title || t.label, data.description || '', type, data.items || []);
     return `<div class="vd-group${i === 0 ? ' active' : ''}" id="vd-${t.id}">${inner}</div>`;
   }).join('\n');
 
@@ -783,7 +856,9 @@ async function renderVideo() {
   });
 }
 
-/* ===== 更多面板 ===== */
+/* ============================================================
+   更多面板
+   ============================================================ */
 async function renderMore() {
   const container = document.getElementById('more-content');
   if (!container) return;
@@ -804,16 +879,18 @@ async function renderMore() {
     catch (e) { dataMap[t.id] = { title: t.label, description: '加载失败：' + e.message, items: [] }; }
   }));
 
-  const sidebarHtml = tabs.map((t, i) =>
-    `<button class="dl-side-btn${i === 0 ? ' active' : ''}" data-more-tab="${t.id}">
-      <span class="dl-side-icon">${t.icon}</span><span>${t.label}</span>
-    </button>`).join('\n');
+  const sidebarHtml = tabs.map((t, i) => {
+    const iconHtml = renderIcon(t.icon, { size: '1.15rem', box: '1.4rem', fallback: '📌' });
+    return `<button class="dl-side-btn${i === 0 ? ' active' : ''}" data-more-tab="${t.id}">
+      ${iconHtml}<span>${t.label}</span>
+    </button>`;
+  }).join('\n');
 
   const bodyHtml = tabs.map((t, i) => {
-    const data = dataMap[t.id];
-    const isOnline = t.id === 'online-video';
-    const content = renderSourceGroup(data.title || t.label, data.description || '', data.items || [], isOnline);
-    return `<div class="more-group${i === 0 ? ' active' : ''}" id="more-${t.id}">${content}</div>`;
+    const data = dataMap[t.id] || {};
+    const type = t.type || 'api';
+    const inner = renderPanelCard(data.title || t.label, data.description || '', type, data.items || []);
+    return `<div class="more-group${i === 0 ? ' active' : ''}" id="more-${t.id}">${inner}</div>`;
   }).join('\n');
 
   container.innerHTML = `
@@ -951,9 +1028,8 @@ async function renderDownloads(force) {
   if (!sidebar.dataset.built) {
     sidebar.dataset.built = 'true';
     sidebar.innerHTML = DOWNLOAD_SOURCES.map((src, idx) => {
-      const icon = src.icon ? `<img src="${src.icon}" style="width:1.4rem;height:1.4rem;border-radius:6px;object-fit:cover">`
-                            : `<span class="dl-side-icon">📦</span>`;
-      return `<button class="dl-side-btn ${idx === 0 ? 'active' : ''}" data-key="${src.url}">${icon}<span>${src.name || ('组' + (idx + 1))}</span></button>`;
+      const iconHtml = renderIcon(src.icon, { size: '1.15rem', box: '1.4rem', fallback: '📦' });
+      return `<button class="dl-side-btn ${idx === 0 ? 'active' : ''}" data-key="${src.url}">${iconHtml}<span>${src.name || ('组' + (idx + 1))}</span></button>`;
     }).join('');
     sidebar.querySelectorAll('.dl-side-btn').forEach(b => {
       b.addEventListener('click', () => {
@@ -1013,12 +1089,17 @@ function showDownloadGroup(key) {
     if (!list.length) return '';
     const cardsHtml = list.map(i => {
       const ph = (i.name || '?').slice(0, 1).toUpperCase();
-      const iconImg = i.icon
-        ? `<img src="${i.icon}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';">`
-        : '';
+      let iconInner = '';
+      if (isImageIcon(i.icon)) {
+        iconInner = `<img src="${i.icon}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="site-ph" style="display:none">${ph}</span>`;
+      } else if (i.icon && String(i.icon).trim()) {
+        iconInner = `<span class="site-ph" style="display:flex;font-size:1.4rem">${i.icon}</span>`;
+      } else {
+        iconInner = `<span class="site-ph" style="display:flex">${ph}</span>`;
+      }
       return `
       <a class="download-card" href="${i.url || '#'}" target="_blank" rel="noopener noreferrer" data-name="${(i.name || '').toLowerCase()}">
-        <span class="dl-item-icon">${iconImg}<span class="site-ph" style="display:${i.icon ? 'none' : 'flex'}">${ph}</span></span>
+        <span class="dl-item-icon">${iconInner}</span>
         <span class="dl-item-info">
           <span class="dl-item-name">${i.name || ''}</span>
           ${i.version ? `<span class="dl-item-desc">${i.version}</span>` : ''}
@@ -1071,7 +1152,7 @@ function showPanel(tabId) {
   if(tabId==='more') renderMore();
 }
 
-/* ===== 搜索：完全由 config 控制 ===== */
+/* ===== 搜索 ===== */
 function globalSearch() {
   const kw = (searchBox.value || '').toLowerCase().trim();
   const list = (currentMode === 'simple')
