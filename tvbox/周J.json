@@ -1,6 +1,7 @@
 {
   "spider": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/jar/wuao.txt;md5;d93049ba6615eab01b69a52ff03c02c9",
   "logo": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/app_icon.png",
+  "wallpaper": "http://127.0.0.1:9978/proxy?do=AowuWapper&mode=2",
   "lives": [
     {
       "name": "🍬移动🍬",
@@ -59,7 +60,7 @@
     },
     {
       "key": "哔站记录片",
-      "name": "🍬🅱哔站影视",
+      "name": "🍬🅱哔站纪录片",
       "type": 3,
       "api": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/js/哔哩纪录片.js",
       "searchable": 1,
@@ -327,16 +328,18 @@
   ],
   "rules": [
     {
-      "name": "农民",
+      "name": "cl",
       "hosts": [
-        "toutiaovod.com"
+        "magnet"
       ],
       "regex": [
-        "video/tos/cn"
+        "最 新",
+        "直 播",
+        "更 新"
       ]
     },
     {
-      "name": "火山",
+      "name": "火山嗅探",
       "hosts": [
         "huoshan.com"
       ],
@@ -345,7 +348,7 @@
       ]
     },
     {
-      "name": "抖音",
+      "name": "抖音嗅探",
       "hosts": [
         "douyin.com"
       ],
@@ -354,49 +357,75 @@
       ]
     },
     {
-      "name": "磁力广告",
+      "name": "农民嗅探",
       "hosts": [
-        "magnet"
+        "toutiaovod.com"
       ],
       "regex": [
-        "更多",
-        "请访问",
-        "example",
-        "社 區",
-        "x u u",
-        "直 播",
-        "更 新",
-        "社 区",
-        "有趣",
-        "有 趣",
-        "英皇体育",
-        "全中文AV在线",
-        "澳门皇冠赌场",
-        "哥哥快来",
-        "美女荷官",
-        "裸聊",
-        "新片首发",
-        "UUE29"
+        "video/tos/cn"
       ]
     },
     {
-      "name": "饭团点击",
+      "name": "七新嗅探",
       "hosts": [
-        "dadagui",
-        "freeok",
-        "dadagui"
+        "api.52wyb.com"
+      ],
+      "regex": [
+        "m3u8?pt=m3u8"
+      ]
+    },
+    {
+      "name": "夜市",
+      "hosts": [
+        "yeslivetv.com"
       ],
       "script": [
-        "document.querySelector(\"#playleftiframe\").contentWindow.document.querySelector(\"#start\").click();"
+        "document.getElementsByClassName('vjs-big-play-button')[0].click()"
       ]
     },
     {
-      "name": "毛驴点击",
+      "name": "毛驴",
       "hosts": [
         "www.maolvys.com"
       ],
       "script": [
-        "document.getElementsByClassName('swal-buttonswal-button--confirm')[0].click()"
+        "document.getElementsByClassName('swal-button swal-button--confirm')[0].click()"
+      ]
+    },
+    {
+      "name": "czzy",
+      "hosts": [
+        "10086.cn"
+      ],
+      "regex": [
+        "/storageWeb/servlet/downloadServlet"
+      ]
+    },
+    {
+      "name": "bdys",
+      "hosts": [
+        "bytetos.com",
+        "byteimg.com",
+        "bytednsdoc.com",
+        "pstatp.com"
+      ],
+      "regex": [
+        "/tos-cn"
+      ],
+      "exclude": [
+        ".m3u8"
+      ]
+    },
+    {
+      "name": "bdys10",
+      "hosts": [
+        "bdys10.com"
+      ],
+      "regex": [
+        "/obj/"
+      ],
+      "exclude": [
+        ".m3u8"
       ]
     }
   ]

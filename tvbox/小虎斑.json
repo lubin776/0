@@ -1,5 +1,5 @@
 {
-    "spider": "https://gitee.com/xhuban/getjar/raw/master/jar/custom_spider_cat.jar;md5;bfd7b3d5a6b1381abd7604b38d930f8c",
+    "spider": "https://gitee.com/xhuban/getjar/raw/master/jar/custom_spider_cat.jar;md5;c09fa11cf030c17f097c140fc242190c",
     "wallpaper": "https://xn--11x805d.xn--4kq62z5rby2qupq9ub.xyz/",
     "warningText": "仅作学习交流测试使用，配置或下载后请于24小时之内删除",
     "lives": [
@@ -88,6 +88,15 @@
             "api": "csp_HBBaoHuoCAT",
             "name": "火火|弹幕",
             "type": 3
+        },
+        {
+            "key": "shanzha",
+            "api": "csp_HBShanZhaCAT",
+            "name": "山楂|弹幕",
+            "type": 3,
+            "searchable": 1,
+            "filterable": 0,
+            "quickSearch": 1
         },
         {
             "key": "HBYiQi",
@@ -474,6 +483,24 @@
             "name": "青麦|弹幕",
             "type": 3,
             "api": "csp_HBQingMaiCAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1
+        },
+        {
+            "key": "xingying",
+            "name": "星影|弹幕",
+            "type": 3,
+            "api": "csp_HBXingYingCAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1
+        },
+        {
+            "key": "kaixin",
+            "name": "开心|在线",
+            "type": 3,
+            "api": "csp_HBZhenLangCAT",
             "searchable": 1,
             "filterable": 1,
             "quickSearch": 1
