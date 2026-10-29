@@ -1,0 +1,662 @@
+{
+  "spider": "https://zl.wpscdn.cn/2026/10/28/space_img/62ca73f8-1055-4228-88c7-e83c695467ee.png;md5;a100233aca524f34fee0631ac3b2e76b",
+  "wallpaper": "https://www.yumus.cn/api/?brand=360&type=0",
+  "lives": [
+    {
+      "name": "📡央视频",
+      "url": "https://mpimg.cn/down.php/caac7a6dae8f835257a11e7a11291bf2.txt",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8066.0 Safari/537.36",
+      "click": "(function(){var n=0,t=setInterval(function(){var e=document.querySelector('.c-container'),v=e&&e.__vue__;if(v&&typeof v.onInitPlayVideo==='function'){clearInterval(t);v.onInitPlayVideo();}else if(++n>50)clearInterval(t);},200);})()",
+      "epg": "http://epg.51zmt.top:8000/e.xml",
+      "logo": "https://tb.zbds.top/logo/{name}.png",
+      "timeout": 7
+    }
+  ],
+  "sites": [
+    {
+      "key": "douban",
+      "name": "🎬豆瓣┃推荐 反馈群：https://t.me/diaosikaifei",
+      "type": 3,
+      "api": "csp_Douban",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "config",
+      "name": "🔧网盘┃授权设置",
+      "type": 3,
+      "api": "csp_Config",
+      "searchable": 0
+    },
+    {
+      "key": "HJZhenCai",
+      "name": "🍎花卷┃网盘4K",
+      "type": 3,
+      "api": "csp_HJZhenCai",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": {
+        "site_urls": [
+          "https://www.hjzhencai.top",
+          "https://www.huanjuanwp.shop",
+          "https://www.aihuajuan.top"
+        ],
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "csp_Wogg",
+      "name": "🧸玩偶┃网盘4K",
+      "type": 3,
+      "api": "csp_Gege",
+      "timeout": 15,
+      "changeable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "ewogICJzaXRlX3VybHMiOiBbCiAgICAiaHR0cHM6Ly93d3cud29nZy5saXZlIiwKICAgICJodHRwczovL3dvZ2dwYW4uMzMzMjMyLnh5ei8iLAogICAgImh0dHBzOi8vd3d3LndvZ2cubmV0IgogIF0sCiAgInRva2VuIjogIiIsCiAgInVjQ29va2llIjogIiIsCiAgInF1YXJrQ29va2llIjogIiIKfQ=="
+    },
+    {
+      "key": "JuXiaFan",
+      "name": "🍚下饭┃1080P",
+      "type": 3,
+      "api": "csp_JuXiaFan",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": {
+        "site": "http://jumianfei.com",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "tvb_yunbo",
+      "name": "🌐云播┃1080P",
+      "type": 3,
+      "api": "csp_HiApp",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "api_base": "http://app.tuxianimg.com/api/vod/",
+        "aes_key": "MickwrKuMickwrKu",
+        "aes_iv": "MickwrKuMickwrKu",
+        "platform": "android",
+        "referer": "http://app.tuxianimg.com/",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "YingTan4K",
+      "name": "🔍影探┃1080P",
+      "type": 3,
+      "api": "csp_YingTan4K",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "host": "http://cms.lyyytv.cn",
+        "cmsKey": "wP5bvxoc3yv7FoBQENFZuAF0EUYr4LTy",
+        "parseApi": "http://fys.lyyytv.cn/api/index?parsesId=3&appid=10001&videoUrl="
+      }
+    },
+    {
+      "key": "AppRJ",
+      "name": "⚡秒播┃1080P",
+      "type": 3,
+      "api": "csp_AppRJ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "timeout": 12,
+      "ext": {
+        "site": "http://v.rbotv.cn",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "YZX",
+      "name": "✈️秒播┃1180P",
+      "type": 3,
+      "api": "csp_YunZhenXiang",
+      "searchable": 1,
+      "quickSearch": 1,
+      "timeout": 12,
+      "ext": {
+        "site": "http://v.rbotv.cn",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "symx",
+      "name": "🌿木兮┃1080P",
+      "type": 3,
+      "api": "csp_Symx",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "site": "https://film.symx.club",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "KanJuMe",
+      "name": "🌍世界┃1080P",
+      "type": 3,
+      "api": "csp_KanJuMe",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "dsxys",
+      "name": "🎓师兄┃1080P",
+      "type": 3,
+      "api": "csp_DaShiXiong",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
+      "key": "dongpian",
+      "name": "📼懂片┃1080P",
+      "type": 3,
+      "api": "csp_DongPianDi",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "JpysWorld",
+      "name": "🌏海外┃1080P",
+      "type": 3,
+      "api": "csp_Jpys",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "site": "https://yvyeigh.com",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "Gulu",
+      "name": "🌀咕噜┃1080P",
+      "type": 3,
+      "api": "csp_Gulu",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "Gz360",
+      "name": "🌻瓜子┃1080P",
+      "type": 3,
+      "api": "csp_Gz360",
+      "searchable": 1,
+      "quickSearch": 0,
+      "timeout": 12,
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "YunDuo",
+      "name": "🦢大鹅┃1080P",
+      "type": 3,
+      "api": "csp_YunDuo",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "host": "https://323433ssdfd.top",
+        "finger": "WF-2c064bc5b3400788f31b848849bc3a60f835423ba2dfe69d7ea93974c216e4f2",
+        "aid": "com.web.player",
+        "sk": "WEB-50a8e9c84a1dc05669a692ded99a2dac46527229e607a7be15db88dbc59059d1",
+        "client": "8f3d2a1c7b6e5d4c9a0b1f2e3d4c5b6a",
+        "sign": "ddtvf65f3a83d6d9ad6f",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "xifan",
+      "name": "🥣稀饭┃动漫",
+      "type": 3,
+      "api": "csp_XiFanAcg",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "email": "",
+        "password": ""
+      }
+    },
+    {
+      "key": "共和国",
+      "name": "🚩共和国┃动漫",
+      "type": 3,
+      "api": "csp_Dmghg",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "Ciyuancheng",
+      "name": "🧚次元┃动漫",
+      "type": 3,
+      "api": "csp_Ciyuancheng",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "username": "nimasile",
+        "password": "xiaomi888",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "红果·短剧",
+      "name": "🍒红果┃短剧",
+      "type": 3,
+      "api": "csp_HongGuo",
+      "lang": "ds",
+      "genre": "短剧",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "AppXY",
+      "name": "🌟星丫┃短剧",
+      "type": 3,
+      "api": "csp_AppXY",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "timeout": 12,
+      "genre": "shortdrama",
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "瓜子体育",
+      "name": "⚽瓜子┃体育",
+      "type": 3,
+      "api": "csp_GuaziTY",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "timeout": 12,
+      "changeable": 0,
+      "order_num": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      },
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "Kanqiu",
+      "name": "⚽叭叭┃体育",
+      "type": 3,
+      "api": "csp_KanQiu",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "timeout": 12,
+      "changeable": 0,
+      "order_num": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      },
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "Bili",
+      "name": "📺哔哩┃番剧",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 0,
+      "timeout": 12,
+      "ext": {
+        "json": "https://nos.netease.com/youdata-netease/public-utilUpload-mLabnZG3ucMRjjDV4Hury6.json",
+        "cookie": "",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      }
+    },
+    {
+      "key": "半日99",
+      "name": "🌞半日┃1080P",
+      "type": 3,
+      "api": "csp_App99",
+      "ext": {
+        "host": "http://103.217.190.91:19987/app/bn",
+        "appkey": "d1f0c269eab74d93821fffc9befdbbba",
+        "versionName": "3.5.8",
+        "name": "半日闲",
+        "package": "com.yf.lelian",
+        "buildNumber": "2001",
+        "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "AppDramaPingguo",
+      "name": "🍏苹果┃1080P",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "小苹果",
+        "commonKey": "ed5fdsgucxumegqa",
+        "publicKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "com.juechufsh.android.xpg1",
+        "host": "",
+        "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
+        "version": "1.0.0.3",
+        "decrypt": "1",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "橘汁",
+      "name": "🍊橘汁┃1080P",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "橘汁",
+        "publicKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
+        "commonKey": "ed5fdsgucxumegqa",
+        "dataKey": "OW1WBLFZCLJ0WTNJQMRSZ2DYSGNBPT0=",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "com.mxj.wylcjbxyx",
+        "host": "",
+        "site": "https://123-1349250429.cos.ap-shanghai.myqcloud.com/app.txt",
+        "version": "3.0.2.4",
+        "decrypt": "1"
+      }
+    },
+    {
+      "key": "Jianpian",
+      "name": "🎯荐片┃1080P",
+      "type": 3,
+      "api": "csp_Jianpian",
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "timeout": 15,
+      "ext": {
+        "site": "https://api.ztcgi.com",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "tingshijie",
+      "name": "🎧听书┃有声",
+      "type": 3,
+      "api": "csp_TingShiJie",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
+      "key": "qishui",
+      "name": "🥤汽水┃音乐",
+      "type": 3,
+      "api": "csp_QiShui",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "ext": {
+        "site": "https://app.365ting.com",
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      },
+      "style": {
+        "type": "list"
+      }
+    },
+    {
+      "key": "KuKuMusic",
+      "name": "🎵库库┃音乐",
+      "type": 3,
+      "api": "csp_KuKuMusic",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0,
+      "style": {
+        "type": "oval",
+        "ratio": 1
+      },
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "YXZB",
+      "name": "🎮游戏┃直播",
+      "type": 3,
+      "api": "csp_YXZB",
+      "searchable": 0,
+      "quickSearch": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 3.8
+      },
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "AppTd",
+      "name": "💃糖豆┃舞蹈",
+      "type": 3,
+      "api": "csp_AppTd",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "FirstAid",
+      "name": "🚑急救┃知识",
+      "type": 3,
+      "api": "csp_FirstAid",
+      "searchable": 0,
+      "quickSearch": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 3.8
+      },
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "push_agent",
+      "name": "📤推送┃授权",
+      "type": 3,
+      "api": "csp_Push",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "changeable": 0,
+      "ext": {
+        "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    }
+  ],
+  "parses": [
+    {
+      "name": "聚合",
+      "type": 3,
+      "url": "Demo"
+    },
+    {
+      "name": "影视",
+      "type": 3,
+      "url": "影视"
+    },
+    {
+      "name": "牛牛",
+      "type": 1,
+      "url": "",
+      "ext": {
+        "flag": [
+          "QD4K",
+          "iyf",
+          "duanju",
+          "gzcj",
+          "GTV",
+          "GZYS",
+          "weggz",
+          "Ace"
+        ],
+        "header": {
+          "User-Agent": "okhttp/4.9.1"
+        }
+      }
+    },
+    {
+      "name": "夜幕",
+      "type": 0,
+      "url": ""
+    }
+  ],
+  "rules": [
+    {
+      "name": "农民",
+      "hosts": [
+        "toutiaovod.com"
+      ],
+      "regex": [
+        "video/tos/cn"
+      ]
+    },
+    {
+      "name": "火山",
+      "hosts": [
+        "huoshan.com"
+      ],
+      "regex": [
+        "item_id="
+      ]
+    },
+    {
+      "name": "抖音",
+      "hosts": [
+        "douyin.com"
+      ],
+      "regex": [
+        "is_play_url="
+      ]
+    },
+    {
+      "name": "磁力",
+      "hosts": [
+        "magnet"
+      ],
+      "regex": [
+        "更多",
+        "请访问",
+        "example",
+        "社 區",
+        "x u u",
+        "直 播",
+        "更 新",
+        "社 区",
+        "有趣",
+        "有 趣",
+        "英皇体育",
+        "全中文AV在线",
+        "澳门皇冠赌场",
+        "哥哥快来",
+        "美女荷官",
+        "裸聊",
+        "新片首发",
+        "UUE29"
+      ]
+    },
+    {
+      "name": "饭团",
+      "hosts": [
+        "dadagui",
+        "freeok"
+      ],
+      "script": [
+        "document.querySelector(\"#playleftiframe\").contentWindow.document.querySelector(\"#start\").click();"
+      ]
+    },
+    {
+      "name": "毛驴",
+      "hosts": [
+        "www.maolvys.com"
+      ],
+      "script": [
+        "document.getElementsByClassName('swal-buttonswal-button--confirm')[0].click()"
+      ]
+    }
+  ]
+}
