@@ -65,7 +65,7 @@
   },
 
   "rotate": {
-    "keywords": ["X4菠菜园系列"],
+    "keywords": ["置顶位搜索关键词"],
     "seed": "time-random",
     "randomRange": 10000
   },
