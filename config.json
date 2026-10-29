@@ -15,13 +15,13 @@
     "declaration": "本站接口资源由【误道者】整理。所有资源均来自互联网，版权归原作者所有。仅供测试学习使用，请勿用于违法及商业用途，请勿付费购买。如涉及侵权，请联系删除。",
     "contributorsNote": "* 还有部分贡献者因未留下署名信息而未在此列出，同样感谢你们的默默付出。如有遗漏请联系站长补充。",
     "contributors": [
-      { "name": "误道者", "role": "站长 / 资源整理", "desc": "站点发起与接口资源整理", "avatar": "vip/jueson.jpg" },
-      { "name": "沫离", "role": "弹幕分页", "desc": "贡献弹幕书源音乐源漫画源等模块", "avatar": "vip/沫离.jpg" },
-      { "name": "简约风<格>", "role": "推广贡献", "desc": "将本网页内嵌 APP 进行推广分发", "avatar": "vip/简约风格.jpg" }
+      { "name": "误道者", "role": "站长 / 资源整理", "desc": "站点发起与接口资源整理", "avatar": "vip/jueson.jpeg" },
+      { "name": "沫离", "role": "弹幕分页", "desc": "贡献弹幕书源音乐源漫画源等模块", "avatar": "vip/沫离.jpeg" },
+      { "name": "简约风<格>", "role": "推广贡献", "desc": "将本网页内嵌 APP 进行推广分发", "avatar": "vip/简约风格.jpeg" }
     ],
     "quickLinks": [
       { "icon": "vip/qq.svg", "label": "加入Q群", "url": "./qq" },
-      { "icon": "vip/wc.svg", "label": "微信赞赏", "type": "modal", "title": "微信赞赏码", "image": "vip/zsm.jpg", "tip": "感谢认可，你的每一次赞赏，都是我坚持的底气，万分感谢陪伴" },
+      { "icon": "vip/wc.svg", "label": "微信赞赏", "type": "modal", "title": "微信赞赏码", "image": "vip/zsm.jpeg", "tip": "感谢认可，你的每一次赞赏，都是我坚持的底气，万分感谢陪伴" },
       { "icon": "vip/tg.svg", "label": "TG群组", "url": "https://t.me/tg6603" },
       { "icon": "vip/gh.svg", "label": "GitHub", "url": "https://github.com/lubin776/tvbox-api-backup" }
     ]
