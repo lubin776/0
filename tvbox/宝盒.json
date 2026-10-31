@@ -53,31 +53,6 @@
       "changeable": 1
     },
     {
-      "key": "pan-cfg",
-      "name": "⚙️ 网盘影视·扫码版",
-      "type": 3,
-      "api": "https://xn--6orr3pi6g9uu.top/js/spider.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "changeable": 0,
-      "style": {
-        "type": "rect",
-        "ratio": 0.75
-      },
-      "ext": "http:///{\"token\":\"my\",\"api\":\"https:/xn--5mq46jrwl99dn01d.top/tvbox-api\"}"
-    },
-    {
-      "key": "ysc-pan",
-      "name": "📦 网盘影视·直连版",
-      "type": 1,
-      "api": "https://xn--5mq46jrwl99dn01d.top/tvbox-api/tvbox/my/api.php/provide/vod/",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": ""
-    },
-    {
       "key": "天天",
       "name": "热播┃零二",
       "type": 3,

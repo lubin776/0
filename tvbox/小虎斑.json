@@ -1,5 +1,5 @@
 {
-    "spider": "https://gitee.com/xhuban/getjar/raw/master/jar/custom_spider_cat.jar;md5;ede4d27e29e049d6a792e8bb8867a6f6",
+    "spider": "https://gitee.com/xhuban/getjar/raw/master/jar/custom_spider_cat.jar;md5;9a46c6e8b3a8f8d6e9d258404b898332",
     "wallpaper": "https://xn--11x805d.xn--4kq62z5rby2qupq9ub.xyz/",
     "warningText": "仅作学习交流测试使用，配置或下载后请于24小时之内删除",
     "lives": [
@@ -99,21 +99,21 @@
             "quickSearch": 1
         },
         {
-            "key": "shixiong",
-            "api": "csp_HBShiXiongCAT",
-            "name": "师兄|弹幕",
+            "key": "duse",
+            "api": "csp_HBDuSheCAT",
+            "name": "毒舌|弹幕",
             "type": 3,
             "searchable": 1,
             "filterable": 1,
             "quickSearch": 1
         },
         {
-            "key": "vidhub",
-            "api": "csp_HBVidhubCAT",
-            "name": "视频库|弹幕",
+            "key": "shixiong",
+            "api": "csp_HBShiXiongCAT",
+            "name": "师兄|弹幕",
             "type": 3,
             "searchable": 1,
-            "filterable": 0,
+            "filterable": 1,
             "quickSearch": 1
         },
         {

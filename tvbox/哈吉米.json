@@ -101,6 +101,12 @@
       "index": 1
     },
     {
+      "name": "洛雪",
+      "key": "洛雪",
+      "type": 3,
+      "api": "https://pan.szfx.top/down.php/5c0847922c8e8096eeb8687035667049.py"
+    },
+    {
       "key": "SZ",
       "name": "山楂影视",
       "type": 3,
@@ -141,12 +147,6 @@
       "name": "山木",
       "type": 3,
       "api": "https://fastlink.cokey.xyz/f/p6rZcj/%E5%B1%B1%E6%9C%89%E6%9C%A8%E5%85%AE.py"
-    },
-    {
-      "key": "应该可以",
-      "name": "应该可以",
-      "type": 3,
-      "api": "https://fastlink.cokey.xyz/f/AAvgsm/4K%E5%BD%B1%E8%A7%86.py"
     },
     {
       "key": "腾爱优b站",
@@ -195,12 +195,6 @@
       "filterable": 1
     },
     {
-      "key": "还行",
-      "name": "还行",
-      "type": 3,
-      "api": "https://pan.29o.cn/down.php/58019eaac174bc33efa304e43e2898fb.py"
-    },
-    {
       "key": "云播",
       "name": "云播",
       "type": 3,
@@ -214,19 +208,16 @@
       "api": "https://mpimg.cn/down.php/6f7f933b02ae7a30553c474642e92347.py"
     },
     {
-      "key": "雪落",
-      "name": "雪落",
+      "key": "4kav",
+      "name": "4kav",
       "type": 3,
-      "api": "https://mpimg.cn/down.php/f729b5a1d215a4cbaa147d67f85a410e.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
+      "api": "https://pan.szfx.top/down.php/1fa2308fcccbbd9d125344104d9ca158.py"
     },
     {
-      "key": "4k-av",
-      "name": "4k-av",
+      "key": "4kvm",
+      "name": "4kvm",
       "type": 3,
-      "api": "https://pan.szfx.top/down.php/0c67ff200a5ff8b2a2e95a14d3b80563.py"
+      "api": "https://mpimg.cn/down.php/dfed1a691e37acdc31b5505f2a6bb1b3.js"
     },
     {
       "key": "一个影视",
@@ -245,17 +236,6 @@
       "ext": "http://cmsyun2.qijiyun.vip/api.php/app/"
     },
     {
-      "key": "山楂",
-      "name": "山楂",
-      "type": 3,
-      "api": "https://mpimg.cn/down.php/393b1f31b4e5525ff2b9a73878a646ee.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "order_num": 0,
-      "changeable": 0
-    },
-    {
       "key": "Acfun",
       "name": "Acfun",
       "type": 3,
@@ -271,17 +251,6 @@
         "ratio": 1.33
       },
       "changeable": 1
-    },
-    {
-      "key": "分享",
-      "name": "枫叶",
-      "type": 3,
-      "api": "https://pan.szfx.top/down.php/b963d79ea0ea6e386515863d823eab89.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "playable": 1
     },
     {
       "key": "分享1",
@@ -705,28 +674,10 @@
       "api": "https://pan.uvqzu.cn/f/BpVsd/%E4%BA%91%E6%B8%B8.js"
     },
     {
-      "key": "py_官方采集789",
-      "name": "官方采集M",
-      "type": 4,
-      "api": "https://py.doube.eu.org/v2/spider?site=006849a2c19a6be413be5017be468c63"
-    },
-    {
-      "key": "py_动漫巴士",
-      "name": "动漫巴士M",
-      "type": 4,
-      "api": "https://py.doube.eu.org/v2/spider?site=6b5899d243816bacb8712de7ab6ceb89"
-    },
-    {
       "api": "https://newtv.ggff.net/jubaba?token=fhJadO1R",
       "key": "呜剧",
       "name": "嗷呜剧(坏了)",
       "type": 4
-    },
-    {
-      "key": "py_新韩剧网",
-      "name": "新韩剧网M",
-      "type": 4,
-      "api": "https://py.doube.eu.org/v2/spider?site=2a7cc0edf96108c9d57420ff57c654c6"
     },
     {
       "key": "php_官方资源",
@@ -772,37 +723,6 @@
       "api": "http://zhangqun1818.serv00.net/zh/2243.php"
     },
     {
-      "key": "热播影视",
-      "name": "热播┃影视",
-      "jar": "https://wp.kayyw.com/f/nOjVCX/%E7%83%AD%E6%92%AD%E8%B7%9F%E8%82%A56.jar",
-      "type": 3,
-      "api": "csp_AppRJ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": {
-        "url": "http://v.rbotv.cn"
-      }
-    },
-    {
-      "key": "csp_Qiyou",
-      "name": "奇优┃肥六",
-      "jar": "https://wp.kayyw.com/f/nOjVCX/%E7%83%AD%E6%92%AD%E8%B7%9F%E8%82%A56.jar",
-      "type": 3,
-      "api": "csp_Qiyou"
-    },
-    {
-      "key": "永乐J",
-      "name": "永乐",
-      "type": 3,
-      "api": "https://mpimg.cn/down.php/0338609bd59d7b27226f5a269ec97936.js",
-      "style": {
-        "type": "rect",
-        "ratio": 1.33
-      },
-      "changeable": 1
-    },
-    {
       "key": "界影PY",
       "name": "界影",
       "api": "https://mpimg.cn/down.php/4440a9a56b6d222647a856452eefb21a.py",
@@ -830,10 +750,10 @@
       "filterable": 0
     },
     {
-      "key": "裤佬央视PY",
+      "key": "央视PY",
       "name": "丨央视丨",
       "type": 3,
-      "api": "https://mpimg.cn/down.php/2dfd46b7b542f1f4ac34e0af4ec5549b.py",
+      "api": "https://mpimg.cn/down.php/a01436462aacba707ad6b678fe42cfa1.py",
       "searchable": 1,
       "changeable": 1,
       "quickSearch": 1,
@@ -920,30 +840,6 @@
       "api": "http://zhangqun1818.serv00.net/cj/cjjh.php?ac=list",
       "searchable": 1,
       "changeable": 1
-    },
-    {
-      "key": "咕噜画",
-      "name": "咕噜映画 | APP",
-      "type": 3,
-      "changeable": 0,
-      "api": "https://fastlink.cokey.xyz/f/oPJvI9/Appfox.min.js",
-      "ext": {
-        "host": "http://www.yingsw.top",
-        "timeout": 8,
-        "key": "guluyinghua_123",
-        "sign": "679543610991810f19698c187e5e106e"
-      }
-    },
-    {
-      "key": "快映",
-      "name": "🐮快映",
-      "type": 3,
-      "changeable": 0,
-      "api": "https://fastlink.cokey.xyz/f/oPJvI9/Appfox.min.js",
-      "ext": {
-        "host": "https://www.baidukuaiy.top",
-        "ver": 3
-      }
     },
     {
       "key": "耐看",
@@ -1233,7 +1129,7 @@
       "key": "qw",
       "name": "七味",
       "type": 3,
-      "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/七味.py",
+      "api": "https://pan.29o.cn/down.php/64c724e1188ce33d5e8f04eccbcd455e.py",
       "category": "综合",
       "searchable": 1
     },

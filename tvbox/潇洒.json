@@ -1,5 +1,5 @@
 {
-  "spider": "https://aly2.tuchuangyun.top/autoupload/g1b6f/20261024/Fczo/0X0/10241314.png;md5;c1978e5cec469f66f07efd37d39ec26a",
+  "spider": "https://aly2.tuchuangyun.top/autoupload/g1b6f/20261030/K1fE/0X0/10301014.png;md5;a4638e7ba814dd552472501335ecdc47",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "logo": "https://pic7.fukit.cn/autoupload/gE6Y0Af2tjXBCNig6CtNDI12_FRYNb81z6UPhMWD8iI/20251224/dJkT/1080X1080/logo.jpg/webp",
   "sites": [
@@ -658,6 +658,12 @@
       "genre": "shortdrama"
     },
     {
+      "key": "巨量",
+      "name": "巨量 • 影视",
+      "type": 1,
+      "api": "https://api.juliang.live/api/provide/vod"
+    },
+    {
       "key": "飞娱影视",
       "name": "飞娱 • 影视",
       "type": 3,
@@ -775,19 +781,19 @@
       "key": "巴士动漫",
       "name": "巴士 • 动漫",
       "type": 3,
-      "api": "csp_XBPQ",
-      "ext": {
-        "请求头": "https://9877.kstore.space/User-Agent$MOBILE_UA#Accept$text/html#accept-language$zh-CN,zh;q=0.8",
-        "分类url": "https://dmbus.cc/show-{cateId}--{by}-{class}--{year}-{catePg}.html",
-        "分类": "国漫$1#日漫$2#欧美动漫$3#电影$4",
-        "数组": "https://9877.kstore.space/class=\"item\">&&</li>",
-        "简介": "https://9877.kstore.space/剧情：&&</p>",
-        "标题": "title=\"&&在线观看\"",
-        "副标题": "https://9877.kstore.space/desc\">&&</span>",
-        "图片": "data-bg=\"&&\"",
-        "搜索url": "https://dmbus.cc/s----------.html?wd={wd}",
-        "倒序": "1"
-      }
+      "api": "csp_AnimeBashi"
+    },
+    {
+      "key": "吉里动漫",
+      "name": "吉里 • 动漫",
+      "type": 3,
+      "api": "csp_AnimeGiri"
+    },
+    {
+      "key": "花子动漫",
+      "name": "花子 • 动漫",
+      "type": 3,
+      "api": "csp_AnimeHuazi"
     },
     {
       "key": "荐片",
