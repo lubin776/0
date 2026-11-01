@@ -18,7 +18,7 @@ jobs:
       - name: Download archive
         run: |
           curl -L -A "Mozilla/5.0 (compatible; github-actions)" \
-            "https://mpimg.cn/down.php/7b5b184330c4fd90a44e26be959abfd8.zip" \
+            "https://mpimg.cn/down.php/73b86ecae6dd2d96775bf737276dda0c.zip" \
             -o archive.zip
 
       - name: Inspect & unzip to repo root
