@@ -3,262 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <title>系统提示</title>
+  <meta name="color-scheme" content="light">
+  <title>群公告</title>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; width: 100%; overflow: hidden; background: rgba(10, 26, 43, 0.75); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
-    
-    /* 弹窗遮罩层 */
-    .app-modal-mask { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 9999; }
-    
-    /* 弹窗主体 */
-    .app-modal-box {
-      background: #fff; width: 100%; max-width: 340px; border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow: hidden;
-      display: flex; flex-direction: column;
-      transform: scale(0.9); opacity: 0;
-      animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    }
-    @keyframes modalIn { to { transform: scale(1); opacity: 1; } }
-
-    /* 头部插图/图标 */
-    .app-modal-header { padding: 24px 20px 10px; text-align: center; }
-    .app-modal-icon { font-size: 48px; line-height: 1; margin-bottom: 12px; display: block; animation: bounce 2s infinite; }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-    
-    .app-modal-title { font-size: 1.15rem; font-weight: 700; color: #0a1a2b; margin-bottom: 8px; }
-
-    /* 内容区 */
-    .app-modal-content { padding: 0 24px 20px; text-align: center; color: #5a6f88; font-size: 0.88rem; line-height: 1.6; flex: 1; }
-    .app-modal-content strong { color: #0a1a2b; font-weight: 600; }
-    .app-modal-content .highlight { color: #e08a00; font-weight: 600; }
-
-    /* 按钮区 */
-    .app-modal-footer { padding: 0 20px 24px; display: flex; flex-direction: column; gap: 12px; }
-    
-    .btn-primary {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; height: 46px; background: #4a9eff; color: #fff;
-      border: none; border-radius: 50px; font-size: 1rem; font-weight: 600;
-      cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(74,158,255,0.3);
-    }
-    .btn-primary:active { transform: scale(0.96); background: #2a7ed9; box-shadow: 0 2px 6px rgba(74,158,255,0.2); }
-
-    .btn-secondary {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; height: 46px; background: #fff; color: #7a8fa3;
-      border: 1.5px solid #d4dbe5; border-radius: 50px; font-size: 0.95rem; font-weight: 500;
-      cursor: pointer; transition: all 0.2s;
-    }
-    .btn-secondary:active { transform: scale(0.96); background: #f4f8fc; }
-
-    /* 赞赏码样式 */
-    .zsm-img { display: block; width: 100%; max-width: 220px; margin: 0 auto; border-radius: 12px; border: 1px solid #e4ebf3; }
-    
-    /* 倒计时退出按钮 */
-    .btn-exit {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; height: 46px; background: #4a9eff; color: #fff;
-      border: none; border-radius: 50px; font-size: 0.95rem; font-weight: 600;
-      cursor: pointer; transition: all 0.2s;
-    }
-    .btn-exit:active { transform: scale(0.96); background: #2a7ed9; }
-
-    /* 步骤切换 */
-    .step { display: none; animation: fadeIn 0.3s forwards; }
-    .step.active { display: flex; flex-direction: column; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    html, body { height: 100%; width: 100%; overflow: hidden; background: #eef2f7; color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .notice-wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 10px; }
+    .notice-box { background: #fff; width: 100%; max-width: 380px; max-height: calc(100vh - 20px); border-radius: 16px; box-shadow: 0 10px 40px rgba(10, 26, 43, 0.15); display: flex; flex-direction: column; overflow: hidden; }
+    .notice-head { padding: 12px 16px 6px; text-align: center; flex: 0 0 auto; }
+    .notice-head .ico { font-size: 26px; line-height: 1; display: block; }
+    .notice-title { font-size: 0.95rem; font-weight: 700; color: #0a1a2b; margin-top: 6px; }
+    .notice-body { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 4px 16px 12px; color: #4a5b6e; font-size: 0.68rem; line-height: 1.55; text-align: left; }
+    .notice-body::-webkit-scrollbar { width: 3px; }
+    .notice-body::-webkit-scrollbar-thumb { background: #d4dbe5; border-radius: 3px; }
+    .notice-body p { margin-bottom: 5px; }
+    .notice-body b { color: #0a1a2b; }
+    .notice-body a { color: #4a9eff; text-decoration: none; word-break: break-all; }
+    .sec { font-weight: 700; color: #0a1a2b; margin: 7px 0 3px; }
+    @media (min-height: 760px) { .notice-body { font-size: 0.74rem; } }
   </style>
 </head>
 <body>
-
-  <div class="app-modal-mask">
-    <div class="app-modal-box">
-      
-      <!-- 第一步：白嫖宣言 -->
-      <div class="step" id="step1">
-        <div class="app-modal-header">
-          <span class="app-modal-icon">🕊️</span>
-          <div class="app-modal-title">白嫖宣言</div>
-        </div>
-        <div class="app-modal-content">
-          <p>站长自己就是个<strong>资深白嫖客</strong>，100% 鼓励并赞成白嫖资源！</p>
-          <br>
-          <p>站长的口号是：<br><strong style="color:#4a9eff; font-size:0.95rem;">“如果白嫖有门槛，就是对白嫖的不尊重！”</strong></p>
-          <br>
-          <p>在这里，除了你自己的电费和网费，<br>我不允许你多花 1 分钱！</p>
-        </div>
-        <div class="app-modal-footer">
-          <button class="btn-primary" onclick="goStep(2)">继续</button>
-        </div>
+  <div class="notice-wrap">
+    <div class="notice-box">
+      <div class="notice-head">
+        <span class="ico">📢</span>
+        <div class="notice-title">【群公告｜请务必阅读并理解】</div>
       </div>
+      <div class="notice-body">
+        <p>本群由github项目"<a href="https://github.com/lubin776/tvbox-api-backup" target="_blank" rel="noopener">https://github.com/lubin776/tvbox-api-backup</a>"接口备份网站代码的开发者与发烧友共同建立，主要用于开发者、发烧友之间的测试、交流与学习。入群或继续获取、使用群内相关接口资源，即视为你已阅读、理解并接受以下全部内容；看不懂或不同意任何一条，请立即退出群聊。</p>
 
-      <!-- 第二步：为爱发电 -->
-      <div class="step" id="step2">
-        <div class="app-modal-header">
-          <span class="app-modal-icon">❤️</span>
-          <div class="app-modal-title">为爱发电，需要续航</div>
-        </div>
-        <div class="app-modal-content">
-          <p>但说实话，为爱发电是临时的。热情虽然一直在，但不可能永远靠爱填饱肚子。</p>
-          <br>
-          <p>站长也需要一点回馈和鼓励，才能保证服务器稳定，让这个免费的小站<strong>长期运营下去</strong>。</p>
-          <br>
-          <p class="highlight">你愿意给站长加个鸡腿吗？</p>
-        </div>
-        <div class="app-modal-footer">
-          <button class="btn-primary" onclick="goStep(3)">我愿意，给站长加个鸡腿 🍗</button>
-          <button class="btn-secondary" onclick="goStep(4)">我拒绝，我和站长一样是个白嫖客</button>
-        </div>
+        <div class="sec">一、接口来源与性质</div>
+        <p>本群/本站涉及的接口由爬虫程序采集，均来自网络整理并自动抓取备份，非人工审核，内容来源第三方。不保证可用性、准确性、时效性与安全性。接口失效、变更、报错均属正常现象。本站发布于 GitHub，属于开发者与发烧友的测试、交流、学习用途，不构成任何商业服务，请勿用于任何非法用途。</p>
+
+        <div class="sec">二、爬虫接口风险</div>
+        <p>相关接口可能存在失效链接、跳转广告、恶意脚本或不良内容。由此导致的设备异常、隐私泄露、财产损失等后果，需由使用者自行承担。</p>
+
+        <div class="sec">三、完全免费声明</div>
+        <p>本群/本站完全免费，无任何收费项目。请勿向任何人付费购买本站资源。</p>
+
+        <div class="sec">四、未成年人提示</div>
+        <p>本站内容不适合未成年人浏览，建议未成年人立即退出；确需使用的，应先取得监护人明确同意，并在监护人陪同下使用。</p>
+
+        <div class="sec">五、二创、转载与分发</div>
+        <p>对相关资源进行二创、转载或分发时，必须遵守你所在国家或地区的法律法规及相关政策规定。因违反当地法律产生的一切法律责任由行为人自行承担；本站不提供也不背书任何超出法律法规允许范围的内容。</p>
+
+        <div class="sec">六、合规使用</div>
+        <p>请勿将相关接口用于传播违法信息、侵犯他人知识产权、绕过合法订阅付费等违规违法行为。由此引发的一切法律后果，与本网站及开发者无关。</p>
+
+        <div class="sec">七、风险自负</div>
+        <p>继续使用所产生的一切后果由你自行承担，本站及开发者不承担任何责任。点击“我已了解”、入群或继续使用群内资源，均视为你已充分理解并接受上述全部风险。</p>
+
+        <p style="margin-top:7px;">项目网站测试地址"<a href="https://9.wudaozhe.net/" target="_blank" rel="noopener">https://9.wudaozhe.net/</a>"</p>
       </div>
-
-      <!-- 第三步：赞赏码 -->
-      <div class="step" id="step3">
-        <div class="app-modal-header">
-          <span class="app-modal-icon">🎉</span>
-          <div class="app-modal-title">万分感谢！</div>
-        </div>
-        <div class="app-modal-content">
-          <p>感谢你为项目的稳定做出的贡献！<br>你的这份心意，是站长坚持的最大动力。</p>
-          <br>
-          <img class="zsm-img" src="vip/zsm.png" alt="微信赞赏码" onerror="this.src='https://via.placeholder.com/220x220?text=请放置赞赏码'">
-          <br>
-          <p style="font-size:0.75rem; color:#8b9eb0; margin-top:10px;">长按图片识别，或保存到相册后扫码</p>
-        </div>
-        <div class="app-modal-footer">
-          <button class="btn-primary" onclick="closeGuide()">完成并关闭</button>
-        </div>
-      </div>
-
-      <!-- 第四步：拒绝/白嫖肯定 -->
-      <div class="step" id="step4">
-        <div class="app-modal-header">
-          <span class="app-modal-icon">👍</span>
-          <div class="app-modal-title">致敬白嫖精神！</div>
-        </div>
-        <div class="app-modal-content">
-          <p>非常欣赏你的领悟力！<br>你能完美继承站长的白嫖精神，站长深感欣慰。</p>
-          <br>
-          <p>只要你用得开心，这个站就没白建。<br>资源随便拿，不要有心理负担！</p>
-        </div>
-        <div class="app-modal-footer">
-          <button class="btn-exit" id="cdBtn" onclick="closeGuide()">立即退出 (15s)</button>
-        </div>
-      </div>
-
     </div>
   </div>
-
-  <script>
-    // === 状态机逻辑 ===
-    const STATE_KEY = 'guide_prompt_state';
-    
-    // 获取或初始化状态
-    function getState() {
-      let state = localStorage.getItem(STATE_KEY);
-      if (state) {
-        try { state = JSON.parse(state); } catch(e) { state = null; }
-      }
-      if (!state) {
-        state = { phase: 'daily', count: 0, lastShow: 0 };
-      }
-      return state;
-    }
-
-    // 保存状态
-    function saveState(state) {
-      localStorage.setItem(STATE_KEY, JSON.stringify(state));
-    }
-
-    // 页面加载时检查是否需要弹窗
-    window.onload = function() {
-      const state = getState();
-      const now = Date.now();
-      const DAY_MS = 24 * 60 * 60 * 1000;
-      const diffDays = (now - state.lastShow) / DAY_MS;
-
-      let show = false;
-      if (state.phase === 'daily') {
-        if (state.count < 3 || diffDays >= 1) show = true;
-      } else if (state.phase === 'weekly') {
-        if (state.count < 3 || diffDays >= 7) show = true;
-      } else if (state.phase === 'monthly') {
-        if (state.count < 3 || diffDays >= 30) show = true;
-      }
-
-      if (!show) {
-        window.location.href = 'index.html';
-      }
-    };
-
-    // 步骤切换
-    function goStep(step) {
-      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-      document.getElementById('step' + step).classList.add('active');
-      
-      if (step === 4) {
-        startCountdown();
-      }
-    }
-
-    // 倒计时逻辑
-    let cdTimer;
-    function startCountdown() {
-      let timeLeft = 15;
-      const btn = document.getElementById('cdBtn');
-      btn.textContent = `立即退出 (${timeLeft}s)`;
-      
-      // 清除可能存在的旧定时器
-      if (cdTimer) clearInterval(cdTimer);
-
-      cdTimer = setInterval(() => {
-        timeLeft--;
-        if (timeLeft > 0) {
-          btn.textContent = `立即退出 (${timeLeft}s)`;
-        } else {
-          clearInterval(cdTimer);
-          btn.textContent = '立即退出';
-        }
-      }, 1000);
-    }
-
-    // 关闭弹窗并更新状态
-    function closeGuide() {
-      if (cdTimer) clearInterval(cdTimer);
-      
-      const state = getState();
-      state.count += 1;
-      state.lastShow = Date.now();
-      saveState(state);
-
-      // 根据当前阶段和次数给出提示
-      if (state.phase === 'daily') {
-        if (state.count === 1) alert('提示：该弹窗今日共出现 3 次，还剩 2 次。');
-        else if (state.count === 2) alert('提示：该弹窗今日共出现 3 次，还剩 1 次。');
-        else if (state.count >= 3) alert('提示：今日弹窗已完成，短期内不再出现。');
-      } 
-      else if (state.phase === 'weekly') {
-        if (state.count === 1) alert('提示：本周期弹窗共出现 3 次，还剩 2 次。');
-        else if (state.count === 2) alert('提示：本周期弹窗共出现 3 次，还剩 1 次。');
-        else if (state.count >= 3) alert('提示：本周期弹窗已完成，一个月内不再出现。');
-      }
-      else if (state.phase === 'monthly') {
-        if (state.count === 1) alert('提示：本月弹窗共出现 3 次，还剩 2 次。');
-        else if (state.count === 2) alert('提示：本月弹窗共出现 3 次，还剩 1 次。');
-        else if (state.count >= 3) alert('提示：本月弹窗已完成，下个月见。');
-      }
-
-      // 重定向回首页
-      window.location.href = 'index.html';
-    }
-
-    // 默认显示第一步
-    document.getElementById('step1').classList.add('active');
-
-    // 拦截空白点击
-    document.querySelector('.app-modal-mask').addEventListener('click', function(e) {
-      if(e.target === this) return; 
-    });
-  </script>
 </body>
 </html>
