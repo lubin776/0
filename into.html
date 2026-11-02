@@ -419,15 +419,41 @@ body.batch-mode .mode-batch{display:block}
 </div>
 
 <script>
-// ========== 自动跳转目标（当前域名相对路径 /app） ==========
+// ========== 自动跳转目标 ==========
+// 规则：
+//   1) 配置里有 http/https 绝对链接  → 直接跳转该绝对链接
+//   2) 配置为空，或写的是相对路径    → 跳转当前目录（如 https://3.wudaozhe.net/）
 const CONFIG = {
   countdownUrls: [
-    window.location.origin + "https://3.wudaozhe.net"
+    "https://3.wudaozhe.net"   // ← 有绝对链接就写这里；留空则自动跳当前目录
   ]
 };
 
 // 等待多久再跳转（毫秒），不显示倒计时数字
 const JUMP_DELAY_MS = 2000;
+
+// ========== 解析跳转目标 ==========
+function resolveJumpTarget() {
+  const list = (CONFIG.countdownUrls || [])
+    .map(function (u) { return u == null ? '' : String(u).trim(); })
+    .filter(Boolean);
+
+  // 1) 优先使用 http/https 绝对链接
+  for (let i = 0; i < list.length; i++) {
+    if (/^https?:\/\//i.test(list[i])) return list[i];
+  }
+
+  // 当前页面所在目录
+  const baseDir = new URL('.', window.location.href).href;
+
+  // 2) 相对路径 → 相对当前目录解析
+  if (list.length) {
+    try { return new URL(list[0], baseDir).href; } catch (e) {}
+  }
+
+  // 3) 无任何配置 → 当前目录
+  return baseDir;
+}
 
 // ========== 分组站点数据 ==========
 const DOMAIN_GROUPS = [
@@ -671,9 +697,12 @@ function updateEnterButton() {
 
 // ========== 等待 2 秒后跳转，不显示倒计时数字 ==========
 function checkFirstAvailable() {
-  const url = CONFIG.countdownUrls[0];
+  const url = resolveJumpTarget();
   jumpTargetUrl = url;
+
   statusEl.textContent = '正在跳转进入...';
+  if (autoJumpTimer) { clearTimeout(autoJumpTimer); autoJumpTimer = null; }
+
   autoJumpTimer = setTimeout(function() {
     window.location.href = url;
   }, JUMP_DELAY_MS);
@@ -797,8 +826,9 @@ gotoBtn.onclick = function(e) {
   e.preventDefault();
   e.stopPropagation();
   if (autoJumpTimer) { clearTimeout(autoJumpTimer); autoJumpTimer = null; }
-  if (jumpTargetUrl) {
-    window.location.href = jumpTargetUrl;
+  const target = jumpTargetUrl || resolveJumpTarget();
+  if (target) {
+    window.location.href = target;
   }
 };
 
