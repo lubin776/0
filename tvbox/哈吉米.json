@@ -93,12 +93,28 @@
       }
     },
     {
-      "key": "弹幕1",
-      "name": "弹幕测试.",
+      "key": "ai弹幕",
+      "name": "AI弹幕",
       "type": 3,
       "api": "csp_SecureDanmu",
       "jar": "https://wp.kayyw.com/f/mLbwU9/danmu.jar",
-      "index": 1
+      "ext": {
+        "apiUrls": [
+          "https://dm.660505.xyz:8443/a123456",
+          "https://danmu.qianting168.com/456765847636987622146901",
+          "https://danmu.0000996.xyz/",
+          "https://dm.199333.xyz/dm",
+          "https://logvardm.278612356.xyz/steven",
+          "https://88920.dpdns.org"
+        ]
+      }
+    },
+    {
+      "key": "qkw1",
+      "name": "全看影院",
+      "type": 3,
+      "api": "https://mpimg.cn/down.php/dd661a252935cd30df6aa185e23d4488.py",
+      "searchable": 1
     },
     {
       "name": "洛雪",
