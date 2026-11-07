@@ -193,6 +193,24 @@
       "source": "南风"
     },
     {
+      "name": "🍬移动🍬",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/移动",
+      "ua": "okhttp/3.15",
+      "source": "周J"
+    },
+    {
+      "name": "🍬联通🍬",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/联通",
+      "ua": "okhttp/3.15",
+      "source": "周J"
+    },
+    {
+      "name": "🍬优选🍬",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/live.txt",
+      "ua": "okhttp/3.15",
+      "source": "周J"
+    },
+    {
       "name": "没4K",
       "url": "https://mpimg.cn/text.php?hash=7265d70b6834cefbddb61bcc2d9c99db",
       "ua": "",
@@ -337,6 +355,12 @@
       "source": "小马"
     },
     {
+      "name": "一起看",
+      "url": "https://szyyds.cn/tv/yqk",
+      "ua": "",
+      "source": "小马"
+    },
+    {
       "name": "肥羊虎牙一起看",
       "url": "http://127.0.0.1:9978/proxy?do=live&url=https://x.szyyds.cn/huyayqk.m3u",
       "ua": "okHttp/Mod-1.4.0.0",
@@ -367,6 +391,66 @@
       "source": "心魔"
     },
     {
+      "name": "develop2021线",
+      "url": "https://ztha.top/TVBox/lib/interface.txt",
+      "ua": "",
+      "source": "挺好"
+    },
+    {
+      "name": "Kimentanm3线",
+      "url": "https://ztha.top/TVBox/lib/iptv.m3u",
+      "ua": "",
+      "source": "挺好"
+    },
+    {
+      "name": "挺好直播",
+      "url": "https://ztha.top/TVBox/tv/thtv.txt",
+      "ua": "",
+      "source": "挺好"
+    },
+    {
+      "name": "MV",
+      "url": "https://ztha.top/TVBox/tv/MV.txt",
+      "ua": "",
+      "source": "挺好"
+    },
+    {
+      "name": "范明明（需开启V6网络）1线",
+      "url": "https://ztha.top/TVBox/lib/3d75a78a0fc7ede372c03598d6d10367.m3u",
+      "ua": "",
+      "source": "挺好"
+    },
+    {
+      "name": "世界杯",
+      "url": "https://ztha.top/TVBox/lib/fwc.m3u",
+      "ua": "",
+      "source": "挺好"
+    },
+    {
+      "name": "虎牙一起看2线",
+      "url": "https://ztha.top/TVBox/lib/huyayqk.m3u",
+      "ua": "okHttp/Mod-1.5.0.0",
+      "source": "挺好"
+    },
+    {
+      "name": "斗鱼一起看2线",
+      "url": "https://ztha.top/TVBox/lib/douyuyqk.m3u",
+      "ua": "okHttp/Mod-1.5.0.0",
+      "source": "挺好"
+    },
+    {
+      "name": "B站直播2线",
+      "url": "https://ztha.top/TVBox/lib/bililive.m3u",
+      "ua": "okHttp/Mod-1.5.0.0",
+      "source": "挺好"
+    },
+    {
+      "name": "YY轮播2线",
+      "url": "https://ztha.top/TVBox/lib/yylunbo.m3u",
+      "ua": "okHttp/Mod-1.5.0.0",
+      "source": "挺好"
+    },
+    {
       "name": "superiptv",
       "url": "http://127.0.0.1:5266/iptv.m3u",
       "ua": "",
@@ -391,7 +475,7 @@
       "source": "星微Vip"
     },
     {
-      "name": "Kimentanm3线",
+      "name": "Kimentanm4线",
       "url": "https://ghfast.top/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
       "ua": "",
       "source": "王二小3线"
@@ -421,19 +505,19 @@
       "source": "真六"
     },
     {
-      "name": "虎牙一起看2线",
+      "name": "虎牙一起看3线",
       "url": "https://9877.kstore.space/Live/huyayqk.m3u",
       "ua": "okhttp/3.15",
       "source": "真六"
     },
     {
-      "name": "斗鱼一起看2线",
+      "name": "斗鱼一起看3线",
       "url": "https://9877.kstore.space/Live/douyuyqk.m3u",
       "ua": "okhttp/3.15",
       "source": "真六"
     },
     {
-      "name": "YY轮播2线",
+      "name": "YY轮播3线",
       "url": "https://9877.kstore.space/Live/yylunbo.m3u",
       "ua": "okhttp/3.15",
       "source": "真六"
@@ -459,6 +543,12 @@
     {
       "name": "政治时事",
       "url": "http://zhangqun66.com/141.php",
+      "ua": "",
+      "source": "老张"
+    },
+    {
+      "name": "野火直播",
+      "url": "https://zhangqun1818.serv00.net/zq/野火改.txt",
       "ua": "",
       "source": "老张"
     },
@@ -607,7 +697,7 @@
       "source": "饭太硬"
     },
     {
-      "name": "Kimentanm4线",
+      "name": "Kimentanm5线",
       "url": "https://ghproxy.net/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
       "ua": "",
       "source": "饭太硬"
@@ -623,6 +713,12 @@
       "url": "https://m3u.ibert.me/txt/fmml_ipv6.txt",
       "ua": "",
       "source": "高天流云_XYQ"
+    },
+    {
+      "name": "初秋语",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt",
+      "ua": "",
+      "source": "高天流云js"
     },
     {
       "name": "Ray",
