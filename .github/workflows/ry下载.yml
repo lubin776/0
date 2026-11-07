@@ -1,0 +1,56 @@
+name: 每日解析在线本地包
+
+on:
+  schedule:
+    - cron: "0 17 * * *"   # UTC 17:00 = 北京时间次日 01:00
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "强制执行（忽略日期/频率限制，立即运行）"
+        required: false
+        type: boolean
+        default: false
+      debug:
+        description: "详细调试日志"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: tvbox-repo-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: pip install requests urllib3
+
+      - name: 运行 ry下载器
+        run: |
+          ARGS=""
+          ${{ github.event.inputs.debug == 'true' && 'ARGS="$ARGS --debug"' || '' }}
+          ${{ github.event.inputs.force == 'true' && 'ARGS="$ARGS --force"' || '' }}
+          python python/ry下载器.py $ARGS
+
+      - name: 提交产物
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash
+          git add ry/
+          git commit -m "chore(ry): 每日更新本地包 $(TZ='CST-8' date +%Y-%m-%d)" || echo "no changes"
+          git push

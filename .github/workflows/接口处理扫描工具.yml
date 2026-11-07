@@ -1,0 +1,85 @@
+name: 接口扫描处理工具
+
+# 新增：并发控制，确保与其他工作流（ry下载、api下载）排队串行执行
+concurrency:
+  group: tvbox-repo-write
+  cancel-in-progress: false
+
+on:
+  schedule:
+    # 每天一次：UTC 19:00 = 北京时间次日 03:00
+    - cron: '0 19 * * *'
+  workflow_dispatch:  # 允许手动触发
+  push:
+    # 仅在脚本/工作流本身改动时额外跑一次；tvbox/ 是产物目录，变更不必重扫
+    paths:
+      - 'python/**'
+      - '.github/workflows/接口处理扫描工具.yml'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: 确保目录结构存在
+        run: |
+          mkdir -p tvbox/live
+          mkdir -p python
+          ls -la
+          echo "--- tvbox/ ---"
+          ls -la tvbox/ || true
+
+      - name: 运行接口扫描处理工具
+        run: |
+          cd python
+          python "接口扫描处理工具.py" --force
+        env:
+          PYTHONIOENCODING: utf-8
+          PYTHONUNBUFFERED: "1"
+          # 直播源下载并发数与总预算（秒）；到预算自动收工，不会再把任务拖到超时
+          LIVE_WORKERS: "8"
+          LIVE_BUDGET: "1500"
+
+      - name: 汇总输出产物
+        run: |
+          echo "=== 根目录 txt ==="
+          ls -la *.txt 2>/dev/null || echo "无 txt 文件"
+          echo ""
+          echo "=== tvbox/ 聚合接口 ==="
+          ls -la tvbox/*.json 2>/dev/null || echo "无 json 文件"
+          echo ""
+          echo "=== tvbox/live/ 播放列表 ==="
+          ls -la tvbox/live/ 2>/dev/null | head -20 || echo "无播放列表"
+
+      - name: 提交变更
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          # 仅在有变更时提交
+          if git diff --cached --quiet; then
+            echo "无变更，跳过提交"
+          else
+            COUNT=$(git diff --cached --numstat | wc -l)
+            echo "检测到 ${COUNT} 个文件变更，提交中..."
+            git commit -m "chore: 自动更新聚合接口 [$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')]"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
