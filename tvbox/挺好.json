@@ -349,7 +349,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
-      "ext": "uqGL1fpJNAUN8ORQgIPD+b6l+CzC2t8="
+      "ext": "https://ztha.top/TVBox/uqGL1fpJNAUN8ORQgIPD+b6l+CzC2t8="
     },
     {
       "key": "MTV",
@@ -599,7 +599,7 @@
     {
       "name": "develop202",
       "type": 0,
-      "url": "./lib/interface.txt",
+      "url": "https://ztha.top/TVBox/lib/interface.txt",
       "playerType": 2,
       "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
       "logo": "https://epg.112114.xyz/logo/{name}.png"
@@ -607,37 +607,37 @@
     {
       "name": "Kimentanm",
       "type": 0,
-      "url": "./lib/iptv.m3u",
+      "url": "https://ztha.top/TVBox/lib/iptv.m3u",
       "playerType": 2
     },
     {
       "name": "挺好直播",
       "type": 0,
-      "url": "./tv/thtv.txt",
+      "url": "https://ztha.top/TVBox/tv/thtv.txt",
       "playerType": 2
     },
     {
       "name": "MV",
       "type": 0,
-      "url": "./tv/MV.txt",
+      "url": "https://ztha.top/TVBox/tv/MV.txt",
       "playerType": 2
     },
     {
       "name": "范明明（需开启V6网络）",
       "type": 0,
-      "url": "./lib/3d75a78a0fc7ede372c03598d6d10367.m3u",
+      "url": "https://ztha.top/TVBox/lib/3d75a78a0fc7ede372c03598d6d10367.m3u",
       "playerType": 2
     },
     {
       "name": "世界杯",
       "type": 0,
-      "url": "./lib/fwc.m3u",
+      "url": "https://ztha.top/TVBox/lib/fwc.m3u",
       "playerType": 2
     },
     {
       "name": "虎牙一起看",
       "type": 0,
-      "url": "./lib/huyayqk.m3u",
+      "url": "https://ztha.top/TVBox/lib/huyayqk.m3u",
       "playerType": 2,
       "timeout": 10,
       "ua": "okHttp/Mod-1.5.0.0"
@@ -645,7 +645,7 @@
     {
       "name": "斗鱼一起看",
       "type": 0,
-      "url": "./lib/douyuyqk.m3u",
+      "url": "https://ztha.top/TVBox/lib/douyuyqk.m3u",
       "playerType": 2,
       "timeout": 10,
       "ua": "okHttp/Mod-1.5.0.0"
@@ -653,7 +653,7 @@
     {
       "name": "B站直播",
       "type": 0,
-      "url": "./lib/bililive.m3u",
+      "url": "https://ztha.top/TVBox/lib/bililive.m3u",
       "playerType": 2,
       "timeout": 10,
       "ua": "okHttp/Mod-1.5.0.0"
@@ -661,7 +661,7 @@
     {
       "name": "YY轮播",
       "type": 0,
-      "url": "./lib/yylunbo.m3u",
+      "url": "https://ztha.top/TVBox/lib/yylunbo.m3u",
       "playerType": 2,
       "timeout": 10,
       "ua": "okHttp/Mod-1.5.0.0"

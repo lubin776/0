@@ -227,22 +227,22 @@
     {
       "name": "解析聚合",
       "type": 3,
-      "url": "Demo"
+      "url": "https://www.yingm.cc/dm/Demo"
     },
     {
       "name": "Json并发",
       "type": 2,
-      "url": "Parallel"
+      "url": "https://www.yingm.cc/dm/Parallel"
     },
     {
       "name": "Json轮询",
       "type": 2,
-      "url": "Sequence"
+      "url": "https://www.yingm.cc/dm/Sequence"
     },
     {
       "name": "Web聚合",
       "type": 3,
-      "url": "Web"
+      "url": "https://www.yingm.cc/dm/Web"
     },
     {
       "name": "1-看看",

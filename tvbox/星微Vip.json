@@ -12,7 +12,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 1,
-      "ext": "Douban"
+      "ext": "https://7337.kstore.vip/xw/Douban"
     },
     {
       "key": "配置中心",
@@ -114,8 +114,8 @@
       "api": "https://7337.kstore.vip/xw/js/cat_荐片app.js",
       "ext": {
         "host": "https://api.ztcgi.com",
-        "catesSet": "电影&电视剧&综艺&动漫&纪录片",
-        "tabsSet": "极速蓝光"
+        "catesSet": "https://7337.kstore.vip/xw/电影&电视剧&综艺&动漫&纪录片",
+        "tabsSet": "https://7337.kstore.vip/xw/极速蓝光"
       }
     },
     {
@@ -144,7 +144,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "Guazi"
+      "ext": "https://7337.kstore.vip/xw/Guazi"
     },
     {
       "key": "瓜子影视",
@@ -161,7 +161,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xyz"
+      "ext": "https://7337.kstore.vip/xw/AppV7Xyz"
     },
     {
       "key": "Cat_荐片",
@@ -189,7 +189,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xnm"
+      "ext": "https://7337.kstore.vip/xw/AppV7Xnm"
     },
     {
       "key": "好好看",
@@ -197,12 +197,12 @@
       "type": 3,
       "api": "https://7337.kstore.vip/xw/js/pack.js",
       "ext": {
-        "appid": "hkan",
-        "channelid": "c300000",
-        "versionName": "3.3.9",
+        "appid": "https://7337.kstore.vip/xw/hkan",
+        "channelid": "https://7337.kstore.vip/xw/c300000",
+        "versionName": "https://7337.kstore.vip/xw/3.3.9",
         "host": "https://vcache.shkjbd.com",
-        "package": "com.hkanC300000V250930.T120445",
-        "sort": "dujia1,dujia",
+        "package": "https://7337.kstore.vip/xw/com.hkanC300000V250930.T120445",
+        "sort": "https://7337.kstore.vip/xw/dujia1,dujia",
         "lineCount": 1
       }
     },
@@ -215,7 +215,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Mtq"
+      "ext": "https://7337.kstore.vip/xw/AppV7Mtq"
     },
     {
       "key": "电影天堂",
@@ -265,7 +265,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xhr"
+      "ext": "https://7337.kstore.vip/xw/AppV7Xhr"
     },
     {
       "key": "cat_旺旺网",
@@ -287,7 +287,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "Dubk"
+      "ext": "https://7337.kstore.vip/xw/Dubk"
     },
     {
       "key": "cat_优夏网",
@@ -381,7 +381,7 @@
       "api": "csp_Nmvod",
       "playerType": 2,
       "jar": "https://ncstatic.clewm.net/rsrc/2025/0915/15/e210975c2c794cbc8bb1839b54ac213e.png;md5;939FFBC2941A28CA533F2653FA4B449E",
-      "ext": "7lj763gg402i7942503g839jg74h8h88highi40799jh6i6k454419l0l5184k0g549h0kg2i01i838i2h42g891lgg1"
+      "ext": "https://7337.kstore.vip/xw/7lj763gg402i7942503g839jg74h8h88highi40799jh6i6k454419l0l5184k0g549h0kg2i01i838i2h42g891lgg1"
     },
     {
       "key": "360_spider",
@@ -457,12 +457,12 @@
       "api": "csp_App99",
       "ext": {
         "host": "http://103.217.190.91:19987/app/bn",
-        "appkey": "24d625a8a29b4700a1a294c6f3b29e2c",
-        "versionName": "3.5.8",
-        "name": "半日闲",
-        "package": "com.yf.lelian",
+        "appkey": "https://7337.kstore.vip/xw/24d625a8a29b4700a1a294c6f3b29e2c",
+        "versionName": "https://7337.kstore.vip/xw/3.5.8",
+        "name": "https://7337.kstore.vip/xw/半日闲",
+        "package": "https://7337.kstore.vip/xw/com.yf.lelian",
         "buildNumber": "2001",
-        "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
+        "buildSignature": "https://7337.kstore.vip/xw/A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
     },
     {
@@ -474,14 +474,14 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "appName": "华谊",
+        "appName": "https://7337.kstore.vip/xw/华谊",
         "publicKey": "https://7337.kstore.vip/xw/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
-        "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.muyue.tool",
+        "dataKey": "https://7337.kstore.vip/xw/NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
+        "dataIv": "https://7337.kstore.vip/xw/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "https://7337.kstore.vip/xw/com.muyue.tool",
         "host": "",
         "site": "https://vip.123pan.cn/1851089669/oss/az5.txt",
-        "version": "1.0.0.4",
+        "version": "https://7337.kstore.vip/xw/1.0.0.4",
         "decrypt": "1"
       }
     },

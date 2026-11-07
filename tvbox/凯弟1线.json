@@ -16,18 +16,18 @@
       "api": "csp_XBPQ",
       "playerType": 2,
       "ext": {
-        "首页": "正在热映",
+        "首页": "https://jihulab.com/jyqhkd1/kai/-/raw/main/正在热映",
         "图片代理": "",
         "分类url": "https://movie.douban.com/{cateId}/;;aRC",
         "分类": "https://jihulab.com/jyqhkd1/kai/-/raw/main/即将上映$cinema/later#正在热映$cinema/nowplaying",
         "数组": "https://jihulab.com/jyqhkd1/kai/-/raw/main/class=\"item mod &&</ul>||正在热映--class=\"list-item&&</ul>",
-        "图片": "src=\"&&\"",
+        "图片": "https://jihulab.com/jyqhkd1/kai/-/raw/main/src=\"&&\"",
         "标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/\"intro\">&&</a>",
-        "链接": "href=\"&&\"",
+        "链接": "https://jihulab.com/jyqhkd1/kai/-/raw/main/href=\"&&\"",
         "副标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/data-score=\"&&\"+class=\"release-date\">&&</li>",
         "播放数组": "https://jihulab.com/jyqhkd1/kai/-/raw/main/<li class=\"video&&</li>",
         "播放列表": "https://jihulab.com/jyqhkd1/kai/-/raw/main/<a&&</a>",
-        "播放标题": "alt=\"&&\"",
+        "播放标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/alt=\"&&\"",
         "播放链接": "https://m.douban.com+href=\"&&\""
       }
     },
@@ -247,7 +247,7 @@
       "playerType": "1",
       "ext": {
         "server": "https://4k.ysctv.cn/api.php/app/",
-        "mackey": "yingshichetvQ4Zi|PHRBxdt7PppocRJ5"
+        "mackey": "https://jihulab.com/jyqhkd1/kai/-/raw/main/yingshichetvQ4Zi|PHRBxdt7PppocRJ5"
       }
     },
     {
@@ -258,8 +258,8 @@
       "playerType": 1,
       "ext": {
         "server": "http://38.12.25.109:158/api.php/app/",
-        "mackey": "weZtRbfJDgzyvHiG|YLdoqhUccdDmEPQU",
-        "parsekey": "mupfinBA986icmAZ|eV7YDmhgzThSiR1s",
+        "mackey": "https://jihulab.com/jyqhkd1/kai/-/raw/main/weZtRbfJDgzyvHiG|YLdoqhUccdDmEPQU",
+        "parsekey": "https://jihulab.com/jyqhkd1/kai/-/raw/main/mupfinBA986icmAZ|eV7YDmhgzThSiR1s",
         "parseurl": "https://maya.x3322.net/api/index?parsesId=5&parsesUrl="
       }
     },
@@ -323,35 +323,35 @@
       "playerType": "2",
       "api": "csp_XBPQ",
       "ext": {
-        "站名": "黑狐影院",
+        "站名": "https://jihulab.com/jyqhkd1/kai/-/raw/main/黑狐影院",
         "主页url": "http://fagmn.com",
         "数组": "https://jihulab.com/jyqhkd1/kai/-/raw/main/class=\"stui-vodlist__box\"&&</a",
-        "图片": "data-original=\"&&\"",
-        "标题": "title=\"&&\"",
-        "链接": "href=\"&&\"",
-        "嗅探词": ".m3u8?#v3.huoshanvod.com#.m3u8#v3-dy-o.zjcdn#sf16-sg.larksuitecdn.com#v.kd1.qq.com#.mp4",
+        "图片": "https://jihulab.com/jyqhkd1/kai/-/raw/main/data-original=\"&&\"",
+        "标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/title=\"&&\"",
+        "链接": "https://jihulab.com/jyqhkd1/kai/-/raw/main/href=\"&&\"",
+        "嗅探词": "https://jihulab.com/jyqhkd1/kai/-/raw/main/.m3u8#v3.huoshanvod.com#.m3u8#v3-dy-o.zjcdn#sf16-sg.larksuitecdn.com#v.kd1.qq.com#.mp4",
         "过滤词": "https://jihulab.com/hls/#php",
         "副标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/<span class=\"pic-text text-right\">&&</span>",
         "搜索url": "http://fagmn.com/search.php;post;searchword={wd}",
         "搜索模式": "1",
         "搜索数组": "https://jihulab.com/jyqhkd1/kai/-/raw/main/<a class=\"v-thumb stui-vodlist__thumb&&</a>",
-        "搜索图片": "data-original=\"&&\"",
-        "搜索标题": "title=\"&&\"",
-        "搜索链接": "href=\"&&\"",
+        "搜索图片": "https://jihulab.com/jyqhkd1/kai/-/raw/main/data-original=\"&&\"",
+        "搜索标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/title=\"&&\"",
+        "搜索链接": "https://jihulab.com/jyqhkd1/kai/-/raw/main/href=\"&&\"",
         "搜索副标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/<span class=\"pic-text text-right\">&&</span>",
         "搜索后缀": "https://jihulab.com/view/",
         "线路数组": "https://jihulab.com/jyqhkd1/kai/-/raw/main/href=\"#down&&/a>[替换:奇异视频>>黑狐一线#优酷视频>>黑狐二线#搜狐视频>>黑狐三线#咪咕视频>>黑狐四线]",
-        "线路标题": ">&&<",
+        "线路标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/>&&<",
         "播放数组": "https://jihulab.com/jyqhkd1/kai/-/raw/main/class=\"stui-content__playlist clearfix&&</ul>",
         "状态": "https://jihulab.com/jyqhkd1/kai/-/raw/main/地区：&&</p>",
         "导演": "https://jihulab.com/jyqhkd1/kai/-/raw/main/导演：&&</p>",
         "主演": "https://jihulab.com/jyqhkd1/kai/-/raw/main/主演：&&</p>",
         "简介": "https://jihulab.com/jyqhkd1/kai/-/raw/main/简介：&&</div>",
         "播放列表": "https://jihulab.com/jyqhkd1/kai/-/raw/main/<a&&/a>",
-        "播放标题": ">&&<",
-        "播放链接": "href=\"&&\"",
+        "播放标题": "https://jihulab.com/jyqhkd1/kai/-/raw/main/>&&<",
+        "播放链接": "https://jihulab.com/jyqhkd1/kai/-/raw/main/href=\"&&\"",
         "免嗅": "0",
-        "分类": "电影$1#电视剧$2#动漫$3#综艺$4",
+        "分类": "https://jihulab.com/jyqhkd1/kai/-/raw/main/电影$1#电视剧$2#动漫$3#综艺$4",
         "分类url": "http://fagmn.com/list/{cateId}_{catePg}.html?order=time"
       }
     },
@@ -633,12 +633,12 @@
     {
       "name": "Json聚合",
       "type": 3,
-      "url": "Demo"
+      "url": "https://jihulab.com/jyqhkd1/kai/-/raw/main/Demo"
     },
     {
       "name": "Web聚合",
       "type": 3,
-      "url": "Web"
+      "url": "https://jihulab.com/jyqhkd1/kai/-/raw/main/Web"
     },
     {
       "name": "机缘巧盒凯弟",

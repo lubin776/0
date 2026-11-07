@@ -371,7 +371,7 @@
         "site": [
           "https://www.kfzys.net"
         ],
-        "cookie": "bbs_sid=p5mugcm9r147o1d3qpi0su1ucm; bbs_token=gDMAOehNUQetTJv9Lnet0J_2FGJmgdvnx90iTZqzU_2FnO0_3D"
+        "cookie": "https://11405.kstore.space/xiaye/bbs_sid=p5mugcm9r147o1d3qpi0su1ucm; bbs_token=gDMAOehNUQetTJv9Lnet0J_2FGJmgdvnx90iTZqzU_2FnO0_3D"
       },
       "timeout": 60
     },
@@ -574,7 +574,7 @@
     {
       "name": "解析聚合",
       "type": 3,
-      "url": "Demo"
+      "url": "https://11405.kstore.space/xiaye/Demo"
     },
     {
       "name": "夏夜4k",

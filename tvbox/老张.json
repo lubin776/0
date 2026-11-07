@@ -15,7 +15,7 @@
         "ratio": 1.33
       },
       "ext": {
-        "class": "YoutubeSpider",
+        "class": "https://zhangqun1818.serv00.net/zq/YoutubeSpider",
         "ext": {
           "youtube_txt": "http://zhangqun1818.serv00.net/zq/youtube0418.txt"
         }
@@ -33,7 +33,7 @@
         "ratio": 1.33
       },
       "ext": {
-        "class": "Music1",
+        "class": "https://zhangqun1818.serv00.net/zq/Music1",
         "ext": "http://zhangqun1818.serv00.net/zq/jdyy.json"
       },
       "filterable": 1
@@ -44,7 +44,7 @@
       "type": 3,
       "api": "csp_ProxySpider",
       "ext": {
-        "class": "LegadoSpider",
+        "class": "https://zhangqun1818.serv00.net/zq/LegadoSpider",
         "ext": "http://zhangqun1818.serv00.net/zq/sources.json"
       },
       "style": {
@@ -215,7 +215,7 @@
       "quickSearch": 0,
       "filterable": 0,
       "ext": {
-        "class": "TxtLiveSpider",
+        "class": "https://zhangqun1818.serv00.net/zq/TxtLiveSpider",
         "ext": "https://zhangqun1818.serv00.net/zq/虎牙全集.txt"
       }
     },
@@ -230,7 +230,7 @@
       },
       "changeable": 1,
       "ext": {
-        "class": "ReaderHelper"
+        "class": "https://zhangqun1818.serv00.net/zq/ReaderHelper"
       }
     },
     {
@@ -244,7 +244,7 @@
       },
       "changeable": 1,
       "ext": {
-        "class": "Bilibili"
+        "class": "https://zhangqun1818.serv00.net/zq/Bilibili"
       }
     }
   ],
@@ -252,7 +252,7 @@
     {
       "name": "解析聚合",
       "type": 3,
-      "url": "Web"
+      "url": "https://zhangqun1818.serv00.net/zq/Web"
     },
     {
       "name": "777",
@@ -437,7 +437,7 @@
     },
     {
       "name": "野火直播",
-      "url": "./野火改.txt",
+      "url": "https://zhangqun1818.serv00.net/zq/野火改.txt",
       "epg": "https://epg.112114.xyz/?ch={name}&date={date}",
       "logo": "https://epg.112114.xyz/logo/{name}.png"
     }

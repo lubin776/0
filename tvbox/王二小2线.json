@@ -1,5 +1,5 @@
 {
-  "spider": "http://oss4liview.moji.com/thd_file/2026/11/04/690e7f13e63718e6ea88add0c59d4289.jpg;md5;86cb2cdcd99e29334004b80e48007e9a",
+  "spider": "http://oss4liview.moji.com/thd_file/2026/11/06/99191348af7606ed51e66a4f13a85d8e.jpg;md5;53e039fb19875d5cfec02a0910399ffd",
   "wallpaper": "https://www.loliapi.com/acg/",
   "logo": "https://storage.7x24cc.com/storage-server/presigned/ss1/a6-online-fileupload/newMediaFile/3CEAE9E_773_wexfnw_20250911190012684newMediaFile.gif",
   "sites": [
@@ -16,7 +16,7 @@
     },
     {
       "key": "Doubanaaaa",
-      "name": "🐮【更新日期:20261104】🐮",
+      "name": "🐮【更新日期:20261106】🐮",
       "type": 3,
       "api": "csp_NewDouBanGuard",
       "indexs": 1,
@@ -266,6 +266,15 @@
       "changeable": 0
     },
     {
+      "key": "下饭",
+      "name": "💥下饭┃秒播💥",
+      "type": 3,
+      "api": "csp_WexAiJuXiaFanGuard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0
+    },
+    {
       "key": "AppV7 | 大师兄",
       "name": "💥师兄┃秒播💥",
       "type": 3,
@@ -273,7 +282,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Dsx",
+        "config": "https://9280.kstore.space/AppV7Dsx",
         "proxyImg": false
       },
       "timeout": 120
@@ -286,7 +295,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Fz",
+        "config": "https://9280.kstore.space/AppV7Fz",
         "proxyImg": false
       },
       "timeout": 120
@@ -299,7 +308,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Xy",
+        "config": "https://9280.kstore.space/AppV7Xy",
         "proxyImg": false
       },
       "timeout": 120
@@ -312,7 +321,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Zjdr",
+        "config": "https://9280.kstore.space/AppV7Zjdr",
         "proxyImg": false
       },
       "timeout": 120
@@ -325,7 +334,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Xyz",
+        "config": "https://9280.kstore.space/AppV7Xyz",
         "proxyImg": false
       },
       "timeout": 120
@@ -338,7 +347,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Xnm",
+        "config": "https://9280.kstore.space/AppV7Xnm",
         "proxyImg": false
       },
       "timeout": 120
@@ -351,7 +360,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Mtq",
+        "config": "https://9280.kstore.space/AppV7Mtq",
         "proxyImg": false
       },
       "timeout": 120
@@ -364,7 +373,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Llq",
+        "config": "https://9280.kstore.space/AppV7Llq",
         "proxyImg": false
       },
       "timeout": 120
@@ -377,7 +386,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Xsz",
+        "config": "https://9280.kstore.space/AppV7Xsz",
         "proxyImg": false
       },
       "timeout": 120
@@ -390,7 +399,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "config": "AppV7Xhr",
+        "config": "https://9280.kstore.space/AppV7Xhr",
         "proxyImg": false
       },
       "timeout": 120
@@ -985,6 +994,14 @@
       "name": "🎠卡卡┃综合🎠",
       "type": 3,
       "api": "csp_SoKaKaGuard",
+      "searchable": 1,
+      "changeable": 0
+    },
+    {
+      "key": "SoAiQuanPanGuard",
+      "name": "🎠全盘┃综合🎠",
+      "type": 3,
+      "api": "csp_SoAiQuanPanGuard",
       "searchable": 1,
       "changeable": 0
     },

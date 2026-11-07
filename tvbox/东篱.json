@@ -417,8 +417,8 @@
       "changeable": 1,
       "ext": {
         "url": "http://huohu.yihn.cc",
-        "dataKey": "huohushipingetap",
-        "dataIv": "huohushipingetap"
+        "dataKey": "https:///huohushipingetap",
+        "dataIv": "https:///huohushipingetap"
       }
     },
     {
@@ -430,8 +430,8 @@
       "changeable": 1,
       "ext": {
         "url": "https://app.95112475.xyz",
-        "dataKey": "5a9w6x58dsq6z3a6",
-        "dataIv": "5a9w6x58dsq6z3a6"
+        "dataKey": "https:///5a9w6x58dsq6z3a6",
+        "dataIv": "https:///5a9w6x58dsq6z3a6"
       }
     },
     {
@@ -933,8 +933,8 @@
       "api": "csp_AppGet",
       "ext": {
         "url": "https://www.cyfz.top",
-        "dataKey": "e72cdfd629e8895d",
-        "dataIv": "e72cdfd629e8895d"
+        "dataKey": "https:///e72cdfd629e8895d",
+        "dataIv": "https:///e72cdfd629e8895d"
       }
     },
     {
@@ -945,8 +945,8 @@
       "api": "csp_AppGet",
       "ext": {
         "url": "https://app.omofun1.top",
-        "dataKey": "66dc309cbeeca454",
-        "dataIv": "66dc309cbeeca454"
+        "dataKey": "https:///66dc309cbeeca454",
+        "dataIv": "https:///66dc309cbeeca454"
       }
     },
     {
@@ -957,8 +957,8 @@
       "api": "csp_AppGet",
       "ext": {
         "url": "https://www.gugu3.com",
-        "dataKey": "nKfZ8KX6JTNWRzTD",
-        "dataIv": "nKfZ8KX6JTNWRzTD"
+        "dataKey": "https:///nKfZ8KX6JTNWRzTD",
+        "dataIv": "https:///nKfZ8KX6JTNWRzTD"
       }
     },
     {
@@ -1174,7 +1174,7 @@
       "changeable": 1,
       "ext": {
         "sources": [
-          "夸克"
+          "https:///夸克"
         ]
       }
     },
@@ -1189,7 +1189,7 @@
       "filterable": 0,
       "ext": {
         "sources": [
-          "UC"
+          "https:///UC"
         ]
       }
     },
@@ -1204,7 +1204,7 @@
       "hide": 1,
       "ext": {
         "sources": [
-          "迅雷"
+          "https:///迅雷"
         ]
       }
     },
@@ -1219,7 +1219,7 @@
       "filterable": 0,
       "ext": {
         "sources": [
-          "阿里"
+          "https:///阿里"
         ]
       }
     },
@@ -1234,7 +1234,7 @@
       "filterable": 0,
       "ext": {
         "sources": [
-          "百度"
+          "https:///百度"
         ]
       }
     },
@@ -1249,7 +1249,7 @@
       "filterable": 0,
       "ext": {
         "sources": [
-          "123盘"
+          "https:///123盘"
         ]
       }
     },
@@ -1264,7 +1264,7 @@
       "hide": 1,
       "ext": {
         "sources": [
-          "天翼"
+          "https:///天翼"
         ]
       }
     },
@@ -1279,7 +1279,7 @@
       "filterable": 0,
       "ext": {
         "sources": [
-          "移动"
+          "https:///移动"
         ]
       }
     },
@@ -1294,7 +1294,7 @@
       "changeable": 1,
       "ext": {
         "sources": [
-          "磁力"
+          "https:///磁力"
         ]
       }
     }

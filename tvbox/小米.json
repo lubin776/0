@@ -1,5 +1,5 @@
 {
-  "spider": "https://cac.opple.com/yc-media/getFile?id=2bac7a8e178b498f952152cceb049bd8#.png;md5;ffef755e02597a7173af16dd6185d700",
+  "spider": "https://cac.opple.com/yc-media/getFile?id=d4f96678e34749169ea0641d6cc34aa4#.png;df75585893aae3d6eacb2500efb02898",
   "wallpaper": "https://www.yumus.cn/api/?brand=360&type=0",
   "lives": [
     {
@@ -29,10 +29,13 @@
     },
     {
       "key": "config",
-      "name": "🔧网盘┃设置",
+      "name": "🔧网盘┃授权扫码",
       "type": 3,
-      "api": "csp_Config",
-      "searchable": 0
+      "api": "csp_PanConfig",
+      "searchable": 0,
+      "ext": {
+        "danmu": true
+      }
     },
     {
       "key": "HJZhenCai",
@@ -61,7 +64,7 @@
       "filterable": 1,
       "timeout": 15,
       "changeable": 0,
-      "ext": "ewogICJzaXRlX3VybHMiOiBbCiAgICAiaHR0cHM6Ly93d3cud29nZy5saXZlIiwKICAgICJodHRwczovL3dvZ2dwYW4uMzMzMjMyLnh5ei8iLAogICAgImh0dHBzOi8vd3d3LndvZ2cubmV0IgogIF0sCiAgInRva2VuIjogIiIsCiAgInVjQ29va2llIjogIiIsCiAgInF1YXJrQ29va2llIjogIiIKfQ=="
+      "ext": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/ewogICJzaXRlX3VybHMiOiBbCiAgICAiaHR0cHM6Ly93d3cud29nZy5saXZlIiwKICAgICJodHRwczovL3dvZ2dwYW4uMzMzMjMyLnh5ei8iLAogICAgImh0dHBzOi8vd3d3LndvZ2cubmV0IgogIF0sCiAgInRva2VuIjogIiIsCiAgInVjQ29va2llIjogIiIsCiAgInF1YXJrQ29va2llIjogIiIKfQ=="
     },
     {
       "key": "GUOI·短剧",
@@ -80,7 +83,7 @@
     },
     {
       "key": "咖啡·短剧",
-      "name": "☕️咖啡┃弹幕短剧",
+      "name": "☕️咖啡┃秒播短剧",
       "type": 3,
       "api": "csp_KaFeiDJ",
       "searchable": 1,
@@ -100,7 +103,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "AppV7Fz"
+      "ext": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/AppV7Fz"
     },
     {
       "key": "AppV7_Zjdr",
@@ -110,17 +113,17 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "AppV7Zjdr"
+      "ext": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/AppV7Zjdr"
     },
     {
       "key": "AppV7_Dsx",
       "name": "📦师兄┃秒播",
       "type": 3,
-      "api": "csp_AppV7",
+      "api": "csp_DaShiXiong",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "AppV7Dsx"
+      "ext": ""
     },
     {
       "key": "mtq",
@@ -171,9 +174,9 @@
       "filterable": 1,
       "ext": {
         "api_base": "http://app.tuxianimg.com/api/vod/",
-        "aes_key": "MickwrKuMickwrKu",
-        "aes_iv": "MickwrKuMickwrKu",
-        "platform": "android",
+        "aes_key": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/MickwrKuMickwrKu",
+        "aes_iv": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/MickwrKuMickwrKu",
+        "platform": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/android",
         "referer": "http://app.tuxianimg.com/",
         "danmu": true,
         "danmu_api": "https://dm.211.li/nonay"
@@ -293,6 +296,18 @@
       }
     },
     {
+      "key": "华数",
+      "name": "🍒咖啡┃老剧",
+      "type": 3,
+      "api": "csp_JingCai",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1,
+      "ext": {
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
       "key": "YunDuo",
       "name": "🦢大鹅┃1080P",
       "type": 3,
@@ -302,11 +317,11 @@
       "filterable": 1,
       "ext": {
         "host": "https://323433ssdfd.top",
-        "finger": "WF-2c064bc5b3400788f31b848849bc3a60f835423ba2dfe69d7ea93974c216e4f2",
-        "aid": "com.web.player",
-        "sk": "WEB-50a8e9c84a1dc05669a692ded99a2dac46527229e607a7be15db88dbc59059d1",
-        "client": "8f3d2a1c7b6e5d4c9a0b1f2e3d4c5b6a",
-        "sign": "ddtvf65f3a83d6d9ad6f",
+        "finger": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/WF-2c064bc5b3400788f31b848849bc3a60f835423ba2dfe69d7ea93974c216e4f2",
+        "aid": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/com.web.player",
+        "sk": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/WEB-50a8e9c84a1dc05669a692ded99a2dac46527229e607a7be15db88dbc59059d1",
+        "client": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/8f3d2a1c7b6e5d4c9a0b1f2e3d4c5b6a",
+        "sign": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/ddtvf65f3a83d6d9ad6f",
         "danmu": true,
         "danmu_api": "https://dm.211.li/nonay"
       }
@@ -342,8 +357,8 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "username": "nimasile",
-        "password": "xiaomi888",
+        "username": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/nimasile",
+        "password": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/xiaomi888",
         "danmu": true,
         "danmu_api": "https://dm.211.li/nonay"
       }
@@ -360,6 +375,25 @@
       "genre": "shortdrama",
       "ext": {
         "danmu": true,
+        "danmu_api": "https://dm.211.li/nonay"
+      }
+    },
+    {
+      "key": "直播",
+      "name": "📺电视┃直播",
+      "type": 3,
+      "api": "csp_MiGu",
+      "searchable": 0,
+      "quickSearch": 0,
+      "filterable": 1,
+      "timeout": 12,
+      "changeable": 0,
+      "order_num": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.333
+      },
+      "ext": {
         "danmu_api": "https://dm.211.li/nonay"
       }
     },
@@ -430,12 +464,12 @@
       "ext": {
         "host": "http://124.221.3.182:19987/app/bn",
         "LoginPath": "https://gh-proxy.org/app/log",
-        "appkey": "d1f0c269eab74d93821fffc9befdbbba",
-        "versionName": "1.2.0",
-        "name": "剧圈圈",
-        "package": "com.qingtangxiaozhuan.xyz",
+        "appkey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/d1f0c269eab74d93821fffc9befdbbba",
+        "versionName": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/1.2.0",
+        "name": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/剧圈圈",
+        "package": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/com.qingtangxiaozhuan.xyz",
         "buildNumber": "2002",
-        "buildSignature": "054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594",
+        "buildSignature": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594",
         "danmu": true,
         "danmu_api": "https://dm.211.li/nonay"
       }
@@ -447,12 +481,12 @@
       "api": "csp_App99",
       "ext": {
         "host": "http://103.217.190.91:19987/app/bn",
-        "appkey": "d1f0c269eab74d93821fffc9befdbbba",
-        "versionName": "3.5.8",
-        "name": "半日闲",
-        "package": "com.yf.lelian",
+        "appkey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/d1f0c269eab74d93821fffc9befdbbba",
+        "versionName": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/3.5.8",
+        "name": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/半日闲",
+        "package": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/com.yf.lelian",
         "buildNumber": "2001",
-        "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC",
+        "buildSignature": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC",
         "danmu": true,
         "danmu_api": "https://dm.211.li/nonay"
       }
@@ -466,15 +500,15 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "appName": "小苹果",
-        "commonKey": "ed5fdsgucxumegqa",
+        "appName": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/小苹果",
+        "commonKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/ed5fdsgucxumegqa",
         "publicKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-        "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.juechufsh.android.xpg1",
+        "dataKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
+        "dataIv": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/com.juechufsh.android.xpg1",
         "host": "",
         "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
-        "version": "1.0.0.3",
+        "version": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/1.0.0.3",
         "decrypt": "1",
         "danmu": true,
         "danmu_api": "https://dm.211.li/nonay"
@@ -489,15 +523,15 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "appName": "橘汁",
-        "commonKey": "ed5fdsgucxumegqa",
+        "appName": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/橘汁",
+        "commonKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/ed5fdsgucxumegqa",
         "publicKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
-        "dataKey": "ZU1DSFFWNENKMDYXVUQRN0ZJDUC4PQ==",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.asjdhjhd.mgd.p3",
+        "dataKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/ZU1DSFFWNENKMDYXVUQRN0ZJDUC4PQ==",
+        "dataIv": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/com.asjdhjhd.mgd.p3",
         "host": "http://juziapp.hzhcbkj.cn",
         "site": "https://12345-1349250429.cos.ap-guangzhou.myqcloud.com/app.txt",
-        "version": "3.0.7.0",
+        "version": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/3.0.7.0",
         "vApp": "3070",
         "decrypt": "1",
         "danmu": true,
@@ -576,14 +610,14 @@
       "ext": {
         "appId": "10003",
         "verCode": 58,
-        "verName": "1.0.0",
-        "pkg": "com.dongyu.movies",
-        "appKey": "00823f50736454de37cfef8b260c9e35",
-        "appSecret": "aca767d257733a3d97fe125bb9150feb",
-        "soMd5": "28922fee11cea66d7e9f2b5c02151b44",
-        "apkMd5": "415705b07be237654f9a760306f01c9f",
-        "pkgMd5": "725e9c0fda0e0925e234d8256dc08b07",
-        "signMd5": "d97197f84e41b05941688809857e0685",
+        "verName": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/1.0.0",
+        "pkg": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/com.dongyu.movies",
+        "appKey": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/00823f50736454de37cfef8b260c9e35",
+        "appSecret": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/aca767d257733a3d97fe125bb9150feb",
+        "soMd5": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/28922fee11cea66d7e9f2b5c02151b44",
+        "apkMd5": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/415705b07be237654f9a760306f01c9f",
+        "pkgMd5": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/725e9c0fda0e0925e234d8256dc08b07",
+        "signMd5": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/d97197f84e41b05941688809857e0685",
         "host": [
           "https://nanguasp.oss-cn-hangzhou.aliyuncs.com/nannan07124.json"
         ],
@@ -657,12 +691,12 @@
     {
       "name": "聚合",
       "type": 3,
-      "url": "Demo"
+      "url": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/Demo"
     },
     {
       "name": "影视",
       "type": 3,
-      "url": "影视"
+      "url": "https://gh-proxy.org/raw.githubusercontent.com/ggrrttyyiii/CatVodSpider/refs/heads/main/json/影视"
     },
     {
       "name": "牛牛",

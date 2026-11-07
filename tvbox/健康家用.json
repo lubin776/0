@@ -99,7 +99,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "token": "CandyMuj",
+        "token": "https://gitlab.com/noimank/tvbox/-/raw/main/CandyMuj",
         "filter": "https://gitlab.com/noimank/tvbox/-/raw/main/conf/wogg.json"
       }
     },
@@ -111,7 +111,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "token": "影視天下第一",
+        "token": "https://gitlab.com/noimank/tvbox/-/raw/main/影視天下第一",
         "filter": "https://gh-proxy.com/https://raw.githubusercontent.com/FongMi/CatVodSpider/main/json/wogg.json"
       },
       "jar": "https://gh-proxy.com/github.com/FongMi/CatVodSpider/raw/main/jar/custom_spider.jar"
@@ -261,7 +261,7 @@
       "type": 3,
       "api": "csp_IQIYI",
       "searchable": 1,
-      "ext": "综合"
+      "ext": "https://gitlab.com/noimank/tvbox/-/raw/main/综合"
     },
     {
       "key": "csp_MGTV",
@@ -269,7 +269,7 @@
       "type": 3,
       "api": "csp_MGTV",
       "searchable": 1,
-      "ext": "playerjy"
+      "ext": "https://gitlab.com/noimank/tvbox/-/raw/main/playerjy"
     },
     {
       "key": "csp_SP360",
@@ -277,7 +277,7 @@
       "type": 3,
       "api": "csp_SP360",
       "searchable": 1,
-      "ext": "playerjy"
+      "ext": "https://gitlab.com/noimank/tvbox/-/raw/main/playerjy"
     },
     {
       "key": "drpy_js_360影视",
@@ -628,17 +628,17 @@
     {
       "name": "Json聚合",
       "type": 3,
-      "url": "Demo"
+      "url": "https://gitlab.com/noimank/tvbox/-/raw/main/Demo"
     },
     {
       "name": "Json并发",
       "type": 2,
-      "url": "Parallel"
+      "url": "https://gitlab.com/noimank/tvbox/-/raw/main/Parallel"
     },
     {
       "name": "Json轮询",
       "type": 2,
-      "url": "Sequence"
+      "url": "https://gitlab.com/noimank/tvbox/-/raw/main/Sequence"
     },
     {
       "name": "综合",

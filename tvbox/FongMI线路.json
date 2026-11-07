@@ -35,7 +35,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "token": "影視天下第一",
+        "token": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/影視天下第一",
         "filter": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/json/wogg.json"
       }
     },
@@ -205,7 +205,7 @@
       },
       "ext": {
         "json": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/json/bili.json",
-        "type": "帕梅拉#太极拳#广场舞#演唱会",
+        "type": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/帕梅拉#太极拳#广场舞#演唱会",
         "cookie": ""
       }
     },
@@ -217,7 +217,7 @@
       "searchable": 1,
       "changeable": 0,
       "ext": {
-        "categories": "短剧#沙雕动画#沙雕穿越#沙雕",
+        "categories": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/短剧#沙雕动画#沙雕穿越#沙雕",
         "cookie": ""
       }
     },
@@ -318,7 +318,7 @@
       "api": "csp_Zhaozy",
       "searchable": 1,
       "changeable": 0,
-      "ext": "影視天下第一$$$test2$$$test2"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/影視天下第一$$$test2$$$test2"
     },
     {
       "key": "push_agent",

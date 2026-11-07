@@ -4,7 +4,7 @@
     {
       "name": "初秋语",
       "type": 0,
-      "url": "./list.txt",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt",
       "playerType": 2,
       "epg": "http://epg.112114.xyz/?ch={name}&date={date}",
       "logo": "https://epg.112114.xyz/logo/{name}.png"
@@ -116,9 +116,9 @@
       "ext": {
         "token": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/lib/token.json",
         "json": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/json/youtube.json",
-        "type": "直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
+        "type": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
         "proxy": "socks5://127.0.0.1:10172",
-        "keywords": "排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
+        "keywords": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
         "codecs": "",
         "danmu": true
       },
@@ -237,7 +237,7 @@
       "api": "csp_NanGua",
       "searchable": 1,
       "changeable": 1,
-      "ext": "null$$$1"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/null$$$1"
     },
     {
       "key": "PushShare",
@@ -2622,7 +2622,7 @@
     {
       "name": "Json聚合",
       "type": 3,
-      "url": "Demo"
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/Demo"
     },
     {
       "name": "虾米",

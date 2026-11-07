@@ -172,9 +172,9 @@
           "https://4kzn.cc"
         ],
         "drives": [
-          "夸克",
-          "UC",
-          "百度"
+          "http://150.158.52.248/tgyg/夸克",
+          "http://150.158.52.248/tgyg/UC",
+          "http://150.158.52.248/tgyg/百度"
         ]
       }
     },
@@ -188,26 +188,26 @@
       "quickSearch": 1,
       "ext": {
         "首页": "0",
-        "分类": "电影$movie#电视剧$tv#综艺$variety#动漫$anime",
-        "二次截取": "col-3\">&&loadmore||&&",
+        "分类": "http://150.158.52.248/tgyg/电影$movie#电视剧$tv#综艺$variety#动漫$anime",
+        "二次截取": "http://150.158.52.248/tgyg/col-3\">&&loadmore||&&",
         "数组": "j:data||<a&&</a>",
         "标题": "j:name||alt=\"&&\"",
         "图片": "j:image||data-src=\"&&\"",
         "链接": "http://150.158.52.248/tgyg/href=\"&&\"||https:/www.soushitv.com/tv/detail/id/✚j:id✚.html",
-        "副标题": "episode\">&&<||j:douban_score",
-        "影片地区": "ys-player-meta-chip\">&&<[含序号:2]",
-        "影片年代": "ys-player-meta-chip\">&&<",
-        "影片状态": "ys-player-meta-chip\">&&<[含序号:3]",
+        "副标题": "http://150.158.52.248/tgyg/episode\">&&<||j:douban_score",
+        "影片地区": "http://150.158.52.248/tgyg/ys-player-meta-chip\">&&<[含序号:2]",
+        "影片年代": "http://150.158.52.248/tgyg/ys-player-meta-chip\">&&<",
+        "影片状态": "http://150.158.52.248/tgyg/ys-player-meta-chip\">&&<[含序号:3]",
         "导演": "http://150.158.52.248/tgyg/导演</span>&&</div>",
         "演员": "http://150.158.52.248/tgyg/主演</span>&&</div>",
         "分类url": "https://www.soushitv.com/{cateId}/list/year/{year}/page/{catePg}.html;;aAv✚",
         "简介": "http://150.158.52.248/tgyg/简介</span>&&</div>",
-        "线路标题": "雪狐在线",
+        "线路标题": "http://150.158.52.248/tgyg/雪狐在线",
         "播放数组": "http://150.158.52.248/tgyg/grid>&&</div>||id=\"mobile-player\"&&data-poster",
         "播放列表": "http://150.158.52.248/tgyg/<a&&/a>||data-url=&&",
-        "播放标题": ">&&<||全集",
-        "播放链接": "href=\"&&\"||\"&&\"",
-        "跳转播放链接": "data-url=\"&&\"",
+        "播放标题": "http://150.158.52.248/tgyg/>&&<||全集",
+        "播放链接": "http://150.158.52.248/tgyg/href=\"&&\"||\"&&\"",
+        "跳转播放链接": "http://150.158.52.248/tgyg/data-url=\"&&\"",
         "搜索模式": "1",
         "搜索url": "http://150.158.52.248/search/index?keyword={wd}&page={pg}"
       }
@@ -303,11 +303,11 @@
       "filterable": 1,
       "ext": {
         "host": "https://323433ssdfd.top",
-        "finger": "WF-2c064bc5b3400788f31b848849bc3a60f835423ba2dfe69d7ea93974c216e4f2",
-        "aid": "com.web.player",
-        "sk": "WEB-50a8e9c84a1dc05669a692ded99a2dac46527229e607a7be15db88dbc59059d1",
-        "client": "8f3d2a1c7b6e5d4c9a0b1f2e3d4c5b6a",
-        "sign": "ddtvf65f3a83d6d9ad6f"
+        "finger": "http://150.158.52.248/tgyg/WF-2c064bc5b3400788f31b848849bc3a60f835423ba2dfe69d7ea93974c216e4f2",
+        "aid": "http://150.158.52.248/tgyg/com.web.player",
+        "sk": "http://150.158.52.248/tgyg/WEB-50a8e9c84a1dc05669a692ded99a2dac46527229e607a7be15db88dbc59059d1",
+        "client": "http://150.158.52.248/tgyg/8f3d2a1c7b6e5d4c9a0b1f2e3d4c5b6a",
+        "sign": "http://150.158.52.248/tgyg/ddtvf65f3a83d6d9ad6f"
       }
     },
     {
@@ -317,12 +317,12 @@
       "api": "csp_App3Q",
       "ext": {
         "host": "https://45.150.167.18:8000",
-        "finger": "SF-A962FEC75DA28D7514F2A16580334272A78AC0A8429F10C94F47C1BAFC876E3F",
-        "updateId": "43c1ef69-3748-aaeb-317f-c621c77653ee",
-        "deviceBrand": "vivo",
-        "deviceModel": "V2309A",
-        "pkg": "com.damahou.tv",
-        "sk": "SK-woniu-thanks",
+        "finger": "http://150.158.52.248/tgyg/SF-A962FEC75DA28D7514F2A16580334272A78AC0A8429F10C94F47C1BAFC876E3F",
+        "updateId": "http://150.158.52.248/tgyg/43c1ef69-3748-aaeb-317f-c621c77653ee",
+        "deviceBrand": "http://150.158.52.248/tgyg/vivo",
+        "deviceModel": "http://150.158.52.248/tgyg/V2309A",
+        "pkg": "http://150.158.52.248/tgyg/com.damahou.tv",
+        "sk": "http://150.158.52.248/tgyg/SK-woniu-thanks",
         "ver": "1"
       }
     },
@@ -339,11 +339,11 @@
       "api": "csp_App99",
       "ext": {
         "host": "http://124.221.3.182:19987/app/bn",
-        "versionName": "1.2.0",
-        "name": "剧圈圈",
-        "package": "com.qingtangxiaozhuan.xyz",
+        "versionName": "http://150.158.52.248/tgyg/1.2.0",
+        "name": "http://150.158.52.248/tgyg/剧圈圈",
+        "package": "http://150.158.52.248/tgyg/com.qingtangxiaozhuan.xyz",
         "buildNumber": "2002",
-        "buildSignature": "054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
+        "buildSignature": "http://150.158.52.248/tgyg/054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
       }
     },
     {
@@ -353,11 +353,11 @@
       "api": "csp_App99",
       "ext": {
         "host": "http://103.217.190.91:19987/app/bn",
-        "versionName": "3.5.8",
-        "name": "半日闲",
-        "package": "com.yf.lelian",
+        "versionName": "http://150.158.52.248/tgyg/3.5.8",
+        "name": "http://150.158.52.248/tgyg/半日闲",
+        "package": "http://150.158.52.248/tgyg/com.yf.lelian",
         "buildNumber": "2001",
-        "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
+        "buildSignature": "http://150.158.52.248/tgyg/A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
     },
     {
@@ -369,14 +369,14 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "appName": "电影天堂",
+        "appName": "http://150.158.52.248/tgyg/电影天堂",
         "publicKey": "https://9877.kstore.space/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-        "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.dytiantang.one",
+        "dataKey": "http://150.158.52.248/tgyg/D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
+        "dataIv": "http://150.158.52.248/tgyg/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "http://150.158.52.248/tgyg/com.dytiantang.one",
         "host": "",
         "site": "http://150.158.52.248/tgyg/lib/app_dyttandroid.txt",
-        "version": "3.0.0.7",
+        "version": "http://150.158.52.248/tgyg/3.0.0.7",
         "decrypt": "0"
       }
     },
@@ -389,14 +389,14 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "appName": "橘汁",
+        "appName": "http://150.158.52.248/tgyg/橘汁",
         "publicKey": "https://9877.kstore.space/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB",
-        "dataKey": "OW1WBLFZCLJ0WTNJQMRSZ2DYSGNBPT0=",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.mxj.wylcjbxyx",
+        "dataKey": "http://150.158.52.248/tgyg/OW1WBLFZCLJ0WTNJQMRSZ2DYSGNBPT0=",
+        "dataIv": "http://150.158.52.248/tgyg/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "http://150.158.52.248/tgyg/com.mxj.wylcjbxyx",
         "host": "",
         "site": "http://150.158.52.248/tgyg/lib/app.txt",
-        "version": "3.0.2.4",
+        "version": "http://150.158.52.248/tgyg/3.0.2.4",
         "decrypt": "1"
       }
     },
@@ -409,14 +409,14 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "appName": "华谊",
+        "appName": "http://150.158.52.248/tgyg/华谊",
         "publicKey": "https://9877.kstore.space/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
-        "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.muyue.tool",
+        "dataKey": "http://150.158.52.248/tgyg/NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
+        "dataIv": "http://150.158.52.248/tgyg/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "http://150.158.52.248/tgyg/com.muyue.tool",
         "host": "",
         "site": "http://150.158.52.248/tgyg/lib/az5.txt",
-        "version": "1.0.0.4",
+        "version": "http://150.158.52.248/tgyg/1.0.0.4",
         "decrypt": "1"
       }
     },
@@ -429,14 +429,14 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": {
-        "appName": "小苹果",
+        "appName": "http://150.158.52.248/tgyg/小苹果",
         "publicKey": "https://9877.kstore.space/MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-        "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.juechufsh.android.xpg1",
+        "dataKey": "http://150.158.52.248/tgyg/S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
+        "dataIv": "http://150.158.52.248/tgyg/OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "http://150.158.52.248/tgyg/com.juechufsh.android.xpg1",
         "host": "",
         "site": "http://150.158.52.248/tgyg/lib/app_xpg_android.txt",
-        "version": "1.0.0.3",
+        "version": "http://150.158.52.248/tgyg/1.0.0.3",
         "decrypt": "0"
       }
     },
@@ -449,9 +449,9 @@
       "changeable": 1,
       "ext": {
         "url": "http://103.217.190.91:5566",
-        "dataKey": "hagYExMdMkeWfemK",
-        "dataIv": "hagYExMdMkeWfemK",
-        "init": "initV122",
+        "dataKey": "http://150.158.52.248/tgyg/hagYExMdMkeWfemK",
+        "dataIv": "http://150.158.52.248/tgyg/hagYExMdMkeWfemK",
+        "init": "http://150.158.52.248/tgyg/initV122",
         "ua": "https://9877.kstore.space/okhttp/3.10.0"
       }
     },
@@ -464,9 +464,9 @@
       "changeable": 1,
       "ext": {
         "site": "http://150.158.52.248/tgyg/lib/lyjszx.txt",
-        "dataKey": "oW5UxZ5kWVr1DI69",
-        "dataIv": "oW5UxZ5kWVr1DI69",
-        "init": "initV122",
+        "dataKey": "http://150.158.52.248/tgyg/oW5UxZ5kWVr1DI69",
+        "dataIv": "http://150.158.52.248/tgyg/oW5UxZ5kWVr1DI69",
+        "init": "http://150.158.52.248/tgyg/initV122",
         "ua": "https://9877.kstore.space/okhttp/3.10.0"
       }
     },
@@ -479,8 +479,8 @@
       "changeable": 1,
       "ext": {
         "url": "https://appcms.4ksj.app",
-        "dataKey": "O3K6rYx75Q4xtiIE",
-        "dataIv": "O3K6rYx75Q4xtiIE"
+        "dataKey": "http://150.158.52.248/tgyg/O3K6rYx75Q4xtiIE",
+        "dataIv": "http://150.158.52.248/tgyg/O3K6rYx75Q4xtiIE"
       }
     },
     {
@@ -505,8 +505,8 @@
       "changeable": 1,
       "ext": {
         "url": "https://app.95112475.xyz",
-        "dataKey": "5a9w6x58dsq6z3a6",
-        "dataIv": "5a9w6x58dsq6z3a6"
+        "dataKey": "http://150.158.52.248/tgyg/5a9w6x58dsq6z3a6",
+        "dataIv": "http://150.158.52.248/tgyg/5a9w6x58dsq6z3a6"
       }
     },
     {
@@ -518,8 +518,8 @@
       "changeable": 1,
       "ext": {
         "site": "http://150.158.52.248/tgyg/lib/9.txt",
-        "dataKey": "88689667dce61725",
-        "dataIv": "88689667dce61725"
+        "dataKey": "http://150.158.52.248/tgyg/88689667dce61725",
+        "dataIv": "http://150.158.52.248/tgyg/88689667dce61725"
       }
     },
     {
@@ -536,7 +536,7 @@
         "ratio": 1.433
       },
       "ext": {
-        "n": "哔哩合集",
+        "n": "http://150.158.52.248/tgyg/哔哩合集",
         "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
       }
     },
@@ -847,9 +847,9 @@
       "type": 3,
       "api": "csp_XBPQ",
       "ext": {
-        "请求头": "User-Agent$MOBILE_UA",
-        "编码": "UTF-8",
-        "分类": "重生$1#穿越$2#爽剧$3#言情$4#都市$5#古装$6#悬疑$7#剧情$8",
+        "请求头": "http://150.158.52.248/tgyg/User-Agent$MOBILE_UA",
+        "编码": "http://150.158.52.248/tgyg/UTF-8",
+        "分类": "http://150.158.52.248/tgyg/重生$1#穿越$2#爽剧$3#言情$4#都市$5#古装$6#悬疑$7#剧情$8",
         "分类url": "https://www.mochadj.com/i/{cateId}-{catePg}.html"
       },
       "genre": "shortdrama"
@@ -912,11 +912,11 @@
       "type": 3,
       "api": "csp_XBPQ",
       "ext": {
-        "请求头": "User-Agent$MOBILE_UA",
-        "编码": "UTF-8",
+        "请求头": "http://150.158.52.248/tgyg/User-Agent$MOBILE_UA",
+        "编码": "http://150.158.52.248/tgyg/UTF-8",
         "分类url": "https://v.aiwule.com/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html",
-        "分类": "电影$20#电视剧$21#动漫$23#综艺$22#短剧$47",
-        "简介": "简介：&&"
+        "分类": "http://150.158.52.248/tgyg/电影$20#电视剧$21#动漫$23#综艺$22#短剧$47",
+        "简介": "http://150.158.52.248/tgyg/简介：&&"
       }
     },
     {
@@ -925,10 +925,10 @@
       "type": 3,
       "api": "csp_XBPQ",
       "ext": {
-        "请求头": "User-Agent$MOBILE_UA",
-        "编码": "UTF-8",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4",
-        "类型": "动作片$6#喜剧片$7#爱情片$8#科幻片$9#奇幻片$10#恐怖片$11#剧情片$12#战争片$20#动画片$26#悬疑片$22#冒险片$23#犯罪片$24#惊悚片$45#歌舞片$46#灾难片$47#网络片$48||国产剧$13#港台剧$14#日剧$15#韩剧$33#欧美剧$16#泰剧$34#新马剧$35#其他剧$25||内地综艺$27#港台综艺$28#日本综艺$29#韩国综艺$36#欧美综艺$30#新马泰综艺$37#其他综艺$38||国产动漫$31#日本动漫$32#韩国动漫$39#港台动漫$40#新马泰动漫$41#欧美动漫$42#其他动漫$43",
+        "请求头": "http://150.158.52.248/tgyg/User-Agent$MOBILE_UA",
+        "编码": "http://150.158.52.248/tgyg/UTF-8",
+        "分类": "http://150.158.52.248/tgyg/电影$1#电视剧$2#综艺$3#动漫$4",
+        "类型": "http://150.158.52.248/tgyg/动作片$6#喜剧片$7#爱情片$8#科幻片$9#奇幻片$10#恐怖片$11#剧情片$12#战争片$20#动画片$26#悬疑片$22#冒险片$23#犯罪片$24#惊悚片$45#歌舞片$46#灾难片$47#网络片$48||国产剧$13#港台剧$14#日剧$15#韩剧$33#欧美剧$16#泰剧$34#新马剧$35#其他剧$25||内地综艺$27#港台综艺$28#日本综艺$29#韩国综艺$36#欧美综艺$30#新马泰综艺$37#其他综艺$38||国产动漫$31#日本动漫$32#韩国动漫$39#港台动漫$40#新马泰动漫$41#欧美动漫$42#其他动漫$43",
         "分类url": "https://www.ylys.tv/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html"
       }
     },
@@ -947,22 +947,22 @@
       "type": 3,
       "api": "csp_XBPQ",
       "ext": {
-        "请求头": "User-Agent$MOBILE_UA",
-        "编码": "UTF-8",
+        "请求头": "http://150.158.52.248/tgyg/User-Agent$MOBILE_UA",
+        "编码": "http://150.158.52.248/tgyg/UTF-8",
         "主页url": "https://dora.xiaoxinbk.com/",
         "数组": "https://9877.kstore.space/class=\"card-img-bili\"&&</a>",
-        "标题": "alt=\"&&\"",
-        "图片": "data-url=\"&&\"",
-        "链接": "href=\"&&\"",
+        "标题": "http://150.158.52.248/tgyg/alt=\"&&\"",
+        "图片": "http://150.158.52.248/tgyg/data-url=\"&&\"",
+        "链接": "http://150.158.52.248/tgyg/href=\"&&\"",
         "线路标题": "https://9877.kstore.space/mt-0\">&&</h3>",
         "播放数组": "https://9877.kstore.space/class=\"card-body button-list\"&&</div>",
-        "播放列表": "<a&&a>",
-        "播放链接": "href=\"&&\"",
+        "播放列表": "http://150.158.52.248/tgyg/<a&&a>",
+        "播放链接": "http://150.158.52.248/tgyg/href=\"&&\"",
         "播放标题": "https://9877.kstore.space/>&&</",
         "分类url": "https://www.dora-video.cn/search/sy/?niandai={year}&cat={class}&tag={cateId}&gaojijiansuo=1&zhuangtai={by}",
-        "分类": "全部$0#动画$20#剧场版$21#MV$22#预告片$23#直播$27#同人$25#民间$26#目录$28#中篇$30",
-        "剧情": "哆啦A梦新番$1#新哆啦A梦 台湾配音$2#哆啦A梦剧场版$3#最新预告片$6#剧场版集合$7#哆啦A梦MV$4#哆啦A梦七小子集合$11#生日特别篇$19#哆啦A梦生日特别篇$12#哆啦美生日特别篇$14#大雄生日特别篇$13#静香生日特别篇$15#胖虎生日特别篇$16#小夫生日特别篇$17#24小时直播$24#哆啦A梦中篇附映$29#哆啦A梦大山版 - 哆啦a梦1979版国语旧版 - 旧版$31#哆啦A梦大山修复&补档区$32#藤子·F·不二雄【其它动画】$33",
-        "排序": "全部$0#完结$2#连载$1#待定$-1"
+        "分类": "http://150.158.52.248/tgyg/全部$0#动画$20#剧场版$21#MV$22#预告片$23#直播$27#同人$25#民间$26#目录$28#中篇$30",
+        "剧情": "http://150.158.52.248/tgyg/哆啦A梦新番$1#新哆啦A梦 台湾配音$2#哆啦A梦剧场版$3#最新预告片$6#剧场版集合$7#哆啦A梦MV$4#哆啦A梦七小子集合$11#生日特别篇$19#哆啦A梦生日特别篇$12#哆啦美生日特别篇$14#大雄生日特别篇$13#静香生日特别篇$15#胖虎生日特别篇$16#小夫生日特别篇$17#24小时直播$24#哆啦A梦中篇附映$29#哆啦A梦大山版 - 哆啦a梦1979版国语旧版 - 旧版$31#哆啦A梦大山修复&补档区$32#藤子·F·不二雄【其它动画】$33",
+        "排序": "http://150.158.52.248/tgyg/全部$0#完结$2#连载$1#待定$-1"
       },
       "style": {
         "type": "list"
@@ -976,11 +976,11 @@
       "ext": {
         "host": "http://111.180.139.119:19987/app/bn",
         "LoginPath": "https://9877.kstore.space/app/log",
-        "versionName": "6.4.9",
-        "name": "双子星动漫",
-        "package": "com.haiwang.liangxia.my.ym",
+        "versionName": "http://150.158.52.248/tgyg/6.4.9",
+        "name": "http://150.158.52.248/tgyg/双子星动漫",
+        "package": "http://150.158.52.248/tgyg/com.haiwang.liangxia.my.ym",
         "buildNumber": "2001",
-        "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
+        "buildSignature": "http://150.158.52.248/tgyg/A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
     },
     {
@@ -991,8 +991,8 @@
       "api": "csp_AppGet",
       "ext": {
         "url": "https://www.gugu3.com",
-        "dataKey": "nKfZ8KX6JTNWRzTD",
-        "dataIv": "nKfZ8KX6JTNWRzTD"
+        "dataKey": "http://150.158.52.248/tgyg/nKfZ8KX6JTNWRzTD",
+        "dataIv": "http://150.158.52.248/tgyg/nKfZ8KX6JTNWRzTD"
       }
     },
     {
@@ -1003,12 +1003,12 @@
       "ext": {
         "请求头": "https://9877.kstore.space/User-Agent$MOBILE_UA#Accept$text/html#accept-language$zh-CN,zh;q=0.8",
         "分类url": "https://dmbus.cc/show-{cateId}--{by}-{class}--{year}-{catePg}.html",
-        "分类": "国漫$1#日漫$2#欧美动漫$3#电影$4",
+        "分类": "http://150.158.52.248/tgyg/国漫$1#日漫$2#欧美动漫$3#电影$4",
         "数组": "https://9877.kstore.space/class=\"item\">&&</li>",
         "简介": "https://9877.kstore.space/剧情：&&</p>",
-        "标题": "title=\"&&在线观看\"",
+        "标题": "http://150.158.52.248/tgyg/title=\"&&在线观看\"",
         "副标题": "https://9877.kstore.space/desc\">&&</span>",
-        "图片": "data-bg=\"&&\"",
+        "图片": "http://150.158.52.248/tgyg/data-bg=\"&&\"",
         "搜索url": "https://dmbus.cc/s----------.html?wd={wd}",
         "倒序": "1"
       }
@@ -1381,7 +1381,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "n": "哔哩音乐",
+        "n": "http://150.158.52.248/tgyg/哔哩音乐",
         "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
       },
       "style": {
@@ -1398,7 +1398,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "n": "哔哩听书",
+        "n": "http://150.158.52.248/tgyg/哔哩听书",
         "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
       },
       "style": {
@@ -1415,7 +1415,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "n": "哔哩相声",
+        "n": "http://150.158.52.248/tgyg/哔哩相声",
         "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
       },
       "style": {
@@ -1432,7 +1432,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "n": "哔哩小品",
+        "n": "http://150.158.52.248/tgyg/哔哩小品",
         "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
       },
       "style": {
@@ -1449,7 +1449,7 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "n": "哔哩戏曲",
+        "n": "http://150.158.52.248/tgyg/哔哩戏曲",
         "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
       },
       "style": {
@@ -1570,7 +1570,7 @@
     {
       "name": "聚合",
       "type": 3,
-      "url": "Web"
+      "url": "http://150.158.52.248/tgyg/Web"
     },
     {
       "name": "虾米",

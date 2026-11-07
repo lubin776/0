@@ -1,12 +1,12 @@
 {
-  "spider": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/jar/wuao.txt;md5;b1823304909b079fb81e333310a30759",
+  "spider": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/jar/wuao.txt;md5;2dd93067babd96be152a4ef45e2ce7f8",
   "logo": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/app_icon.png",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=AowuWapper&mode=2",
   "lives": [
     {
       "name": "🍬移动🍬",
       "type": 0,
-      "url": "./ext/移动",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/移动",
       "playerType": 2,
       "ua": "okhttp/3.15",
       "epg": "https://epg.cdn.loc.cc/?ch={name}&date={date}"
@@ -14,7 +14,7 @@
     {
       "name": "🍬联通🍬",
       "type": 0,
-      "url": "./ext/联通",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/联通",
       "playerType": 2,
       "ua": "okhttp/3.15",
       "epg": "https://epg.cdn.loc.cc/?ch={name}&date={date}"
@@ -30,7 +30,7 @@
     {
       "name": "🍬优选🍬",
       "type": 0,
-      "url": "./ext/live.txt",
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/ext/live.txt",
       "playerType": 2,
       "ua": "okhttp/3.15",
       "epg": "https://epg.cdn.loc.cc/?ch={name}&date={date}"
@@ -87,7 +87,7 @@
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 1,
-      "ext": "GuaziLive"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/GuaziLive"
     },
     {
       "name": "呜嗷短剧",
@@ -107,7 +107,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "woWogg"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/woWogg"
     },
     {
       "name": "📦①线┃秒播",
@@ -117,7 +117,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Fz"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Fz"
     },
     {
       "name": "📦②线┃秒播",
@@ -127,7 +127,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xy"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Xy"
     },
     {
       "name": "📦③线┃秒播",
@@ -137,7 +137,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Zjdr"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Zjdr"
     },
     {
       "name": "📦④线┃秒播",
@@ -147,7 +147,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xyz"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Xyz"
     },
     {
       "name": "📦⑤线┃秒播",
@@ -157,7 +157,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xnm"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Xnm"
     },
     {
       "name": "📦⑥线┃秒播",
@@ -167,7 +167,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Mtq"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Mtq"
     },
     {
       "name": "📦⑦线┃秒播",
@@ -177,7 +177,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Llq"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Llq"
     },
     {
       "name": "📦⑧线┃秒播",
@@ -187,7 +187,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xsz"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Xsz"
     },
     {
       "name": "📦⑨线┃秒播",
@@ -197,7 +197,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Xhr"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Xhr"
     },
     {
       "name": "🚀瓜子┃秒播",
@@ -207,7 +207,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "Guazi"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/Guazi"
     },
     {
       "name": "🚀金牌┃秒播",
@@ -226,7 +226,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "NewGrV2"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/NewGrV2"
     },
     {
       "name": "📦师兄┃秒播",
@@ -236,13 +236,13 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "AppV7Dsx"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/AppV7Dsx"
     },
     {
       "name": "⭐橘汁┃快速",
-      "key": "线路14",
+      "key": "Woshinidie",
       "type": 3,
-      "jar": "https://zl.wpscdn.cn/2026/09/11/space_img/0f5c235d-ee40-42a0-a19a-b7f29986c51c.png;md5;7a2cb30dc4937d27e57288b5c381e19c",
+      "jar": "https://nos.netease.com/vcloud-statistic/nrtc/35012678-318a-469d-866b-00e9d74468df.png;md5;528450abfa7bbee80d68034ae045a1f6",
       "api": "csp_Woshinidie",
       "searchable": 1,
       "quickSearch": 1,
@@ -256,7 +256,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "Rbys"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/Rbys"
     },
     {
       "name": "⭐杜北┃秒播",
@@ -266,7 +266,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "Dubk"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/Dubk"
     },
     {
       "name": "⭐荐片┃快速",
@@ -276,7 +276,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "ext": "JPian"
+      "ext": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/JPian"
     },
     {
       "key": "商店",
@@ -293,12 +293,12 @@
     {
       "name": "📦 Json聚合",
       "type": 3,
-      "url": "Demo"
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/Demo"
     },
     {
       "name": "🎬 影视聚合",
       "type": 3,
-      "url": "影视"
+      "url": "https://gh-proxy.com/raw.githubusercontent.com/zhoujck/config/main/影视"
     },
     {
       "name": "🐮 牛牛解析",
