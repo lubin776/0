@@ -1,4 +1,4 @@
-TVBox 接口抓取报告  20261108_171738
+TVBox 接口抓取报告  20261109_041927
 ==============================================================
 
 [幸福年年] okhttp/3.15
@@ -127,12 +127,12 @@ TVBox 接口抓取报告  20261108_171738
   成功URL: http://fish.y456y.com
 
 [南风] okhttp/3.15
-  状态: TEXT
+  状态: JSON
   文件: tvbox/南风.json
   成功URL: https://ghproxy.monkeyray.net/raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json
 
 [南风2线] okhttp/3.15
-  状态: TEXT
+  状态: JSON
   文件: tvbox/南风2线.json
   成功URL: https://gh-proxy.com/raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json
 
