@@ -1,5 +1,5 @@
 {
-    "spider": "https://gitee.com/xhuban/getjar/raw/master/jar/custom_spider_cat.jar;md5;0bfb7d17ae7197a09a59f2c54c360fb9",
+    "spider": "https://gitee.com/xhuban/getjar/raw/master/jar/custom_spider_cat.jar;md5;e39f82291c426c2d2ee2ecd1cdd12d12",
     "wallpaper": "https://xn--11x805d.xn--4kq62z5rby2qupq9ub.xyz/",
     "warningText": "仅作学习交流测试使用，配置或下载后请于24小时之内删除",
     "lives": [
@@ -96,6 +96,71 @@
             }
         },
         {
+            "key": "sa",
+            "name": "SA|弹幕",
+            "type": 3,
+            "api": "csp_HBSACAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1,
+            "style": {
+                "type": "rect",
+                "ratio": 0.75
+            }
+        },
+        {
+            "key": "seesee",
+            "name": "看客|弹幕",
+            "type": 3,
+            "api": "csp_HBseeSeeCAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1,
+            "style": {
+                "type": "rect",
+                "ratio": 0.75
+            }
+        },
+        {
+            "key": "hanquan",
+            "name": "韩圈|弹幕",
+            "type": 3,
+            "api": "csp_HBHanQuanCAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1,
+            "style": {
+                "type": "rect",
+                "ratio": 0.75
+            }
+        },
+        {
+            "key": "banyue",
+            "name": "半月|弹幕",
+            "type": 3,
+            "api": "csp_HBBanYueCAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1,
+            "style": {
+                "type": "rect",
+                "ratio": 0.75
+            }
+        },
+        {
+            "key": "hema",
+            "name": "河马|弹幕",
+            "type": 3,
+            "api": "csp_HBHeMaCAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1,
+            "style": {
+                "type": "rect",
+                "ratio": 0.75
+            }
+        },
+        {
             "key": "juzi",
             "name": "橘子|弹幕",
             "type": 3,
@@ -120,6 +185,19 @@
             "name": "摇滚|DJ",
             "type": 3,
             "api": "csp_HB36DJCAT"
+        },
+        {
+            "key": "dj111",
+            "name": "歌曲|DJ",
+            "type": 3,
+            "api": "csp_HBDJ111CAT",
+            "searchable": 1,
+            "filterable": 1,
+            "quickSearch": 1,
+            "style": {
+                "type": "rect",
+                "ratio": 1
+            }
         },
         {
             "key": "luoxue",
@@ -207,12 +285,6 @@
             "name": "瓜子|弹幕",
             "type": 3,
             "api": "csp_HBGuaZiCAT"
-        },
-        {
-            "key": "HBDYYZ",
-            "name": "驿站|弹幕",
-            "type": 3,
-            "api": "csp_HBDYYZCAT"
         },
         {
             "key": "HBPianKu8",
@@ -734,16 +806,6 @@
             "name": "测试|专用",
             "type": 3,
             "api": "csp_HBxLei8CAT"
-        },
-        {
-            "key": "听书世界",
-            "name": "听书|世界",
-            "type": 3,
-            "api": "csp_HBTingShuCAT",
-            "style": {
-                "type": "rect",
-                "ratio": 0.75
-            }
         }
     ],
     "parses": [
