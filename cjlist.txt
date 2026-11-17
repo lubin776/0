@@ -79,12 +79,19 @@ acfun|A站｜星源|type: 1|api: https://xy.183933.xyz/php/acfun.php/provide/vod
 咪咕|小咕｜星源|type: 1|api: https://xy.183933.xyz/php/咪咕.php
 小乐|小乐｜星源|type: 1|api: https://xy.183933.xyz/php/ls.php/vod
 taiee96|极速┃零一|type: 1|api: https://ww96.taiee.xyz/api.php/provide/vod/
+cms_shandian|闪电┃资源|type: 1|api: http://sdzyapi.com/api.php/provide/vod/
+cms_subo|速播┃资源|type: 1|api: https://subocj.com/api.php/provide/vod/
+cms_diyi|第一┃资源|type: 1|api: https://caiji.diyizy.net/api.php/provide/vod/
+cms_maoyan|猫眼┃资源|type: 1|api: https://api.maoyanapi.top/api.php/provide/vod
+cms_bfzy2|暴风┃资源|type: 1|api: https://bfzy2.tv/api.php/provide/vod/
+cms_okzyw|ok┃资源|type: 1|api: https://okzyw.cc/api.php/provide/vod/
+cms_gqc4|共共┃青春|type: 1|api: https://gqc4.top/api.php/provide/vod/
+cms_qlys|麒麟┃影音|type: 1|api: https://www.qlys.cc/api.php/provide/vod/
 天涯采集|影视 | 天涯|type: 1|api: http://tyyszy.com/api.php/provide/vod
 极速资源|影视 | 极速[直连]|type: 1|api: https://jszyapi.com/api.php/provide/vod/?ac=list
 建安采集|影视 | 建安|type: 1|api: http://154.219.117.232:9981/jacloudapi.php/provide/vod
 率率|影视 | 率率[直连]|type: 1|api: https://suoniapi.com/api.php/provide/vod/?ac=list
 百度|百度|type: 1|api: https://api.apibdzy.com/api.php/provide/vod?ac=list
-闪电资源|闪电资源(切)|type: 1|api: http://sdzyapi.com/api.php/provide/vod/
 csp_xml_天空|❤天空资源|type: 1|api: https://m3u8.tiankongapi.com/api.php/provide/vod/from/tkm3u8/?ac=list
 csp_xml_无尽|❤无尽资源|type: 1|api: https://api.wujinapi.me/api.php/provide/vod/?ac=list
 csp_xml_光速|❤光速资源|type: 1|api: https://api.guangsuapi.com/api.php/provide/vod/from/gsm3u8/
@@ -103,6 +110,7 @@ csp_xml_ikun|❤ikun资源|type: 1|api: https://ikunzyapi.com/api.php/provide/vo
 旺旺短剧|旺旺短剧|type: 1|api: https://zhangqun1818.serv00.net/ww.php
 CNTV低分辨|CNTV低分辨|type: 1|api: https://zhangqun1818.serv00.net/cctv.php
 3|👖体育|type: 1|api: https://jsnzkpg.de5.net/t4.json
+闪电资源|闪电资源(切)|type: 1|api: http://sdzyapi.com/api.php/provide/vod/
 虎牙资源|烂大街|type: 1|api: https://www.huyaapi.com/api.php/provide/vod/
 360|三六零|type: 1|api: https://360zy.com/api.php/provide/vod
 cj_旺旺采集|🧞旺旺|短剧|type: 1|api: https://api.wwzy.tv/api.php/provide/vod/
