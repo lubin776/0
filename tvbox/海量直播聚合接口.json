@@ -685,6 +685,24 @@
       "source": "饭太硬"
     },
     {
+      "name": "BMCH",
+      "url": "https://play.iptv365.org/香雅情/lives/BMCH.txt",
+      "ua": "",
+      "source": "香雅情"
+    },
+    {
+      "name": "Tianmu",
+      "url": "https://play.iptv365.org/香雅情/lives/Tianmu.txt",
+      "ua": "",
+      "source": "香雅情"
+    },
+    {
+      "name": "fanmingming",
+      "url": "https://play.iptv365.org/香雅情/lives/fanmingming.txt",
+      "ua": "",
+      "source": "香雅情"
+    },
+    {
       "name": "本地live文件",
       "url": "http://127.0.0.1:9978/file/XYQTVBox/live.txt",
       "ua": "",
