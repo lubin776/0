@@ -3,163 +3,103 @@
 #EXTM3U
 #EXTINF:-1 tvg-logo="https://jsnz.pages.dev/f/5ab7e916.gif" group-title="✈️TG频道@stymei",☁️官网jsnzkpg.com
 https://txmov2.a.kwimgs.com/upic/2026/10/14/14/BMjAyNjEwMTQxNDQzMTZfNDI0MDI5NTBfMjEyMTU4NDQ3NDA2XzFfMw==_b_Bb05c2aefdd05533532a50f686c56208c.mp4
-#EXTINF:-1 tvg-id="L417" tvg-name="NBA 76人 vs 魔术 - 中文解说13" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/0dc24d08ef0b5584e0b70f967db64b36.png" group-title="NBA",NBA 76人 vs 魔术 - 中文解说13
-https://live01-cn-ali.xqnbu.com/live/95106392_tsc.m3u8
-#EXTINF:-1 tvg-id="L11" tvg-name="NBA 76人 vs 魔术 - 直播11" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/0dc24d08ef0b5584e0b70f967db64b36.png" group-title="NBA",NBA 76人 vs 魔术 - 直播11
-https://hello.ooo0ooo.top/live/3931703.m3u8
-#EXTINF:-1 tvg-id="L217" tvg-name="NBA 76人 vs 魔术 - 原声13" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/0dc24d08ef0b5584e0b70f967db64b36.png" group-title="NBA",NBA 76人 vs 魔术 - 原声13
-https://pul-tenm.gkykp.com/live/hd-en-2-3931703.m3u8?txSecret=13a4caffeeb9075665cfc9da5ef915cc&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L12" tvg-name="NBA 公牛 vs 篮网 - 直播12" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/4150a647c6e381a69980e98bb86582a5.png" group-title="NBA",NBA 公牛 vs 篮网 - 直播12
-https://hello.ooo0ooo.top/live/3931704.m3u8
-#EXTINF:-1 tvg-id="L220" tvg-name="NBA 公牛 vs 篮网 - 原声16" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/4150a647c6e381a69980e98bb86582a5.png" group-title="NBA",NBA 公牛 vs 篮网 - 原声16
-https://pul-tenm.gkykp.com/live/hd-en-2-3931704.m3u8?txSecret=27875e2ca0fbd0a37df9095d2753187c&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L407" tvg-name="NBA 勇士 vs 独行侠 - 中文解说3" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/42d7b5ec22b2eb411d68f94a04eab742.png" group-title="NBA",NBA 勇士 vs 独行侠 - 中文解说3
-https://live01-cn-ali.xqnbu.com/live/57408314_tsc.m3u8
-#EXTINF:-1 tvg-id="L14" tvg-name="NBA 勇士 vs 独行侠 - 直播14" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/42d7b5ec22b2eb411d68f94a04eab742.png" group-title="NBA",NBA 勇士 vs 独行侠 - 直播14
-https://hello.ooo0ooo.top/live/3931709.m3u8
-#EXTINF:-1 tvg-id="L207" tvg-name="NBA 勇士 vs 独行侠 - 原声3" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/42d7b5ec22b2eb411d68f94a04eab742.png" group-title="NBA",NBA 勇士 vs 独行侠 - 原声3
-https://pul-tenm.gkykp.com/live/hd-en-2-3931709.m3u8?txSecret=6bc9a4a22933342876d53dccfd44781e&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L13" tvg-name="NBA 奇才 vs 猛龙 - 直播13" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/e299ddecec93dc5c8db83b1761e2fa1f.png" group-title="NBA",NBA 奇才 vs 猛龙 - 直播13
-https://hello.ooo0ooo.top/live/3931705.m3u8
-#EXTINF:-1 tvg-id="L221" tvg-name="NBA 奇才 vs 猛龙 - 原声17" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/e299ddecec93dc5c8db83b1761e2fa1f.png" group-title="NBA",NBA 奇才 vs 猛龙 - 原声17
-https://pul-tenm.gkykp.com/live/hd-en-2-3931705.m3u8?txSecret=5319a4dff0cf20b624f735a005a7e5ad&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L15" tvg-name="NBA 活塞 vs 鹈鹕 - 直播15" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/2602b893bb3f8d381a5b0d978fad74e1.png" group-title="NBA",NBA 活塞 vs 鹈鹕 - 直播15
-https://hello.ooo0ooo.top/live/3931706.m3u8
-#EXTINF:-1 tvg-id="L222" tvg-name="NBA 活塞 vs 鹈鹕 - 原声18" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/2602b893bb3f8d381a5b0d978fad74e1.png" group-title="NBA",NBA 活塞 vs 鹈鹕 - 原声18
-https://pul-tenm.gkykp.com/live/hd-en-2-3931706.m3u8?txSecret=2bfb6aa61a5bb12a79127a526c9bf9fd&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L415" tvg-name="NBA 火箭 vs 步行者 - 中文解说11" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/6f313b682482799762cf60dbc30dbfae.png" group-title="NBA",NBA 火箭 vs 步行者 - 中文解说11
-https://live01-cn-ali.xqnbu.com/live/36983073_tsc.m3u8
-#EXTINF:-1 tvg-id="L9" tvg-name="NBA 火箭 vs 步行者 - 直播9" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/6f313b682482799762cf60dbc30dbfae.png" group-title="NBA",NBA 火箭 vs 步行者 - 直播9
-https://hello.ooo0ooo.top/live/3931701.m3u8
-#EXTINF:-1 tvg-id="L215" tvg-name="NBA 火箭 vs 步行者 - 原声11" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/6f313b682482799762cf60dbc30dbfae.png" group-title="NBA",NBA 火箭 vs 步行者 - 原声11
-https://pul-tenm.gkykp.com/live/hd-en-2-3931701.m3u8?txSecret=b2e806c647fe50b5d5ef3ad8831ca16d&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L414" tvg-name="NBA 灰熊 vs 骑士 - 中文解说10" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/57c938e35ceb2ee92562a09c4165fb47.png" group-title="NBA",NBA 灰熊 vs 骑士 - 中文解说10
-https://live01-cn-ali.xqnbu.com/live/98177282_tsc.m3u8
-#EXTINF:-1 tvg-id="L4" tvg-name="NBA 灰熊 vs 骑士 - 直播4" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/57c938e35ceb2ee92562a09c4165fb47.png" group-title="NBA",NBA 灰熊 vs 骑士 - 直播4
-https://hello.ooo0ooo.top/live/3931700.m3u8
-#EXTINF:-1 tvg-id="L214" tvg-name="NBA 灰熊 vs 骑士 - 原声10" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/57c938e35ceb2ee92562a09c4165fb47.png" group-title="NBA",NBA 灰熊 vs 骑士 - 原声10
-https://pul-tenm.gkykp.com/live/hd-en-2-3931700.m3u8?txSecret=f4db705832642d46fb75c399072435dd&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L16" tvg-name="NBA 老鹰 vs 雷霆 - 直播16" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/319e03be75fee4098a83b1d0e01940b7.png" group-title="NBA",NBA 老鹰 vs 雷霆 - 直播16
-https://hello.ooo0ooo.top/live/3931707.m3u8
-#EXTINF:-1 tvg-id="L223" tvg-name="NBA 老鹰 vs 雷霆 - 原声19" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/319e03be75fee4098a83b1d0e01940b7.png" group-title="NBA",NBA 老鹰 vs 雷霆 - 原声19
-https://pul-tenm.gkykp.com/live/hd-en-2-3931707.m3u8?txSecret=bc652738d28daa63ee7bc542b9402a39&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L416" tvg-name="NBA 雄鹿 vs 热火 - 中文解说12" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/ff7ccef6a6b79c6417ee8367946b0aec.png" group-title="NBA",NBA 雄鹿 vs 热火 - 中文解说12
-https://live01-cn-ali.xqnbu.com/live/19982786_tsc.m3u8
-#EXTINF:-1 tvg-id="L10" tvg-name="NBA 雄鹿 vs 热火 - 直播10" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/ff7ccef6a6b79c6417ee8367946b0aec.png" group-title="NBA",NBA 雄鹿 vs 热火 - 直播10
-https://hello.ooo0ooo.top/live/3931702.m3u8
-#EXTINF:-1 tvg-id="L216" tvg-name="NBA 雄鹿 vs 热火 - 原声12" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/ff7ccef6a6b79c6417ee8367946b0aec.png" group-title="NBA",NBA 雄鹿 vs 热火 - 原声12
-https://pul-tenm.gkykp.com/live/hd-en-2-3931702.m3u8?txSecret=4731138a4478d6dc5bebd0e28505d730&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L19" tvg-name="NCAA 印第安纳大学波利斯分校 vs 宾夕法尼亚州立大学 - 直播19" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/691feb8390a0f21be28fb14e30c991f4.png" group-title="NCAA",NCAA 印第安纳大学波利斯分校 vs 宾夕法尼亚州立大学 - 直播19
-https://hello.ooo0ooo.top/live/3949427.m3u8
-#EXTINF:-1 tvg-id="L7" tvg-name="巴西甲 克鲁塞罗 vs 帕尔梅拉斯 - 直播7" tvg-logo="https://cdn.sportnanoapi.com/football/team/3fe9281df0fdaf026741ff54ac24bdeb.png" group-title="巴西甲",巴西甲 克鲁塞罗 vs 帕尔梅拉斯 - 直播7
-https://hello.ooo0ooo.top/live/4465899.m3u8
-#EXTINF:-1 tvg-id="L209" tvg-name="巴西甲 克鲁塞罗 vs 帕尔梅拉斯 - 原声5" tvg-logo="https://cdn.sportnanoapi.com/football/team/3fe9281df0fdaf026741ff54ac24bdeb.png" group-title="巴西甲",巴西甲 克鲁塞罗 vs 帕尔梅拉斯 - 原声5
-https://pul-tenm.gkykp.com/live/sd-1-4465899.m3u8?txSecret=7c66931e7a04dabb9a227abb6a6e3051&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L8" tvg-name="巴西甲 弗兰萨 vs 卡西亚斯 - 直播8" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/a65268effd9adde355c5816840d3ee14.png" group-title="巴西甲",巴西甲 弗兰萨 vs 卡西亚斯 - 直播8
-https://hello.ooo0ooo.top/live/3939639.m3u8
-#EXTINF:-1 tvg-id="L206" tvg-name="巴西甲 弗兰萨 vs 卡西亚斯 - 原声2" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/a65268effd9adde355c5816840d3ee14.png" group-title="巴西甲",巴西甲 弗兰萨 vs 卡西亚斯 - 原声2
-https://pul-tenm.gkykp.com/live/sd-2-3939639.m3u8?txSecret=61717c258557fe1f8b9d2cdc83a0c241&txTime=6AFF9231
-#EXTINF:-1 tvg-id="L6" tvg-name="巴西甲 弗拉门戈 vs 巴拉纳竞技 - 直播6" tvg-logo="https://cdn.sportnanoapi.com/football/team/f19b2f9fa5b0c72acc262bc4f0d2cd77.png" group-title="巴西甲",巴西甲 弗拉门戈 vs 巴拉纳竞技 - 直播6
-https://hello.ooo0ooo.top/live/4465910.m3u8
-#EXTINF:-1 tvg-id="L210" tvg-name="巴西甲 弗拉门戈 vs 巴拉纳竞技 - 原声6" tvg-logo="https://cdn.sportnanoapi.com/football/team/f19b2f9fa5b0c72acc262bc4f0d2cd77.png" group-title="巴西甲",巴西甲 弗拉门戈 vs 巴拉纳竞技 - 原声6
-https://pul-tenm.gkykp.com/live/sd-1-4465910.m3u8?txSecret=722ee1dbce9a83dfc22fdbd2c7eac751&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L3" tvg-name="巴西甲 格雷米奥 vs 巴伊亚 - 直播3" tvg-logo="https://cdn.sportnanoapi.com/football/team/e1f593199d4ee1d98b2db8a9522b605f.png" group-title="巴西甲",巴西甲 格雷米奥 vs 巴伊亚 - 直播3
-https://hello.ooo0ooo.top/live/4465941.m3u8
-#EXTINF:-1 tvg-id="L219" tvg-name="巴西甲 格雷米奥 vs 巴伊亚 - 原声15" tvg-logo="https://cdn.sportnanoapi.com/football/team/e1f593199d4ee1d98b2db8a9522b605f.png" group-title="巴西甲",巴西甲 格雷米奥 vs 巴伊亚 - 原声15
-https://pul-tenm.gkykp.com/live/sd-1-4465941.m3u8?txSecret=b50f0ead2d561402d704b2fc130dcb0f&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L2" tvg-name="巴西甲 科林蒂安 vs 博塔弗戈 - 直播2" tvg-logo="https://cdn.sportnanoapi.com/football/team/aa4d61da1df31972e52e1e62f90ec558.png" group-title="巴西甲",巴西甲 科林蒂安 vs 博塔弗戈 - 直播2
-https://hello.ooo0ooo.top/live/4465931.m3u8
-#EXTINF:-1 tvg-id="L218" tvg-name="巴西甲 科林蒂安 vs 博塔弗戈 - 原声14" tvg-logo="https://cdn.sportnanoapi.com/football/team/aa4d61da1df31972e52e1e62f90ec558.png" group-title="巴西甲",巴西甲 科林蒂安 vs 博塔弗戈 - 原声14
-https://pul-tenm.gkykp.com/live/sd-1-4465931.m3u8?txSecret=4e79302d231601a67ff5a99d4e47eb8a&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L5" tvg-name="巴西甲 雷莫 vs 沙佩科恩斯 - 直播5" tvg-logo="https://cdn.sportnanoapi.com/football/team/8d4ae02740684681d297792508ed0e70.png" group-title="巴西甲",巴西甲 雷莫 vs 沙佩科恩斯 - 直播5
-https://hello.ooo0ooo.top/live/4465926.m3u8
-#EXTINF:-1 tvg-id="L208" tvg-name="巴西甲 雷莫 vs 沙佩科恩斯 - 原声4" tvg-logo="https://cdn.sportnanoapi.com/football/team/8d4ae02740684681d297792508ed0e70.png" group-title="巴西甲",巴西甲 雷莫 vs 沙佩科恩斯 - 原声4
-https://pul-tenm.gkykp.com/live/sd-1-4465926.m3u8?txSecret=071fca686205820dbf9c93d1f4ea939d&txTime=6AFF9938
-#EXTINF:-1 tvg-id="L18" tvg-name="玻利杯 拉巴斯准备 vs 皇家波托斯 - 直播18" tvg-logo="https://cdn.sportnanoapi.com/football/team/4f5b815aa7bca0be2a325494997ad29e.png" group-title="玻利杯",玻利杯 拉巴斯准备 vs 皇家波托斯 - 直播18
-https://hello.ooo0ooo.top/live/4669944.m3u8
-#EXTINF:-1 tvg-id="L211" tvg-name="玻利杯 拉巴斯准备 vs 皇家波托斯 - 原声7" tvg-logo="https://cdn.sportnanoapi.com/football/team/4f5b815aa7bca0be2a325494997ad29e.png" group-title="玻利杯",玻利杯 拉巴斯准备 vs 皇家波托斯 - 原声7
-https://pul-tenm.gkykp.com/live/sd-1-4669944.m3u8?txSecret=083743ef28bbc48c580af7dd001b8bc8&txTime=6AFF8948
-#EXTINF:-1 tvg-id="R47891_0" tvg-name="11-19 05:30 NCAA 佛罗里达大学 vs 休斯顿大学 (76-86) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/98ddc8da5d074b44a22c47cbaa27bb91.png" group-title="赛事回放",11-19 05:30 NCAA 佛罗里达大学 vs 休斯顿大学 (76-86) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/49d9081f5001834828939976888/playlist_eof.m3u8?t=6afe8db2&us=fe371e2456&sign=cb383a5efaa46b9f0435c199543747bc
-#EXTINF:-1 tvg-id="R47317_0" tvg-name="11-19 04:00 秘鲁甲 阿利安萨竞技 vs 梅尔加 (1-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/0ce10ff2713268ab8db9fad32d2ab54e.png" group-title="赛事回放",11-19 04:00 秘鲁甲 阿利安萨竞技 vs 梅尔加 (1-1) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/7e2a7f495001834828893146248/playlist_eof.m3u8?t=6afe8d69&us=942a0c7c24&sign=d7db92517f08031cd23a03101ecfc100
-#EXTINF:-1 tvg-id="R47316_0" tvg-name="11-19 04:00 欧女杯 尤文图斯女足 vs 旧海弗莱鲁汶女足 (2-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/d7e0dd2c30416452115958332ba7c4ee.png" group-title="赛事回放",11-19 04:00 欧女杯 尤文图斯女足 vs 旧海弗莱鲁汶女足 (2-0) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/df7c1da55001834828931847117/playlist_eof.m3u8?t=6afe8e36&us=94613b928f&sign=359f9eaf7f976d72001c92fcbb56fafd
-#EXTINF:-1 tvg-id="R47316_0" tvg-name="11-19 04:00 欧女杯 尤文图斯女足 vs 旧海弗莱鲁汶女足 (2-0) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/d7e0dd2c30416452115958332ba7c4ee.png" group-title="赛事回放",11-19 04:00 欧女杯 尤文图斯女足 vs 旧海弗莱鲁汶女足 (2-0) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/0ce6fe3c5001834828942321623/playlist_eof.m3u8?t=6afe8e36&us=94613b928f&sign=6bf8e39c0cfe673cbf5130783a7ad7b4
-#EXTINF:-1 tvg-id="R47315_0" tvg-name="11-19 04:00 欧女杯 切尔西女足 vs 巴黎圣日耳曼女足 (1-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/be4671c3b73541959a18e358dd8de4d2.png" group-title="赛事回放",11-19 04:00 欧女杯 切尔西女足 vs 巴黎圣日耳曼女足 (1-0) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/8b68ed8a5001834828906165982/playlist_eof.m3u8?t=6afe8dfc&us=bcb0691c06&sign=54f35340d10b84de2635e5c62c708924
-#EXTINF:-1 tvg-id="R47315_0" tvg-name="11-19 04:00 欧女杯 切尔西女足 vs 巴黎圣日耳曼女足 (1-0) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/be4671c3b73541959a18e358dd8de4d2.png" group-title="赛事回放",11-19 04:00 欧女杯 切尔西女足 vs 巴黎圣日耳曼女足 (1-0) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/213cc5f05001834828895515289/playlist_eof.m3u8?t=6afe8dfc&us=bcb0691c06&sign=dc5ad6f1d42bcebf830fe0fcd9f38039
-#EXTINF:-1 tvg-id="R47478_0" tvg-name="11-19 03:30 欧协杯 曼雷萨 vs 泛塞萨洛尼基人 (80-88) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/dc19c320ffc58f1fd9e5bb2a2bca3f51.png" group-title="赛事回放",11-19 03:30 欧协杯 曼雷萨 vs 泛塞萨洛尼基人 (80-88) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/825165a25001834828930166076/playlist_eof.m3u8?t=6afe8d73&us=869235eec5&sign=ad59c5deef343f26dc6acff4fcac7450
-#EXTINF:-1 tvg-id="R47477_0" tvg-name="11-19 03:30 篮冠联 马拉加 vs 帕尔杜比采 (94-66) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/80430f985036f02f596f67a22d95f7c9.png" group-title="赛事回放",11-19 03:30 篮冠联 马拉加 vs 帕尔杜比采 (94-66) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/7fa1d39e5001834828930016483/playlist_eof.m3u8?t=6afe8e46&us=74eca2aaac&sign=39edc7e9d34b564ecc39e55633b3ccc3
-#EXTINF:-1 tvg-id="R43068_0" tvg-name="11-19 03:30 国王杯 米内拉 vs 卡塔赫纳 (1-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/71d86f9b07854b3c5352ff6558cd1e73.png" group-title="赛事回放",11-19 03:30 国王杯 米内拉 vs 卡塔赫纳 (1-1) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/69752af15001834828889596008/playlist_eof.m3u8?t=6afe8e15&us=c7a4038595&sign=a9516d1f571d669b8b2d91287b3fa90d
-#EXTINF:-1 tvg-id="R43068_0" tvg-name="11-19 03:30 国王杯 米内拉 vs 卡塔赫纳 (1-1) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/71d86f9b07854b3c5352ff6558cd1e73.png" group-title="赛事回放",11-19 03:30 国王杯 米内拉 vs 卡塔赫纳 (1-1) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/8b6af8485001834828906169049/playlist_eof.m3u8?t=6afe8e15&us=c7a4038595&sign=c28aea5a565c84accb2ee5c8c82f05c6
-#EXTINF:-1 tvg-id="R43065_0" tvg-name="11-19 03:30 国王杯 罗伊 vs 巴拉卡度 (1-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/9cbf9acbfe6fea03015207e2b5d97a84.png" group-title="赛事回放",11-19 03:30 国王杯 罗伊 vs 巴拉卡度 (1-1) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/7effb6c45001834828862932073/playlist_eof.m3u8?t=6afe8e1a&us=28e6118aae&sign=804ebf459432222e29a4ca43c16a84f4
-#EXTINF:-1 tvg-id="R47890_0" tvg-name="11-19 03:00 英女杯 伦敦城雌狮女足 vs 布莱顿女足 (0-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/b6885aace87140438492e5d0168608a3.png" group-title="赛事回放",11-19 03:00 英女杯 伦敦城雌狮女足 vs 布莱顿女足 (0-1) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/c34688a55001834828927923450/playlist_eof.m3u8?t=6afe8e01&us=fa825349c4&sign=bd4bc3db4110b4dab5f4f62e91e33914
-#EXTINF:-1 tvg-id="R47889_0" tvg-name="11-19 03:00 英女杯 诺丁汉森林女足 vs 利物浦女足 (1-4) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/f829e9e1964b41cf9c2d93f68142d4d3.png" group-title="赛事回放",11-19 03:00 英女杯 诺丁汉森林女足 vs 利物浦女足 (1-4) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/a0a1744a5001834828890554483/playlist_eof.m3u8?t=6afe8dea&us=51b3e99757&sign=a99f3783000e803bd9ba2e7f182786de
-#EXTINF:-1 tvg-id="R47888_0" tvg-name="11-19 03:00 英女杯 曼联女足 vs 埃弗顿女足 (2-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/db33359c11033fc28c9bedec0a4a89d9.png" group-title="赛事回放",11-19 03:00 英女杯 曼联女足 vs 埃弗顿女足 (2-1) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/5b8d92a35001834828936621570/playlist_eof.m3u8?t=6afe8dc1&us=a560b6931c&sign=37cd0332a003715d8ce0629ebd8f8fcd
-#EXTINF:-1 tvg-id="R47475_0" tvg-name="11-19 03:00 欧协杯 特伦托 vs 内普图纳斯 (96-83) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/30ceddea56f974bc8c71bfa811697aa1.png" group-title="赛事回放",11-19 03:00 欧协杯 特伦托 vs 内普图纳斯 (96-83) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/ceeff60b5001834828887516219/playlist_eof.m3u8?t=6afe8dbd&us=3f3c8f8069&sign=12ce17ef6e6d810c6dead5b453854d16
-#EXTINF:-1 tvg-id="R47473_0" tvg-name="11-19 03:00 篮冠联 萨格勒布希伯纳 vs 斯特拉斯堡 (101-79) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/d31674da697fcfb4b9cb58ba62bf023e.png" group-title="赛事回放",11-19 03:00 篮冠联 萨格勒布希伯纳 vs 斯特拉斯堡 (101-79) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/110ff92a5001834828935747524/playlist_eof.m3u8?t=6afe8d6a&us=b6bacb8527&sign=7b2020a007fce1e4d229d754a3b6aaf6
-#EXTINF:-1 tvg-id="R43057_0" tvg-name="11-19 03:00 国王杯 巴达祖斯 vs 特内里费 (2-5) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/e3a1113b18fb03bd46b73099a2ec8e00.png" group-title="赛事回放",11-19 03:00 国王杯 巴达祖斯 vs 特内里费 (2-5) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/1f03cb665001834828776431572/playlist_eof.m3u8?t=6afe8dd2&us=49debf6ed1&sign=84ca6cc2817910b04198298e43886808
-#EXTINF:-1 tvg-id="R43057_0" tvg-name="11-19 03:00 国王杯 巴达祖斯 vs 特内里费 (2-5) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/e3a1113b18fb03bd46b73099a2ec8e00.png" group-title="赛事回放",11-19 03:00 国王杯 巴达祖斯 vs 特内里费 (2-5) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/9f377ecb5001834828937229168/playlist_eof.m3u8?t=6afe8dd2&us=49debf6ed1&sign=f4c9ca040f3fb4ef926dbe99e01b0782
-#EXTINF:-1 tvg-id="R43055_0" tvg-name="11-19 03:00 国王杯 艾高亚诺 vs 马略卡 (1-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/a06b8319ae33c0654c51d29df15c55b0.png" group-title="赛事回放",11-19 03:00 国王杯 艾高亚诺 vs 马略卡 (1-1) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/0a69614d5001834828935494816/playlist_eof.m3u8?t=6afe8d51&us=91aa4c4410&sign=bec3288c66daa0a96902b94de6e828dd
-#EXTINF:-1 tvg-id="R47472_0" tvg-name="11-19 02:30 欧协杯 布尔格 vs 那不勒斯 (91-79) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/b14af09b5c823ae72f552c4dd8f3b03e.png" group-title="赛事回放",11-19 02:30 欧协杯 布尔格 vs 那不勒斯 (91-79) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/c9d2ba855001834828924143387/playlist_eof.m3u8?t=6afe8d83&us=d8558742a0&sign=1b792090d5a0ce7a3461031a7e7c7f43
-#EXTINF:-1 tvg-id="R47471_0" tvg-name="11-19 02:30 欧协杯 法兰克福 vs 威尼斯雷耶 (97-107) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/66a228be6421fdeb341f5d0775888a0f.png" group-title="赛事回放",11-19 02:30 欧协杯 法兰克福 vs 威尼斯雷耶 (97-107) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/0f1b9e965001834828901351070/playlist_eof.m3u8?t=6afe8dc2&us=5f019e54cd&sign=eb6f256eca1a540b2122dc415e9140a9
-#EXTINF:-1 tvg-id="R47470_0" tvg-name="11-19 02:30 欧协杯 波斯纳 vs 特彻哈萨斯 (91-84) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/3bb573ccb97974b5a82591bbda60a3ed.png" group-title="赛事回放",11-19 02:30 欧协杯 波斯纳 vs 特彻哈萨斯 (91-84) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/8318648a5001834828774388027/playlist_eof.m3u8?t=6afe8d5a&us=601b4a3b35&sign=d6d7965e2005ec20ef72dc13a0b7ee2f
-#EXTINF:-1 tvg-id="R47468_0" tvg-name="11-19 02:00 欧协杯 阿里斯 vs 勒芒 (96-86) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/5d7ef13b823e4bc4a47d1399a8caa9ea.png" group-title="赛事回放",11-19 02:00 欧协杯 阿里斯 vs 勒芒 (96-86) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/e11094405001834828884220228/playlist_eof.m3u8?t=6afe8e2c&us=4251729aa3&sign=448357efe7f66ea4b3bc21d225223be8
-#EXTINF:-1 tvg-id="R47466_0" tvg-name="11-19 02:00 欧协杯 开姆尼茨 vs 托法斯 (85-94) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/e8a48b37fec643cb9d989106392c14a7.png" group-title="赛事回放",11-19 02:00 欧协杯 开姆尼茨 vs 托法斯 (85-94) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/46fcdd215001834828882209305/playlist_eof.m3u8?t=6afe8df1&us=1d8f26d7be&sign=d110296529f2fd3dc811ebc1d23fa471
-#EXTINF:-1 tvg-id="R47465_0" tvg-name="11-19 02:00 欧协杯 布杜克诺斯特 vs 斯拉斯克 (94-88) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/50000140e1d27e8ce23018ff1ac3a9b7.png" group-title="赛事回放",11-19 02:00 欧协杯 布杜克诺斯特 vs 斯拉斯克 (94-88) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/d1591b685001834828931227956/playlist_eof.m3u8?t=6afe8e25&us=d1d1ba1398&sign=4422b826e5252221e4c8d6b7fd4e081b
-#EXTINF:-1 tvg-id="R43047_0" tvg-name="11-19 02:00 国王杯 波图哥尼迪 vs 皇家联邦 (0-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/9f5eaf50587df4b820829ca75757ac07.png" group-title="赛事回放",11-19 02:00 国王杯 波图哥尼迪 vs 皇家联邦 (0-0) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/cdcbc19b5001834828900852250/playlist_eof.m3u8?t=6afe8e24&us=96983a6483&sign=c9ccf369cd484c661368d2afc96dee26
-#EXTINF:-1 tvg-id="R43047_0" tvg-name="11-19 02:00 国王杯 波图哥尼迪 vs 皇家联邦 (0-0) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/9f5eaf50587df4b820829ca75757ac07.png" group-title="赛事回放",11-19 02:00 国王杯 波图哥尼迪 vs 皇家联邦 (0-0) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/38064a875001834828773427625/playlist_eof.m3u8?t=6afe8e24&us=96983a6483&sign=5541707eedcca2a98e109f93f39fb8b4
-#EXTINF:-1 tvg-id="R43045_0" tvg-name="11-19 02:00 国王杯 乌特波 vs 萨瓦德尔 (0-3) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/bb83e317aa58e330ab7a3920059b8a2a.png" group-title="赛事回放",11-19 02:00 国王杯 乌特波 vs 萨瓦德尔 (0-3) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/03ae73cc5001834828881653359/playlist_eof.m3u8?t=6afe8e15&us=c7a4038595&sign=5ac3c958486d7bef52fbea9ca53ddca4
-#EXTINF:-1 tvg-id="R43045_0" tvg-name="11-19 02:00 国王杯 乌特波 vs 萨瓦德尔 (0-3) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/bb83e317aa58e330ab7a3920059b8a2a.png" group-title="赛事回放",11-19 02:00 国王杯 乌特波 vs 萨瓦德尔 (0-3) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/c212133e5001834828900346318/playlist_eof.m3u8?t=6afe8e15&us=c7a4038595&sign=c357fb0afd31363b3c0a831026f98ff6
-#EXTINF:-1 tvg-id="R47314_0" tvg-name="11-19 01:45 欧女杯 皇家马德里女足 vs 国际米兰女足 (3-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/be7fe57ffae201d4d8e1f8a8bf33232f.png" group-title="赛事回放",11-19 01:45 欧女杯 皇家马德里女足 vs 国际米兰女足 (3-1) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/fa0218c15001834828881208442/playlist_eof.m3u8?t=6afe8d9e&us=6ef8b364e1&sign=ac6358c1258896767ba86a300c02f4f4
-#EXTINF:-1 tvg-id="R47313_0" tvg-name="11-19 01:45 欧女杯 赫根女足 vs 曼彻斯特城女足 (0-2) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/e121cced31de682c590d3305327061df.png" group-title="赛事回放",11-19 01:45 欧女杯 赫根女足 vs 曼彻斯特城女足 (0-2) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/59e1afd45001834828899724881/playlist_eof.m3u8?t=6afe8e16&us=a18863476e&sign=b5bf07ae225673eeb85fa65d22271c3e
-#EXTINF:-1 tvg-id="R47613_0" tvg-name="11-19 01:30 塞尔杯 泽蒙 vs 拉德尼基1923 (1-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/810c5df2cb25ece4a24b43a927508810.png" group-title="赛事回放",11-19 01:30 塞尔杯 泽蒙 vs 拉德尼基1923 (1-0) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/0e238f0b5001834828928856504/playlist_eof.m3u8?t=6afe8d9e&us=6ef8b364e1&sign=26257f641afc5b491ae8adf13d2678a3
-#EXTINF:-1 tvg-id="R47463_0" tvg-name="11-19 01:30 欧协杯 KK切德维塔 vs 圣帕罗布哥斯 (76-62) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/004ad9c77a14d373fc7b93344a67d111.png" group-title="赛事回放",11-19 01:30 欧协杯 KK切德维塔 vs 圣帕罗布哥斯 (76-62) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/4c17ec0c5001834828899152824/playlist_eof.m3u8?t=6afe8da4&us=3d24bf2c89&sign=74b9d2686b88b04c90125209c6481e3e
-#EXTINF:-1 tvg-id="R47461_0" tvg-name="11-19 01:00 欧协杯 克卢日纳波卡 vs 罗马至尊 (87-79) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/37c9b86ca627a28cfff5ee00277a8efe.png" group-title="赛事回放",11-19 01:00 欧协杯 克卢日纳波卡 vs 罗马至尊 (87-79) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/7c41c8845001834828916353355/playlist_eof.m3u8?t=6afe8e4f&us=5a5a9ef5ef&sign=3e780539183813a1156ab7848e237707
-#EXTINF:-1 tvg-id="R47455_0" tvg-name="11-19 01:00 篮冠联 雅典AEK vs 法尔科 (90-89) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/31e923dcb7e37ee42d4481bfad7ff9b9.png" group-title="赛事回放",11-19 01:00 篮冠联 雅典AEK vs 法尔科 (90-89) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/57db64b95001834828763988749/playlist_eof.m3u8?t=6afe8e16&us=a18863476e&sign=f30ede199395dce47a00c60e08339a4d
-#EXTINF:-1 tvg-id="R47454_0" tvg-name="11-19 01:00 篮冠联 加拉塔萨雷 vs 华沙莱吉亚 (88-81) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/cfcc0e73f9bb9b5e7c7455798cad9a9e.png" group-title="赛事回放",11-19 01:00 篮冠联 加拉塔萨雷 vs 华沙莱吉亚 (88-81) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/61bd26ab5001834828926088257/playlist_eof.m3u8?t=6afe8e28&us=6146d22c67&sign=5002b81eb411525a692cb58ee23e5b30
-#EXTINF:-1 tvg-id="R47451_0" tvg-name="11-19 01:00 欧篮联 贝西克塔斯 vs 皇家马德里 (83-79) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/94dada68497d1016c38eb742c5040164.png" group-title="赛事回放",11-19 01:00 欧篮联 贝西克塔斯 vs 皇家马德里 (83-79) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/4785ab8f5001834828763285938/playlist_eof.m3u8?t=6afe8e67&us=5e3bb8c7dd&sign=de5308edb0d51d9d323f134aa051c2d2
-#EXTINF:-1 tvg-id="R47450_0" tvg-name="11-19 00:30 VTB MBA莫斯科 vs BC萨马拉 (78-83) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/35b2056136a3612e0bcb2d3efa66e062.png" group-title="赛事回放",11-19 00:30 VTB MBA莫斯科 vs BC萨马拉 (78-83) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/9c7a0f4b5001834828913679507/playlist_eof.m3u8?t=6afe8d80&us=53f9c03a0b&sign=678b9b6586b782f44b4fe207faab921f
-#EXTINF:-1 tvg-id="R47450_0" tvg-name="11-19 00:30 VTB MBA莫斯科 vs BC萨马拉 (78-83) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/35b2056136a3612e0bcb2d3efa66e062.png" group-title="赛事回放",11-19 00:30 VTB MBA莫斯科 vs BC萨马拉 (78-83) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/8cb8b14e5001834828876164585/playlist_eof.m3u8?t=6afe8d80&us=53f9c03a0b&sign=25b0313e0604d43c836c47f627a2700c
-#EXTINF:-1 tvg-id="R47449_0" tvg-name="11-19 00:30 欧协杯 托尔托纳 vs 里加斯泽利 (92-96) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/40510b65305aa21e43eee61d95777a21.png" group-title="赛事回放",11-19 00:30 欧协杯 托尔托纳 vs 里加斯泽利 (92-96) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/cc4cac5f5001834828924264611/playlist_eof.m3u8?t=6afe8d9f&us=6963b5e5d7&sign=40888bb5c58b8c180992bf7392bc603a
-#EXTINF:-1 tvg-id="R47446_0" tvg-name="11-19 00:00 VTB 喀山尤尼克斯 vs 叶尼塞 (82-68) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/aa59085806510e44514cb561cce3a3c6.png" group-title="赛事回放",11-19 00:00 VTB 喀山尤尼克斯 vs 叶尼塞 (82-68) - 高清回放1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/a9ce5d1d5001834828910167540/playlist_eof.m3u8?t=6afe8e3a&us=a1fd208951&sign=dc5b5adb3774f0773bb222cc4f0d5aa9
-#EXTINF:-1 tvg-id="R47446_0" tvg-name="11-19 00:00 VTB 喀山尤尼克斯 vs 叶尼塞 (82-68) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/aa59085806510e44514cb561cce3a3c6.png" group-title="赛事回放",11-19 00:00 VTB 喀山尤尼克斯 vs 叶尼塞 (82-68) - 超清外语1
-https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/f969c3485001834828874415564/playlist_eof.m3u8?t=6afe8e3a&us=a1fd208951&sign=9b2d2509fa3fdf3184e303f71d0c7957
+#EXTINF:-1 tvg-id="L4" tvg-name="NBA 勇士 vs 灰熊 - 直播4" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/5150102b33043405b63b2e7c72759fa8.png" group-title="NBA",NBA 勇士 vs 灰熊 - 直播4
+https://hello.ooo0ooo.top/live/3931712.m3u8
+#EXTINF:-1 tvg-id="L8" tvg-name="NBA 尼克斯 vs 森林狼 - 直播8" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/1700678b84ba5a771e76a067027bebb9.png" group-title="NBA",NBA 尼克斯 vs 森林狼 - 直播8
+https://hello.ooo0ooo.top/live/3931714.m3u8
+#EXTINF:-1 tvg-id="L6" tvg-name="NBA 开拓者 vs 雄鹿 - 直播6" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/172138a954c51bb257ac1ebaa52f01a1.png" group-title="NBA",NBA 开拓者 vs 雄鹿 - 直播6
+https://hello.ooo0ooo.top/live/3931713.m3u8
+#EXTINF:-1 tvg-id="L221" tvg-name="NBA 快船 vs 马刺 - 原声17" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/5305d1a7b721b5bef418041eff53ba82.png" group-title="NBA",NBA 快船 vs 马刺 - 原声17
+https://pul-tenm.gkykp.com/live/hd-en-2-3931715.m3u8?txSecret=f7cc47a2190fb27bce9bb221577a38ba&txTime=6B00EC20
+#EXTINF:-1 tvg-id="L5" tvg-name="NCAA 塔斯库姆大学 vs 北阿拉巴马 - 直播5" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/n3ccba68566326336d62ff5ae4d113188.png" group-title="NCAA",NCAA 塔斯库姆大学 vs 北阿拉巴马 - 直播5
+https://hello.ooo0ooo.top/live/3951507.m3u8
+#EXTINF:-1 tvg-id="L13" tvg-name="NCAA 查尔斯顿大学 vs 德瑞克大学 - 直播13" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/8a7a3c5d419e322bc21e2bd97a6bffed.png" group-title="NCAA",NCAA 查尔斯顿大学 vs 德瑞克大学 - 直播13
+https://hello.ooo0ooo.top/live/3952497.m3u8
+#EXTINF:-1 tvg-id="L206" tvg-name="NCAA 查尔斯顿大学 vs 德瑞克大学 - 原声2" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/8a7a3c5d419e322bc21e2bd97a6bffed.png" group-title="NCAA",NCAA 查尔斯顿大学 vs 德瑞克大学 - 原声2
+https://pul-tenm.gkykp.com/live/sd-2-3952497.m3u8?txSecret=5bb0da4118ff466cbcc42c033a9b646e&txTime=6B00EC20
+#EXTINF:-1 tvg-id="L16" tvg-name="哥伦乙 卡塔根纳 vs 锡帕基拉老虎 - 直播16" tvg-logo="https://cdn.sportnanoapi.com/football/team/043a70a1b54a7fcc970fbe3053996fa0.png" group-title="哥伦乙",哥伦乙 卡塔根纳 vs 锡帕基拉老虎 - 直播16
+https://hello.ooo0ooo.top/live/4664489.m3u8
+#EXTINF:-1 tvg-id="L217" tvg-name="哥伦乙 卡塔根纳 vs 锡帕基拉老虎 - 原声13" tvg-logo="https://cdn.sportnanoapi.com/football/team/043a70a1b54a7fcc970fbe3053996fa0.png" group-title="哥伦乙",哥伦乙 卡塔根纳 vs 锡帕基拉老虎 - 原声13
+https://pul-tenm.gkykp.com/live/sd-1-4664489.m3u8?txSecret=ed76119786fc0b6fc726c8dcdf6dfc29&txTime=6B00EC20
+#EXTINF:-1 tvg-id="L15" tvg-name="哥伦乙 索阿查 vs 奎迪奥 - 直播15" tvg-logo="https://cdn.sportnanoapi.com/football/team/50fbe18e0f3a8bba0049607f8780eed0.png" group-title="哥伦乙",哥伦乙 索阿查 vs 奎迪奥 - 直播15
+https://hello.ooo0ooo.top/live/4664488.m3u8
+#EXTINF:-1 tvg-id="L216" tvg-name="哥伦乙 索阿查 vs 奎迪奥 - 原声12" tvg-logo="https://cdn.sportnanoapi.com/football/team/50fbe18e0f3a8bba0049607f8780eed0.png" group-title="哥伦乙",哥伦乙 索阿查 vs 奎迪奥 - 原声12
+https://pul-tenm.gkykp.com/live/sd-1-4664488.m3u8?txSecret=ec499470d43d33b706caa76f84ac0874&txTime=6B00EC20
+#EXTINF:-1 tvg-id="L1" tvg-name="巴西甲 圣保罗 vs 弗鲁米嫩塞 - 直播1" tvg-logo="https://cdn.sportnanoapi.com/football/team/31f5171de0e1404fdebcef19cd7cd409.png" group-title="巴西甲",巴西甲 圣保罗 vs 弗鲁米嫩塞 - 直播1
+https://hello.ooo0ooo.top/live/4465956.m3u8
+#EXTINF:-1 tvg-id="L214" tvg-name="巴西甲 圣保罗 vs 弗鲁米嫩塞 - 原声10" tvg-logo="https://cdn.sportnanoapi.com/football/team/31f5171de0e1404fdebcef19cd7cd409.png" group-title="巴西甲",巴西甲 圣保罗 vs 弗鲁米嫩塞 - 原声10
+https://pul-tenm.gkykp.com/live/sd-1-4465956.m3u8?txSecret=17d02d5f7bf08ea32629c02588a8e23b&txTime=6B00EC20
+#EXTINF:-1 tvg-id="L11" tvg-name="巴西甲 奥萨斯科 vs 米纳斯 - 直播11" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/4a6542962e482dc227f1b3f716b138fb.png" group-title="巴西甲",巴西甲 奥萨斯科 vs 米纳斯 - 直播11
+https://hello.ooo0ooo.top/live/3939539.m3u8
+#EXTINF:-1 tvg-id="L10" tvg-name="巴西甲 帕图 vs 科林蒂安 - 直播10" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/19e535ee3cee1c98392c69314d5c9df5.png" group-title="巴西甲",巴西甲 帕图 vs 科林蒂安 - 直播10
+https://hello.ooo0ooo.top/live/3939663.m3u8
+#EXTINF:-1 tvg-id="L209" tvg-name="巴西甲 帕图 vs 科林蒂安 - 原声5" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/19e535ee3cee1c98392c69314d5c9df5.png" group-title="巴西甲",巴西甲 帕图 vs 科林蒂安 - 原声5
+https://pul-tenm.gkykp.com/live/sd-2-3939663.m3u8?txSecret=d300cee3e982089e0d798e332f635786&txTime=6B00E7E9
+#EXTINF:-1 tvg-id="L12" tvg-name="巴西甲 皮涅鲁斯 vs 克鲁塞罗 - 直播12" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/16955cfd2097843a95e93a128e3d5b21.png" group-title="巴西甲",巴西甲 皮涅鲁斯 vs 克鲁塞罗 - 直播12
+https://hello.ooo0ooo.top/live/3939552.m3u8
+#EXTINF:-1 tvg-id="L211" tvg-name="巴西甲 皮涅鲁斯 vs 克鲁塞罗 - 原声7" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/16955cfd2097843a95e93a128e3d5b21.png" group-title="巴西甲",巴西甲 皮涅鲁斯 vs 克鲁塞罗 - 原声7
+https://pul-tenm.gkykp.com/live/sd-2-3939552.m3u8?txSecret=7143cab0f245b4eb7bc93b02306826e7&txTime=6B00EBA9
+#EXTINF:-1 tvg-id="L2" tvg-name="美职业 奥兰多城 vs 辛辛那提FC - 直播2" tvg-logo="https://cdn.sportnanoapi.com/football/team/b4ad649e6c6a9a6cf91493bf5e92ffbe.png" group-title="美职业",美职业 奥兰多城 vs 辛辛那提FC - 直播2
+https://hello.ooo0ooo.top/live/4666433.m3u8
+#EXTINF:-1 tvg-id="L215" tvg-name="美职业 奥兰多城 vs 辛辛那提FC - 原声11" tvg-logo="https://cdn.sportnanoapi.com/football/team/b4ad649e6c6a9a6cf91493bf5e92ffbe.png" group-title="美职业",美职业 奥兰多城 vs 辛辛那提FC - 原声11
+https://pul-tenm.gkykp.com/live/hd-en-1-4666433.m3u8?txSecret=390eb200229fbb513a73d11818117c1a&txTime=6B00EC20
+#EXTINF:-1 tvg-id="R29555_0" tvg-name="11-20 19:00 亚美超 阿拉拉特亚美尼亚 vs FK瓦尼 (2-0) - 备份录像1" tvg-logo="https://cdn.sportnanoapi.com/football/team/445b142144eafa15449f92563fd1b978.png" group-title="赛事回放",11-20 19:00 亚美超 阿拉拉特亚美尼亚 vs FK瓦尼 (2-0) - 备份录像1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/59968c285001834819473472557/playlist.m3u8
+#EXTINF:-1 tvg-id="R47628_0" tvg-name="11-20 06:00 巴西甲 乌法兹萨 vs 弗拉门戈 (102-79) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/8aa7d52c76dc585c597c5d0cf537a211.png" group-title="赛事回放",11-20 06:00 巴西甲 乌法兹萨 vs 弗拉门戈 (102-79) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/e72131815001834829069106905/playlist_eof.m3u8?t=6affe161&us=4fea9a54d2&sign=ca363c9ed7969aa6c27b39def7d9bb66
+#EXTINF:-1 tvg-id="R47627_0" tvg-name="11-20 04:00 欧篮联 瓦伦西亚 vs 博洛尼亚 (92-87) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/a3819bb7ddd5edc47416d1efb5539fd3.png" group-title="赛事回放",11-20 04:00 欧篮联 瓦伦西亚 vs 博洛尼亚 (92-87) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/4fa350805001834829067221881/playlist_eof.m3u8?t=6affe15b&us=8035f47b6c&sign=b458f83798ae53414167f6c91d25bd02
+#EXTINF:-1 tvg-id="R47509_0" tvg-name="11-20 04:00 欧女杯 本菲卡女足 vs 罗马女足 (2-3) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/0ddf4b8fdaf64851b8015da1e5fcdf11.png" group-title="赛事回放",11-20 04:00 欧女杯 本菲卡女足 vs 罗马女足 (2-3) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/569504085001834829067519492/playlist_eof.m3u8?t=6affe12d&us=717cc75a33&sign=0689417c6be37968c87340a7dd1fdd78
+#EXTINF:-1 tvg-id="R47509_0" tvg-name="11-20 04:00 欧女杯 本菲卡女足 vs 罗马女足 (2-3) - 超清中文1" tvg-logo="https://cdn.sportnanoapi.com/football/team/0ddf4b8fdaf64851b8015da1e5fcdf11.png" group-title="赛事回放",11-20 04:00 欧女杯 本菲卡女足 vs 罗马女足 (2-3) - 超清中文1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/9a5b99a25001834829068133943/playlist_eof.m3u8?t=6affe12d&us=717cc75a33&sign=9c68f50564c91c824d90fbe7dd64e384
+#EXTINF:-1 tvg-id="R47509_0" tvg-name="11-20 04:00 欧女杯 本菲卡女足 vs 罗马女足 (2-3) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/0ddf4b8fdaf64851b8015da1e5fcdf11.png" group-title="赛事回放",11-20 04:00 欧女杯 本菲卡女足 vs 罗马女足 (2-3) - 超清外语1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/37a2b8ec5001834829060397589/playlist_eof.m3u8?t=6affe12d&us=717cc75a33&sign=f43d21e2da47c4094c08841ab2e78f36
+#EXTINF:-1 tvg-id="R47508_0" tvg-name="11-20 04:00 欧女杯 巴塞罗那女足 vs 塞尔维特女足 (6-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/b65ee16a9cfe056825b1e0c15c05cf54.png" group-title="赛事回放",11-20 04:00 欧女杯 巴塞罗那女足 vs 塞尔维特女足 (6-0) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/838ad6745001834828916695938/playlist_eof.m3u8?t=6affe09a&us=c4258cd6bb&sign=1213963d731b8af4311bf1d6cef0826b
+#EXTINF:-1 tvg-id="R47508_0" tvg-name="11-20 04:00 欧女杯 巴塞罗那女足 vs 塞尔维特女足 (6-0) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/b65ee16a9cfe056825b1e0c15c05cf54.png" group-title="赛事回放",11-20 04:00 欧女杯 巴塞罗那女足 vs 塞尔维特女足 (6-0) - 超清外语1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/582ea49b5001834829019751430/playlist_eof.m3u8?t=6affe09a&us=c4258cd6bb&sign=e65ea64e4fe849a459f360ab6252c224
+#EXTINF:-1 tvg-id="R47507_0" tvg-name="11-20 04:00 欧女杯 阿森纳女足 vs 里昂女足 (0-2) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/b61190e348449a746ef3f802e7ebc701.png" group-title="赛事回放",11-20 04:00 欧女杯 阿森纳女足 vs 里昂女足 (0-2) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/34efb63a5001834829060241088/playlist_eof.m3u8?t=6affe08e&us=a055503af0&sign=113240fab1998cf32b639e0c51dbc1e2
+#EXTINF:-1 tvg-id="R47507_0" tvg-name="11-20 04:00 欧女杯 阿森纳女足 vs 里昂女足 (0-2) - 超清中文1" tvg-logo="https://cdn.sportnanoapi.com/football/team/b61190e348449a746ef3f802e7ebc701.png" group-title="赛事回放",11-20 04:00 欧女杯 阿森纳女足 vs 里昂女足 (0-2) - 超清中文1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/372139745001834829060322028/playlist_eof.m3u8?t=6affe08e&us=a055503af0&sign=57f356fcdfb2fa8d2a32a6d11564e89c
+#EXTINF:-1 tvg-id="R47507_0" tvg-name="11-20 04:00 欧女杯 阿森纳女足 vs 里昂女足 (0-2) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/b61190e348449a746ef3f802e7ebc701.png" group-title="赛事回放",11-20 04:00 欧女杯 阿森纳女足 vs 里昂女足 (0-2) - 超清外语1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/55b5d79d5001834829019632452/playlist_eof.m3u8?t=6affe08e&us=a055503af0&sign=4fd82ca661e1e266b2c1aeef0bfee147
+#EXTINF:-1 tvg-id="R47626_0" tvg-name="11-20 03:45 欧篮联 巴黎 vs 特拉维夫夏普尔 (97-96) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/f96bb22cdad391337c9f1a8585b07dcc.png" group-title="赛事回放",11-20 03:45 欧篮联 巴黎 vs 特拉维夫夏普尔 (97-96) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/b5851f655001834829058492075/playlist_eof.m3u8?t=6affe0b1&us=35d4fba117&sign=e1a64a1c459c15b89cbe44871a30bf32
+#EXTINF:-1 tvg-id="R48192_0" tvg-name="11-20 03:30 NCAA 佛罗里达大学 vs 西弗吉尼亚大学理工学院 (85-72) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/98ddc8da5d074b44a22c47cbaa27bb91.png" group-title="赛事回放",11-20 03:30 NCAA 佛罗里达大学 vs 西弗吉尼亚大学理工学院 (85-72) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/5426cd495001834828912873249/playlist_eof.m3u8?t=6affe06c&us=17ef1b109e&sign=ee5564e705349d22e2f8776e0c48e6da
+#EXTINF:-1 tvg-id="R47625_0" tvg-name="11-20 03:30 欧篮联 米兰奥林匹亚 vs 费内巴切 (78-70) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/3187dc73fc0b4ff182f270b1d268c9cb.png" group-title="赛事回放",11-20 03:30 欧篮联 米兰奥林匹亚 vs 费内巴切 (78-70) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/532dc01f5001834829019508803/playlist_eof.m3u8?t=6affe0b5&us=9b9377d154&sign=082e830affc89997b8f9a96093810014
+#EXTINF:-1 tvg-id="R47506_0" tvg-name="11-20 03:25 乌拉甲 普罗格雷索俱乐部 vs 蒙得维的亚城图尔克 (1-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/0b168930b9b0cf269daf08a53170b27a.png" group-title="赛事回放",11-20 03:25 乌拉甲 普罗格雷索俱乐部 vs 蒙得维的亚城图尔克 (1-1) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/e4b4a9655001834828914463932/playlist_eof.m3u8?t=6affe0ca&us=dfd6abc57a&sign=22adc7ef407e19c92c6cffaed6de672e
+#EXTINF:-1 tvg-id="R47505_0" tvg-name="11-20 03:25 乌拉甲 佩纳罗尔 vs 塞罗拉尔戈 (3-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/d95f60f58aac7368fb6659aa0f27cfbf.png" group-title="赛事回放",11-20 03:25 乌拉甲 佩纳罗尔 vs 塞罗拉尔戈 (3-0) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/d7afbf375001834829021518621/playlist_eof.m3u8?t=6affe059&us=9a4731ce76&sign=3f413461c339638cd580508b3e4173df
+#EXTINF:-1 tvg-id="R47504_0" tvg-name="11-20 03:25 乌拉甲 波士顿河 vs 马尔多纳多 (1-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/213564797bbfa3921e60bb314c92354b.png" group-title="赛事回放",11-20 03:25 乌拉甲 波士顿河 vs 马尔多纳多 (1-0) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/136b68785001834829066984899/playlist_eof.m3u8?t=6affe0b7&us=20680ab142&sign=3c4236ddb08692ee31792a1f0d4386fb
+#EXTINF:-1 tvg-id="R47624_0" tvg-name="11-20 03:00 欧篮联 拜仁慕尼黑 vs 巴斯克尼亚 (100-81) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/99a5187dc20d019f4fd223a6a6de80a6.png" group-title="赛事回放",11-20 03:00 欧篮联 拜仁慕尼黑 vs 巴斯克尼亚 (100-81) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/1d5ba3035001834829015467636/playlist_eof.m3u8?t=6affe0cb&us=0fb02e2e63&sign=c4894ee64b8c0cf229436b337710c430
+#EXTINF:-1 tvg-id="R48194_0" tvg-name="11-20 02:00 埃及杯 泽德FC vs 史莫哈 (0-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/a08754ab96c283bacbf148154a50c7fc.png" group-title="赛事回放",11-20 02:00 埃及杯 泽德FC vs 史莫哈 (0-0) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/931ef63b5001834829051115629/playlist_eof.m3u8?t=6affe141&us=4de85df2ad&sign=2833a897b44dc4a2e7927006e6de1a60
+#EXTINF:-1 tvg-id="R47621_0" tvg-name="11-20 02:00 欧篮联 萨拉基利斯 vs 帕纳辛纳科斯 (72-87) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/2d05b2c06841b4f3e6df084479f08594.png" group-title="赛事回放",11-20 02:00 欧篮联 萨拉基利斯 vs 帕纳辛纳科斯 (72-87) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/a0d0c2a65001834829027308678/playlist_eof.m3u8?t=6affe09a&us=c4258cd6bb&sign=74a07ac15557303e3b70e391c005448c
+#EXTINF:-1 tvg-id="R47503_0" tvg-name="11-20 02:00 丹麦甲 弗雷德里西亚 vs 希勒罗德 (4-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/53065afcbcf4b386b8aef9eefab540a9.png" group-title="赛事回放",11-20 02:00 丹麦甲 弗雷德里西亚 vs 希勒罗德 (4-1) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/2ee6874a5001834828908592058/playlist_eof.m3u8?t=6affe129&us=359a281e44&sign=6f6885407cc971d141d67032cbd67c7b
+#EXTINF:-1 tvg-id="R47502_0" tvg-name="11-20 01:45 欧女杯 巴黎FC女足 vs HB克厄女足 (2-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/fabc3fa7f297e32d91291693eb8c1404.png" group-title="赛事回放",11-20 01:45 欧女杯 巴黎FC女足 vs HB克厄女足 (2-1) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/c671ce265001834829048326972/playlist_eof.m3u8?t=6affe141&us=4de85df2ad&sign=6bc668a773c8d145ec9c67fa508f8bb3
+#EXTINF:-1 tvg-id="R47502_0" tvg-name="11-20 01:45 欧女杯 巴黎FC女足 vs HB克厄女足 (2-1) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/fabc3fa7f297e32d91291693eb8c1404.png" group-title="赛事回放",11-20 01:45 欧女杯 巴黎FC女足 vs HB克厄女足 (2-1) - 超清外语1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/ef72be105001834828986216587/playlist_eof.m3u8?t=6affe141&us=4de85df2ad&sign=b5294195916adaac4b1d4255ff6a11f7
+#EXTINF:-1 tvg-id="R47501_0" tvg-name="11-20 01:45 欧女杯 奥地利维也纳女足 vs 拜仁女足 (0-4) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/0454e224a578f2d2fb8e4bafc58e140e.png" group-title="赛事回放",11-20 01:45 欧女杯 奥地利维也纳女足 vs 拜仁女足 (0-4) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/65b9dca25001834829057327418/playlist_eof.m3u8?t=6affe163&us=e6045619e9&sign=ff2d97d0521122b8c23e5dc53b14e598
+#EXTINF:-1 tvg-id="R47501_0" tvg-name="11-20 01:45 欧女杯 奥地利维也纳女足 vs 拜仁女足 (0-4) - 超清外语1" tvg-logo="https://cdn.sportnanoapi.com/football/team/0454e224a578f2d2fb8e4bafc58e140e.png" group-title="赛事回放",11-20 01:45 欧女杯 奥地利维也纳女足 vs 拜仁女足 (0-4) - 超清外语1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/a61bb66a5001834829027594477/playlist_eof.m3u8?t=6affe163&us=e6045619e9&sign=aa6f1e11af469c2b12daca78074da57e
+#EXTINF:-1 tvg-id="R47620_0" tvg-name="11-20 01:15 欧篮联 特拉维夫马卡比 vs 迪拜 (74-80) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/basketball/team/7ee25ad1863a6d376abebd6013c03cab.png" group-title="赛事回放",11-20 01:15 欧篮联 特拉维夫马卡比 vs 迪拜 (74-80) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/d5505be25001834829055757710/playlist_eof.m3u8?t=6affe07a&us=f7defd65df&sign=210611ac86fd917f3de2f29a5ca6b634
+#EXTINF:-1 tvg-id="R47922_0" tvg-name="11-20 01:00 瑞典女超 奥雷布洛女足 vs 罗森加德女足 (2-1) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/be295e34ed9d6b538b4c4a526a35ac87.png" group-title="赛事回放",11-20 01:00 瑞典女超 奥雷布洛女足 vs 罗森加德女足 (2-1) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/76cb967d5001834829006126386/playlist_eof.m3u8?t=6affe163&us=e6045619e9&sign=10f74ac58aae5325670aa5798718cc6a
+#EXTINF:-1 tvg-id="R48191_0" tvg-name="11-20 00:00 伊拉超 沙马尔 vs 卡克 (1-0) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/1ae9f165a8fa40723f6524dd0e5de714.png" group-title="赛事回放",11-20 00:00 伊拉超 沙马尔 vs 卡克 (1-0) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/4b3d43625001834829050378662/playlist_eof.m3u8?t=6affe10f&us=b9152e5987&sign=ad3852fa186679505ebbeb10999bca4d
+#EXTINF:-1 tvg-id="R47500_0" tvg-name="11-20 00:00 U17世界杯 埃及U17 vs 希腊U17 (1-2) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/65a579da11fa712149bca347ecfcb208.png" group-title="赛事回放",11-20 00:00 U17世界杯 埃及U17 vs 希腊U17 (1-2) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/fadd90555001834828979971537/playlist_eof.m3u8?t=6affe161&us=4fea9a54d2&sign=19886d820808404d845537002ad16159
+#EXTINF:-1 tvg-id="R47499_0" tvg-name="11-20 00:00 U17世界杯 阿根廷U17 vs 澳大利亚U17 (0-2) - 高清回放1" tvg-logo="https://cdn.sportnanoapi.com/football/team/7d44a77ef7bf7d809287828b992f3007.png" group-title="赛事回放",11-20 00:00 U17世界杯 阿根廷U17 vs 澳大利亚U17 (0-2) - 高清回放1
+https://hello.ooo0ooo.top/replay/d5ff014avodsgp1302796787/a065209e5001834829003852627/playlist_eof.m3u8?t=6affe107&us=a56e3e0c4e&sign=f80091402523482b3f82a1631fa6de0c
