@@ -3,20 +3,6 @@
 #EXTM3U
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/5ed7ea60fe8e3842203b0741187f0fd7-thumbnail.jpg" group-title="American Football",NFL Network
 https://ppv.passwdwork.us.ci/?proxy=1&id=nfl-network
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/fddd38cedb856e2d952ae63ea4502fd9-thumbnail.jpg" group-title="American Football",Oregon Ducks at Michigan State Spartans (09:00 ~ 13:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-20/ore-msu
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/2d5035d494f6bed4eb31ec4fbe6d1f2d-thumbnail.jpg" group-title="American Football",BYU Cougars at Kansas Jayhawks (01:00 ~ 05:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-21/byu-ku
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/9c36ef544fcb6955909f74a0b81b2f77-thumbnail.jpg" group-title="American Football",Wake Forest Demon Deacons at Georgia Tech Yellow Jackets (01:00 ~ 05:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-21/wake-gt
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/bda7888547b98ea1b401f52e145d8282-thumbnail.jpg" group-title="American Football",Wofford Terriers at Ole Miss Rebels (01:00 ~ 05:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-21/wof-miss
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/8770549ad259204609060724550ec4b4-thumbnail.jpg" group-title="American Football",Ohio State Buckeyes at Nebraska Cornhuskers (01:00 ~ 05:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-21/osu-neb
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/e83abb2e65c111ec37623283a4946763-thumbnail.jpg" group-title="American Football",Houston Cougars at West Virginia Mountaineers (02:00 ~ 06:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-21/hou-wvu
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/7342c35b73c83de9a308967eb338ac7e-thumbnail.jpg" group-title="American Football",Chattanooga Mocs at Alabama Crimson Tide (03:00 ~ 07:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-21/utc-ala
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/7a4d9b582044cbb2c1c6cc5fb84fae74-thumbnail.jpg" group-title="American Football",Iowa Hawkeyes at Illinois Fighting Illini (03:30 ~ 07:30)
 https://ppv.passwdwork.us.ci/?proxy=1&id=cfb/2026-11-21/iowa-ill
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/9c6bc998fc37d13e9062a30a2a29faa9-thumbnail.jpg" group-title="American Football",UCLA Bruins at Michigan Wolverines (04:30 ~ 08:30)
@@ -73,46 +59,6 @@ https://ppv.passwdwork.us.ci/?proxy=1&id=nfl/2026-11-22/min-sf
 https://ppv.passwdwork.us.ci/?proxy=1&id=nfl/2026-11-23/cin-wsh
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/514cf8272ec290889a5ce6fd299fb9c8-thumbnail.jpg" group-title="Australian Football",Fox Footy
 https://ppv.passwdwork.us.ci/?proxy=1&id=247-fox-footy
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/16c0c6fb677fee398366c87a79ac3573-thumbnail.jpg" group-title="Basketball",Manhattan Jaspers at Miami Hurricanes (06:00 ~ 09:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-20/man-mia
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/d1d7ac57f71178a1bf192fe6fca712ae-thumbnail.jpg" group-title="Basketball",Charlotte Hornets vs. Atlanta Hawks (08:00 ~ 11:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/cha-atl
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/eb8b6cec06956ec541e4eb2e2cd0de30-thumbnail.jpg" group-title="Basketball",Loyola Maryland Greyhounds at Virginia Cavaliers (08:00 ~ 11:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-20/lmd-uva
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/238e28650138d39e43fd50d92fc78e9a-thumbnail.jpg" group-title="Basketball",Coastal Carolina Chanticleers at Tennessee Volunteers (08:00 ~ 11:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-20/ccu-tenn
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/206769c0f9f6e93c455c70926b4abb41-thumbnail.jpg" group-title="Basketball",Orlando Magic vs. Brooklyn Nets (08:30 ~ 11:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/orl-bkn
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/2fa44c939705107d594694add94d4e17-thumbnail.jpg" group-title="Basketball",Indiana Pacers vs. Cleveland Cavaliers (08:30 ~ 11:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/ind-cle
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/7942f4ba146ff816f75752debdb563fd-thumbnail.jpg" group-title="Basketball",Toronto Raptors vs. Detroit Pistons (08:30 ~ 11:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/tor-det
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/4a13446939ac9b569c758e070c3da73f-thumbnail.jpg" group-title="Basketball",Washington Wizards vs. Chicago Bulls (09:00 ~ 12:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/wsh-chi
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/7974fb81723c88aacfdf19dc228997b4-thumbnail.jpg" group-title="Basketball",New Orleans Pelicans vs. Oklahoma City Thunder (09:00 ~ 12:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/no-okc
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/d6e3ee1c9037ca5678b305bf8dc7da96-thumbnail.jpg" group-title="Basketball",UCF Knights at Vanderbilt Commodores (09:00 ~ 12:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-20/ucf-van
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/66caadcad0d7386e6d8f97f29e1e2748-thumbnail.jpg" group-title="Basketball",Mississippi Valley State Delta Devils at Arkansas Razorbacks (09:00 ~ 12:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-20/mvsu-ark
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/dd3f333729de85e358f2c66ae9b4db6b-thumbnail.jpg" group-title="Basketball",Eastern Illinois Panthers at Illinois Fighting Illini (10:00 ~ 13:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-20/eiu-ill
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/e2030521e5976b30f09613cf0150a2ef-thumbnail.jpg" group-title="Basketball",Phoenix Suns vs. Utah Jazz (10:30 ~ 13:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/phx-utah
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/6727662900141fcdb2d60feebeb11166-thumbnail.jpg" group-title="Basketball",Houston Rockets vs. Denver Nuggets (11:00 ~ 14:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/hou-den
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/ea6e42da9129d9d58a3463636ee37bb8-thumbnail.jpg" group-title="Basketball",Sacramento Kings vs. Los Angeles Lakers (11:00 ~ 14:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-20/sac-lal
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/076176202ebe7d94ce25e0e68ddf3649-thumbnail.jpg" group-title="Basketball",Tasmania JackJumpers vs. Illawarra Hawks (14:30 ~ 17:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nbl/2026-11-21/tas-hwk
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/c91ed693652c01cb6f76b8875f775e02-thumbnail.jpg" group-title="Basketball",Melbourne United vs. New Zealand Breakers (16:30 ~ 19:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nbl/2026-11-21/mel-nzl
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/a214dcacf161ffbc677d909e905d44af-thumbnail.jpg" group-title="Basketball",Detroit Mercy Titans at Michigan State Spartans (01:00 ~ 04:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-21/detm-msu
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/cba419aba970197aa46d22675db14bd7-thumbnail.jpg" group-title="Basketball",Milwaukee Bucks vs. Philadelphia 76ers (02:00 ~ 05:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-21/mil-phi
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/e7b5699aaf6d1ddda48a560f8a79a0ad-thumbnail.jpg" group-title="Basketball",Queens University Royals at LSU Tigers (02:00 ~ 05:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-21/quc-lsu
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/b55403cb876e9676eca69e95ba77ae6b-thumbnail.jpg" group-title="Basketball",Michigan Wolverines at Villanova Wildcats (08:00 ~ 11:00)
 https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-21/mich-vill
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/a9aea5e3041253372bee48786d6c035b-thumbnail.jpg" group-title="Basketball",Portland Trail Blazers vs. New York Knicks (08:30 ~ 11:30)
@@ -129,6 +75,24 @@ https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-21/bos-sac
 https://ppv.passwdwork.us.ci/?proxy=1&id=nbl/2026-11-22/pnx-cns
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/8c8062fbfb65f7fe2dde5a01b93cd268-thumbnail.jpg" group-title="Basketball",Washington State Cougars at Duke Blue Devils (12:00 ~ 15:00)
 https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-21/wsu-duke
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/83eae96ea1195ce45840236c010ee415-thumbnail.jpg" group-title="Basketball",Brisbane Bullets vs. Sydney Kings (14:00 ~ 17:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nbl/2026-11-22/bri-syd
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/ce1d60b4d9455afa887087f44ca8306f-thumbnail.jpg" group-title="Basketball",Nebraska Cornhuskers at Butler Bulldogs (01:00 ~ 04:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=cbb/2026-11-22/neb-btlr
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/03f47c7316395517764ef6d0962efe73-thumbnail.jpg" group-title="Basketball",Detroit Pistons vs. Atlanta Hawks (04:30 ~ 07:30)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-22/det-atl
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/bea4a07ad1e35c3faa94edfa98049da5-thumbnail.jpg" group-title="Basketball",Oklahoma City Thunder vs. Miami Heat (07:00 ~ 10:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-22/okc-mia
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/5f2c06328219573a23651b2455d92a29-thumbnail.jpg" group-title="Basketball",Orlando Magic vs. Washington Wizards (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-22/orl-wsh
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/a6626ffb8095b259970a8e609204efc4-thumbnail.jpg" group-title="Basketball",Denver Nuggets vs. Chicago Bulls (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-22/den-chi
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/044ef8898e3f5c9482b893862770b354-thumbnail.jpg" group-title="Basketball",Dallas Mavericks vs. Utah Jazz (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-22/dal-utah
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/77c15a0c3e0b649ec74e67ea5a119738-thumbnail.jpg" group-title="Basketball",Indiana Pacers vs. New York Knicks (09:00 ~ 12:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-22/ind-ny
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/e7a99ae793cc3ff1510e270626deaf3e-thumbnail.jpg" group-title="Basketball",Boston Celtics vs. Golden State Warriors (09:30 ~ 12:30)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nba/2026-11-22/bos-gs
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/2e3cba2a94ae6af4b958675e73fe91e9-thumbnail.jpg" group-title="Cricket",Willow
 https://ppv.passwdwork.us.ci/?proxy=1&id=247-willow
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/5dfe2fc8e56d59add47afb0f6e996e55-thumbnail.jpg" group-title="Cricket",Fox Cricket
@@ -139,82 +103,6 @@ https://ppv.passwdwork.us.ci/?proxy=1&id=grand-slam-of-darts--day-8-32258
 https://ppv.passwdwork.us.ci/?proxy=1&id=grand-slam-of-darts--day-9-session-1-32259
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/44d919e74b19b6693673efa9a6748015-thumbnail.jpg" group-title="Darts",Grand Slam of Darts | Day 9, Session 2 (03:00 ~ 08:00)
 https://ppv.passwdwork.us.ci/?proxy=1&id=grand-slam-of-darts--day-9-session-2-32260
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/23cbaf92134b5a9855ae02fb2287adb1-thumbnail.jpg" group-title="Football",Puebla vs. Atlético de San Luis (09:00 ~ 11:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=liga-mx/2026-11-20/pue-asl
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/45eca10950cadb0a5e91951af88b87e0-thumbnail.jpg" group-title="Football",FC Juárez vs. Atlas (11:00 ~ 13:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=liga-mx/2026-11-20/jua-ats
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/037893918272d889da9fde0711034bba-thumbnail.jpg" group-title="Football",Tijuana vs. Atlante (11:00 ~ 13:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=liga-mx/2026-11-20/tij-atl
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/aba3473a6843b02ae8650fb5c79639d1-thumbnail.jpg" group-title="Football",Manchester City vs. Fulham (20:30 ~ 23:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-21/mci-ful
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/268a369e4713e9afd343aec1003fa3a7-thumbnail.jpg" group-title="Football",Alavés vs. Deportivo (21:00 ~ 23:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=laliga/2026-11-21/ala-dep
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/7b174ff4b56c3a0837b2020363765b97-thumbnail.jpg" group-title="Football",Como vs. Cagliari (22:00 ~ 00:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=seriea/2026-11-21/como-cag
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/bcb12ab48d2e394030867801ddf7d3b5-thumbnail.jpg" group-title="Football",Lazio vs. Lecce (22:00 ~ 00:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=seriea/2026-11-21/laz-lec
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/c578239d743e14b9b7bfdd92bef9f015-thumbnail.jpg" group-title="Football",AIK vs. Degerfors IF (22:00 ~ 00:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=allsvenskan/2026-11-21/aik-deg
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/d4b3a0a781e04f6cf9ac5a18bba3fbbb-thumbnail.jpg" group-title="Football",Mjällby AIF vs. Malmö FF (22:00 ~ 00:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=allsvenskan/2026-11-21/mja-mal
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/86c01c9cbd06e1a26262b0f8996a26d5-thumbnail.jpg" group-title="Football",1. FC Union Berlin vs. RB Leipzig (22:30 ~ 01:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=bundesliga/2026-11-21/fcu-rbl
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/3737905533f129cbd6e4b53ae640024f-thumbnail.jpg" group-title="Football",Bayer Leverkusen vs. SC Paderborn 07 (22:30 ~ 01:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=bundesliga/2026-11-21/b04-scp
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/ef7e780fbe1c4b32f2525469700d7aab-thumbnail.jpg" group-title="Football",Borussia Mönchengladbach vs. Borussia Dortmund (22:30 ~ 01:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=bundesliga/2026-11-21/bmg-dor
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/5f4ab402998fb63d368cd4a361872469-thumbnail.jpg" group-title="Football",Eintracht Frankfurt vs. TSG Hoffenheim (22:30 ~ 01:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=bundesliga/2026-11-21/sge-tsg
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/914cd973a652eb8b8e49b6a53e5e9daa-thumbnail.jpg" group-title="Football",SV Elversberg vs. SC Freiburg (22:30 ~ 01:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=bundesliga/2026-11-21/elv-scf
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/d1789d893d71224b7e554f107c2ab557-thumbnail.jpg" group-title="Football",AFC Bournemouth vs. Nottingham Forest (23:00 ~ 01:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-21/bou-nfo
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/8c8c9c27b0932b84b1f1078a3d978df9-thumbnail.jpg" group-title="Football",Aston Villa vs. Sunderland (23:00 ~ 01:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-21/avl-sun
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/69e808732fbf6789e296b3a0394b27e3-thumbnail.jpg" group-title="Football",Chelsea vs. Leeds United (23:00 ~ 01:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-21/che-lee
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/f69ee60df0595dd81682c428602bf8f4-thumbnail.jpg" group-title="Football",Coventry City vs. Crystal Palace (23:00 ~ 01:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-21/cov-cry
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/172c174dd26f89927068dfa9f4862485-thumbnail.jpg" group-title="Football",Tottenham Hotspur vs. Ipswich Town (23:00 ~ 01:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-21/tot-ips
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/7a9096262d17133aa073b5ea80d1c3c5-thumbnail.jpg" group-title="Football",Rayo Vallecano vs. Valencia (23:15 ~ 01:45)
-https://ppv.passwdwork.us.ci/?proxy=1&id=laliga/2026-11-21/ray-val
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/2d57901941378c054922ada852642f62-thumbnail.jpg" group-title="Football",NEC Nijmegen vs. PSV Eindhoven (23:30 ~ 02:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=eredivisie/2026-11-21/nec-psv
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/32842b6ee5b1a2e5562d535e0ee16297-thumbnail.jpg" group-title="Football",Nice vs. Paris Saint-Germain (00:15 ~ 02:45)
-https://ppv.passwdwork.us.ci/?proxy=1&id=ligue1/2026-11-21/nice-psg
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/53cbc3f8ebbedce56978cf40078e9aea-thumbnail.jpg" group-title="Football",GAIS vs. Västerås SK (00:30 ~ 03:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=allsvenskan/2026-11-21/gais-vas
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/bd2a87186212079c0c886ca634616b7f-thumbnail.jpg" group-title="Football",Parma vs. AS Roma (01:00 ~ 03:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=seriea/2026-11-21/par-roma
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/af9651a85a43cf202cc8a03983817be4-thumbnail.jpg" group-title="Football",Sevilla vs. Real Betis (01:30 ~ 04:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=laliga/2026-11-21/sev-bet
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/259953fa8e9e64d1546c1f1937aa88b7-thumbnail.jpg" group-title="Football",Schalke 04 vs. VfB Stuttgart (01:30 ~ 04:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=bundesliga/2026-11-21/s04-vfb
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/320e9458bedbca66794cd42cebba9351-thumbnail.jpg" group-title="Football",Newcastle United vs. Arsenal (01:30 ~ 04:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-21/new-ars
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/0da871e3c6147503d413f50557eee998-thumbnail.jpg" group-title="Football",FC Utrecht vs. SC Cambuur (01:45 ~ 04:15)
-https://ppv.passwdwork.us.ci/?proxy=1&id=eredivisie/2026-11-21/utr-cam
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/f0a65e39a1dbf75f308cf24fc36d0aa9-thumbnail.jpg" group-title="Football",Feyenoord Rotterdam vs. Excelsior (01:45 ~ 04:15)
-https://ppv.passwdwork.us.ci/?proxy=1&id=eredivisie/2026-11-21/fey-exc
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/92b4fce7b6c33b137c08c2f2b9699255-thumbnail.jpg" group-title="Football",New England Revolution vs. Philadelphia Union (03:00 ~ 06:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=mls/2026-11-21/ne-phi
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/599d0cd52995faf2be573bee104dd4e6-thumbnail.jpg" group-title="Football",Napoli vs. Torino (03:45 ~ 06:15)
-https://ppv.passwdwork.us.ci/?proxy=1&id=seriea/2026-11-21/nap-tor
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/80e71b9bb4c531e7747969bc024c8121-thumbnail.jpg" group-title="Football",AS Monaco vs. AJ Auxerre (03:45 ~ 06:15)
-https://ppv.passwdwork.us.ci/?proxy=1&id=ligue1/2026-11-21/mon-aux
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/6a80a39055dcfa3638b1e70368678197-thumbnail.jpg" group-title="Football",Lens vs. Toulouse (03:45 ~ 06:15)
-https://ppv.passwdwork.us.ci/?proxy=1&id=ligue1/2026-11-21/rcl-tou
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/ce8e4ae1247a5f256eb92b3d23a3a7b7-thumbnail.jpg" group-title="Football",Lille vs. Lyon (03:45 ~ 06:15)
-https://ppv.passwdwork.us.ci/?proxy=1&id=ligue1/2026-11-21/lill-lyon
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/5ff5872627a533e1d344376b785d989e-thumbnail.jpg" group-title="Football",Strasbourg vs. Brest (03:45 ~ 06:15)
-https://ppv.passwdwork.us.ci/?proxy=1&id=ligue1/2026-11-21/str-bre
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/e9465819ec45ec3242d2e2f1d9dfec28-thumbnail.jpg" group-title="Football",Real Madrid vs. Celta Vigo (04:00 ~ 06:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=laliga/2026-11-21/rma-cel
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/080c4f5ea472e8cacf73e846b9d30a92-thumbnail.jpg" group-title="Football",FC Groningen vs. Heerenveen (04:00 ~ 06:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=eredivisie/2026-11-21/gro-hee
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/eef15df386e89d204ee295ee9a175bfc-thumbnail.jpg" group-title="Football",Telstar vs. PEC Zwolle (04:00 ~ 06:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=eredivisie/2026-11-21/tel-pec
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/5793d1aefa9075b1fafae3a5b31bdb24-thumbnail.jpg" group-title="Football",FC Dallas vs. Portland Timbers (05:00 ~ 08:00)
 https://ppv.passwdwork.us.ci/?proxy=1&id=mls/2026-11-21/dal-por
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/65e4e8a3a4de55f4ddb174a28b807dd3-thumbnail.jpg" group-title="Football",Pachuca vs. Toluca (06:50 ~ 09:20)
@@ -291,10 +179,32 @@ https://ppv.passwdwork.us.ci/?proxy=1&id=pl/2026-11-23/bre-eve
 https://ppv.passwdwork.us.ci/?proxy=1&id=sky-sports-golf-29059
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/4a70bb8cf331b8ab0299fd836b56e2ed-thumbnail.jpg" group-title="Ice Hockey",NHL Network
 https://ppv.passwdwork.us.ci/?proxy=1&id=nhl-network-29780
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/a702f41e630dfdaf68ac23e572b0a3c1-thumbnail.jpg" group-title="Motorsports",Las Vegas Grand Prix - Practice 3 (08:30 ~ 10:30)
-https://ppv.passwdwork.us.ci/?proxy=1&id=f1/2026/las-vegas/fp3
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/b526db35e2cda05c237641a723988187-thumbnail.jpg" group-title="Motorsports",Las Vegas Grand Prix - Qualifying (12:00 ~ 14:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=f1/2026/las-vegas/qualifying
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/6456d8dea2521a525ee34bbd43b7a6a7-thumbnail.jpg" group-title="Ice Hockey",Chicago Blackhawks vs. Calgary Flames (04:30 ~ 07:30)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/chi-cgy
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/268800077b726a02be359e2d4e94a392-thumbnail.jpg" group-title="Ice Hockey",Buffalo Sabres vs. Florida Panthers (07:00 ~ 10:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/buf-fla
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/6cbcc9754451ac6f7ff760b81e666d4d-thumbnail.jpg" group-title="Ice Hockey",Pittsburgh Penguins vs. Nashville Predators (07:00 ~ 10:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/pit-nsh
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/38e9fd8b21f242694b59620f15d1596f-thumbnail.jpg" group-title="Ice Hockey",Washington Capitals vs. Boston Bruins (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/wsh-bos
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/b43e7e07a3dc3777ea34f3f8125c1ed6-thumbnail.jpg" group-title="Ice Hockey",Columbus Blue Jackets vs. Toronto Maple Leafs (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/cbj-tor
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/e8118edf1e37cad40ca4ccb05d198b90-thumbnail.jpg" group-title="Ice Hockey",Philadelphia Flyers vs. Montreal Canadiens (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/phi-mtl
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/6a1d8e0d9465315112371c04e15b273e-thumbnail.jpg" group-title="Ice Hockey",Los Angeles Kings vs. Ottawa Senators (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/la-ott
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/b01cb469cdb743e1f0948765e356fc3f-thumbnail.jpg" group-title="Ice Hockey",New York Islanders vs. Detroit Red Wings (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/nyi-det
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/48d9ebab1d9ff4d8a903c6521e1ea489-thumbnail.jpg" group-title="Ice Hockey",New Jersey Devils vs. St. Louis Blues (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/nj-stl
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/09b53f37e6899dc5ceda3868b7068e68-thumbnail.jpg" group-title="Ice Hockey",Vegas Golden Knights vs. Winnipeg Jets (08:00 ~ 11:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/vgk-wpg
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/28c2ee946f9ce82b0479b6a921e04268-thumbnail.jpg" group-title="Ice Hockey",Anaheim Ducks vs. Utah Mammoth (10:00 ~ 13:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/ana-uta
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/4eadf4804301c7b1a9f932e3100ec19a-thumbnail.jpg" group-title="Ice Hockey",Minnesota Wild vs. Vancouver Canucks (11:00 ~ 14:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/min-van
+#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/73af8249c756b7986a51a67cfdc9bd74-thumbnail.jpg" group-title="Ice Hockey",Seattle Kraken vs. San Jose Sharks (11:00 ~ 14:00)
+https://ppv.passwdwork.us.ci/?proxy=1&id=nhl/2026-11-21/sea-sj
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/f7d13134d98d5629c426de8cc76fe91e-thumbnail.jpg" group-title="Motorsports",Las Vegas Grand Prix - Race (12:00 ~ 15:00)
 https://ppv.passwdwork.us.ci/?proxy=1&id=f1/2026/las-vegas/race
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/5ec4933f4ae6363e151dfe5c75ad24e3-thumbnail.jpg" group-title="Rugby",Fox League
@@ -303,8 +213,6 @@ https://ppv.passwdwork.us.ci/?proxy=1&id=247-fox-league
 https://ppv.passwdwork.us.ci/?proxy=1&id=tennis-channel
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/3fa2f4ea885cdd997f65c0ded9148fba-thumbnail.jpg" group-title="Tennis",Sky Sports Tennis (08:00 ~ 12:00)
 https://ppv.passwdwork.us.ci/?proxy=1&id=sky-sports-tennis-32479
-#EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/ec7810b68fc39115ce3510bcf9687a63-thumbnail.jpg" group-title="Wrestling",WWE Friday Night Smackdown (09:00 ~ 12:00)
-https://ppv.passwdwork.us.ci/?proxy=1&id=wwe/2026-11-20
 #EXTINF:-1 tvg-logo="https://static.ppvservices.st/assets/thumb/6e29b1bb679dd5133c85bbaadc2c4b13-thumbnail.jpg" group-title="Wrestling",AEW Saturday Night Collision (09:00 ~ 12:00)
 https://ppv.passwdwork.us.ci/?proxy=1&id=aew/2026-11-21
 #EXTINF:-1 tvg-logo="https://thumbs.poocloud.in/southpark/preview.jpg" group-title="24/7 Streams",24/7 South Park
